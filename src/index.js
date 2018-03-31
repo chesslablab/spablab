@@ -39,165 +39,165 @@ class Board extends React.Component {
       pieces: {
         // white pieces
         a1: {
-          color: 'w',
+          color: WHITE,
           piece: '♖',
-          symbol: 'R'
+          symbol: ROOK
         },
         b1: {
-          color: 'w',
+          color: WHITE,
           piece: '♘',
-          symbol: 'N'
+          symbol: KNIGHT
         },
         c1: {
-          color: 'w',
+          color: WHITE,
           piece: '♗',
-          symbol: 'B'
+          symbol: BISHOP
         },
         d1: {
-          color: 'w',
+          color: WHITE,
           piece: '♕',
-          symbol: 'Q'
+          symbol: QUEEN
         },
         e1: {
-          color: 'w',
+          color: WHITE,
           piece: '♔',
-          symbol: 'K'
+          symbol: KING
         },
         f1: {
-          color: 'w',
+          color: WHITE,
           piece: '♗',
-          symbol: 'B'
+          symbol: BISHOP
         },
         g1: {
-          color: 'w',
+          color: WHITE,
           piece: '♘',
-          symbol: 'N'
+          symbol: KNIGHT
         },
         h1: {
-          color: 'w',
+          color: WHITE,
           piece: '♖',
-          symbol: 'R'
+          symbol: ROOK
         },
         a2: {
-          color: 'w',
+          color: WHITE,
           piece: '♙',
-          symbol: 'P'
+          symbol: PAWN
         },
         b2: {
-          color: 'w',
+          color: WHITE,
           piece: '♙',
-          symbol: 'P'
+          symbol: PAWN
         },
         c2: {
-          color: 'w',
+          color: WHITE,
           piece: '♙',
-          symbol: 'P'
+          symbol: PAWN
         },
         d2: {
-          color: 'w',
+          color: WHITE,
           piece: '♙',
-          symbol: 'P'
+          symbol: PAWN
         },
         e2: {
-          color: 'w',
+          color: WHITE,
           piece: '♙',
-          symbol: 'P'
+          symbol: PAWN
         },
         f2: {
-          color: 'w',
+          color: WHITE,
           piece: '♙',
-          symbol: 'P'
+          symbol: PAWN
         },
         g2: {
-          color: 'w',
+          color: WHITE,
           piece: '♙',
-          symbol: 'P'
+          symbol: PAWN
         },
         h2: {
-          color: 'w',
+          color: WHITE,
           piece: '♙',
-          symbol: 'P'
+          symbol: PAWN
         },
         // black pieces
         a8: {
-          color: 'b',
+          color: BLACK,
           piece: '♜',
-          symbol: 'R'
+          symbol: ROOK
         },
         b8: {
-          color: 'b',
+          color: BLACK,
           piece: '♞',
-          symbol: 'N'
+          symbol: KNIGHT
         },
         c8: {
-          color: 'b',
+          color: BLACK,
           piece: '♝',
-          symbol: 'B'
+          symbol: BISHOP
         },
         d8: {
-          color: 'b',
+          color: BLACK,
           piece: '♛',
-          symbol: 'Q'
+          symbol: QUEEN
         },
         e8: {
-          color: 'b',
+          color: BLACK,
           piece: '♚',
-          symbol: 'K'
+          symbol: KING
         },
         f8: {
-          color: 'b',
+          color: BLACK,
           piece: '♝',
-          symbol: 'B'
+          symbol: BISHOP
         },
         g8: {
-          color: 'b',
+          color: BLACK,
           piece: '♞',
-          symbol: 'N'
+          symbol: KNIGHT
         },
         h8: {
-          color: 'b',
+          color: BLACK,
           piece: '♜',
-          symbol: 'R'
+          symbol: ROOK
         },
         a7: {
-          color: 'b',
+          color: BLACK,
           piece: '♟',
-          symbol: 'P'
+          symbol: PAWN
         },
         b7: {
-          color: 'b',
+          color: BLACK,
           piece: '♟',
-          symbol: 'P'
+          symbol: PAWN
         },
         c7: {
-          color: 'b',
+          color: BLACK,
           piece: '♟',
-          symbol: 'P'
+          symbol: PAWN
         },
         d7: {
-          color: 'b',
+          color: BLACK,
           piece: '♟',
-          symbol: 'P'
+          symbol: PAWN
         },
         e7: {
-          color: 'b',
+          color: BLACK,
           piece: '♟',
-          symbol: 'P'
+          symbol: PAWN
         },
         f7: {
-          color: 'b',
+          color: BLACK,
           piece: '♟',
-          symbol: 'P'
+          symbol: PAWN
         },
         g7: {
-          color: 'b',
+          color: BLACK,
           piece: '♟',
-          symbol: 'P'
+          symbol: PAWN
         },
         h7: {
-          color: 'b',
+          color: BLACK,
           piece: '♟',
-          symbol: 'P'
+          symbol: PAWN
         }
       }
     };
