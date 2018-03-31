@@ -1,5 +1,7 @@
 ## React PGN Chess
 
+![React PGN Chess](/resources/black-chess-pieces.jpg?raw=true)
+
 This is a chess board implemented with React that emits PGN signals on every move made by players. It is specially designed to be integrated with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a PHP chess board representation that runs on the server side.
 
 > Side Note: React PGN Chess is currently on development. Please be patient. Contributions are welcome!
