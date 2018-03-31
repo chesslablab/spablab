@@ -211,9 +211,6 @@ class Board extends React.Component {
     }
   }
 
-  /* movePiece(i) {
-  } */
-
   renderRow(number) {
     let ascii = 96;
     let color;
@@ -226,41 +223,36 @@ class Board extends React.Component {
     }
 
     for (let i=1; i<=8; i++) {
-       ascii++;
-       row.push(<Square square={String.fromCharCode(ascii) + number} color={color} state={this.state} onClick={() => alert('foo')} />);
-       color = this.switchColor(color);
+      ascii++;
+      row.push(<Square
+        square={String.fromCharCode(ascii) + number}
+        color={color}
+        state={this.state}
+        onClick={() => alert('foo')} />
+      );
+      color = this.switchColor(color);
     }
 
     return row;
   }
 
+  renderBoard() {
+    let board = [];
+
+    for (let i=8; i>=1; i--) {
+      board.push(<div className="board-row">
+        {this.renderRow(i)}
+      </div>
+      );
+    }
+
+    return board;
+  }
+
   render() {
     return (
       <div>
-        <div className="board-row">
-          {this.renderRow(8)}
-        </div>
-        <div className="board-row">
-          {this.renderRow(7)}
-        </div>
-        <div className="board-row">
-          {this.renderRow(6)}
-        </div>
-        <div className="board-row">
-          {this.renderRow(5)}
-        </div>
-        <div className="board-row">
-          {this.renderRow(4)}
-        </div>
-        <div className="board-row">
-          {this.renderRow(3)}
-        </div>
-        <div className="board-row">
-          {this.renderRow(2)}
-        </div>
-        <div className="board-row">
-          {this.renderRow(1)}
-        </div>
+        {this.renderBoard()}
       </div>
     );
   }
