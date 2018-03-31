@@ -2,3 +2,11 @@ body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
 }
+
+button.square.w {
+  background-color: #fff;
+}
+
+button.square.b {
+  background-color: #000;
+}
