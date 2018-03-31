@@ -1,11 +1,11 @@
 version: '3.3'
 
 services:
-  my_app:
-    container_name: my_app
+  react_pgn_chess:
+    container_name: react_pgn_chess
     restart: always
     build: .
     volumes:
-      - ./:/usr/src/my-app/
+      - ./:/usr/src/react-pgn-chess/
     ports:
       - "3000:3000"

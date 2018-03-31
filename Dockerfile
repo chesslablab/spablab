@@ -1,7 +1,7 @@
 FROM node:9.10
-RUN mkdir -p /usr/src/my-app
-WORKDIR /usr/src/my-app
-COPY package.json /usr/src/my-app/
+RUN mkdir -p /usr/src/react-pgn-chess
+WORKDIR /usr/src/react-pgn-chess
+COPY package.json /usr/src/react-pgn-chess/
 RUN npm install
-COPY . /usr/src/my-app
+COPY . /usr/src/react-pgn-chess
 CMD ["npm", "start"]
