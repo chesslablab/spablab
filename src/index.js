@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+  renderPiece(square) {
+    if (square in this.props.state.pieces) {
+     return (
+       this.props.state.pieces[square].piece
+     );
+    }
+  }
+
   render() {
     return (
       <button className={['square', this.props.color].join(' ')} onClick={() => this.props.onClick()}>
-        {this.props.state.pieces[this.props.name].piece}
+        {this.renderPiece(this.props.square)}
       </button>
     );
   }
@@ -15,8 +23,10 @@ class Square extends React.Component {
 class Board extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       pieces: {
+        // white pieces
         a1: {
           color: 'w',
           piece: '♖',
@@ -97,6 +107,7 @@ class Board extends React.Component {
           piece: '♙',
           symbol: 'P'
         },
+        // black pieces
         a8: {
           color: 'b',
           piece: '♖',
@@ -188,24 +199,34 @@ class Board extends React.Component {
     return (
       <div>
         <div className="board-row">
-          <Square state={this.state} name='a2' color='w' onClick={() => alert('foo')} />
-          <Square state={this.state} name='b2' color='b' onClick={() => alert('foo')} />
-          <Square state={this.state} name='c2' color='w' onClick={() => alert('foo')} />
-          <Square state={this.state} name='d2' color='b' onClick={() => alert('foo')} />
-          <Square state={this.state} name='e2' color='w' onClick={() => alert('foo')} />
-          <Square state={this.state} name='f2' color='b' onClick={() => alert('foo')} />
-          <Square state={this.state} name='g2' color='w' onClick={() => alert('foo')} />
-          <Square state={this.state} name='h2' color='b' onClick={() => alert('foo')} />
+          <Square square='a3' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='b3' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='c3' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='d3' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='e3' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='f3' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='g3' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='h3' color='w' state={this.state} onClick={() => alert('foo')} />
         </div>
         <div className="board-row">
-          <Square state={this.state} name='a1' color='b' onClick={() => alert('foo')} />
-          <Square state={this.state} name='b1' color='w' onClick={() => alert('foo')} />
-          <Square state={this.state} name='c1' color='b' onClick={() => alert('foo')} />
-          <Square state={this.state} name='d1' color='w' onClick={() => alert('foo')} />
-          <Square state={this.state} name='e1' color='b' onClick={() => alert('foo')} />
-          <Square state={this.state} name='f1' color='w' onClick={() => alert('foo')} />
-          <Square state={this.state} name='g1' color='b' onClick={() => alert('foo')} />
-          <Square state={this.state} name='h1' color='w' onClick={() => alert('foo')} />
+          <Square square='a2' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='b2' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='c2' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='d2' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='e2' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='f2' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='g2' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='h2' color='b' state={this.state} onClick={() => alert('foo')} />
+        </div>
+        <div className="board-row">
+          <Square square='a1' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='b1' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='c1' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='d1' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='e1' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='f1' color='w' state={this.state} onClick={() => alert('foo')} />
+          <Square square='g1' color='b' state={this.state} onClick={() => alert('foo')} />
+          <Square square='h1' color='w' state={this.state} onClick={() => alert('foo')} />
         </div>
       </div>
     );
