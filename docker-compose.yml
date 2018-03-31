@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  my_app:
+    container_name: my_app
+    restart: always
+    build: .
+    volumes:
+      - ./:/usr/src/my-app/
+    ports:
+      - "3000:3000"
