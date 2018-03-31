@@ -3,10 +3,15 @@ body {
   margin: 20px;
 }
 
+button.square {
+  height: 50px;
+  width: 50px;
+}
+
 button.square.w {
   background-color: #fff;
 }
 
 button.square.b {
-  background-color: #000;
+  background-color: #a9a9a9;
 }

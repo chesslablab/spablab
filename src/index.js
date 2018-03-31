@@ -6,7 +6,7 @@ class Square extends React.Component {
   render() {
     return (
       <button className={['square', this.props.color].join(' ')} onClick={() => this.props.onClick()}>
-        {this.props.name}
+        {this.props.state.pieces[this.props.name].piece}
       </button>
     );
   }
@@ -16,136 +16,168 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pieces: [
-        {
+      pieces: {
+        a1: {
+          color: 'w',
           piece: '♖',
-          square: 'a1'
+          symbol: 'R'
         },
-        {
+        b1: {
+          color: 'w',
           piece: '♘',
-          square: 'b1'
+          symbol: 'N'
         },
-        {
+        c1: {
+          color: 'w',
           piece: '♗',
-          square: 'c1'
+          symbol: 'B'
         },
-        {
+        d1: {
+          color: 'w',
           piece: '♕',
-          square: 'd1'
+          symbol: 'Q'
         },
-        {
+        e1: {
+          color: 'w',
           piece: '♔',
-          square: 'e1'
+          symbol: 'K'
         },
-        {
+        f1: {
+          color: 'w',
           piece: '♗',
-          square: 'f1'
+          symbol: 'B'
         },
-        {
+        g1: {
+          color: 'w',
           piece: '♘',
-          square: 'g1'
+          symbol: 'N'
         },
-        {
+        h1: {
+          color: 'w',
           piece: '♖',
-          square: 'h1'
+          symbol: 'R'
         },
-        {
+        a2: {
+          color: 'w',
           piece: '♙',
-          square: 'a2'
+          symbol: 'P'
         },
-        {
+        b2: {
+          color: 'w',
           piece: '♙',
-          square: 'b2'
+          symbol: 'P'
         },
-        {
+        c2: {
+          color: 'w',
           piece: '♙',
-          square: 'c2'
+          symbol: 'P'
         },
-        {
+        d2: {
+          color: 'w',
           piece: '♙',
-          square: 'd2'
+          symbol: 'P'
         },
-        {
+        e2: {
+          color: 'w',
           piece: '♙',
-          square: 'e2'
+          symbol: 'P'
         },
-        {
+        f2: {
+          color: 'w',
           piece: '♙',
-          square: 'f2'
+          symbol: 'P'
         },
-        {
+        g2: {
+          color: 'w',
           piece: '♙',
-          square: 'g2'
+          symbol: 'P'
         },
-        {
+        h2: {
+          color: 'w',
           piece: '♙',
-          square: 'h2'
+          symbol: 'P'
         },
-        {
+        a8: {
+          color: 'b',
           piece: '♖',
-          square: 'a8'
+          symbol: 'R'
         },
-        {
+        b8: {
+          color: 'b',
           piece: '♘',
-          square: 'b8'
+          symbol: 'N'
         },
-        {
+        c8: {
+          color: 'b',
           piece: '♗',
-          square: 'c8'
+          symbol: 'B'
         },
-        {
+        d8: {
+          color: 'b',
           piece: '♕',
-          square: 'd8'
+          symbol: 'Q'
         },
-        {
+        e8: {
+          color: 'b',
           piece: '♔',
-          square: 'e8'
+          symbol: 'K'
         },
-        {
+        f8: {
+          color: 'b',
           piece: '♗',
-          square: 'f8'
+          symbol: 'B'
         },
-        {
+        g8: {
+          color: 'b',
           piece: '♘',
-          square: 'g8'
+          symbol: 'N'
         },
-        {
+        h8: {
+          color: 'b',
           piece: '♖',
-          square: 'h8'
+          symbol: 'R'
         },
-        {
+        a7: {
+          color: 'b',
           piece: '♙',
-          square: 'a7'
+          symbol: 'P'
         },
-        {
+        b7: {
+          color: 'b',
           piece: '♙',
-          square: 'b7'
+          symbol: 'P'
         },
-        {
+        c7: {
+          color: 'b',
           piece: '♙',
-          square: 'c7'
+          symbol: 'P'
         },
-        {
+        d7: {
+          color: 'b',
           piece: '♙',
-          square: 'd7'
+          symbol: 'P'
         },
-        {
+        e7: {
+          color: 'b',
           piece: '♙',
-          square: 'e7'
+          symbol: 'P'
         },
-        {
+        f7: {
+          color: 'b',
           piece: '♙',
-          square: 'f7'
+          symbol: 'P'
         },
-        {
+        g7: {
+          color: 'b',
           piece: '♙',
-          square: 'g7'
+          symbol: 'P'
         },
-        {
+        h7: {
+          color: 'b',
           piece: '♙',
-          square: 'h7'
+          symbol: 'P'
         }
-      ]
+      }
     };
   }
 
@@ -156,34 +188,24 @@ class Board extends React.Component {
     return (
       <div>
         <div className="board-row">
-          <Square name='a3' color='b' onClick={() => alert('foo')} />
-          <Square name='b3' color='w' onClick={() => alert('foo')} />
-          <Square name='c3' color='b' onClick={() => alert('foo')} />
-          <Square name='d3' color='w' onClick={() => alert('foo')} />
-          <Square name='e3' color='b' onClick={() => alert('foo')} />
-          <Square name='f3' color='w' onClick={() => alert('foo')} />
-          <Square name='g3' color='b' onClick={() => alert('foo')} />
-          <Square name='h3' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='a2' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='b2' color='b' onClick={() => alert('foo')} />
+          <Square state={this.state} name='c2' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='d2' color='b' onClick={() => alert('foo')} />
+          <Square state={this.state} name='e2' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='f2' color='b' onClick={() => alert('foo')} />
+          <Square state={this.state} name='g2' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='h2' color='b' onClick={() => alert('foo')} />
         </div>
         <div className="board-row">
-          <Square name='a2' color='w' onClick={() => alert('foo')} />
-          <Square name='b2' color='b' onClick={() => alert('foo')} />
-          <Square name='c2' color='w' onClick={() => alert('foo')} />
-          <Square name='d2' color='b' onClick={() => alert('foo')} />
-          <Square name='e2' color='w' onClick={() => alert('foo')} />
-          <Square name='f2' color='b' onClick={() => alert('foo')} />
-          <Square name='g2' color='w' onClick={() => alert('foo')} />
-          <Square name='h2' color='b' onClick={() => alert('foo')} />
-        </div>
-        <div className="board-row">
-          <Square name='a1' color='b' onClick={() => alert('foo')} />
-          <Square name='b1' color='w' onClick={() => alert('foo')} />
-          <Square name='c1' color='b' onClick={() => alert('foo')} />
-          <Square name='d1' color='w' onClick={() => alert('foo')} />
-          <Square name='e1' color='b' onClick={() => alert('foo')} />
-          <Square name='f1' color='w' onClick={() => alert('foo')} />
-          <Square name='g1' color='b' onClick={() => alert('foo')} />
-          <Square name='h1' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='a1' color='b' onClick={() => alert('foo')} />
+          <Square state={this.state} name='b1' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='c1' color='b' onClick={() => alert('foo')} />
+          <Square state={this.state} name='d1' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='e1' color='b' onClick={() => alert('foo')} />
+          <Square state={this.state} name='f1' color='w' onClick={() => alert('foo')} />
+          <Square state={this.state} name='g1' color='b' onClick={() => alert('foo')} />
+          <Square state={this.state} name='h1' color='w' onClick={() => alert('foo')} />
         </div>
       </div>
     );
