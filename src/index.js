@@ -2,6 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+const WHITE = 'w';
+const BLACK = 'b';
+const BISHOP = 'B';
+const KING = 'K';
+const KNIGHT = 'N';
+const PAWN = 'P';
+const QUEEN = 'Q';
+const ROOK = 'R';
+const CASTLING_SHORT = 'O-O';
+const CASTLING_LONG = 'O-O-O';
+
 class Square extends React.Component {
   renderPiece(square) {
     if (square in this.props.state.pieces) {
@@ -110,123 +121,145 @@ class Board extends React.Component {
         // black pieces
         a8: {
           color: 'b',
-          piece: '♖',
+          piece: '♜',
           symbol: 'R'
         },
         b8: {
           color: 'b',
-          piece: '♘',
+          piece: '♞',
           symbol: 'N'
         },
         c8: {
           color: 'b',
-          piece: '♗',
+          piece: '♝',
           symbol: 'B'
         },
         d8: {
           color: 'b',
-          piece: '♕',
+          piece: '♛',
           symbol: 'Q'
         },
         e8: {
           color: 'b',
-          piece: '♔',
+          piece: '♚',
           symbol: 'K'
         },
         f8: {
           color: 'b',
-          piece: '♗',
+          piece: '♝',
           symbol: 'B'
         },
         g8: {
           color: 'b',
-          piece: '♘',
+          piece: '♞',
           symbol: 'N'
         },
         h8: {
           color: 'b',
-          piece: '♖',
+          piece: '♜',
           symbol: 'R'
         },
         a7: {
           color: 'b',
-          piece: '♙',
+          piece: '♟',
           symbol: 'P'
         },
         b7: {
           color: 'b',
-          piece: '♙',
+          piece: '♟',
           symbol: 'P'
         },
         c7: {
           color: 'b',
-          piece: '♙',
+          piece: '♟',
           symbol: 'P'
         },
         d7: {
           color: 'b',
-          piece: '♙',
+          piece: '♟',
           symbol: 'P'
         },
         e7: {
           color: 'b',
-          piece: '♙',
+          piece: '♟',
           symbol: 'P'
         },
         f7: {
           color: 'b',
-          piece: '♙',
+          piece: '♟',
           symbol: 'P'
         },
         g7: {
           color: 'b',
-          piece: '♙',
+          piece: '♟',
           symbol: 'P'
         },
         h7: {
           color: 'b',
-          piece: '♙',
+          piece: '♟',
           symbol: 'P'
         }
       }
     };
   }
 
+  switchColor(color) {
+    if (color === BLACK) {
+      return WHITE;
+    } else {
+      return BLACK;
+    }
+  }
+
   /* movePiece(i) {
   } */
+
+  renderRow(number) {
+    let ascii = 96;
+    let color;
+    let row = [];
+
+    if (number % 2 !== 0) {
+      color = BLACK;
+    } else {
+      color = WHITE;
+    }
+
+    for (let i=1; i<=8; i++) {
+       ascii++;
+       row.push(<Square square={String.fromCharCode(ascii) + number} color={color} state={this.state} onClick={() => alert('foo')} />);
+       color = this.switchColor(color);
+    }
+
+    return row;
+  }
 
   render() {
     return (
       <div>
         <div className="board-row">
-          <Square square='a3' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='b3' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='c3' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='d3' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='e3' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='f3' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='g3' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='h3' color='w' state={this.state} onClick={() => alert('foo')} />
+          {this.renderRow(8)}
         </div>
         <div className="board-row">
-          <Square square='a2' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='b2' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='c2' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='d2' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='e2' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='f2' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='g2' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='h2' color='b' state={this.state} onClick={() => alert('foo')} />
+          {this.renderRow(7)}
         </div>
         <div className="board-row">
-          <Square square='a1' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='b1' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='c1' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='d1' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='e1' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='f1' color='w' state={this.state} onClick={() => alert('foo')} />
-          <Square square='g1' color='b' state={this.state} onClick={() => alert('foo')} />
-          <Square square='h1' color='w' state={this.state} onClick={() => alert('foo')} />
+          {this.renderRow(6)}
+        </div>
+        <div className="board-row">
+          {this.renderRow(5)}
+        </div>
+        <div className="board-row">
+          {this.renderRow(4)}
+        </div>
+        <div className="board-row">
+          {this.renderRow(3)}
+        </div>
+        <div className="board-row">
+          {this.renderRow(2)}
+        </div>
+        <div className="board-row">
+          {this.renderRow(1)}
         </div>
       </div>
     );
