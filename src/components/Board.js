@@ -1,8 +1,8 @@
 import Pgn from '../Pgn.js';
-import Pieces from '../global/Pieces.js';
+import Pieces from '../Pieces.js';
 import React from 'react';
 import Square from './Square.js';
-import Symbol from '../global/Symbol.js';
+import Symbol from '../Symbol.js';
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -111,7 +111,7 @@ export default class Board extends React.Component {
     );
   }
 
-  renderBoard() {
+  renderRows() {
     let board = [];
     for (let i=8; i>=1; i--) {
       board.push(<div
@@ -129,7 +129,7 @@ export default class Board extends React.Component {
     return (
       <div>
         <div className="board">
-          {this.renderBoard()}
+          {this.renderRows()}
         </div>
         <div className="history">
           {this.renderHistory()}
