@@ -1,4 +1,4 @@
-export default Symbol = {
+export default {
     WHITE: 'w',
     BLACK: 'b',
     BISHOP: 'B',

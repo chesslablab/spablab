@@ -6,16 +6,8 @@ import Symbol from '../global/Symbol.js';
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      move: {
-        status: null,
-        piece: null,
-        square: {
-          from: null,
-          to: null
-        }
-      },
+      move: null,
       pieces: Pieces
     };
   }
@@ -28,42 +20,41 @@ export default class Board extends React.Component {
     }
   }
 
-  pickPiece(square) {
+  movePiece(square) {
     let piece = this.state.pieces[square];
-    if (piece !== undefined) {
-      let newState = this.state;
-      newState.move = {
-        status: 'progress',
-        piece: piece,
-        from: square
-      };
-      this.setState(newState);
+    let newState = this.state;
 
-      console.log(this.state.move);
-    } else {
-
-      let newState = this.state;
-
-      newState.move = {
-        status: 'complete',
-        piece: this.state.move.piece,
-        from: this.state.move.from,
-        to: square
-      };
-
-      // delete newState.pieces['h1'];
-      // delete newState.pieces['h2'];
-
-      delete newState.pieces[this.state.move.from];
-
-      newState.pieces[this.state.move.to] = this.state.move.piece;
-
-      console.log(newState);
-
-
-      this.setState(newState);
-
-      // console.log(this.state);
+    switch (true) {
+      // leave piece on empty square
+      case this.state.move !== null && piece === undefined:
+        newState.move = this.state.move;
+        newState.move.to = square;
+        delete newState.pieces[this.state.move.from];
+        newState.pieces[this.state.move.to] = this.state.move.piece;
+        newState.move = null;
+        this.setState(newState);
+        break;
+      // pick piece on non-empty square
+      case this.state.move === null && piece !== undefined:
+        newState.move = {
+          piece: piece,
+          from: square
+        };
+        this.setState(newState);
+        break;
+      // leave piece on non-empty square
+      case this.state.move !== null && piece !== undefined:
+        newState.move = this.state.move;
+        newState.move.to = square;
+        delete newState.pieces[this.state.move.from];
+        newState.pieces[this.state.move.to] = this.state.move.piece;
+        newState.move = null;
+        this.setState(newState);
+        break;
+      // pick piece on empty square
+      default:
+        // do nothing
+        break;
     }
   }
 
@@ -82,10 +73,11 @@ export default class Board extends React.Component {
       ascii++;
       let square = String.fromCharCode(ascii) + number;
       row.push(<Square
+        key={i}
         square={square}
         color={color}
         state={this.state}
-        onClick={() => this.pickPiece(square)} />
+        onClick={() => this.movePiece(square)} />
       );
       color = this.switchColor(color);
     }
@@ -97,8 +89,10 @@ export default class Board extends React.Component {
     let board = [];
 
     for (let i=8; i>=1; i--) {
-      board.push(<div className="board-row">
-        {this.renderRow(i)}
+      board.push(<div
+        key={i}
+        className="board-row">
+          {this.renderRow(i)}
       </div>
       );
     }
