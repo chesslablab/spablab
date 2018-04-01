@@ -11,9 +11,9 @@ export default class Square extends React.Component {
 
   render() {
     return (
-      <button className={['square', this.props.color].join(' ')} onClick={() => this.props.onClick()}>
-        {this.renderPiece(this.props.square)}
-      </button>
+      <div className={['square', this.props.color].join(' ')} onClick={() => this.props.onClick()}>
+        <span>{this.renderPiece(this.props.square)}</span>
+      </div>
     );
   }
 }

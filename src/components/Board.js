@@ -91,7 +91,7 @@ export default class Board extends React.Component {
     for (let i=8; i>=1; i--) {
       board.push(<div
         key={i}
-        className="board-row">
+        className="pgn-board-row">
           {this.renderRow(i)}
       </div>
       );
@@ -102,7 +102,7 @@ export default class Board extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="pgn-board">
         {this.renderBoard()}
       </div>
     );

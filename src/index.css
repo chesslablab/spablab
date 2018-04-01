@@ -1,18 +1,28 @@
-body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+.pgn-board-row {
+  clear: both;
 }
 
-button.square {
+.square {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 30px;
+  text-align: center;
   height: 50px;
   width: 50px;
-  font-size: 30px;
+  line-height: 50px;
+  float: left;
+  cursor: pointer;
+  display: block
 }
 
-button.square.w {
-  background-color: #fff;
+.square span:hover {
+  padding: 10px;
+  background-color: #ccccff;
 }
 
-button.square.b {
+.square.w {
+  background-color: #f8f8f8;
+}
+
+.square.b {
   background-color: #a9a9a9;
 }
