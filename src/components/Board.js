@@ -71,8 +71,6 @@ export default class Board extends React.Component {
         // do nothing
         break;
     }
-
-    console.log(this.state);
   }
 
   renderRow(number) {
@@ -105,7 +103,7 @@ export default class Board extends React.Component {
   renderHistory() {
     let history = [];
     this.state.history.forEach(function (item, index) {
-      history.push(<li key={index}>{item.pgn}</li>);
+      history.push(<li key={index}>{item.color}: {item.pgn}</li>);
     });
 
     return (
@@ -118,7 +116,7 @@ export default class Board extends React.Component {
     for (let i=8; i>=1; i--) {
       board.push(<div
         key={i}
-        className="pgn-board-row">
+        className="board-row">
           {this.renderRow(i)}
       </div>
       );
@@ -129,9 +127,13 @@ export default class Board extends React.Component {
 
   render() {
     return (
-      <div className="pgn-board">
-        {this.renderBoard()}
-        {this.renderHistory()}
+      <div>
+        <div className="board">
+          {this.renderBoard()}
+        </div>
+        <div className="history">
+          {this.renderHistory()}
+        </div>
       </div>
     );
   }

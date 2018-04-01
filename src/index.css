@@ -1,9 +1,13 @@
-.pgn-board {
+.board {
   float: left;
 }
 
-.pgn-board-row {
+.board-row {
   clear: both;
+}
+
+.history {
+  float: left;
 }
 
 .square {
