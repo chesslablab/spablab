@@ -4,7 +4,7 @@ export default class Square extends React.Component {
   renderPiece(square) {
     if (square in this.props.state.pieces) {
      return (
-       this.props.state.pieces[square].piece.unicode
+       this.props.state.pieces[square].unicode
      );
     }
   }

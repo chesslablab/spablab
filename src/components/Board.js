@@ -9,9 +9,8 @@ export default class Board extends React.Component {
 
     this.state = {
       move: {
-        color: null,
+        status: null,
         piece: null,
-        symbol: null,
         square: {
           from: null,
           to: null
@@ -29,6 +28,45 @@ export default class Board extends React.Component {
     }
   }
 
+  pickPiece(square) {
+    let piece = this.state.pieces[square];
+    if (piece !== undefined) {
+      let newState = this.state;
+      newState.move = {
+        status: 'progress',
+        piece: piece,
+        from: square
+      };
+      this.setState(newState);
+
+      console.log(this.state.move);
+    } else {
+
+      let newState = this.state;
+
+      newState.move = {
+        status: 'complete',
+        piece: this.state.move.piece,
+        from: this.state.move.from,
+        to: square
+      };
+
+      // delete newState.pieces['h1'];
+      // delete newState.pieces['h2'];
+
+      delete newState.pieces[this.state.move.from];
+
+      newState.pieces[this.state.move.to] = this.state.move.piece;
+
+      console.log(newState);
+
+
+      this.setState(newState);
+
+      // console.log(this.state);
+    }
+  }
+
   renderRow(number) {
     let ascii = 96;
     let color;
@@ -42,11 +80,12 @@ export default class Board extends React.Component {
 
     for (let i=1; i<=8; i++) {
       ascii++;
+      let square = String.fromCharCode(ascii) + number;
       row.push(<Square
-        square={String.fromCharCode(ascii) + number}
+        square={square}
         color={color}
         state={this.state}
-        onClick={() => alert('foo')} />
+        onClick={() => this.pickPiece(square)} />
       );
       color = this.switchColor(color);
     }
