@@ -1,3 +1,7 @@
+.pgn-board {
+  float: left;
+}
+
 .pgn-board-row {
   clear: both;
 }

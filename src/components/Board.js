@@ -1,3 +1,4 @@
+import Pgn from '../Pgn.js';
 import Pieces from '../global/Pieces.js';
 import React from 'react';
 import Square from './Square.js';
@@ -7,6 +8,7 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      history: [],
       move: null,
       pieces: Pieces
     };
@@ -27,13 +29,19 @@ export default class Board extends React.Component {
     switch (true) {
       // leave piece on empty square
       case this.state.move !== null && piece === undefined:
-        newState.move = this.state.move;
-        newState.move.to = square;
         delete newState.pieces[this.state.move.from];
+        newState.move.to = square;
         newState.pieces[this.state.move.to] = this.state.move.piece;
+        newState.history.push({
+          color: this.state.move.piece.color,
+          pgn: Pgn.convert(this.state.move)
+        });
+        this.setState(newState);
+        newState = this.state;
         newState.move = null;
         this.setState(newState);
         break;
+
       // pick piece on non-empty square
       case this.state.move === null && piece !== undefined:
         newState.move = {
@@ -42,20 +50,29 @@ export default class Board extends React.Component {
         };
         this.setState(newState);
         break;
+
       // leave piece on non-empty square
       case this.state.move !== null && piece !== undefined:
-        newState.move = this.state.move;
-        newState.move.to = square;
         delete newState.pieces[this.state.move.from];
+        newState.move.to = square;
         newState.pieces[this.state.move.to] = this.state.move.piece;
+        newState.history.push({
+          color: this.state.move.piece.color,
+          pgn: Pgn.convert(this.state.move, 'x')
+        });
+        this.setState(newState);
+        newState = this.state;
         newState.move = null;
         this.setState(newState);
         break;
+
       // pick piece on empty square
       default:
         // do nothing
         break;
     }
+
+    console.log(this.state);
   }
 
   renderRow(number) {
@@ -85,9 +102,19 @@ export default class Board extends React.Component {
     return row;
   }
 
+  renderHistory() {
+    let history = [];
+    this.state.history.forEach(function (item, index) {
+      history.push(<li key={index}>{item.pgn}</li>);
+    });
+
+    return (
+      <ul>{history}</ul>
+    );
+  }
+
   renderBoard() {
     let board = [];
-
     for (let i=8; i>=1; i--) {
       board.push(<div
         key={i}
@@ -104,6 +131,7 @@ export default class Board extends React.Component {
     return (
       <div className="pgn-board">
         {this.renderBoard()}
+        {this.renderHistory()}
       </div>
     );
   }
