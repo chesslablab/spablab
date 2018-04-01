@@ -1,6 +1,7 @@
 import Symbol from './global/Symbol.js';
 
-// TODO Implement the Pgn class
+// TODO
+// Implement O-O and O-O-O
 // ...
 export default class Pgn {
   static convert(move, capture='') {
@@ -14,6 +15,20 @@ export default class Pgn {
         break;
       case Symbol.BISHOP:
         pgn = Symbol.BISHOP + capture + move.to;
+        break;
+      case Symbol.QUEEN:
+        pgn = Symbol.QUEEN + capture + move.to;
+        break;
+      case Symbol.KING:
+        // TODO Implement O-O and O-O-O
+        pgn = Symbol.KING + capture + move.to;
+        break;
+      case Symbol.PAWN:
+        if (move.from.charAt(0) === move.to.charAt(0)) {
+          pgn = move.to;
+        } else {
+          pgn = move.from.charAt(0) + 'x' + move.to;
+        }
         break;
       default:
         break;
