@@ -23,15 +23,25 @@ export default class Pgn {
         // O-O, white king
         if (move.piece.color === Symbol.WHITE &&
             move.from === 'e1' &&
-            move.to === 'g1' &&
-            pieces['f1'] === undefined &&
-            pieces['g1'] === undefined) {
+            move.to === 'g1') {
             pgn = 'O-O';
         }
         // O-O-O, white king
         else if (move.piece.color === Symbol.WHITE &&
             move.from === 'e1' &&
             move.to === 'c1') {
+            pgn = 'O-O-O';
+        }
+        // O-O, black king
+        else if (move.piece.color === Symbol.BLACK &&
+            move.from === 'e8' &&
+            move.to === 'g8') {
+            pgn = 'O-O';
+        }
+        // O-O-O, black king
+        else if (move.piece.color === Symbol.BLACK &&
+            move.from === 'e8' &&
+            move.to === 'c8') {
             pgn = 'O-O-O';
         }
         else {
