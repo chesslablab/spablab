@@ -1,4 +1,4 @@
-import Symbol from './global/Symbol.js';
+import Symbol from './Symbol.js';
 
 // TODO
 // Implement O-O and O-O-O
