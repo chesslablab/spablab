@@ -61,7 +61,7 @@ export default class Board extends React.Component {
 
       // leave piece on non-empty square
       case this.state.move !== null && piece !== undefined:
-        let pgn = Pgn.convert({
+        pgn = Pgn.convert({
           piece: this.state.move.piece,
           from: this.state.move.from,
           to: square
@@ -72,7 +72,7 @@ export default class Board extends React.Component {
           newState.pieces[this.state.move.to] = this.state.move.piece;
           newState.history.push({
             color: this.state.move.piece.color,
-            pgn: Pgn.convert(this.state.move, 'x')
+            pgn: pgn
           });
           this.setState(newState);
           newState = this.state;
