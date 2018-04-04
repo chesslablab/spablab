@@ -34,7 +34,7 @@ export default class Board extends React.Component {
         newState.pieces[this.state.move.to] = this.state.move.piece;
         newState.history.push({
           color: this.state.move.piece.color,
-          pgn: Pgn.convert(this.state.move)
+          pgn: Pgn.convert(this.state.pieces, this.state.move)
         });
         this.setState(newState);
         newState = this.state;
@@ -58,7 +58,7 @@ export default class Board extends React.Component {
         newState.pieces[this.state.move.to] = this.state.move.piece;
         newState.history.push({
           color: this.state.move.piece.color,
-          pgn: Pgn.convert(this.state.move, 'x')
+          pgn: Pgn.convert(this.state.pieces, this.state.move, 'x')
         });
         this.setState(newState);
         newState = this.state;

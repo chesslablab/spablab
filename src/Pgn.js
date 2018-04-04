@@ -2,9 +2,9 @@ import Symbol from './Symbol.js';
 
 // TODO
 // Implement O-O and O-O-O
-// ...
+
 export default class Pgn {
-  static convert(move, capture='') {
+  static convert(pieces, move, capture='') {
     let pgn;
     switch (move.piece.symbol) {
       case Symbol.ROOK:
@@ -20,8 +20,23 @@ export default class Pgn {
         pgn = Symbol.QUEEN + capture + move.to;
         break;
       case Symbol.KING:
-        // TODO Implement O-O and O-O-O
-        pgn = Symbol.KING + capture + move.to;
+        // O-O, white king
+        if (move.piece.color === Symbol.WHITE &&
+            move.from === 'e1' &&
+            move.to === 'g1' &&
+            pieces['f1'] === undefined &&
+            pieces['g1'] === undefined) {
+            pgn = 'O-O';
+        }
+        // O-O-O, white king
+        else if (move.piece.color === Symbol.WHITE &&
+            move.from === 'e1' &&
+            move.to === 'c1') {
+            pgn = 'O-O-O';
+        }
+        else {
+            pgn = Symbol.KING + capture + move.to;
+        }
         break;
       case Symbol.PAWN:
         if (move.from.charAt(0) === move.to.charAt(0)) {
