@@ -25,21 +25,29 @@ export default class Board extends React.Component {
   movePiece(square) {
     let piece = this.state.pieces[square];
     let newState = this.state;
+    let pgn = null;
 
     switch (true) {
       // leave piece on empty square
       case this.state.move !== null && piece === undefined:
-        delete newState.pieces[this.state.move.from];
-        newState.move.to = square;
-        newState.pieces[this.state.move.to] = this.state.move.piece;
-        newState.history.push({
-          color: this.state.move.piece.color,
-          pgn: Pgn.convert(this.state.move)
+        pgn = Pgn.convert({
+          piece: this.state.move.piece,
+          from: this.state.move.from,
+          to: square
         });
-        this.setState(newState);
-        newState = this.state;
-        newState.move = null;
-        this.setState(newState);
+        if (this.isLegalMove(pgn)) {
+          delete newState.pieces[this.state.move.from];
+          newState.move.to = square;
+          newState.pieces[this.state.move.to] = this.state.move.piece;
+          newState.history.push({
+            color: this.state.move.piece.color,
+            pgn: pgn
+          });
+          this.setState(newState);
+          newState = this.state;
+          newState.move = null;
+          this.setState(newState);
+        }
         break;
 
       // pick piece on non-empty square
@@ -53,17 +61,24 @@ export default class Board extends React.Component {
 
       // leave piece on non-empty square
       case this.state.move !== null && piece !== undefined:
-        delete newState.pieces[this.state.move.from];
-        newState.move.to = square;
-        newState.pieces[this.state.move.to] = this.state.move.piece;
-        newState.history.push({
-          color: this.state.move.piece.color,
-          pgn: Pgn.convert(this.state.move, 'x')
+        let pgn = Pgn.convert({
+          piece: this.state.move.piece,
+          from: this.state.move.from,
+          to: square
         });
-        this.setState(newState);
-        newState = this.state;
-        newState.move = null;
-        this.setState(newState);
+        if (this.isLegalMove(pgn)) {
+          delete newState.pieces[this.state.move.from];
+          newState.move.to = square;
+          newState.pieces[this.state.move.to] = this.state.move.piece;
+          newState.history.push({
+            color: this.state.move.piece.color,
+            pgn: Pgn.convert(this.state.move, 'x')
+          });
+          this.setState(newState);
+          newState = this.state;
+          newState.move = null;
+          this.setState(newState);
+        }
         break;
 
       // pick piece on empty square
@@ -71,6 +86,14 @@ export default class Board extends React.Component {
         // do nothing
         break;
     }
+  }
+
+  // TODO
+  // Validate move with PGN Chess
+  isLegalMove(move) {
+    // ...
+
+    return true;
   }
 
   renderRow(number) {
