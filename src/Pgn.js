@@ -4,7 +4,7 @@ import Symbol from './Symbol.js';
 // Implement O-O and O-O-O
 
 export default class Pgn {
-  static convert(pieces, move, capture='') {
+  static convert(move, capture='') {
     let pgn;
     switch (move.piece.symbol) {
       case Symbol.ROOK:
