@@ -1,4 +1,6 @@
 .board {
+  font-family: "Times New Roman", Times, serif;
+  border: 4px solid #ccc;
   float: left;
 }
 
@@ -11,19 +13,24 @@
 }
 
 .square {
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-	font-size: 30px;
+  font-size: 35px;
   text-align: center;
-  height: 50px;
-  width: 50px;
   line-height: 50px;
   float: left;
   cursor: pointer;
-  display: block
+}
+
+.square span {
+  height: 50px;
+  width: 50px;
+  display: block;
+}
+
+.square span.empty {
+  color:rgba(0, 0, 0, 0);
 }
 
 .square span:hover {
-  padding: 10px;
   background-color: #ccccff;
 }
 
