@@ -43,8 +43,8 @@ export default class Board extends React.Component {
     let pgn = null;
 
     switch (true) {
-      // leave piece on empty square or leave piece on non-empty square
-      case (this.state.move !== null && piece === undefined) || (this.state.move !== null && piece !== undefined):
+      // leave piece on empty square
+      case this.state.move !== null && piece === undefined:
         pgn = Pgn.convert({
           piece: this.state.move.piece,
           from: this.state.move.from,
@@ -64,6 +64,28 @@ export default class Board extends React.Component {
           this.setState(newState);
         }
         break;
+
+        // leave piece on non-empty square
+        case this.state.move !== null && piece !== undefined:
+          pgn = Pgn.convert({
+            piece: this.state.move.piece,
+            from: this.state.move.from,
+            to: square
+          }, 'x');
+          if (this.isLegalMove(pgn)) {
+            delete newState.pieces[this.state.move.from];
+            newState.move.to = square;
+            newState.pieces[this.state.move.to] = this.state.move.piece;
+            newState.history.items.push({
+              pgn: pgn,
+              move: newState.move
+            });
+            this.setState(newState);
+            newState = this.state;
+            newState.move = null;
+            this.setState(newState);
+          }
+          break;
 
       // pick piece on non-empty square
       case this.state.move === null && piece !== undefined:

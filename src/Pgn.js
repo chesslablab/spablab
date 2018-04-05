@@ -1,8 +1,5 @@
 import Symbol from './Symbol.js';
 
-// TODO
-// Implement O-O and O-O-O
-
 export default class Pgn {
   static convert(move, capture='') {
     let pgn;
