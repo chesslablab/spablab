@@ -200,10 +200,22 @@ export default class Board extends React.Component {
             {this.renderRows()}
           </div>
           <div className="controls">
-            <button onClick={() => this.goBeginning()}>&lt;&lt;</button>
-            <button onClick={() => this.goBack()}>&lt;</button>
-            <button onClick={() => this.goForward()}>&gt;</button>
-            <button onClick={() => this.goEnd()}>&gt;&gt;</button>
+            <button
+              disabled={this.state.history.back >= this.state.history.items.length}
+              onClick={() => this.goBeginning()}>&lt;&lt;
+            </button>
+            <button
+              disabled={this.state.history.back >= this.state.history.items.length}
+              onClick={() => this.goBack()}>&lt;
+            </button>
+            <button
+              disabled={this.state.history.back === 0}
+              onClick={() => this.goForward()}>&gt;
+            </button>
+            <button
+              disabled={this.state.history.back === 0}
+              onClick={() => this.goEnd()}>&gt;&gt;
+            </button>
           </div>
         </div>
         <div className="history">
