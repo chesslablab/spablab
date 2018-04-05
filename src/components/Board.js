@@ -5,14 +5,22 @@ import Square from './Square.js';
 import Symbol from '../Symbol.js';
 
 export default class Board extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      condition: false,
       history: [],
       move: null,
-      pieces: Pieces
+      pieces: Object.assign({}, Pieces)
     };
+  }
+
+  newGame() {
+    let newState = this.state;
+    newState.history = [];
+    newState.move = null;
+    newState.pieces = Object.assign({}, Pieces);
+    this.setState(newState);
   }
 
   switchColor(color) {
@@ -138,7 +146,7 @@ export default class Board extends React.Component {
       <div>
         <div className="game">
           <div className="options">
-            <button>New game</button>
+            <button onClick={() => this.newGame()}>New game</button>
           </div>
           <div className="board">
             {this.renderRows()}
