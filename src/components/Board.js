@@ -9,7 +9,10 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      history: [],
+      history: {
+        back: 0,
+        items: []
+      },
       move: null,
       pieces: Object.assign({}, Pieces)
     };
@@ -17,7 +20,10 @@ export default class Board extends React.Component {
 
   newGame() {
     let newState = this.state;
-    newState.history = [];
+    newState.history = {
+      back: 0,
+      items: []
+    };
     newState.move = null;
     newState.pieces = Object.assign({}, Pieces);
     this.setState(newState);
@@ -28,6 +34,10 @@ export default class Board extends React.Component {
   }
 
   movePiece(square) {
+    if (this.state.history.back > 0) {
+      return false;
+    }
+
     let piece = this.state.pieces[square];
     let newState = this.state;
     let pgn = null;
@@ -44,9 +54,9 @@ export default class Board extends React.Component {
           delete newState.pieces[this.state.move.from];
           newState.move.to = square;
           newState.pieces[this.state.move.to] = this.state.move.piece;
-          newState.history.push({
-            color: this.state.move.piece.color,
-            pgn: pgn
+          newState.history.items.push({
+            pgn: pgn,
+            move: newState.move
           });
           this.setState(newState);
           newState = this.state;
@@ -79,13 +89,39 @@ export default class Board extends React.Component {
     return true;
   }
 
+  goBack() {
+    if (this.state.history.back < this.state.history.items.length) {
+      let newState = this.state;
+      let pieces = Object.assign({}, Pieces);
+      newState.history.back += 1;
+      for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
+        delete pieces[this.state.history.items[i].move.from];
+        pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
+      }
+      newState.pieces = pieces;
+      this.setState(newState);
+    }
+  }
+
+  goForward() {
+    if (this.state.history.back > 0) {
+      let newState = this.state;
+      let pieces = Object.assign({}, Pieces);
+      newState.history.back -= 1;
+      for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
+        delete pieces[this.state.history.items[i].move.from];
+        pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
+      }
+      newState.pieces = pieces;
+      this.setState(newState);
+    }
+  }
+
   renderRow(number) {
     let ascii = 96;
     let color;
     let row = [];
-
     number % 2 !== 0 ? color = Symbol.BLACK : color = Symbol.WHITE;
-
     for (let i=1; i<=8; i++) {
       ascii++;
       let square = String.fromCharCode(ascii) + number;
@@ -119,7 +155,7 @@ export default class Board extends React.Component {
   renderHistory() {
     let n = 1;
     let history = '';
-    this.state.history.forEach(function (item, index) {
+    this.state.history.items.forEach(function (item, index) {
       if (index % 2 === 0) {
         history += n + '. ' + item.pgn;
         n++;
@@ -145,8 +181,8 @@ export default class Board extends React.Component {
           </div>
           <div className="controls">
             <button>&lt;&lt;</button>
-            <button>&lt;</button>
-            <button>&gt;</button>
+            <button onClick={() => this.goBack()}>&lt;</button>
+            <button onClick={() => this.goForward()}>&gt;</button>
             <button>&gt;&gt;</button>
           </div>
         </div>
