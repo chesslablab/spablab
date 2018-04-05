@@ -8,6 +8,7 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      condition: false,
       history: [],
       move: null,
       pieces: Pieces
@@ -28,8 +29,8 @@ export default class Board extends React.Component {
     let pgn = null;
 
     switch (true) {
-      // leave piece on empty square
-      case this.state.move !== null && piece === undefined:
+      // leave piece on empty square or leave piece on non-empty square
+      case (this.state.move !== null && piece === undefined) || (this.state.move !== null && piece !== undefined):
         pgn = Pgn.convert({
           piece: this.state.move.piece,
           from: this.state.move.from,
@@ -57,28 +58,6 @@ export default class Board extends React.Component {
           from: square
         };
         this.setState(newState);
-        break;
-
-      // leave piece on non-empty square
-      case this.state.move !== null && piece !== undefined:
-        pgn = Pgn.convert({
-          piece: this.state.move.piece,
-          from: this.state.move.from,
-          to: square
-        });
-        if (this.isLegalMove(pgn)) {
-          delete newState.pieces[this.state.move.from];
-          newState.move.to = square;
-          newState.pieces[this.state.move.to] = this.state.move.piece;
-          newState.history.push({
-            color: this.state.move.piece.color,
-            pgn: pgn
-          });
-          this.setState(newState);
-          newState = this.state;
-          newState.move = null;
-          this.setState(newState);
-        }
         break;
 
       // pick piece on empty square
@@ -157,8 +136,19 @@ export default class Board extends React.Component {
   render() {
     return (
       <div>
-        <div className="board">
-          {this.renderRows()}
+        <div className="game">
+          <div className="options">
+            <button>New game</button>
+          </div>
+          <div className="board">
+            {this.renderRows()}
+          </div>
+          <div className="controls">
+            <button>&lt;&lt;</button>
+            <button>&lt;</button>
+            <button>&gt;</button>
+            <button>&gt;&gt;</button>
+          </div>
         </div>
         <div className="history">
           {this.renderHistory()}

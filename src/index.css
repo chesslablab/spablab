@@ -1,8 +1,16 @@
-.board {
-  font-family: "Times New Roman", Times, serif;
-  border: 4px solid #ccc;
-  float: left;
+.game .options,
+.game .controls {
   width: 360px;
+  margin: 10px;
+  text-align: center;
+  clear: both;
+}
+
+.game .board {
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid #ccc;
+  width: 360px;
+  height: 360px;
 }
 
 .board-row {
@@ -11,8 +19,6 @@
 
 .history {
   font-size: 15px;
-  padding-left: 15px;
-  float: left;
   width: 360px;
 }
 
