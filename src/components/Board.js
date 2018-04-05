@@ -123,17 +123,6 @@ export default class Board extends React.Component {
     return row;
   }
 
-  renderHistory() {
-    let history = [];
-    this.state.history.forEach(function (item, index) {
-      history.push(<li key={index}>{item.color}: {item.pgn}</li>);
-    });
-
-    return (
-      <ul>{history}</ul>
-    );
-  }
-
   renderRows() {
     let board = [];
     for (let i=8; i>=1; i--) {
@@ -146,6 +135,23 @@ export default class Board extends React.Component {
     }
 
     return board;
+  }
+
+  renderHistory() {
+    let n = 1;
+    let history = '';
+    this.state.history.forEach(function (item, index) {
+      if (index % 2 === 0) {
+        history += n + '. ' + item.pgn;
+        n++;
+      } else {
+        history = history + ' ' + item.pgn + ' ';
+      }
+    });
+
+    return (
+      <p>{history}</p>
+    );
   }
 
   render() {
