@@ -117,6 +117,25 @@ export default class Board extends React.Component {
     }
   }
 
+  goBeginning() {
+    let newState = this.state;
+    newState.history.back = this.state.history.items.length;
+    newState.pieces = Object.assign({}, Pieces);
+    this.setState(newState);
+  }
+
+  goEnd() {
+    let newState = this.state;
+    let pieces = Object.assign({}, Pieces);
+    newState.history.back = 0;
+    for (let i = 0; i < this.state.history.items.length; i++) {
+      delete pieces[this.state.history.items[i].move.from];
+      pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
+    }
+    newState.pieces = pieces;
+    this.setState(newState);
+  }
+
   renderRow(number) {
     let ascii = 96;
     let color;
@@ -181,10 +200,10 @@ export default class Board extends React.Component {
             {this.renderRows()}
           </div>
           <div className="controls">
-            <button>&lt;&lt;</button>
+            <button onClick={() => this.goBeginning()}>&lt;&lt;</button>
             <button onClick={() => this.goBack()}>&lt;</button>
             <button onClick={() => this.goForward()}>&gt;</button>
-            <button>&gt;&gt;</button>
+            <button onClick={() => this.goEnd()}>&gt;&gt;</button>
           </div>
         </div>
         <div className="history">

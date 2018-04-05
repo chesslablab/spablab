@@ -36,8 +36,8 @@
   display: block;
 }
 
-.square span.empty {
-  color:rgba(0, 0, 0, 0);
+.square span.empty:hover {
+  background-color: transparent;
 }
 
 .square span:hover {
