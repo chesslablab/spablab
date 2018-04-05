@@ -7,11 +7,6 @@ export default class Square extends React.Component {
         this.props.state.pieces[square].unicode
       );
     }
-    else {
-      return (
-        ' '
-      );
-    }
   }
 
   render() {
