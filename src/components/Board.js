@@ -24,11 +24,7 @@ export default class Board extends React.Component {
   }
 
   switchColor(color) {
-    if (color === Symbol.BLACK) {
-      return Symbol.WHITE;
-    } else {
-      return Symbol.BLACK;
-    }
+    return color === Symbol.BLACK ? Symbol.WHITE : Symbol.BLACK;
   }
 
   movePiece(square) {
@@ -88,11 +84,7 @@ export default class Board extends React.Component {
     let color;
     let row = [];
 
-    if (number % 2 !== 0) {
-      color = Symbol.BLACK;
-    } else {
-      color = Symbol.WHITE;
-    }
+    number % 2 !== 0 ? color = Symbol.BLACK : color = Symbol.WHITE;
 
     for (let i=1; i<=8; i++) {
       ascii++;
