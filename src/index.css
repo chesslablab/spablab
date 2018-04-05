@@ -51,3 +51,8 @@
 .square.b {
   background-color: #a9a9a9;
 }
+
+.board.past .square span:hover {
+  background-color: transparent;
+  cursor: not-allowed;
+}

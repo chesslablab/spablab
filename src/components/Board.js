@@ -129,6 +129,7 @@ export default class Board extends React.Component {
         key={i}
         square={square}
         color={color}
+        isPast={this.state.history.back > 0}
         state={this.state}
         onClick={() => this.movePiece(square)} />
       );
@@ -176,7 +177,7 @@ export default class Board extends React.Component {
           <div className="options">
             <button onClick={() => this.newGame()}>New game</button>
           </div>
-          <div className="board">
+          <div className={['board', this.state.history.back > 0 ? 'past' : 'present'].join(' ')}>
             {this.renderRows()}
           </div>
           <div className="controls">
