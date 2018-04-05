@@ -7,7 +7,9 @@
   "keywords": [
     "chess",
     "board",
+    "engine",
     "react",
+    "play",
     "pgn",
     "api",
     "validate",
