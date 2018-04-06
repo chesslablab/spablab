@@ -16,6 +16,14 @@ export default class Board extends React.Component {
       move: null,
       pieces: Object.assign({}, Pieces)
     };
+    this.connect();
+  }
+
+  connect() {
+      this.socket = new WebSocket('ws://' + this.props.server);
+      this.socket.onerror = function(ev) {
+        alert('Whoops! The websocket server is not running.');
+      }
   }
 
   newGame() {
@@ -33,13 +41,32 @@ export default class Board extends React.Component {
     return color === Symbol.BLACK ? Symbol.WHITE : Symbol.BLACK;
   }
 
+  validateMove(pgn, square) {
+    let newState = this.state;
+    this.socket.send(this.state.move.piece.color + ' ' + pgn);
+    this.socket.onmessage = (function(ev) {
+      if (ev.data === 'true') {
+        delete newState.pieces[this.state.move.from];
+        newState.move.to = square;
+        newState.pieces[this.state.move.to] = this.state.move.piece;
+        newState.history.items.push({
+          pgn: pgn,
+          move: newState.move
+        });
+        this.setState(newState);
+        newState = this.state;
+      }
+      newState.move = null;
+      this.setState(newState);
+    }).bind(this);
+  }
+
   movePiece(square) {
     if (this.state.history.back > 0) {
       return false;
     }
 
     let piece = this.state.pieces[square];
-    let newState = this.state;
     let pgn = null;
 
     switch (true) {
@@ -50,45 +77,26 @@ export default class Board extends React.Component {
           from: this.state.move.from,
           to: square
         });
-        if (this.isLegalMove(pgn)) {
-          delete newState.pieces[this.state.move.from];
-          newState.move.to = square;
-          newState.pieces[this.state.move.to] = this.state.move.piece;
-          newState.history.items.push({
-            pgn: pgn,
-            move: newState.move
-          });
-          this.setState(newState);
-          newState = this.state;
-          newState.move = null;
-          this.setState(newState);
+        if (this.props.server !== undefined) {
+          this.validateMove(pgn, square);
         }
         break;
 
-        // leave piece on non-empty square
-        case this.state.move !== null && piece !== undefined:
-          pgn = Pgn.convert({
-            piece: this.state.move.piece,
-            from: this.state.move.from,
-            to: square
-          }, 'x');
-          if (this.isLegalMove(pgn)) {
-            delete newState.pieces[this.state.move.from];
-            newState.move.to = square;
-            newState.pieces[this.state.move.to] = this.state.move.piece;
-            newState.history.items.push({
-              pgn: pgn,
-              move: newState.move
-            });
-            this.setState(newState);
-            newState = this.state;
-            newState.move = null;
-            this.setState(newState);
-          }
-          break;
+      // leave piece on non-empty square
+      case this.state.move !== null && piece !== undefined:
+        pgn = Pgn.convert({
+          piece: this.state.move.piece,
+          from: this.state.move.from,
+          to: square
+        }, 'x');
+        if (this.props.server !== undefined) {
+          this.validateMove(pgn, square);
+        }
+        break;
 
       // pick piece on non-empty square
       case this.state.move === null && piece !== undefined:
+        let newState = this.state;
         newState.move = {
           piece: piece,
           from: square
@@ -101,14 +109,6 @@ export default class Board extends React.Component {
         // do nothing
         break;
     }
-  }
-
-  // TODO
-  // Validate move with PGN Chess
-  isLegalMove(move) {
-    // ...
-
-    return true;
   }
 
   goBack() {
