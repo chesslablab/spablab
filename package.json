@@ -1,7 +1,7 @@
 {
   "name": "react-pgn-chess",
   "description": "Chess board implemented with React that emits PGN signals on every move made by players. It is specially designed to be used with PGN Chess, which is a PHP chess board representation.",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "author": "Jordi Bassagañas <info@programarivm.com>",
   "license": "MIT",
   "keywords": [
