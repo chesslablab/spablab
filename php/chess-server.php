@@ -1,12 +1,12 @@
 <?php
-// namespace ReactPgnChess;
+namespace ReactPgnChess;
 
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 use ReactPgnChess\PgnChessGame;
 
-require '../vendor/autoload.php';
+require __DIR__  . '/../vendor/autoload.php';
 
 $server = IoServer::factory(
     new HttpServer(

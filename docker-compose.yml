@@ -12,6 +12,7 @@ services:
   php:
     image: php:7.0-cli
     restart: always
+    tty: true
     volumes:
       - ./:/usr/src/react-pgn-chess/
     ports:
