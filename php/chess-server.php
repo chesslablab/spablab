@@ -1,10 +1,10 @@
 <?php
-namespace ReactPgnChess;
+// namespace ReactPgnChess;
 
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-use ReactPgnChess\ChessServer;
+use ReactPgnChess\PgnChessGame;
 
 require '../vendor/autoload.php';
 
