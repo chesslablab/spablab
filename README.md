@@ -48,7 +48,9 @@ Given the examples above, the server will respond like this:
     true
     false
 
-Yep, this is a client-server app. `js` is the frontend and `php` is the backend. The server is implemented in `php/chess-server.php` with the help of [Ratchet](http://socketo.me/) -- a PHP websocket library -- and [PGN Chess](https://github.com/programarivm/pgn-chess) -- a PHP chess board representation than runs the games internally in PGN notation.
+Yep, this is a client-server app which basically validates PGN chess games at this moment.
+
+`js` is the frontend and `php` is the backend. The server is implemented in `php/chess-server.php` with the help of [Ratchet](http://socketo.me/) -- a PHP websocket library -- and [PGN Chess](https://github.com/programarivm/pgn-chess) -- a PHP chess board representation than runs the games internally in PGN notation.
 
 The main idea behind React PGN Chess is about writing all chess logic on the server side. It can be used as a basis for playing games vs the computer, or run computationally heavy chess algorithms that would take seconds to calculate moves.
 
