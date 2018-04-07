@@ -9,3 +9,10 @@ services:
       - ./:/usr/src/react-pgn-chess/
     ports:
       - "3000:3000"
+  php:
+    image: php:7.0-cli
+    restart: always
+    volumes:
+      - ./:/usr/src/react-pgn-chess/
+    ports:
+      - "3001:3001"

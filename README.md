@@ -8,9 +8,15 @@ Renders a chess board that emits PGN signals on every move made by players. It i
 
 ### 1. Installation
 
-    npm install --save react-pgn-chess
+    git clone https://github.com/programarivm/react-pgn-chess.git
+    cd react-pgn-chess.git
+    npm install
+    composer install
+    docker-compose up
 
-### 2. Usage
+### 2. How Does It Work?
+
+Let's have a look at the `js/index.js` file:
 
 ```JavaScript
 import React from 'react';
@@ -18,7 +24,7 @@ import ReactDOM from 'react-dom';
 import Board from './components/Board.js';
 import './index.css';
 
-var BoardElement = React.createElement(Board, {server: "ws://localhost:3001"});
+var BoardElement = React.createElement(Board, {server: "localhost:3001"});
 
 ReactDOM.render(
   BoardElement,
@@ -28,25 +34,23 @@ ReactDOM.render(
 
 ![React PGN Chess](/resources/figure-01.png?raw=true)
 
-React PGN Chess assumes there is a websocket server running on `localhost:3001`. The connection listens to messages as the ones described below:
+As you see, the `Board` assumes there is a websocket server running on `localhost:3001` listening to messages as it is shown next:
 
     w e4
     b e5
     w Nf3
     b Rg1
 
-Responding like this:
+Given the examples above, the server will respond like this:
 
     true
     true
     true
     false
 
-As you see, React PGN Chess is a GUI implemented with React that speaks to a PHP chess server through a websocket. Yep, this is a server-side app, so what about the server side?
+Yep, this is a client-server app. `js` is the frontend and `php` is the backend. The server is implemented in `php/chess-server.php` with the help of [Ratchet](http://socketo.me/) -- a PHP websocket library -- and [PGN Chess](https://github.com/programarivm/pgn-chess) -- a PHP chess board representation than runs the games internally in PGN notation.
 
-> Have a look at [PhpChessJs](https://github.com/programarivm/php-chess-js) and see how te pieces of the puzzle fit together! Here, you'll find a simple chess server implemented with [Ratchet](http://socketo.me/), which is a PHP websocket library, and using [PGN Chess](https://github.com/programarivm/pgn-chess) as the chess board representation.
-
-The idea behind [PhpChessJs](https://github.com/programarivm/php-chess-js) puts the focus on writing all chess logic on the server side, and can be used as a basis for implementing computationally heavy chess algorithms that can take a few seconds to calculate a move.
+The main idea behind React PGN Chess is about writing all chess logic on the server side. It can be used as a basis for playing games vs the computer, or run computationally heavy chess algorithms that would take seconds to calculate moves.
 
 ### 3. Demo
 
