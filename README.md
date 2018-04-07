@@ -45,7 +45,7 @@ ReactDOM.render(
 );
 ```
 
-As you see, the `Board` component assumes there's a websocket server running on `localhost:3001` listening to messages as it is shown next:
+As you see, the `Board` component assumes there's a WebSocket server running on `localhost:3001` listening to messages as it is shown next:
 
     w e4
     b e5
