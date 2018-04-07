@@ -11,7 +11,7 @@ require '../vendor/autoload.php';
 $server = IoServer::factory(
     new HttpServer(
         new WsServer(
-            new ChessServer()
+            new PgnChessGame()
         )
     ),
     3001

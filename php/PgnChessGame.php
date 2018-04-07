@@ -6,7 +6,7 @@ use PGNChess\PGN\Symbol;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
-class ChessServer implements MessageComponentInterface {
+class PgnChessGame implements MessageComponentInterface {
 
     private $client;
 
