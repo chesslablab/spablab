@@ -113,7 +113,56 @@ export default class Board extends React.Component {
     }
   }
 
-  undoCastle(item, pieces) {
+  move(square) {
+    if (this.state.history.back > 0) {
+      return false;
+    }
+    let piece = this.state.pieces[square];
+    let pgn = null;
+
+    switch (true) {
+      // leave piece on empty square
+      case this.state.move !== null && piece === undefined:
+        pgn = Pgn.convert({
+          piece: this.state.move.piece,
+          from: this.state.move.from,
+          to: square
+        });
+        if (this.props.server !== undefined) {
+          this.validateMove(pgn, square);
+        }
+        break;
+
+      // leave piece on non-empty square
+      case this.state.move !== null && piece !== undefined:
+        pgn = Pgn.convert({
+          piece: this.state.move.piece,
+          from: this.state.move.from,
+          to: square
+        }, 'x');
+        if (this.props.server !== undefined) {
+          this.validateMove(pgn, square);
+        }
+        break;
+
+      // pick piece on non-empty square
+      case this.state.move === null && piece !== undefined:
+        let newState = this.state;
+        newState.move = {
+          piece: piece,
+          from: square
+        };
+        this.setState(newState);
+        break;
+
+      // pick piece on empty square
+      default:
+        // do nothing
+        break;
+    }
+  }
+
+  undoCastleBecauseBrowsing(item, pieces) {
     switch (item.pgn) {
       case Symbol.CASTLING_SHORT:
         switch (item.move.piece.color) {
@@ -164,56 +213,7 @@ export default class Board extends React.Component {
     }
   }
 
-  move(square) {
-    if (this.state.history.back > 0) {
-      return false;
-    }
-    let piece = this.state.pieces[square];
-    let pgn = null;
-
-    switch (true) {
-      // leave piece on empty square
-      case this.state.move !== null && piece === undefined:
-        pgn = Pgn.convert({
-          piece: this.state.move.piece,
-          from: this.state.move.from,
-          to: square
-        });
-        if (this.props.server !== undefined) {
-          this.validateMove(pgn, square);
-        }
-        break;
-
-      // leave piece on non-empty square
-      case this.state.move !== null && piece !== undefined:
-        pgn = Pgn.convert({
-          piece: this.state.move.piece,
-          from: this.state.move.from,
-          to: square
-        }, 'x');
-        if (this.props.server !== undefined) {
-          this.validateMove(pgn, square);
-        }
-        break;
-
-      // pick piece on non-empty square
-      case this.state.move === null && piece !== undefined:
-        let newState = this.state;
-        newState.move = {
-          piece: piece,
-          from: square
-        };
-        this.setState(newState);
-        break;
-
-      // pick piece on empty square
-      default:
-        // do nothing
-        break;
-    }
-  }
-
-  goBack() {
+  browseBack() {
     if (this.state.history.back < this.state.history.items.length) {
       let newState = this.state;
       let pieces = Object.assign({}, Pieces);
@@ -221,14 +221,14 @@ export default class Board extends React.Component {
       for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-        this.undoCastle(this.state.history.items[i], pieces);
+        this.undoCastleBecauseBrowsing(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
     }
   }
 
-  goForward() {
+  browseForward() {
     if (this.state.history.back > 0) {
       let newState = this.state;
       let pieces = Object.assign({}, Pieces);
@@ -236,28 +236,28 @@ export default class Board extends React.Component {
       for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-        this.undoCastle(this.state.history.items[i], pieces);
+        this.undoCastleBecauseBrowsing(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
     }
   }
 
-  goBeginning() {
+  browseBeginning() {
     let newState = this.state;
     newState.history.back = this.state.history.items.length;
     newState.pieces = Object.assign({}, Pieces);
     this.setState(newState);
   }
 
-  goEnd() {
+  browseEnd() {
     let newState = this.state;
     let pieces = Object.assign({}, Pieces);
     newState.history.back = 0;
     for (let i = 0; i < this.state.history.items.length; i++) {
       delete pieces[this.state.history.items[i].move.from];
       pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-      this.undoCastle(this.state.history.items[i], pieces);
+      this.undoCastleBecauseBrowsing(this.state.history.items[i], pieces);
     }
     newState.pieces = pieces;
     this.setState(newState);
@@ -329,19 +329,19 @@ export default class Board extends React.Component {
           <div className="controls">
             <button
               disabled={this.state.history.back >= this.state.history.items.length}
-              onClick={() => this.goBeginning()}>&lt;&lt;
+              onClick={() => this.browseBeginning()}>&lt;&lt;
             </button>
             <button
               disabled={this.state.history.back >= this.state.history.items.length}
-              onClick={() => this.goBack()}>&lt;
+              onClick={() => this.browseBack()}>&lt;
             </button>
             <button
               disabled={this.state.history.back === 0}
-              onClick={() => this.goForward()}>&gt;
+              onClick={() => this.browseForward()}>&gt;
             </button>
             <button
               disabled={this.state.history.back === 0}
-              onClick={() => this.goEnd()}>&gt;&gt;
+              onClick={() => this.browseEnd()}>&gt;&gt;
             </button>
           </div>
         </div>
