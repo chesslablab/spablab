@@ -113,6 +113,57 @@ export default class Board extends React.Component {
     }
   }
 
+  undoCastle(item, pieces) {
+    switch (item.pgn) {
+      case Symbol.CASTLING_SHORT:
+        switch (item.move.piece.color) {
+          case Symbol.WHITE:
+            delete pieces['h1'];
+            pieces['f1'] = {
+              color: Symbol.WHITE,
+              unicode: '♖',
+              symbol: Symbol.ROOK
+            };
+            break;
+
+          default:
+            delete pieces['h8'];
+            pieces['f8'] = {
+              color: Symbol.BLACK,
+              unicode: '♜',
+              symbol: Symbol.ROOK
+            };
+            break;
+        }
+      break;
+
+      case Symbol.CASTLING_LONG:
+        switch (item.move.piece.color) {
+          case Symbol.WHITE:
+            delete pieces['a1'];
+            pieces['d1'] = {
+              color: Symbol.WHITE,
+              unicode: '♖',
+              symbol: Symbol.ROOK
+            };
+            break;
+
+          default:
+            delete pieces['a8'];
+            pieces['d8'] = {
+              color: Symbol.BLACK,
+              unicode: '♜',
+              symbol: Symbol.ROOK
+            };
+            break;
+        }
+      break;
+
+      default:
+        break;
+    }
+  }
+
   move(square) {
     if (this.state.history.back > 0) {
       return false;
@@ -170,6 +221,7 @@ export default class Board extends React.Component {
       for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
+        this.undoCastle(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
@@ -184,6 +236,7 @@ export default class Board extends React.Component {
       for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
+        this.undoCastle(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
