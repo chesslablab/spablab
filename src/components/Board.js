@@ -27,13 +27,14 @@ export default class Board extends React.Component {
   }
 
   newGame() {
-    let newState = this.state;
-    newState.history = {
-      back: 0,
-      items: []
+    let newState = {
+      history: {
+        back: 0,
+        items: []
+      },
+      move: null,
+      pieces: Object.assign({}, Pieces)
     };
-    newState.move = null;
-    newState.pieces = Object.assign({}, Pieces);
     this.setState(newState);
   }
 
