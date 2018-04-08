@@ -4,8 +4,15 @@ import React from 'react';
 import Square from './Square.js';
 import Symbol from '../Symbol.js';
 
+/*
+ * Board class.
+ *
+ * @author [Jordi Bassagañas](https://github.com/programarivm)
+ */
 export default class Board extends React.Component {
-
+  /**
+   * Constructor.
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +26,9 @@ export default class Board extends React.Component {
     this.connect();
   }
 
+  /**
+   * Connection to the WebSocket server.
+   */
   connect() {
       this.socket = new WebSocket('ws://' + this.props.server);
       this.socket.onerror = function(ev) {
@@ -26,7 +36,10 @@ export default class Board extends React.Component {
       }
   }
 
-  newGame() {
+  /**
+   * Resets the board.
+   */
+  reset() {
     let newState = {
       history: {
         back: 0,
@@ -38,10 +51,19 @@ export default class Board extends React.Component {
     this.setState(newState);
   }
 
+  /**
+   * Switches the color from w to b and viceversa.
+   */
   switchColor(color) {
     return color === Symbol.BLACK ? Symbol.WHITE : Symbol.BLACK;
   }
 
+  /**
+   * Validates pgn moves (on the server side).
+   *
+   * @param {string} pgn
+   * @param {string} square
+   */
   validateMove(pgn, square) {
     let newState = this.state;
     this.socket.send(this.state.move.piece.color + ' ' + pgn);
@@ -63,6 +85,12 @@ export default class Board extends React.Component {
     }).bind(this);
   }
 
+  /**
+   * Castling move.
+   *
+   * @param {string} pgn
+   * @param {object} newState
+   */
   castle(pgn, newState) {
     switch (pgn) {
       case Symbol.CASTLING_SHORT:
@@ -75,7 +103,6 @@ export default class Board extends React.Component {
               symbol: Symbol.ROOK
             };
             break;
-
           default:
             delete newState.pieces['h8'];
             newState.pieces['f8'] = {
@@ -97,7 +124,6 @@ export default class Board extends React.Component {
               symbol: Symbol.ROOK
             };
             break;
-
           default:
             delete newState.pieces['a8'];
             newState.pieces['d8'] = {
@@ -114,13 +140,20 @@ export default class Board extends React.Component {
     }
   }
 
+  /**
+   * Makes a piece move.
+   *
+   * Generates a pseudo pgn move first (Pgn.convert) which is then validated on
+   * the server side through the validateMove method.
+   *
+   * @param {string} square
+   */
   move(square) {
     if (this.state.history.back > 0) {
       return false;
     }
     let piece = this.state.pieces[square];
     let pgn = null;
-
     switch (true) {
       // leave piece on empty square
       case this.state.move !== null && piece === undefined:
@@ -158,13 +191,19 @@ export default class Board extends React.Component {
 
       // pick piece on empty square
       default:
-        // do nothing
         break;
     }
   }
 
-  undoCastleBecauseBrowsing(item, pieces) {
+  /**
+   * Undoes a castling move because of browsing the history.
+   *
+   * @param {object} item
+   * @param {array} pieces
+   */
+  undoCastlingBecauseBrowsing(item, pieces) {
     switch (item.pgn) {
+
       case Symbol.CASTLING_SHORT:
         switch (item.move.piece.color) {
           case Symbol.WHITE:
@@ -175,7 +214,6 @@ export default class Board extends React.Component {
               symbol: Symbol.ROOK
             };
             break;
-
           default:
             delete pieces['h8'];
             pieces['f8'] = {
@@ -197,7 +235,6 @@ export default class Board extends React.Component {
               symbol: Symbol.ROOK
             };
             break;
-
           default:
             delete pieces['a8'];
             pieces['d8'] = {
@@ -214,6 +251,9 @@ export default class Board extends React.Component {
     }
   }
 
+  /**
+   * Browses the history one step back.
+   */
   browseBack() {
     if (this.state.history.back < this.state.history.items.length) {
       let newState = this.state;
@@ -222,13 +262,16 @@ export default class Board extends React.Component {
       for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-        this.undoCastleBecauseBrowsing(this.state.history.items[i], pieces);
+        this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
     }
   }
 
+  /**
+   * Browses the history one step forward.
+   */
   browseForward() {
     if (this.state.history.back > 0) {
       let newState = this.state;
@@ -237,13 +280,16 @@ export default class Board extends React.Component {
       for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-        this.undoCastleBecauseBrowsing(this.state.history.items[i], pieces);
+        this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
     }
   }
 
+  /**
+   * Browses the history to the beginning of the game.
+   */
   browseBeginning() {
     let newState = this.state;
     newState.history.back = this.state.history.items.length;
@@ -251,6 +297,9 @@ export default class Board extends React.Component {
     this.setState(newState);
   }
 
+  /**
+   * Browses the history to the last move.
+   */
   browseEnd() {
     let newState = this.state;
     let pieces = Object.assign({}, Pieces);
@@ -258,12 +307,17 @@ export default class Board extends React.Component {
     for (let i = 0; i < this.state.history.items.length; i++) {
       delete pieces[this.state.history.items[i].move.from];
       pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-      this.undoCastleBecauseBrowsing(this.state.history.items[i], pieces);
+      this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
     }
     newState.pieces = pieces;
     this.setState(newState);
   }
 
+  /**
+   * Renders a row.
+   *
+   * @param {number} number
+   */
   renderRow(number) {
     let ascii = 96;
     let color;
@@ -286,6 +340,9 @@ export default class Board extends React.Component {
     return row;
   }
 
+  /**
+   * Renders all rows.
+   */
   renderRows() {
     let board = [];
     for (let i=8; i>=1; i--) {
@@ -300,6 +357,9 @@ export default class Board extends React.Component {
     return board;
   }
 
+  /**
+   * Renders the history.
+   */
   renderHistory() {
     let n = 1;
     let history = '';
@@ -317,12 +377,15 @@ export default class Board extends React.Component {
     );
   }
 
+  /**
+   * Render method.
+   */
   render() {
     return (
       <div>
         <div className="game">
           <div className="options">
-            <button onClick={() => this.newGame()}>New game</button>
+            <button onClick={() => this.reset()}>New game</button>
           </div>
           <div className={['board', this.state.history.back > 0 ? 'past' : 'present'].join(' ')}>
             {this.renderRows()}
