@@ -2,7 +2,7 @@
 
 ![React PGN Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-This is a dockerized chess web app that renders a chess board displaying the PGN moves made by players. The moves are validated with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a PHP chess board representation that runs chess games internally in PGN notation.
+This is a dockerized chess web app that renders a chess board displaying the PGN moves made by players. The moves are validated on the server with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a PHP chess board representation that runs chess games internally in PGN notation, and [Ratchet](http://socketo.me/) (PHP Websockets).
 
 > **Side Note**: There are a few todos still to be finished. Contributions are welcome!
 
@@ -71,9 +71,9 @@ The main idea behind React PGN Chess consists in writing all chess logic on the 
 
 1. `php/PgnChessGame.php` is only responding with `true` or `false`, depending on whether or not a PGN move is valid, but it has to respond with `check` and `checkmate` too -- and the GUI needs to be improved a little bit more (with colors or messages) accordingly. This is easy to do since the check and checkmate are calculated by PGN Chess already.
 
-2. O-O and O-O-O need to be updated on the frontend according to the result sent by the server.
+2. `php/PgnChessGame.php` works in single-player mode only at this moment.
 
-3. `php/PgnChessGame.php` works in single-player mode only at this moment.
+3. Have a look at the *en passant* move.
 
 ### 5. License
 
