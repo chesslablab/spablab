@@ -53,6 +53,7 @@ export default class Board extends React.Component {
           pgn: pgn,
           move: newState.move
         });
+        this.castle(pgn, newState);
         this.setState(newState);
         newState = this.state;
       }
@@ -61,11 +62,61 @@ export default class Board extends React.Component {
     }).bind(this);
   }
 
-  movePiece(square) {
+  castle(pgn, newState) {
+    switch (pgn) {
+      case Symbol.CASTLING_SHORT:
+        switch (this.state.move.piece.color) {
+          case Symbol.WHITE:
+            delete newState.pieces['h1'];
+            newState.pieces['f1'] = {
+              color: Symbol.WHITE,
+              unicode: '♖',
+              symbol: Symbol.ROOK
+            };
+            break;
+
+          default:
+            delete newState.pieces['h8'];
+            newState.pieces['f8'] = {
+              color: Symbol.BLACK,
+              unicode: '♜',
+              symbol: Symbol.ROOK
+            };
+            break;
+        }
+      break;
+
+      case Symbol.CASTLING_LONG:
+        switch (this.state.move.piece.color) {
+          case Symbol.WHITE:
+            delete newState.pieces['a1'];
+            newState.pieces['d1'] = {
+              color: Symbol.WHITE,
+              unicode: '♖',
+              symbol: Symbol.ROOK
+            };
+            break;
+
+          default:
+            delete newState.pieces['a8'];
+            newState.pieces['d8'] = {
+              color: Symbol.BLACK,
+              unicode: '♜',
+              symbol: Symbol.ROOK
+            };
+            break;
+        }
+      break;
+
+      default:
+        break;
+    }
+  }
+
+  move(square) {
     if (this.state.history.back > 0) {
       return false;
     }
-
     let piece = this.state.pieces[square];
     let pgn = null;
 
@@ -172,7 +223,7 @@ export default class Board extends React.Component {
         color={color}
         isPast={this.state.history.back > 0}
         state={this.state}
-        onClick={() => this.movePiece(square)} />
+        onClick={() => this.move(square)} />
       );
       color = this.switchColor(color);
     }
