@@ -257,6 +257,7 @@ export default class Board extends React.Component {
     for (let i = 0; i < this.state.history.items.length; i++) {
       delete pieces[this.state.history.items[i].move.from];
       pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
+      this.undoCastle(this.state.history.items[i], pieces);
     }
     newState.pieces = pieces;
     this.setState(newState);
