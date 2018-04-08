@@ -59,7 +59,8 @@ export default class Board extends React.Component {
   }
 
   /**
-   * Validates pgn moves (on the server side).
+   * Validates pgn moves on the server side, updating the state accordingly
+   * (making the piece move).
    *
    * @param {string} pgn
    * @param {string} square
@@ -76,7 +77,7 @@ export default class Board extends React.Component {
           pgn: pgn,
           move: newState.move
         });
-        this.castle(pgn, newState);
+        this.castle(pgn, newState); // moves the rook too if pgn is either O-O or O-O-O
         this.setState(newState);
         newState = this.state;
       }
@@ -87,6 +88,8 @@ export default class Board extends React.Component {
 
   /**
    * Castling move.
+   *
+   * Moves the rook on the board too if pgn is either O-O or O-O-O.
    *
    * @param {string} pgn
    * @param {object} newState
