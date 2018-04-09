@@ -79,6 +79,7 @@ export default class Board extends React.Component {
         });
         this.castle(pgn, newState); // moves the rook too if pgn is either O-O or O-O-O
         this.enPassant(pgn, newState); // removes the captured pawn if pgn is en passant
+        this.promote(pgn, newState); // promotes a pawn if pgn is a pawn promotion
         this.setState(newState);
         newState = this.state;
       }
@@ -149,6 +150,34 @@ export default class Board extends React.Component {
         square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) + 1);
       }
       delete newState.pieces[square];
+    }
+  }
+
+  /**
+   * Pawn promotion.
+   *
+   * Promotes a pawn if pgn is a pawn promotion.
+   *
+   * @param {pgn} string
+   * @param {object} newState
+   */
+  promote(pgn, newState) {
+    if (this.state.move.piece.symbol === Symbol.PAWN) {
+      if (this.state.move.piece.color === Symbol.WHITE && this.state.move.to.charAt(1) === '8') {
+        delete newState.pieces[this.state.move.to];
+        newState.pieces[this.state.move.to] = {
+          color: Symbol.WHITE,
+          unicode: '♕',
+          symbol: Symbol.QUEEN
+        };
+      } else if(this.state.move.piece.color === Symbol.BLACK && this.state.move.to.charAt(1) === '1') {
+        delete newState.pieces[this.state.move.to];
+        newState.pieces[this.state.move.to] = {
+          color: Symbol.BLACK,
+          unicode: '♛',
+          symbol: Symbol.QUEEN
+        };
+      }
     }
   }
 
