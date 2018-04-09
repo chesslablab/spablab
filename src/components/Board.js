@@ -214,52 +214,38 @@ export default class Board extends React.Component {
    * @param {array} pieces
    */
   undoCastlingBecauseBrowsing(item, pieces) {
-    switch (item.pgn) {
-
-      case Symbol.CASTLING_SHORT:
-        switch (item.move.piece.color) {
-          case Symbol.WHITE:
-            delete pieces['h1'];
-            pieces['f1'] = {
-              color: Symbol.WHITE,
-              unicode: '♖',
-              symbol: Symbol.ROOK
-            };
-            break;
-          default:
-            delete pieces['h8'];
-            pieces['f8'] = {
-              color: Symbol.BLACK,
-              unicode: '♜',
-              symbol: Symbol.ROOK
-            };
-            break;
-        }
-      break;
-
-      case Symbol.CASTLING_LONG:
-        switch (item.move.piece.color) {
-          case Symbol.WHITE:
-            delete pieces['a1'];
-            pieces['d1'] = {
-              color: Symbol.WHITE,
-              unicode: '♖',
-              symbol: Symbol.ROOK
-            };
-            break;
-          default:
-            delete pieces['a8'];
-            pieces['d8'] = {
-              color: Symbol.BLACK,
-              unicode: '♜',
-              symbol: Symbol.ROOK
-            };
-            break;
-        }
-      break;
-
-      default:
-        break;
+    if (item.pgn === Symbol.CASTLING_SHORT) {
+      if (item.move.piece.color === Symbol.WHITE) {
+        delete pieces['h1'];
+        pieces['f1'] = {
+          color: Symbol.WHITE,
+          unicode: '♖',
+          symbol: Symbol.ROOK
+        };
+      } else {
+        delete pieces['h8'];
+        pieces['f8'] = {
+          color: Symbol.BLACK,
+          unicode: '♜',
+          symbol: Symbol.ROOK
+        };
+      }
+    } else if (item.pgn === Symbol.CASTLING_LONG) {
+      if (item.move.piece.color === Symbol.WHITE) {
+        delete pieces['a1'];
+        pieces['d1'] = {
+          color: Symbol.WHITE,
+          unicode: '♖',
+          symbol: Symbol.ROOK
+        };
+      } else {
+        delete pieces['a8'];
+        pieces['d8'] = {
+          color: Symbol.BLACK,
+          unicode: '♜',
+          symbol: Symbol.ROOK
+        };
+      }
     }
   }
 
