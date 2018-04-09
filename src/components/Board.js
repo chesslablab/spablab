@@ -78,6 +78,7 @@ export default class Board extends React.Component {
           move: newState.move
         });
         this.castle(pgn, newState); // moves the rook too if pgn is either O-O or O-O-O
+        this.enPassant(pgn, newState); // removes the captured pawn if pgn is en passant
         this.setState(newState);
         newState = this.state;
       }
@@ -95,51 +96,59 @@ export default class Board extends React.Component {
    * @param {object} newState
    */
   castle(pgn, newState) {
-    switch (pgn) {
-      case Symbol.CASTLING_SHORT:
-        switch (this.state.move.piece.color) {
-          case Symbol.WHITE:
-            delete newState.pieces['h1'];
-            newState.pieces['f1'] = {
-              color: Symbol.WHITE,
-              unicode: '♖',
-              symbol: Symbol.ROOK
-            };
-            break;
-          default:
-            delete newState.pieces['h8'];
-            newState.pieces['f8'] = {
-              color: Symbol.BLACK,
-              unicode: '♜',
-              symbol: Symbol.ROOK
-            };
-            break;
-        }
-      break;
+    if (pgn === Symbol.CASTLING_SHORT) {
+      if (this.state.move.piece.color === Symbol.WHITE) {
+        delete newState.pieces['h1'];
+        newState.pieces['f1'] = {
+          color: Symbol.WHITE,
+          unicode: '♖',
+          symbol: Symbol.ROOK
+        };
+      } else {
+        delete newState.pieces['h8'];
+        newState.pieces['f8'] = {
+          color: Symbol.BLACK,
+          unicode: '♜',
+          symbol: Symbol.ROOK
+        };
+      }
+    } else if (pgn === Symbol.CASTLING_LONG) {
+      if (this.state.move.piece.color === Symbol.WHITE) {
+        delete newState.pieces['a1'];
+        newState.pieces['d1'] = {
+          color: Symbol.WHITE,
+          unicode: '♖',
+          symbol: Symbol.ROOK
+        };
+      } else {
+        delete newState.pieces['a8'];
+        newState.pieces['d8'] = {
+          color: Symbol.BLACK,
+          unicode: '♜',
+          symbol: Symbol.ROOK
+        };
+      }
+    }
+  }
 
-      case Symbol.CASTLING_LONG:
-        switch (this.state.move.piece.color) {
-          case Symbol.WHITE:
-            delete newState.pieces['a1'];
-            newState.pieces['d1'] = {
-              color: Symbol.WHITE,
-              unicode: '♖',
-              symbol: Symbol.ROOK
-            };
-            break;
-          default:
-            delete newState.pieces['a8'];
-            newState.pieces['d8'] = {
-              color: Symbol.BLACK,
-              unicode: '♜',
-              symbol: Symbol.ROOK
-            };
-            break;
-        }
-      break;
-
-      default:
-        break;
+  /**
+   * En passant move.
+   *
+   * Removes the captured pawn from the board if pgn is en passant.
+   *
+   * @param {pgn} string
+   * @param {object} newState
+   */
+  enPassant(pgn, newState) {
+    let re = new RegExp(Pgn.move.PAWN_CAPTURES);
+    if (re.test(pgn)) {
+      let square;
+      if (this.state.move.piece.color === Symbol.WHITE) {
+        square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) - 1);
+      } else {
+        square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) + 1);
+      }
+      delete newState.pieces[square];
     }
   }
 
