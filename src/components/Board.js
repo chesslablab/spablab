@@ -250,6 +250,22 @@ export default class Board extends React.Component {
   }
 
   /**
+   * Redoes an en passant move because of browsing the history.
+   *
+   * @param {object} item
+   * @param {array} pieces
+   */
+  redoEnPassantBecauseBrowsing(item, pieces) {
+    let square;
+    if (item.move.piece.color === Symbol.WHITE) {
+      square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) - 1);
+    } else {
+      square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) + 1);
+    }
+    delete pieces[square];
+  }
+
+  /**
    * Browses the history one step back.
    */
   browseBack() {
@@ -261,6 +277,7 @@ export default class Board extends React.Component {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
         this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
+        this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
@@ -279,6 +296,7 @@ export default class Board extends React.Component {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
         this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
+        this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
@@ -306,6 +324,7 @@ export default class Board extends React.Component {
       delete pieces[this.state.history.items[i].move.from];
       pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
       this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
+      this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
     }
     newState.pieces = pieces;
     this.setState(newState);
