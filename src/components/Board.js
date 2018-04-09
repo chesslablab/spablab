@@ -144,9 +144,9 @@ export default class Board extends React.Component {
     let re = new RegExp(Pgn.move.PAWN_CAPTURES);
     if (re.test(pgn)) {
       let square;
-      if (this.state.move.piece.color === Symbol.WHITE) {
+      if (this.state.move.piece.color === Symbol.WHITE && this.state.move.from.charAt(1) === '5') {
         square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) - 1);
-      } else {
+      } else if (this.state.move.piece.color === Symbol.BLACK && this.state.move.from.charAt(1) === '4') {
         square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) + 1);
       }
       delete newState.pieces[square];
@@ -286,9 +286,9 @@ export default class Board extends React.Component {
    */
   redoEnPassantBecauseBrowsing(item, pieces) {
     let square;
-    if (item.move.piece.color === Symbol.WHITE) {
+    if (item.move.piece.color === Symbol.WHITE && item.move.from.charAt(1) === '5') {
       square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) - 1);
-    } else {
+    } else if (item.move.piece.color === Symbol.BLACK && item.move.from.charAt(1) === '4') {
       square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) + 1);
     }
     delete pieces[square];
