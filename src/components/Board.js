@@ -79,6 +79,7 @@ export default class Board extends React.Component {
         });
         this.castle(pgn, newState); // moves the rook too if pgn is either O-O or O-O-O
         this.enPassant(pgn, newState); // removes the captured pawn if pgn is en passant
+        this.promote(pgn, newState); // promotes a pawn if pgn is a pawn promotion
         this.setState(newState);
         newState = this.state;
       }
@@ -143,12 +144,40 @@ export default class Board extends React.Component {
     let re = new RegExp(Pgn.move.PAWN_CAPTURES);
     if (re.test(pgn)) {
       let square;
-      if (this.state.move.piece.color === Symbol.WHITE) {
+      if (this.state.move.piece.color === Symbol.WHITE && this.state.move.from.charAt(1) === '5') {
         square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) - 1);
-      } else {
+      } else if (this.state.move.piece.color === Symbol.BLACK && this.state.move.from.charAt(1) === '4') {
         square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) + 1);
       }
       delete newState.pieces[square];
+    }
+  }
+
+  /**
+   * Pawn promotion.
+   *
+   * Promotes a pawn if pgn is a pawn promotion.
+   *
+   * @param {pgn} string
+   * @param {object} newState
+   */
+  promote(pgn, newState) {
+    if (this.state.move.piece.symbol === Symbol.PAWN) {
+      if (this.state.move.piece.color === Symbol.WHITE && this.state.move.to.charAt(1) === '8') {
+        delete newState.pieces[this.state.move.to];
+        newState.pieces[this.state.move.to] = {
+          color: Symbol.WHITE,
+          unicode: '♕',
+          symbol: Symbol.QUEEN
+        };
+      } else if(this.state.move.piece.color === Symbol.BLACK && this.state.move.to.charAt(1) === '1') {
+        delete newState.pieces[this.state.move.to];
+        newState.pieces[this.state.move.to] = {
+          color: Symbol.BLACK,
+          unicode: '♛',
+          symbol: Symbol.QUEEN
+        };
+      }
     }
   }
 
@@ -214,53 +243,55 @@ export default class Board extends React.Component {
    * @param {array} pieces
    */
   undoCastlingBecauseBrowsing(item, pieces) {
-    switch (item.pgn) {
-
-      case Symbol.CASTLING_SHORT:
-        switch (item.move.piece.color) {
-          case Symbol.WHITE:
-            delete pieces['h1'];
-            pieces['f1'] = {
-              color: Symbol.WHITE,
-              unicode: '♖',
-              symbol: Symbol.ROOK
-            };
-            break;
-          default:
-            delete pieces['h8'];
-            pieces['f8'] = {
-              color: Symbol.BLACK,
-              unicode: '♜',
-              symbol: Symbol.ROOK
-            };
-            break;
-        }
-      break;
-
-      case Symbol.CASTLING_LONG:
-        switch (item.move.piece.color) {
-          case Symbol.WHITE:
-            delete pieces['a1'];
-            pieces['d1'] = {
-              color: Symbol.WHITE,
-              unicode: '♖',
-              symbol: Symbol.ROOK
-            };
-            break;
-          default:
-            delete pieces['a8'];
-            pieces['d8'] = {
-              color: Symbol.BLACK,
-              unicode: '♜',
-              symbol: Symbol.ROOK
-            };
-            break;
-        }
-      break;
-
-      default:
-        break;
+    if (item.pgn === Symbol.CASTLING_SHORT) {
+      if (item.move.piece.color === Symbol.WHITE) {
+        delete pieces['h1'];
+        pieces['f1'] = {
+          color: Symbol.WHITE,
+          unicode: '♖',
+          symbol: Symbol.ROOK
+        };
+      } else {
+        delete pieces['h8'];
+        pieces['f8'] = {
+          color: Symbol.BLACK,
+          unicode: '♜',
+          symbol: Symbol.ROOK
+        };
+      }
+    } else if (item.pgn === Symbol.CASTLING_LONG) {
+      if (item.move.piece.color === Symbol.WHITE) {
+        delete pieces['a1'];
+        pieces['d1'] = {
+          color: Symbol.WHITE,
+          unicode: '♖',
+          symbol: Symbol.ROOK
+        };
+      } else {
+        delete pieces['a8'];
+        pieces['d8'] = {
+          color: Symbol.BLACK,
+          unicode: '♜',
+          symbol: Symbol.ROOK
+        };
+      }
     }
+  }
+
+  /**
+   * Redoes an en passant move because of browsing the history.
+   *
+   * @param {object} item
+   * @param {array} pieces
+   */
+  redoEnPassantBecauseBrowsing(item, pieces) {
+    let square;
+    if (item.move.piece.color === Symbol.WHITE && item.move.from.charAt(1) === '5') {
+      square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) - 1);
+    } else if (item.move.piece.color === Symbol.BLACK && item.move.from.charAt(1) === '4') {
+      square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) + 1);
+    }
+    delete pieces[square];
   }
 
   /**
@@ -275,6 +306,7 @@ export default class Board extends React.Component {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
         this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
+        this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
@@ -293,6 +325,7 @@ export default class Board extends React.Component {
         delete pieces[this.state.history.items[i].move.from];
         pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
         this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
+        this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
       }
       newState.pieces = pieces;
       this.setState(newState);
@@ -320,6 +353,7 @@ export default class Board extends React.Component {
       delete pieces[this.state.history.items[i].move.from];
       pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
       this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
+      this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
     }
     newState.pieces = pieces;
     this.setState(newState);

@@ -73,8 +73,6 @@ The main idea behind React PGN Chess consists in writing all chess logic on the 
 
 2. `php/PgnChessGame.php` works in single-player mode only at this moment.
 
-3. Have a look at the *en passant* move.
-
 ### 5. License
 
 The MIT License (MIT) Jordi Bassagañas.
