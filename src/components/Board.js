@@ -78,6 +78,7 @@ export default class Board extends React.Component {
           move: newState.move
         });
         this.castle(pgn, newState); // moves the rook too if pgn is either O-O or O-O-O
+        this.enPassant(pgn, newState); // removes the captured pawn if pgn is en passant
         this.setState(newState);
         newState = this.state;
       }
@@ -140,6 +141,27 @@ export default class Board extends React.Component {
 
       default:
         break;
+    }
+  }
+
+  /**
+   * En passant move.
+   *
+   * Removes the captured pawn from the board if pgn is en passant.
+   *
+   * @param {pgn} string
+   * @param {object} newState
+   */
+  enPassant(pgn, newState) {
+    let re = new RegExp(Pgn.move.PAWN_CAPTURES);
+    if (re.test(pgn)) {
+      let square;
+      if (this.state.move.piece.color === Symbol.WHITE) {
+        square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) - 1);
+      } else {
+        square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) + 1);
+      }
+      delete newState.pieces[square];
     }
   }
 

@@ -8,5 +8,7 @@ export default {
     QUEEN: 'Q',
     ROOK: 'R',
     CASTLING_SHORT: 'O-O',
-    CASTLING_LONG: 'O-O-O'
+    CASTLING_LONG: 'O-O-O',
+    SQUARE: '[a-h]{1}[1-8]{1}',
+    CHECK: '[+#]{0,1}'
 }
