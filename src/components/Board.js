@@ -2,7 +2,6 @@ import Pgn from '../Pgn.js';
 import Pieces from '../Pieces.js';
 import React from 'react';
 import Square from './Square.js';
-import Symbol from '../Symbol.js';
 
 /*
  * Board class.
@@ -55,7 +54,7 @@ export default class Board extends React.Component {
    * Switches the color from w to b and viceversa.
    */
   switchColor(color) {
-    return color === Symbol.BLACK ? Symbol.WHITE : Symbol.BLACK;
+    return color === Pgn.symbol.BLACK ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
   }
 
   /**
@@ -97,36 +96,36 @@ export default class Board extends React.Component {
    * @param {object} newState
    */
   castle(pgn, newState) {
-    if (pgn === Symbol.CASTLING_SHORT) {
-      if (this.state.move.piece.color === Symbol.WHITE) {
+    if (pgn === Pgn.symbol.CASTLING_SHORT) {
+      if (this.state.move.piece.color === Pgn.symbol.WHITE) {
         delete newState.pieces['h1'];
         newState.pieces['f1'] = {
-          color: Symbol.WHITE,
+          color: Pgn.symbol.WHITE,
           unicode: '♖',
-          symbol: Symbol.ROOK
+          symbol: Pgn.symbol.ROOK
         };
       } else {
         delete newState.pieces['h8'];
         newState.pieces['f8'] = {
-          color: Symbol.BLACK,
+          color: Pgn.symbol.BLACK,
           unicode: '♜',
-          symbol: Symbol.ROOK
+          symbol: Pgn.symbol.ROOK
         };
       }
-    } else if (pgn === Symbol.CASTLING_LONG) {
-      if (this.state.move.piece.color === Symbol.WHITE) {
+    } else if (pgn === Pgn.symbol.CASTLING_LONG) {
+      if (this.state.move.piece.color === Pgn.symbol.WHITE) {
         delete newState.pieces['a1'];
         newState.pieces['d1'] = {
-          color: Symbol.WHITE,
+          color: Pgn.symbol.WHITE,
           unicode: '♖',
-          symbol: Symbol.ROOK
+          symbol: Pgn.symbol.ROOK
         };
       } else {
         delete newState.pieces['a8'];
         newState.pieces['d8'] = {
-          color: Symbol.BLACK,
+          color: Pgn.symbol.BLACK,
           unicode: '♜',
-          symbol: Symbol.ROOK
+          symbol: Pgn.symbol.ROOK
         };
       }
     }
@@ -144,9 +143,9 @@ export default class Board extends React.Component {
     let re = new RegExp(Pgn.move.PAWN_CAPTURES);
     if (re.test(pgn)) {
       let square;
-      if (this.state.move.piece.color === Symbol.WHITE && this.state.move.from.charAt(1) === '5') {
+      if (this.state.move.piece.color === Pgn.symbol.WHITE && this.state.move.from.charAt(1) === '5') {
         square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) - 1);
-      } else if (this.state.move.piece.color === Symbol.BLACK && this.state.move.from.charAt(1) === '4') {
+      } else if (this.state.move.piece.color === Pgn.symbol.BLACK && this.state.move.from.charAt(1) === '4') {
         square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) + 1);
       }
       delete newState.pieces[square];
@@ -162,20 +161,20 @@ export default class Board extends React.Component {
    * @param {object} newState
    */
   promote(pgn, newState) {
-    if (this.state.move.piece.symbol === Symbol.PAWN) {
-      if (this.state.move.piece.color === Symbol.WHITE && this.state.move.to.charAt(1) === '8') {
+    if (this.state.move.piece.symbol === Pgn.symbol.PAWN) {
+      if (this.state.move.piece.color === Pgn.symbol.WHITE && this.state.move.to.charAt(1) === '8') {
         delete newState.pieces[this.state.move.to];
         newState.pieces[this.state.move.to] = {
-          color: Symbol.WHITE,
+          color: Pgn.symbol.WHITE,
           unicode: '♕',
-          symbol: Symbol.QUEEN
+          symbol: Pgn.symbol.QUEEN
         };
-      } else if(this.state.move.piece.color === Symbol.BLACK && this.state.move.to.charAt(1) === '1') {
+      } else if(this.state.move.piece.color === Pgn.symbol.BLACK && this.state.move.to.charAt(1) === '1') {
         delete newState.pieces[this.state.move.to];
         newState.pieces[this.state.move.to] = {
-          color: Symbol.BLACK,
+          color: Pgn.symbol.BLACK,
           unicode: '♛',
-          symbol: Symbol.QUEEN
+          symbol: Pgn.symbol.QUEEN
         };
       }
     }
@@ -243,36 +242,36 @@ export default class Board extends React.Component {
    * @param {array} pieces
    */
   undoCastlingBecauseBrowsing(item, pieces) {
-    if (item.pgn === Symbol.CASTLING_SHORT) {
-      if (item.move.piece.color === Symbol.WHITE) {
+    if (item.pgn === Pgn.symbol.CASTLING_SHORT) {
+      if (item.move.piece.color === Pgn.symbol.WHITE) {
         delete pieces['h1'];
         pieces['f1'] = {
-          color: Symbol.WHITE,
+          color: Pgn.symbol.WHITE,
           unicode: '♖',
-          symbol: Symbol.ROOK
+          symbol: Pgn.symbol.ROOK
         };
       } else {
         delete pieces['h8'];
         pieces['f8'] = {
-          color: Symbol.BLACK,
+          color: Pgn.symbol.BLACK,
           unicode: '♜',
-          symbol: Symbol.ROOK
+          symbol: Pgn.symbol.ROOK
         };
       }
-    } else if (item.pgn === Symbol.CASTLING_LONG) {
-      if (item.move.piece.color === Symbol.WHITE) {
+    } else if (item.pgn === Pgn.symbol.CASTLING_LONG) {
+      if (item.move.piece.color === Pgn.symbol.WHITE) {
         delete pieces['a1'];
         pieces['d1'] = {
-          color: Symbol.WHITE,
+          color: Pgn.symbol.WHITE,
           unicode: '♖',
-          symbol: Symbol.ROOK
+          symbol: Pgn.symbol.ROOK
         };
       } else {
         delete pieces['a8'];
         pieces['d8'] = {
-          color: Symbol.BLACK,
+          color: Pgn.symbol.BLACK,
           unicode: '♜',
-          symbol: Symbol.ROOK
+          symbol: Pgn.symbol.ROOK
         };
       }
     }
@@ -286,9 +285,9 @@ export default class Board extends React.Component {
    */
   redoEnPassantBecauseBrowsing(item, pieces) {
     let square;
-    if (item.move.piece.color === Symbol.WHITE && item.move.from.charAt(1) === '5') {
+    if (item.move.piece.color === Pgn.symbol.WHITE && item.move.from.charAt(1) === '5') {
       square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) - 1);
-    } else if (item.move.piece.color === Symbol.BLACK && item.move.from.charAt(1) === '4') {
+    } else if (item.move.piece.color === Pgn.symbol.BLACK && item.move.from.charAt(1) === '4') {
       square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) + 1);
     }
     delete pieces[square];
@@ -368,7 +367,7 @@ export default class Board extends React.Component {
     let ascii = 96;
     let color;
     let row = [];
-    number % 2 !== 0 ? color = Symbol.BLACK : color = Symbol.WHITE;
+    number % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
     for (let i=1; i<=8; i++) {
       ascii++;
       let square = String.fromCharCode(ascii) + number;

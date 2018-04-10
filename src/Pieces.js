@@ -1,164 +1,164 @@
-import Symbol from './Symbol.js';
+import Pgn from './Pgn.js';
 
 export default {
   a1: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♖',
-    symbol: Symbol.ROOK
+    symbol: Pgn.symbol.ROOK
   },
   b1: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♘',
-    symbol: Symbol.KNIGHT
+    symbol: Pgn.symbol.KNIGHT
   },
   c1: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♗',
-    symbol: Symbol.BISHOP
+    symbol: Pgn.symbol.BISHOP
   },
   d1: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♕',
-    symbol: Symbol.QUEEN
+    symbol: Pgn.symbol.QUEEN
   },
   e1: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♔',
-    symbol: Symbol.KING
+    symbol: Pgn.symbol.KING
   },
   f1: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♗',
-    symbol: Symbol.BISHOP
+    symbol: Pgn.symbol.BISHOP
   },
   g1: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♘',
-    symbol: Symbol.KNIGHT
+    symbol: Pgn.symbol.KNIGHT
   },
   h1: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♖',
-    symbol: Symbol.ROOK
+    symbol: Pgn.symbol.ROOK
   },
   a2: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♙',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   b2: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♙',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   c2: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♙',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   d2: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♙',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   e2: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♙',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   f2: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♙',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   g2: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♙',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   h2: {
-    color: Symbol.WHITE,
+    color: Pgn.symbol.WHITE,
     unicode: '♙',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   a8: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♜',
-    symbol: Symbol.ROOK
+    symbol: Pgn.symbol.ROOK
   },
   b8: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♞',
-    symbol: Symbol.KNIGHT
+    symbol: Pgn.symbol.KNIGHT
   },
   c8: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♝',
-    symbol: Symbol.BISHOP
+    symbol: Pgn.symbol.BISHOP
   },
   d8: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♛',
-    symbol: Symbol.QUEEN
+    symbol: Pgn.symbol.QUEEN
   },
   e8: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♚',
-    symbol: Symbol.KING
+    symbol: Pgn.symbol.KING
   },
   f8: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♝',
-    symbol: Symbol.BISHOP
+    symbol: Pgn.symbol.BISHOP
   },
   g8: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♞',
-    symbol: Symbol.KNIGHT
+    symbol: Pgn.symbol.KNIGHT
   },
   h8: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♜',
-    symbol: Symbol.ROOK
+    symbol: Pgn.symbol.ROOK
   },
   a7: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♟',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   b7: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♟',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   c7: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♟',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   d7: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♟',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   e7: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♟',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   f7: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♟',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   g7: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♟',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   },
   h7: {
-    color: Symbol.BLACK,
+    color: Pgn.symbol.BLACK,
     unicode: '♟',
-    symbol: Symbol.PAWN
+    symbol: Pgn.symbol.PAWN
   }
 }
