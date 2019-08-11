@@ -20,6 +20,7 @@ export default class Board extends React.Component {
       ascii++;
       let square = String.fromCharCode(ascii) + number;
       row.push(<Square
+        key={i}
         square={square}
         color={color} />
       );
