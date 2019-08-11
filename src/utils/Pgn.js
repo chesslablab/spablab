@@ -1,9 +1,5 @@
 export default class Pgn {
 
-  /**
-   * PGN symbols.
-   *
-   */
   static symbol = {
       WHITE: 'w',
       BLACK: 'b',
@@ -19,10 +15,6 @@ export default class Pgn {
       CHECK: '[+#]{0,1}'
   }
 
-  /**
-   * Tests arbitrary strings against valid pgn moves.
-   *
-   */
   static move = {
     KING: 'K' + Pgn.symbol.SQUARE,
     KING_CASTLING_SHORT: Pgn.symbol.CASTLING_SHORT + Pgn.symbol.CHECK,
@@ -38,12 +30,6 @@ export default class Pgn {
     PAWN_CAPTURES_AND_PROMOTES: '[a-h]{1}x' + Pgn.symbol.SQUARE + '=[NBRQ]{1}' + Pgn.symbol.CHECK
   };
 
-  /**
-   * Converts a move object into PGN notation.
-   *
-   * @param {object} move
-   * @param {capture} string
-   */
   static convert(move, capture='') {
     let pgn;
     switch (move.piece.symbol) {

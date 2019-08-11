@@ -1,18 +1,24 @@
+import BoardStore from '../stores/BoardStore.js';
+import SquareActions from '../actions/SquareActions.js';
 import React from 'react';
 
 export default class Square extends React.Component {
+  click(square) {
+    SquareActions.click(square);
+  }
+
   renderPiece(square) {
-    if (square in this.props.state.pieces) {
+    if (square in BoardStore.getState().pieces) {
       return (
-        this.props.state.pieces[square].unicode
+        BoardStore.getState().pieces[square].unicode
       );
     }
   }
 
   render() {
     return (
-      <div className={['square', this.props.color].join(' ')} onClick={() => this.props.onClick()}>
-        <span className={this.props.state.pieces[this.props.square] === undefined ? 'empty' : ''} >
+      <div className={['square', this.props.color].join(' ')} onClick={() => this.click(this.props.square)}>
+        <span className={BoardStore.getState().pieces[this.props.square] === undefined ? 'empty' : ''} >
           {this.renderPiece(this.props.square)}
         </span>
       </div>

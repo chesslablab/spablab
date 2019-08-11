@@ -1,361 +1,16 @@
+import BoardStore from '../stores/BoardStore.js';
+import HistoryStore from '../stores/HistoryStore.js';
+import History from './History.js';
 import Pgn from '../utils/Pgn.js';
-import Pieces from '../utils/Pieces.js';
 import React from 'react';
 import Square from './Square.js';
 
-/*
- * Board class.
- *
- * @author [Jordi Bassagañas](https://github.com/programarivm)
- */
 export default class Board extends React.Component {
-  /**
-   * Constructor.
-   */
   constructor(props) {
     super(props);
-    this.state = {
-      history: {
-        back: 0,
-        items: []
-      },
-      move: null,
-      pieces: Object.assign({}, Pieces)
-    };
-    this.connect();
+    this.state = BoardStore.getState();
   }
 
-  /**
-   * Connection to the WebSocket server.
-   */
-  connect() {
-      this.socket = new WebSocket('ws://' + this.props.server);
-      this.socket.onerror = function(ev) {
-        alert('Whoops! The websocket server is not running.');
-      }
-  }
-
-  /**
-   * Resets the board.
-   */
-  reset() {
-    let newState = {
-      history: {
-        back: 0,
-        items: []
-      },
-      move: null,
-      pieces: Object.assign({}, Pieces)
-    };
-    this.setState(newState);
-  }
-
-  /**
-   * Validates pgn moves on the server side, updating the state accordingly
-   * (making the piece move).
-   *
-   * @param {string} pgn
-   * @param {string} square
-   */
-  validateMove(pgn, square) {
-    let newState = this.state;
-    this.socket.send(this.state.move.piece.color + ' ' + pgn);
-    this.socket.onmessage = (function(ev) {
-      if (ev.data === 'true') {
-        delete newState.pieces[this.state.move.from];
-        newState.move.to = square;
-        newState.pieces[this.state.move.to] = this.state.move.piece;
-        newState.history.items.push({
-          pgn: pgn,
-          move: newState.move
-        });
-        this.castle(pgn, newState); // moves the rook too if pgn is either O-O or O-O-O
-        this.enPassant(pgn, newState); // removes the captured pawn if pgn is en passant
-        this.promote(pgn, newState); // promotes a pawn if pgn is a pawn promotion
-        this.setState(newState);
-        newState = this.state;
-      }
-      newState.move = null;
-      this.setState(newState);
-    }).bind(this);
-  }
-
-  /**
-   * Castling move.
-   *
-   * Moves the rook on the board too if pgn is either O-O or O-O-O.
-   *
-   * @param {string} pgn
-   * @param {object} newState
-   */
-  castle(pgn, newState) {
-    if (pgn === Pgn.symbol.CASTLING_SHORT) {
-      if (this.state.move.piece.color === Pgn.symbol.WHITE) {
-        delete newState.pieces['h1'];
-        newState.pieces['f1'] = {
-          color: Pgn.symbol.WHITE,
-          unicode: '♖',
-          symbol: Pgn.symbol.ROOK
-        };
-      } else {
-        delete newState.pieces['h8'];
-        newState.pieces['f8'] = {
-          color: Pgn.symbol.BLACK,
-          unicode: '♜',
-          symbol: Pgn.symbol.ROOK
-        };
-      }
-    } else if (pgn === Pgn.symbol.CASTLING_LONG) {
-      if (this.state.move.piece.color === Pgn.symbol.WHITE) {
-        delete newState.pieces['a1'];
-        newState.pieces['d1'] = {
-          color: Pgn.symbol.WHITE,
-          unicode: '♖',
-          symbol: Pgn.symbol.ROOK
-        };
-      } else {
-        delete newState.pieces['a8'];
-        newState.pieces['d8'] = {
-          color: Pgn.symbol.BLACK,
-          unicode: '♜',
-          symbol: Pgn.symbol.ROOK
-        };
-      }
-    }
-  }
-
-  /**
-   * En passant move.
-   *
-   * Removes the captured pawn from the board if pgn is en passant.
-   *
-   * @param {pgn} string
-   * @param {object} newState
-   */
-  enPassant(pgn, newState) {
-    let re = new RegExp(Pgn.move.PAWN_CAPTURES);
-    if (re.test(pgn)) {
-      let square;
-      if (this.state.move.piece.color === Pgn.symbol.WHITE && this.state.move.from.charAt(1) === '5') {
-        square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) - 1);
-      } else if (this.state.move.piece.color === Pgn.symbol.BLACK && this.state.move.from.charAt(1) === '4') {
-        square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) + 1);
-      }
-      delete newState.pieces[square];
-    }
-  }
-
-  /**
-   * Pawn promotion.
-   *
-   * Promotes a pawn if pgn is a pawn promotion.
-   *
-   * @param {pgn} string
-   * @param {object} newState
-   */
-  promote(pgn, newState) {
-    if (this.state.move.piece.symbol === Pgn.symbol.PAWN) {
-      if (this.state.move.piece.color === Pgn.symbol.WHITE && this.state.move.to.charAt(1) === '8') {
-        delete newState.pieces[this.state.move.to];
-        newState.pieces[this.state.move.to] = {
-          color: Pgn.symbol.WHITE,
-          unicode: '♕',
-          symbol: Pgn.symbol.QUEEN
-        };
-      } else if(this.state.move.piece.color === Pgn.symbol.BLACK && this.state.move.to.charAt(1) === '1') {
-        delete newState.pieces[this.state.move.to];
-        newState.pieces[this.state.move.to] = {
-          color: Pgn.symbol.BLACK,
-          unicode: '♛',
-          symbol: Pgn.symbol.QUEEN
-        };
-      }
-    }
-  }
-
-  /**
-   * Makes a piece move.
-   *
-   * Generates a pseudo pgn move first (Pgn.convert) which is then validated on
-   * the server side through the validateMove method.
-   *
-   * @param {string} square
-   */
-  move(square) {
-    if (this.state.history.back > 0) {
-      return false;
-    }
-    let piece = this.state.pieces[square];
-    let pgn = null;
-    switch (true) {
-      // leave piece on empty square
-      case this.state.move !== null && piece === undefined:
-        pgn = Pgn.convert({
-          piece: this.state.move.piece,
-          from: this.state.move.from,
-          to: square
-        });
-        if (this.props.server !== undefined) {
-          this.validateMove(pgn, square);
-        }
-        break;
-
-      // leave piece on non-empty square
-      case this.state.move !== null && piece !== undefined:
-        pgn = Pgn.convert({
-          piece: this.state.move.piece,
-          from: this.state.move.from,
-          to: square
-        }, 'x');
-        if (this.props.server !== undefined) {
-          this.validateMove(pgn, square);
-        }
-        break;
-
-      // pick piece on non-empty square
-      case this.state.move === null && piece !== undefined:
-        let newState = this.state;
-        newState.move = {
-          piece: piece,
-          from: square
-        };
-        this.setState(newState);
-        break;
-
-      // pick piece on empty square
-      default:
-        break;
-    }
-  }
-
-  /**
-   * Undoes a castling move because of browsing the history.
-   *
-   * @param {object} item
-   * @param {array} pieces
-   */
-  undoCastlingBecauseBrowsing(item, pieces) {
-    if (item.pgn === Pgn.symbol.CASTLING_SHORT) {
-      if (item.move.piece.color === Pgn.symbol.WHITE) {
-        delete pieces['h1'];
-        pieces['f1'] = {
-          color: Pgn.symbol.WHITE,
-          unicode: '♖',
-          symbol: Pgn.symbol.ROOK
-        };
-      } else {
-        delete pieces['h8'];
-        pieces['f8'] = {
-          color: Pgn.symbol.BLACK,
-          unicode: '♜',
-          symbol: Pgn.symbol.ROOK
-        };
-      }
-    } else if (item.pgn === Pgn.symbol.CASTLING_LONG) {
-      if (item.move.piece.color === Pgn.symbol.WHITE) {
-        delete pieces['a1'];
-        pieces['d1'] = {
-          color: Pgn.symbol.WHITE,
-          unicode: '♖',
-          symbol: Pgn.symbol.ROOK
-        };
-      } else {
-        delete pieces['a8'];
-        pieces['d8'] = {
-          color: Pgn.symbol.BLACK,
-          unicode: '♜',
-          symbol: Pgn.symbol.ROOK
-        };
-      }
-    }
-  }
-
-  /**
-   * Redoes an en passant move because of browsing the history.
-   *
-   * @param {object} item
-   * @param {array} pieces
-   */
-  redoEnPassantBecauseBrowsing(item, pieces) {
-    let square;
-    if (item.move.piece.color === Pgn.symbol.WHITE && item.move.from.charAt(1) === '5') {
-      square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) - 1);
-    } else if (item.move.piece.color === Pgn.symbol.BLACK && item.move.from.charAt(1) === '4') {
-      square = item.move.to.charAt(0) + (parseInt(item.move.to.charAt(1),10) + 1);
-    }
-    delete pieces[square];
-  }
-
-  /**
-   * Browses the history one step back.
-   */
-  browseBack() {
-    if (this.state.history.back < this.state.history.items.length) {
-      let newState = this.state;
-      let pieces = Object.assign({}, Pieces);
-      newState.history.back += 1;
-      for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
-        delete pieces[this.state.history.items[i].move.from];
-        pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-        this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
-        this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
-      }
-      newState.pieces = pieces;
-      this.setState(newState);
-    }
-  }
-
-  /**
-   * Browses the history one step forward.
-   */
-  browseForward() {
-    if (this.state.history.back > 0) {
-      let newState = this.state;
-      let pieces = Object.assign({}, Pieces);
-      newState.history.back -= 1;
-      for (let i = 0; i < this.state.history.items.length - newState.history.back; i++) {
-        delete pieces[this.state.history.items[i].move.from];
-        pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-        this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
-        this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
-      }
-      newState.pieces = pieces;
-      this.setState(newState);
-    }
-  }
-
-  /**
-   * Browses the history to the beginning of the game.
-   */
-  browseBeginning() {
-    let newState = this.state;
-    newState.history.back = this.state.history.items.length;
-    newState.pieces = Object.assign({}, Pieces);
-    this.setState(newState);
-  }
-
-  /**
-   * Browses the history to the last move.
-   */
-  browseEnd() {
-    let newState = this.state;
-    let pieces = Object.assign({}, Pieces);
-    newState.history.back = 0;
-    for (let i = 0; i < this.state.history.items.length; i++) {
-      delete pieces[this.state.history.items[i].move.from];
-      pieces[this.state.history.items[i].move.to] = this.state.history.items[i].move.piece;
-      this.undoCastlingBecauseBrowsing(this.state.history.items[i], pieces);
-      this.redoEnPassantBecauseBrowsing(this.state.history.items[i], pieces);
-    }
-    newState.pieces = pieces;
-    this.setState(newState);
-  }
-
-  /**
-   * Renders a row.
-   *
-   * @param {number} number
-   */
   renderRow(number) {
     let ascii = 96;
     let color;
@@ -366,9 +21,7 @@ export default class Board extends React.Component {
       let square = String.fromCharCode(ascii) + number;
       row.push(<Square
         square={square}
-        color={color}
-        state={this.state}
-        onClick={() => this.move(square)} />
+        color={color} />
       );
       color = color === Pgn.symbol.BLACK ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
     }
@@ -376,9 +29,6 @@ export default class Board extends React.Component {
     return row;
   }
 
-  /**
-   * Renders all rows.
-   */
   renderRows() {
     let board = [];
     for (let i=8; i>=1; i--) {
@@ -393,29 +43,6 @@ export default class Board extends React.Component {
     return board;
   }
 
-  /**
-   * Renders the history.
-   */
-  renderHistory() {
-    let n = 1;
-    let history = '';
-    this.state.history.items.forEach(function (item, index) {
-      if (index % 2 === 0) {
-        history += n + '. ' + item.pgn;
-        n++;
-      } else {
-        history = history + ' ' + item.pgn + ' ';
-      }
-    });
-
-    return (
-      <p>{history}</p>
-    );
-  }
-
-  /**
-   * Render method.
-   */
   render() {
     return (
       <div>
@@ -423,31 +50,11 @@ export default class Board extends React.Component {
           <div className="options">
             <button onClick={() => this.reset()}>New game</button>
           </div>
-          <div className={['board', this.state.history.back > 0 ? 'past' : 'present'].join(' ')}>
+          <div className={['board', HistoryStore.getState().back > 0 ? 'past' : 'present'].join(' ')}>
             {this.renderRows()}
           </div>
-          <div className="controls">
-            <button
-              disabled={this.state.history.back >= this.state.history.items.length}
-              onClick={() => this.browseBeginning()}>&lt;&lt;
-            </button>
-            <button
-              disabled={this.state.history.back >= this.state.history.items.length}
-              onClick={() => this.browseBack()}>&lt;
-            </button>
-            <button
-              disabled={this.state.history.back === 0}
-              onClick={() => this.browseForward()}>&gt;
-            </button>
-            <button
-              disabled={this.state.history.back === 0}
-              onClick={() => this.browseEnd()}>&gt;&gt;
-            </button>
-          </div>
         </div>
-        <div className="history">
-          {this.renderHistory()}
-        </div>
+        <History />
       </div>
     );
   }
