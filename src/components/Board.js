@@ -1,5 +1,5 @@
-import Pgn from '../Pgn.js';
-import Pieces from '../Pieces.js';
+import Pgn from '../utils/Pgn.js';
+import Pieces from '../utils/Pieces.js';
 import React from 'react';
 import Square from './Square.js';
 
@@ -48,13 +48,6 @@ export default class Board extends React.Component {
       pieces: Object.assign({}, Pieces)
     };
     this.setState(newState);
-  }
-
-  /**
-   * Switches the color from w to b and viceversa.
-   */
-  switchColor(color) {
-    return color === Pgn.symbol.BLACK ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
   }
 
   /**
@@ -372,14 +365,12 @@ export default class Board extends React.Component {
       ascii++;
       let square = String.fromCharCode(ascii) + number;
       row.push(<Square
-        key={i}
         square={square}
         color={color}
-        isPast={this.state.history.back > 0}
         state={this.state}
         onClick={() => this.move(square)} />
       );
-      color = this.switchColor(color);
+      color = color === Pgn.symbol.BLACK ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
     }
 
     return row;
