@@ -1,7 +1,28 @@
+import BoardStore from '../stores/BoardStore.js';
 import HistoryStore from '../stores/HistoryStore.js';
 import React from 'react';
 
 export default class History extends React.Component {
+  _isMounted = false;
+
+  constructor(props) {
+    super(props);
+    this.state = HistoryStore.getState();
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    BoardStore.on("reset", () => {
+      if (this._isMounted) {
+        this.setState(HistoryStore.getState());
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   renderHistory() {
     let n = 1;
     let history = '';

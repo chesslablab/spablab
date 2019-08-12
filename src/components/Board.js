@@ -1,14 +1,41 @@
+import BoardActions from '../actions/BoardActions.js';
 import BoardStore from '../stores/BoardStore.js';
 import HistoryStore from '../stores/HistoryStore.js';
+import SquareStore from '../stores/SquareStore.js';
 import History from './History.js';
 import Pgn from '../utils/Pgn.js';
 import React from 'react';
 import Square from './Square.js';
 
 export default class Board extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = BoardStore.getState();
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    BoardStore.connect();
+    SquareStore.on("move", () => {
+      if (this._isMounted) {
+        this.setState(BoardStore.getState());
+      }
+    });
+    BoardStore.on("reset", () => {
+      if (this._isMounted) {
+        this.setState(BoardStore.getState());
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  reset() {
+    BoardActions.reset();
   }
 
   renderRow(number) {
@@ -30,21 +57,11 @@ export default class Board extends React.Component {
     return row;
   }
 
-  renderRows() {
+  render() {
     let board = [];
     for (let i=8; i>=1; i--) {
-      board.push(<div
-        key={i}
-        className="board-row">
-          {this.renderRow(i)}
-      </div>
-      );
+      board.push(<div key={i} className="board-row">{this.renderRow(i)}</div>);
     }
-
-    return board;
-  }
-
-  render() {
     return (
       <div>
         <div className="game">
@@ -52,7 +69,7 @@ export default class Board extends React.Component {
             <button onClick={() => this.reset()}>New game</button>
           </div>
           <div className={['board', HistoryStore.getState().back > 0 ? 'past' : 'present'].join(' ')}>
-            {this.renderRows()}
+            {board}
           </div>
         </div>
         <History />

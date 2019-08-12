@@ -6,6 +6,15 @@ import { EventEmitter } from 'events';
 import Pgn from '../utils/Pgn.js';
 
 class SquareStore extends EventEmitter {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  getState() {
+    return this.state;
+  }
+
   click(square) {
     if (HistoryStore.getState().back > 0) {
       return false;
@@ -20,9 +29,7 @@ class SquareStore extends EventEmitter {
           from: BoardStore.getState().move.from,
           to: square
         });
-        if (this.props.server !== undefined) {
-          this.move(pgn, square);
-        }
+        this.move(pgn, square);
         break;
       // leave a piece on a non-empty square
       case BoardStore.getState().move !== null && piece !== undefined:
@@ -31,9 +38,7 @@ class SquareStore extends EventEmitter {
           from: BoardStore.getState().move.from,
           to: square
         }, 'x');
-        if (this.props.server !== undefined) {
-          this.move(pgn, square);
-        }
+        this.move(pgn, square);
         break;
       // pick a piece on a non-empty square
       case BoardStore.getState().move === null && piece !== undefined:
@@ -51,7 +56,7 @@ class SquareStore extends EventEmitter {
   }
 
   move(pgn, square) {
-    // let newState = BoardStore.getState();
+    let evEmitter = this;
     let newBoardState = BoardStore.getState();
     let newHistoryState = HistoryStore.getState();
     BoardStore.getSocket().send(BoardStore.getState().move.piece.color + ' ' + pgn);
@@ -62,18 +67,19 @@ class SquareStore extends EventEmitter {
         newBoardState.pieces[BoardStore.getState().move.to] = BoardStore.getState().move.piece;
         newHistoryState.items.push({
           pgn: pgn,
-          move: newState.move
+          move: newBoardState.move
         });
-        BoardStore.castle(pgn, newState)
-					.enPassant(pgn, newState)
-					.promote(pgn, newState);
+        BoardStore.castle(pgn, newBoardState)
+					.enPassant(pgn, newBoardState)
+					.promote(pgn, newBoardState);
         BoardStore.setState(newBoardState);
         HistoryStore.setState(newHistoryState);
         newBoardState = BoardStore.getState();
+        evEmitter.emit("move");
       }
       newBoardState.move = null;
       BoardStore.setState(newBoardState);
-    }).bind(this);
+    });
   }
 
 	handleActions(action) {
@@ -87,7 +93,7 @@ class SquareStore extends EventEmitter {
 	}
 }
 
-const squareStore = new SquareStore();
+const squareStore = new SquareStore().setMaxListeners(64);
 AppDispatcher.register(squareStore.handleActions.bind(squareStore));
 
 export default squareStore;

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Board from './components/Board.js';
 import './index.css';
 
-var BoardElement = React.createElement(Board, {server: "localhost:3001"});
+var BoardElement = React.createElement(Board);
 
 ReactDOM.render(
   BoardElement,

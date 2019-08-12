@@ -15,6 +15,17 @@ class HistoryStore extends EventEmitter {
 		return this.state;
 	}
 
+	setState(newState) {
+		this.state = newState;
+	}
+
+	reset() {
+		this.state = {
+			back: 0,
+			items: []
+		};
+	}
+
 	goBack() {
     if (this.state.back < this.state.items.length) {
       let newState = this.state;

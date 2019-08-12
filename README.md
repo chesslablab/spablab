@@ -2,69 +2,47 @@
 
 ![React PGN Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-This is a dockerized chess web app that renders a chess board displaying the PGN moves made by players. The moves are validated on the server with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a PHP chess board representation that runs chess games internally in PGN notation, and [Ratchet](http://socketo.me/) (PHP Websockets).
+This is a chess board that displays PGN moves made by players. The moves are validated on the server side with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a chess board representation written with PHP.
 
 > **Side Note**: There are a few todos still to be finished. Contributions are welcome!
 
-### 1. Installation
+### 1. Server
 
-Make sure you've got Docker installed already and run:
-
-    git clone https://github.com/programarivm/react-pgn-chess.git
-    cd react-pgn-chess.git
-    npm install
-    composer install
-    docker-compose up -d
-
-Initialize the chess server:
+Initialise the chess server:
 
     php php/chess-server.php
     New ReactPgnChess game!
 
-Now open your favourite browser and type this in the address bar:
+### 2. Client
 
-    http://localhost:3000
+In the project directory, you can run:
 
-![React PGN Chess](/resources/figure-01.png?raw=true)
+#### `npm start`
 
-### 2. How Does It Work?
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Let's have a look at the `js/index.js` file:
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-```JavaScript
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Board from './components/Board.js';
-import './index.css';
+#### `npm test`
 
-var BoardElement = React.createElement(Board, {server: "localhost:3001"});
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-ReactDOM.render(
-  BoardElement,
-  document.getElementById('chess-board')
-);
-```
+#### `npm run build`
 
-As you see, the `Board` component assumes there's a WebSocket server running on `localhost:3001` listening to messages as it is shown next:
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-    w e4
-    b e5
-    w Nf3
-    b Rg1
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-Given the examples above, the server will respond like this:
-
-    true
-    true
-    true
-    false
-
-Yep, this is a client-server app which basically validates chess games in PGN notation at this moment (single-player mode only). `src` is the frontend and `php` is the backend. The frontend is `src` because it was created with the help of `create-react-app`. On the other hand, `php/chess-server.php` is been implemented with the help of [Ratchet](http://socketo.me/) and [PGN Chess](https://github.com/programarivm/pgn-chess).
-
-The main idea behind React PGN Chess consists in writing all chess logic on the server side, and it can be used as a basis for playing games vs the computer, or run computationally heavy algorithms that would take seconds to calculate chess moves.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### 3. Demo
 
+![React PGN Chess](/resources/figure-01.png?raw=true)
 > Soon available.
 
 ### 4. To Dos
@@ -73,7 +51,7 @@ The main idea behind React PGN Chess consists in writing all chess logic on the 
 
 2. `php/PgnChessGame.php` works in single-player mode only at this moment.
 
-3. Review pawn promotion.
+3. Review the pawn promotion.
 
 ### 5. License
 

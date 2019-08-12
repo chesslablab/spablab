@@ -1,8 +1,11 @@
 import ActionTypes from '../constants/AppConstants';
 import AppDispatcher from "../dispatcher/AppDispatcher.js";
 import { EventEmitter } from 'events';
+import HistoryStore from '../stores/HistoryStore.js';
 import Pgn from '../utils/Pgn.js';
 import Pieces from '../utils/Pieces.js';
+
+const url = 'ws://localhost:3001';
 
 class BoardStore extends EventEmitter {
 	constructor() {
@@ -17,15 +20,19 @@ class BoardStore extends EventEmitter {
 		return this.state;
 	}
 
+	setState(newState) {
+		this.state = newState;
+	}
+
 	getSocket() {
 		return this.socket;
 	}
 
 	connect() {
-			this.socket = new WebSocket('ws://' + this.props.server);
-			this.socket.onerror = function(ev) {
-				alert('Whoops! The websocket server is not running.');
-			}
+		this.socket = new WebSocket(url);
+		this.socket.onerror = function(ev) {
+			alert('Whoops! The websocket server is not running.');
+		}
 	}
 
 	reset() {
@@ -33,6 +40,10 @@ class BoardStore extends EventEmitter {
 			move: null,
 			pieces: Object.assign({}, Pieces)
 		};
+		HistoryStore.reset();
+		this.connect();
+
+		this.emit("reset");
 	}
 
   castle(pgn, newState) {
