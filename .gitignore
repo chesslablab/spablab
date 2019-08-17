@@ -23,3 +23,6 @@ yarn-error.log*
 # php
 /composer.lock
 /vendor/
+
+# js
+/package-lock.json

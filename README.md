@@ -8,6 +8,11 @@ React PGN Chess is a web chess board that displays PGN moves made by players. Th
 
 ### 1. Server
 
+Install the dependencies:
+
+    composer install
+    npm install
+
 Initialise the chess server:
 
     php php/chess-server.php
