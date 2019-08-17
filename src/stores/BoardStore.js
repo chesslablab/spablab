@@ -13,6 +13,7 @@ class BoardStore extends EventEmitter {
 			move: null,
 			pieces: Object.assign({}, Pieces)
 		};
+		AppDispatcher.register(this.handleActions.bind(this));
 	}
 
 	getState() {
@@ -120,7 +121,4 @@ class BoardStore extends EventEmitter {
 	}
 }
 
-const boardStore = new BoardStore();
-AppDispatcher.register(boardStore.handleActions.bind(boardStore));
-
-export default boardStore;
+export default new BoardStore();

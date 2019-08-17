@@ -12,6 +12,7 @@ class HistoryStore extends EventEmitter {
 			back: 0,
 			items: []
 		};
+		AppDispatcher.register(this.handleActions.bind(this));
 	}
 
 	getState() {
@@ -138,7 +139,4 @@ class HistoryStore extends EventEmitter {
 	}
 }
 
-const historyStore = new HistoryStore();
-AppDispatcher.register(historyStore.handleActions.bind(historyStore));
-
-export default historyStore;
+export default new HistoryStore();

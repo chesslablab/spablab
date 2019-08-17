@@ -10,6 +10,7 @@ class SquareStore extends EventEmitter {
   constructor() {
     super();
     this.state = {};
+    AppDispatcher.register(this.handleActions.bind(this));
   }
 
   getState() {
@@ -17,9 +18,6 @@ class SquareStore extends EventEmitter {
   }
 
   click(square) {
-    if (HistoryStore.getState().back > 0) {
-      return false;
-    }
     let piece = BoardStore.getState().pieces[square];
     let pgn = null;
     switch (true) {
@@ -94,7 +92,4 @@ class SquareStore extends EventEmitter {
 	}
 }
 
-const squareStore = new SquareStore().setMaxListeners(64);
-AppDispatcher.register(squareStore.handleActions.bind(squareStore));
-
-export default squareStore;
+export default new SquareStore();

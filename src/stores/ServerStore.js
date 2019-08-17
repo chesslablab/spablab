@@ -5,6 +5,11 @@ import { EventEmitter } from 'events';
 const url = 'ws://localhost:3001';
 
 class ServerStore extends EventEmitter {
+	constructor() {
+		super();
+		AppDispatcher.register(this.handleActions.bind(this));
+	}
+
 	getSocket() {
 		return this.socket;
 	}
@@ -27,7 +32,4 @@ class ServerStore extends EventEmitter {
 	}
 }
 
-const serverStore = new ServerStore();
-AppDispatcher.register(serverStore.handleActions.bind(serverStore));
-
-export default serverStore;
+export default new ServerStore();
