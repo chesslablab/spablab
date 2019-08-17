@@ -32,33 +32,25 @@ class HistoryStore extends EventEmitter {
 
   goToBeginning() {
     this.state.back = this.state.items.length;
-		let boardState = BoardStore.getState();
-		boardState.pieces = Object.assign({}, Pieces);
-		BoardStore.setState(boardState);
+		BoardStore.setPieces(Object.assign({}, Pieces));
 		this.emit("go_to_beginning");
   }
 
 	goBack() {
 		this.state.back += 1;
-		let boardState = BoardStore.getState();
-		boardState.pieces = this.setPieces(this.state.items.length - this.state.back);
-		BoardStore.setState(boardState);
+		BoardStore.setPieces(this.setPieces(this.state.items.length - this.state.back));
 		this.emit("go_back");
 	}
 
 	goForward() {
 		this.state.back -= 1;
-		let boardState = BoardStore.getState();
-		boardState.pieces = this.setPieces(this.state.items.length - this.state.back);
-		BoardStore.setState(boardState);
+		BoardStore.setPieces(this.setPieces(this.state.items.length - this.state.back));
 		this.emit("go_forward");
 	}
 
   goToEnd() {
 		this.state.back = 0;
-		let boardState = BoardStore.getState();
-		boardState.pieces = this.setPieces(this.state.items.length);
-		BoardStore.setState(boardState);
+		BoardStore.setPieces(this.setPieces(this.state.items.length));
 		this.emit("go_to_end");
   }
 

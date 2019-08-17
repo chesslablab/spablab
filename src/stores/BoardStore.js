@@ -20,8 +20,12 @@ class BoardStore extends EventEmitter {
 		return this.state;
 	}
 
-	setState(newState) {
-		this.state = newState;
+	setMove(move) {
+		this.state.move = move;
+	}
+
+	setPieces(pieces) {
+		this.state.pieces = pieces;
 	}
 
 	reset() {
@@ -110,10 +114,6 @@ class BoardStore extends EventEmitter {
     return this;
   }
 
-	specialMove(pgn) {
-		this.castle(pgn).enPassant(pgn).promote(pgn);
-	}
-
 	normalMove(pgn, square) {
 		delete this.state.pieces[this.state.move.from];
 		this.state.move.to = square;
@@ -122,8 +122,12 @@ class BoardStore extends EventEmitter {
 		return this;
 	}
 
-	setMove(move) {
-		this.state.move = move;
+	specialMove(pgn) {
+		this.castle(pgn).enPassant(pgn).promote(pgn);
+	}
+
+	move(pgn, square) {
+		this.normalMove(pgn, square).specialMove(pgn);
 	}
 
 	handleActions(action) {
