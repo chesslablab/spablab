@@ -8,50 +8,31 @@ import React from 'react';
 import Square from './Square.js';
 
 export default class Board extends React.Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
     this.state = BoardStore.getState();
   }
 
   componentDidMount() {
-    this._isMounted = true;
     BoardStore.connect();
     SquareStore.on("move", () => {
-      if (this._isMounted) {
-        this.setState(BoardStore.getState());
-      }
+      this.setState(BoardStore.getState());
     });
     BoardStore.on("reset", () => {
-      if (this._isMounted) {
-        this.setState(BoardStore.getState());
-      }
+      this.setState(BoardStore.getState());
     });
     HistoryStore.on("go_to_beginning", () => {
-      if (this._isMounted) {
-        this.setState(BoardStore.getState());
-      }
+      this.setState(BoardStore.getState());
     });
     HistoryStore.on("go_back", () => {
-      if (this._isMounted) {
-        this.setState(BoardStore.getState());
-      }
+      this.setState(BoardStore.getState());
     });
     HistoryStore.on("go_forward", () => {
-      if (this._isMounted) {
-        this.setState(BoardStore.getState());
-      }
+      this.setState(BoardStore.getState());
     });
     HistoryStore.on("go_to_end", () => {
-      if (this._isMounted) {
-        this.setState(BoardStore.getState());
-      }
+      this.setState(BoardStore.getState());
     });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   reset() {
