@@ -114,6 +114,18 @@ class BoardStore extends EventEmitter {
 		this.castle(pgn).enPassant(pgn).promote(pgn);
 	}
 
+	normalMove(pgn, square) {
+		delete this.state.pieces[this.state.move.from];
+		this.state.move.to = square;
+		this.state.pieces[this.state.move.to] = this.state.move.piece;
+
+		return this;
+	}
+
+	clearMove() {
+		this.state.move = null;
+	}
+
 	handleActions(action) {
 		switch (action.type) {
 			case ActionTypes.RESET_BOARD:
