@@ -2,7 +2,7 @@
 
 ![React PGN Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-React PGN Chess is a web chess board that displays PGN moves made by players. The moves are validated on the server side with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a chess board representation written with PHP.
+React PGN Chess is a web chess board that displays PGN moves made by players. The moves are validated on the server with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a chess board representation written with PHP.
 
 > **Side Note**: There are a few todos still to be finished. Contributions are welcome!
 
@@ -42,12 +42,12 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### 3. Demo
 
-![React PGN Chess](/resources/figure-01.png?raw=true)
+![React PGN Chess](/resources/demo.gif)
 > Soon available.
 
 ### 4. To Dos
 
-1. `php/PgnChessGame.php` is only responding with `true` or `false`, depending on whether or not a PGN move is valid, but it has to respond with `check` and `checkmate` too -- and the GUI needs to be improved a little bit more (with colors or messages) accordingly. This is easy to do since the check and checkmate are calculated by PGN Chess already.
+1. `php/PgnChessGame.php` is only responding with `true` or `false` depending on whether or not a PGN move is valid, but it has to respond with `check` and `checkmate` too. The GUI should be improved a little bit more (with colors or messages) accordingly.
 
 2. `php/PgnChessGame.php` works in single-player mode only at this moment.
 
@@ -64,6 +64,5 @@ Would you help make this app better?
 - Feel free to send a pull request
 - Drop an email at info@programarivm.com with the subject "React PGN Chess"
 - Leave me a comment on [Twitter](https://twitter.com/programarivm)
-- Say hello on [Google+](https://plus.google.com/+Programarivm)
 
 Thank you.

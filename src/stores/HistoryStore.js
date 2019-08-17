@@ -1,7 +1,9 @@
 import ActionTypes from '../constants/AppConstants';
 import AppDispatcher from "../dispatcher/AppDispatcher.js";
+import BoardStore from '../stores/BoardStore.js';
 import { EventEmitter } from 'events';
 import Pgn from '../utils/Pgn.js';
+import Pieces from '../utils/Pieces.js';
 
 class HistoryStore extends EventEmitter {
 	constructor() {
@@ -29,21 +31,33 @@ class HistoryStore extends EventEmitter {
 
   goToBeginning() {
     this.state.back = this.state.items.length;
+		let boardState = BoardStore.getState();
+		boardState.pieces = Object.assign({}, Pieces);
+		BoardStore.setState(boardState);
 		this.emit("go_to_beginning");
   }
 
 	goBack() {
 		this.state.back += 1;
+		let boardState = BoardStore.getState();
+		boardState.pieces = this.pieces(this.state.items.length - this.state.back);
+		BoardStore.setState(boardState);
 		this.emit("go_back");
 	}
 
 	goForward() {
 		this.state.back -= 1;
+		let boardState = BoardStore.getState();
+		boardState.pieces = this.pieces(this.state.items.length - this.state.back);
+		BoardStore.setState(boardState);
 		this.emit("go_forward");
 	}
 
   goToEnd() {
 		this.state.back = 0;
+		let boardState = BoardStore.getState();
+		boardState.pieces = this.pieces(this.state.items.length);
+		BoardStore.setState(boardState);
 		this.emit("go_to_end");
   }
 
@@ -92,6 +106,17 @@ class HistoryStore extends EventEmitter {
     }
     delete pieces[square];
   }
+
+	pieces(n) {
+		let pieces = Object.assign({}, Pieces);
+		for (let i = 0; i < n; i++) {
+			delete pieces[this.state.items[i].move.from];
+			pieces[this.state.items[i].move.to] = this.state.items[i].move.piece;
+			this.undoCastling(this.state.items[i], pieces);
+			this.redoEnPassant(this.state.items[i], pieces);
+		}
+		return pieces;
+	}
 
 	handleActions(action) {
 		switch (action.type) {
