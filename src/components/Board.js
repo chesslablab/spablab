@@ -2,6 +2,7 @@ import BoardActions from '../actions/BoardActions.js';
 import BoardStore from '../stores/BoardStore.js';
 import HistoryStore from '../stores/HistoryStore.js';
 import SquareStore from '../stores/SquareStore.js';
+import ServerStore from '../stores/ServerStore.js';
 import History from './History.js';
 import Pgn from '../utils/Pgn.js';
 import React from 'react';
@@ -14,7 +15,7 @@ export default class Board extends React.Component {
   }
 
   componentDidMount() {
-    BoardStore.connect();
+    ServerStore.connect();
     SquareStore.on("move", () => {
       this.setState(BoardStore.getState());
     });

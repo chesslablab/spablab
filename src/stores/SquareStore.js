@@ -2,6 +2,7 @@ import ActionTypes from '../constants/AppConstants';
 import AppDispatcher from "../dispatcher/AppDispatcher.js";
 import BoardStore from "./BoardStore.js";
 import HistoryStore from "./HistoryStore.js";
+import ServerStore from "./ServerStore.js";
 import { EventEmitter } from 'events';
 import Pgn from '../utils/Pgn.js';
 
@@ -59,8 +60,8 @@ class SquareStore extends EventEmitter {
     let evEmitter = this;
     let newBoardState = BoardStore.getState();
     let newHistoryState = HistoryStore.getState();
-    BoardStore.getSocket().send(BoardStore.getState().move.piece.color + ' ' + pgn);
-    BoardStore.getSocket().onmessage = (function(ev) {
+    ServerStore.getSocket().send(BoardStore.getState().move.piece.color + ' ' + pgn);
+    ServerStore.getSocket().onmessage = (function(ev) {
       if (ev.data === 'true') {
         delete newBoardState.pieces[BoardStore.getState().move.from];
         newBoardState.move.to = square;
