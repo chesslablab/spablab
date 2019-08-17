@@ -56,16 +56,14 @@ class SquareStore extends EventEmitter {
 
   move(pgn, square) {
     let evEmitter = this;
-    let newHistoryState = HistoryStore.getState();
     ServerStore.getSocket().send(BoardStore.getState().move.piece.color + ' ' + pgn);
     ServerStore.getSocket().onmessage = (function(ev) {
       if (ev.data === 'true') {
         BoardStore.normalMove(pgn, square).specialMove(pgn);
-        newHistoryState.items.push({
+        HistoryStore.add({
           pgn: pgn,
           move: BoardStore.getState().move
         });
-        HistoryStore.setState(newHistoryState);
       }
       BoardStore.clearMove();
       evEmitter.emit("move");

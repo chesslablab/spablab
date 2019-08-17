@@ -41,7 +41,7 @@ class HistoryStore extends EventEmitter {
 	goBack() {
 		this.state.back += 1;
 		let boardState = BoardStore.getState();
-		boardState.pieces = this.pieces(this.state.items.length - this.state.back);
+		boardState.pieces = this.setPieces(this.state.items.length - this.state.back);
 		BoardStore.setState(boardState);
 		this.emit("go_back");
 	}
@@ -49,7 +49,7 @@ class HistoryStore extends EventEmitter {
 	goForward() {
 		this.state.back -= 1;
 		let boardState = BoardStore.getState();
-		boardState.pieces = this.pieces(this.state.items.length - this.state.back);
+		boardState.pieces = this.setPieces(this.state.items.length - this.state.back);
 		BoardStore.setState(boardState);
 		this.emit("go_forward");
 	}
@@ -57,7 +57,7 @@ class HistoryStore extends EventEmitter {
   goToEnd() {
 		this.state.back = 0;
 		let boardState = BoardStore.getState();
-		boardState.pieces = this.pieces(this.state.items.length);
+		boardState.pieces = this.setPieces(this.state.items.length);
 		BoardStore.setState(boardState);
 		this.emit("go_to_end");
   }
@@ -108,7 +108,7 @@ class HistoryStore extends EventEmitter {
     delete pieces[square];
   }
 
-	pieces(n) {
+	setPieces(n) {
 		let pieces = Object.assign({}, Pieces);
 		for (let i = 0; i < n; i++) {
 			delete pieces[this.state.items[i].move.from];
@@ -117,6 +117,10 @@ class HistoryStore extends EventEmitter {
 			this.redoEnPassant(this.state.items[i], pieces);
 		}
 		return pieces;
+	}
+
+	add(item) {
+		this.state.items.push(item);
 	}
 
 	handleActions(action) {
