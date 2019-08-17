@@ -41,12 +41,10 @@ class SquareStore extends EventEmitter {
         break;
       // pick a piece on a non-empty square
       case BoardStore.getState().move === null && piece !== undefined:
-        let newState = BoardStore.getState();
-        newState.move = {
+        BoardStore.setMove({
           piece: piece,
           from: square
-        };
-        BoardStore.setState(newState);
+        });
         break;
       // pick a piece on an empty square
       default:
@@ -65,7 +63,7 @@ class SquareStore extends EventEmitter {
           move: BoardStore.getState().move
         });
       }
-      BoardStore.clearMove();
+      BoardStore.setMove(null);
       evEmitter.emit("move");
     });
   }

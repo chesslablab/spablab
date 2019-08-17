@@ -122,8 +122,8 @@ class BoardStore extends EventEmitter {
 		return this;
 	}
 
-	clearMove() {
-		this.state.move = null;
+	setMove(move) {
+		this.state.move = move;
 	}
 
 	handleActions(action) {
