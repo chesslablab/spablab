@@ -35,18 +35,18 @@ class BoardStore extends EventEmitter {
 		this.emit("reset");
 	}
 
-  castle(pgn, newState) {
+  castle(pgn) {
     if (pgn === Pgn.symbol.CASTLING_SHORT) {
       if (this.state.move.piece.color === Pgn.symbol.WHITE) {
-        delete newState.pieces['h1'];
-        newState.pieces['f1'] = {
+        delete this.state.pieces['h1'];
+        this.state.pieces['f1'] = {
           color: Pgn.symbol.WHITE,
           unicode: '♖',
           symbol: Pgn.symbol.ROOK
         };
       } else {
-        delete newState.pieces['h8'];
-        newState.pieces['f8'] = {
+        delete this.state.pieces['h8'];
+        this.state.pieces['f8'] = {
           color: Pgn.symbol.BLACK,
           unicode: '♜',
           symbol: Pgn.symbol.ROOK
@@ -54,15 +54,15 @@ class BoardStore extends EventEmitter {
       }
     } else if (pgn === Pgn.symbol.CASTLING_LONG) {
       if (this.state.move.piece.color === Pgn.symbol.WHITE) {
-        delete newState.pieces['a1'];
-        newState.pieces['d1'] = {
+        delete this.state.pieces['a1'];
+        this.state.pieces['d1'] = {
           color: Pgn.symbol.WHITE,
           unicode: '♖',
           symbol: Pgn.symbol.ROOK
         };
       } else {
-        delete newState.pieces['a8'];
-        newState.pieces['d8'] = {
+        delete this.state.pieces['a8'];
+        this.state.pieces['d8'] = {
           color: Pgn.symbol.BLACK,
           unicode: '♜',
           symbol: Pgn.symbol.ROOK
@@ -73,7 +73,7 @@ class BoardStore extends EventEmitter {
     return this;
   }
 
-  enPassant(pgn, newState) {
+  enPassant(pgn) {
     let re = new RegExp(Pgn.move.PAWN_CAPTURES);
     if (re.test(pgn)) {
       let square;
@@ -82,24 +82,24 @@ class BoardStore extends EventEmitter {
       } else if (this.state.move.piece.color === Pgn.symbol.BLACK && this.state.move.from.charAt(1) === '4') {
         square = this.state.move.to.charAt(0) + (parseInt(this.state.move.to.charAt(1),10) + 1);
       }
-      delete newState.pieces[square];
+      delete this.state.pieces[square];
     }
 
     return this;
   }
 
-  promote(pgn, newState) {
+  promote(pgn) {
     if (this.state.move.piece.symbol === Pgn.symbol.PAWN) {
       if (this.state.move.piece.color === Pgn.symbol.WHITE && this.state.move.to.charAt(1) === '8') {
-        delete newState.pieces[this.state.move.to];
-        newState.pieces[this.state.move.to] = {
+        delete this.state.pieces[this.state.move.to];
+        this.state.pieces[this.state.move.to] = {
           color: Pgn.symbol.WHITE,
           unicode: '♕',
           symbol: Pgn.symbol.QUEEN
         };
       } else if(this.state.move.piece.color === Pgn.symbol.BLACK && this.state.move.to.charAt(1) === '1') {
-        delete newState.pieces[this.state.move.to];
-        newState.pieces[this.state.move.to] = {
+        delete this.state.pieces[this.state.move.to];
+        this.state.pieces[this.state.move.to] = {
           color: Pgn.symbol.BLACK,
           unicode: '♛',
           symbol: Pgn.symbol.QUEEN
@@ -109,6 +109,10 @@ class BoardStore extends EventEmitter {
 
     return this;
   }
+
+	specialMove(pgn) {
+		this.castle(pgn).enPassant(pgn).promote(pgn);
+	}
 
 	handleActions(action) {
 		switch (action.type) {
