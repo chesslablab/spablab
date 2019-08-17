@@ -71,7 +71,6 @@ class SquareStore extends EventEmitter {
         BoardStore.castle(pgn, newBoardState)
 					.enPassant(pgn, newBoardState)
 					.promote(pgn, newBoardState);
-        BoardStore.setState(newBoardState);
         HistoryStore.setState(newHistoryState);
         newBoardState = BoardStore.getState();
         evEmitter.emit("move");
