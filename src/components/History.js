@@ -31,23 +31,6 @@ export default class History extends React.Component {
     HistoryActions.goToEnd();
   }
 
-  /* renderHistory() {
-    let n = 1;
-    let history = '';
-    HistoryStore.getState().items.forEach(function (item, index) {
-      if (index % 2 === 0) {
-        history += n + '. ' + item.pgn;
-        n++;
-      } else {
-        history = history + ' ' + item.pgn + ' ';
-      }
-    });
-
-    return (
-      <p>{history}</p>
-    );
-  } */
-
   render() {
     let n = 1;
     let history = '';
