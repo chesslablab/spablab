@@ -1,6 +1,7 @@
+import ActionTypes from '../constants/AppConstants';
+import AppDispatcher from "../dispatcher/AppDispatcher.js";
 import { EventEmitter } from 'events';
 import Pgn from '../utils/Pgn.js';
-import Pieces from '../utils/Pieces.js';
 
 class HistoryStore extends EventEmitter {
 	constructor() {
@@ -26,57 +27,24 @@ class HistoryStore extends EventEmitter {
 		};
 	}
 
-	goBack() {
-    if (this.state.back < this.state.items.length) {
-      let newState = this.state;
-      let pieces = Object.assign({}, Pieces);
-      newState.back += 1;
-      for (let i = 0; i < this.state.items.length - newState.back; i++) {
-        delete pieces[this.state.items[i].move.from];
-        pieces[this.state.items[i].move.to] = this.state.items[i].move.piece;
-        this.undoCastling(this.state.items[i], pieces);
-        this.redoEnPassant(this.state.items[i], pieces);
-      }
-      newState.pieces = pieces;
-      this.setState(newState);
-    }
-  }
-
-  goForward() {
-    if (this.state.back > 0) {
-      let newState = this.state;
-      let pieces = Object.assign({}, Pieces);
-      newState.back -= 1;
-      for (let i = 0; i < this.state.items.length - newState.back; i++) {
-        delete pieces[this.state.items[i].move.from];
-        pieces[this.state.items[i].move.to] = this.state.items[i].move.piece;
-        this.undoCastling(this.state.items[i], pieces);
-        this.redoEnPassant(this.state.items[i], pieces);
-      }
-      newState.pieces = pieces;
-      this.setState(newState);
-    }
-  }
-
   goToBeginning() {
-    let newState = this.state;
-    newState.back = this.state.items.length;
-    newState.pieces = Object.assign({}, Pieces);
-    this.setState(newState);
+    this.state.back = this.state.items.length;
+		this.emit("go_to_beginning");
   }
+
+	goBack() {
+		this.state.back += 1;
+		this.emit("go_back");
+	}
+
+	goForward() {
+		this.state.back -= 1;
+		this.emit("go_forward");
+	}
 
   goToEnd() {
-    let newState = this.state;
-    let pieces = Object.assign({}, Pieces);
-    newState.back = 0;
-    for (let i = 0; i < this.state.items.length; i++) {
-      delete pieces[this.state.items[i].move.from];
-      pieces[this.state.items[i].move.to] = this.state.items[i].move.piece;
-      this.undoCastling(this.state.items[i], pieces);
-      this.redoEnPassant(this.state.items[i], pieces);
-    }
-    newState.pieces = pieces;
-    this.setState(newState);
+		this.state.back = 0;
+		this.emit("go_to_end");
   }
 
   undoCastling(item, pieces) {
@@ -124,6 +92,28 @@ class HistoryStore extends EventEmitter {
     }
     delete pieces[square];
   }
+
+	handleActions(action) {
+		switch (action.type) {
+			case ActionTypes.GO_TO_BEGINNING_HISTORY:
+				this.goToBeginning();
+				break;
+			case ActionTypes.GO_BACK_HISTORY:
+				this.goBack();
+				break;
+			case ActionTypes.GO_FORWARD_HISTORY:
+				this.goForward();
+				break;
+			case ActionTypes.GO_TO_END_HISTORY:
+				this.goToEnd();
+				break;
+			default:
+				// do nothing
+		}
+	}
 }
 
-export default new HistoryStore();
+const historyStore = new HistoryStore();
+AppDispatcher.register(historyStore.handleActions.bind(historyStore));
+
+export default historyStore;

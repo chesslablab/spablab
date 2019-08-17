@@ -2,7 +2,7 @@
 
 ![React PGN Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-This is a chess board that displays PGN moves made by players. The moves are validated on the server side with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a chess board representation written with PHP.
+React PGN Chess is a web chess board that displays PGN moves made by players. The moves are validated on the server side with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a chess board representation written with PHP.
 
 > **Side Note**: There are a few todos still to be finished. Contributions are welcome!
 

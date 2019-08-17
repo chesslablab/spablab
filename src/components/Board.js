@@ -4,6 +4,7 @@ import HistoryStore from '../stores/HistoryStore.js';
 import SquareStore from '../stores/SquareStore.js';
 import History from './History.js';
 import Pgn from '../utils/Pgn.js';
+import Pieces from '../utils/Pieces.js';
 import React from 'react';
 import Square from './Square.js';
 
@@ -26,6 +27,55 @@ export default class Board extends React.Component {
     BoardStore.on("reset", () => {
       if (this._isMounted) {
         this.setState(BoardStore.getState());
+      }
+    });
+    HistoryStore.on("go_to_beginning", () => {
+      if (this._isMounted) {
+        let boardState = BoardStore.getState();
+        boardState.pieces = Object.assign({}, Pieces);
+        this.setState(boardState);
+      }
+    });
+    HistoryStore.on("go_back", () => {
+      if (this._isMounted) {
+        let boardState = BoardStore.getState();
+        let pieces = Object.assign({}, Pieces);
+        for (let i = 0; i < HistoryStore.getState().items.length - HistoryStore.getState().back; i++) {
+          delete pieces[HistoryStore.getState().items[i].move.from];
+          pieces[HistoryStore.getState().items[i].move.to] = HistoryStore.getState().items[i].move.piece;
+          HistoryStore.undoCastling(HistoryStore.getState().items[i], pieces);
+          HistoryStore.redoEnPassant(HistoryStore.getState().items[i], pieces);
+        }
+        boardState.pieces = pieces;
+        this.setState(boardState);
+      }
+    });
+    HistoryStore.on("go_forward", () => {
+      if (this._isMounted) {
+        let boardState = BoardStore.getState();
+        let pieces = Object.assign({}, Pieces);
+        for (let i = 0; i < HistoryStore.getState().items.length - HistoryStore.getState().back; i++) {
+          delete pieces[HistoryStore.getState().items[i].move.from];
+          pieces[HistoryStore.getState().items[i].move.to] = HistoryStore.getState().items[i].move.piece;
+          HistoryStore.undoCastling(HistoryStore.getState().items[i], pieces);
+          HistoryStore.redoEnPassant(HistoryStore.getState().items[i], pieces);
+        }
+        boardState.pieces = pieces;
+        this.setState(boardState);
+      }
+    });
+    HistoryStore.on("go_to_end", () => {
+      if (this._isMounted) {
+        let boardState = BoardStore.getState();
+        let pieces = Object.assign({}, Pieces);
+        for (let i = 0; i < HistoryStore.getState().items.length; i++) {
+          delete pieces[HistoryStore.getState().items[i].move.from];
+          pieces[HistoryStore.getState().items[i].move.to] = HistoryStore.getState().items[i].move.piece;
+          HistoryStore.undoCastling(HistoryStore.getState().items[i], pieces);
+          HistoryStore.redoEnPassant(HistoryStore.getState().items[i], pieces);
+        }
+        boardState.pieces = pieces;
+        this.setState(boardState);
       }
     });
   }
