@@ -6,6 +6,8 @@ React PGN Chess is a web chess board that displays PGN moves made by players. Th
 
 > **Side Note**: There are a few todos still to be finished. Contributions are welcome!
 
+![React PGN Chess](/resources/demo.gif)
+
 ### 1. Server
 
 Initialise the chess server:
@@ -40,12 +42,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### 3. Demo
-
-![React PGN Chess](/resources/demo.gif)
-> Soon available.
-
-### 4. To Dos
+### 3. To Dos
 
 1. `php/PgnChessGame.php` is only responding with `true` or `false` depending on whether or not a PGN move is valid, but it has to respond with `check` and `checkmate` too. The GUI should be improved a little bit more (with colors or messages) accordingly.
 
@@ -53,11 +50,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 3. Review the pawn promotion.
 
-### 5. License
+### 4. License
 
 The MIT License (MIT) Jordi Bassagañas.
 
-### 6. Contributions
+### 5. Contributions
 
 Would you help make this app better?
 
