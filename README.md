@@ -2,25 +2,21 @@
 
 ![React PGN Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-React PGN Chess is a web chess board that displays PGN moves made by players. The moves are validated on the server with [PGN Chess](https://github.com/programarivm/pgn-chess), which is a chess board representation written with PHP.
+React PGN Chess is a web-based chess board working along with [PGN Chess Server](https://github.com/programarivm/pgn-chess-server) which is a PHP Ratchet WebSocket server that validates PGN moves made by players.
 
 ![React PGN Chess](/resources/demo.gif)
 
-### 1. Server
-
 Install the dependencies:
 
-    composer install
     npm install
 
-Initialise the chess server:
+Create an .env file:
 
-    php php/chess-server.php
-    New ReactPgnChess game!
+    cp .env.example .env
 
-### 2. Client
+Finally make sure to update the `REACT_APP_PGN_CHESS_SERVER_URL` in your `.env` file to the URL of the WebSocket server as per the [server documentation](https://github.com/programarivm/pgn-chess-server#set-up-and-start-the-server).
 
-In the project directory, you can run:
+Then, in the project directory, you can run:
 
 #### `npm start`
 
@@ -45,25 +41,23 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### 3. To Dos
+### To Dos
 
-> **Side Note**: There are a few todos still to be finished. Contributions are welcome!
+> **Side Note**: There are a few todos. Contributions are welcome!
 
-1. `php/PgnChessGame.php` is only responding with `true` or `false` depending on whether or not a PGN move is valid, but it has to respond with `check` and `checkmate` too.
+1. PGN Chess Server is only responding with `true` or `false` depending on whether or not a PGN move is valid, but it has to respond with `check` and `checkmate` too.
 
 2. The GUI should be improved a little bit more (with colors or messages) accordingly.
 
-3. `php/PgnChessGame.php` works in single-player mode only at this moment.
+3. Review the pawn promotion.
 
-4. Review the pawn promotion.
+4. Review and update the tests.
 
-5. Review and update the tests.
-
-### 4. License
+### License
 
 The MIT License (MIT) Jordi Bassagañas.
 
-### 5. Contributions
+### Contributions
 
 Would you help make this app better?
 

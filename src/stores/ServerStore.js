@@ -2,8 +2,6 @@ import ActionTypes from '../constants/AppConstants';
 import AppDispatcher from "../dispatcher/AppDispatcher.js";
 import { EventEmitter } from 'events';
 
-const url = 'ws://localhost:3001';
-
 class ServerStore extends EventEmitter {
 	constructor() {
 		super();
@@ -15,7 +13,7 @@ class ServerStore extends EventEmitter {
 	}
 
 	connect() {
-		this.socket = new WebSocket(url);
+		this.socket = new WebSocket(process.env.REACT_APP_PGN_CHESS_SERVER_URL);
 		this.socket.onerror = function(ev) {
 			alert('Whoops! The PGN Chess server is not running.');
 		}
