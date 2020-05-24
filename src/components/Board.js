@@ -1,12 +1,12 @@
-import BoardActions from '../actions/BoardActions.js';
-import BoardStore from '../stores/BoardStore.js';
-import HistoryStore from '../stores/HistoryStore.js';
-import SquareStore from '../stores/SquareStore.js';
-import ServerStore from '../stores/ServerStore.js';
-import History from './History.js';
-import Pgn from '../utils/Pgn.js';
+import BoardActions from 'actions/BoardActions.js';
+import BoardStore from 'stores/BoardStore.js';
+import HistoryStore from 'stores/HistoryStore.js';
+import SquareStore from 'stores/SquareStore.js';
+import ServerStore from 'stores/ServerStore.js';
+import History from 'components/History.js';
+import Pgn from 'utils/Pgn.js';
 import React from 'react';
-import Square from './Square.js';
+import Square from 'components/Square.js';
 
 export default class Board extends React.Component {
   constructor(props) {

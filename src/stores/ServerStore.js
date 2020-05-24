@@ -1,5 +1,5 @@
-import ActionTypes from '../constants/AppConstants';
-import AppDispatcher from "../dispatcher/AppDispatcher.js";
+import ActionTypes from 'constants/AppConstants';
+import AppDispatcher from "dispatcher/AppDispatcher.js";
 import { EventEmitter } from 'events';
 
 class ServerStore extends EventEmitter {

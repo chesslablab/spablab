@@ -1,6 +1,6 @@
-import BoardStore from '../stores/BoardStore.js';
-import SquareStore from '../stores/SquareStore.js';
-import SquareActions from '../actions/SquareActions.js';
+import BoardStore from 'stores/BoardStore.js';
+import SquareStore from 'stores/SquareStore.js';
+import SquareActions from 'actions/SquareActions.js';
 import React from 'react';
 
 export default class Square extends React.Component {

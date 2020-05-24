@@ -1,5 +1,5 @@
-import AppDispatcher from "../dispatcher/AppDispatcher.js";
-import ActionTypes from "../constants/AppConstants.js";
+import AppDispatcher from "dispatcher/AppDispatcher.js";
+import ActionTypes from "constants/AppConstants.js";
 
 class SquareActions {
 	click(square) {

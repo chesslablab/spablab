@@ -1,6 +1,6 @@
-import HistoryActions from '../actions/HistoryActions.js';
-import BoardStore from '../stores/BoardStore.js';
-import HistoryStore from '../stores/HistoryStore.js';
+import HistoryActions from 'actions/HistoryActions.js';
+import BoardStore from 'stores/BoardStore.js';
+import HistoryStore from 'stores/HistoryStore.js';
 import React from 'react';
 
 export default class History extends React.Component {

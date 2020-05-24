@@ -1,9 +1,9 @@
-import ActionTypes from '../constants/AppConstants';
-import AppDispatcher from "../dispatcher/AppDispatcher.js";
-import BoardStore from '../stores/BoardStore.js';
+import ActionTypes from 'constants/AppConstants';
+import AppDispatcher from "dispatcher/AppDispatcher.js";
+import BoardStore from 'stores/BoardStore.js';
 import { EventEmitter } from 'events';
-import Pgn from '../utils/Pgn.js';
-import Pieces from '../utils/Pieces.js';
+import Pgn from 'utils/Pgn.js';
+import Pieces from 'utils/Pieces.js';
 
 class HistoryStore extends EventEmitter {
 	constructor() {

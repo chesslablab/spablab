@@ -1,10 +1,10 @@
-import ActionTypes from '../constants/AppConstants';
-import AppDispatcher from "../dispatcher/AppDispatcher.js";
+import ActionTypes from 'constants/AppConstants';
+import AppDispatcher from "dispatcher/AppDispatcher.js";
 import { EventEmitter } from 'events';
-import HistoryStore from '../stores/HistoryStore.js';
-import ServerStore from '../stores/ServerStore.js';
-import Pgn from '../utils/Pgn.js';
-import Pieces from '../utils/Pieces.js';
+import HistoryStore from 'stores/HistoryStore.js';
+import ServerStore from 'stores/ServerStore.js';
+import Pgn from 'utils/Pgn.js';
+import Pieces from 'utils/Pieces.js';
 
 class BoardStore extends EventEmitter {
 	constructor() {

@@ -1,10 +1,10 @@
-import ActionTypes from '../constants/AppConstants';
-import AppDispatcher from "../dispatcher/AppDispatcher.js";
-import BoardStore from "./BoardStore.js";
-import HistoryStore from "./HistoryStore.js";
-import ServerStore from "./ServerStore.js";
+import ActionTypes from 'constants/AppConstants';
+import AppDispatcher from "dispatcher/AppDispatcher.js";
+import BoardStore from "stores/BoardStore.js";
+import HistoryStore from "stores/HistoryStore.js";
+import ServerStore from "stores/ServerStore.js";
 import { EventEmitter } from 'events';
-import Pgn from '../utils/Pgn.js';
+import Pgn from 'utils/Pgn.js';
 
 class SquareStore extends EventEmitter {
   constructor() {
