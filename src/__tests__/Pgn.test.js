@@ -1,4 +1,4 @@
-import Pgn from '../Pgn.js';
+import Pgn from 'utils/Pgn.js';
 
 describe('PAWN valid', () => {
 

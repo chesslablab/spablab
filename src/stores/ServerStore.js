@@ -13,10 +13,17 @@ class ServerStore extends EventEmitter {
 	}
 
 	connect() {
-		this.socket = new WebSocket(process.env.REACT_APP_PGN_CHESS_SERVER_URL);
-		this.socket.onerror = function(ev) {
-			alert('Whoops! The PGN Chess server is not running.');
-		}
+		return new Promise((resolve, reject) => {
+			this.socket = new WebSocket(process.env.REACT_APP_PGN_CHESS_SERVER_URL);
+			this.socket.onopen = () => {
+				this.emit("open");
+				resolve(this.socket);
+			}
+			this.socket.onerror = (err) => {
+				this.emit("error");
+				reject(err);
+			}
+		});
 	}
 
 	handleActions(action) {
