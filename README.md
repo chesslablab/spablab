@@ -2,7 +2,7 @@
 
 ![React PGN Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-React PGN Chess is a web-based chess board connected to a [PGN Chess Server](https://github.com/programarivm/pgn-chess-server) which is a PHP Ratchet WebSocket server that validates PGN moves made by players.
+React PGN Chess is a web-based chess board connected to a [PGN Chess Server](https://github.com/programarivm/pgn-chess-server), it basically reads the moves made by players converting them to PGN format.
 
 ![React PGN Chess](/resources/demo.gif)
 
