@@ -4,10 +4,6 @@ import ReactDOM from 'react-dom';
 import Pgn from 'utils/Pgn.js';
 import TestRenderer from 'react-test-renderer';
 
-import BoardActions from 'actions/BoardActions.js'
-import ServerActions from 'actions/ServerActions.js';
-import SquareActions from 'actions/SquareActions.js';
-
 import BoardStore from 'stores/BoardStore.js';
 import ServerStore from 'stores/ServerStore.js';
 import SquareStore from 'stores/SquareStore.js';
@@ -46,14 +42,23 @@ describe('Square colors', () => {
 describe('Open Games', () => {
   it('Ruy Lopez', async () => {
     const ws = await ServerStore.connect();
+    let game = [
+      {
+        move: { piece: { color: 'w', unicode: '♙', symbol: 'P' }, from: 'e2' },
+        to: 'e4'
+      },
+      {
+        move: { piece: { color: 'b', unicode: '♟', symbol: 'P' }, from: 'e7' },
+        to: 'e5'
+      }
+    ];
 
-    let move = { piece: { color: 'w', unicode: '♙', symbol: 'P' }, from: 'e2' };
+    await SquareStore.click(game[0].move.from);
+    await SquareStore.click(game[0].to);
+    expect(BoardStore.state.pieces[game[0].to]).toEqual(game[0].move.piece);
 
-    SquareActions.click('e2');
-    SquareActions.click('e4');
-
-    expect(BoardStore.state.move).toEqual(move);
-
-    // TODO ...
+    await SquareStore.click(game[1].move.from);
+    await SquareStore.click(game[1].to);
+    expect(BoardStore.state.pieces[game[1].to]).toEqual(game[1].move.piece);
   });
 });

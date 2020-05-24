@@ -22,7 +22,7 @@ class SquareStore extends EventEmitter {
     switch (true) {
       // leave a piece on an empty square
       case BoardStore.getState().move !== null && piece === undefined:
-        this.move(
+        return this.move(
           Pgn.convert({
             piece: BoardStore.getState().move.piece,
             from: BoardStore.getState().move.from,
@@ -30,10 +30,9 @@ class SquareStore extends EventEmitter {
           }),
           square
         );
-        break;
       // leave a piece on a non-empty square
       case BoardStore.getState().move !== null && piece !== undefined:
-        this.move(
+        return this.move(
           Pgn.convert({
             piece: BoardStore.getState().move.piece,
             from: BoardStore.getState().move.from,
@@ -41,34 +40,41 @@ class SquareStore extends EventEmitter {
           }, 'x'),
           square
         );
-        break;
       // pick a piece on a non-empty squar
       case BoardStore.getState().move === null && piece !== undefined:
-        BoardStore.setMove({
+        let move = {
           piece: piece,
           from: square
-        });
-        break;
+        }
+        BoardStore.setMove(move);
+        return move;
       // pick a piece on an empty square
       default:
-        break;
+        return {};
     }
   }
 
   move(pgn, square) {
     let evEmitter = this;
-    ServerStore.getSocket().send(`${BoardStore.getState().move.piece.color} ${pgn}`);
-    ServerStore.getSocket().onmessage = (function(ev) {
-      if (ev.data === 'true') {
-        BoardStore.move(pgn, square);
-        HistoryStore.add({
-          pgn: pgn,
-          move: BoardStore.getState().move
-        });
-      }
-      BoardStore.setMove(null);
-      evEmitter.emit("move");
-    });
+    return new Promise((resolve, reject) => {
+			ServerStore.getSocket().send(`${BoardStore.getState().move.piece.color} ${pgn}`);
+			ServerStore.getSocket().onmessage = (ev) => {
+        if (ev.data === 'true') {
+          BoardStore.move(pgn, square);
+          HistoryStore.add({
+            pgn: pgn,
+            move: BoardStore.getState().move
+          });
+        }
+        BoardStore.setMove(null);
+        evEmitter.emit("move");
+				resolve(pgn);
+			}
+			ServerStore.getSocket().onerror = (err) => {
+				evEmitter.emit("error");
+				reject(err);
+			}
+		});
   }
 
 	handleActions(action) {
