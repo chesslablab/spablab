@@ -19,27 +19,30 @@ class SquareStore extends EventEmitter {
 
   click(square) {
     let piece = BoardStore.getState().pieces[square];
-    let pgn = null;
     switch (true) {
       // leave a piece on an empty square
       case BoardStore.getState().move !== null && piece === undefined:
-        pgn = Pgn.convert({
-          piece: BoardStore.getState().move.piece,
-          from: BoardStore.getState().move.from,
-          to: square
-        });
-        this.move(pgn, square);
+        this.move(
+          Pgn.convert({
+            piece: BoardStore.getState().move.piece,
+            from: BoardStore.getState().move.from,
+            to: square
+          }),
+          square
+        );
         break;
       // leave a piece on a non-empty square
       case BoardStore.getState().move !== null && piece !== undefined:
-        pgn = Pgn.convert({
-          piece: BoardStore.getState().move.piece,
-          from: BoardStore.getState().move.from,
-          to: square
-        }, 'x');
-        this.move(pgn, square);
+        this.move(
+          Pgn.convert({
+            piece: BoardStore.getState().move.piece,
+            from: BoardStore.getState().move.from,
+            to: square
+          }, 'x'),
+          square
+        );
         break;
-      // pick a piece on a non-empty square
+      // pick a piece on a non-empty squar
       case BoardStore.getState().move === null && piece !== undefined:
         BoardStore.setMove({
           piece: piece,
