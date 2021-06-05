@@ -1,6 +1,8 @@
 import historyActionTypes from 'constants/historyActionTypes';
 
-const initialState = {};
+const initialState = {
+  items: []
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
