@@ -16,7 +16,7 @@ export default function Square() {
   return (
     <div>
       <span className={state.board.pieces[this.props.square] === undefined ? 'empty' : ''} >
-        {piece}
+        {piece()}
       </span>
     </div>
   );

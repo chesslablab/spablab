@@ -40,7 +40,7 @@ export default function Board() {
           <button onClick={() => dispatch(resetBoard())}>New game</button>
         </div>
         <div>
-          {renderBoard}
+          {renderBoard()}
         </div>
       </div>
       <History />

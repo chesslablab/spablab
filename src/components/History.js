@@ -46,7 +46,7 @@ export default function History() {
         </button>
       </div>
       <div className="history">
-        <p>{history}</p>
+        <p>{history()}</p>
       </div>
     </div>
   );
