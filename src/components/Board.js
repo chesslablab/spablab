@@ -5,7 +5,7 @@ import History from 'components/History';
 import Square from 'components/Square';
 import Pgn from 'utils/Pgn';
 
-export default function Board() {
+const Board = () => {
   const renderRow = (number) => {
     let ascii = 96;
     let color;
@@ -48,3 +48,5 @@ export default function Board() {
     </div>
   );
 }
+
+export default Board;

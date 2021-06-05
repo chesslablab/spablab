@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Square({ square, color }) {
+const Square = ({ square, color }) => {
   const state = useSelector(state => state);
 
   const piece = () => {
@@ -21,3 +21,5 @@ export default function Square({ square, color }) {
     </div>
   );
 }
+
+export default Square;

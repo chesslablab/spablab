@@ -7,7 +7,7 @@ import {
   goToEnd as historyGoToEnd
 } from "actions/historyActions";
 
-export default function History() {
+const History = () => {
   const state = useSelector(state => state);
 
   const history = () => {
@@ -51,3 +51,5 @@ export default function History() {
     </div>
   );
 }
+
+export default History;
