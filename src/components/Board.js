@@ -4,32 +4,28 @@ import { reset as resetBoard } from "actions/boardActions";
 import History from 'components/History';
 import Square from 'components/Square';
 import Pgn from 'utils/Pgn';
+import { ascii } from 'utils/Pieces';
 
 const Board = () => {
-  const renderRow = (number) => {
-    let ascii = 96;
-    let color;
-    let row = [];
-    number % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
-    for (let i=1; i<=8; i++) {
-      ascii++;
-      let square = String.fromCharCode(ascii) + number;
-      row.push(<Square
-        key={i}
-        square={square}
-        color={color} />
-      );
-      color = color === Pgn.symbol.BLACK ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
-    }
-
-    return row;
-  }
+  const state = useSelector(state => state);
 
   const renderBoard = () => {
     let board = [];
-    for (let i=8; i>=1; i--) {
-      board.push(<div key={i} className="board-row">{renderRow(i)}</div>);
-    }
+    let color;
+    let k = 0;
+    ascii.forEach((rank, i) => {
+      let row = [];
+      rank.forEach((square, j) => {
+          (i + k) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
+          row.push(<Square
+            key={k}
+            square={square}
+            color={color} />
+          );
+          k++;
+      });
+      board.push(<div key={i} className="board-row">{row}</div>);
+    });
 
     return board;
   }
@@ -40,7 +36,7 @@ const Board = () => {
         <div>
           <button onClick={() => dispatch(resetBoard())}>New game</button>
         </div>
-        <div>
+        <div className={['board', state.history.back > 0 ? 'past' : 'present'].join(' ')}>
           {renderBoard()}
         </div>
       </div>
