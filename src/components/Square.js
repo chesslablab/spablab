@@ -1,29 +1,23 @@
-import BoardStore from 'stores/BoardStore.js';
-import SquareStore from 'stores/SquareStore.js';
-import SquareActions from 'actions/SquareActions.js';
-import React from 'react';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export default class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = SquareStore.getState();
-  }
+export default function Square() {
+  const state = useSelector(state => state);
 
-  click(square) {
-    SquareActions.click(square);
-  }
-
-  render() {
-    let piece;
-    if (this.props.square in BoardStore.getState().pieces) {
-      piece = BoardStore.getState().pieces[this.props.square].unicode;
+  const piece = () => {
+    let item;
+    if (this.props.square in state.board.pieces) {
+      item = state.board.pieces[this.props.square].unicode;
     }
-    return (
-      <div className={['square', this.props.color].join(' ')} onClick={() => this.click(this.props.square)}>
-        <span className={BoardStore.getState().pieces[this.props.square] === undefined ? 'empty' : ''} >
-          {piece}
-        </span>
-      </div>
-    );
+
+    return item;
   }
+
+  return (
+    <div>
+      <span className={state.board.pieces[this.props.square] === undefined ? 'empty' : ''} >
+        {piece}
+      </span>
+    </div>
+  );
 }

@@ -1,46 +1,11 @@
-import BoardActions from 'actions/BoardActions.js';
-import BoardStore from 'stores/BoardStore.js';
-import HistoryStore from 'stores/HistoryStore.js';
-import SquareStore from 'stores/SquareStore.js';
-import ServerStore from 'stores/ServerStore.js';
-import History from 'components/History.js';
-import Pgn from 'utils/Pgn.js';
-import React from 'react';
-import Square from 'components/Square.js';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { reset as resetBoard } from "actions/boardActions";
+import History from 'components/History';
+import Square from 'components/Square';
 
-export default class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = BoardStore.getState();
-  }
-
-  componentDidMount() {
-    ServerStore.connect();
-    SquareStore.on("move", () => {
-      this.setState(BoardStore.getState());
-    });
-    BoardStore.on("reset", () => {
-      this.setState(BoardStore.getState());
-    });
-    HistoryStore.on("go_to_beginning", () => {
-      this.setState(BoardStore.getState());
-    });
-    HistoryStore.on("go_back", () => {
-      this.setState(BoardStore.getState());
-    });
-    HistoryStore.on("go_forward", () => {
-      this.setState(BoardStore.getState());
-    });
-    HistoryStore.on("go_to_end", () => {
-      this.setState(BoardStore.getState());
-    });
-  }
-
-  reset() {
-    BoardActions.reset();
-  }
-
-  renderRow(number) {
+export default function Board() {
+  const renderRow = (number) => {
     let ascii = 96;
     let color;
     let row = [];
@@ -59,23 +24,26 @@ export default class Board extends React.Component {
     return row;
   }
 
-  render() {
+  const renderBoard = () => {
     let board = [];
     for (let i=8; i>=1; i--) {
-      board.push(<div key={i} className="board-row">{this.renderRow(i)}</div>);
+      board.push(<div key={i} className="board-row">{renderRow(i)}</div>);
     }
-    return (
-      <div>
-        <div className="game">
-          <div className="options">
-            <button onClick={() => this.reset()}>New game</button>
-          </div>
-          <div className={['board', HistoryStore.getState().back > 0 ? 'past' : 'present'].join(' ')}>
-            {board}
-          </div>
-        </div>
-        <History />
-      </div>
-    );
+
+    return board;
   }
+
+  return (
+    <div>
+      <div className="game">
+        <div>
+          <button onClick={() => dispatch(resetBoard())}>New game</button>
+        </div>
+        <div>
+          {renderBoard}
+        </div>
+      </div>
+      <History />
+    </div>
+  );
 }
