@@ -7,7 +7,7 @@
 }
 
 .game .board {
-  font-family: "Times New Roman", Times, serif;
+  font-family: FreeSerif, sans-serif;
   border: 1px solid #ccc;
   width: 360px;
   height: 360px;
