@@ -1,10 +1,10 @@
-## React PGN Chess
+## React PHP Chess
 
-![React PGN Chess](/resources/black-chess-pieces.jpg?raw=true)
+![React PHP Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-React PGN Chess is a web-based chess board connected to a [PGN Chess Server](https://github.com/programarivm/pgn-chess-server), it basically reads the moves made by players converting them to PGN format.
+React PHP Chess is a web-based chess board connected to a [PHP Chess Server](https://github.com/programarivm/chess-server).
 
-![React PGN Chess](/resources/demo.gif)
+![React PHP Chess](/resources/demo.gif)
 
 Install the dependencies:
 
@@ -14,7 +14,7 @@ Create an .env file:
 
     cp .env.example .env
 
-Finally make sure to update the `REACT_APP_PHP_CHESS_SERVER_URL` in your `.env` file to the URL of the WebSocket server as per the [server documentation](https://github.com/programarivm/pgn-chess-server#set-up-and-start-the-server).
+Make sure to update the `REACT_APP_PHP_CHESS_SERVER_URL` in your `.env` file to the URL of the WebSocket server as per the [server documentation](https://github.com/programarivm/chess-server).
 
 Then, in the project directory, you can run:
 
@@ -41,18 +41,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### To Dos
-
-> **Side Note**: There are a few todos. Contributions are welcome!
-
-1. PGN Chess Server is only responding with `true` or `false` depending on whether or not a PGN move is valid, but it has to respond with `check` and `checkmate` too.
-
-2. The GUI should be improved a little bit more (with colors or messages) accordingly.
-
-3. Review the pawn promotion.
-
-4. Review and update the tests.
-
 ### License
 
 The MIT License (MIT) Jordi Bassagañas.
@@ -62,7 +50,7 @@ The MIT License (MIT) Jordi Bassagañas.
 Would you help make this app better?
 
 - Feel free to send a pull request
-- Drop an email at info@programarivm.com with the subject "React PGN Chess"
+- Drop an email at info@programarivm.com with the subject "React PHP Chess"
 - Leave me a comment on [Twitter](https://twitter.com/programarivm)
 
 Thank you.
