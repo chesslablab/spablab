@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { reset as resetBoard } from "actions/boardActions";
 import History from 'components/History';
 import Square from 'components/Square';
+import Pgn from 'utils/Pgn';
 
 export default function Board() {
   const renderRow = (number) => {
