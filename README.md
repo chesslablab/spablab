@@ -14,7 +14,7 @@ Create an .env file:
 
     cp .env.example .env
 
-Finally make sure to update the `REACT_APP_PGN_CHESS_SERVER_URL` in your `.env` file to the URL of the WebSocket server as per the [server documentation](https://github.com/programarivm/pgn-chess-server#set-up-and-start-the-server).
+Finally make sure to update the `REACT_APP_PHP_CHESS_SERVER_URL` in your `.env` file to the URL of the WebSocket server as per the [server documentation](https://github.com/programarivm/pgn-chess-server#set-up-and-start-the-server).
 
 Then, in the project directory, you can run:
 

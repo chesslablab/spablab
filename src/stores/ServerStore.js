@@ -14,7 +14,7 @@ class ServerStore extends EventEmitter {
 
 	connect() {
 		return new Promise((resolve, reject) => {
-			this.socket = new WebSocket(process.env.REACT_APP_PGN_CHESS_SERVER_URL);
+			this.socket = new WebSocket(process.env.REACT_APP_PHP_CHESS_SERVER_URL);
 			this.socket.onopen = () => {
 				this.emit("open");
 				resolve(this.socket);
