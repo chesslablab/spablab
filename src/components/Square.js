@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { unicode } from 'utils/Pieces';
 
 const Square = ({ square, color }) => {
   const state = useSelector(state => state);
@@ -7,7 +8,7 @@ const Square = ({ square, color }) => {
   return (
     <div className={['square', color].join(' ')}>
       <span>
-        {square}
+        {unicode[square].char}
       </span>
     </div>
   );

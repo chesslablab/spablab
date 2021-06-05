@@ -1,167 +1,46 @@
 import Pgn from 'utils/Pgn.js';
 
 export const unicode = {
-  a1: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♖',
-    symbol: Pgn.symbol.ROOK
+  ' R ': {
+    char: '♖'
   },
-  b1: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♘',
-    symbol: Pgn.symbol.KNIGHT
+  ' N ': {
+    char: '♘'
   },
-  c1: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♗',
-    symbol: Pgn.symbol.BISHOP
+  ' B ': {
+    char: '♗'
   },
-  d1: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♕',
-    symbol: Pgn.symbol.QUEEN
+  ' Q ': {
+    char: '♕'
   },
-  e1: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♔',
-    symbol: Pgn.symbol.KING
+  ' K ': {
+    char: '♔'
   },
-  f1: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♗',
-    symbol: Pgn.symbol.BISHOP
+  ' P ': {
+    char: '♙'
   },
-  g1: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♘',
-    symbol: Pgn.symbol.KNIGHT
+  ' r ': {
+    char: '♜'
   },
-  h1: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♖',
-    symbol: Pgn.symbol.ROOK
+  ' n ': {
+    char: '♞'
   },
-  a2: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♙',
-    symbol: Pgn.symbol.PAWN
+  ' b ': {
+    char: '♝'
   },
-  b2: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♙',
-    symbol: Pgn.symbol.PAWN
+  ' q ': {
+    char: '♛'
   },
-  c2: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♙',
-    symbol: Pgn.symbol.PAWN
+  ' k ': {
+    char: '♚'
   },
-  d2: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♙',
-    symbol: Pgn.symbol.PAWN
+  ' p ': {
+    char: '♟'
   },
-  e2: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♙',
-    symbol: Pgn.symbol.PAWN
-  },
-  f2: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♙',
-    symbol: Pgn.symbol.PAWN
-  },
-  g2: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♙',
-    symbol: Pgn.symbol.PAWN
-  },
-  h2: {
-    color: Pgn.symbol.WHITE,
-    unicode: '♙',
-    symbol: Pgn.symbol.PAWN
-  },
-  a8: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♜',
-    symbol: Pgn.symbol.ROOK
-  },
-  b8: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♞',
-    symbol: Pgn.symbol.KNIGHT
-  },
-  c8: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♝',
-    symbol: Pgn.symbol.BISHOP
-  },
-  d8: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♛',
-    symbol: Pgn.symbol.QUEEN
-  },
-  e8: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♚',
-    symbol: Pgn.symbol.KING
-  },
-  f8: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♝',
-    symbol: Pgn.symbol.BISHOP
-  },
-  g8: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♞',
-    symbol: Pgn.symbol.KNIGHT
-  },
-  h8: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♜',
-    symbol: Pgn.symbol.ROOK
-  },
-  a7: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♟',
-    symbol: Pgn.symbol.PAWN
-  },
-  b7: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♟',
-    symbol: Pgn.symbol.PAWN
-  },
-  c7: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♟',
-    symbol: Pgn.symbol.PAWN
-  },
-  d7: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♟',
-    symbol: Pgn.symbol.PAWN
-  },
-  e7: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♟',
-    symbol: Pgn.symbol.PAWN
-  },
-  f7: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♟',
-    symbol: Pgn.symbol.PAWN
-  },
-  g7: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♟',
-    symbol: Pgn.symbol.PAWN
-  },
-  h7: {
-    color: Pgn.symbol.BLACK,
-    unicode: '♟',
-    symbol: Pgn.symbol.PAWN
+  ' . ': {
+    char: ''
   }
-}
+};
 
 export const ascii = [
   [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -171,5 +50,5 @@ export const ascii = [
   [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
   [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
   [ ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ' ],
-  [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
+  [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ]
 ];
