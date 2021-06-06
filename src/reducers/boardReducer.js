@@ -3,11 +3,16 @@ import Piece from 'utils/Piece';
 
 const initialState = {
   picked: null,
-  ascii: Piece.ascii
+  ascii: Piece.ascii.map((arr) => arr.slice())
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case boardActionTypes.ANALYSIS:
+      return {
+        picked: null,
+        ascii: Piece.ascii.map((arr) => arr.slice())
+      };
     case boardActionTypes.CLICK:
       let picked = null;
       let newAscii = state.ascii;
