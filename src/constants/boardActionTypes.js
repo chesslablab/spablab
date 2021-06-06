@@ -1,4 +1,5 @@
 const boardActionTypes = {
+	CLICK: 'CLICK_SQUARE',
 	RESET: 'RESET_BOARD'
 };
 
