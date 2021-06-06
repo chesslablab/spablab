@@ -1,9 +1,9 @@
 import boardActionTypes from 'constants/boardActionTypes';
-import Board from 'utils/Board';
+import Ascii from 'utils/Ascii';
 
 const initialState = {
   picked: null,
-  ascii: Board.ascii.map((arr) => arr.slice())
+  ascii: Ascii.board.map((arr) => arr.slice())
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
     case boardActionTypes.ANALYSIS:
       return {
         picked: null,
-        ascii: Board.ascii.map((arr) => arr.slice())
+        ascii: Ascii.board.map((arr) => arr.slice())
       };
     case boardActionTypes.CLICK:
       let picked = null;
