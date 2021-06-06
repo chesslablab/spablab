@@ -20,6 +20,8 @@ const Board = () => {
           (i + k) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
           row.push(<Square
             key={k}
+            i={i}
+            j={j}
             piece={piece}
             color={color} />
           );

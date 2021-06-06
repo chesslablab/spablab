@@ -1,5 +1,6 @@
 import squareActionTypes from 'constants/squareActionTypes'
 
-export const click = () => ({
-  type: squareActionTypes.CLICK
+export const click = (payload) => ({
+  type: squareActionTypes.CLICK,
+  payload: payload
 });
