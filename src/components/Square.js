@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { click as clickSquare } from 'actions/squareActions';
 import { unicode } from 'utils/Pieces';
 
-const Square = ({ square, color }) => {
+const Square = ({ piece, color }) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ const Square = ({ square, color }) => {
       onClick={() => dispatch(clickSquare())}
     >
       <span>
-        {unicode[square].char}
+        {unicode[piece].char}
       </span>
     </div>
   );

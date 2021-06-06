@@ -16,11 +16,11 @@ const Board = () => {
     let k = 0;
     ascii.forEach((rank, i) => {
       let row = [];
-      rank.forEach((square, j) => {
+      rank.forEach((piece, j) => {
           (i + k) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
           row.push(<Square
             key={k}
-            square={square}
+            piece={piece}
             color={color} />
           );
           k++;
