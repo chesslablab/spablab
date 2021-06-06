@@ -11,10 +11,10 @@ export default class Ascii {
   ];
 
   static toFen = (ascii) => {
-    let string;
+    let string = '';
     ascii.forEach((item, i) => {
-      string += item.join('').replace(' ', '');
-      if (i !== 0) {
+      string += item.join('').replace(/\s/g, '');
+      if (i !== 7) {
         string += '/';
       }
     });
