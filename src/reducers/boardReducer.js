@@ -1,9 +1,9 @@
 import boardActionTypes from 'constants/boardActionTypes';
-import Piece from 'utils/Piece';
+import Board from 'utils/Board';
 
 const initialState = {
   picked: null,
-  ascii: Piece.ascii.map((arr) => arr.slice())
+  ascii: Board.ascii.map((arr) => arr.slice())
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
     case boardActionTypes.ANALYSIS:
       return {
         picked: null,
-        ascii: Piece.ascii.map((arr) => arr.slice())
+        ascii: Board.ascii.map((arr) => arr.slice())
       };
     case boardActionTypes.CLICK:
       let picked = null;
@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
         picked = {
           i: action.payload.i,
           j: action.payload.j,
-          piece: Piece.ascii[action.payload.i][action.payload.j]
+          piece: Board.ascii[action.payload.i][action.payload.j]
         }
       }
       return {
