@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { reset as resetBoard } from "actions/boardActions";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { reset as resetBoard } from 'actions/boardActions';
 import History from 'components/History';
 import Square from 'components/Square';
 import Pgn from 'utils/Pgn';

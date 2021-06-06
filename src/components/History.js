@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   goToBeginning as historyGoToBeginning,
   goBack as historyGoBack,
   goForward as historyGoForward,
   goToEnd as historyGoToEnd
-} from "actions/historyActions";
+} from 'actions/historyActions';
 
 const History = () => {
   const state = useSelector(state => state);
