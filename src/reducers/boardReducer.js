@@ -1,9 +1,9 @@
 import boardActionTypes from 'constants/boardActionTypes';
-import { ascii } from 'utils/Pieces';
+import Piece from 'utils/Piece';
 
 const initialState = {
   picked: null,
-  ascii: ascii
+  ascii: Piece.ascii
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
         picked = {
           i: action.payload.i,
           j: action.payload.j,
-          piece: ascii[action.payload.i][action.payload.j]
+          piece: Piece.ascii[action.payload.i][action.payload.j]
         }
       }
       return {

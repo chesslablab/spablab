@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { click as clickSquare, analysis as analysisBoard } from 'actions/boardActions';
 import History from 'components/History';
 import Pgn from 'utils/Pgn';
-import { unicode } from 'utils/Pieces';
+import Piece from 'utils/Piece';
 
 const Board = () => {
   const state = useSelector(state => state);
@@ -28,7 +28,7 @@ const Board = () => {
               onClick={() => dispatch(clickSquare(payload))}
               >
               <span>
-                {unicode[piece].char}
+                {Piece.unicode[piece].char}
               </span>
             </div>
           );
