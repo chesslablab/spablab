@@ -8,6 +8,7 @@ import { ascii } from 'utils/Pieces';
 
 const Board = () => {
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
 
   const renderBoard = () => {
     let board = [];
