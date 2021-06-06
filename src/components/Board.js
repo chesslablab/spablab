@@ -13,7 +13,7 @@ const Board = () => {
     let board = [];
     let color;
     let k = 0;
-    state.board.ascii.forEach((rank, i) => {
+    state.square.ascii.forEach((rank, i) => {
       let row = [];
       rank.forEach((piece, j) => {
           (i + k) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;

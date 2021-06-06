@@ -1,9 +1,6 @@
 import boardActionTypes from 'constants/boardActionTypes';
-import { ascii } from 'utils/Pieces';
 
-const initialState = {
-  ascii: ascii
-};
+const initialState = {};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
