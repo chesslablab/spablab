@@ -1,7 +1,7 @@
 import boardActionTypes from 'constants/boardActionTypes'
 
-export const reset = () => ({
-  type: boardActionTypes.RESET
+export const analysis = () => ({
+  type: boardActionTypes.ANALYSIS
 });
 
 export const click = (payload) => ({

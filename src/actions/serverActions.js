@@ -1,5 +1,5 @@
 import serverActionTypes from 'constants/serverActionTypes'
 
-export const reset = () => ({
+export const analysis = () => ({
   type: serverActionTypes.CONNECT
 });

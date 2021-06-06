@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { click as clickSquare, reset as resetBoard } from 'actions/boardActions';
+import { click as clickSquare, analysis as analysisBoard } from 'actions/boardActions';
 import History from 'components/History';
 import Pgn from 'utils/Pgn';
 import { unicode } from 'utils/Pieces';
@@ -44,7 +44,7 @@ const Board = () => {
     <div>
       <div className="game">
         <div>
-          <button onClick={() => dispatch(resetBoard())}>New game</button>
+          <button onClick={() => dispatch(analysisBoard())}>Analysis</button>
         </div>
         <div className={['board', state.history.back > 0 ? 'past' : 'present'].join(' ')}>
           {render()}
