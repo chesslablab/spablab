@@ -1,6 +1,6 @@
 {
   "name": "react-pgn-chess",
-  "description": "Chess board implemented with React. Sends PGN signals to a Ratchet websocket server that uses PGN Chess, which is a PHP chess board representation.",
+  "description": "React Chess is a JavaScript chess board connected to a PHP Chess Server.",
   "version": "0.9.0",
   "author": "Jordi Bassagañas <info@programarivm.com>",
   "license": "MIT",

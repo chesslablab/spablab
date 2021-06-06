@@ -1,10 +1,10 @@
-## React PHP Chess
+## React Chess
 
-![React PHP Chess](/resources/black-chess-pieces.jpg?raw=true)
+![React Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-React PHP Chess is a web-based chess board connected to a [PHP Chess Server](https://github.com/programarivm/chess-server).
+React Chess is a JavaScript chess board connected to a [PHP Chess Server](https://github.com/programarivm/chess-server).
 
-![React PHP Chess](/resources/demo.gif)
+![React Chess](/resources/demo.gif)
 
 Install the dependencies:
 
@@ -14,7 +14,7 @@ Create an .env file:
 
     cp .env.example .env
 
-Make sure to update the `REACT_APP_PHP_CHESS_SERVER_URL` in your `.env` file to the URL of the WebSocket server as per the [server documentation](https://github.com/programarivm/chess-server).
+Update the `REACT_APP_PHP_CHESS_SERVER_URL` in your `.env` file to the URL of the WebSocket server as per the [server documentation](https://github.com/programarivm/chess-server).
 
 Then, in the project directory, you can run:
 
