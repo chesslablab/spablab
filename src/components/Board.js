@@ -4,7 +4,6 @@ import { reset as resetBoard } from 'actions/boardActions';
 import History from 'components/History';
 import Square from 'components/Square';
 import Pgn from 'utils/Pgn';
-import { ascii } from 'utils/Pieces';
 
 const Board = () => {
   const state = useSelector(state => state);
@@ -14,7 +13,7 @@ const Board = () => {
     let board = [];
     let color;
     let k = 0;
-    ascii.forEach((rank, i) => {
+    state.board.ascii.forEach((rank, i) => {
       let row = [];
       rank.forEach((piece, j) => {
           (i + k) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;

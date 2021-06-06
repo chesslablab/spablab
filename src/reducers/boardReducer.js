@@ -1,7 +1,8 @@
 import boardActionTypes from 'constants/boardActionTypes';
+import { ascii } from 'utils/Pieces';
 
 const initialState = {
-  pieces: []
+  ascii: ascii
 };
 
 const reducer = (state = initialState, action) => {
