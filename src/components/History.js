@@ -9,6 +9,7 @@ import {
 
 const History = () => {
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
 
   const history = () => {
     let n = 1;
