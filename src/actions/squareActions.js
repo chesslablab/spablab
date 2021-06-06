@@ -1,5 +1,5 @@
 import squareActionTypes from 'constants/squareActionTypes'
 
-export const reset = () => ({
+export const click = () => ({
   type: squareActionTypes.CLICK
 });
