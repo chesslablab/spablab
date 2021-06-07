@@ -1,5 +1,5 @@
 {
-  "name": "react-chess",
+  "name": "redux-chess",
   "description": "Chess board to be connected to a chess server.",
   "version": "0.9.0",
   "private": false,
@@ -38,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:programarivm/react-chess.git"
+    "url": "git@github.com:programarivm/redux-chess.git"
   },
   "browserslist": {
     "production": [
