@@ -9,5 +9,5 @@ ReactDOM.render(
   <Provider store={store}>
     <Board />
   </Provider>,
-  document.getElementById('chess-board')
+  document.getElementById('react-chess')
 );
