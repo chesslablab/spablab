@@ -11,21 +11,6 @@ const History = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const history = () => {
-    let n = 1;
-    let str = '';
-    state.history.items.forEach(function (item, index) {
-      if (index % 2 === 0) {
-        str += n + '. ' + item.pgn;
-        n++;
-      } else {
-        str = str + ' ' + item.pgn + ' ';
-      }
-    });
-
-    return str;
-  }
-
   return (
     <div>
       <div className="browser">
@@ -45,9 +30,6 @@ const History = () => {
           disabled={state.history.back === 0}
           onClick={() => dispatch(historyGoToEnd())}>&gt;&gt;
         </button>
-      </div>
-      <div className="history">
-        <p>{history()}</p>
       </div>
     </div>
   );
