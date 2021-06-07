@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case boardActionTypes.ANALYSIS:
+    case boardActionTypes.START:
       return {
         picked: null,
         ascii: Ascii.board.map((arr) => arr.slice())
