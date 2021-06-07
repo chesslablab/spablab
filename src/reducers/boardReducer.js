@@ -30,7 +30,10 @@ const reducer = (state = initialState, action) => {
         history: newHistory
       };
     case boardActionTypes.START:
-      return initialState;
+      return {
+        picked: null,
+        history: [ Ascii.board ]
+      };
     default:
       return state;
   }
