@@ -1,35 +1,31 @@
-## React Chess
+## Redux Chess
 
-![React Chess](/resources/black-chess-pieces.jpg?raw=true)
+![Redux Chess](/resources/black-chess-pieces.jpg?raw=true)
 
-React Chess is a JavaScript chess board connected to a [PHP Chess Server](https://github.com/programarivm/chess-server).
+React chessboard to be connected to a chess server.
 
-![React Chess](/resources/demo.gif)
+> For further information please visit [PHP Chess Server](https://github.com/programarivm/chess-server).
 
-In the project directory, you can run:
+### Install
 
-#### `npm start`
+Via npm:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    $ npm i redux-chess
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Example
 
-#### `npm test`
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Chess } from 'redux-chess';
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ReactDOM.render(
+  <Chess />,
+  document.getElementById('redux-chess')
+);
+```
 
-#### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Redux Chess](/resources/demo.gif)
 
 ### License
 
@@ -40,7 +36,7 @@ The MIT License (MIT) Jordi Bassagañas.
 Would you help make this app better?
 
 - Feel free to send a pull request
-- Drop an email at info@programarivm.com with the subject "React PHP Chess"
+- Drop an email at info@programarivm.com with the subject "Redux Chess"
 - Leave me a comment on [Twitter](https://twitter.com/programarivm)
 
 Thank you.
