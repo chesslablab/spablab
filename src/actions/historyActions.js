@@ -12,6 +12,7 @@ export const goForward = () => ({
   type: historyActionTypes.GO_FORWARD
 });
 
-export const goToEnd = () => ({
-  type: historyActionTypes.GO_TO_END
+export const goToEnd = (payload) => ({
+  type: historyActionTypes.GO_TO_END,
+  payload: payload
 });

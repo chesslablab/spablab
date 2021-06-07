@@ -15,20 +15,20 @@ const History = () => {
     <div>
       <div className="browser">
         <button
-          disabled={state.history.back >= state.history.items.length}
+          disabled={false}
           onClick={() => dispatch(historyGoToBeginning())}>&lt;&lt;
         </button>
         <button
-          disabled={state.history.back >= state.history.items.length}
+          disabled={false}
           onClick={() => dispatch(historyGoBack())}>&lt;
         </button>
         <button
-          disabled={state.history.back === 0}
+          disabled={false}
           onClick={() => dispatch(historyGoForward())}>&gt;
         </button>
         <button
-          disabled={state.history.back === 0}
-          onClick={() => dispatch(historyGoToEnd())}>&gt;&gt;
+          disabled={false}
+          onClick={() => dispatch(historyGoToEnd({ back: state.board.history.length - 1 }))}>&gt;&gt;
         </button>
       </div>
     </div>
