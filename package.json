@@ -22,7 +22,7 @@
     "game"
   ],
   "scripts": {
-    "build": "rm -rf dist && NODE_ENV=production npx babel ./src -d dist --out-dir dist --copy-files"
+    "publish:npm": "rm -rf dist && NODE_ENV=production npx babel ./src -d dist --out-dir dist --copy-files"
   },
   "peerDependencies": {
     "react": "^16.13.1",
