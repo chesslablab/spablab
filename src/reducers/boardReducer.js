@@ -32,10 +32,7 @@ const reducer = (state = initialState, action) => {
         history: newHistory
       };
     case boardActionTypes.START:
-      return {
-        picked: null,
-        ascii: Ascii.board.map((arr) => arr.slice())
-      };
+      return initialState;
     default:
       return state;
   }
