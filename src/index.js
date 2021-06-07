@@ -1,13 +1,4 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store from 'store';
-import Board from 'components/Board.js';
-import './index.css';
+import Chess from 'components/Chess.js';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Board />
-  </Provider>,
-  document.getElementById('react-chess')
-);
+ReactDOM.render(<Chess />, document.getElementById('react-chess'));
