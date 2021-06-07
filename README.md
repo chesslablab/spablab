@@ -1,7 +1,5 @@
 ## Redux Chess
 
-![Redux Chess](/resources/black-chess-pieces.jpg?raw=true)
-
 React chessboard to be connected to a chess server.
 
 > For further information please visit [PHP Chess Server](https://github.com/programarivm/chess-server).
@@ -29,7 +27,7 @@ ReactDOM.render(
 
 ### License
 
-The MIT License (MIT) Jordi Bassagañas.
+The MIT License.
 
 ### Contributions
 
