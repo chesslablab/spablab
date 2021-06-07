@@ -1,4 +1,4 @@
-import serverActionTypes from 'constants/serverActionTypes';
+import serverActionTypes from '../constants/serverActionTypes';
 
 const initialState = {};
 

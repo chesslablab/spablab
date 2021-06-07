@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { click as clickSquare, analysis as analysisBoard } from 'actions/boardActions';
-import History from 'components/History';
-import Pgn from 'utils/Pgn';
-import Piece from 'utils/Piece';
+import { click as clickSquare, analysis as analysisBoard } from '../actions/boardActions';
+import History from './History';
+import Pgn from '../utils/Pgn';
+import Piece from '../utils/Piece';
 
 const Board = () => {
   const state = useSelector(state => state);

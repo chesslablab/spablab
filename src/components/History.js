@@ -5,7 +5,7 @@ import {
   goBack as historyGoBack,
   goForward as historyGoForward,
   goToEnd as historyGoToEnd
-} from 'actions/historyActions';
+} from '../actions/historyActions';
 
 const History = () => {
   const state = useSelector(state => state);

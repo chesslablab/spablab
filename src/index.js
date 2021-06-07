@@ -1,1 +1,1 @@
-export { Chess } from 'components/Chess';
+export { Chess } from './components/Chess';

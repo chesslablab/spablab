@@ -1,4 +1,4 @@
-import historyActionTypes from 'constants/historyActionTypes'
+import historyActionTypes from '../constants/historyActionTypes'
 
 export const goToBeginning = (payload) => ({
   type: historyActionTypes.GO_TO_BEGINNING,

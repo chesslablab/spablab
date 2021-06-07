@@ -6,17 +6,7 @@ React Chess is a JavaScript chess board connected to a [PHP Chess Server](https:
 
 ![React Chess](/resources/demo.gif)
 
-Install the dependencies:
-
-    npm install
-
-Create an .env file:
-
-    cp .env.example .env
-
-Update the `REACT_APP_PHP_CHESS_SERVER_URL` in your `.env` file to the URL of the WebSocket server as per the [server documentation](https://github.com/programarivm/chess-server).
-
-Then, in the project directory, you can run:
+In the project directory, you can run:
 
 #### `npm start`
 

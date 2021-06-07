@@ -1,4 +1,4 @@
-import historyActionTypes from 'constants/historyActionTypes';
+import historyActionTypes from '../constants/historyActionTypes';
 
 const initialState = {
   back: 0

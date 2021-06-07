@@ -1,5 +1,5 @@
-import boardActionTypes from 'constants/boardActionTypes';
-import Ascii from 'utils/Ascii';
+import boardActionTypes from '../constants/boardActionTypes';
+import Ascii from '../utils/Ascii';
 
 const initialState = {
   picked: null,
