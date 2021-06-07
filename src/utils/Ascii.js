@@ -27,14 +27,18 @@ export default class Ascii {
     let strSplit = string.split('');
     let n = 1;
     strSplit.forEach((item, i) => {
-      if (strSplit[i] === '.' && strSplit[i+1] === '.') {
+      if (strSplit[i] === '.' && strSplit[i+1]) {
+        if (strSplit[i+1] === '.') {
           n++;
-      } else if (strSplit[i] === '.' && strSplit[i+1] !== '.') {
+        } else {
           filtered += n;
           n = 1;
+        }
       } else if (strSplit[i] !== '.') {
-          filtered += strSplit[i];
-          n = 1;
+        filtered += strSplit[i];
+        n = 1;
+      } else {
+        filtered += 1;
       }
     });
 
