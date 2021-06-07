@@ -1,1 +1,3 @@
-export { Chess } from './components/Chess';
+import Chess from './components/Chess';
+
+export { Chess };
