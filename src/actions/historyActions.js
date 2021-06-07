@@ -1,7 +1,8 @@
 import historyActionTypes from 'constants/historyActionTypes'
 
-export const goToBeginning = () => ({
-  type: historyActionTypes.GO_TO_BEGINNING
+export const goToBeginning = (payload) => ({
+  type: historyActionTypes.GO_TO_BEGINNING,
+  payload: payload
 });
 
 export const goBack = () => ({
@@ -12,7 +13,6 @@ export const goForward = () => ({
   type: historyActionTypes.GO_FORWARD
 });
 
-export const goToEnd = (payload) => ({
-  type: historyActionTypes.GO_TO_END,
-  payload: payload
+export const goToEnd = () => ({
+  type: historyActionTypes.GO_TO_END
 });

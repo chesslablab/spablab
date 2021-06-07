@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
     case historyActionTypes.GO_TO_BEGINNING:
       return {
         ...state,
-        back: 0,
+        back: 0 - action.payload.back
       };
     case historyActionTypes.GO_BACK:
       return {
@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
     case historyActionTypes.GO_TO_END:
       return {
         ...state,
-        back: action.payload.back
+        back: 0
       };
     default:
       return state;

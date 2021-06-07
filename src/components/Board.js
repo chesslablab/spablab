@@ -13,7 +13,7 @@ const Board = () => {
     let board = [];
     let color;
     let k = 0;
-    state.board.history[state.board.history.length - 1].forEach((rank, i) => {
+    state.board.history[state.board.history.length - 1 + state.history.back].forEach((rank, i) => {
       let row = [];
       rank.forEach((piece, j) => {
           (i + k) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
