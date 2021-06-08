@@ -1,8 +1,6 @@
 ## Redux Chess
 
-React chessboard to be connected to a chess server.
-
-> For further information please visit [PHP Chess Server](https://github.com/programarivm/chess-server).
+React chessboard to be connected to a [chess server](https://github.com/programarivm/chess-server).
 
 ### Install
 
@@ -17,8 +15,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Chess } from 'redux-chess';
 
+const props = {
+  host: 'localhost'
+};
+
 ReactDOM.render(
-  <Chess />,
+  <Chess props={props} />,
   document.getElementById('redux-chess')
 );
 ```
