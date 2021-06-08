@@ -5,7 +5,7 @@ import History from './History';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
 
-const Board = () => {
+const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 

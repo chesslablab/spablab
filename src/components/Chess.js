@@ -4,10 +4,10 @@ import store from '../store';
 import Board from './Board.js';
 import '../index.css';
 
-const Chess = () => {
+const Chess = ({props}) => {
   return (
     <Provider store={store}>
-      <Board />
+      <Board props={props} />
     </Provider>
   );
 }
