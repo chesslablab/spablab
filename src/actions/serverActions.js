@@ -7,3 +7,7 @@ export const analysis = () => ({
 export const connect = () => ({
   type: serverActionTypes.CONNECT
 });
+
+export const playFriend = () => ({
+  type: serverActionTypes.PLAY_FRIEND
+});
