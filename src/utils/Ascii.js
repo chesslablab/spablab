@@ -19,10 +19,6 @@ export default class Ascii {
       }
     });
 
-    return this.filter(string);
-  }
-
-  static filter = (string) => {
     let filtered = '';
     let strSplit = string.split('');
     let n = 1;
