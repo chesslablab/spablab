@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case serverActionTypes.CONNECTION_REQUEST:
+    case serverActionTypes.CONNECTION_REQUESTED:
       return {
         ...state,
       };

@@ -6,7 +6,7 @@ export const analysis = () => ({
 
 export const connect = (host, port) => dispatch => {
   dispatch({
-    type: serverActionTypes.CONNECTION_REQUEST
+    type: serverActionTypes.CONNECTION_REQUESTED
   });
   return new Promise((resolve, reject) => {
     const socket = new WebSocket(`ws://${host}:${port}`);
