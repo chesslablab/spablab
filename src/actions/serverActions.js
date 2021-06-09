@@ -8,6 +8,10 @@ export const connect = () => ({
   type: serverActionTypes.CONNECT
 });
 
+export const playAi = () => ({
+  type: serverActionTypes.PLAY_AI
+});
+
 export const playFriend = () => ({
   type: serverActionTypes.PLAY_FRIEND
 });
