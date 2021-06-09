@@ -44,7 +44,7 @@ const Board = ({props}) => {
     <div>
       <div className="game">
         <div>
-          <button onClick={() => dispatch(analysisBoard())}>Start</button>
+          <button onClick={() => dispatch(analysisBoard())}>Analysis</button>
         </div>
         <div className={['board', state.history.back > 0 ? 'past' : 'present'].join(' ')}>
           {render()}
