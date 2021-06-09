@@ -9,6 +9,15 @@ export const analysis = (ws) => dispatch => {
   });
 };
 
+export const quit = (ws) => dispatch => {
+  return new Promise((resolve, reject) => {
+    ws.send('/quit');
+    ws.onmessage = (res) => {
+      resolve(res.data);
+    };
+  });
+};
+
 export const connect = (host, port) => dispatch => {
   return new Promise((resolve, reject) => {
     const ws = new WebSocket(`ws://${host}:${port}`);

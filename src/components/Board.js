@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { connect, analysis } from '../actions/serverActions';
+import { connect, analysis, quit } from '../actions/serverActions';
 import { click as clickSquare, start as startBoard } from '../actions/boardActions';
 import History from './History';
 import Pgn from '../utils/Pgn';
@@ -52,7 +52,11 @@ const Board = ({props}) => {
 
           <button onClick={() => {
             dispatch(startBoard({ back: state.board.history.length - 1 }));
-            dispatch(analysis(state.server.ws));
+            if (state.server.ws) {
+              dispatch(quit(state.server.ws)).then(() => {
+                dispatch(analysis(state.server.ws));
+              });
+            }
           }}>Analysis board</button>
         </div>
 
