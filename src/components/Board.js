@@ -45,10 +45,14 @@ const Board = ({props}) => {
     <div>
       <div className="game">
         <div>
-          <button onClick={() => {
-            dispatch(startBoard({ back: state.board.history.length - 1 }));
-            dispatch(connect(props.host, props.port)).catch(e => {});
-          }}>Connect</button>
+          <button
+            disabled={state.server.ws && state.server.ws.readyState === WebSocket.OPEN}
+            onClick={() => {
+              dispatch(startBoard({ back: state.board.history.length - 1 }));
+              dispatch(connect(props.host, props.port)).catch(e => {});
+          }}>
+            Connect
+          </button>
 
           <button onClick={() => {
             dispatch(startBoard({ back: state.board.history.length - 1 }));
