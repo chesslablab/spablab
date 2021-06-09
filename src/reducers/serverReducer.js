@@ -12,6 +12,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case serverActionTypes.CONNECTION_REQUEST:
+      return {
+        ...state,
+      };
+    case serverActionTypes.CONNECTION_ESTABLISHED:
+      return {
+        ...state,
+      };
+    case serverActionTypes.CONNECTION_ERROR:
+      return {
+        ...state,
+      };
     case serverActionTypes.PLAY_AI:
       return {
         ...state,

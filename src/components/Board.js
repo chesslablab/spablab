@@ -45,7 +45,7 @@ const Board = ({props}) => {
     <div>
       <div className="game">
         <div>
-          <button onClick={() => dispatch(connectServer())}>Connect</button>
+          <button onClick={() => dispatch(connectServer(props.host, props.port)).catch(e => {})}>Connect</button>
           <button onClick={() => dispatch(analysisBoard())}>Analysis board</button>
           <button onClick={() => dispatch(playFriend())}>Play a friend</button>
           <button onClick={() => dispatch(playAi())}>Play an AI</button>
