@@ -22,11 +22,3 @@ export const connect = (host, port) => dispatch => {
     };
   });
 };
-
-export const playAi = () => ({
-  type: serverActionTypes.PLAY_AI
-});
-
-export const playFriend = () => ({
-  type: serverActionTypes.PLAY_FRIEND
-});

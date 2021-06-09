@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { connect, analysis, playFriend, playAi } from '../actions/serverActions';
+import { connect, analysis } from '../actions/serverActions';
 import { click as clickSquare, start as startBoard } from '../actions/boardActions';
 import History from './History';
 import Pgn from '../utils/Pgn';
@@ -54,16 +54,6 @@ const Board = ({props}) => {
             dispatch(startBoard({ back: state.board.history.length - 1 }));
             dispatch(analysis(state.server.ws));
           }}>Analysis board</button>
-
-          <button onClick={() => {
-            dispatch(startBoard({ back: state.board.history.length - 1 }));
-            dispatch(playFriend());
-          }}>Play a friend</button>
-
-          <button onClick={() => {
-            dispatch(startBoard({ back: state.board.history.length - 1 }));
-            dispatch(playAi());
-          }}>Play an AI</button>
         </div>
 
         <div className={['board', state.history.back > 0 ? 'past' : 'present'].join(' ')}>

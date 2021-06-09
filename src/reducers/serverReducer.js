@@ -15,14 +15,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case serverActionTypes.PLAY_AI:
-      return {
-        ...state,
-      };
-    case serverActionTypes.PLAY_FRIEND:
-      return {
-        ...state,
-      };
     default:
       return state;
   }
