@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { connect as connectServer, playFriend, playAi } from '../actions/serverActions';
-import { click as clickSquare, analysis as analysisBoard } from '../actions/boardActions';
+import { connect, analysis, playFriend, playAi } from '../actions/serverActions';
+import { click as clickSquare, start as startBoard } from '../actions/boardActions';
 import History from './History';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -45,11 +45,27 @@ const Board = ({props}) => {
     <div>
       <div className="game">
         <div>
-          <button onClick={() => dispatch(connectServer(props.host, props.port)).catch(e => {})}>Connect</button>
-          <button onClick={() => dispatch(analysisBoard())}>Analysis board</button>
-          <button onClick={() => dispatch(playFriend())}>Play a friend</button>
-          <button onClick={() => dispatch(playAi())}>Play an AI</button>
+          <button onClick={() => {
+            dispatch(startBoard({ back: state.board.history.length - 1 }));
+            dispatch(connect(props.host, props.port)).catch(e => {});
+          }}>Connect</button>
+
+          <button onClick={() => {
+            dispatch(startBoard({ back: state.board.history.length - 1 }));
+            dispatch(analysis());
+          }}>Analysis board</button>
+
+          <button onClick={() => {
+            dispatch(startBoard({ back: state.board.history.length - 1 }));
+            dispatch(playFriend());
+          }}>Play a friend</button>
+
+          <button onClick={() => {
+            dispatch(startBoard({ back: state.board.history.length - 1 }));
+            dispatch(playAi());
+          }}>Play an AI</button>
         </div>
+
         <div className={['board', state.history.back > 0 ? 'past' : 'present'].join(' ')}>
           {render()}
         </div>
