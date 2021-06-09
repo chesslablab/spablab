@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { connect as connectServer } from '../actions/serverActions';
 import { click as clickSquare, analysis as analysisBoard } from '../actions/boardActions';
 import History from './History';
 import Pgn from '../utils/Pgn';
@@ -44,6 +45,7 @@ const Board = ({props}) => {
     <div>
       <div className="game">
         <div>
+          <button onClick={() => dispatch(connectServer())}>Connect</button>
           <button onClick={() => dispatch(analysisBoard())}>Analysis</button>
         </div>
         <div className={['board', state.history.back > 0 ? 'past' : 'present'].join(' ')}>
