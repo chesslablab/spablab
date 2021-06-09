@@ -52,7 +52,7 @@ const Board = ({props}) => {
 
           <button onClick={() => {
             dispatch(startBoard({ back: state.board.history.length - 1 }));
-            dispatch(analysis());
+            dispatch(analysis(state.server.ws));
           }}>Analysis board</button>
 
           <button onClick={() => {

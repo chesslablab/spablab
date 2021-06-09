@@ -1,24 +1,15 @@
 import serverActionTypes from '../constants/serverActionTypes';
 
-const initialState = {};
+const initialState = {
+  ws: null
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case serverActionTypes.ANALYSIS:
-      return {
-        ...state,
-      };
-    case serverActionTypes.CONNECT:
-      return {
-        ...state,
-      };
-    case serverActionTypes.CONNECTION_REQUESTED:
-      return {
-        ...state,
-      };
     case serverActionTypes.CONNECTION_ESTABLISHED:
       return {
         ...state,
+        ws: action.payload.ws
       };
     case serverActionTypes.CONNECTION_ERROR:
       return {

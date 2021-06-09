@@ -1,25 +1,23 @@
 import serverActionTypes from '../constants/serverActionTypes';
 
-export const analysis = () => ({
-  type: serverActionTypes.ANALYSIS
-});
+export const analysis = (ws) => dispatch => {
+  return new Promise((resolve, reject) => {
+    ws.send('/start analysis');
+    ws.onmessage = (res) => {
+      resolve(res.data);
+    };
+  });
+};
 
 export const connect = (host, port) => dispatch => {
-  dispatch({
-    type: serverActionTypes.CONNECTION_REQUESTED
-  });
   return new Promise((resolve, reject) => {
-    const socket = new WebSocket(`ws://${host}:${port}`);
-    socket.onopen = () => {
-      dispatch({
-        type: serverActionTypes.CONNECTION_ESTABLISHED
-      });
-      resolve(socket);
+    const ws = new WebSocket(`ws://${host}:${port}`);
+    ws.onopen = () => {
+      dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
+      resolve(ws);
     };
-    socket.onerror = (err) => {
-      dispatch({
-        type: serverActionTypes.CONNECTION_ERROR
-      });
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
       reject(err);
     };
   });
