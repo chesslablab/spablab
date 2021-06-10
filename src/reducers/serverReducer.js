@@ -11,6 +11,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         ws: action.payload.ws
       };
+    case serverActionTypes.CONNECTION_CLOSED:
+      return {
+        ...state,
+        ws: null
+      };
     case serverActionTypes.CONNECTION_ERROR:
       return {
         ...state,

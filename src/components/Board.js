@@ -49,7 +49,7 @@ const Board = ({props}) => {
             disabled={state.server.ws && state.server.ws.readyState === WebSocket.OPEN}
             onClick={() => {
               dispatch(startBoard({ back: state.board.history.length - 1 }));
-              dispatch(connect(props.host, props.port)).catch(e => {});
+              dispatch(connect(state.server.ws, props.host, props.port)).catch(e => {});
           }}>
             Connect
           </button>

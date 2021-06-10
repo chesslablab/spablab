@@ -18,16 +18,30 @@ export const quit = (ws) => dispatch => {
   });
 };
 
-export const connect = (host, port) => dispatch => {
-  return new Promise((resolve, reject) => {
+export const connect = (ws, host, port) => dispatch => {
+  if (!ws) {
     const ws = new WebSocket(`ws://${host}:${port}`);
-    ws.onopen = () => {
-      dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
-      resolve(ws);
-    };
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
+    return new Promise((resolve, reject) => {
+      ws.onopen = () => {
+        dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
+        resolve(ws);
+      };
+      ws.onerror = (err) => {
+        dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+        reject(err);
+      };
+    });
+  } else {
+    ws.close();
+    return new Promise((resolve, reject) => {
+      ws.onclose = () => {
+        dispatch({ type: serverActionTypes.CONNECTION_CLOSED });
+        resolve(ws);
+      };
+      ws.onerror = (err) => {
+        dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+        reject(err);
+      };
+    });
+  }
 };
