@@ -9,6 +9,15 @@ export const analysis = (ws) => dispatch => {
   });
 };
 
+export const castling = (ws) => dispatch => {
+  return new Promise((resolve, reject) => {
+    ws.send('/castling');
+    ws.onmessage = (res) => {
+      resolve(res.data);
+    };
+  });
+};
+
 export const playfen = (ws, fen) => dispatch => {
   return new Promise((resolve, reject) => {
     ws.send(`/playfen ${fen}`);
