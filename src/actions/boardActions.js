@@ -1,5 +1,6 @@
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
+import { playfen } from '../actions/serverActions';
 
 export const start = (payload) => dispatch => {
   dispatch({
@@ -14,7 +15,13 @@ export const start = (payload) => dispatch => {
   });
 };
 
-export const click = (payload) => ({
-  type: boardActionTypes.CLICK,
-  payload: payload
-});
+export const click = (ws, payload) => dispatch => {
+  dispatch({
+    type: boardActionTypes.CLICK,
+    payload: payload
+  });
+  dispatch(playfen(ws, payload.fen)).then((data) => {
+    // TODO:
+    // check if valid move
+  }).catch(e => {});
+};

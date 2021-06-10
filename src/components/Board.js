@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { connect, analysis, quit } from '../actions/serverActions';
 import { click as clickSquare, start as startBoard } from '../actions/boardActions';
 import History from './History';
+import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
 
@@ -17,16 +18,19 @@ const Board = ({props}) => {
     state.board.history[state.board.history.length - 1 + state.history.back].forEach((rank, i) => {
       let row = [];
       rank.forEach((piece, j) => {
-          (i + k) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
+          (i + k) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE
+          // TODO:
+          // Append turn (w, b) to the fen string
           const payload = {
             i: i,
             j: j,
-            piece: piece
+            piece: piece,
+            fen: Ascii.toFen(state.board.history[state.board.history.length - 1])
           };
           row.push(<div
               key={k}
               className={['square', color].join(' ')}
-              onClick={() => dispatch(clickSquare(payload))}
+              onClick={() => dispatch(clickSquare(state.server.ws, payload))}
               >
               <span>
                 {Piece.unicode[piece].char}
