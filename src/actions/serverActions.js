@@ -20,27 +20,23 @@ export const quit = (ws) => dispatch => {
 
 export const connect = (ws, host, port) => dispatch => {
   if (!ws) {
-    const ws = new WebSocket(`ws://${host}:${port}`);
     return new Promise((resolve, reject) => {
+      const ws = new WebSocket(`ws://${host}:${port}`);
+      ws.onerror = (err) => {
+        dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+        reject(err);
+      };
       ws.onopen = () => {
         dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
         resolve(ws);
       };
-      ws.onerror = (err) => {
-        dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-        reject(err);
-      };
     });
   } else {
-    ws.close();
     return new Promise((resolve, reject) => {
+      ws.close();
       ws.onclose = () => {
         dispatch({ type: serverActionTypes.CONNECTION_CLOSED });
         resolve(ws);
-      };
-      ws.onerror = (err) => {
-        dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-        reject(err);
       };
     });
   }
