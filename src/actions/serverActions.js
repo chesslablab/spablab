@@ -24,7 +24,7 @@ export const castling = (ws) => dispatch => {
 
 export const playfen = (ws, fen) => dispatch => {
   return new Promise((resolve, reject) => {
-    ws.send(`/playfen ${fen}`);
+    ws.send(`/playfen "${fen}"`);
     ws.onmessage = (res) => resolve(res.data);
     ws.onerror = (err) => {
       dispatch({ type: serverActionTypes.CONNECTION_ERROR });
