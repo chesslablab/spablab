@@ -3,8 +3,10 @@ import serverActionTypes from '../constants/serverActionTypes';
 export const analysis = (ws) => dispatch => {
   return new Promise((resolve, reject) => {
     ws.send('/start analysis');
-    ws.onmessage = (res) => {
-      resolve(res.data);
+    ws.onmessage = (res) => resolve(res.data);
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+      reject(err);
     };
   });
 };
@@ -12,8 +14,10 @@ export const analysis = (ws) => dispatch => {
 export const castling = (ws) => dispatch => {
   return new Promise((resolve, reject) => {
     ws.send('/castling');
-    ws.onmessage = (res) => {
-      resolve(res.data);
+    ws.onmessage = (res) => resolve(res.data);
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+      reject(err);
     };
   });
 };
@@ -21,8 +25,10 @@ export const castling = (ws) => dispatch => {
 export const playfen = (ws, fen) => dispatch => {
   return new Promise((resolve, reject) => {
     ws.send(`/playfen ${fen}`);
-    ws.onmessage = (res) => {
-      resolve(res.data);
+    ws.onmessage = (res) => resolve(res.data);
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+      reject(err);
     };
   });
 };
@@ -30,8 +36,10 @@ export const playfen = (ws, fen) => dispatch => {
 export const quit = (ws) => dispatch => {
   return new Promise((resolve, reject) => {
     ws.send('/quit');
-    ws.onmessage = (res) => {
-      resolve(res.data);
+    ws.onmessage = (res) => resolve(res.data);
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+      reject(err);
     };
   });
 };
@@ -40,13 +48,13 @@ export const connect = (ws, host, port) => dispatch => {
   if (!ws) {
     return new Promise((resolve, reject) => {
       const ws = new WebSocket(`ws://${host}:${port}`);
+      ws.onopen = () => {
+        dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
+        resolve(true);
+      };
       ws.onerror = (err) => {
         dispatch({ type: serverActionTypes.CONNECTION_ERROR });
         reject(err);
-      };
-      ws.onopen = () => {
-        dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
-        resolve(ws);
       };
     });
   } else {
@@ -54,7 +62,11 @@ export const connect = (ws, host, port) => dispatch => {
       ws.close();
       ws.onclose = () => {
         dispatch({ type: serverActionTypes.CONNECTION_CLOSED });
-        resolve(ws);
+        resolve(true);
+      };
+      ws.onerror = (err) => {
+        dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+        reject(err);
       };
     });
   }
