@@ -22,8 +22,16 @@
     "validator",
     "game"
   ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": "/dist",
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
   "scripts": {
-    "publish:npm": "rm -rf dist && NODE_ENV=production npx babel ./src -d dist --out-dir dist --copy-files"
+    "publish:npm": "rm -rf dist && mkdir dist &&  babel ./src -d dist --copy-files"
   },
   "peerDependencies": {
     "react": "^16.13.1",
@@ -32,36 +40,12 @@
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0"
   },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:programarivm/redux-chess.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "files": "/dist",
-  "babel": {
-    "presets": [
-      "react",
-      "env",
-      "stage-2"
-    ]
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/preset-react": "^7.12.1"
   }
 }
