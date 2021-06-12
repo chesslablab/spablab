@@ -27,7 +27,9 @@
   "files": "/dist",
   "babel": {
     "presets": [
-      "@babel/preset-react"
+      "react",
+      "env",
+      "stage-0"
     ]
   },
   "scripts": {
@@ -45,7 +47,9 @@
     "url": "git@github.com:programarivm/redux-chess.git"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.5",
-    "@babel/preset-react": "^7.12.1"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
   }
 }
