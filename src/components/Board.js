@@ -10,8 +10,8 @@ const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const render = () => {
-    let board = [];
+  const board = () => {
+    let rows = [];
     let color;
     let k = 0;
     state.board.history[state.board.history.length - 1 + state.history.back].forEach((rank, i) => {
@@ -36,19 +36,22 @@ const Board = ({props}) => {
           );
           k++;
       });
-      board.push(<div key={i} className="board-row">{row}</div>);
+      rows.push(<div key={i} className="board-row">{row}</div>);
     });
 
+    return rows;
+  }
+
+  const render = () => {
     if (state.board.fen) {
       dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
-        const isLegal = JSON.parse(data).legal;
-        if (!isLegal) {
+        if (!JSON.parse(data).legal) {
           dispatch(undoIllegalMove());
         }
       });
     }
 
-    return board;
+    return board();
   }
 
   return (
