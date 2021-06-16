@@ -42,16 +42,12 @@ const Board = ({props}) => {
     return rows;
   }
 
-  const render = () => {
-    if (!state.board.picked && state.board.fen) {
-      dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
-        if (!JSON.parse(data).legal) {
-          dispatch(undoIllegalMove());
-        }
-      });
-    }
-
-    return board();
+  if (!state.board.picked && state.board.fen) {
+    dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
+      if (!JSON.parse(data).legal) {
+        dispatch(undoIllegalMove());
+      }
+    });
   }
 
   return (
@@ -79,7 +75,7 @@ const Board = ({props}) => {
         </div>
 
         <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
-          {render()}
+          {board()}
         </div>
       </div>
       <History />
