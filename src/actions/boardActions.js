@@ -14,9 +14,16 @@ export const start = (payload) => dispatch => {
   });
 };
 
-export const click = (payload) => dispatch => {
+export const pick = (payload) => dispatch => {
   dispatch({
-    type: boardActionTypes.CLICK,
+    type: boardActionTypes.PICK_PIECE,
+    payload: payload
+  });
+};
+
+export const leave = (payload) => dispatch => {
+  dispatch({
+    type: boardActionTypes.LEAVE_PIECE,
     payload: payload
   });
 };

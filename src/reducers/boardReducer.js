@@ -10,36 +10,32 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  const newTurn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+  const newHistory = JSON.parse(JSON.stringify(state.history));
   switch (action.type) {
-    case boardActionTypes.CLICK:
-      if (state.picked) {
-        const newTurn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-        const newAscii = JSON.parse(JSON.stringify(state.history[state.history.length - 1]));
-        const newHistory = JSON.parse(JSON.stringify(state.history));
-        newAscii[state.picked.i][state.picked.j] = ' . ';
-        newAscii[action.payload.i][action.payload.j] = state.picked.piece;
-        newHistory.push(newAscii);
-        return {
-          turn: newTurn,
-          picked: null,
-          fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
-          history: newHistory
-        };
-      } else {
-        return {
-          ...state,
-          picked: {
-            i: action.payload.i,
-            j: action.payload.j,
-            piece: state.history[state.history.length - 1][action.payload.i][action.payload.j]
-          }
-        };
-      }
+    case boardActionTypes.LEAVE_PIECE:
+      const newAscii = JSON.parse(JSON.stringify(state.history[state.history.length - 1]));
+      newAscii[state.picked.i][state.picked.j] = ' . ';
+      newAscii[action.payload.i][action.payload.j] = state.picked.piece;
+      newHistory.push(newAscii);
+      return {
+        turn: newTurn,
+        picked: null,
+        fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
+        history: newHistory
+      };
+    case boardActionTypes.PICK_PIECE:
+      return {
+        ...state,
+        picked: {
+          i: action.payload.i,
+          j: action.payload.j,
+          piece: state.history[state.history.length - 1][action.payload.i][action.payload.j]
+        }
+      };
     case boardActionTypes.START:
       return Object.assign({}, initialState);
     case boardActionTypes.UNDO:
-      const newTurn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.pop();
       return {
         turn: newTurn,

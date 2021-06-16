@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { analysis, connect, playfen, quit } from '../actions/serverActions';
-import { click as clickSquare, start as startBoard, undo as undoIllegalMove } from '../actions/boardActions';
+import { start as startBoard, pick as pickPiece, leave as leavePiece, undo as undoIllegalMove } from '../actions/boardActions';
 import History from './History';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -28,7 +28,13 @@ const Board = ({props}) => {
           row.push(<div
               key={k}
               className={['square', color].join(' ')}
-              onClick={() => dispatch(clickSquare(payload))}>
+              onClick={() => {
+                if (state.board.picked) {
+                  dispatch(leavePiece(payload));
+                } else {
+                  dispatch(pickPiece(payload));
+                }
+              }}>
               <span tabindex={k}>
                 {Piece.unicode[piece].char}
               </span>
