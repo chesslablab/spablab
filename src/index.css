@@ -38,7 +38,7 @@
 }
 
 .square span:hover {
-  background-color: #ccccff;
+  box-shadow: inset -3px 0 0 #ccccff, inset 0 -3px 0 #ccccff, inset 3px 0 0 #ccccff, inset 0 3px 0 #ccccff;
 }
 
 .square.w {
