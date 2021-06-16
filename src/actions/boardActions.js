@@ -20,3 +20,7 @@ export const click = (payload) => dispatch => {
     payload: payload
   });
 };
+
+export const undo = () => ({
+  type: boardActionTypes.UNDO
+});

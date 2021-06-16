@@ -6,7 +6,6 @@ const initialState = {
   turn: Pgn.symbol.WHITE,
   picked: null,
   fen: null,
-  castling: 'KQkq',
   history: [ Ascii.board ]
 };
 
@@ -24,7 +23,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           turn: newTurn,
           picked: null,
-          fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn} ${state.castling} -`,
+          fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
           history: newHistory
         };
       } else {
@@ -40,6 +39,16 @@ const reducer = (state = initialState, action) => {
       }
     case boardActionTypes.START:
       return Object.assign({}, initialState);
+    case boardActionTypes.UNDO:
+      const newTurn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+      const newHistory = JSON.parse(JSON.stringify(state.history));
+      newHistory.pop();
+      return {
+        turn: newTurn,
+        picked: null,
+        fen: null,
+        history: newHistory
+      };
     default:
       return state;
   }

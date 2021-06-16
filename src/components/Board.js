@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { analysis, connect, playfen, quit } from '../actions/serverActions';
-import { click as clickSquare, start as startBoard } from '../actions/boardActions';
+import { click as clickSquare, start as startBoard, undo as undoIllegalMove } from '../actions/boardActions';
 import History from './History';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -40,10 +40,12 @@ const Board = ({props}) => {
     });
 
     if (state.board.fen) {
-      // TODO:
-      // Fix /playfen command in the server
-      // dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
-      // });
+      dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
+        const isLegal = JSON.parse(data).legal;
+        if (!isLegal) {
+          dispatch(undoIllegalMove());
+        }
+      });
     }
 
     return board;
