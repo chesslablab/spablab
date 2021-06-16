@@ -29,7 +29,7 @@ const Board = ({props}) => {
               key={k}
               className={['square', color].join(' ')}
               onClick={() => dispatch(clickSquare(payload))}>
-              <span>
+              <span tabindex={k}>
                 {Piece.unicode[piece].char}
               </span>
             </div>
@@ -67,17 +67,18 @@ const Board = ({props}) => {
             Connect
           </button>
 
-          <button onClick={() => {
-            dispatch(startBoard({ back: state.board.history.length - 1 }));
-            if (state.server.ws) {
-              dispatch(quit(state.server.ws)).then(() => {
-                dispatch(analysis(state.server.ws));
-              });
-            }
-          }}>Analysis board</button>
+          <button
+            onClick={() => {
+              dispatch(startBoard({ back: state.board.history.length - 1 }));
+              if (state.server.ws) {
+                dispatch(quit(state.server.ws)).then(() => {
+                  dispatch(analysis(state.server.ws));
+                });
+              }
+            }}>Analysis board</button>
         </div>
 
-        <div className={['board', state.history.back > 0 ? 'past' : 'present'].join(' ')}>
+        <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
           {render()}
         </div>
       </div>

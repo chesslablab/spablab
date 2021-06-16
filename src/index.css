@@ -1,16 +1,14 @@
-.game .options,
-.game .browser {
-  width: 360px;
-  margin: 10px;
-  text-align: center;
-  clear: both;
+#redux-chess {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .game .board {
   font-family: FreeSerif, sans-serif;
   border: 1px solid #ccc;
-  width: 360px;
-  height: 360px;
+  width: 480px;
+  height: 480px;
 }
 
 .board-row {
@@ -18,21 +16,25 @@
 }
 
 .square {
-  font-size: 35px;
+  font-size: 63px;
   text-align: center;
-  line-height: 45px;
   float: left;
   cursor: pointer;
 }
 
 .square span {
-  height: 45px;
-  width: 45px;
+  height: 60px;
+  width: 60px;
   display: block;
 }
 
-.square span.empty:hover {
-  background-color: transparent;
+.square span::selection {
+  background: transparent;
+}
+
+.square span:focus {
+  outline: none;
+  box-shadow: inset -3px 0 0 #aed6f1, inset 0 -3px 0 #aed6f1, inset 3px 0 0 #aed6f1, inset 0 3px 0 #aed6f1;
 }
 
 .square span:hover {
@@ -48,6 +50,5 @@
 }
 
 .board.past .square span:hover {
-  background-color: transparent;
   cursor: not-allowed;
 }
