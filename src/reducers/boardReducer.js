@@ -20,7 +20,6 @@ const reducer = (state = initialState, action) => {
         newAscii[action.payload.i][action.payload.j] = state.picked.piece;
         newHistory.push(newAscii);
         return {
-          ...state,
           turn: newTurn,
           picked: null,
           fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
@@ -33,8 +32,7 @@ const reducer = (state = initialState, action) => {
             i: action.payload.i,
             j: action.payload.j,
             piece: state.history[state.history.length - 1][action.payload.i][action.payload.j]
-          },
-          fen: null
+          }
         };
       }
     case boardActionTypes.START:
@@ -48,6 +46,12 @@ const reducer = (state = initialState, action) => {
         picked: null,
         fen: null,
         history: newHistory
+      };
+    case boardActionTypes.BROWSE_HISTORY:
+      return {
+        ...state,
+        picked: null,
+        fen: null
       };
     default:
       return state;

@@ -24,3 +24,7 @@ export const click = (payload) => dispatch => {
 export const undo = () => ({
   type: boardActionTypes.UNDO
 });
+
+export const browseHistory = () => ({
+  type: boardActionTypes.BROWSE_HISTORY
+});

@@ -43,7 +43,7 @@ const Board = ({props}) => {
   }
 
   const render = () => {
-    if (state.board.fen) {
+    if (!state.board.picked && state.board.fen) {
       dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
         if (!JSON.parse(data).legal) {
           dispatch(undoIllegalMove());
