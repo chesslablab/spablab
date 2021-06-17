@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { analysis, connect, playfen, quit } from '../actions/serverActions';
-import { start as startBoard, pick as pickPiece, leave as leavePiece, undo as undoIllegalMove } from '../actions/boardActions';
+import { analysis, connect, quit } from '../actions/serverActions';
+import { start as startBoard, pick as pickPiece, leave as leavePiece } from '../actions/boardActions';
 import History from './History';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -46,14 +46,6 @@ const Board = ({props}) => {
     });
 
     return rows;
-  }
-
-  if (!state.board.picked && state.board.fen) {
-    dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
-      if (!JSON.parse(data).legal) {
-        dispatch(undoIllegalMove());
-      }
-    });
   }
 
   return (
