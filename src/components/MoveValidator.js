@@ -9,7 +9,8 @@ const MoveValidator = ({props}) => {
 
   if (!state.board.picked && state.board.fen) {
     dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
-      if (!JSON.parse(data).legal) {
+      const playfen = JSON.parse(data).playfen;
+      if (!playfen.legal) {
         dispatch(undo());
       }
     });
