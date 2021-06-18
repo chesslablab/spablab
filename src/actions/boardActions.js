@@ -15,19 +15,15 @@ export const startBoard = (payload) => dispatch => {
   });
 };
 
-export const pickPiece = (payload) => dispatch => {
-  dispatch({
-    type: boardActionTypes.PICK_PIECE,
-    payload: payload
-  });
-};
+export const pickPiece = (payload) => ({
+  type: boardActionTypes.PICK_PIECE,
+  payload: payload
+});
 
-export const leavePiece = (payload) => dispatch => {
-  dispatch({
-    type: boardActionTypes.LEAVE_PIECE,
-    payload: payload
-  });
-};
+export const leavePiece = (payload) => ({
+  type: boardActionTypes.LEAVE_PIECE,
+  payload: payload
+});
 
 export const validateMove = (state) => dispatch => {
   if (!state.board.picked && state.board.fen) {
