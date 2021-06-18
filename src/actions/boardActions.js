@@ -2,7 +2,7 @@ import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import { playfen } from '../actions/serverActions';
 
-export const start = (payload) => dispatch => {
+export const startBoard = (payload) => dispatch => {
   dispatch({
     type: historyActionTypes.GO_TO_BEGINNING,
     payload: payload
@@ -15,23 +15,23 @@ export const start = (payload) => dispatch => {
   });
 };
 
-export const pick = (payload) => dispatch => {
+export const browseHistory = () => ({
+  type: boardActionTypes.BROWSE_HISTORY
+});
+
+export const pickPiece = (payload) => dispatch => {
   dispatch({
     type: boardActionTypes.PICK_PIECE,
     payload: payload
   });
 };
 
-export const leave = (payload) => dispatch => {
+export const leavePiece = (payload) => dispatch => {
   dispatch({
     type: boardActionTypes.LEAVE_PIECE,
     payload: payload
   });
 };
-
-export const browseHistory = () => ({
-  type: boardActionTypes.BROWSE_HISTORY
-});
 
 export const validateMove = (state) => dispatch => {
   if (!state.board.picked && state.board.fen) {

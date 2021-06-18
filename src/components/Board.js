@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { analysis, connect, quit } from '../actions/serverActions';
-import { start as startBoard, pick as pickPiece, leave as leavePiece } from '../actions/boardActions';
+import { startBoard, pickPiece, leavePiece } from '../actions/boardActions';
 import History from './History';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';

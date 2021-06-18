@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { browseHistory as boardBrowseHistory } from '../actions/boardActions';
-import {
-  goToBeginning as historyGoToBeginning,
-  goBack as historyGoBack,
-  goForward as historyGoForward,
-  goToEnd as historyGoToEnd
-} from '../actions/historyActions';
+import { browseHistory } from '../actions/boardActions';
+import { goToBeginning, goBack, goForward, goToEnd } from '../actions/historyActions';
 
 const History = () => {
   const state = useSelector(state => state);
@@ -18,29 +13,29 @@ const History = () => {
         <button
           disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
           onClick={() => {
-            dispatch(historyGoToBeginning({ back: state.board.history.length - 1}));
-            dispatch(boardBrowseHistory());
+            dispatch(goToBeginning({ back: state.board.history.length - 1}));
+            dispatch(browseHistory());
           }}>&lt;&lt;
         </button>
         <button
           disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
           onClick={() => {
-            dispatch(historyGoBack());
-            dispatch(boardBrowseHistory());
+            dispatch(goBack());
+            dispatch(browseHistory());
           }}>&lt;
         </button>
         <button
           disabled={state.history.back === 0}
           onClick={() => {
-            dispatch(historyGoForward());
-            dispatch(boardBrowseHistory());
+            dispatch(goForward());
+            dispatch(browseHistory());
           }}>&gt;
         </button>
         <button
           disabled={state.history.back === 0}
           onClick={() => {
-            dispatch(historyGoToEnd());
-            dispatch(boardBrowseHistory());
+            dispatch(goToEnd());
+            dispatch(browseHistory());
           }}>&gt;&gt;
         </button>
       </div>
