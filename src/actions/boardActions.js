@@ -29,10 +29,6 @@ export const leave = (payload) => dispatch => {
   });
 };
 
-export const undo = () => ({
-  type: boardActionTypes.UNDO
-});
-
 export const browseHistory = () => ({
   type: boardActionTypes.BROWSE_HISTORY
 });
@@ -47,7 +43,7 @@ export const validateMove = (state) => dispatch => {
         const playfen = JSON.parse(data).playfen;
         if (!playfen.legal) {
           dispatch({
-            type: boardActionTypes.UNDO
+            type: boardActionTypes.UNDO_MOVE
           });
         }
         resolve(true);

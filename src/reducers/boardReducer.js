@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
       };
     case boardActionTypes.START:
       return Object.assign({}, initialState);
-    case boardActionTypes.UNDO:
+    case boardActionTypes.UNDO_MOVE:
       newHistory.pop();
       return {
         turn: newTurn,
