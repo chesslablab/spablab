@@ -2,6 +2,7 @@ import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import serverActionTypes from '../constants/serverActionTypes';
 import { playfen } from '../actions/serverActions';
+import Pgn from '../utils/Pgn';
 
 export const startBoard = (payload) => dispatch => {
   dispatch({
@@ -38,6 +39,15 @@ export const validateMove = (state) => dispatch => {
           dispatch({
             type: boardActionTypes.UNDO_MOVE
           });
+        } else if (playfen.castled === Pgn.symbol.CASTLING_SHORT) {
+          dispatch({
+            type: boardActionTypes.CASTLED_SHORT,
+            payload: {
+              turn: state.board.turn
+            }
+          });
+        } else if (playfen.castled === Pgn.symbol.CASTLING_LONG) {
+          // TODO
         }
         resolve(true);
       }).catch(err => {

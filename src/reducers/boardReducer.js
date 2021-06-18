@@ -49,6 +49,23 @@ const reducer = (state = initialState, action) => {
         picked: null,
         fen: null
       };
+    case boardActionTypes.CASTLED_SHORT:
+      const position = newHistory[newHistory.length - 1];
+      if (action.payload.turn === Pgn.symbol.BLACK) {
+        position[7][7] = ' . ';
+        position[7][5] = ' R ';
+        newHistory[newHistory.length - 1] = position;
+      } else {
+        position[0][7] = ' . ';
+        position[0][5] = ' r ';
+        newHistory[newHistory.length - 1] = position;
+      }
+      return {
+        ...state,
+        picked: null,
+        fen: null,
+        history: newHistory
+      }
     default:
       return state;
   }
