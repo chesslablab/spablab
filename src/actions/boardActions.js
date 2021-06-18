@@ -1,5 +1,6 @@
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
+import serverActionTypes from '../constants/serverActionTypes';
 import { playfen } from '../actions/serverActions';
 
 export const startBoard = (payload) => dispatch => {
