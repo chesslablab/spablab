@@ -15,10 +15,6 @@ export const startBoard = (payload) => dispatch => {
   });
 };
 
-export const browseHistory = () => ({
-  type: boardActionTypes.BROWSE_HISTORY
-});
-
 export const pickPiece = (payload) => dispatch => {
   dispatch({
     type: boardActionTypes.PICK_PIECE,
