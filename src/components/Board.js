@@ -28,13 +28,7 @@ const Board = ({props}) => {
           row.push(<div
               key={k}
               className={['square', color].join(' ')}
-              onClick={() => {
-                if (state.board.picked) {
-                  dispatch(leavePiece(payload));
-                } else {
-                  dispatch(pickPiece(payload));
-                }
-              }}>
+              onClick={() => state.board.picked ? dispatch(leavePiece(payload)) : dispatch(pickPiece(payload))}>
               <span tabindex={k}>
                 {Piece.unicode[piece].char}
               </span>
