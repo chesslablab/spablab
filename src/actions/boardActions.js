@@ -47,7 +47,12 @@ export const validateMove = (state) => dispatch => {
             }
           });
         } else if (playfen.castled === Pgn.symbol.CASTLING_LONG) {
-          // TODO
+          dispatch({
+            type: boardActionTypes.CASTLED_LONG,
+            payload: {
+              turn: state.board.turn
+            }
+          });
         }
         resolve(true);
       }).catch(err => {

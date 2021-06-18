@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
   const newTurn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
   const newHistory = JSON.parse(JSON.stringify(state.history));
   const newAscii = JSON.parse(JSON.stringify(state.history[state.history.length - 1]));
+  const position = newHistory[newHistory.length - 1];
   switch (action.type) {
     case boardActionTypes.START:
       return Object.assign({}, initialState);
@@ -50,7 +51,6 @@ const reducer = (state = initialState, action) => {
         fen: null
       };
     case boardActionTypes.CASTLED_SHORT:
-      const position = newHistory[newHistory.length - 1];
       if (action.payload.turn === Pgn.symbol.BLACK) {
         position[7][7] = ' . ';
         position[7][5] = ' R ';
@@ -58,6 +58,22 @@ const reducer = (state = initialState, action) => {
       } else {
         position[0][7] = ' . ';
         position[0][5] = ' r ';
+        newHistory[newHistory.length - 1] = position;
+      }
+      return {
+        ...state,
+        picked: null,
+        fen: null,
+        history: newHistory
+      }
+    case boardActionTypes.CASTLED_LONG:
+      if (action.payload.turn === Pgn.symbol.BLACK) {
+        position[7][0] = ' . ';
+        position[7][3] = ' R ';
+        newHistory[newHistory.length - 1] = position;
+      } else {
+        position[0][0] = ' . ';
+        position[0][3] = ' r ';
         newHistory[newHistory.length - 1] = position;
       }
       return {
