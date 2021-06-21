@@ -36,9 +36,9 @@ The MIT License.
 
 Thank you for your interest in this exciting project!
 
-It may be appear as being quite challenging provided it requires this [chess server](https://github.com/programarivm/chess-server) up and running. `redux-chess` is "just a chessboard" as lightweight as it can possibly be sending messages to a WebSocket server.
+It may appear as if being quite challenging provided it requires this [chess server](https://github.com/programarivm/chess-server) up and running. `redux-chess` is "just a chessboard" as lightweight as it can possibly be.
 
-So make sure the chess server is running on localhost:
+The chessboard just sends messages to a WebSocket server so make sure the chess server is running on localhost:
 
 ```
 $ php cli/ws-server.php
@@ -73,4 +73,6 @@ Would you help make this app better?
 - Drop an email at info@programarivm.com with the subject "Redux Chess"
 - Leave me a comment on [Twitter](https://twitter.com/programarivm)
 
-Thank you.
+Happy learning!
+
+Thank you, and keep it up.
