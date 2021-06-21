@@ -38,7 +38,7 @@ Thank you for your interest in this exciting project!
 
 It may be appear as being quite challenging provided it requires this [chess server](https://github.com/programarivm/chess-server) up and running. `redux-chess` is "just a chessboard" as lightweight as it can possibly be sending messages to a WebSocket server.
 
-Please make sure the chess server is running on localhost:
+So make sure the chess server is running on localhost:
 
 ```
 $ php cli/ws-server.php
