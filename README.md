@@ -10,7 +10,7 @@ Via npm:
 
 ### Examples
 
-Basic chessboard without server-side functionality:
+Chessboard without server-side functionality:
 
 ```js
 import React from 'react';
@@ -48,11 +48,7 @@ ReactDOM.render(
 
 ![Redux Chess](/resources/demo.gif)
 
-### License
-
-The MIT License.
-
-### Contributions
+### Learn More
 
 Thank you for your interest in this exciting project!
 
@@ -82,15 +78,27 @@ Commands available:
 Listening to commands...
 ```
 
-Or send a pull request involving [no chess server](https://github.com/programarivm/redux-chess/issues/5) if you'd prefer.
-
 The post [How to Test a Local React NPM Package With Ease](https://javascript.plainenglish.io/testing-a-local-react-npm-package-with-ease-7d0668676ddb) might be helpful to get the `redux-chess` package up and running. Also it is recommended to test it from within [programarivm/testing-redux-chess](https://github.com/programarivm/testing-redux-chess) which is a host application for testing purposes.
+
+For further information on developing this awesome npm package, please visit:
+
+- [Redux Chess](https://github.com/programarivm/redux-chess)
+- [How to Test a Local React NPM Package With Ease](https://javascript.plainenglish.io/testing-a-local-react-npm-package-with-ease-7d0668676ddb)
+- [Testing Redux Chess](https://github.com/programarivm/testing-redux-chess)
+- [A React Chessboard with Redux and Hooks in Few Lines](https://medium.com/geekculture/a-react-chessboard-with-redux-and-hooks-in-few-lines-6009cb724bb)
+- [PHP Chess Server](https://github.com/programarivm/chess-server)
+
+### License
+
+The MIT License.
+
+### Contributions
 
 Would you help make this app better?
 
 - Look at the open issues
 - Send a pull request
-- Drop an email at info@programarivm.com with the subject "Redux Chess"
+- Drop [an email](https://programarivm.com/about)
 - Leave me a comment on [Twitter](https://twitter.com/programarivm)
 
 Happy learning!
