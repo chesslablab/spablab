@@ -8,7 +8,24 @@ Via npm:
 
     $ npm i redux-chess
 
-### Example
+### Examples
+
+Basic chessboard without server-side functionality:
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Chess } from 'redux-chess';
+
+const props = {};
+
+ReactDOM.render(
+  <Chess props={props} />,
+  document.getElementById('redux-chess')
+);
+```
+
+Chessboard with server-side functionality such as move validation and so on.
 
 ```js
 import React from 'react';
@@ -16,14 +33,17 @@ import ReactDOM from 'react-dom';
 import { Chess } from 'redux-chess';
 
 const props = {
-  host: '127.0.0.1',
-  port: '8080'
+  server: {
+    host: '127.0.0.1',
+    port: '8080'
+  }
 };
 
 ReactDOM.render(
   <Chess props={props} />,
   document.getElementById('redux-chess')
 );
+
 ```
 
 ![Redux Chess](/resources/demo.gif)
