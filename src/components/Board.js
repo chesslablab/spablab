@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { analysis, connect, quit } from '../actions/serverActions';
-import { startBoard, pickPiece, leavePiece } from '../actions/boardActions';
-import History from './History';
+import { pickPiece, leavePiece } from '../actions/boardActions';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
 
@@ -43,34 +41,8 @@ const Board = ({props}) => {
   }
 
   return (
-    <div>
-      <div className="game">
-        <div>
-          <button
-            disabled={state.server.ws && state.server.ws.readyState === WebSocket.OPEN}
-            onClick={() => {
-              dispatch(startBoard({ back: state.board.history.length - 1 }));
-              dispatch(connect(state.server.ws, props.host, props.port)).catch(e => {});
-          }}>
-            Connect
-          </button>
-
-          <button
-            onClick={() => {
-              dispatch(startBoard({ back: state.board.history.length - 1 }));
-              if (state.server.ws) {
-                dispatch(quit(state.server.ws)).then(() => {
-                  dispatch(analysis(state.server.ws));
-                });
-              }
-            }}>Analysis board</button>
-        </div>
-
-        <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
-          {board()}
-        </div>
-      </div>
-      <History />
+    <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+      {board()}
     </div>
   );
 }

@@ -1,14 +1,25 @@
 #redux-chess {
   display: flex;
+  flex-direction: column;
+  text-align: center;
   justify-content: center;
-  align-items: center;
 }
 
-.game .board {
+.buttons {
+  clear: both;
+}
+
+.board {
   font-family: FreeSerif, sans-serif;
   border: 1px solid #ccc;
   width: 480px;
   height: 480px;
+  clear: both;
+  margin: auto;
+}
+
+.history {
+  clear: both;
 }
 
 .board-row {
