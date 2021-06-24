@@ -10,7 +10,7 @@ Via npm:
 
 ### Examples
 
-Chessboard without server-side functionality:
+Chessboard without server-side functionality. Check out this [demo](https://programarivm.github.io/demo-redux-chess).
 
 ```js
 import React from 'react';
