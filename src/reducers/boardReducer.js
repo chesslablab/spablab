@@ -6,7 +6,8 @@ const initialState = {
   turn: Pgn.symbol.WHITE,
   picked: null,
   fen: null,
-  history: [ Ascii.board ]
+  history: [ Ascii.board ],
+  movetext: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +32,7 @@ const reducer = (state = initialState, action) => {
       newAscii[action.payload.i][action.payload.j] = state.picked.piece;
       newHistory.push(newAscii);
       return {
+        ...state,
         turn: newTurn,
         picked: null,
         fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
@@ -39,6 +41,7 @@ const reducer = (state = initialState, action) => {
     case boardActionTypes.UNDO_MOVE:
       newHistory.pop();
       return {
+        ...state,
         turn: newTurn,
         picked: null,
         fen: null,
@@ -64,7 +67,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         picked: null,
         fen: null,
-        history: newHistory
+        history: newHistory,
+        movetext: action.payload.movetext
       }
     case boardActionTypes.CASTLED_LONG:
       if (action.payload.turn === Pgn.symbol.BLACK) {
@@ -80,7 +84,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         picked: null,
         fen: null,
-        history: newHistory
+        history: newHistory,
+        movetext: action.payload.movetext
+      }
+    case boardActionTypes.VALID_MOVE:
+      return {
+        ...state,
+        picked: null,
+        fen: null,
+        history: newHistory,
+        movetext: action.payload.movetext
       }
     default:
       return state;
