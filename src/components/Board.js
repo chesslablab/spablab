@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { pickPiece, leavePiece } from '../actions/boardActions';
+import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
 
@@ -12,17 +13,19 @@ const Board = ({props}) => {
     let rows = [];
     let color;
     let k = 0;
-    state.board.history[state.board.history.length - 1 + state.history.back].forEach((rank, i) => {
+    Ascii.flip(
+      state.board.flip,
+      state.board.history[state.board.history.length - 1 + state.history.back]
+    ).forEach((rank, i) => {
       let row = [];
       rank.forEach((piece, j) => {
+          let payload = { piece: piece };
           (i + k) % 2 !== 0
             ? color = Pgn.symbol.BLACK
             : color = Pgn.symbol.WHITE;
-          const payload = {
-            i: i,
-            j: j,
-            piece: piece
-          };
+          state.board.flip === Pgn.symbol.WHITE
+            ? payload = {...payload, i: i, j: j}
+            : payload = {...payload, i: 7 - i, j: 7 - j};
           row.push(<div
               key={k}
               className={['square', color].join(' ')}

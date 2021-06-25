@@ -1,4 +1,4 @@
-import Pgn from 'utils/Pgn.js';
+import Pgn from './Pgn.js';
 
 export default class Ascii {
   static board = [
