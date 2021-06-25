@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { analysis, connect, quit } from '../actions/serverActions';
-import { startBoard } from '../actions/boardActions';
+import { startBoard, flipBoard } from '../actions/boardActions';
 
 const Buttons = ({props}) => {
   const state = useSelector(state => state);
@@ -30,6 +30,11 @@ const Buttons = ({props}) => {
           dispatch(quit(state.server.ws)).then(() => dispatch(analysis(state.server.ws)))
         }
       }}>Analysis board
+    </button>);
+
+    items.push(<button
+      key={2}
+      onClick={() => dispatch(flipBoard())}>Flip
     </button>);
 
     return items;

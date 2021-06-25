@@ -7,7 +7,8 @@ const initialState = {
   picked: null,
   fen: null,
   history: [ Ascii.board ],
-  movetext: null
+  movetext: null,
+  flip: Pgn.symbol.WHITE
 };
 
 const reducer = (state = initialState, action) => {
@@ -94,6 +95,12 @@ const reducer = (state = initialState, action) => {
         fen: null,
         history: newHistory,
         movetext: action.payload.movetext
+      }
+    case boardActionTypes.FLIP:
+      const newFlip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+      return {
+        ...state,
+        flip: newFlip
       }
     default:
       return state;

@@ -1,3 +1,5 @@
+import Pgn from './Pgn.js';
+
 export default class Ascii {
   static board = [
     [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -39,5 +41,22 @@ export default class Ascii {
     });
 
     return filtered;
+  }
+
+  static flip = (color, ascii) => {
+    if (color == Pgn.symbol.BLACK) {
+      const flipped = [];
+      for (let i = 0; i < 8; i++) {
+        flipped.push(new Array(8));
+      }
+      ascii.forEach((rank, i) => {
+        rank.forEach((file, j) => {
+          flipped[7-i][7-j] = ascii[i][j];
+        });
+      });
+      return flipped;
+    }
+
+    return ascii;
   }
 }
