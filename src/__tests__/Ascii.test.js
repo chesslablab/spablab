@@ -1,4 +1,5 @@
 import Ascii from 'utils/Ascii.js';
+import Pgn from 'utils/Pgn.js';
 
 describe('toFen()', () => {
   it('is a starting position', () => {
@@ -43,7 +44,21 @@ describe('toFen()', () => {
 });
 
 describe('flip()', () => {
-  it('a starting position', () => {
+  it('is a starting position for White', () => {
+    const board = [
+      [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
+      [ ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ' ],
+      [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ]
+    ];
+    const expected = board;
+    expect(Ascii.flip(Pgn.symbol.WHITE, board)).toEqual(expected);
+  });
+  it('is a starting position for Black', () => {
     const board = [
       [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
       [ ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
@@ -64,9 +79,23 @@ describe('flip()', () => {
       [ ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
       [ ' r ', ' n ', ' b ', ' k ', ' q ', ' b ', ' n ', ' r ' ]
     ];
-    expect(Ascii.flip(board)).toEqual(expected);
+    expect(Ascii.flip(Pgn.symbol.BLACK, board)).toEqual(expected);
   });
-  it('is the Sicilian Defense', () => {
+  it('it is the Sicilian Defense for White', () => {
+    const board = [
+      [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
+      [ ' p ', ' p ', ' . ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' P ', ' P ', ' P ', ' P ', ' . ', ' P ', ' P ', ' P ' ],
+      [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ]
+    ];
+    const expected = board;
+    expect(Ascii.flip(Pgn.symbol.WHITE, board)).toEqual(expected);
+  });
+  it('it is the Sicilian Defense for Black', () => {
     const board = [
       [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
       [ ' p ', ' p ', ' . ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
@@ -87,6 +116,6 @@ describe('flip()', () => {
       [ ' p ', ' p ', ' p ', ' p ', ' p ', ' . ', ' p ', ' p ' ],
       [ ' r ', ' n ', ' b ', ' k ', ' q ', ' b ', ' n ', ' r ' ]
     ];
-    expect(Ascii.flip(board)).toEqual(expected);
+    expect(Ascii.flip(Pgn.symbol.BLACK, board)).toEqual(expected);
   });
 });
