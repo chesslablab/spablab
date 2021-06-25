@@ -71,3 +71,9 @@ export const validateMove = (state) => dispatch => {
     });
   }
 };
+
+export const flipBoard = () => dispatch => {
+  dispatch({
+    type: boardActionTypes.FLIP
+  });
+};
