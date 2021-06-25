@@ -8,7 +8,11 @@ const MoveValidator = ({props}) => {
 
   dispatch(validateMove(state));
 
-  return null;
+  return (
+    <div className="movetext">
+      {state.board.movetext}
+    </div>
+  );
 }
 
 export default MoveValidator;

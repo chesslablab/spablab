@@ -35,22 +35,31 @@ export const validateMove = (state) => dispatch => {
     return new Promise((resolve, reject) => {
       dispatch(playfen(state.server.ws, state.board.fen)).then((data) => {
         const playfen = JSON.parse(data).playfen;
-        if (!playfen.legal) {
+        if (playfen.legal === false) {
           dispatch({
             type: boardActionTypes.UNDO_MOVE
           });
-        } else if (playfen.castled === Pgn.symbol.CASTLING_SHORT) {
+        } else if (playfen.legal === Pgn.symbol.CASTLING_SHORT) {
           dispatch({
             type: boardActionTypes.CASTLED_SHORT,
             payload: {
-              turn: state.board.turn
+              turn: state.board.turn,
+              movetext: playfen.movetext
             }
           });
-        } else if (playfen.castled === Pgn.symbol.CASTLING_LONG) {
+        } else if (playfen.legal === Pgn.symbol.CASTLING_LONG) {
           dispatch({
             type: boardActionTypes.CASTLED_LONG,
             payload: {
-              turn: state.board.turn
+              turn: state.board.turn,
+              movetext: playfen.movetext
+            }
+          });
+        } else if (playfen.legal === true) {
+          dispatch({
+            type: boardActionTypes.VALID_MOVE,
+            payload: {
+              movetext: playfen.movetext
             }
           });
         }
