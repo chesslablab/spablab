@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, ButtonGroup } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { analysis, connect, quit } from '../actions/serverActions';
 import { startBoard, flipBoard } from '../actions/boardActions';
@@ -11,7 +12,7 @@ const Buttons = ({props}) => {
     let items = [];
 
     if (props.server) {
-        items.push(<button
+        items.push(<Button
           key={0}
           disabled={state.server.ws && state.server.ws.readyState === WebSocket.OPEN}
           onClick={() => {
@@ -19,10 +20,10 @@ const Buttons = ({props}) => {
             dispatch(connect(state.server.ws, props.server.host, props.server.port)).catch(e => {});
           }}>
           Connect
-        </button>);
+        </Button>);
     }
 
-    items.push(<button
+    items.push(<Button
       key={1}
       onClick={() => {
         dispatch(startBoard({ back: state.board.history.length - 1 }));
@@ -30,20 +31,25 @@ const Buttons = ({props}) => {
           dispatch(quit(state.server.ws)).then(() => dispatch(analysis(state.server.ws)))
         }
       }}>Analysis board
-    </button>);
+    </Button>);
 
-    items.push(<button
+    items.push(<Button
       key={2}
+      color="primary"
       onClick={() => dispatch(flipBoard())}>Flip
-    </button>);
+    </Button>);
 
     return items;
   }
 
   return (
-    <div className="buttons">
+    <ButtonGroup
+      color="primary"
+      aria-label="outlined primary button group"
+      style={{justifyContent: 'center'}}
+    >
       {buttons()}
-    </div>
+    </ButtonGroup>
   );
 }
 
