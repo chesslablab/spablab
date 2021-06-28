@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { Button, ButtonGroup } from '@material-ui/core';
+import FastRewindIcon from '@material-ui/icons/FastRewind';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import FastForwardIcon from '@material-ui/icons/FastForward';
 import { useDispatch, useSelector } from 'react-redux';
 import { goToBeginning, goBack, goForward, goToEnd } from '../actions/historyActions';
 
@@ -7,24 +12,40 @@ const History = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="history">
-      <button
-        disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
-        onClick={() => dispatch(goToBeginning({ back: state.board.history.length - 1}))}>&lt;&lt;
-      </button>
-      <button
-        disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
-        onClick={() => dispatch(goBack())}>&lt;
-      </button>
-      <button
-        disabled={state.history.back === 0}
-        onClick={() => dispatch(goForward())}>&gt;
-      </button>
-      <button
-        disabled={state.history.back === 0}
-        onClick={() => dispatch(goToEnd())}>&gt;&gt;
-      </button>
-    </div>
+    <ButtonGroup
+      color="primary"
+      aria-label="outlined primary button group"
+      style={{justifyContent: 'center'}}
+    >
+        <Button
+          variant="contained"
+          color="default"
+          startIcon={<FastRewindIcon />}
+          disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
+          onClick={() => dispatch(goToBeginning({ back: state.board.history.length - 1}))}
+        / >
+        <Button
+          variant="contained"
+          color="default"
+          startIcon={<SkipPreviousIcon />}
+          disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
+          onClick={() => dispatch(goBack())}>
+        </Button>
+        <Button
+          variant="contained"
+          color="default"
+          startIcon={<SkipNextIcon />}
+          disabled={state.history.back === 0}
+          onClick={() => dispatch(goForward())}>
+        </Button>
+        <Button
+          variant="contained"
+          color="default"
+          startIcon={<FastForwardIcon />}
+          disabled={state.history.back === 0}
+          onClick={() => dispatch(goToEnd())}>
+        </Button>
+    </ButtonGroup>
   );
 }
 
