@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, ButtonGroup } from '@material-ui/core';
 import CloudIcon from '@material-ui/icons/Cloud';
 import TuneIcon from '@material-ui/icons/Tune';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { useDispatch, useSelector } from 'react-redux';
 import { analysis, connect, quit } from '../actions/serverActions';
 import { startBoard } from '../actions/boardActions';
@@ -45,6 +46,20 @@ const PrimaryButtons = ({props}) => {
         style={{textTransform: 'none'}}
       >
         Analysis board
+      </Button>
+    );
+
+    items.push(
+      <Button
+        key={2}
+        color="default"
+        startIcon={<GroupAddIcon />}
+        onClick={() => {
+          // TODO
+        }}
+        style={{textTransform: 'none'}}
+      >
+        Invite a friend
       </Button>
     );
 
