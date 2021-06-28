@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Button, ButtonGroup } from '@material-ui/core';
 import CloudIcon from '@material-ui/icons/Cloud';
 import TuneIcon from '@material-ui/icons/Tune';
-import SwapVertIcon from '@material-ui/icons/SwapVert';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { useDispatch, useSelector } from 'react-redux';
+import { startBoard } from '../actions/boardActions';
+import { open as openInviteFriendDialog } from '../actions/inviteFriendDialogActions';
 import { analysis, connect, quit } from '../actions/serverActions';
-import { startBoard, flipBoard } from '../actions/boardActions';
 
-const Buttons = ({props}) => {
+const PrimaryButtons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -45,21 +46,25 @@ const Buttons = ({props}) => {
         }}
         style={{textTransform: 'none'}}
       >
-        Analysis
+        Analysis board
       </Button>
     );
 
-    items.push(
-      <Button
-        key={2}
-        color="default"
-        startIcon={<SwapVertIcon />}
-        onClick={() => dispatch(flipBoard())}
-        style={{textTransform: 'none'}}
-      >
-        Flip
-      </Button>
-    );
+    if (props.server) {
+      items.push(
+        <Button
+          key={2}
+          color="default"
+          startIcon={<GroupAddIcon />}
+          onClick={() => {
+            dispatch(openInviteFriendDialog());
+          }}
+          style={{textTransform: 'none'}}
+        >
+          Invite a friend
+        </Button>
+      );
+    }
 
     return items;
   }
@@ -67,7 +72,6 @@ const Buttons = ({props}) => {
   return (
     <ButtonGroup
       color="primary"
-      aria-label="outlined primary button group"
       style={{justifyContent: 'center'}}
     >
       {buttons()}
@@ -75,4 +79,4 @@ const Buttons = ({props}) => {
   );
 }
 
-export default Buttons;
+export default PrimaryButtons;
