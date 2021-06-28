@@ -4,8 +4,9 @@ import CloudIcon from '@material-ui/icons/Cloud';
 import TuneIcon from '@material-ui/icons/Tune';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { useDispatch, useSelector } from 'react-redux';
-import { analysis, connect, quit } from '../actions/serverActions';
 import { startBoard } from '../actions/boardActions';
+import { open as openInviteFriendDialog } from '../actions/inviteFriendDialogActions';
+import { analysis, connect, quit } from '../actions/serverActions';
 
 const PrimaryButtons = ({props}) => {
   const state = useSelector(state => state);
@@ -55,7 +56,7 @@ const PrimaryButtons = ({props}) => {
         color="default"
         startIcon={<GroupAddIcon />}
         onClick={() => {
-          // TODO
+          dispatch(openInviteFriendDialog());
         }}
         style={{textTransform: 'none'}}
       >
