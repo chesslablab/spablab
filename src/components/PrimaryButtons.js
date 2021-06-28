@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Button, ButtonGroup } from '@material-ui/core';
 import CloudIcon from '@material-ui/icons/Cloud';
 import TuneIcon from '@material-ui/icons/Tune';
-import SwapVertIcon from '@material-ui/icons/SwapVert';
 import { useDispatch, useSelector } from 'react-redux';
 import { analysis, connect, quit } from '../actions/serverActions';
-import { startBoard, flipBoard } from '../actions/boardActions';
+import { startBoard } from '../actions/boardActions';
 
 const PrimaryButtons = ({props}) => {
   const state = useSelector(state => state);
@@ -45,19 +44,7 @@ const PrimaryButtons = ({props}) => {
         }}
         style={{textTransform: 'none'}}
       >
-        Analysis
-      </Button>
-    );
-
-    items.push(
-      <Button
-        key={2}
-        color="default"
-        startIcon={<SwapVertIcon />}
-        onClick={() => dispatch(flipBoard())}
-        style={{textTransform: 'none'}}
-      >
-        Flip
+        Analysis board
       </Button>
     );
 
@@ -67,7 +54,6 @@ const PrimaryButtons = ({props}) => {
   return (
     <ButtonGroup
       color="primary"
-      aria-label="outlined primary button group"
       style={{justifyContent: 'center'}}
     >
       {buttons()}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from '../store';
 import PrimaryButtons from './PrimaryButtons.js';
+import SecondaryButtons from './SecondaryButtons.js';
 import Board from './Board.js';
 import History from './History';
 import MoveValidator from './MoveValidator.js';
@@ -14,6 +15,7 @@ const Chess = ({props}) => {
       <Board props={props} />
       <History />
       {props.server ? <MoveValidator /> : null}
+      <SecondaryButtons props={props} />
     </Provider>
   );
 }
