@@ -18,28 +18,24 @@ const History = () => {
       style={{justifyContent: 'center'}}
     >
         <Button
-          variant="contained"
           color="default"
           startIcon={<FastRewindIcon />}
           disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
           onClick={() => dispatch(goToBeginning({ back: state.board.history.length - 1}))}
         / >
         <Button
-          variant="contained"
           color="default"
           startIcon={<SkipPreviousIcon />}
           disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
           onClick={() => dispatch(goBack())}>
         </Button>
         <Button
-          variant="contained"
           color="default"
           startIcon={<SkipNextIcon />}
           disabled={state.history.back === 0}
           onClick={() => dispatch(goForward())}>
         </Button>
         <Button
-          variant="contained"
           color="default"
           startIcon={<FastForwardIcon />}
           disabled={state.history.back === 0}
