@@ -50,19 +50,21 @@ const PrimaryButtons = ({props}) => {
       </Button>
     );
 
-    items.push(
-      <Button
-        key={2}
-        color="default"
-        startIcon={<GroupAddIcon />}
-        onClick={() => {
-          dispatch(openInviteFriendDialog());
-        }}
-        style={{textTransform: 'none'}}
-      >
-        Invite a friend
-      </Button>
-    );
+    if (props.server) {
+      items.push(
+        <Button
+          key={2}
+          color="default"
+          startIcon={<GroupAddIcon />}
+          onClick={() => {
+            dispatch(openInviteFriendDialog());
+          }}
+          style={{textTransform: 'none'}}
+        >
+          Invite a friend
+        </Button>
+      );
+    }
 
     return items;
   }
