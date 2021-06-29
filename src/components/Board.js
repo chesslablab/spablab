@@ -11,11 +11,13 @@ const Board = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(connect(props.server.host, props.server.port)).then((ws) => {
-      dispatch(analysis(ws)).then(() => {
-        dispatch(startBoard({ back: state.board.history.length - 1 }));
+    if (props.server) {
+      dispatch(connect(props.server.host, props.server.port)).then((ws) => {
+        dispatch(analysis(ws)).then(() => {
+          dispatch(startBoard({ back: state.board.history.length - 1 }));
+        });
       });
-    });
+    }
   }, [dispatch]);
 
   const board = () => {
