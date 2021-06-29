@@ -27,12 +27,14 @@ const Settings = ({props}) => {
           <MenuItem
             key={0}
             onClick={() => {
-              dispatch(connect(props.server.host, props.server.port)).then((ws) => {
+              if (props.server) {
+                dispatch(connect(props.server.host, props.server.port)).then((ws) => {
                   dispatch(analysis(ws)).then(() => {
-                      dispatch(startBoard({ back: state.board.history.length - 1 }));
-                      handleClose();
-                    });
+                    dispatch(startBoard({ back: state.board.history.length - 1 }));
+                    handleClose();
+                  });
                 });
+              }
             }}
           >
             Connect
