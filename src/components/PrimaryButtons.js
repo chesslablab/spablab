@@ -70,10 +70,7 @@ const PrimaryButtons = ({props}) => {
   }
 
   return (
-    <ButtonGroup
-      color="primary"
-      style={{justifyContent: 'center', margin: '8px'}}
-    >
+    <ButtonGroup color="primary">
       {buttons()}
     </ButtonGroup>
   );

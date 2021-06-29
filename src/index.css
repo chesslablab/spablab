@@ -1,15 +1,10 @@
 #redux-chess {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  justify-content: center;
 }
 
 .board {
   font-family: FreeSerif, sans-serif;
-  border: 1px solid #ccc;
-  clear: both;
-  margin: auto;
 }
 
 .board-row {
@@ -17,15 +12,15 @@
 }
 
 .square {
-  font-size: 11vh;
+  font-size: 10vh;
   text-align: center;
   float: left;
   cursor: pointer;
 }
 
 .square span {
-  height: 11vh;
-  width: 11vh;
+  height: 9vh;
+  width: 9vh;
   display: block;
 }
 
@@ -58,11 +53,11 @@
 
 @media (max-width: 1024px) {
   .square {
-    font-size: 11vw;
+    font-size: 9vw;
   }
 
   .square span {
-    height: 11vw;
-    width: 11vw;
+    height: 9vw;
+    width: 9vw;
   }
 }
