@@ -8,8 +8,6 @@
 .board {
   font-family: FreeSerif, sans-serif;
   border: 1px solid #ccc;
-  width: 480px;
-  height: 480px;
   clear: both;
   margin: auto;
 }
@@ -19,15 +17,15 @@
 }
 
 .square {
-  font-size: 63px;
+  font-size: 11vh;
   text-align: center;
   float: left;
   cursor: pointer;
 }
 
 .square span {
-  height: 60px;
-  width: 60px;
+  height: 11vh;
+  width: 11vh;
   display: block;
 }
 
@@ -37,11 +35,13 @@
 
 .square span:focus {
   outline: none;
-  box-shadow: inset -3px 0 0 #aed6f1, inset 0 -3px 0 #aed6f1, inset 3px 0 0 #aed6f1, inset 0 3px 0 #aed6f1;
+  box-shadow: inset -3px 0 0 #aed6f1, inset 0 -3px 0 #aed6f1,
+    inset 3px 0 0 #aed6f1, inset 0 3px 0 #aed6f1;
 }
 
 .square span:hover {
-  box-shadow: inset -3px 0 0 #ccccff, inset 0 -3px 0 #ccccff, inset 3px 0 0 #ccccff, inset 0 3px 0 #ccccff;
+  box-shadow: inset -3px 0 0 #ccccff, inset 0 -3px 0 #ccccff,
+    inset 3px 0 0 #ccccff, inset 0 3px 0 #ccccff;
 }
 
 .square.w {
@@ -54,4 +54,15 @@
 
 .board.past .square span:hover {
   cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+  .square {
+    font-size: 11vw;
+  }
+
+  .square span {
+    height: 11vw;
+    width: 11vw;
+  }
 }

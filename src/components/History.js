@@ -15,7 +15,7 @@ const History = () => {
     <ButtonGroup
       color="primary"
       aria-label="outlined primary button group"
-      style={{justifyContent: 'center'}}
+      style={{justifyContent: 'center', margin: '8px' }}
     >
         <Button
           color="default"
