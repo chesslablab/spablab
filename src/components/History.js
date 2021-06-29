@@ -12,35 +12,31 @@ const History = () => {
   const dispatch = useDispatch();
 
   return (
-    <ButtonGroup
-      color="primary"
-      aria-label="outlined primary button group"
-      style={{justifyContent: 'center', margin: '8px' }}
-    >
-        <Button
-          color="default"
-          startIcon={<FastRewindIcon />}
-          disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
-          onClick={() => dispatch(goToBeginning({ back: state.board.history.length - 1}))}
-        / >
-        <Button
-          color="default"
-          startIcon={<SkipPreviousIcon />}
-          disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
-          onClick={() => dispatch(goBack())}>
-        </Button>
-        <Button
-          color="default"
-          startIcon={<SkipNextIcon />}
-          disabled={state.history.back === 0}
-          onClick={() => dispatch(goForward())}>
-        </Button>
-        <Button
-          color="default"
-          startIcon={<FastForwardIcon />}
-          disabled={state.history.back === 0}
-          onClick={() => dispatch(goToEnd())}>
-        </Button>
+    <ButtonGroup color="primary">
+      <Button
+        color="default"
+        startIcon={<FastRewindIcon />}
+        disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
+        onClick={() => dispatch(goToBeginning({ back: state.board.history.length - 1}))}
+      / >
+      <Button
+        color="default"
+        startIcon={<SkipPreviousIcon />}
+        disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
+        onClick={() => dispatch(goBack())}>
+      </Button>
+      <Button
+        color="default"
+        startIcon={<SkipNextIcon />}
+        disabled={state.history.back === 0}
+        onClick={() => dispatch(goForward())}>
+      </Button>
+      <Button
+        color="default"
+        startIcon={<FastForwardIcon />}
+        disabled={state.history.back === 0}
+        onClick={() => dispatch(goToEnd())}>
+      </Button>
     </ButtonGroup>
   );
 }
