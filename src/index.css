@@ -1,15 +1,10 @@
 #redux-chess {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  justify-content: center;
 }
 
 .board {
   font-family: FreeSerif, sans-serif;
-  border: 1px solid #ccc;
-  clear: both;
-  margin: auto;
 }
 
 .board-row {
