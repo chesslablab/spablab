@@ -44,32 +44,18 @@ export const quit = (ws) => dispatch => {
   });
 };
 
-export const connect = (ws, host, port) => dispatch => {
-  if (!ws) {
-    return new Promise((resolve, reject) => {
-      const ws = new WebSocket(`ws://${host}:${port}`);
-      ws.onopen = () => {
-        dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
-        resolve(true);
-      };
-      ws.onerror = (err) => {
-        dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-        reject(err);
-      };
-    });
-  } else {
-    return new Promise((resolve, reject) => {
-      ws.close();
-      ws.onclose = () => {
-        dispatch({ type: serverActionTypes.CONNECTION_CLOSED });
-        resolve(true);
-      };
-      ws.onerror = (err) => {
-        dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-        reject(err);
-      };
-    });
-  }
+export const connect = (host, port) => dispatch => {
+  return new Promise((resolve, reject) => {
+    const ws = new WebSocket(`ws://${host}:${port}`);
+    ws.onopen = () => {
+      dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
+      resolve(ws);
+    };
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+      reject(err);
+    };
+  });
 };
 
 export const playfriend = (ws, color, time) => dispatch => {
