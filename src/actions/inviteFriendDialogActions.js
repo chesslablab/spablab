@@ -7,3 +7,8 @@ export const close = () => ({
 export const open = () => ({
   type: inviteFriendDialogActionTypes.OPEN
 });
+
+export const createCode = (payload) => ({
+  type: inviteFriendDialogActionTypes.CREATE_CODE,
+  payload: payload
+});
