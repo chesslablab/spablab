@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle,
-  Grid, MenuItem, TextField, Typography, Select } from '@material-ui/core';
+  Grid, MenuItem, TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { createCode, close as closeInviteFriendDialog } from "../actions/inviteFriendDialogActions";
 import { startBoard } from '../actions/boardActions';
@@ -35,7 +35,6 @@ const InviteFriendDialog = () => {
 
   const handlePlay = (event) => {
     event.preventDefault();
-    console.log('TODO');
     // TODO ...
     dispatch(closeInviteFriendDialog());
     dispatch(startBoard({ back: state.board.history.length - 1 }));
@@ -85,17 +84,17 @@ const InviteFriendDialog = () => {
                   </Button>
                 </ButtonGroup>
               </form>
+              {state.inviteFriendDialog.code}
             </Grid>
 
             <Grid item xs={6}>
               <form onSubmit={handlePlay}>
                 <Typography variant="body1" gutterBottom>
-                  Or paste the code if you've got one, and play chess now.
+                  Or paste a code if you've got one, and play chess now.
                 </Typography>
                 <TextField
                   label="Code"
                   variant="outlined"
-                  defaultValue={state.inviteFriendDialog.code}
                 />
                 <ButtonGroup size="small" aria-label="small outlined button group">
                   <Button type="submit">
