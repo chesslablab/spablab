@@ -57,3 +57,26 @@ export const connect = (host, port) => dispatch => {
     };
   });
 };
+
+export const playfriend = (ws, color, time) => dispatch => {
+  return new Promise((resolve, reject) => {
+    //  TODO: time
+    ws.send(`/start playfriend ${color}`);
+    ws.onmessage = (res) => resolve(res.data);
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+      reject(err);
+    };
+  });
+};
+
+export const accept = (ws, id) => dispatch => {
+  return new Promise((resolve, reject) => {
+    ws.send(`/accept "${id}"`);
+    ws.onmessage = (res) => resolve(res.data);
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+      reject(err);
+    };
+  });
+};
