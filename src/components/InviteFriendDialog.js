@@ -4,7 +4,7 @@ import { Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle,
 import { useDispatch, useSelector } from "react-redux";
 import { createCode, close as closeInviteFriendDialog } from "../actions/inviteFriendDialogActions";
 import { startBoard } from '../actions/boardActions';
-import { playfriend, quit } from '../actions/serverActions';
+import { accept, playfriend, quit } from '../actions/serverActions';
 import Pgn from '../utils/Pgn';
 
 const InviteFriendDialog = () => {
@@ -35,7 +35,12 @@ const InviteFriendDialog = () => {
 
   const handlePlay = (event) => {
     event.preventDefault();
-    // TODO ...
+    if (!state.inviteFriendDialog.code) {
+      dispatch(accept(state.server.ws, event.target.elements.code.value)).then((data) => {
+        // TODO
+        console.log(data);
+      });
+    }
     dispatch(closeInviteFriendDialog());
     dispatch(startBoard({ back: state.board.history.length - 1 }));
   }
@@ -93,6 +98,7 @@ const InviteFriendDialog = () => {
                   Or paste a code if you've got one, and play chess now.
                 </Typography>
                 <TextField
+                  name="code"
                   label="Code"
                   variant="outlined"
                 />

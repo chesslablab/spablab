@@ -4,7 +4,7 @@ const initialState = {
   open: false,
   color: 'rand',
   time: 10,
-  code: ''
+  code: null
 };
 
 const reducer = (state = initialState, action) => {

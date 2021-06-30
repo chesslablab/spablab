@@ -69,3 +69,14 @@ export const playfriend = (ws, color, time) => dispatch => {
     };
   });
 };
+
+export const accept = (ws, id) => dispatch => {
+  return new Promise((resolve, reject) => {
+    ws.send(`/accept "${id}"`);
+    ws.onmessage = (res) => resolve(res.data);
+    ws.onerror = (err) => {
+      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
+      reject(err);
+    };
+  });
+};
