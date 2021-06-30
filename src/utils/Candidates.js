@@ -10,7 +10,6 @@ export default function getCandidates(action, state) {
       return [3];
     case Pgn.symbol.PAWN:
       const candidates = calculatePawnCandidates(action, state);
-      console.log(candidates);
       return candidates;
     case Pgn.symbol.QUEEN:
       return [5];
@@ -22,8 +21,6 @@ export default function getCandidates(action, state) {
 }
 
 function calculatePawnCandidates(action, state) {
-  console.log(action);
-  console.log(state);
   let candidates = [];
   if (state.turn === "w" && action.payload.i === 6) {
     candidates.push((action.payload.i - 1) * 8 + action.payload.j);
