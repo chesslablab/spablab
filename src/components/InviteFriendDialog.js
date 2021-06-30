@@ -12,11 +12,15 @@ const InviteFriendDialog = () => {
   const dispatch = useDispatch();
 
   const inviteFriendDialogInitialState = {
-    color: "random",
+    color: "rand",
     time: 10
   };
 
   const [inviteFriendDialogState, setInviteFriendDialogInitialState] = useState(inviteFriendDialogInitialState);
+
+  const randColor = () => {
+    return Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
+  }
 
   const handleChange = (event) => {
     setInviteFriendDialogInitialState({
@@ -27,18 +31,17 @@ const InviteFriendDialog = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(startBoard({ back: state.board.history.length - 1 }));
-    if (state.server.ws) {
-      dispatch(quit(state.server.ws)).then(() => {
-        dispatch(playfriend(
-          state.server.ws,
-          inviteFriendDialogState.color,
-          inviteFriendDialogState.time)
-        ).then(() => dispatch(closeInviteFriendDialog()));
-      });
+    let color = inviteFriendDialogState.color;
+    if (color === "rand") {
+      color = randColor();
     }
-
-    setInviteFriendDialogInitialState(inviteFriendDialogInitialState);
+    dispatch(quit(state.server.ws)).then(() => {
+      dispatch(playfriend(state.server.ws, color, inviteFriendDialogState.time)).then(() => {
+        setInviteFriendDialogInitialState(inviteFriendDialogInitialState);
+        dispatch(closeInviteFriendDialog());
+        dispatch(startBoard({ back: state.board.history.length - 1 }));
+      });
+    });
   }
 
   return (
@@ -52,13 +55,13 @@ const InviteFriendDialog = () => {
               name="color"
               fullWidth
               required
-              defaultValue="random"
+              defaultValue="rand"
               onChange={handleChange}
             >
               <MenuItem value="" disabled>
                 Select a color
               </MenuItem>
-              <MenuItem key={0} value="random">
+              <MenuItem key={0} value="rand">
                 Random
               </MenuItem>
               <MenuItem key={1} value={Pgn.symbol.WHITE}>
