@@ -1,7 +1,6 @@
 import Pgn from "../utils/Pgn";
 
 export default function getCandidates(action, state) {
-  console.log(action, state);
   switch (action.payload.piece.trim().toUpperCase()) {
     case Pgn.symbol.BISHOP:
       return [1];
@@ -10,14 +9,36 @@ export default function getCandidates(action, state) {
     case Pgn.symbol.KNIGHT:
       return [3];
     case Pgn.symbol.PAWN:
-      return [4];
+      const candidates = calculatePawnCandidates(action, state);
+      console.log(candidates);
+      return candidates;
     case Pgn.symbol.QUEEN:
       return [5];
     case Pgn.symbol.ROOK:
       return [6];
-    case Pgn.symbol.ROOK:
-      return [7];
     default:
       return [];
   }
+}
+
+function calculatePawnCandidates(action, state) {
+  console.log(action);
+  console.log(state);
+  let candidates = [];
+  if (state.turn === "w" && action.payload.i === 6) {
+    candidates.push((action.payload.i - 1) * 8 + action.payload.j);
+    candidates.push((action.payload.i - 2) * 8 + action.payload.j);
+    return candidates;
+  } else if (state.turn === "w" && action.payload.i < 6) {
+    candidates.push((action.payload.i - 1) * 8 + action.payload.j);
+    return candidates;
+  } else if (state.turn === "b" && action.payload.i === 1) {
+    candidates.push((action.payload.i + 1) * 8 + action.payload.j);
+    candidates.push((action.payload.i + 2) * 8 + action.payload.j);
+    return candidates;
+  } else if (state.turn === "b" && action.payload.i > 1) {
+    candidates.push((action.payload.i + 1) * 8 + action.payload.j);
+    return candidates;
+  }
+  return candidates;
 }

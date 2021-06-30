@@ -10,7 +10,7 @@ const initialState = {
   history: [Ascii.board],
   movetext: null,
   flip: Pgn.symbol.WHITE,
-  candidates: [],
+  candidates: new Array(),
 };
 
 const reducer = (state = initialState, action) => {
