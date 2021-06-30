@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { pickPiece, leavePiece } from "../actions/boardActions";
+import { pickPiece, leavePiece, startBoard } from "../actions/boardActions";
+import { analysis, connect } from "../actions/serverActions";
 import Ascii from "../utils/Ascii";
 import Pgn from "../utils/Pgn";
 import Piece from "../utils/Piece";
 
-const Board = () => {
+const Board = ({ props }) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (props.server) {
+      dispatch(connect(props.server.host, props.server.port)).then((ws) => {
+        dispatch(analysis(ws)).then(() => {
+          dispatch(startBoard({ back: state.board.history.length - 1 }));
+        });
+      });
+    }
+  }, [dispatch]);
 
   const board = () => {
     let rows = [];
