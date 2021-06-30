@@ -39,6 +39,12 @@
     inset 3px 0 0 #aed6f1, inset 0 3px 0 #aed6f1;
 }
 
+.candidate {
+  outline: none;
+  box-shadow: inset -3px 0 0 red, inset 0 -3px 0 red, inset 3px 0 0 red,
+    inset 0 3px 0 red;
+}
+
 .square span:hover {
   box-shadow: inset -3px 0 0 #ccccff, inset 0 -3px 0 #ccccff,
     inset 3px 0 0 #ccccff, inset 0 3px 0 #ccccff;
