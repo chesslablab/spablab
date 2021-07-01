@@ -1,7 +1,7 @@
 import boardActionTypes from "../constants/boardActionTypes";
 import Ascii from "../utils/Ascii";
 import Pgn from "../utils/Pgn";
-import getCandidates from "../utils/Candidates";
+import getAllCandidatesSquares from "../utils/CandidateSquares";
 
 const initialState = {
   turn: Pgn.symbol.WHITE,
@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
               action.payload.j
             ],
         },
-        candidates: getCandidates(action, state),
+        candidates: getAllCandidatesSquares(action, state),
       };
     case boardActionTypes.LEAVE_PIECE:
       newAscii[state.picked.i][state.picked.j] = " . ";
