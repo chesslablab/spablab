@@ -1,4 +1,5 @@
 import Pgn from "./Pgn";
+import calculateKingCandidateSquares from "./KingCandidateSquares";
 import calculatePawnCandidateSquares from "./PawnCandidateSquares";
 
 export default function getAllCandidatesSquares(action, state) {
@@ -6,7 +7,7 @@ export default function getAllCandidatesSquares(action, state) {
     case Pgn.symbol.BISHOP:
       return [];
     case Pgn.symbol.KING:
-      return [];
+      return calculateKingCandidateSquares(action, state);
     case Pgn.symbol.KNIGHT:
       return [];
     case Pgn.symbol.PAWN:
