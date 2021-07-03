@@ -163,4 +163,18 @@ describe('toAscii()', () => {
     ];
     expect(Ascii.toAscii(fen)).toEqual(expected);
   });
+  it('is the Closed Sicilian', () => {
+    const fen = 'r1bqk1nr/pp2ppbp/2np2p1/2p5/4P3/2NP2P1/PPP2PBP/R1BQK1NR';
+    const expected = [
+      [ ' r ', ' . ', ' b ', ' q ', ' k ', ' . ', ' n ', ' r ' ],
+      [ ' p ', ' p ', ' . ', ' . ', ' p ', ' p ', ' b ', ' p ' ],
+      [ ' . ', ' . ', ' n ', ' p ', ' . ', ' . ', ' p ', ' . ' ],
+      [ ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' N ', ' P ', ' . ', ' . ', ' P ', ' . ' ],
+      [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' B ', ' P ' ],
+      [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' . ', ' N ', ' R ' ]
+    ];
+    expect(Ascii.toAscii(fen)).toEqual(expected);
+  });
 });
