@@ -59,4 +59,22 @@ export default class Ascii {
 
     return ascii;
   }
+
+  static toAscii = (fen) => {
+    let ascii = [];
+    fen.split('/').forEach((rank, i) => {
+      let row = [];
+      rank.split('').forEach((char, i) => {
+        if (isNaN(char)) {
+          row = row.concat(` ${char} `);
+        } else {
+          let empty = ' . ,'.repeat(parseInt(char)).split(',').filter(Boolean);
+          row = row.concat(empty);
+        }
+      });
+      ascii.push(row);
+    });
+
+    return ascii;
+  }
 }
