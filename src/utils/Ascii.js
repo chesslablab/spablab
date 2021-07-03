@@ -61,20 +61,18 @@ export default class Ascii {
   }
 
   static toAscii = (fen) => {
-    let ascii = [
-      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ]
-    ];
+    let ascii = [];
     fen.split('/').forEach((rank, i) => {
-      rank.split('').forEach((char, j) => {
-        !isNaN(char) ? j += char : ascii[i][j] = ` ${char} `;
+      let row = [];
+      rank.split('').forEach((char, i) => {
+        if (isNaN(char)) {
+          row = row.concat(` ${char} `);
+        } else {
+          let empty = ' . ,'.repeat(parseInt(char)).split(',').filter(Boolean);
+          row = row.concat(empty);
+        }
       });
+      ascii.push(row);
     });
 
     return ascii;
