@@ -72,8 +72,14 @@ const Settings = ({props}) => {
             open={Boolean(anchorElPlayFriend)}
             onClose={handleClosePlayFriend}
           >
-            <MenuItem onClick={() => dispatch(openCreateInvitationDialog())}>Create invitation</MenuItem>
-            <MenuItem onClick={() => dispatch(openEnterCodeDialog())}>Enter code</MenuItem>
+            <MenuItem onClick={() => {
+              dispatch(openCreateInvitationDialog());
+              dispatch(handleClosePlayFriend());
+            }}>Create invitation</MenuItem>
+            <MenuItem onClick={() => {
+              dispatch(openEnterCodeDialog());
+              dispatch(handleClosePlayFriend());
+            }}>Enter code</MenuItem>
           </Menu>
         </div>
       );

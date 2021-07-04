@@ -72,14 +72,16 @@ const CreateInvitationDialog = () => {
             {state.createInvitationDialog.code}
           </Grid>
           <DialogActions>
-            <Button type="submit">
-              Create code
-            </Button>
-            <Button
-              onClick={() => dispatch(closeCreateInvitationDialog())} color="primary"
-            >
-              Cancel
-            </Button>
+            {
+              !state.createInvitationDialog.code
+                ? <Button type="submit">Create code</Button>
+                : null
+            }
+            {
+              state.createInvitationDialog.code
+                ? <Button onClick={() => dispatch(closeCreateInvitationDialog())}>Play</Button>
+                : null
+            }
           </DialogActions>
         </form>
       </DialogContent>
