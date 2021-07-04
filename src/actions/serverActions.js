@@ -58,16 +58,16 @@ export const onPlayfen = (state, data) => dispatch => {
       dispatch({
         type: boardActionTypes.CASTLED_SHORT,
         payload: {
-          turn: state.board.turn,
-          movetext: data.playfen.movetext
+          movetext: data.playfen.movetext,
+          fen: data.playfen.fen
         }
       });
     } else if (data.playfen.legal === Pgn.symbol.CASTLING_LONG) {
       dispatch({
         type: boardActionTypes.CASTLED_LONG,
         payload: {
-          turn: state.board.turn,
-          movetext: data.playfen.movetext
+          movetext: data.playfen.movetext,
+          fen: data.playfen.fen
         }
       });
     } else if (data.playfen.legal === true) {
