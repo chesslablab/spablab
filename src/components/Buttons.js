@@ -44,12 +44,12 @@ const Settings = ({props}) => {
           startIcon={<TuneIcon />}
           style={{textTransform: 'none'}}
           onClick={() => {
-            dispatch(quit(state.server.ws)).then(() => {
-                dispatch(analysis(state.server.ws)).then(() => {
-                    dispatch(startBoard({ back: state.board.history.length - 1 }));
-                  });
+            quit(state).then(() => {
+              analysis(state.server.ws).then(() => {
+                dispatch(startBoard({ back: state.board.history.length - 1 }));
               });
-            }}
+            });
+          }}
         >
           Analysis board
         </Button>
@@ -111,8 +111,8 @@ const Settings = ({props}) => {
                 key={1}
                 onClick={() => {
                   if (props.server) {
-                    dispatch(connect(props.server.host, props.server.port)).then((ws) => {
-                      dispatch(analysis(ws)).then(() => {
+                    dispatch(connect(state, props)).then((ws) => {
+                      analysis(ws).then(() => {
                         dispatch(startBoard({ back: state.board.history.length - 1 }));
                         handleCloseSettings();
                       });

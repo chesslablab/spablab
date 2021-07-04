@@ -1,82 +1,82 @@
+import boardActionTypes from '../constants/boardActionTypes';
 import serverActionTypes from '../constants/serverActionTypes';
+import Pgn from '../utils/Pgn';
 
-export const analysis = (ws) => dispatch => {
+export const connect = (state, props) => dispatch => {
   return new Promise((resolve, reject) => {
-    ws.send('/start analysis');
-    ws.onmessage = (res) => resolve(res.data);
+    const ws = new WebSocket(`ws://${props.server.host}:${props.server.port}`);
+    ws.onmessage = (res) => {
+      // TODO
+      // Sync White with Black in playfriend mode
+      console.log(res.data);
+      const data = JSON.parse(res.data);
+      dispatch(onPlayfen(state, data));
+      resolve(res.data);
+    };
     ws.onerror = (err) => {
       dispatch({ type: serverActionTypes.CONNECTION_ERROR });
       reject(err);
     };
-  });
-};
-
-export const castling = (ws) => dispatch => {
-  return new Promise((resolve, reject) => {
-    ws.send('/castling');
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
-};
-
-export const playfen = (ws, fen) => dispatch => {
-  return new Promise((resolve, reject) => {
-    ws.send(`/playfen "${fen}"`);
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
-};
-
-export const quit = (ws) => dispatch => {
-  return new Promise((resolve, reject) => {
-    ws.send('/quit');
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
-};
-
-export const connect = (host, port) => dispatch => {
-  return new Promise((resolve, reject) => {
-    const ws = new WebSocket(`ws://${host}:${port}`);
     ws.onopen = () => {
       dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
       resolve(ws);
     };
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
   });
 };
 
-export const playfriend = (ws, color, time) => dispatch => {
-  return new Promise((resolve, reject) => {
-    //  TODO: time
-    ws.send(`/start playfriend ${color}`);
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
+export const analysis = async (ws) => {
+  return await ws.send('/start analysis');
 };
 
-export const accept = (ws, id) => dispatch => {
-  return new Promise((resolve, reject) => {
-    ws.send(`/accept "${id}"`);
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
+export const castling = async (state) => {
+  return await state.server.ws.send('/castling');
+};
+
+export const playfen = async (state) => {
+  return await state.server.ws.send(`/playfen "${state.board.fen}"`);
+};
+
+export const quit = async (state) => {
+  return await state.server.ws.send('/quit');
+};
+
+export const playfriend = async (state, color, time) => {
+  return await state.server.ws.send(`/start playfriend ${color}`);
+};
+
+export const accept = async (state, id) => {
+  return await state.server.ws.send(`/accept "${id}"`);
+};
+
+export const onPlayfen = (state, data) => dispatch => {
+  if (data.playfen) {
+    if (data.playfen.legal === false) {
+      dispatch({
+        type: boardActionTypes.UNDO_MOVE
+      });
+    } else if (data.playfen.legal === Pgn.symbol.CASTLING_SHORT) {
+      dispatch({
+        type: boardActionTypes.CASTLED_SHORT,
+        payload: {
+          turn: state.board.turn,
+          movetext: data.playfen.movetext
+        }
+      });
+    } else if (data.playfen.legal === Pgn.symbol.CASTLING_LONG) {
+      dispatch({
+        type: boardActionTypes.CASTLED_LONG,
+        payload: {
+          turn: state.board.turn,
+          movetext: data.playfen.movetext
+        }
+      });
+    } else if (data.playfen.legal === true) {
+      dispatch({
+        type: boardActionTypes.VALID_MOVE,
+        payload: {
+          movetext: data.playfen.movetext
+        }
+      });
+    }
+  }
 };

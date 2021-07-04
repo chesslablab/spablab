@@ -22,7 +22,7 @@ const CreateInvitationDialog = () => {
       color = randColor();
     }
     dispatch(quit(state.server.ws)).then(() => {
-      dispatch(playfriend(state.server.ws, color, event.target.elements.time.value)).then((data) => {
+      dispatch(playfriend(state, color, event.target.elements.time.value)).then((data) => {
         const code = JSON.parse(data).id;
         dispatch(createCode({
           color: color,

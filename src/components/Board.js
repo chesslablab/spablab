@@ -12,8 +12,8 @@ const Board = ({props}) => {
 
   useEffect(() => {
     if (props.server) {
-      dispatch(connect(props.server.host, props.server.port)).then((ws) => {
-        dispatch(analysis(ws)).then(() => {
+      dispatch(connect(state, props)).then((ws) => {
+        analysis(ws).then(() => {
           dispatch(startBoard({ back: state.board.history.length - 1 }));
         });
       });
