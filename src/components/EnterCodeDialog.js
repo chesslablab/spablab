@@ -4,7 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid,
 import { useDispatch, useSelector } from "react-redux";
 import { close as closeEnterCodeDialog } from "../actions/enterCodeDialogActions";
 import { startBoard } from '../actions/boardActions';
-import { accept } from '../actions/serverActions';
+import { accept, quit } from '../actions/serverActions';
 
 const EnterCodeDialog = () => {
   const state = useSelector(state => state);
@@ -13,13 +13,13 @@ const EnterCodeDialog = () => {
   const handlePlay = (event) => {
     event.preventDefault();
     if (!state.createInvitationDialog.code) {
-      dispatch(accept(state.server.ws, event.target.elements.code.value)).then((data) => {
-        // TODO
-        console.log(data);
+      quit(state).then(() => {
+        accept(state, event.target.elements.code.value).then(() => {
+          dispatch(closeEnterCodeDialog());
+          dispatch(startBoard({ back: state.board.history.length - 1 }));
+        });
       });
     }
-    dispatch(closeEnterCodeDialog());
-    dispatch(startBoard({ back: state.board.history.length - 1 }));
   }
 
   return (

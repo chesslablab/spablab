@@ -21,7 +21,11 @@ const CreateInvitationDialog = () => {
     if (color === 'rand') {
       color = randColor();
     }
-    quit(state).then(() => playfriend(state, color, event.target.elements.time.value));
+    quit(state).then(() => {
+      playfriend(state, color, event.target.elements.time.value).then(() => {
+        dispatch(startBoard({ back: state.board.history.length - 1 }));
+      });
+    });
   }
 
   return (
