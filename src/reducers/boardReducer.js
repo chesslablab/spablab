@@ -72,6 +72,7 @@ const reducer = (state = initialState, action) => {
         movetext: action.payload.movetext
       }
     case boardActionTypes.VALID_MOVE:
+      newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       return {
         ...state,
         picked: null,
@@ -84,6 +85,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         flip: newFlip
+      }
+    case boardActionTypes.TOGGLE_TURN:
+      return {
+        ...state,
+        turn: newTurn
       }
     default:
       return state;

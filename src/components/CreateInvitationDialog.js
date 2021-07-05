@@ -30,7 +30,8 @@ const CreateInvitationDialog = () => {
           payload: {
             name: 'playfriend',
             color: color,
-            time: time
+            time: time,
+            created_code: true
           }
         });
         dispatch(startBoard({ back: state.board.history.length - 1 }));

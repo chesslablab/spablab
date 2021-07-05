@@ -1,9 +1,11 @@
 import modeActionTypes from '../constants/modeActionTypes';
+import Pgn from '../utils/Pgn';
 
 const initialState = {
   name: 'analysis',
-  color: null,
-  time: null
+  color: Pgn.symbol.WHITE,
+  time: null,
+  created_code: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +17,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         name: action.payload.name,
         color: action.payload.color,
-        time: action.payload.time
+        time: action.payload.time,
+        created_code: action.payload.created_code
       };
     default:
       return state;

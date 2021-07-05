@@ -10,8 +10,9 @@ export const serverListeners = (data) => dispatch => {
       dispatch(onAccept(data));
       break;
     case '/playfen':
-      console.log(data);
-      // TODO
+      if (data['/playfen'].legal && data['/playfen'].turn !== store.getState().mode.color) {
+        dispatch({ type: boardActionTypes.TOGGLE_TURN });
+      }
       dispatch(onPlayfen(data));
       break;
     case '/start':
@@ -23,13 +24,14 @@ export const serverListeners = (data) => dispatch => {
 };
 
 export const onAccept = (data) => dispatch => {
-  if (!store.getState().mode.color) {
+  if (!store.getState().mode.created_code) {
     dispatch({
       type: modeActionTypes.SET,
       payload: {
         name: 'playfriend',
         color: data['/accept'].color,
-        time: 10 // TODO: data['/accept'].time
+        time: 10, // TODO: data['/accept'].time
+        created_code: false
       }
     });
   }
@@ -60,7 +62,8 @@ export const onPlayfen = (data) => dispatch => {
     dispatch({
       type: boardActionTypes.VALID_MOVE,
       payload: {
-        movetext: data['/playfen'].movetext
+        movetext: data['/playfen'].movetext,
+        fen: data['/playfen'].fen
       }
     });
   }
