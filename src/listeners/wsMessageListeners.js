@@ -10,7 +10,10 @@ export const wsMessageListeners = (data) => dispatch => {
       dispatch(onAccept(data));
       break;
     case '/playfen':
-      if (data['/playfen'].legal && data['/playfen'].turn !== store.getState().mode.color) {
+      if (data['/playfen'].legal &&
+        store.getState().mode.name === 'playfriend' &&
+        store.getState().mode.color !== data['/playfen'].turn
+      ) {
         dispatch({ type: boardActionTypes.TOGGLE_TURN });
       }
       dispatch(onPlayfen(data));
