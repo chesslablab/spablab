@@ -7,8 +7,3 @@ export const close = () => ({
 export const open = () => ({
   type: createInvitationDialogActions.OPEN
 });
-
-export const createCode = (payload) => ({
-  type: createInvitationDialogActions.CREATE_CODE,
-  payload: payload
-});
