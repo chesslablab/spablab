@@ -1,5 +1,6 @@
 import boardActionTypes from '../constants/boardActionTypes';
 import serverActionTypes from '../constants/serverActionTypes';
+import { createCode } from "../actions/createInvitationDialogActions";
 import Pgn from '../utils/Pgn';
 
 export const connect = (state, props) => dispatch => {
@@ -8,9 +9,10 @@ export const connect = (state, props) => dispatch => {
     ws.onmessage = (res) => {
       // TODO
       // Sync White with Black in playfriend mode
-      console.log(res.data);
+      // console.log(res.data);
       const data = JSON.parse(res.data);
       dispatch(onPlayfen(state, data));
+      dispatch(onPlayfriend(state, data));
       resolve(res.data);
     };
     ws.onerror = (err) => {
@@ -79,4 +81,18 @@ export const onPlayfen = (state, data) => dispatch => {
       });
     }
   }
+};
+
+export const onPlayfriend = (state, data) => dispatch => {
+  console.log(data);
+  // TODO
+  /*
+  if (data.id) {
+    dispatch(createCode({
+      color: 'w',
+      time: event.target.elements.time.value,
+      code: 'b'
+    }));
+  }
+  */
 };

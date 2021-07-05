@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuItem,
   TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import { createCode, close as closeCreateInvitationDialog } from "../actions/createInvitationDialogActions";
+import { close as closeCreateInvitationDialog } from "../actions/createInvitationDialogActions";
 import { startBoard } from '../actions/boardActions';
 import { playfriend, quit } from '../actions/serverActions';
 import Pgn from '../utils/Pgn';
@@ -21,16 +21,7 @@ const CreateInvitationDialog = () => {
     if (color === 'rand') {
       color = randColor();
     }
-    dispatch(quit(state.server.ws)).then(() => {
-      dispatch(playfriend(state, color, event.target.elements.time.value)).then((data) => {
-        const code = JSON.parse(data).id;
-        dispatch(createCode({
-          color: color,
-          time: event.target.elements.time.value,
-          code: code
-        }));
-      });
-    });
+    quit(state).then(() => playfriend(state, color, event.target.elements.time.value));
   }
 
   return (

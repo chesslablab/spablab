@@ -74,11 +74,11 @@ const Settings = ({props}) => {
           >
             <MenuItem onClick={() => {
               dispatch(openCreateInvitationDialog());
-              dispatch(handleClosePlayFriend());
+              handleClosePlayFriend();
             }}>Create invitation</MenuItem>
             <MenuItem onClick={() => {
               dispatch(openEnterCodeDialog());
-              dispatch(handleClosePlayFriend());
+              handleClosePlayFriend();
             }}>Enter code</MenuItem>
           </Menu>
         </div>
