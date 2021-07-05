@@ -51,32 +51,32 @@ export const accept = async (state, id) => {
 };
 
 export const onPlayfen = (state, data) => dispatch => {
-  if (data.playfen) {
-    if (data.playfen.legal === false) {
+  if (data['/playfen']) {
+    if (data['/playfen'].legal === false) {
       dispatch({
         type: boardActionTypes.UNDO_MOVE
       });
-    } else if (data.playfen.legal === Pgn.symbol.CASTLING_SHORT) {
+    } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
       dispatch({
         type: boardActionTypes.CASTLED_SHORT,
         payload: {
-          movetext: data.playfen.movetext,
-          fen: data.playfen.fen
+          movetext: data['/playfen'].movetext,
+          fen: data['/playfen'].fen
         }
       });
-    } else if (data.playfen.legal === Pgn.symbol.CASTLING_LONG) {
+    } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_LONG) {
       dispatch({
         type: boardActionTypes.CASTLED_LONG,
         payload: {
-          movetext: data.playfen.movetext,
-          fen: data.playfen.fen
+          movetext: data['/playfen'].movetext,
+          fen: data['/playfen'].fen
         }
       });
-    } else if (data.playfen.legal === true) {
+    } else if (data['/playfen'].legal === true) {
       dispatch({
         type: boardActionTypes.VALID_MOVE,
         payload: {
-          movetext: data.playfen.movetext
+          movetext: data['/playfen'].movetext
         }
       });
     }
