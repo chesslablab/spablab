@@ -15,8 +15,8 @@ const EnterCodeDialog = () => {
     if (!state.createInvitationDialog.code) {
       quit(state).then(() => {
         accept(state, event.target.elements.code.value).then(() => {
-          dispatch(closeEnterCodeDialog());
           dispatch(startBoard({ back: state.board.history.length - 1 }));
+          dispatch(closeEnterCodeDialog());
         });
       });
     }

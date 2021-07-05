@@ -8,6 +8,7 @@ import { open as openCreateInvitationDialog } from '../actions/createInvitationD
 import { open as openEnterCodeDialog } from '../actions/enterCodeDialogActions';
 import { startBoard, flipBoard } from '../actions/boardActions';
 import { analysis, connect, quit } from '../actions/serverActions';
+import modeActionTypes from '../constants/modeActionTypes';
 
 const Settings = ({props}) => {
   const state = useSelector(state => state);
@@ -46,6 +47,7 @@ const Settings = ({props}) => {
           onClick={() => {
             quit(state).then(() => {
               analysis(state.server.ws).then(() => {
+                dispatch({ type: modeActionTypes.RESET });
                 dispatch(startBoard({ back: state.board.history.length - 1 }));
               });
             });

@@ -1,21 +1,38 @@
 import boardActionTypes from '../constants/boardActionTypes';
 import createInvitationDialogActionTypes from '../constants/createInvitationDialogActionTypes';
+import modeActionTypes from '../constants/modeActionTypes';
 import Pgn from '../utils/Pgn';
 
-export const serverListeners = (state, data) => dispatch => {
+export const serverListeners = (data) => dispatch => {
   switch (Object.keys(data)[0]) {
+    case '/accept':
+      dispatch(onAccept(data));
+      break;
     case '/playfen':
-      dispatch(onPlayfen(state, data));
+      console.log(data);
+      // TODO
+      dispatch(onPlayfen(data));
       break;
     case '/start':
-      dispatch(onPlayfriend(state, data));
+      dispatch(onPlayfriend(data));
       break;
     default:
       break;
   }
 };
 
-export const onPlayfen = (state, data) => dispatch => {
+export const onAccept = (data) => dispatch => {
+  dispatch({
+    type: modeActionTypes.SET,
+    payload: {
+      name: 'playfriend',
+      color: data['/accept'].color,
+      time: 10 // TODO: data['/accept'].time
+    }
+  });
+};
+
+export const onPlayfen = (data) => dispatch => {
   if (data['/playfen'].legal === false) {
     dispatch({
       type: boardActionTypes.UNDO_MOVE
@@ -46,7 +63,7 @@ export const onPlayfen = (state, data) => dispatch => {
   }
 };
 
-export const onPlayfriend = (state, data) => dispatch => {
+export const onPlayfriend = (data) => dispatch => {
   dispatch({
     type: createInvitationDialogActionTypes.CREATE_CODE,
     payload: {

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { close as closeCreateInvitationDialog } from "../actions/createInvitationDialogActions";
 import { startBoard } from '../actions/boardActions';
 import { playfriend, quit } from '../actions/serverActions';
+import modeActionTypes from '../constants/modeActionTypes';
 import Pgn from '../utils/Pgn';
 
 const CreateInvitationDialog = () => {
@@ -18,11 +19,20 @@ const CreateInvitationDialog = () => {
   const handleCreateCode = (event) => {
     event.preventDefault();
     let color = event.target.elements.color.value;
+    let time = event.target.elements.time.value;
     if (color === 'rand') {
       color = randColor();
     }
     quit(state).then(() => {
-      playfriend(state, color, event.target.elements.time.value).then(() => {
+      playfriend(state, color, time).then(() => {
+        dispatch({
+          type: modeActionTypes.SET,
+          payload: {
+            name: 'playfriend',
+            color: color,
+            time: time
+          }
+        });
         dispatch(startBoard({ back: state.board.history.length - 1 }));
       });
     });

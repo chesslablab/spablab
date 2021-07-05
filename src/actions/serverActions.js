@@ -1,4 +1,4 @@
-import serverActionTypes from '../constants/serverActionTypes';;
+import serverActionTypes from '../constants/serverActionTypes';
 import { serverListeners } from '../listeners/serverListeners';
 
 export const connect = (state, props) => dispatch => {
@@ -6,7 +6,7 @@ export const connect = (state, props) => dispatch => {
     const ws = new WebSocket(`ws://${props.server.host}:${props.server.port}`);
     ws.onmessage = (res) => {
       console.log(res.data);
-      dispatch(serverListeners(state, JSON.parse(res.data)));
+      dispatch(serverListeners(JSON.parse(res.data)));
       resolve(res.data);
     };
     ws.onerror = (err) => {
