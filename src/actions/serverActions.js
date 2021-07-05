@@ -5,7 +5,6 @@ export const connect = (state, props) => dispatch => {
   return new Promise((resolve, reject) => {
     const ws = new WebSocket(`ws://${props.server.host}:${props.server.port}`);
     ws.onmessage = (res) => {
-      console.log(res.data);
       dispatch(serverListeners(state, JSON.parse(res.data)));
       resolve(res.data);
     };
@@ -40,6 +39,6 @@ export const playfriend = async (state, color, time) => {
   return await state.server.ws.send(`/start playfriend ${color}`);
 };
 
-export const accept = async (state, id) => {
-  return await state.server.ws.send(`/accept "${id}"`);
+export const accept = async (state, hash) => {
+  return await state.server.ws.send(`/accept "${hash}"`);
 };
