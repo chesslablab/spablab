@@ -1,6 +1,7 @@
 import boardActionTypes from '../constants/boardActionTypes';
 import createInvitationDialogActionTypes from '../constants/createInvitationDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import store from '../store';
 import Pgn from '../utils/Pgn';
 
 export const serverListeners = (data) => dispatch => {
@@ -22,14 +23,16 @@ export const serverListeners = (data) => dispatch => {
 };
 
 export const onAccept = (data) => dispatch => {
-  dispatch({
-    type: modeActionTypes.SET,
-    payload: {
-      name: 'playfriend',
-      color: data['/accept'].color,
-      time: 10 // TODO: data['/accept'].time
-    }
-  });
+  if (!store.getState().mode.color) {
+    dispatch({
+      type: modeActionTypes.SET,
+      payload: {
+        name: 'playfriend',
+        color: data['/accept'].color,
+        time: 10 // TODO: data['/accept'].time
+      }
+    });
+  }
 };
 
 export const onPlayfen = (data) => dispatch => {
