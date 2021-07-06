@@ -80,7 +80,7 @@ export default class Ascii {
 
   static toAlgebraic = (i, j) => {
     const file = String.fromCharCode(97 + j);
-    const rank = i + 1;
+    const rank = 8 - i;
 
     return file + rank;
   }
