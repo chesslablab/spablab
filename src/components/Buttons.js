@@ -4,11 +4,12 @@ import TuneIcon from '@material-ui/icons/Tune';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
-import { open as openCreateInvitationDialog } from '../actions/createInvitationDialogActions';
-import { open as openEnterCodeDialog } from '../actions/enterCodeDialogActions';
-import { startBoard, flipBoard } from '../actions/boardActions';
-import { analysis, connect, quit } from '../actions/serverActions';
+import boardActionTypes from '../constants/boardActionTypes';
+import createInvitationDialogActions from '../constants/createInvitationDialogActionTypes';
+import enterCodeDialogActions from '../constants/enterCodeDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import { startBoard } from '../actions/boardActions';
+import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 
 const Settings = ({props}) => {
   const state = useSelector(state => state);
@@ -45,8 +46,8 @@ const Settings = ({props}) => {
           startIcon={<TuneIcon />}
           style={{textTransform: 'none'}}
           onClick={() => {
-            quit(state).then(() => {
-              analysis(state.server.ws).then(() => {
+            wsMssgQuit(state).then(() => {
+              wsMssgStartAnalysis(state.server.ws).then(() => {
                 dispatch({ type: modeActionTypes.RESET });
                 dispatch(startBoard({ back: state.board.history.length - 1 }));
               });
@@ -75,11 +76,11 @@ const Settings = ({props}) => {
             onClose={handleClosePlayFriend}
           >
             <MenuItem onClick={() => {
-              dispatch(openCreateInvitationDialog());
+              dispatch({ type: createInvitationDialogActions.OPEN });
               handleClosePlayFriend();
             }}>Create invitation</MenuItem>
             <MenuItem onClick={() => {
-              dispatch(openEnterCodeDialog());
+              dispatch({ type: enterCodeDialogActions.OPEN });
               handleClosePlayFriend();
             }}>Enter code</MenuItem>
           </Menu>
@@ -102,7 +103,7 @@ const Settings = ({props}) => {
           <MenuItem
             key={0}
             onClick={() => {
-              dispatch(flipBoard());
+              dispatch({ type: boardActionTypes.FLIP });
               handleCloseSettings();
             }}
           >
@@ -113,8 +114,8 @@ const Settings = ({props}) => {
                 key={1}
                 onClick={() => {
                   if (props.server) {
-                    dispatch(connect(state, props)).then((ws) => {
-                      analysis(ws).then(() => {
+                    dispatch(wsConnect(state, props)).then((ws) => {
+                      wsMssgStartAnalysis(ws).then(() => {
                         dispatch(startBoard({ back: state.board.history.length - 1 }));
                         handleCloseSettings();
                       });

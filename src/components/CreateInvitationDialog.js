@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuItem,
   TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import { close as closeCreateInvitationDialog } from "../actions/createInvitationDialogActions";
-import { startBoard } from '../actions/boardActions';
-import { playfriend, quit } from '../actions/serverActions';
+import createInvitationDialogActions from '../constants/createInvitationDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import { startBoard } from '../actions/boardActions';
+import { wsMssgPlayfriend, wsMssgQuit } from '../actions/serverActions';
 import Pgn from '../utils/Pgn';
 
 const CreateInvitationDialog = () => {
@@ -23,8 +23,8 @@ const CreateInvitationDialog = () => {
     if (color === 'rand') {
       color = randColor();
     }
-    quit(state).then(() => {
-      playfriend(state, color, time).then(() => {
+    wsMssgQuit(state).then(() => {
+      wsMssgPlayfriend(state, color, time).then(() => {
         dispatch({
           type: modeActionTypes.SET,
           payload: {
@@ -85,7 +85,7 @@ const CreateInvitationDialog = () => {
             }
             {
               state.createInvitationDialog.code
-                ? <Button onClick={() => dispatch(closeCreateInvitationDialog())}>Play</Button>
+                ? <Button onClick={() => dispatch({ type: createInvitationDialogActions.CLOSE })}>Play</Button>
                 : null
             }
           </DialogActions>

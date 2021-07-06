@@ -24,29 +24,24 @@ const reducer = (state = initialState, action) => {
         picked: {
           i: action.payload.i,
           j: action.payload.j,
+          algebraic: action.payload.algebraic,
           piece: state.history[state.history.length - 1][action.payload.i][action.payload.j]
         }
       };
     case boardActionTypes.LEAVE_PIECE:
-      newAscii[state.picked.i][state.picked.j] = ' . ';
-      newAscii[action.payload.i][action.payload.j] = state.picked.piece;
-      newHistory.push(newAscii);
-      return {
-        ...state,
-        turn: newTurn,
-        picked: null,
-        fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
-        history: newHistory
-      };
-    case boardActionTypes.UNDO_MOVE:
-      newHistory.pop();
-      return {
-        ...state,
-        turn: newTurn,
-        picked: null,
-        fen: null,
-        history: newHistory
-      };
+      if (state.picked.legal_moves.includes(action.payload.algebraic)) {
+        newAscii[state.picked.i][state.picked.j] = ' . ';
+        newAscii[action.payload.i][action.payload.j] = state.picked.piece;
+        newHistory.push(newAscii);
+        return {
+          ...state,
+          turn: newTurn,
+          picked: null,
+          fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
+          history: newHistory
+        };
+      }
+      return state;
     case boardActionTypes.BROWSE_HISTORY:
       return {
         ...state,
@@ -71,15 +66,6 @@ const reducer = (state = initialState, action) => {
         history: newHistory,
         movetext: action.payload.movetext
       }
-    case boardActionTypes.VALID_MOVE:
-      newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
-      return {
-        ...state,
-        picked: null,
-        fen: null,
-        history: newHistory,
-        movetext: action.payload.movetext
-      }
     case boardActionTypes.FLIP:
       const newFlip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       return {
@@ -90,6 +76,22 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         turn: newTurn
+      }
+    case boardActionTypes.LEGAL_MOVES:
+      const newPicked = Object.assign({}, state.picked);
+      newPicked.legal_moves = action.payload.moves;
+      return {
+        ...state,
+        picked: newPicked,
+      }
+    case boardActionTypes.VALID_MOVE:
+      newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
+      return {
+        ...state,
+        picked: null,
+        fen: null,
+        history: newHistory,
+        movetext: action.payload.movetext
       }
     default:
       return state;

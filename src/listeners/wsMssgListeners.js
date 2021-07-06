@@ -4,19 +4,20 @@ import modeActionTypes from '../constants/modeActionTypes';
 import store from '../store';
 import Pgn from '../utils/Pgn';
 
-export const wsMessageListeners = (data) => dispatch => {
+export const wsMssgListeners = (data) => dispatch => {
   switch (Object.keys(data)[0]) {
     case '/accept':
       dispatch(onAccept(data));
       break;
     case '/playfen':
-      if (data['/playfen'].legal &&
-        store.getState().mode.name === 'playfriend' &&
-        store.getState().mode.color !== data['/playfen'].turn
+      if (store.getState().mode.name === 'playfriend' && store.getState().mode.color !== data['/playfen'].turn
       ) {
         dispatch({ type: boardActionTypes.TOGGLE_TURN });
       }
       dispatch(onPlayfen(data));
+      break;
+    case '/piece':
+      dispatch(onPiece(data));
       break;
     case '/start':
       dispatch(onPlayfriend(data));
@@ -40,12 +41,19 @@ export const onAccept = (data) => dispatch => {
   }
 };
 
+export const onPiece = (data) => dispatch => {
+  dispatch({
+    type: boardActionTypes.LEGAL_MOVES,
+    payload: {
+      piece: data['/piece'].identity,
+      position: data['/piece'].position,
+      moves: data['/piece'].moves
+    }
+  });
+};
+
 export const onPlayfen = (data) => dispatch => {
-  if (data['/playfen'].legal === false) {
-    dispatch({
-      type: boardActionTypes.UNDO_MOVE
-    });
-  } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
+  if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
     dispatch({
       type: boardActionTypes.CASTLED_SHORT,
       payload: {

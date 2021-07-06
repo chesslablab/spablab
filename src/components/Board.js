@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { pickPiece, leavePiece, startBoard } from '../actions/boardActions';
-import { analysis, connect } from '../actions/serverActions';
+import boardActionTypes from '../constants/boardActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import { startBoard } from '../actions/boardActions';
+import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -13,8 +14,8 @@ const Board = ({props}) => {
 
   useEffect(() => {
     if (props.server) {
-      dispatch(connect(state, props)).then((ws) => {
-        analysis(ws).then(() => {
+      dispatch(wsConnect(state, props)).then((ws) => {
+        wsMssgStartAnalysis(ws).then(() => {
           dispatch({ type: modeActionTypes.RESET });
           dispatch(startBoard({ back: state.board.history.length - 1 }));
         });
@@ -37,12 +38,25 @@ const Board = ({props}) => {
             ? color = Pgn.symbol.BLACK
             : color = Pgn.symbol.WHITE;
           state.board.flip === Pgn.symbol.WHITE
-            ? payload = {...payload, i: i, j: j}
-            : payload = {...payload, i: 7 - i, j: 7 - j};
+            ? payload = {...payload, i: i, j: j, algebraic: Ascii.toAlgebraic(i, j)}
+            : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.toAlgebraic(7 - i, 7 - j)};
           row.push(<div
               key={k}
               className={['square', color].join(' ')}
-              onClick={() => state.board.picked ? dispatch(leavePiece(payload)) : dispatch(pickPiece(payload))}>
+              onClick={() => {
+                if (state.board.picked) {
+                  dispatch({
+                    type: boardActionTypes.LEAVE_PIECE,
+                    payload: payload
+                  });
+                } else {
+                  dispatch({
+                    type: boardActionTypes.PICK_PIECE,
+                    payload: payload
+                  });
+                  wsMssgPiece(state, payload.algebraic);
+                }
+              }}>
               <span tabindex={k}>
                 {Piece.unicode[piece].char}
               </span>

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid,
   TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import { close as closeEnterCodeDialog } from "../actions/enterCodeDialogActions";
+import enterCodeDialogActions from '../constants/enterCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
-import { accept, quit } from '../actions/serverActions';
+import { wsMssgAccept, wsMssgQuit } from '../actions/serverActions';
 
 const EnterCodeDialog = () => {
   const state = useSelector(state => state);
@@ -13,10 +13,10 @@ const EnterCodeDialog = () => {
   const handlePlay = (event) => {
     event.preventDefault();
     if (!state.createInvitationDialog.code) {
-      quit(state).then(() => {
-        accept(state, event.target.elements.code.value).then(() => {
+      wsMssgQuit(state).then(() => {
+        wsMssgAccept(state, event.target.elements.code.value).then(() => {
           dispatch(startBoard({ back: state.board.history.length - 1 }));
-          dispatch(closeEnterCodeDialog());
+          dispatch({ type: enterCodeDialogActions.CLOSE })
         });
       });
     }
@@ -39,7 +39,7 @@ const EnterCodeDialog = () => {
               Play
             </Button>
             <Button
-              onClick={() => dispatch(closeEnterCodeDialog())} color="primary"
+              onClick={() => dispatch({ type: enterCodeDialogActions.CLOSE })} color="primary"
             >
               Cancel
             </Button>
