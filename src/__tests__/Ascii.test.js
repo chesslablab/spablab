@@ -181,27 +181,15 @@ describe('toAscii()', () => {
 
 describe('toAlgebraic()', () => {
   it('is a a1', () => {
-    const i = 0;
-    const j = 0;
-    const expected = 'a1';
-    expect(Ascii.toAlgebraic(i, j)).toEqual(expected);
+    expect(Ascii.toAlgebraic(0, 0)).toEqual('a1');
   });
   it('is a a2', () => {
-    const i = 0;
-    const j = 1;
-    const expected = 'a2';
-    expect(Ascii.toAlgebraic(i, j)).toEqual(expected);
+    expect(Ascii.toAlgebraic(1, 0)).toEqual('a2');
   });
   it('is a h7', () => {
-    const i = 7;
-    const j = 6;
-    const expected = 'h7';
-    expect(Ascii.toAlgebraic(i, j)).toEqual(expected);
+    expect(Ascii.toAlgebraic(6, 7)).toEqual('h7');
   });
   it('is a h8', () => {
-    const i = 7;
-    const j = 7;
-    const expected = 'h8';
-    expect(Ascii.toAlgebraic(i, j)).toEqual(expected);
+    expect(Ascii.toAlgebraic(7, 7)).toEqual('h8');
   });
 });

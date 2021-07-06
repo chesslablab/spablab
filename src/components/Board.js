@@ -37,8 +37,8 @@ const Board = ({props}) => {
             ? color = Pgn.symbol.BLACK
             : color = Pgn.symbol.WHITE;
           state.board.flip === Pgn.symbol.WHITE
-            ? payload = {...payload, i: i, j: j}
-            : payload = {...payload, i: 7 - i, j: 7 - j};
+            ? payload = {...payload, i: i, j: j, algebraic: Ascii.toAlgebraic(i, j)}
+            : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.toAlgebraic(7 - i, 7 - j)};
           row.push(<div
               key={k}
               className={['square', color].join(' ')}

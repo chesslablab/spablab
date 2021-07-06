@@ -24,6 +24,7 @@ const reducer = (state = initialState, action) => {
         picked: {
           i: action.payload.i,
           j: action.payload.j,
+          algebraic: action.payload.algebraic,
           piece: state.history[state.history.length - 1][action.payload.i][action.payload.j]
         }
       };
