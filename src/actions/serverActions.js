@@ -5,7 +5,6 @@ export const wsConnect = (state, props) => dispatch => {
   return new Promise((resolve, reject) => {
     const ws = new WebSocket(`ws://${props.server.host}:${props.server.port}`);
     ws.onmessage = (res) => {
-      console.log(res.data);
       dispatch(wsMssgListeners(JSON.parse(res.data)));
       resolve(res.data);
     };
