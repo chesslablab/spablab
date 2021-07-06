@@ -5,7 +5,6 @@ import EnterCodeDialog from './EnterCodeDialog';
 import Buttons from './Buttons.js';
 import Board from './Board.js';
 import History from './History';
-import MoveValidator from './MoveValidator.js';
 import '../index.css';
 import store from '../store';
 
@@ -17,7 +16,7 @@ const Chess = ({props}) => {
       <EnterCodeDialog />
       <Board props={props} />
       <History />
-      {props.server ? <MoveValidator /> : null}
+      {store.getState().board.movetext}
     </Provider>
   );
 }

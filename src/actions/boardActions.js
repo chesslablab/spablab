@@ -25,15 +25,6 @@ export const leavePiece = (payload) => ({
   payload: payload
 });
 
-export const validateMove = (state) => dispatch => {
-  if (!state.board.picked && state.board.fen) {
-    dispatch({
-      type: boardActionTypes.VALIDATE_MOVE
-    });
-    return wsMssgPlayfen(state);
-  }
-};
-
 export const flipBoard = () => dispatch => {
   dispatch({
     type: boardActionTypes.FLIP
