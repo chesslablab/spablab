@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { open as openCreateInvitationDialog } from '../actions/createInvitationDialogActions';
 import { open as openEnterCodeDialog } from '../actions/enterCodeDialogActions';
 import { startBoard, flipBoard } from '../actions/boardActions';
-import { wsMssgStartAnalysis, connect, wsMssgQuit } from '../actions/serverActions';
+import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 import modeActionTypes from '../constants/modeActionTypes';
 
 const Settings = ({props}) => {
@@ -113,7 +113,7 @@ const Settings = ({props}) => {
                 key={1}
                 onClick={() => {
                   if (props.server) {
-                    dispatch(connect(state, props)).then((ws) => {
+                    dispatch(wsConnect(state, props)).then((ws) => {
                       wsMssgStartAnalysis(ws).then(() => {
                         dispatch(startBoard({ back: state.board.history.length - 1 }));
                         handleCloseSettings();

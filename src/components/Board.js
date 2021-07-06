@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { pickPiece, leavePiece, startBoard } from '../actions/boardActions';
-import { wsMssgStartAnalysis, connect, wsMssgPiece } from '../actions/serverActions';
+import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import modeActionTypes from '../constants/modeActionTypes';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
@@ -13,7 +13,7 @@ const Board = ({props}) => {
 
   useEffect(() => {
     if (props.server) {
-      dispatch(connect(state, props)).then((ws) => {
+      dispatch(wsConnect(state, props)).then((ws) => {
         wsMssgStartAnalysis(ws).then(() => {
           dispatch({ type: modeActionTypes.RESET });
           dispatch(startBoard({ back: state.board.history.length - 1 }));
