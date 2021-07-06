@@ -5,9 +5,9 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
+import createInvitationDialogActions from '../constants/createInvitationDialogActionTypes';
+import enterCodeDialogActions from '../constants/enterCodeDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import { open as openCreateInvitationDialog } from '../actions/createInvitationDialogActions';
-import { open as openEnterCodeDialog } from '../actions/enterCodeDialogActions';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 
@@ -76,11 +76,11 @@ const Settings = ({props}) => {
             onClose={handleClosePlayFriend}
           >
             <MenuItem onClick={() => {
-              dispatch(openCreateInvitationDialog());
+              dispatch({ type: createInvitationDialogActions.OPEN });
               handleClosePlayFriend();
             }}>Create invitation</MenuItem>
             <MenuItem onClick={() => {
-              dispatch(openEnterCodeDialog());
+              dispatch({ type: enterCodeDialogActions.OPEN });
               handleClosePlayFriend();
             }}>Enter code</MenuItem>
           </Menu>
@@ -103,7 +103,7 @@ const Settings = ({props}) => {
           <MenuItem
             key={0}
             onClick={() => {
-              dispatch({type: boardActionTypes.FLIP});
+              dispatch({ type: boardActionTypes.FLIP });
               handleCloseSettings();
             }}
           >
