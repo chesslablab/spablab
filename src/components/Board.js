@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { pickPiece, leavePiece, startBoard } from '../actions/boardActions';
-import { analysis, connect, wsMessagePiece } from '../actions/serverActions';
+import { wsMssgStartAnalysis, connect, wsMssgPiece } from '../actions/serverActions';
 import modeActionTypes from '../constants/modeActionTypes';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
@@ -14,7 +14,7 @@ const Board = ({props}) => {
   useEffect(() => {
     if (props.server) {
       dispatch(connect(state, props)).then((ws) => {
-        analysis(ws).then(() => {
+        wsMssgStartAnalysis(ws).then(() => {
           dispatch({ type: modeActionTypes.RESET });
           dispatch(startBoard({ back: state.board.history.length - 1 }));
         });
@@ -47,7 +47,7 @@ const Board = ({props}) => {
                   dispatch(leavePiece(payload));
                 } else {
                   dispatch(pickPiece(payload));
-                  wsMessagePiece(state, payload.algebraic);
+                  wsMssgPiece(state, payload.algebraic);
                 }
               }}>
               <span tabindex={k}>

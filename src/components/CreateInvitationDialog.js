@@ -4,7 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuIt
 import { useDispatch, useSelector } from "react-redux";
 import { close as closeCreateInvitationDialog } from "../actions/createInvitationDialogActions";
 import { startBoard } from '../actions/boardActions';
-import { playfriend, quit } from '../actions/serverActions';
+import { wsMssgPlayfriend, wsMssgQuit } from '../actions/serverActions';
 import modeActionTypes from '../constants/modeActionTypes';
 import Pgn from '../utils/Pgn';
 
@@ -23,8 +23,8 @@ const CreateInvitationDialog = () => {
     if (color === 'rand') {
       color = randColor();
     }
-    quit(state).then(() => {
-      playfriend(state, color, time).then(() => {
+    wsMssgQuit(state).then(() => {
+      wsMssgPlayfriend(state, color, time).then(() => {
         dispatch({
           type: modeActionTypes.SET,
           payload: {

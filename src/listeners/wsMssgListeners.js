@@ -4,7 +4,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import store from '../store';
 import Pgn from '../utils/Pgn';
 
-export const wsMessageListeners = (data) => dispatch => {
+export const wsMssgListeners = (data) => dispatch => {
   switch (Object.keys(data)[0]) {
     case '/accept':
       dispatch(onAccept(data));

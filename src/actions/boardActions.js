@@ -1,6 +1,6 @@
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
-import { playfen } from '../actions/serverActions';
+import { wsMssgPlayfen } from '../actions/serverActions';
 
 export const startBoard = (payload) => dispatch => {
   dispatch({
@@ -30,7 +30,7 @@ export const validateMove = (state) => dispatch => {
     dispatch({
       type: boardActionTypes.VALIDATE_MOVE
     });
-    return playfen(state);
+    return wsMssgPlayfen(state);
   }
 };
 
