@@ -84,6 +84,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         picked: newPicked,
       }
+    case boardActionTypes.VALID_MOVE:
+      newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
+      return {
+        ...state,
+        picked: null,
+        fen: null,
+        history: newHistory,
+        movetext: action.payload.movetext
+      }
     default:
       return state;
   }

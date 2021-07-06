@@ -69,6 +69,14 @@ export const onPlayfen = (data) => dispatch => {
         fen: data['/playfen'].fen
       }
     });
+  } else if (data['/playfen'].legal === true) {
+    dispatch({
+      type: boardActionTypes.VALID_MOVE,
+      payload: {
+        movetext: data['/playfen'].movetext,
+        fen: data['/playfen'].fen
+      }
+    });
   }
 };
 

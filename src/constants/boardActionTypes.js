@@ -7,7 +7,8 @@ const boardActionTypes = {
 	CASTLED_SHORT: 'CASTLED_SHORT',
 	CASTLED_LONG: 'CASTLED_LONG',
 	TOGGLE_TURN: 'TOGGLE_TURN',
-	LEGAL_MOVES: 'LEGAL_MOVES'
+	LEGAL_MOVES: 'LEGAL_MOVES',
+	VALID_MOVE: 'VALID_MOVE'
 };
 
 export default boardActionTypes;

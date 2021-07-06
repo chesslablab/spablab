@@ -1,6 +1,5 @@
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
-import { wsMssgPlayfen } from '../actions/serverActions';
 
 export const startBoard = (payload) => dispatch => {
   dispatch({
