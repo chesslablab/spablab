@@ -14,19 +14,3 @@ export const startBoard = (payload) => dispatch => {
     type: boardActionTypes.START
   });
 };
-
-export const pickPiece = (payload) => ({
-  type: boardActionTypes.PICK_PIECE,
-  payload: payload
-});
-
-export const leavePiece = (payload) => ({
-  type: boardActionTypes.LEAVE_PIECE,
-  payload: payload
-});
-
-export const flipBoard = () => dispatch => {
-  dispatch({
-    type: boardActionTypes.FLIP
-  });
-};

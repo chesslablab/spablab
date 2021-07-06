@@ -4,11 +4,12 @@ import TuneIcon from '@material-ui/icons/Tune';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
+import boardActionTypes from '../constants/boardActionTypes';
+import modeActionTypes from '../constants/modeActionTypes';
 import { open as openCreateInvitationDialog } from '../actions/createInvitationDialogActions';
 import { open as openEnterCodeDialog } from '../actions/enterCodeDialogActions';
-import { startBoard, flipBoard } from '../actions/boardActions';
+import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
-import modeActionTypes from '../constants/modeActionTypes';
 
 const Settings = ({props}) => {
   const state = useSelector(state => state);
@@ -102,7 +103,7 @@ const Settings = ({props}) => {
           <MenuItem
             key={0}
             onClick={() => {
-              dispatch(flipBoard());
+              dispatch({type: boardActionTypes.FLIP});
               handleCloseSettings();
             }}
           >

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { pickPiece, leavePiece, startBoard } from '../actions/boardActions';
-import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
+import boardActionTypes from '../constants/boardActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import { startBoard } from '../actions/boardActions';
+import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -44,9 +45,15 @@ const Board = ({props}) => {
               className={['square', color].join(' ')}
               onClick={() => {
                 if (state.board.picked) {
-                  dispatch(leavePiece(payload));
+                  dispatch({
+                    type: boardActionTypes.LEAVE_PIECE,
+                    payload: payload
+                  });
                 } else {
-                  dispatch(pickPiece(payload));
+                  dispatch({
+                    type: boardActionTypes.PICK_PIECE,
+                    payload: payload
+                  });
                   wsMssgPiece(state, payload.algebraic);
                 }
               }}>
