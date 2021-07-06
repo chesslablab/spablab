@@ -178,3 +178,30 @@ describe('toAscii()', () => {
     expect(Ascii.toAscii(fen)).toEqual(expected);
   });
 });
+
+describe('toAlgebraic()', () => {
+  it('is a a1', () => {
+    const i = 0;
+    const j = 0;
+    const expected = 'a1';
+    expect(Ascii.toAlgebraic(i, j)).toEqual(expected);
+  });
+  it('is a a2', () => {
+    const i = 0;
+    const j = 1;
+    const expected = 'a2';
+    expect(Ascii.toAlgebraic(i, j)).toEqual(expected);
+  });
+  it('is a h7', () => {
+    const i = 7;
+    const j = 6;
+    const expected = 'h7';
+    expect(Ascii.toAlgebraic(i, j)).toEqual(expected);
+  });
+  it('is a h8', () => {
+    const i = 7;
+    const j = 7;
+    const expected = 'h8';
+    expect(Ascii.toAlgebraic(i, j)).toEqual(expected);
+  });
+});
