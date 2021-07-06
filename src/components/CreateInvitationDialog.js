@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuItem,
   TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import { createCode, close as closeCreateInvitationDialog } from "../actions/createInvitationDialogActions";
+import { close as closeCreateInvitationDialog } from "../actions/createInvitationDialogActions";
 import { startBoard } from '../actions/boardActions';
 import { playfriend, quit } from '../actions/serverActions';
+import modeActionTypes from '../constants/modeActionTypes';
 import Pgn from '../utils/Pgn';
 
 const CreateInvitationDialog = () => {
@@ -18,17 +19,22 @@ const CreateInvitationDialog = () => {
   const handleCreateCode = (event) => {
     event.preventDefault();
     let color = event.target.elements.color.value;
+    let time = event.target.elements.time.value;
     if (color === 'rand') {
       color = randColor();
     }
-    dispatch(quit(state.server.ws)).then(() => {
-      dispatch(playfriend(state.server.ws, color, event.target.elements.time.value)).then((data) => {
-        const code = JSON.parse(data).id;
-        dispatch(createCode({
-          color: color,
-          time: event.target.elements.time.value,
-          code: code
-        }));
+    quit(state).then(() => {
+      playfriend(state, color, time).then(() => {
+        dispatch({
+          type: modeActionTypes.SET,
+          payload: {
+            name: 'playfriend',
+            color: color,
+            time: time,
+            created_code: true
+          }
+        });
+        dispatch(startBoard({ back: state.board.history.length - 1 }));
       });
     });
   }
@@ -72,14 +78,16 @@ const CreateInvitationDialog = () => {
             {state.createInvitationDialog.code}
           </Grid>
           <DialogActions>
-            <Button type="submit">
-              Create code
-            </Button>
-            <Button
-              onClick={() => dispatch(closeCreateInvitationDialog())} color="primary"
-            >
-              Cancel
-            </Button>
+            {
+              !state.createInvitationDialog.code
+                ? <Button type="submit">Create code</Button>
+                : null
+            }
+            {
+              state.createInvitationDialog.code
+                ? <Button onClick={() => dispatch(closeCreateInvitationDialog())}>Play</Button>
+                : null
+            }
           </DialogActions>
         </form>
       </DialogContent>

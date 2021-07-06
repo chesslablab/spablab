@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { pickPiece, leavePiece, startBoard } from '../actions/boardActions';
 import { analysis, connect } from '../actions/serverActions';
+import modeActionTypes from '../constants/modeActionTypes';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -12,8 +13,9 @@ const Board = ({props}) => {
 
   useEffect(() => {
     if (props.server) {
-      dispatch(connect(props.server.host, props.server.port)).then((ws) => {
-        dispatch(analysis(ws)).then(() => {
+      dispatch(connect(state, props)).then((ws) => {
+        analysis(ws).then(() => {
+          dispatch({ type: modeActionTypes.RESET });
           dispatch(startBoard({ back: state.board.history.length - 1 }));
         });
       });

@@ -8,6 +8,7 @@ import { open as openCreateInvitationDialog } from '../actions/createInvitationD
 import { open as openEnterCodeDialog } from '../actions/enterCodeDialogActions';
 import { startBoard, flipBoard } from '../actions/boardActions';
 import { analysis, connect, quit } from '../actions/serverActions';
+import modeActionTypes from '../constants/modeActionTypes';
 
 const Settings = ({props}) => {
   const state = useSelector(state => state);
@@ -44,12 +45,13 @@ const Settings = ({props}) => {
           startIcon={<TuneIcon />}
           style={{textTransform: 'none'}}
           onClick={() => {
-            dispatch(quit(state.server.ws)).then(() => {
-                dispatch(analysis(state.server.ws)).then(() => {
-                    dispatch(startBoard({ back: state.board.history.length - 1 }));
-                  });
+            quit(state).then(() => {
+              analysis(state.server.ws).then(() => {
+                dispatch({ type: modeActionTypes.RESET });
+                dispatch(startBoard({ back: state.board.history.length - 1 }));
               });
-            }}
+            });
+          }}
         >
           Analysis board
         </Button>
@@ -72,8 +74,14 @@ const Settings = ({props}) => {
             open={Boolean(anchorElPlayFriend)}
             onClose={handleClosePlayFriend}
           >
-            <MenuItem onClick={() => dispatch(openCreateInvitationDialog())}>Create invitation</MenuItem>
-            <MenuItem onClick={() => dispatch(openEnterCodeDialog())}>Enter code</MenuItem>
+            <MenuItem onClick={() => {
+              dispatch(openCreateInvitationDialog());
+              handleClosePlayFriend();
+            }}>Create invitation</MenuItem>
+            <MenuItem onClick={() => {
+              dispatch(openEnterCodeDialog());
+              handleClosePlayFriend();
+            }}>Enter code</MenuItem>
           </Menu>
         </div>
       );
@@ -105,8 +113,8 @@ const Settings = ({props}) => {
                 key={1}
                 onClick={() => {
                   if (props.server) {
-                    dispatch(connect(props.server.host, props.server.port)).then((ws) => {
-                      dispatch(analysis(ws)).then(() => {
+                    dispatch(connect(state, props)).then((ws) => {
+                      analysis(ws).then(() => {
                         dispatch(startBoard({ back: state.board.history.length - 1 }));
                         handleCloseSettings();
                       });

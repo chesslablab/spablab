@@ -1,82 +1,45 @@
 import serverActionTypes from '../constants/serverActionTypes';
+import { wsMessageListeners } from '../listeners/wsMessageListeners';
 
-export const analysis = (ws) => dispatch => {
+export const connect = (state, props) => dispatch => {
   return new Promise((resolve, reject) => {
-    ws.send('/start analysis');
-    ws.onmessage = (res) => resolve(res.data);
+    const ws = new WebSocket(`ws://${props.server.host}:${props.server.port}`);
+    ws.onmessage = (res) => {
+      console.log(res.data);
+      dispatch(wsMessageListeners(JSON.parse(res.data)));
+      resolve(res.data);
+    };
     ws.onerror = (err) => {
       dispatch({ type: serverActionTypes.CONNECTION_ERROR });
       reject(err);
     };
-  });
-};
-
-export const castling = (ws) => dispatch => {
-  return new Promise((resolve, reject) => {
-    ws.send('/castling');
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
-};
-
-export const playfen = (ws, fen) => dispatch => {
-  return new Promise((resolve, reject) => {
-    ws.send(`/playfen "${fen}"`);
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
-};
-
-export const quit = (ws) => dispatch => {
-  return new Promise((resolve, reject) => {
-    ws.send('/quit');
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
-};
-
-export const connect = (host, port) => dispatch => {
-  return new Promise((resolve, reject) => {
-    const ws = new WebSocket(`ws://${host}:${port}`);
     ws.onopen = () => {
       dispatch({ type: serverActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
       resolve(ws);
     };
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
   });
 };
 
-export const playfriend = (ws, color, time) => dispatch => {
-  return new Promise((resolve, reject) => {
-    //  TODO: time
-    ws.send(`/start playfriend ${color}`);
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
+export const analysis = async (ws) => {
+  return await ws.send('/start analysis');
 };
 
-export const accept = (ws, id) => dispatch => {
-  return new Promise((resolve, reject) => {
-    ws.send(`/accept "${id}"`);
-    ws.onmessage = (res) => resolve(res.data);
-    ws.onerror = (err) => {
-      dispatch({ type: serverActionTypes.CONNECTION_ERROR });
-      reject(err);
-    };
-  });
+export const castling = async (state) => {
+  return await state.server.ws.send('/castling');
+};
+
+export const playfen = async (state) => {
+  return await state.server.ws.send(`/playfen "${state.board.fen}"`);
+};
+
+export const quit = async (state) => {
+  return await state.server.ws.send('/quit');
+};
+
+export const playfriend = async (state, color, time) => {
+  return await state.server.ws.send(`/start playfriend ${color}`);
+};
+
+export const accept = async (state, hash) => {
+  return await state.server.ws.send(`/accept ${hash}`);
 };
