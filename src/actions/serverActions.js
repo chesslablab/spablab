@@ -43,3 +43,9 @@ export const playfriend = async (state, color, time) => {
 export const accept = async (state, hash) => {
   return await state.server.ws.send(`/accept ${hash}`);
 };
+
+// TODO:
+// Implement this naming convention in all messages
+export const wsMessagePiece = async (state, algebraic) => {
+  return await state.server.ws.send(`/piece ${algebraic}`);
+};

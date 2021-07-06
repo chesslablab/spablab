@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { pickPiece, leavePiece, startBoard } from '../actions/boardActions';
-import { analysis, connect } from '../actions/serverActions';
+import { analysis, connect, wsMessagePiece } from '../actions/serverActions';
 import modeActionTypes from '../constants/modeActionTypes';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
@@ -42,7 +42,14 @@ const Board = ({props}) => {
           row.push(<div
               key={k}
               className={['square', color].join(' ')}
-              onClick={() => state.board.picked ? dispatch(leavePiece(payload)) : dispatch(pickPiece(payload))}>
+              onClick={() => {
+                if (state.board.picked) {
+                  dispatch(leavePiece(payload));
+                } else {
+                  dispatch(pickPiece(payload));
+                  wsMessagePiece(state, payload.algebraic);
+                }
+              }}>
               <span tabindex={k}>
                 {Piece.unicode[piece].char}
               </span>
