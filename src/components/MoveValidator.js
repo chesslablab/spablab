@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { validateMove } from '../actions/boardActions';
 import { wsMssgPlayfen } from '../actions/serverActions';
 
 const MoveValidator = ({props}) => {
