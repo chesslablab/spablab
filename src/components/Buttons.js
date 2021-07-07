@@ -34,112 +34,77 @@ const Settings = ({props}) => {
     setAnchorElSettings(null);
   };
 
-  const buttons = () => {
-    let items = [];
-    let analysisButton = [];
-    let playFriendButton = [];
-    let settingsButton = [];
-
-    analysisButton.push(
-      <div key={0}>
-        <Button
-          startIcon={<TuneIcon />}
-          style={{textTransform: 'none'}}
+  return (
+    <ButtonGroup variant="text">
+      <Button
+        startIcon={<TuneIcon />}
+        style={{textTransform: 'none'}}
+        onClick={() => {
+          wsMssgQuit(state).then(() => {
+            wsMssgStartAnalysis(state.server.ws).then(() => {
+              dispatch({ type: modeActionTypes.RESET });
+              dispatch(startBoard({ back: state.board.history.length - 1 }));
+            });
+          });
+        }}
+      >
+        Analysis board
+      </Button>
+      <Button
+        startIcon={<GroupAddIcon />}
+        onClick={handleClickPlayFriend}
+        style={{textTransform: 'none'}}
+      >
+        Invite a friend
+      </Button>
+      <Menu
+        anchorEl={anchorElPlayFriend}
+        keepMounted
+        open={Boolean(anchorElPlayFriend)}
+        onClose={handleClosePlayFriend}
+      >
+        <MenuItem onClick={() => {
+          dispatch({ type: createInvitationDialogActions.OPEN });
+          handleClosePlayFriend();
+        }}>Create invitation</MenuItem>
+        <MenuItem onClick={() => {
+          dispatch({ type: enterCodeDialogActions.OPEN });
+          handleClosePlayFriend();
+        }}>Enter code</MenuItem>
+      </Menu>
+      <Button
+        onClick={handleClickSettings}
+        startIcon={<SettingsIcon />}
+      />
+      <Menu
+        anchorEl={anchorElSettings}
+        keepMounted
+        open={Boolean(anchorElSettings)}
+        onClose={handleCloseSettings}
+      >
+        <MenuItem
+          key={0}
           onClick={() => {
-            wsMssgQuit(state).then(() => {
-              wsMssgStartAnalysis(state.server.ws).then(() => {
-                dispatch({ type: modeActionTypes.RESET });
+            dispatch({ type: boardActionTypes.FLIP });
+            handleCloseSettings();
+          }}
+        >
+          Flip board
+        </MenuItem>
+        <MenuItem
+          key={1}
+          onClick={() => {
+            dispatch(wsConnect(state, props)).then((ws) => {
+              wsMssgStartAnalysis(ws).then(() => {
                 dispatch(startBoard({ back: state.board.history.length - 1 }));
+                handleCloseSettings();
               });
             });
           }}
         >
-          Analysis board
-        </Button>
-      </div>
-    );
-
-    if (props.server) {
-      playFriendButton.push(
-        <div key={1}>
-          <Button
-            startIcon={<GroupAddIcon />}
-            onClick={handleClickPlayFriend}
-            style={{textTransform: 'none'}}
-          >
-            Invite a friend
-          </Button>
-          <Menu
-            anchorEl={anchorElPlayFriend}
-            keepMounted
-            open={Boolean(anchorElPlayFriend)}
-            onClose={handleClosePlayFriend}
-          >
-            <MenuItem onClick={() => {
-              dispatch({ type: createInvitationDialogActions.OPEN });
-              handleClosePlayFriend();
-            }}>Create invitation</MenuItem>
-            <MenuItem onClick={() => {
-              dispatch({ type: enterCodeDialogActions.OPEN });
-              handleClosePlayFriend();
-            }}>Enter code</MenuItem>
-          </Menu>
-        </div>
-      );
-    }
-
-    settingsButton.push(
-      <div key={2}>
-        <Button
-          onClick={handleClickSettings}
-          startIcon={<SettingsIcon />}
-        />
-        <Menu
-          anchorEl={anchorElSettings}
-          keepMounted
-          open={Boolean(anchorElSettings)}
-          onClose={handleCloseSettings}
-        >
-          <MenuItem
-            key={0}
-            onClick={() => {
-              dispatch({ type: boardActionTypes.FLIP });
-              handleCloseSettings();
-            }}
-          >
-            Flip board
-          </MenuItem>
-          {props.server
-            ? <MenuItem
-                key={1}
-                onClick={() => {
-                  if (props.server) {
-                    dispatch(wsConnect(state, props)).then((ws) => {
-                      wsMssgStartAnalysis(ws).then(() => {
-                        dispatch(startBoard({ back: state.board.history.length - 1 }));
-                        handleCloseSettings();
-                      });
-                    });
-                  }
-                }}
-              >
-                Connect
-              </MenuItem>
-            : null}
-        </Menu>
-      </div>
-    );
-
-    items.push(analysisButton);
-    items.push(playFriendButton);
-    items.push(settingsButton);
-
-    return items;
-  }
-
-  return (
-    <ButtonGroup variant="text">
-      {buttons()}
+          Connect
+        </MenuItem>
+      </Menu>
     </ButtonGroup>
   );
 }

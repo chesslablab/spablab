@@ -13,14 +13,12 @@ const Board = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (props.server) {
-      dispatch(wsConnect(state, props)).then((ws) => {
-        wsMssgStartAnalysis(ws).then(() => {
-          dispatch({ type: modeActionTypes.RESET });
-          dispatch(startBoard({ back: state.board.history.length - 1 }));
-        });
+    dispatch(wsConnect(state, props)).then((ws) => {
+      wsMssgStartAnalysis(ws).then(() => {
+        dispatch({ type: modeActionTypes.RESET });
+        dispatch(startBoard({ back: state.board.history.length - 1 }));
       });
-    }
+    });
   }, [dispatch]);
 
   const board = () => {
