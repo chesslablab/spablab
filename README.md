@@ -83,6 +83,7 @@ The post [How to Test a Local React NPM Package With Ease](https://javascript.pl
 For further information on developing this awesome npm package, please visit:
 
 - [How to Test a Local React NPM Package With Ease](https://javascript.plainenglish.io/testing-a-local-react-npm-package-with-ease-7d0668676ddb)
+- [TDDing a React App With Jest the Easy Way](https://programarivm.medium.com/tdding-a-react-app-with-jest-the-easy-way-8ddb64aeaba6)
 - [Testing Redux Chess](https://github.com/programarivm/testing-redux-chess)
 - [A React Chessboard with Redux and Hooks in Few Lines](https://medium.com/geekculture/a-react-chessboard-with-redux-and-hooks-in-few-lines-6009cb724bb)
 - [PHP Chess Server](https://github.com/programarivm/chess-server)
