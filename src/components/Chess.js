@@ -17,7 +17,7 @@ const Chess = ({props}) => {
       <EnterCodeDialog />
       <Board props={props} />
       <History />
-      {props.server ? <MoveValidator /> : null}
+      <MoveValidator />
     </Provider>
   );
 }

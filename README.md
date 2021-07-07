@@ -10,22 +10,7 @@ Via npm:
 
 ### Examples
 
-Chessboard without server-side functionality. Check out this [demo](https://programarivm.github.io/demo-redux-chess).
-
-```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Chess } from 'redux-chess';
-
-const props = {};
-
-ReactDOM.render(
-  <Chess props={props} />,
-  document.getElementById('redux-chess')
-);
-```
-
-Chessboard with server-side functionality such as move validation and so on.
+Basic initialization:
 
 ```js
 import React from 'react';
