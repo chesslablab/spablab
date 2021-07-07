@@ -32,15 +32,19 @@ const Board = ({props}) => {
       let row = [];
       rank.forEach((piece, j) => {
           let payload = { piece: piece };
+          let isLegal = '';
           (i + k) % 2 !== 0
             ? color = Pgn.symbol.BLACK
             : color = Pgn.symbol.WHITE;
           state.board.flip === Pgn.symbol.WHITE
             ? payload = {...payload, i: i, j: j, algebraic: Ascii.toAlgebraic(i, j)}
             : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.toAlgebraic(7 - i, 7 - j)};
+          if (state.board.picked && state.board.picked.legal_moves) {
+            state.board.picked.legal_moves.includes(payload.algebraic) ? isLegal = 'is-legal' : isLegal = '';
+          }
           row.push(<div
               key={k}
-              className={['square', color].join(' ')}
+              className={['square', color, payload.algebraic, isLegal].join(' ')}
               onClick={() => {
                 if (state.board.picked) {
                   dispatch({

@@ -28,15 +28,9 @@
   background: transparent;
 }
 
-.square span:focus {
-  outline: none;
-  box-shadow: inset -3px 0 0 #aed6f1, inset 0 -3px 0 #aed6f1,
-    inset 3px 0 0 #aed6f1, inset 0 3px 0 #aed6f1;
-}
-
-.square span:hover {
-  box-shadow: inset -3px 0 0 #ccccff, inset 0 -3px 0 #ccccff,
-    inset 3px 0 0 #ccccff, inset 0 3px 0 #ccccff;
+.is-legal span {
+  box-shadow: inset -5px 0 0 #aed6f1, inset 0 -5px 0 #aed6f1,
+    inset 5px 0 0 #aed6f1, inset 0 5px 0 #aed6f1;
 }
 
 .square.w {
