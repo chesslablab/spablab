@@ -3,7 +3,6 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuIt
   TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import createInvitationDialogActions from '../constants/createInvitationDialogActionTypes';
-import modeActionTypes from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsMssgPlayfriend, wsMssgQuit } from '../actions/serverActions';
 import Pgn from '../utils/Pgn';
@@ -25,15 +24,6 @@ const CreateInvitationDialog = () => {
     }
     wsMssgQuit(state).then(() => {
       wsMssgPlayfriend(state, color, time).then(() => {
-        dispatch({
-          type: modeActionTypes.SET,
-          payload: {
-            name: 'playfriend',
-            color: color,
-            time: time,
-            created_code: true
-          }
-        });
         dispatch(startBoard({ back: state.board.history.length - 1 }));
       });
     });
@@ -75,18 +65,13 @@ const CreateInvitationDialog = () => {
               defaultValue={10}
               inputProps={{ min: "1", max: "60", step: "1" }}
             />
-            {state.createInvitationDialog.code}
+            {state.mode.playfriend.hash}
           </Grid>
           <DialogActions>
             {
-              !state.createInvitationDialog.code
+              !state.mode.playfriend.hash
                 ? <Button type="submit">Create code</Button>
-                : null
-            }
-            {
-              state.createInvitationDialog.code
-                ? <Button onClick={() => dispatch({ type: createInvitationDialogActions.CLOSE })}>Play</Button>
-                : null
+                : <Button onClick={() => dispatch({ type: createInvitationDialogActions.CLOSE })}>Play</Button>
             }
           </DialogActions>
         </form>

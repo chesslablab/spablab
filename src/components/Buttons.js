@@ -39,14 +39,12 @@ const Settings = ({props}) => {
       <Button
         startIcon={<TuneIcon />}
         style={{textTransform: 'none'}}
-        onClick={() => {
-          wsMssgQuit(state).then(() => {
-            wsMssgStartAnalysis(state.server.ws).then(() => {
-              dispatch({ type: modeActionTypes.RESET });
-              dispatch(startBoard({ back: state.board.history.length - 1 }));
-            });
+        onClick={() => wsMssgQuit(state).then(() => {
+          wsMssgStartAnalysis(state.server.ws).then(() => {
+            dispatch({ type: modeActionTypes.RESET });
+            dispatch(startBoard({ back: state.board.history.length - 1 }));
           });
-        }}
+        })}
       >
         Analysis board
       </Button>
@@ -96,6 +94,7 @@ const Settings = ({props}) => {
           onClick={() => {
             dispatch(wsConnect(state, props)).then((ws) => {
               wsMssgStartAnalysis(ws).then(() => {
+                dispatch({ type: modeActionTypes.RESET });
                 dispatch(startBoard({ back: state.board.history.length - 1 }));
                 handleCloseSettings();
               });
