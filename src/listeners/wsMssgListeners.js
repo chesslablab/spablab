@@ -1,43 +1,73 @@
 import boardActionTypes from '../constants/boardActionTypes';
-import createInvitationDialogActionTypes from '../constants/createInvitationDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import modeNames from '../constants/modeNames';
+import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
 
 export const wsMssgListeners = (data) => dispatch => {
-  switch (Object.keys(data)[0]) {
-    case '/accept':
+  const cmd = Object.keys(data)[0];
+  switch (true) {
+    case '/start' === cmd && modeNames.PLAYFRIEND === data['/start'].mode:
+      dispatch(onStartPlayfriend(data));
+      break;
+    case '/accept' === cmd:
       dispatch(onAccept(data));
       break;
-    case '/playfen':
-      if (store.getState().mode.name === 'playfriend' && store.getState().mode.color !== data['/playfen'].turn
-      ) {
-        dispatch({ type: boardActionTypes.TOGGLE_TURN });
+    case '/playfen' === cmd:
+      if (modeNames.PLAYFRIEND === store.getState().mode.current) {
+        if (store.getState().mode.playfriend.color !== data['/playfen'].turn) {
+          dispatch({ type: boardActionTypes.TOGGLE_TURN });
+        }
       }
       dispatch(onPlayfen(data));
       break;
-    case '/piece':
+    case '/piece' === cmd:
       dispatch(onPiece(data));
-      break;
-    case '/start':
-      dispatch(onPlayfriend(data));
       break;
     default:
       break;
   }
 };
 
+export const onStartPlayfriend = (data) => dispatch => {
+  const jwtDecoded = jwt_decode(data['/start'].jwt);
+  dispatch({
+    type: modeActionTypes.SET,
+    payload: {
+      current: modeNames.PLAYFRIEND,
+      playfriend: {
+        jwt: data['/start'].jwt,
+        jwt_decoded: jwtDecoded,
+        hash: data['/start'].hash,
+        color: jwtDecoded.color
+      }
+    }
+  });
+  if (jwtDecoded.color === Pgn.symbol.BLACK) {
+    dispatch({ type: boardActionTypes.FLIP });
+  }
+};
+
 export const onAccept = (data) => dispatch => {
-  if (!store.getState().mode.created_code) {
+  if (!store.getState().mode.playfriend.color) {
+    const jwtDecoded = jwt_decode(data['/accept'].jwt);
+    const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     dispatch({
       type: modeActionTypes.SET,
       payload: {
-        name: 'playfriend',
-        color: data['/accept'].color,
-        time: 10, // TODO: data['/accept'].time
-        created_code: false
+        current: modeNames.PLAYFRIEND,
+        playfriend: {
+          jwt: data['/accept'].jwt,
+          jwt_decoded: jwt_decode(data['/accept'].jwt),
+          hash: data['/accept'].hash,
+          color: color
+        }
       }
     });
+    if (color === Pgn.symbol.BLACK) {
+      dispatch({ type: boardActionTypes.FLIP });
+    }
   }
 };
 
@@ -78,15 +108,4 @@ export const onPlayfen = (data) => dispatch => {
       }
     });
   }
-};
-
-export const onPlayfriend = (data) => dispatch => {
-  dispatch({
-    type: createInvitationDialogActionTypes.CREATE_CODE,
-    payload: {
-      color: data['/start'].color,
-      time: 10, // TODO
-      code: data['/start'].hash
-    }
-  });
 };

@@ -1,11 +1,14 @@
 import modeActionTypes from '../constants/modeActionTypes';
-import Pgn from '../utils/Pgn';
+import modeNames from '../constants/modeNames';
 
 const initialState = {
-  name: 'analysis',
-  color: Pgn.symbol.WHITE,
-  time: null,
-  created_code: false
+  current: modeNames.ANALYSIS,
+  playfriend: {
+    jwt: null,
+    jwt_decoded: null,
+    hash: null,
+    color: null
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,10 +18,8 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.SET:
       return {
         ...state,
-        name: action.payload.name,
-        color: action.payload.color,
-        time: action.payload.time,
-        created_code: action.payload.created_code
+        current: action.payload.current,
+        playfriend: action.payload.playfriend
       };
     default:
       return state;

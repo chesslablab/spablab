@@ -1,10 +1,7 @@
 import createInvitationDialogActionTypes from '../constants/createInvitationDialogActionTypes';
 
 const initialState = {
-  open: false,
-  color: 'rand',
-  time: 10,
-  code: null
+  open: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,13 +15,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...initialState,
         open: true,
-      };
-    case createInvitationDialogActionTypes.CREATE_CODE:
-      return {
-        ...state,
-        color: action.payload.color,
-        time: action.payload.time,
-        code: action.payload.code,
       };
     default:
       return state;
