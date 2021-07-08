@@ -40,7 +40,6 @@ export const onStartPlayfriend = (data) => dispatch => {
         jwt: data['/start'].jwt,
         jwt_decoded: jwtDecoded,
         hash: data['/start'].hash,
-        created_code: true,
         color: jwtDecoded.color
       }
     }
@@ -48,7 +47,7 @@ export const onStartPlayfriend = (data) => dispatch => {
 };
 
 export const onAccept = (data) => dispatch => {
-  if (!store.getState().mode.playfriend.created_code) {
+  if (!store.getState().mode.playfriend.color) {
     const jwtDecoded = jwt_decode(data['/accept'].jwt);
     dispatch({
       type: modeActionTypes.SET,
@@ -58,7 +57,6 @@ export const onAccept = (data) => dispatch => {
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
           hash: data['/accept'].hash,
-          created_code: false,
           color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE
         }
       }

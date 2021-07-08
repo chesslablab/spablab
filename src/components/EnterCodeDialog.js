@@ -12,7 +12,7 @@ const EnterCodeDialog = () => {
 
   const handlePlay = (event) => {
     event.preventDefault();
-    if (!state.mode.playfriend.created_code) {
+    if (!state.mode.playfriend.color) {
       wsMssgQuit(state).then(() => {
         wsMssgAccept(state, event.target.elements.hash.value).then(() => {
           dispatch(startBoard({ back: state.board.history.length - 1 }));

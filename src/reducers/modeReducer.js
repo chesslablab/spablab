@@ -7,7 +7,6 @@ const initialState = {
     jwt: null,
     jwt_decoded: null,
     hash: null,
-    created_code: false,
     color: null
   }
 };
