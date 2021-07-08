@@ -44,11 +44,15 @@ export const onStartPlayfriend = (data) => dispatch => {
       }
     }
   });
+  if (jwtDecoded.color === Pgn.symbol.BLACK) {
+    dispatch({ type: boardActionTypes.FLIP });
+  }
 };
 
 export const onAccept = (data) => dispatch => {
   if (!store.getState().mode.playfriend.color) {
     const jwtDecoded = jwt_decode(data['/accept'].jwt);
+    const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     dispatch({
       type: modeActionTypes.SET,
       payload: {
@@ -57,10 +61,13 @@ export const onAccept = (data) => dispatch => {
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
           hash: data['/accept'].hash,
-          color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE
+          color: color
         }
       }
     });
+    if (color === Pgn.symbol.BLACK) {
+      dispatch({ type: boardActionTypes.FLIP });
+    }
   }
 };
 
