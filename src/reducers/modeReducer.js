@@ -5,6 +5,7 @@ const initialState = {
   current: modeNames.ANALYSIS,
   playfriend: {
     jwt: null,
+    jwt_decoded: null,
     hash: null,
     created_code: false
   }

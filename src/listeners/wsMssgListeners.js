@@ -1,6 +1,7 @@
 import boardActionTypes from '../constants/boardActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
+import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
 
@@ -14,7 +15,7 @@ export const wsMssgListeners = (data) => dispatch => {
       dispatch(onAccept(data));
       break;
     case '/playfen' === cmd:
-      if (store.getState().mode.name === 'playfriend' && store.getState().mode.color !== data['/playfen'].turn
+      if (store.getState().mode.name === 'playfriend' && store.getState().mode.playfriend.jwt_decoded.color !== data['/playfen'].turn
       ) {
         dispatch({ type: boardActionTypes.TOGGLE_TURN });
       }
@@ -35,6 +36,7 @@ export const onStartPlayfriend = (data) => dispatch => {
       current: modeNames.PLAYFRIEND,
       playfriend: {
         jwt: data['/start'].jwt,
+        jwt_decoded: jwt_decode(data['/start'].jwt),
         hash: data['/start'].hash,
         created_code: true
       }
@@ -50,6 +52,7 @@ export const onAccept = (data) => dispatch => {
         current: modeNames.PLAYFRIEND,
         playfriend: {
           jwt: data['/accept'].jwt,
+          jwt_decoded: jwt_decode(data['/accept'].jwt),
           hash: data['/accept'].hash,
           created_code: false
         }
