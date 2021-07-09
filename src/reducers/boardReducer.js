@@ -29,7 +29,12 @@ const reducer = (state = initialState, action) => {
         }
       };
     case boardActionTypes.LEAVE_PIECE:
-      if (state.picked.legal_moves.includes(action.payload.algebraic)) {
+      if (state.picked.algebraic === action.payload.algebraic) {
+        return {
+          ...state,
+          picked: null
+        };
+      } else if (state.picked.legal_moves.includes(action.payload.algebraic)) {
         newAscii[state.picked.i][state.picked.j] = ' . ';
         newAscii[action.payload.i][action.payload.j] = state.picked.piece;
         newHistory.push(newAscii);
