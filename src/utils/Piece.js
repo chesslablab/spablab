@@ -1,3 +1,5 @@
+import Pgn from './Pgn.js';
+
 export default class Piece {
   static unicode = {
     ' R ': {
@@ -40,4 +42,18 @@ export default class Piece {
       char: ''
     }
   };
+
+  static color = (piece) => {
+    const pieces = {
+      'w': [' R ', ' N ', ' B ', ' Q ', ' K ', ' P '],
+      'b': [' r ', ' n ', ' b ', ' q ', ' k ', ' p ']
+    };
+    if (pieces[Pgn.symbol.WHITE].includes(piece)) {
+      return Pgn.symbol.WHITE;
+    } else if (pieces[Pgn.symbol.BLACK].includes(piece)) {
+      return Pgn.symbol.BLACK;
+    }
+
+    return null;
+  }
 }

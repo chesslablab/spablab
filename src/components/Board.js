@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import modeNames from '../constants/modeNames';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import Ascii from '../utils/Ascii';
@@ -52,11 +53,23 @@ const Board = ({props}) => {
                     payload: payload
                   });
                 } else {
-                  dispatch({
-                    type: boardActionTypes.PICK_PIECE,
-                    payload: payload
-                  });
-                  wsMssgPiece(state, payload.algebraic);
+                  if (modeNames.ANALYSIS === state.mode.current) {
+                    dispatch({
+                      type: boardActionTypes.PICK_PIECE,
+                      payload: payload
+                    });
+                    wsMssgPiece(state, payload.algebraic);
+                  } else if (modeNames.PLAYFRIEND === state.mode.current) {
+                    if (state.mode.playfriend.color === state.board.turn) {
+                      if (state.mode.playfriend.color === Piece.color(payload.piece)) {
+                        dispatch({
+                          type: boardActionTypes.PICK_PIECE,
+                          payload: payload
+                        });
+                        wsMssgPiece(state, payload.algebraic);
+                      }
+                    }
+                  }
                 }
               }}>
               <span tabindex={k}>
