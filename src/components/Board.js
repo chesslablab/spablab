@@ -47,26 +47,28 @@ const Board = ({props}) => {
               key={k}
               className={['square', color, payload.algebraic, isLegal].join(' ')}
               onClick={() => {
-                if (state.board.picked) {
-                  dispatch({
-                    type: boardActionTypes.LEAVE_PIECE,
-                    payload: payload
-                  });
-                } else {
-                  if (modeNames.ANALYSIS === state.mode.current) {
+                if (state.history.back === 0) {
+                  if (state.board.picked) {
                     dispatch({
-                      type: boardActionTypes.PICK_PIECE,
+                      type: boardActionTypes.LEAVE_PIECE,
                       payload: payload
                     });
-                    wsMssgPiece(state, payload.algebraic);
-                  } else if (modeNames.PLAYFRIEND === state.mode.current) {
-                    if (state.mode.playfriend.color === state.board.turn) {
-                      if (state.mode.playfriend.color === Piece.color(payload.piece)) {
-                        dispatch({
-                          type: boardActionTypes.PICK_PIECE,
-                          payload: payload
-                        });
-                        wsMssgPiece(state, payload.algebraic);
+                  } else {
+                    if (modeNames.ANALYSIS === state.mode.current) {
+                      dispatch({
+                        type: boardActionTypes.PICK_PIECE,
+                        payload: payload
+                      });
+                      wsMssgPiece(state, payload.algebraic);
+                    } else if (modeNames.PLAYFRIEND === state.mode.current) {
+                      if (state.mode.playfriend.color === state.board.turn) {
+                        if (state.mode.playfriend.color === Piece.color(payload.piece)) {
+                          dispatch({
+                            type: boardActionTypes.PICK_PIECE,
+                            payload: payload
+                          });
+                          wsMssgPiece(state, payload.algebraic);
+                        }
                       }
                     }
                   }

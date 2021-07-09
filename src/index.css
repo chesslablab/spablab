@@ -41,8 +41,8 @@
   background-color: #a9a9a9;
 }
 
-.board.past .square span:hover {
-  cursor: not-allowed;
+.board.past {
+  opacity: 0.8;
 }
 
 @media (max-width: 1024px) {
