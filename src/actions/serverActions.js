@@ -32,7 +32,7 @@ export const wsMssgQuit = async (state) => {
 };
 
 export const wsMssgPlayfriend = async (state, color, time) => {
-  return await state.server.ws.send(`/start playfriend ${color}`);
+  return await state.server.ws.send(`/start playfriend ${color} ${time}`);
 };
 
 export const wsMssgAccept = async (state, hash) => {
