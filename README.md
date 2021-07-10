@@ -53,11 +53,11 @@ Commands available:
 /history The current game's history.
 /ischeck Finds out if the game is in check.
 /ismate Finds out if the game is over.
-/piece {"position":"square"} Gets a piece by its position on the board. The "position" parameter is mandatory.
-/pieces {"color":["w","b"]} Gets the pieces on the board by color. The "color" parameter is mandatory.
-/playfen {"fen":"FEN"} Plays a chess move in shortened FEN format. The "fen" parameter is mandatory.
+/piece {"position":"string"} Gets a piece by its position on the board.
+/pieces {"color":["w","b"]} Gets the pieces on the board by color.
+/playfen {"fen":"string"} Plays a chess move in shortened FEN format.
 /quit Quits a game.
-/start {"mode":["analysis","playfriend"],"color":["w","b"]} Starts a new game. The "color" parameter is not required in analysis mode.
+/start {"mode":["analysis","playfriend"],"color":["w","b"],"min":"int"} Starts a new game.
 /status The current game status.
 
 Listening to commands...
