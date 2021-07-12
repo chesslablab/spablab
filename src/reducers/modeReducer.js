@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case modeActionTypes.RESET:
       return initialState;
-    case modeActionTypes.SET:
+    case modeActionTypes.SET_PLAYFRIEND:
       return {
         ...state,
         current: action.payload.current,
