@@ -40,7 +40,8 @@ export const onStartPlayfriend = (data) => dispatch => {
         jwt: data['/start'].jwt,
         jwt_decoded: jwtDecoded,
         hash: data['/start'].hash,
-        color: jwtDecoded.color
+        color: jwtDecoded.color,
+        accepted: false
       }
     }
   });
@@ -69,6 +70,7 @@ export const onAccept = (data) => dispatch => {
       dispatch({ type: boardActionTypes.FLIP });
     }
   }
+  dispatch({ type: modeActionTypes.ACCEPT_PLAYFRIEND });
 };
 
 export const onPiece = (data) => dispatch => {
