@@ -98,7 +98,7 @@ const Board = ({props}) => {
       <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
         {board()}
       </div>
-      {state.mode.current === modeNames.PLAYFRIEND ? <Timer expiryTimestamp={time} /> : null}
+      {state.mode.playfriend.accepted ? <Timer expiryTimestamp={time} /> : null}
     </div>
   );
 }

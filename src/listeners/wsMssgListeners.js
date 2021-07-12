@@ -33,14 +33,15 @@ export const wsMssgListeners = (data) => dispatch => {
 export const onStartPlayfriend = (data) => dispatch => {
   const jwtDecoded = jwt_decode(data['/start'].jwt);
   dispatch({
-    type: modeActionTypes.SET,
+    type: modeActionTypes.SET_PLAYFRIEND,
     payload: {
       current: modeNames.PLAYFRIEND,
       playfriend: {
         jwt: data['/start'].jwt,
         jwt_decoded: jwtDecoded,
         hash: data['/start'].hash,
-        color: jwtDecoded.color
+        color: jwtDecoded.color,
+        accepted: false
       }
     }
   });
@@ -54,7 +55,7 @@ export const onAccept = (data) => dispatch => {
     const jwtDecoded = jwt_decode(data['/accept'].jwt);
     const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     dispatch({
-      type: modeActionTypes.SET,
+      type: modeActionTypes.SET_PLAYFRIEND,
       payload: {
         current: modeNames.PLAYFRIEND,
         playfriend: {
@@ -69,6 +70,7 @@ export const onAccept = (data) => dispatch => {
       dispatch({ type: boardActionTypes.FLIP });
     }
   }
+  dispatch({ type: modeActionTypes.ACCEPT_PLAYFRIEND });
 };
 
 export const onPiece = (data) => dispatch => {
