@@ -45,6 +45,10 @@
   opacity: 0.8;
 }
 
+.timer {
+  font-size: 2em;
+}
+
 @media (max-width: 1024px) {
   .square {
     font-size: 9vw;
