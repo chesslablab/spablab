@@ -5,7 +5,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
-import Timer from './Timer.js';
+import Timers from './Timers';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -88,17 +88,12 @@ const Board = ({props}) => {
     return rows;
   }
 
-  const time = new Date();
-  if (state.mode.current === modeNames.PLAYFRIEND) {
-    time.setSeconds(time.getSeconds() + parseInt(state.mode.playfriend.jwt_decoded.min) * 60);
-  }
-
   return (
     <div>
+      <Timers />
       <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
         {board()}
       </div>
-      {state.mode.playfriend.accepted ? <Timer expiryTimestamp={time} /> : null}
     </div>
   );
 }
