@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 
 const TimerWhite = () => {
   const state = useSelector(state => state);
-  const expiryTimestamp = state.mode.playfriend.time;
+  const expiryTimestamp = state.mode.playfriend.timer.w;
 
   const {
     seconds,

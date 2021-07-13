@@ -9,7 +9,11 @@ const initialState = {
     hash: null,
     color: null,
     accepted: false,
-    time: null
+    timer: {
+      start: null,
+      w: null,
+      b: null
+    }
   }
 };
 
@@ -26,8 +30,13 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.ACCEPT_PLAYFRIEND:
       let newPlayfriend = Object.assign({}, state.playfriend);
       const time = new Date();
+      time.setSeconds(time.getSeconds() + parseInt(newPlayfriend.jwt_decoded.min) * 60);
       newPlayfriend.accepted = true;
-      newPlayfriend.time = time.setSeconds(time.getSeconds() + parseInt(newPlayfriend.jwt_decoded.min) * 60);
+      newPlayfriend.timer = {
+        start: time,
+        w: time,
+        b: time
+      };
       return {
         ...state,
         playfriend: newPlayfriend
