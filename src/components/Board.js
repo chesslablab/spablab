@@ -6,6 +6,7 @@ import modeNames from '../constants/modeNames';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import WhiteTimer from './WhiteTimer.js';
+import TimerBlack from './TimerBlack.js';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -99,6 +100,7 @@ const Board = ({props}) => {
         {board()}
       </div>
       {state.mode.playfriend.accepted ? <WhiteTimer expiryTimestamp={time} /> : null}
+      {state.mode.playfriend.accepted ? <TimerBlack expiryTimestamp={time} /> : null}
     </div>
   );
 }
