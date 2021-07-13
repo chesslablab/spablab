@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
 
-const Timer = ({ expiryTimestamp }) => {
+const WhiteTimer = ({ expiryTimestamp }) => {
   const state = useSelector(state => state);
 
   const {
@@ -23,4 +23,4 @@ const Timer = ({ expiryTimestamp }) => {
   );
 }
 
-export default Timer;
+export default WhiteTimer;

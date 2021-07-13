@@ -5,7 +5,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
-import Timer from './Timer.js';
+import WhiteTimer from './WhiteTimer.js';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -98,7 +98,7 @@ const Board = ({props}) => {
       <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
         {board()}
       </div>
-      {state.mode.playfriend.accepted ? <Timer expiryTimestamp={time} /> : null}
+      {state.mode.playfriend.accepted ? <WhiteTimer expiryTimestamp={time} /> : null}
     </div>
   );
 }
