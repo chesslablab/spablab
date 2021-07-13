@@ -12,11 +12,11 @@ const TimerBlack = () => {
     seconds,
     minutes,
     pause,
-    start,
+    resume,
   } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
 
   useEffect(() => {
-    state.board.turn !== state.mode.playfriend.color ? pause() : start();
+    state.board.turn !== state.mode.playfriend.color ? resume() : pause();
   }, [state.board.turn]);
 
   return (
