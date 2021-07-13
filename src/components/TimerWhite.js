@@ -18,7 +18,7 @@ const TimerWhite = () => {
   }, [state.board.turn]);
 
   return (
-    <div className="timer">
+    <div className="timer-white">
       <span>{minutes}</span>:<span>{seconds}</span>
     </div>
   );

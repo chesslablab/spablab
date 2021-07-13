@@ -90,10 +90,10 @@ const Board = ({props}) => {
 
   return (
     <div>
+      <Timers />
       <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
         {board()}
       </div>
-      <Timers />
     </div>
   );
 }

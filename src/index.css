@@ -45,8 +45,13 @@
   opacity: 0.8;
 }
 
-.timer {
-  font-size: 2em;
+.timers {
+  font-size: 1.5em;
+}
+
+.timer-white {
+  float: left;
+  margin-right: 1em;
 }
 
 @media (max-width: 1024px) {

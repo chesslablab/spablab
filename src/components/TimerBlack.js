@@ -18,7 +18,7 @@ const TimerBlack = () => {
   }, [state.board.turn]);
 
   return (
-    <div className="timer">
+    <div className="timer-black">
       <span>{minutes}</span>:<span>{seconds}</span>
     </div>
   );
