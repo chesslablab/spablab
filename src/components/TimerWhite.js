@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
 
-const TimerWhite = ({ expiryTimestamp }) => {
+const TimerWhite = () => {
   const state = useSelector(state => state);
+
+  const expiryTimestamp = new Date();
+  expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(state.mode.playfriend.jwt_decoded.min) * 60);
 
   const {
     seconds,

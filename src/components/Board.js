@@ -89,18 +89,13 @@ const Board = ({props}) => {
     return rows;
   }
 
-  const time = new Date();
-  if (state.mode.current === modeNames.PLAYFRIEND) {
-    time.setSeconds(time.getSeconds() + parseInt(state.mode.playfriend.jwt_decoded.min) * 60);
-  }
-
   return (
     <div>
       <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
         {board()}
       </div>
-      {state.mode.playfriend.accepted ? <TimerWhite expiryTimestamp={time} /> : null}
-      {state.mode.playfriend.accepted ? <TimerBlack expiryTimestamp={time} /> : null}
+      {state.mode.playfriend.accepted ? <TimerWhite /> : null}
+      {state.mode.playfriend.accepted ? <TimerBlack /> : null}
     </div>
   );
 }
