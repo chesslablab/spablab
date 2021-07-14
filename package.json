@@ -41,6 +41,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.4",
     "@material-ui/utils": "^4.11.2",
+    "@material-ui/system": "^4.12.1",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
