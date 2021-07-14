@@ -44,9 +44,9 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
+    "react-timer-hook": "^3.0.4",
     "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0",
-    "react-timer-hook": "^3.0.4"
+    "redux-thunk": "^2.3.0"
   },
   "repository": {
     "type": "git",
@@ -56,6 +56,8 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1"
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-17-updated": "^1.0.2"
   }
 }
