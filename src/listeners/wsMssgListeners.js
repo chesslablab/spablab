@@ -85,34 +85,39 @@ export const onPiece = (data) => dispatch => {
 };
 
 export const onPlayfen = (data) => dispatch => {
-  const payload = {
-    movetext: data['/playfen'].movetext,
-    fen: data['/playfen'].fen
-  };
   if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
     dispatch({
       type: boardActionTypes.CASTLED_SHORT,
-      payload: payload
+      payload: {
+        movetext: data['/playfen'].movetext,
+        fen: data['/playfen'].fen
+      }
     });
   } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_LONG) {
     dispatch({
       type: boardActionTypes.CASTLED_LONG,
-      payload: payload
+      payload: {
+        movetext: data['/playfen'].movetext,
+        fen: data['/playfen'].fen
+      }
     });
   } else if (data['/playfen'].legal === true) {
     dispatch({
       type: boardActionTypes.VALID_MOVE,
-      payload: payload
+      payload: {
+        movetext: data['/playfen'].movetext,
+        fen: data['/playfen'].fen
+      }
     });
   }
-  const isLegal = data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT ||
-    data['/playfen'].legal === Pgn.symbol.CASTLING_LONG ||
-    data['/playfen'].legal === true;
-  if (isLegal) {
+
+  if (store.getState().mode.current === modeNames.PLAYFRIEND) {
     if (store.getState().mode.playfriend.color !== data['/playfen'].turn) {
       dispatch({
         type: boardActionTypes.PLAYFRIEND_MOVE,
-        payload: payload
+        payload: {
+          fen: data['/playfen'].fen
+        }
       });
     }
   }
