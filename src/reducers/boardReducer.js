@@ -77,11 +77,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         flip: newFlip
       }
-    case boardActionTypes.TOGGLE_TURN:
-      return {
-        ...state,
-        turn: newTurn
-      }
     case boardActionTypes.LEGAL_MOVES:
       const newPicked = Object.assign({}, state.picked);
       newPicked.legal_moves = action.payload.moves;
@@ -102,6 +97,7 @@ const reducer = (state = initialState, action) => {
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
       return {
         ...state,
+        turn: newTurn,
         history: newHistory
       }
     default:
