@@ -15,15 +15,22 @@ export const wsMssgListeners = (data) => dispatch => {
       dispatch(onAccept(data));
       break;
     case '/playfen' === cmd:
-      if (modeNames.PLAYFRIEND === store.getState().mode.current) {
+      if (store.getState().mode.current === modeNames.PLAYFRIEND) {
         if (store.getState().mode.playfriend.color !== data['/playfen'].turn) {
-          dispatch({ type: boardActionTypes.TOGGLE_TURN });
+          dispatch({
+            type: boardActionTypes.PLAYFRIEND_MOVE,
+            payload: {
+              fen: data['/playfen'].fen
+            }
+          });
         }
       }
       dispatch(onPlayfen(data));
       break;
     case '/piece' === cmd:
-      dispatch(onPiece(data));
+      if (data['/piece']) {
+        dispatch(onPiece(data));
+      }
       break;
     default:
       break;
