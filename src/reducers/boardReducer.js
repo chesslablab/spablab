@@ -87,7 +87,7 @@ const reducer = (state = initialState, action) => {
       newPicked.legal_moves = action.payload.moves;
       return {
         ...state,
-        picked: newPicked,
+        picked: newPicked
       }
     case boardActionTypes.VALID_MOVE:
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
@@ -97,6 +97,12 @@ const reducer = (state = initialState, action) => {
         fen: null,
         history: newHistory,
         movetext: action.payload.movetext
+      }
+    case boardActionTypes.PLAYFRIEND_MOVE:
+      newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
+      return {
+        ...state,
+        history: newHistory
       }
     default:
       return state;
