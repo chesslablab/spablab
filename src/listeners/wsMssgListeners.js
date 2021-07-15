@@ -28,7 +28,9 @@ export const wsMssgListeners = (data) => dispatch => {
       dispatch(onPlayfen(data));
       break;
     case '/piece' === cmd:
-      dispatch(onPiece(data));
+      if (data['/piece']) {
+        dispatch(onPiece(data));
+      }
       break;
     default:
       break;

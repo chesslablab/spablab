@@ -29,7 +29,12 @@ const reducer = (state = initialState, action) => {
         }
       };
     case boardActionTypes.LEAVE_PIECE:
-      if (state.picked.algebraic === action.payload.algebraic) {
+      if (state.picked.piece === ' . ') {
+        return {
+          ...state,
+          picked: null
+        };
+      } else if (state.picked.algebraic === action.payload.algebraic) {
         return {
           ...state,
           picked: null
