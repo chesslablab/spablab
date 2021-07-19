@@ -56,14 +56,16 @@ const Board = ({props}) => {
                     });
                   } else {
                     if (modeNames.ANALYSIS === state.mode.current) {
-                      dispatch({
-                        type: boardActionTypes.PICK_PIECE,
-                        payload: payload
-                      });
-                      wsMssgPiece(state, payload.algebraic);
+                      if (state.board.turn === Piece.color(payload.piece)) {
+                        dispatch({
+                          type: boardActionTypes.PICK_PIECE,
+                          payload: payload
+                        });
+                        wsMssgPiece(state, payload.algebraic);
+                      }
                     } else if (modeNames.PLAYFRIEND === state.mode.current) {
                       if (state.mode.playfriend.color === state.board.turn) {
-                        if (state.mode.playfriend.color === Piece.color(payload.piece)) {
+                        if (state.board.turn === Piece.color(payload.piece)) {
                           dispatch({
                             type: boardActionTypes.PICK_PIECE,
                             payload: payload
