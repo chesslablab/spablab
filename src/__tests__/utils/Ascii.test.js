@@ -193,3 +193,18 @@ describe('toAlgebraic()', () => {
     expect(Ascii.toAlgebraic(7, 7)).toEqual('h1');
   });
 });
+
+describe('fromAlgebraicToIndex()', () => {
+  it('is 0, 0', () => {
+    expect(Ascii.fromAlgebraicToIndex('a8')).toEqual([0, 0]);
+  });
+  it('is 1, 0', () => {
+    expect(Ascii.fromAlgebraicToIndex('a7')).toEqual([1, 0]);
+  });
+  it('is 6, 7', () => {
+    expect(Ascii.fromAlgebraicToIndex('h2')).toEqual([6, 7]);
+  });
+  it('is 7, 7', () => {
+    expect(Ascii.fromAlgebraicToIndex('h1')).toEqual([7, 7]);
+  });
+});

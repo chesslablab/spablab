@@ -84,4 +84,11 @@ export default class Ascii {
 
     return file + rank;
   }
+
+  static fromAlgebraicToIndex = (square) => {
+    const i = 8 - square.charAt(1);
+    const j = square.charAt(0).charCodeAt(0) - 97;
+
+    return [i, j];
+  }
 }
