@@ -78,7 +78,7 @@ export default class Ascii {
     return ascii;
   }
 
-  static toAlgebraic = (i, j) => {
+  static fromIndexToAlgebraic = (i, j) => {
     const file = String.fromCharCode(97 + j);
     const rank = 8 - i;
 

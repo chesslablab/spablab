@@ -179,18 +179,18 @@ describe('toAscii()', () => {
   });
 });
 
-describe('toAlgebraic()', () => {
+describe('fromIndexToAlgebraic()', () => {
   it('is a8', () => {
-    expect(Ascii.toAlgebraic(0, 0)).toEqual('a8');
+    expect(Ascii.fromIndexToAlgebraic(0, 0)).toEqual('a8');
   });
   it('is a7', () => {
-    expect(Ascii.toAlgebraic(1, 0)).toEqual('a7');
+    expect(Ascii.fromIndexToAlgebraic(1, 0)).toEqual('a7');
   });
   it('is h2', () => {
-    expect(Ascii.toAlgebraic(6, 7)).toEqual('h2');
+    expect(Ascii.fromIndexToAlgebraic(6, 7)).toEqual('h2');
   });
   it('is h1', () => {
-    expect(Ascii.toAlgebraic(7, 7)).toEqual('h1');
+    expect(Ascii.fromIndexToAlgebraic(7, 7)).toEqual('h1');
   });
 });
 
