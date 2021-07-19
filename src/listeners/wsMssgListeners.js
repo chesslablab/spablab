@@ -81,13 +81,17 @@ export const onAccept = (data) => dispatch => {
 };
 
 export const onPiece = (data) => dispatch => {
+  const payload = {
+    piece: data['/piece'].identity,
+    position: data['/piece'].position,
+    moves: data['/piece'].moves
+  };
+  if (data['/piece'].enPassant) {
+    payload.en_passant = data['/piece'].enPassant;
+  }
   dispatch({
     type: boardActionTypes.LEGAL_MOVES,
-    payload: {
-      piece: data['/piece'].identity,
-      position: data['/piece'].position,
-      moves: data['/piece'].moves
-    }
+    payload: payload
   });
 };
 
