@@ -7,13 +7,6 @@ import { mount } from 'enzyme';
 import boardActionTypes from 'constants/boardActionTypes';
 import store from 'store';
 
-const props = {
-  server: {
-    host: '127.0.0.1',
-    port: '8080'
-  }
-};
-
 const ReduxDispatcher = (action) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -27,7 +20,14 @@ const ReduxDispatcher = (action) => {
 
 const wrapper = ({ children }) => (
   <Provider store={store}>{children}</Provider>
-)
+);
+
+const props = {
+  server: {
+    host: '127.0.0.1',
+    port: '8080'
+  }
+};
 
 describe("Chess", () => {
   it("is rendered", () => {
