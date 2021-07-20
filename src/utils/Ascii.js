@@ -78,10 +78,17 @@ export default class Ascii {
     return ascii;
   }
 
-  static toAlgebraic = (i, j) => {
+  static fromIndexToAlgebraic = (i, j) => {
     const file = String.fromCharCode(97 + j);
     const rank = 8 - i;
 
     return file + rank;
+  }
+
+  static fromAlgebraicToIndex = (square) => {
+    const i = 8 - square.charAt(1);
+    const j = square.charAt(0).charCodeAt(0) - 97;
+
+    return [i, j];
   }
 }

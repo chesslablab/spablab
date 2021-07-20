@@ -179,17 +179,32 @@ describe('toAscii()', () => {
   });
 });
 
-describe('toAlgebraic()', () => {
+describe('fromIndexToAlgebraic()', () => {
   it('is a8', () => {
-    expect(Ascii.toAlgebraic(0, 0)).toEqual('a8');
+    expect(Ascii.fromIndexToAlgebraic(0, 0)).toEqual('a8');
   });
   it('is a7', () => {
-    expect(Ascii.toAlgebraic(1, 0)).toEqual('a7');
+    expect(Ascii.fromIndexToAlgebraic(1, 0)).toEqual('a7');
   });
   it('is h2', () => {
-    expect(Ascii.toAlgebraic(6, 7)).toEqual('h2');
+    expect(Ascii.fromIndexToAlgebraic(6, 7)).toEqual('h2');
   });
   it('is h1', () => {
-    expect(Ascii.toAlgebraic(7, 7)).toEqual('h1');
+    expect(Ascii.fromIndexToAlgebraic(7, 7)).toEqual('h1');
+  });
+});
+
+describe('fromAlgebraicToIndex()', () => {
+  it('is 0, 0', () => {
+    expect(Ascii.fromAlgebraicToIndex('a8')).toEqual([0, 0]);
+  });
+  it('is 1, 0', () => {
+    expect(Ascii.fromAlgebraicToIndex('a7')).toEqual([1, 0]);
+  });
+  it('is 6, 7', () => {
+    expect(Ascii.fromAlgebraicToIndex('h2')).toEqual([6, 7]);
+  });
+  it('is 7, 7', () => {
+    expect(Ascii.fromAlgebraicToIndex('h1')).toEqual([7, 7]);
   });
 });

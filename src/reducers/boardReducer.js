@@ -42,6 +42,12 @@ const reducer = (state = initialState, action) => {
       } else if (state.picked.legal_moves.includes(action.payload.algebraic)) {
         newAscii[state.picked.i][state.picked.j] = ' . ';
         newAscii[action.payload.i][action.payload.j] = state.picked.piece;
+        if (state.picked.en_passant) {
+          if (action.payload.algebraic.charAt(0) === state.picked.en_passant.charAt(0)) {
+            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant);
+            newAscii[index[0]][index[1]] = ' . ';
+          }
+        }
         newHistory.push(newAscii);
         return {
           ...state,
@@ -85,6 +91,9 @@ const reducer = (state = initialState, action) => {
     case boardActionTypes.LEGAL_MOVES:
       const newPicked = Object.assign({}, state.picked);
       newPicked.legal_moves = action.payload.moves;
+      if (action.payload.en_passant) {
+        newPicked.en_passant = action.payload.en_passant;
+      }
       return {
         ...state,
         picked: newPicked
