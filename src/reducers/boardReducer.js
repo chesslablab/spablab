@@ -43,8 +43,10 @@ const reducer = (state = initialState, action) => {
         newAscii[state.picked.i][state.picked.j] = ' . ';
         newAscii[action.payload.i][action.payload.j] = state.picked.piece;
         if (state.picked.en_passant) {
-          const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant);
-          newAscii[index[0]][index[1]] = ' . ';
+          if (action.payload.algebraic.charAt(0) === state.picked.en_passant.charAt(0)) {
+            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant);
+            newAscii[index[0]][index[1]] = ' . ';
+          }
         }
         newHistory.push(newAscii);
         return {
