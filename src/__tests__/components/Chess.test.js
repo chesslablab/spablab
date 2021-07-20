@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import boardActionTypes from 'constants/boardActionTypes';
+import createInvitationDialogActions from 'constants/createInvitationDialogActionTypes';
 import store from 'store';
 
 const SyncDispatcher = (action) => {
@@ -46,5 +47,10 @@ describe("Chess", () => {
     const text = chess.find('.board-row').at(0).find('.square').at(0).find('span').text();
     expect(result.current.state.board.flip).toBe('b');
     expect(text).toEqual('♖');
+  });
+  it("opens the 'Invite a friend' dialog", () => {
+    const action = { type: createInvitationDialogActions.OPEN };
+    const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
+    expect(result.current.state.createInvitationDialog.open).toBe(true);
   });
 });
