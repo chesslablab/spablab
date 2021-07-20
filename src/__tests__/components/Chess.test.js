@@ -7,7 +7,7 @@ import { mount } from 'enzyme';
 import boardActionTypes from 'constants/boardActionTypes';
 import store from 'store';
 
-const ReduxDispatcher = (action) => {
+const SyncDispatcher = (action) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ describe("Chess", () => {
   });
   it("the first chess board square is a white rook after flipping the chess board", () => {
     const action = { type: boardActionTypes.FLIP };
-    const { result } = renderHook(() => ReduxDispatcher(action), { wrapper });
+    const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
     const chess = mount(<Chess props={props} />);
     const text = chess.find('.board-row').at(0).find('.square').at(0).find('span').text();
     expect(result.current.state.board.flip).toBe('b');
