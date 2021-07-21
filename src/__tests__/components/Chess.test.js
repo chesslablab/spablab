@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import Chess from 'components/Chess';
+import { act } from 'react-dom/test-utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
@@ -13,7 +14,9 @@ const SyncDispatcher = (action) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(action);
+    act(() => {
+      dispatch(action);
+    });
   }, [dispatch]);
 
   return { state }
