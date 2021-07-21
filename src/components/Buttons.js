@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, ButtonGroup, Menu, MenuItem } from '@material-ui/core';
+import { Button, Menu, MenuItem } from '@material-ui/core';
 import TuneIcon from '@material-ui/icons/Tune';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -35,7 +35,7 @@ const Buttons = ({props}) => {
   };
 
   return (
-    <ButtonGroup>
+    <div>
       <Button
         startIcon={<TuneIcon />}
         style={{textTransform: 'none'}}
@@ -104,7 +104,7 @@ const Buttons = ({props}) => {
           Connect
         </MenuItem>
       </Menu>
-    </ButtonGroup>
+    </div>
   );
 }
 
