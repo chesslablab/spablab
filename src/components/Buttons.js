@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, ButtonGroup, Menu, MenuItem } from '@material-ui/core';
+import { Button, Menu, MenuItem } from '@material-ui/core';
 import TuneIcon from '@material-ui/icons/Tune';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -11,7 +11,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 
-const Settings = ({props}) => {
+const Buttons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ const Settings = ({props}) => {
   };
 
   return (
-    <ButtonGroup>
+    <div>
       <Button
         startIcon={<TuneIcon />}
         style={{textTransform: 'none'}}
@@ -104,8 +104,8 @@ const Settings = ({props}) => {
           Connect
         </MenuItem>
       </Menu>
-    </ButtonGroup>
+    </div>
   );
 }
 
-export default Settings;
+export default Buttons;
