@@ -11,7 +11,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 
-const Settings = ({props}) => {
+const Buttons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -108,4 +108,4 @@ const Settings = ({props}) => {
   );
 }
 
-export default Settings;
+export default Buttons;
