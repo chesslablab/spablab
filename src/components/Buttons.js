@@ -35,7 +35,7 @@ const Settings = ({props}) => {
   };
 
   return (
-    <ButtonGroup variant="text">
+    <ButtonGroup>
       <Button
         startIcon={<TuneIcon />}
         style={{textTransform: 'none'}}

@@ -43,7 +43,6 @@ const CreateInvitationDialog = () => {
               fullWidth
               name="color"
               label="Color"
-              variant="outlined"
               defaultValue="rand"
             >
               <MenuItem key={0} value="rand">
@@ -61,7 +60,6 @@ const CreateInvitationDialog = () => {
               type="number"
               name="time"
               label="Minutes"
-              variant="outlined"
               defaultValue={10}
               inputProps={{ min: "1", max: "60", step: "1" }}
             />

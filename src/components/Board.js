@@ -77,7 +77,7 @@ const Board = ({props}) => {
                   }
                 }
               }}>
-              <span tabindex={k}>
+              <span tabIndex={k}>
                 {Piece.unicode[piece].char}
               </span>
             </div>
