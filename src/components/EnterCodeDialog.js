@@ -31,7 +31,6 @@ const EnterCodeDialog = () => {
             <TextField
               name="hash"
               label="Code"
-              variant="outlined"
             />
           </Grid>
           <DialogActions>
