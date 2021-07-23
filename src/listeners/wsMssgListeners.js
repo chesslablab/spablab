@@ -96,29 +96,25 @@ export const onPiece = (data) => dispatch => {
 };
 
 export const onPlayfen = (data) => dispatch => {
+  const payload = {
+    check: data['/playfen'].check,
+    movetext: data['/playfen'].movetext,
+    fen: data['/playfen'].fen
+  };
   if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
     dispatch({
       type: boardActionTypes.CASTLED_SHORT,
-      payload: {
-        movetext: data['/playfen'].movetext,
-        fen: data['/playfen'].fen
-      }
+      payload: payload
     });
   } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_LONG) {
     dispatch({
       type: boardActionTypes.CASTLED_LONG,
-      payload: {
-        movetext: data['/playfen'].movetext,
-        fen: data['/playfen'].fen
-      }
+      payload: payload
     });
   } else if (data['/playfen'].legal === true) {
     dispatch({
       type: boardActionTypes.VALID_MOVE,
-      payload: {
-        movetext: data['/playfen'].movetext,
-        fen: data['/playfen'].fen
-      }
+      payload: payload
     });
   }
 };
