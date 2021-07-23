@@ -35,18 +35,27 @@ const Board = ({props}) => {
       rank.forEach((piece, j) => {
           let payload = { piece: piece };
           let isLegal = '';
+          let isSelected = '';
           (i + k) % 2 !== 0
             ? color = Pgn.symbol.BLACK
             : color = Pgn.symbol.WHITE;
           state.board.flip === Pgn.symbol.WHITE
             ? payload = {...payload, i: i, j: j, algebraic: Ascii.fromIndexToAlgebraic(i, j)}
             : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
-          if (state.board.picked && state.board.picked.legal_moves) {
-            state.board.picked.legal_moves.includes(payload.algebraic) ? isLegal = 'is-legal' : isLegal = '';
+          // todo: use the optional chaining operator
+          if (state.board.picked) {
+            if (state.board.picked.algebraic === Ascii.fromIndexToAlgebraic(i, j)) {
+              isSelected = 'is-selected';
+            }
+            if (state.board.picked.legal_moves) {
+              if (state.board.picked.legal_moves.includes(payload.algebraic)) {
+                isLegal = 'is-legal';
+              }
+            }
           }
           row.push(<div
               key={k}
-              className={['square', color, payload.algebraic, isLegal].join(' ')}
+              className={['square', color, payload.algebraic, isLegal, isSelected].join(' ')}
               onClick={() => {
                 if (state.history.back === 0) {
                   if (state.board.picked) {
