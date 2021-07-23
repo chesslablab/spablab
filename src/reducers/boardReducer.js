@@ -4,6 +4,7 @@ import Pgn from '../utils/Pgn';
 
 const initialState = {
   turn: Pgn.symbol.WHITE,
+  check: false,
   picked: null,
   fen: null,
   history: [ Ascii.board ],
@@ -68,6 +69,7 @@ const reducer = (state = initialState, action) => {
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       return {
         ...state,
+        check: action.payload.check,
         picked: null,
         fen: null,
         history: newHistory,
@@ -77,6 +79,7 @@ const reducer = (state = initialState, action) => {
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       return {
         ...state,
+        check: action.payload.check,
         picked: null,
         fen: null,
         history: newHistory,
@@ -102,6 +105,7 @@ const reducer = (state = initialState, action) => {
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       return {
         ...state,
+        check: action.payload.check,
         picked: null,
         fen: null,
         history: newHistory,
