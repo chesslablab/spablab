@@ -28,8 +28,9 @@ const wrapper = ({ children }) => (
 
 const props = {
   server: {
-    host: '127.0.0.1',
-    port: '8080'
+    prot: 'wss',
+    host: 'pchess.net',
+    port: '8443'
   }
 };
 
