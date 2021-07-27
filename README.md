@@ -19,8 +19,9 @@ import { Chess } from 'redux-chess';
 
 const props = {
   server: {
-    host: '3.121.169.246',
-    port: '8080'
+    prot: 'wss',
+    host: 'pchess.net',
+    port: '8443'
   }
 };
 
