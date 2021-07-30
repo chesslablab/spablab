@@ -44,7 +44,7 @@ const Board = ({props}) => {
             : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
           // todo: use the optional chaining operator
           if (state.board.picked) {
-            if (state.board.picked.algebraic === Ascii.fromIndexToAlgebraic(i, j)) {
+            if (state.board.picked.algebraic === payload.algebraic) {
               isSelected = 'is-selected';
             }
             if (state.board.picked.legal_moves) {
