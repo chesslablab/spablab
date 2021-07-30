@@ -32,6 +32,8 @@ ReactDOM.render(
 
 ```
 
+Check out this [demo](https://programarivm.github.io/demo-redux-chess).
+
 > Please note that at this moment the sandbox server may not be up all the time.
 
 Initialization with a custom [local chess server](https://github.com/programarivm/chess-server):
