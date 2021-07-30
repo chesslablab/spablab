@@ -89,20 +89,6 @@ const Buttons = ({props}) => {
         >
           Flip board
         </MenuItem>
-        <MenuItem
-          key={1}
-          onClick={() => {
-            dispatch(wsConnect(state, props)).then((ws) => {
-              wsMssgStartAnalysis(ws).then(() => {
-                dispatch({ type: modeActionTypes.RESET });
-                dispatch(startBoard({ back: state.board.history.length - 1 }));
-                handleCloseSettings();
-              });
-            });
-          }}
-        >
-          Connect
-        </MenuItem>
       </Menu>
     </div>
   );
