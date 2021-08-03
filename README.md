@@ -1,6 +1,6 @@
 ## Redux Chess
 
-React chessboard to be connected to a [PHP Chess server](https://github.com/programarivm/chess-server).
+React chessboard connected to a [PHP Chess server](https://github.com/programarivm/chess-server).
 
 ### Install
 
