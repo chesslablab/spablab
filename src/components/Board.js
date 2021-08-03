@@ -23,6 +23,28 @@ const Board = ({props}) => {
     });
   }, [dispatch]);
 
+  const pickPiece = (payload) => {
+    if (modeNames.ANALYSIS === state.mode.current) {
+      if (state.board.turn === Piece.color(payload.piece)) {
+        dispatch({
+          type: boardActionTypes.PICK_PIECE,
+          payload: payload
+        });
+        wsMssgPiece(state, payload.algebraic);
+      }
+    } else if (modeNames.PLAYFRIEND === state.mode.current) {
+      if (state.mode.playfriend.color === state.board.turn) {
+        if (state.board.turn === Piece.color(payload.piece)) {
+          dispatch({
+            type: boardActionTypes.PICK_PIECE,
+            payload: payload
+          });
+          wsMssgPiece(state, payload.algebraic);
+        }
+      }
+    }
+  };
+
   const board = () => {
     let rows = [];
     let color;
@@ -58,31 +80,13 @@ const Board = ({props}) => {
               className={['square', color, payload.algebraic, isLegal, isSelected].join(' ')}
               onClick={() => {
                 if (state.history.back === 0) {
-                  if (state.board.picked) {
+                  if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
                     dispatch({
                       type: boardActionTypes.LEAVE_PIECE,
                       payload: payload
                     });
                   } else {
-                    if (modeNames.ANALYSIS === state.mode.current) {
-                      if (state.board.turn === Piece.color(payload.piece)) {
-                        dispatch({
-                          type: boardActionTypes.PICK_PIECE,
-                          payload: payload
-                        });
-                        wsMssgPiece(state, payload.algebraic);
-                      }
-                    } else if (modeNames.PLAYFRIEND === state.mode.current) {
-                      if (state.mode.playfriend.color === state.board.turn) {
-                        if (state.board.turn === Piece.color(payload.piece)) {
-                          dispatch({
-                            type: boardActionTypes.PICK_PIECE,
-                            payload: payload
-                          });
-                          wsMssgPiece(state, payload.algebraic);
-                        }
-                      }
-                    }
+                    pickPiece(payload);
                   }
                 }
               }}>
