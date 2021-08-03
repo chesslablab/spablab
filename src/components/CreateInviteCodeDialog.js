@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuItem,
   TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import createInvitationDialogActions from '../constants/createInvitationDialogActionTypes';
+import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsMssgPlayfriend, wsMssgQuit } from '../actions/serverActions';
 import Pgn from '../utils/Pgn';
 
-const CreateInvitationDialog = () => {
+const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const CreateInvitationDialog = () => {
   return (
     <Dialog open={state.createInvitationDialog.open}>
       <DialogTitle>Invite a friend</DialogTitle>
-      <DialogContent id="invite-friend-dialog">
+      <DialogContent>
         <form onSubmit={handleCreateCode}>
           <Grid container spacing={3}>
             <Typography variant="body1" gutterBottom>
@@ -69,7 +69,7 @@ const CreateInvitationDialog = () => {
             {
               !state.mode.playfriend.hash
                 ? <Button type="submit">Create code</Button>
-                : <Button onClick={() => dispatch({ type: createInvitationDialogActions.CLOSE })}>Play</Button>
+                : <Button onClick={() => dispatch({ type: createInviteCodeDialogActions.CLOSE })}>Play</Button>
             }
           </DialogActions>
         </form>
@@ -78,4 +78,4 @@ const CreateInvitationDialog = () => {
   );
 }
 
-export default CreateInvitationDialog;
+export default CreateInviteCodeDialog;

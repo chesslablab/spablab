@@ -5,8 +5,8 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
-import createInvitationDialogActions from '../constants/createInvitationDialogActionTypes';
-import enterCodeDialogActions from '../constants/enterCodeDialogActionTypes';
+import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
+import enterInviteCodeDialogActions from '../constants/enterInviteCodeDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
@@ -62,13 +62,13 @@ const Buttons = ({props}) => {
         onClose={handleClosePlayFriend}
       >
         <MenuItem onClick={() => {
-          dispatch({ type: createInvitationDialogActions.OPEN });
+          dispatch({ type: createInviteCodeDialogActions.OPEN });
           handleClosePlayFriend();
-        }}>Create invitation</MenuItem>
+        }}>Create invite code</MenuItem>
         <MenuItem onClick={() => {
-          dispatch({ type: enterCodeDialogActions.OPEN });
+          dispatch({ type: enterInviteCodeDialogActions.OPEN });
           handleClosePlayFriend();
-        }}>Enter code</MenuItem>
+        }}>Enter invite code</MenuItem>
       </Menu>
       <Button
         onClick={handleClickSettings}
