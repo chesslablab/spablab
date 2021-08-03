@@ -1,4 +1,4 @@
-import createInvitationDialogActionTypes from '../constants/createInvitationDialogActionTypes';
+import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case createInvitationDialogActionTypes.CLOSE:
+    case createInviteCodeDialogActionTypes.CLOSE:
       return {
         ...initialState,
         open: false,
       };
-    case createInvitationDialogActionTypes.OPEN:
+    case createInviteCodeDialogActionTypes.OPEN:
       return {
         ...initialState,
         open: true,

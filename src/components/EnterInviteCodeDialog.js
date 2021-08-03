@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid,
   TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import enterCodeDialogActions from '../constants/enterCodeDialogActionTypes';
+import enterInviteCodeDialogActions from '../constants/enterInviteCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsMssgAccept, wsMssgQuit } from '../actions/serverActions';
 
-const EnterCodeDialog = () => {
+const EnterInviteCodeDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const EnterCodeDialog = () => {
       wsMssgQuit(state).then(() => {
         wsMssgAccept(state, event.target.elements.hash.value).then(() => {
           dispatch(startBoard({ back: state.board.history.length - 1 }));
-          dispatch({ type: enterCodeDialogActions.CLOSE });
+          dispatch({ type: enterInviteCodeDialogActions.CLOSE });
         });
       });
     }
@@ -24,8 +24,8 @@ const EnterCodeDialog = () => {
 
   return (
     <Dialog open={state.enterCodeDialog.open}>
-      <DialogTitle>Enter code</DialogTitle>
-      <DialogContent id="invite-friend-dialog">
+      <DialogTitle>Enter invite code</DialogTitle>
+      <DialogContent>
         <form onSubmit={handlePlay}>
           <Grid container spacing={3}>
             <TextField
@@ -38,7 +38,7 @@ const EnterCodeDialog = () => {
               Play
             </Button>
             <Button
-              onClick={() => dispatch({ type: enterCodeDialogActions.CLOSE })} color="primary"
+              onClick={() => dispatch({ type: enterInviteCodeDialogActions.CLOSE })} color="primary"
             >
               Cancel
             </Button>
@@ -49,4 +49,4 @@ const EnterCodeDialog = () => {
   );
 }
 
-export default EnterCodeDialog;
+export default EnterInviteCodeDialog;

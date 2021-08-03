@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import CreateInvitationDialog from './CreateInvitationDialog';
-import EnterCodeDialog from './EnterCodeDialog';
+import CreateInviteCodeDialog from './CreateInviteCodeDialog';
+import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import Buttons from './Buttons.js';
 import Board from './Board.js';
 import History from './History';
@@ -13,8 +13,8 @@ const Chess = ({props}) => {
   return (
     <Provider store={store}>
       <Buttons props={props} />
-      <CreateInvitationDialog />
-      <EnterCodeDialog />
+      <CreateInviteCodeDialog />
+      <EnterInviteCodeDialog />
       <Board props={props} />
       <History />
       <MoveValidator />
