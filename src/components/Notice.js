@@ -5,11 +5,15 @@ import Alert from '@material-ui/lab/Alert';
 const Notice = ({props}) => {
   const state = useSelector(state => state);
 
-  return (
-    <Alert severity="info">
-      This is an info alert — check it out!
-    </Alert>
-  );
+  if (state.notice) {
+    return (
+      <Alert severity="info">
+        This is an info alert — check it out!
+      </Alert>
+    );
+  }
+
+  return null;
 }
 
 export default Notice;

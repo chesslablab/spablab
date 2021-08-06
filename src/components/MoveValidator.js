@@ -12,11 +12,9 @@ const MoveValidator = ({props}) => {
   }
 
   return (
-    <div className="move-validator">
-      <Typography variant="body2" color="textSecondary" component="p">
-        {state.board.movetext}
-      </Typography>
-    </div>
+    <Typography variant="subtitle1" gutterBottom>
+      {state.board.movetext}
+    </Typography>
   );
 }
 

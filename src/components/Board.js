@@ -122,13 +122,13 @@ const Board = ({props}) => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container>
         <Grid item md={12} lg={5}>
           <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
             {board()}
           </div>
         </Grid>
-        <Grid item md={12} lg={7}>
+        <Grid item md={12} lg={6}>
           <Notice />
           <Timers />
           <MoveValidator />
