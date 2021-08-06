@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
+import Grid from '@material-ui/core/Grid';
 import History from './History';
 import Timers from './Timers';
 import MoveValidator from './MoveValidator.js';
@@ -13,9 +15,21 @@ import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   useEffect(() => {
     dispatch(wsConnect(state, props)).then((ws) => {
@@ -107,14 +121,20 @@ const Board = ({props}) => {
   }
 
   return (
-    <div>
-      <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
-        {board()}
-      </div>
-      <History />
-      <Timers />
-      <MoveValidator />
-      <Notice />
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item md={12} lg={5}>
+          <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+            {board()}
+          </div>
+        </Grid>
+        <Grid item md={12} lg={7}>
+          <Notice />
+          <Timers />
+          <MoveValidator />
+          <History />
+        </Grid>
+      </Grid>
     </div>
   );
 }

@@ -6,7 +6,7 @@ const Notice = ({props}) => {
   const state = useSelector(state => state);
 
   return (
-    <Alert variant="filled" severity="info">
+    <Alert severity="info">
       This is an info alert — check it out!
     </Alert>
   );

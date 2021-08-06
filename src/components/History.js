@@ -12,10 +12,7 @@ const History = () => {
   const dispatch = useDispatch();
 
   return (
-    <ButtonGroup
-      className="history"
-      color="primary"
-    >
+    <ButtonGroup color="primary">
       <Button
         color="default"
         startIcon={<FastRewindIcon />}
