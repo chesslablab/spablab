@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import History from './History';
 import Timers from './Timers';
 import MoveValidator from './MoveValidator.js';
-import Notice from './Notice.js';
+import InfoAlert from './InfoAlert.js';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -129,7 +129,7 @@ const Board = ({props}) => {
           </div>
         </Grid>
         <Grid item md={12} lg={6}>
-          <Notice />
+          <InfoAlert />
           <Timers />
           <MoveValidator />
           <History />
