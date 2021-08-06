@@ -1,3 +1,4 @@
+import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
@@ -78,6 +79,7 @@ export const onAccept = (data) => dispatch => {
     }
   }
   dispatch({ type: modeActionTypes.ACCEPT_PLAYFRIEND });
+  dispatch({ type: alertActionTypes.INFO_CLOSE });
 };
 
 export const onPiece = (data) => dispatch => {

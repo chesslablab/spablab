@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
         open: true
       };
     case alertActionTypes.INFO_CLOSE:
-      return state;
+      return initialState;
     default:
       return state;
   }
