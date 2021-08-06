@@ -5,7 +5,10 @@ import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
+import History from './History';
 import Timers from './Timers';
+import MoveValidator from './MoveValidator.js';
+import Notice from './Notice.js';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -105,10 +108,13 @@ const Board = ({props}) => {
 
   return (
     <div>
-      <Timers />
       <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
         {board()}
       </div>
+      <History />
+      <Timers />
+      <MoveValidator />
+      <Notice />
     </div>
   );
 }

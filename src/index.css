@@ -5,6 +5,7 @@
 
 .board {
   font-family: FreeSerif, sans-serif;
+  clear: both;
 }
 
 .board-row {
@@ -46,8 +47,14 @@
   opacity: 0.8;
 }
 
+.history {
+  display: block !important;
+  clear: both;
+}
+
 .timers {
   font-size: 1.5em;
+  clear: both;
 }
 
 .timer-white {
