@@ -19,8 +19,8 @@
 }
 
 .square span {
-  height: 9vh;
-  width: 9vh;
+  height: 10vh;
+  width: 10vh;
   display: block;
 }
 
@@ -47,7 +47,9 @@
 }
 
 .timers {
+  margin: 1em 0;
   font-size: 1.5em;
+  clear: both;
 }
 
 .timer-white {
@@ -55,13 +57,17 @@
   margin-right: 1em;
 }
 
+.info-alert {
+  margin: 1em 0;
+}
+
 @media (max-width: 1024px) {
   .square {
-    font-size: 9vw;
+    font-size: 10vw;
   }
 
   .square span {
-    height: 9vw;
-    width: 9vw;
+    height: 10vw;
+    width: 10vw;
   }
 }

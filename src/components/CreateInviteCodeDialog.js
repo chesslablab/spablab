@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuItem,
   TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
+import alertActions from '../constants/alertActionTypes';
 import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsMssgPlayfriend, wsMssgQuit } from '../actions/serverActions';
@@ -69,7 +70,15 @@ const CreateInviteCodeDialog = () => {
             {
               !state.mode.playfriend.hash
                 ? <Button type="submit">Create code</Button>
-                : <Button onClick={() => dispatch({ type: createInviteCodeDialogActions.CLOSE })}>Play</Button>
+                : <Button onClick={() => {
+                  dispatch({ type: createInviteCodeDialogActions.CLOSE });
+                  dispatch({
+                    type: alertActions.INFO_DISPLAY,
+                    payload: {
+                      info: 'Waiting for friend to accept invitation...'
+                    }
+                  });
+                }}>Play</Button>
             }
           </DialogActions>
         </form>
