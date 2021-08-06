@@ -47,6 +47,7 @@
 }
 
 .timers {
+  margin: 1em 0;
   font-size: 1.5em;
   clear: both;
 }
@@ -54,6 +55,10 @@
 .timer-white {
   float: left;
   margin-right: 1em;
+}
+
+.info-alert {
+  margin: 1em 0;
 }
 
 @media (max-width: 1024px) {

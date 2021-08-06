@@ -15,24 +15,28 @@ const History = () => {
     <ButtonGroup color="primary">
       <Button
         color="default"
+        size="small"
         startIcon={<FastRewindIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
         onClick={() => dispatch(goToBeginning({ back: state.board.history.length - 1}))}
       / >
       <Button
         color="default"
+        size="small"
         startIcon={<SkipPreviousIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
         onClick={() => dispatch(goBack())}>
       </Button>
       <Button
         color="default"
+        size="small"
         startIcon={<SkipNextIcon />}
         disabled={state.history.back === 0}
         onClick={() => dispatch(goForward())}>
       </Button>
       <Button
         color="default"
+        size="small"
         startIcon={<FastForwardIcon />}
         disabled={state.history.back === 0}
         onClick={() => dispatch(goToEnd())}>

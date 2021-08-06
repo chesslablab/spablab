@@ -7,7 +7,7 @@ const InfoAlert = ({props}) => {
 
   if (state.alert.open) {
     return (
-      <Alert severity="info">
+      <Alert className="info-alert" severity="info">
         {state.alert.info}
       </Alert>
     );

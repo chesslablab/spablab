@@ -129,10 +129,10 @@ const Board = ({props}) => {
           </div>
         </Grid>
         <Grid item md={12} lg={6}>
-          <InfoAlert />
-          <Timers />
-          <MoveValidator />
           <History />
+          <Timers />
+          <InfoAlert />
+          <MoveValidator />
         </Grid>
       </Grid>
     </div>
