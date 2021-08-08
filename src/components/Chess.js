@@ -37,7 +37,7 @@ const Chess = ({props}) => {
           <Grid item xs={12}>
             <Board props={props} />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{clear:'both'}}>
             <History />
           </Grid>
         </Grid>
