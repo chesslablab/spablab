@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
+import { CssBaseline } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import CreateInviteCodeDialog from './CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './EnterInviteCodeDialog';
@@ -27,6 +28,7 @@ const Chess = ({props}) => {
 
   return (
     <Provider store={store}>
+      <CssBaseline />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
       <Grid container className={classes.root}>
