@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import CreateInviteCodeDialog from './CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import Board from './Board.js';
@@ -20,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   },
   panel: {
     marginTop: theme.spacing(5),
+  },
+  paper: {
+    padding: theme.spacing(2),
   },
 }));
 
@@ -46,7 +50,9 @@ const Chess = ({props}) => {
         <Grid item xs={12} md={6} className={classes.panel}>
           <InfoAlert />
           <Timers />
-          <MoveValidator />
+          <Paper elevation={3} className={classes.paper}>
+            <MoveValidator />
+          </Paper>
         </Grid>
       </Grid>
     </Provider>
