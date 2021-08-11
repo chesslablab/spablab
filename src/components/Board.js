@@ -57,6 +57,7 @@ const Board = ({props}) => {
           let payload = { piece: piece };
           let isLegal = '';
           let isSelected = '';
+          let isCheck = '';
           (i + k) % 2 !== 0
             ? color = Pgn.symbol.BLACK
             : color = Pgn.symbol.WHITE;
@@ -73,10 +74,20 @@ const Board = ({props}) => {
                 isLegal = 'is-legal';
               }
             }
+          } else if (state.board.check) {
+            if (state.board.turn === Pgn.symbol.WHITE) {
+              if (piece === ' K ') {
+                isCheck = 'is-check';
+              }
+            } else if (state.board.turn === Pgn.symbol.BLACK) {
+              if (piece === ' k ') {
+                isCheck = 'is-check';
+              }
+            }
           }
           row.push(<div
               key={k}
-              className={['square', color, payload.algebraic, isLegal, isSelected].join(' ')}
+              className={['square', color, payload.algebraic, isLegal, isSelected, isCheck].join(' ')}
               onClick={() => {
                 if (state.history.back === 0) {
                   if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {

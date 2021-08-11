@@ -48,6 +48,7 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           turn: newTurn,
+          check: false,
           picked: null,
           fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
           history: newHistory
