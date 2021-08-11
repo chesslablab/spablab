@@ -9,6 +9,7 @@ import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
 import History from './History';
+import MainBreadcrumbs from './MainBreadcrumbs';
 import MoveValidator from './MoveValidator.js';
 import Timers from './Timers';
 import InfoAlert from './InfoAlert.js';
@@ -24,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+  },
+  breadcrumbs: {
+    marginBottom: theme.spacing(2),
   },
 }));
 
@@ -48,6 +52,9 @@ const Chess = ({props}) => {
           </Grid>
         </Grid>
         <Grid item xs={12} md={6} className={classes.panel}>
+          <Grid item xs={12} className={classes.breadcrumbs}>
+            <MainBreadcrumbs />
+          </Grid>
           <InfoAlert />
           <Timers />
           <Paper elevation={3} className={classes.paper}>
