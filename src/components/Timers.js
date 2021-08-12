@@ -6,7 +6,7 @@ import TimerWhite from './TimerWhite';
 const Timers = () => {
   const state = useSelector(state => state);
 
-  if (state.mode.playfriend.accepted) {
+  if (!state.board.mate && state.mode.playfriend.accepted) {
     return (
       <div className="timers">
         <TimerWhite />
