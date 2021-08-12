@@ -100,6 +100,7 @@ export const onPiece = (data) => dispatch => {
 export const onPlayfen = (data) => dispatch => {
   const payload = {
     check: data['/playfen'].check,
+    mate: data['/playfen'].mate,
     movetext: data['/playfen'].movetext,
     fen: data['/playfen'].fen
   };

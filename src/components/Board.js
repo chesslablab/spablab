@@ -89,7 +89,7 @@ const Board = ({props}) => {
               key={k}
               className={['square', color, payload.algebraic, isLegal, isSelected, isCheck].join(' ')}
               onClick={() => {
-                if (state.history.back === 0) {
+                if (!state.board.mate && state.history.back === 0) {
                   if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
                     dispatch({
                       type: boardActionTypes.LEAVE_PIECE,
