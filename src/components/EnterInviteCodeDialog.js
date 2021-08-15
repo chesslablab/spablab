@@ -1,14 +1,23 @@
 import React, { useState } from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid,
-  TextField } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import enterInviteCodeDialogActions from '../constants/enterInviteCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsMssgAccept, wsMssgQuit } from '../actions/serverActions';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 const EnterInviteCodeDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const handlePlay = (event) => {
     event.preventDefault();
@@ -23,23 +32,20 @@ const EnterInviteCodeDialog = () => {
   }
 
   return (
-    <Dialog open={state.enterCodeDialog.open}>
+    <Dialog open={state.enterCodeDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Enter invite code</DialogTitle>
       <DialogContent>
-        <form onSubmit={handlePlay}>
-          <Grid container spacing={3}>
-            <TextField
-              name="hash"
-              label="Code"
-            />
-          </Grid>
+        <form className={classes.root} onSubmit={handlePlay}>
+          <TextField
+            fullWidth
+            name="hash"
+            label="Code"
+          />
           <DialogActions>
             <Button type="submit">
               Play
             </Button>
-            <Button
-              onClick={() => dispatch({ type: enterInviteCodeDialogActions.CLOSE })} color="primary"
-            >
+            <Button onClick={() => dispatch({ type: enterInviteCodeDialogActions.CLOSE })}>
               Cancel
             </Button>
           </DialogActions>

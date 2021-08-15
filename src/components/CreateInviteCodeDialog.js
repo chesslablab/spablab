@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuItem,
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem,
   TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import alertActions from '../constants/alertActionTypes';
@@ -7,11 +7,21 @@ import modeActions from '../constants/modeActionTypes';
 import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsMssgPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
+import { makeStyles } from '@material-ui/core/styles';
 import Pgn from '../utils/Pgn';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const randColor = () => {
     return Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
@@ -32,41 +42,42 @@ const CreateInviteCodeDialog = () => {
   }
 
   return (
-    <Dialog open={state.createInvitationDialog.open}>
-      <DialogTitle>Invite a friend</DialogTitle>
+    <Dialog open={state.createInvitationDialog.open} maxWidth="sm" fullWidth={true}>
+      <DialogTitle>Create invite code</DialogTitle>
       <DialogContent>
-        <form onSubmit={handleCreateCode}>
-          <Grid container spacing={3}>
-            <Typography variant="body1" gutterBottom>
-              Create a new code and share it with a friend.
-            </Typography>
-            <TextField
-              select
-              fullWidth
-              name="color"
-              label="Color"
-              defaultValue="rand"
-            >
-              <MenuItem key={0} value="rand">
-                Random
-              </MenuItem>
-              <MenuItem key={1} value={Pgn.symbol.WHITE}>
-                White
-              </MenuItem>
-              <MenuItem key={2} value={Pgn.symbol.BLACK}>
-                Black
-              </MenuItem>
-            </TextField>
-            <TextField
-              fullWidth
-              type="number"
-              name="time"
-              label="Minutes"
-              defaultValue={10}
-              inputProps={{ min: "1", max: "60", step: "1" }}
-            />
-            {state.mode.playfriend.hash}
-          </Grid>
+        <form className={classes.root} onSubmit={handleCreateCode}>
+          <TextField
+            select
+            fullWidth
+            name="color"
+            label="Color"
+            defaultValue="rand"
+          >
+            <MenuItem key={0} value="rand">
+              Random
+            </MenuItem>
+            <MenuItem key={1} value={Pgn.symbol.WHITE}>
+              White
+            </MenuItem>
+            <MenuItem key={2} value={Pgn.symbol.BLACK}>
+              Black
+            </MenuItem>
+          </TextField>
+          <TextField
+            fullWidth
+            type="number"
+            name="time"
+            label="Minutes"
+            defaultValue={10}
+            inputProps={{ min: "1", max: "60", step: "1" }}
+          />
+          {
+            state.mode.playfriend.hash
+              ? <Typography variant="body1">
+                  Share with friend: {state.mode.playfriend.hash}
+                </Typography>
+              : null
+          }
           <DialogActions>
             {
               !state.mode.playfriend.hash
