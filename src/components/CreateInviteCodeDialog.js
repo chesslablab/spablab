@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem,
-  TextField, Typography } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import alertActions from '../constants/alertActionTypes';
 import modeActions from '../constants/modeActionTypes';
@@ -73,9 +72,13 @@ const CreateInviteCodeDialog = () => {
           />
           {
             state.mode.playfriend.hash
-              ? <Typography variant="body1">
-                  Share with friend: {state.mode.playfriend.hash}
-                </Typography>
+              ?  <TextField
+                    fullWidth
+                    type="text"
+                    name="sharecode"
+                    label="Share code with friend"
+                    value={state.mode.playfriend.hash}
+                  />
               : null
           }
           <DialogActions>
