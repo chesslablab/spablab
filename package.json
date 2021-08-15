@@ -1,7 +1,7 @@
 {
   "name": "redux-chess",
   "description": "React chessboard to be connected to a chess server.",
-  "version": "0.9.43",
+  "version": "0.9.44",
   "private": false,
   "author": "Jordi Bassagañas <info@programarivm.com>",
   "license": "MIT",
