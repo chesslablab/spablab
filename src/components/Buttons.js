@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActions from '../constants/enterInviteCodeDialogActionTypes';
-import alertActionTypes from '../constants/alertActionTypes';
-import modeActionTypes from '../constants/modeActionTypes';
+import alertActions from '../constants/alertActionTypes';
+import modeActions from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 
@@ -42,8 +42,8 @@ const Buttons = ({props}) => {
         style={{textTransform: 'none'}}
         onClick={() => wsMssgQuit(state).then(() => {
           wsMssgStartAnalysis(state.server.ws).then(() => {
-            dispatch({ type: alertActionTypes.INFO_CLOSE });
-            dispatch({ type: modeActionTypes.RESET });
+            dispatch({ type: alertActions.INFO_CLOSE });
+            dispatch({ type: modeActions.RESET });
             dispatch(startBoard({ back: state.board.history.length - 1 }));
           });
         })}
@@ -65,6 +65,8 @@ const Buttons = ({props}) => {
       >
         <MenuItem onClick={() => {
           dispatch({ type: createInviteCodeDialogActions.OPEN });
+          dispatch({ type: alertActions.INFO_CLOSE });
+          dispatch({ type: modeActions.RESET });
           handleClosePlayFriend();
         }}>Create invite code</MenuItem>
         <MenuItem onClick={() => {

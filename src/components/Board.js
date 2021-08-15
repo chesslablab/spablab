@@ -32,13 +32,15 @@ const Board = ({props}) => {
         wsMssgPiece(state, payload.algebraic);
       }
     } else if (modeNames.PLAYFRIEND === state.mode.current) {
-      if (state.mode.playfriend.color === state.board.turn) {
-        if (state.board.turn === Piece.color(payload.piece)) {
-          dispatch({
-            type: boardActionTypes.PICK_PIECE,
-            payload: payload
-          });
-          wsMssgPiece(state, payload.algebraic);
+      if (state.mode.playfriend.accepted) {
+        if (state.mode.playfriend.color === state.board.turn) {
+          if (state.board.turn === Piece.color(payload.piece)) {
+            dispatch({
+              type: boardActionTypes.PICK_PIECE,
+              payload: payload
+            });
+            wsMssgPiece(state, payload.algebraic);
+          }
         }
       }
     }

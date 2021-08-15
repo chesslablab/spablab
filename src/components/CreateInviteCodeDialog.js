@@ -3,9 +3,10 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, MenuIt
   TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import alertActions from '../constants/alertActionTypes';
+import modeActions from '../constants/modeActionTypes';
 import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
-import { wsMssgPlayfriend, wsMssgQuit } from '../actions/serverActions';
+import { wsMssgPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 import Pgn from '../utils/Pgn';
 
 const CreateInviteCodeDialog = () => {
@@ -69,15 +70,29 @@ const CreateInviteCodeDialog = () => {
           <DialogActions>
             {
               !state.mode.playfriend.hash
-                ? <Button type="submit">Create code</Button>
+                ? <div>
+                    <Button type="submit">Create code</Button>
+                    <Button onClick={() => {
+                      wsMssgQuit(state).then(() => {
+                        wsMssgStartAnalysis(state.server.ws).then(() => {
+                          dispatch({ type: alertActions.INFO_CLOSE });
+                          dispatch({ type: modeActions.RESET });
+                          dispatch(startBoard({ back: state.board.history.length - 1 }));
+                          dispatch({ type: createInviteCodeDialogActions.CLOSE });
+                        });
+                      });
+                    }}>
+                      Cancel
+                    </Button>
+                  </div>
                 : <Button onClick={() => {
-                  dispatch({ type: createInviteCodeDialogActions.CLOSE });
-                  dispatch({
-                    type: alertActions.INFO_DISPLAY,
-                    payload: {
-                      info: 'Waiting for friend to accept invitation...'
-                    }
-                  });
+                    dispatch({ type: createInviteCodeDialogActions.CLOSE });
+                    dispatch({
+                      type: alertActions.INFO_DISPLAY,
+                      payload: {
+                        info: 'Waiting for friend to accept invitation...'
+                      }
+                    });
                 }}>Play</Button>
             }
           </DialogActions>
