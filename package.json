@@ -39,10 +39,10 @@
   "peerDependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/styles": "^4.11.4",
     "@material-ui/system": "^4.12.1",
     "@material-ui/utils": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.60",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -65,5 +65,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-17-updated": "^1.0.2"
+  },
+  "dependencies": {
+    "react-error-boundary": "^3.1.3"
   }
 }
