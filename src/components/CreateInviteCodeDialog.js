@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import alertActions from '../constants/alertActionTypes';
-import modeActions from '../constants/modeActionTypes';
+import alertActionTypes from '../constants/alertActionTypes';
+import modeActionTypes from '../constants/modeActionTypes';
 import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsMssgPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
@@ -89,8 +89,8 @@ const CreateInviteCodeDialog = () => {
                     <Button onClick={() => {
                       wsMssgQuit(state).then(() => {
                         wsMssgStartAnalysis(state.server.ws).then(() => {
-                          dispatch({ type: alertActions.INFO_CLOSE });
-                          dispatch({ type: modeActions.RESET });
+                          dispatch({ type: alertActionTypes.INFO_CLOSE });
+                          dispatch({ type: modeActionTypes.RESET });
                           dispatch(startBoard({ back: state.board.history.length - 1 }));
                           dispatch({ type: createInviteCodeDialogActions.CLOSE });
                         });
@@ -102,7 +102,7 @@ const CreateInviteCodeDialog = () => {
                 : <Button onClick={() => {
                     dispatch({ type: createInviteCodeDialogActions.CLOSE });
                     dispatch({
-                      type: alertActions.INFO_DISPLAY,
+                      type: alertActionTypes.INFO_DISPLAY,
                       payload: {
                         info: 'Waiting for friend to accept invitation...'
                       }

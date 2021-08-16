@@ -5,10 +5,10 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
-import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
-import enterInviteCodeDialogActions from '../constants/enterInviteCodeDialogActionTypes';
-import alertActions from '../constants/alertActionTypes';
-import modeActions from '../constants/modeActionTypes';
+import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
+import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
+import alertActionTypes from '../constants/alertActionTypes';
+import modeActionTypes from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 
@@ -42,8 +42,8 @@ const Buttons = ({props}) => {
         style={{textTransform: 'none'}}
         onClick={() => wsMssgQuit(state).then(() => {
           wsMssgStartAnalysis(state.server.ws).then(() => {
-            dispatch({ type: alertActions.INFO_CLOSE });
-            dispatch({ type: modeActions.RESET });
+            dispatch({ type: alertActionTypes.INFO_CLOSE });
+            dispatch({ type: modeActionTypes.RESET });
             dispatch(startBoard({ back: state.board.history.length - 1 }));
           });
         })}
@@ -64,13 +64,13 @@ const Buttons = ({props}) => {
         onClose={handleClosePlayFriend}
       >
         <MenuItem onClick={() => {
-          dispatch({ type: createInviteCodeDialogActions.OPEN });
-          dispatch({ type: alertActions.INFO_CLOSE });
-          dispatch({ type: modeActions.RESET });
+          dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
+          dispatch({ type: alertActionTypes.INFO_CLOSE });
+          dispatch({ type: modeActionTypes.RESET });
           handleClosePlayFriend();
         }}>Create invite code</MenuItem>
         <MenuItem onClick={() => {
-          dispatch({ type: enterInviteCodeDialogActions.OPEN });
+          dispatch({ type: enterInviteCodeDialogActionTypes.OPEN });
           handleClosePlayFriend();
         }}>Enter invite code</MenuItem>
       </Menu>
