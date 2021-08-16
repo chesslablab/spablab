@@ -14,12 +14,13 @@ export default class Ascii {
 
   static toFen = (ascii) => {
     let string = '';
-    ascii.forEach((item, i) => {
-      string += item.join('').replace(/\s/g, '');
-      if (i !== 7) {
-        string += '/';
-      }
-    });
+    Ascii.promote(ascii)
+      .forEach((item, i) => {
+        string += item.join('').replace(/\s/g, '');
+        if (i !== 7) {
+          string += '/';
+        }
+      });
 
     let filtered = '';
     let strSplit = string.split('');
@@ -90,5 +91,12 @@ export default class Ascii {
     const j = square.charAt(0).charCodeAt(0) - 97;
 
     return [i, j];
+  }
+
+  static promote = (ascii) => {
+    ascii[0] = ascii[0].map(item => item === ' P ' ? ' Q ' : item);
+    ascii[7] = ascii[7].map(item => item === ' p ' ? ' q ' : item);
+
+    return ascii;
   }
 }
