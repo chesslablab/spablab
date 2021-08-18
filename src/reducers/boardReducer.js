@@ -10,7 +10,8 @@ const initialState = {
   fen: null,
   history: [ Ascii.board ],
   movetext: null,
-  flip: Pgn.symbol.WHITE
+  flip: Pgn.symbol.WHITE,
+  heuristic_picture: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -90,6 +91,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         flip: newFlip
+      }
+    case boardActionTypes.HEURISTIC_PICTURE:
+      return {
+        ...state,
+        heuristic_picture: action.payload
       }
     case boardActionTypes.LEGAL_MOVES:
       const newPicked = Object.assign({}, state.picked);

@@ -10,7 +10,7 @@ import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialog
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
-import { wsConnect, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
+import { wsConnect, wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 
 const Buttons = ({props}) => {
   const state = useSelector(state => state);
@@ -92,6 +92,16 @@ const Buttons = ({props}) => {
           }}
         >
           Flip board
+        </MenuItem>
+        <MenuItem
+          key={1}
+          onClick={() => {
+            wsMssgHeuristicpicture(state).then(() => {
+              handleCloseSettings();
+            });
+          }}
+        >
+          Heuristic picture
         </MenuItem>
       </Menu>
     </div>

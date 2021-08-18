@@ -33,6 +33,9 @@ export const wsMssgListeners = (data) => dispatch => {
         dispatch(onPiece(data));
       }
       break;
+    case '/heuristicpicture' === cmd:
+      dispatch(onHeuristicPicture(data));
+      break;
     default:
       break;
   }
@@ -120,4 +123,15 @@ export const onPlayfen = (data) => dispatch => {
       payload: payload
     });
   }
+};
+
+export const onHeuristicPicture = (data) => dispatch => {
+  const payload = {
+    dimensions: data['/heuristicpicture'].dimensions,
+    balance: data['/heuristicpicture'].balance
+  };
+  dispatch({
+    type: boardActionTypes.HEURISTIC_PICTURE,
+    payload: payload
+  });
 };
