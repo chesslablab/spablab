@@ -27,7 +27,7 @@ let dim = [];
 
 let data = {};
 
-const Chart = () => {
+const HeuristicPicture = () => {
   const state = useSelector(state => state);
   if (state.heuristicPictureDialog.heuristic_picture) {
     dim = getDimensions(state.heuristicPictureDialog.heuristic_picture.dimensions);
@@ -45,4 +45,4 @@ const Chart = () => {
   return null;
 }
 
-export default Chart;
+export default HeuristicPicture;
