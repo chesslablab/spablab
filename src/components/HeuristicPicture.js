@@ -4,7 +4,10 @@ import { Grid } from '@material-ui/core';
 import { Legend, LineChart, Line, XAxis, YAxis } from 'recharts';
 
 const getDimensions = (items) => {
-  return Object.keys(items).map(item => item.split("\\").pop());
+  return Object.keys(items).map(item => {
+    let word = item.split("\\").pop();
+    return word.substring(0, word.length - 10);
+  });
 };
 
 const initData = (dim) => {
