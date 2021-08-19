@@ -1,5 +1,6 @@
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
+import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
@@ -131,7 +132,7 @@ export const onHeuristicPicture = (data) => dispatch => {
     balance: data['/heuristicpicture'].balance
   };
   dispatch({
-    type: boardActionTypes.HEURISTIC_PICTURE,
+    type: heuristicPictureDialogActionTypes.OPEN,
     payload: payload
   });
 };
