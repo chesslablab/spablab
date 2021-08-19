@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Grid } from '@material-ui/core';
 import { Legend, LineChart, Line, XAxis, YAxis } from 'recharts';
 
 const getDimensions = (items) => {
@@ -14,12 +15,14 @@ const initData = (dim) => {
 
 const buildCharts = (data) => {
   return Object.keys(data).map(key =>
-    <LineChart key={key} width={300} height={200} data={data[key]}>
-      <XAxis dataKey="n" />
-      <YAxis />
-      <Legend />
-      <Line type="monotone" dataKey={key} stroke="#007a99" dot={false} strokeWidth={2} />
-    </LineChart>
+    <Grid key={key} item xs={3}>
+      <LineChart width={200} height={150} data={data[key]}>
+        <XAxis dataKey="n" />
+        <YAxis />
+        <Legend />
+        <Line type="monotone" dataKey={key} stroke="#007a99" dot={false} strokeWidth={2} />
+      </LineChart>
+    </Grid>
   );
 };
 
@@ -39,7 +42,9 @@ const HeuristicPicture = () => {
         });
       });
     });
-    return <div>{buildCharts(data)}</div>;
+    return <Grid container spacing={3}>
+      {buildCharts(data)}
+    </Grid>;
   }
 
   return null;
