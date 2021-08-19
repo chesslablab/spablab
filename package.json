@@ -51,7 +51,8 @@
     "react-timer-hook": "^3.0.4",
     "react-transition-group": "^4.4.2",
     "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "recharts": "^2.1.0"
   },
   "repository": {
     "type": "git",

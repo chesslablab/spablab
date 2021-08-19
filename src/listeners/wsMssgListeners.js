@@ -1,5 +1,6 @@
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
+import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
@@ -32,6 +33,9 @@ export const wsMssgListeners = (data) => dispatch => {
       if (data['/piece']) {
         dispatch(onPiece(data));
       }
+      break;
+    case '/heuristicpicture' === cmd:
+      dispatch(onHeuristicPicture(data));
       break;
     default:
       break;
@@ -120,4 +124,15 @@ export const onPlayfen = (data) => dispatch => {
       payload: payload
     });
   }
+};
+
+export const onHeuristicPicture = (data) => dispatch => {
+  const payload = {
+    dimensions: data['/heuristicpicture'].dimensions,
+    balance: data['/heuristicpicture'].balance
+  };
+  dispatch({
+    type: heuristicPictureDialogActionTypes.OPEN,
+    payload: payload
+  });
 };
