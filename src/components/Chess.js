@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CreateInviteCodeDialog from './CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './EnterInviteCodeDialog';
+import HeuristicPictureDialog from './HeuristicPictureDialog';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
 import History from './History';
@@ -39,6 +40,7 @@ const Chess = ({props}) => {
       <CssBaseline />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
+      <HeuristicPictureDialog />
       <Grid container className={classes.root}>
         <Grid item xs={12} md={5}>
           <Grid item xs={12}>
