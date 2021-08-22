@@ -16,7 +16,7 @@ const HeuristicPictureDialog = () => {
         <Alert className="info-alert" severity="info" style={{marginBottom:20}}>
           A chess game can be plotted in terms of balance.
           +1 is the best possible evaluation for White and -1 the best possible evaluation for Black.
-          Both forces being set to 0.5 means they're actually offset and, therefore, balanced.
+          Both forces being set to 0 means they're actually offset and, therefore, balanced.
         </Alert>
         <HeuristicPicture />
         <DialogActions>
