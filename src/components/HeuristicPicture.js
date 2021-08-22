@@ -21,7 +21,7 @@ const buildCharts = (data) => {
     <Grid key={key} item xs={3}>
       <LineChart width={200} height={150} data={data[key]}>
         <XAxis dataKey="n" />
-        <YAxis />
+        <YAxis domain={[-1, 1]} />
         <Legend />
         <Line type="monotone" dataKey={key} stroke="#007a99" dot={false} strokeWidth={2} />
       </LineChart>
