@@ -1,17 +1,17 @@
 import Pgn from './Pgn.js';
 
-import bBishop from '../assets/img/bBishop.svg';
-import bKing from '../assets/img/bKing.svg';
-import bKnight from '../assets/img/bKnight.svg';
-import bPawn from '../assets/img/bPawn.svg';
-import bQueen from '../assets/img/bQueen.svg';
-import bRook from '../assets/img/bRook.svg';
-import wBishop from '../assets/img/wBishop.svg';
-import wKing from '../assets/img/wKing.svg';
-import wKnight from '../assets/img/wKnight.svg';
-import wPawn from '../assets/img/wPawn.svg';
-import wQueen from '../assets/img/wQueen.svg';
-import wRook from '../assets/img/wRook.svg';
+import bBishop from '../assets/img/pieces/bBishop.svg';
+import bKing from '../assets/img/pieces/bKing.svg';
+import bKnight from '../assets/img/pieces/bKnight.svg';
+import bPawn from '../assets/img/pieces/bPawn.svg';
+import bQueen from '../assets/img/pieces/bQueen.svg';
+import bRook from '../assets/img/pieces/bRook.svg';
+import wBishop from '../assets/img/pieces/wBishop.svg';
+import wKing from '../assets/img/pieces/wKing.svg';
+import wKnight from '../assets/img/pieces/wKnight.svg';
+import wPawn from '../assets/img/pieces/wPawn.svg';
+import wQueen from '../assets/img/pieces/wQueen.svg';
+import wRook from '../assets/img/pieces/wRook.svg';
 
 export default class Piece {
   static unicode = {

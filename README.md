@@ -14,6 +14,12 @@ Check out [this demo](https://programarivm.github.io/demo-redux-chess).
 
 > Please note the sandbox server may not be up and running all the time.
 
+![Figure 1](/assets/img/docs/figure-01.png)
+Figure 1. The Chigorin Defense to the Queen's Gambit
+
+![Figure 2](/assets/img/docs/figure-02.png)
+Figure 2. Evaluation after 1.d4 d5 2.c4 Nc6 3.cxd5 Qxd5 4.e3 e5 5.Nc3 Bb4 6.Bd2 Bxc3
+
 ### Examples
 
 Initialization with the sandbox chess server:
@@ -59,8 +65,6 @@ ReactDOM.render(
 );
 
 ```
-
-![Redux Chess](/resources/demo.gif)
 
 ### Learn More
 

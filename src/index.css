@@ -31,8 +31,8 @@
 
 .square span img {
   z-index: 1;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 93%;
+  max-height: 93%;
 }
 
 .is-selected span,
