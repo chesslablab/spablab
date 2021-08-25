@@ -103,7 +103,7 @@ const Board = ({props}) => {
                 }
               }}>
               <span tabIndex={k}>
-                {Piece.unicode[piece].char}
+                <img src={Piece.unicode[piece].char} />
               </span>
             </div>
           );

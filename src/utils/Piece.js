@@ -1,42 +1,55 @@
 import Pgn from './Pgn.js';
 
+import bBishop from '../assets/img/bBishop.svg';
+import bKing from '../assets/img/bKing.svg';
+import bKnight from '../assets/img/bKnight.svg';
+import bPawn from '../assets/img/bPawn.svg';
+import bQueen from '../assets/img/bQueen.svg';
+import bRook from '../assets/img/bRook.svg';
+import wBishop from '../assets/img/wBishop.svg';
+import wKing from '../assets/img/wKing.svg';
+import wKnight from '../assets/img/wKnight.svg';
+import wPawn from '../assets/img/wPawn.svg';
+import wQueen from '../assets/img/wQueen.svg';
+import wRook from '../assets/img/wRook.svg';
+
 export default class Piece {
   static unicode = {
     ' R ': {
-      char: '♖'
+      char: wRook
     },
     ' N ': {
-      char: '♘'
+      char: wKnight
     },
     ' B ': {
-      char: '♗'
+      char: wBishop
     },
     ' Q ': {
-      char: '♕'
+      char: wQueen
     },
     ' K ': {
-      char: '♔'
+      char: wKing
     },
     ' P ': {
-      char: '♙'
+      char: wPawn
     },
     ' r ': {
-      char: '♜'
+      char: bRook
     },
     ' n ': {
-      char: '♞'
+      char: bKnight
     },
     ' b ': {
-      char: '♝'
+      char: bBishop
     },
     ' q ': {
-      char: '♛'
+      char: bQueen
     },
     ' k ': {
-      char: '♚'
+      char: bKing
     },
     ' p ': {
-      char: '♟'
+      char: bPawn
     },
     ' . ': {
       char: ''
