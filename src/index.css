@@ -19,10 +19,10 @@
 }
 
 .square span {
-  height: 8.5vh;
-  width: 8.5vh;
+  height: 9vh;
+  width: 9vh;
   display: block;
-  line-height: 10vh;
+  line-height: 11.5vh;
 }
 
 .square span::selection {
@@ -31,8 +31,7 @@
 
 .square span img {
   z-index: 1;
-  max-width: 93%;
-  max-height: 93%;
+  width: 100%;
 }
 
 .is-selected span,
