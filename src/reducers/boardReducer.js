@@ -20,6 +20,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case boardActionTypes.START:
       return Object.assign({}, initialState);
+    case boardActionTypes.START_FEN:
+      let fenState = Object.assign({}, initialState);
+      let fenSplit = action.payload.fen.split(' ');
+      fenState.history = [];
+      fenState.history.push(Ascii.toAscii(fenSplit[0]));
+      fenState.turn = fenSplit[1];
+      return fenState;
     case boardActionTypes.PICK_PIECE:
       return {
         ...state,

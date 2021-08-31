@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import { startBoard } from '../actions/boardActions';
 import { wsMssgStartLoadfen, wsMssgQuit } from '../actions/serverActions';
+import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActions from '../constants/loadFenDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 
@@ -25,7 +26,12 @@ const LoadFenDialog = () => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadfen(state, event.target.elements.fen.value).then(() => {
         dispatch({ type: modeActionTypes.SET_LOADFEN });
-        dispatch(startBoard({ back: state.board.history.length - 1 }));
+        dispatch({
+          type: boardActionTypes.START_FEN,
+          payload: {
+            fen: event.target.elements.fen.value
+          }
+        });
         dispatch({ type: loadFenDialogActions.CLOSE });
       });
     });
