@@ -12,7 +12,7 @@ import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialog
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
-import { wsConnect, wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgStartFen, wsMssgQuit } from '../actions/serverActions';
+import { wsConnect, wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgStartLoadfen, wsMssgQuit } from '../actions/serverActions';
 
 const Buttons = ({props}) => {
   const state = useSelector(state => state);
