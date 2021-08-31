@@ -18,12 +18,12 @@ const Buttons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [anchorElLoadFen, setAnchorElLoadFen] = React.useState(null);
+  const [anchorElLoadfen, setAnchorElLoadfen] = React.useState(null);
   const [anchorElPlayFriend, setAnchorElPlayFriend] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
-  const handleCloseLoadFen = () => {
-    setAnchorElLoadFen(null);
+  const handleCloseLoadfen = () => {
+    setAnchorElLoadfen(null);
   };
 
   const handleClosePlayFriend = () => {
@@ -62,7 +62,7 @@ const Buttons = ({props}) => {
         style={{textTransform: 'none'}}
         onClick={() => {
           dispatch({ type: loadFenDialogActionTypes.OPEN });
-          handleCloseLoadFen();
+          handleCloseLoadfen();
         }}
       >
         Load FEN
