@@ -1,8 +1,11 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import loadFenDialogActions from '../constants/loadFenDialogActionTypes';
 import { makeStyles } from '@material-ui/core/styles';
+import { startBoard } from '../actions/boardActions';
+import { wsMssgStartLoadfen, wsMssgQuit } from '../actions/serverActions';
+import loadFenDialogActions from '../constants/loadFenDialogActionTypes';
+import modeActionTypes from '../constants/modeActionTypes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,8 +22,13 @@ const LoadFenDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    // TODO
-    console.log('TODO');
+    wsMssgQuit(state).then(() => {
+      wsMssgStartLoadfen(state, event.target.elements.fen.value).then(() => {
+        dispatch({ type: modeActionTypes.SET_LOADFEN });
+        dispatch(startBoard({ back: state.board.history.length - 1 }));
+        dispatch({ type: loadFenDialogActions.CLOSE });
+      });
+    });
   }
 
   return (
@@ -31,7 +39,7 @@ const LoadFenDialog = () => {
           <TextField
             fullWidth
             required
-            name="hash"
+            name="fen"
             label="FEN string"
           />
           <DialogActions>
