@@ -23,16 +23,16 @@ export const wsMssgStartAnalysis = async (ws) => {
   return await ws.send('/start analysis');
 };
 
+export const wsMssgStartPlayfriend = async (state, color, time) => {
+  return await state.server.ws.send(`/start playfriend ${color} ${time}`);
+};
+
 export const wsMssgPlayfen = async (state) => {
   return await state.server.ws.send(`/playfen "${state.board.fen}"`);
 };
 
 export const wsMssgQuit = async (state) => {
   return await state.server.ws.send('/quit');
-};
-
-export const wsMssgPlayfriend = async (state, color, time) => {
-  return await state.server.ws.send(`/start playfriend ${color} ${time}`);
 };
 
 export const wsMssgAccept = async (state, hash) => {
