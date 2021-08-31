@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import LoadFenDialog from './LoadFenDialog';
 import CreateInviteCodeDialog from './CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import HeuristicPictureDialog from './HeuristicPictureDialog';
@@ -38,9 +39,6 @@ const Chess = ({props}) => {
   return (
     <Provider store={store}>
       <CssBaseline />
-      <CreateInviteCodeDialog />
-      <EnterInviteCodeDialog />
-      <HeuristicPictureDialog />
       <Grid container className={classes.root}>
         <Grid item xs={12} md={5}>
           <Grid item xs={12}>
@@ -64,6 +62,10 @@ const Chess = ({props}) => {
           </Paper>
         </Grid>
       </Grid>
+      <LoadFenDialog />
+      <CreateInviteCodeDialog />
+      <EnterInviteCodeDialog />
+      <HeuristicPictureDialog />
     </Provider>
   );
 }

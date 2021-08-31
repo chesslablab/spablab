@@ -1,38 +1,45 @@
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem } from '@material-ui/core';
 import TuneIcon from '@material-ui/icons/Tune';
+import PublishIcon from '@material-ui/icons/Publish';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
+import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import { startBoard } from '../actions/boardActions';
-import { wsConnect, wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
+import { wsConnect, wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgStartFen, wsMssgQuit } from '../actions/serverActions';
 
 const Buttons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
+  const [anchorElLoadFen, setAnchorElLoadFen] = React.useState(null);
   const [anchorElPlayFriend, setAnchorElPlayFriend] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
-  const handleClickPlayFriend = (event) => {
-    setAnchorElPlayFriend(event.currentTarget);
+  const handleCloseLoadFen = () => {
+    setAnchorElLoadFen(null);
   };
 
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
   };
 
-  const handleClickSettings = (event) => {
-    setAnchorElSettings(event.currentTarget);
-  };
-
   const handleCloseSettings = () => {
     setAnchorElSettings(null);
+  };
+
+  const handleClickPlayFriend = (event) => {
+    setAnchorElPlayFriend(event.currentTarget);
+  };
+
+  const handleClickSettings = (event) => {
+    setAnchorElSettings(event.currentTarget);
   };
 
   return (
@@ -49,6 +56,16 @@ const Buttons = ({props}) => {
         })}
       >
         Analysis board
+      </Button>
+      <Button
+        startIcon={<PublishIcon />}
+        style={{textTransform: 'none'}}
+        onClick={() => {
+          dispatch({ type: loadFenDialogActionTypes.OPEN });
+          handleCloseLoadFen();
+        }}
+      >
+        Load FEN
       </Button>
       <Button
         startIcon={<GroupAddIcon />}
