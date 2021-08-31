@@ -23,6 +23,10 @@ export const wsMssgStartAnalysis = async (ws) => {
   return await ws.send('/start analysis');
 };
 
+export const wsMssgStartLoadFen = async (state, string) => {
+  return await state.server.ws.send(`/start fen ${string}`);
+};
+
 export const wsMssgStartPlayfriend = async (state, color, time) => {
   return await state.server.ws.send(`/start playfriend ${color} ${time}`);
 };
