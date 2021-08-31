@@ -90,7 +90,7 @@ const CreateInviteCodeDialog = () => {
                       wsMssgQuit(state).then(() => {
                         wsMssgStartAnalysis(state.server.ws).then(() => {
                           dispatch({ type: alertActionTypes.INFO_CLOSE });
-                          dispatch({ type: modeActionTypes.RESET });
+                          dispatch({ type: modeActionTypes.SET_ANALYSIS });
                           dispatch(startBoard({ back: state.board.history.length - 1 }));
                           dispatch({ type: createInviteCodeDialogActions.CLOSE });
                         });

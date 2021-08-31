@@ -50,7 +50,7 @@ const Buttons = ({props}) => {
         onClick={() => wsMssgQuit(state).then(() => {
           wsMssgStartAnalysis(state.server.ws).then(() => {
             dispatch({ type: alertActionTypes.INFO_CLOSE });
-            dispatch({ type: modeActionTypes.RESET });
+            dispatch({ type: modeActionTypes.SET_ANALYSIS });
             dispatch(startBoard({ back: state.board.history.length - 1 }));
           });
         })}
@@ -83,7 +83,7 @@ const Buttons = ({props}) => {
         <MenuItem onClick={() => {
           dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
           dispatch({ type: alertActionTypes.INFO_CLOSE });
-          dispatch({ type: modeActionTypes.RESET });
+          dispatch({ type: modeActionTypes.SET_ANALYSIS });
           handleClosePlayFriend();
         }}>Create invite code</MenuItem>
         <MenuItem onClick={() => {
