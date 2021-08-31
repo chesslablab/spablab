@@ -34,6 +34,18 @@ const MainBreadcrumbs = ({props}) => {
         </Typography>
       </Breadcrumbs>
     );
+  } else if (state.mode.current === modeNames.LOADFEN) {
+    return (
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link color="inherit" href="/" className={classes.link}>
+          <HomeIcon className={classes.icon} />
+          Chess Demo
+        </Link>
+        <Typography color="textPrimary" className={classes.link}>
+          FEN board
+        </Typography>
+      </Breadcrumbs>
+    );
   } else if (state.mode.current === modeNames.PLAYFRIEND) {
     return (
       <Breadcrumbs aria-label="breadcrumb">
