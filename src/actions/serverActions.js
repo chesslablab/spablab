@@ -24,7 +24,7 @@ export const wsMssgStartAnalysis = async (ws) => {
 };
 
 export const wsMssgStartLoadfen = async (state, string) => {
-  return await state.server.ws.send(`/start fen "${string}"`);
+  return await state.server.ws.send(`/start loadfen "${string}"`);
 };
 
 export const wsMssgStartPlayfriend = async (state, color, time) => {

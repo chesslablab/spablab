@@ -25,14 +25,7 @@ const LoadFenDialog = () => {
     event.preventDefault();
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadfen(state, event.target.elements.fen.value).then(() => {
-        dispatch({ type: modeActionTypes.SET_LOADFEN });
-        dispatch({
-          type: boardActionTypes.START_FEN,
-          payload: {
-            fen: event.target.elements.fen.value
-          }
-        });
-        dispatch({ type: loadFenDialogActions.CLOSE });
+        dispatch({ type: loadFenDialogActions.CLOSE }); 
       });
     });
   }
