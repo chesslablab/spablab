@@ -19,8 +19,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case modeActionTypes.RESET:
+    case modeActionTypes.SET_ANALYSIS:
       return initialState;
+    case modeActionTypes.SET_LOADFEN:
+      return {
+        ...initialState,
+        current: modeNames.LOADFEN
+      };
     case modeActionTypes.SET_PLAYFRIEND:
       return {
         ...state,

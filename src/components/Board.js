@@ -16,14 +16,14 @@ const Board = ({props}) => {
   useEffect(() => {
     dispatch(wsConnect(state, props)).then((ws) => {
       wsMssgStartAnalysis(ws).then(() => {
-        dispatch({ type: modeActionTypes.RESET });
+        dispatch({ type: modeActionTypes.SET_ANALYSIS });
         dispatch(startBoard({ back: state.board.history.length - 1 }));
       });
     });
   }, [dispatch]);
 
   const pickPiece = (payload) => {
-    if (modeNames.ANALYSIS === state.mode.current) {
+    if (modeNames.ANALYSIS === state.mode.current || modeNames.LOADFEN === state.mode.current) {
       if (state.board.turn === Piece.color(payload.piece)) {
         dispatch({
           type: boardActionTypes.PICK_PIECE,

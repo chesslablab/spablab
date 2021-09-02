@@ -1,5 +1,6 @@
 const modeNames = {
 	ANALYSIS: 'analysis',
+	LOADFEN: 'loadfen',
 	PLAYFRIEND: 'playfriend'
 };
 

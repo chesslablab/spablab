@@ -10,8 +10,12 @@ import Pgn from '../utils/Pgn';
 export const wsMssgListeners = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
-    case '/start' === cmd && modeNames.PLAYFRIEND === data['/start'].mode:
-      dispatch(onStartPlayfriend(data));
+    case '/start' === cmd:
+      if (data['/start'].mode === modeNames.LOADFEN) {
+        dispatch(onStartLoadfen(data));
+      } else if (data['/start'].mode === modeNames.PLAYFRIEND) {
+        dispatch(onStartPlayfriend(data));
+      }
       break;
     case '/accept' === cmd:
       dispatch(onAccept(data));
@@ -40,6 +44,16 @@ export const wsMssgListeners = (data) => dispatch => {
     default:
       break;
   }
+};
+
+export const onStartLoadfen = (data) => dispatch => {
+  dispatch({ type: modeActionTypes.SET_LOADFEN });
+  dispatch({
+    type: boardActionTypes.START_FEN,
+    payload: {
+      fen: data['/start'].fen
+    }
+  });
 };
 
 export const onStartPlayfriend = (data) => dispatch => {

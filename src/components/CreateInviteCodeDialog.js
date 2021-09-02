@@ -5,7 +5,7 @@ import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
 import { startBoard } from '../actions/boardActions';
-import { wsMssgPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
+import { wsMssgStartPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 import { makeStyles } from '@material-ui/core/styles';
 import Pgn from '../utils/Pgn';
 
@@ -34,7 +34,7 @@ const CreateInviteCodeDialog = () => {
       color = randColor();
     }
     wsMssgQuit(state).then(() => {
-      wsMssgPlayfriend(state, color, time).then(() => {
+      wsMssgStartPlayfriend(state, color, time).then(() => {
         dispatch(startBoard({ back: state.board.history.length - 1 }));
       });
     });
@@ -90,7 +90,7 @@ const CreateInviteCodeDialog = () => {
                       wsMssgQuit(state).then(() => {
                         wsMssgStartAnalysis(state.server.ws).then(() => {
                           dispatch({ type: alertActionTypes.INFO_CLOSE });
-                          dispatch({ type: modeActionTypes.RESET });
+                          dispatch({ type: modeActionTypes.SET_ANALYSIS });
                           dispatch(startBoard({ back: state.board.history.length - 1 }));
                           dispatch({ type: createInviteCodeDialogActions.CLOSE });
                         });
