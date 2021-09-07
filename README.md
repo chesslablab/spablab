@@ -83,6 +83,7 @@ Commands available:
 /castling Gets the castling status.
 /captures Gets the pieces captured by both players.
 /fen Prints the FEN string representation of the game.
+/heuristicpicture Takes a balanced heuristic picture of the current game.
 /history The current game's history.
 /ischeck Finds out if the game is in check.
 /ismate Finds out if the game is over.
@@ -90,7 +91,7 @@ Commands available:
 /pieces {"color":["w","b"]} Gets the pieces on the board by color.
 /playfen {"fen":"string"} Plays a chess move in shortened FEN format.
 /quit Quits a game.
-/start {"mode":["analysis","playfriend"],"color":["w","b"],"min":"int"} Starts a new game.
+/start {"mode":["analysis","loadfen","playfriend"],"fen":"string","color":["w","b"],"min":"int"} Starts a new game.
 /status The current game status.
 
 Listening to commands...
@@ -114,6 +115,7 @@ For further information on developing this awesome npm package, you're all invit
 - [Creating a Local WebSocket Server With TLS/SSL Is Easy as Pie](https://medium.com/geekculture/creating-a-local-websocket-server-with-tls-ssl-is-easy-as-pie-de1a2ef058e0)
 - [A Simple Example of SSL/TLS WebSocket With ReactPHP and Ratchet](https://medium.com/geekculture/a-simple-example-of-ssl-tls-websocket-with-reactphp-and-ratchet-e03be973f521)
 - [Newbie Tutorial on How to Rate-Limit a WebSocket Server](https://medium.com/geekculture/newbie-tutorial-on-how-to-rate-limit-a-websocket-server-8e28642ad5ff)
+- [Visualizing Chess Openings Before MLP Classification](https://medium.com/geekculture/visualizing-chess-openings-before-mlp-classification-fd2a3e8c266)
 
 ---
 
