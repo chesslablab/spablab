@@ -47,13 +47,23 @@ export const wsMssgListeners = (data) => dispatch => {
 };
 
 export const onStartLoadfen = (data) => dispatch => {
-  dispatch({ type: modeActionTypes.SET_LOADFEN });
-  dispatch({
-    type: boardActionTypes.START_FEN,
-    payload: {
-      fen: data['/start'].fen
-    }
-  });
+  if (data['/start'].fen) {
+    dispatch({ type: alertActionTypes.INFO_CLOSE });
+    dispatch({ type: modeActionTypes.SET_LOADFEN });
+    dispatch({
+      type: boardActionTypes.START_FEN,
+      payload: {
+        fen: data['/start'].fen
+      }
+    });
+  } else {
+    dispatch({
+      type: alertActionTypes.INFO_DISPLAY,
+      payload: {
+        info: 'Invalid FEN.'
+      }
+    });
+  }
 };
 
 export const onStartPlayfriend = (data) => dispatch => {

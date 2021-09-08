@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   breadcrumbs: {
     marginBottom: theme.spacing(2),
@@ -55,11 +56,11 @@ const Chess = ({props}) => {
           <Grid item xs={12} className={classes.breadcrumbs}>
             <MainBreadcrumbs />
           </Grid>
-          <InfoAlert />
           <Timers />
           <Paper elevation={3} className={classes.paper}>
             <MoveValidator />
           </Paper>
+          <InfoAlert />
         </Grid>
       </Grid>
       <LoadFenDialog />
