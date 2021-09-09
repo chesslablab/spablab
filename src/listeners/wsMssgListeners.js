@@ -18,7 +18,9 @@ export const wsMssgListeners = (data) => dispatch => {
       }
       break;
     case '/accept' === cmd:
-      dispatch(onAccept(data));
+      if (data['/accept'].jwt) {
+        dispatch(onAccept(data));
+      }
       break;
     case '/playfen' === cmd:
       if (store.getState().mode.current === modeNames.PLAYFRIEND) {
