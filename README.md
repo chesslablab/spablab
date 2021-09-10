@@ -53,7 +53,7 @@ import { Chess } from 'redux-chess';
 
 const props = {
   server: {
-    port: 'ws',
+    prot: 'ws',
     host: '127.0.0.1',
     port: '8080'
   }
@@ -97,7 +97,7 @@ Commands available:
 Listening to commands...
 ```
 
-For further information on developing this awesome npm package, you're all invited to read my learning journey:
+For further information on developing this awesome npm package, you're invited to read my learning journey:
 
 - [Demystifying AI Through a Human-Like Chess Engine](https://medium.com/geekculture/demystifying-ai-through-a-human-like-chess-engine-5f71e3896cc9)
 - [Two Things That My AI Project Required](https://medium.com/geekculture/two-things-that-my-ai-project-required-50000297053b)
@@ -117,7 +117,9 @@ For further information on developing this awesome npm package, you're all invit
 - [Newbie Tutorial on How to Rate-Limit a WebSocket Server](https://medium.com/geekculture/newbie-tutorial-on-how-to-rate-limit-a-websocket-server-8e28642ad5ff)
 - [Visualizing Chess Openings Before MLP Classification](https://medium.com/geekculture/visualizing-chess-openings-before-mlp-classification-fd2a3e8c266)
 
----
+### Testing Environment
+
+In order to develop the `redux-chess` package locally, you may want to look at the [testing environment repo](https://github.com/programarivm/testing-redux-chess) as well.
 
 ### License
 
