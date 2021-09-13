@@ -6,7 +6,7 @@ React chessboard connected to a [PHP Chess server](https://github.com/chesslab/c
 
 Via npm:
 
-    $ npm i redux-chess
+    $ npm i @chesslab/redux-chess
 
 ### Demo
 
@@ -27,7 +27,7 @@ Initialization with the sandbox chess server:
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Chess } from 'redux-chess';
+import { Chess } from '@chesslab/redux-chess';
 
 const props = {
   server: {
@@ -49,7 +49,7 @@ Initialization with a custom [local chess server](https://github.com/chesslab/ch
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Chess } from 'redux-chess';
+import { Chess } from '@chesslab/redux-chess';
 
 const props = {
   server: {
@@ -70,7 +70,7 @@ ReactDOM.render(
 
 Thank you for your interest in this exciting project!
 
-It may appear as if being quite challenging provided it requires this [chess server](https://github.com/chesslab/chess-server) up and running. `redux-chess` is "just a chessboard" as lightweight as it can possibly be.
+It may appear as if being quite challenging provided it requires this [chess server](https://github.com/chesslab/chess-server) up and running. `@chesslab/redux-chess` is "just a chessboard" as lightweight as it can possibly be.
 
 The chessboard just sends messages to a WebSocket server so make sure the chess server is running on localhost:
 
@@ -119,7 +119,7 @@ For further information on developing this awesome npm package, you're invited t
 
 ### Testing Environment
 
-In order to develop the `redux-chess` package locally, you may want to look at the [testing environment repo](https://github.com/chesslab/testing-redux-chess) as well.
+In order to develop the `@chesslab/redux-chess` package locally, you may want to look at the [testing environment repo](https://github.com/chesslab/testing-redux-chess) as well.
 
 ### License
 
