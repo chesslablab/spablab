@@ -1,6 +1,6 @@
 ## Redux Chess
 
-React chessboard connected to a [PHP Chess server](https://github.com/programarivm/chess-server).
+React chessboard connected to a [PHP Chess server](https://github.com/chesslab/chess-server).
 
 ### Install
 
@@ -44,7 +44,7 @@ ReactDOM.render(
 
 ```
 
-Initialization with a custom [local chess server](https://github.com/programarivm/chess-server):
+Initialization with a custom [local chess server](https://github.com/chesslab/chess-server):
 
 ```js
 import React from 'react';
@@ -70,7 +70,7 @@ ReactDOM.render(
 
 Thank you for your interest in this exciting project!
 
-It may appear as if being quite challenging provided it requires this [chess server](https://github.com/programarivm/chess-server) up and running. `redux-chess` is "just a chessboard" as lightweight as it can possibly be.
+It may appear as if being quite challenging provided it requires this [chess server](https://github.com/chesslab/chess-server) up and running. `redux-chess` is "just a chessboard" as lightweight as it can possibly be.
 
 The chessboard just sends messages to a WebSocket server so make sure the chess server is running on localhost:
 
@@ -111,7 +111,7 @@ For further information on developing this awesome npm package, you're invited t
 - [How to Test a Local React NPM Package With Ease](https://javascript.plainenglish.io/testing-a-local-react-npm-package-with-ease-7d0668676ddb)
 - [TDDing a React App With Jest the Easy Way](https://medium.com/geekculture/tdding-a-react-app-with-jest-the-easy-way-8ddb64aeaba6)
 - [How to Test React Components With Joy](https://javascript.plainenglish.io/looking-forward-to-testing-react-components-with-joy-5bb3f86c21d7)
-- [My First Integration Test in a Redux Hooked App](https://programarivm.medium.com/my-first-integration-test-in-a-redux-hooked-app-3b189addd46e)
+- [My First Integration Test in a Redux Hooked App](https://javascript.plainenglish.io/my-first-integration-test-in-a-redux-hooked-app-3b189addd46e)
 - [Creating a Local WebSocket Server With TLS/SSL Is Easy as Pie](https://medium.com/geekculture/creating-a-local-websocket-server-with-tls-ssl-is-easy-as-pie-de1a2ef058e0)
 - [A Simple Example of SSL/TLS WebSocket With ReactPHP and Ratchet](https://medium.com/geekculture/a-simple-example-of-ssl-tls-websocket-with-reactphp-and-ratchet-e03be973f521)
 - [Newbie Tutorial on How to Rate-Limit a WebSocket Server](https://medium.com/geekculture/newbie-tutorial-on-how-to-rate-limit-a-websocket-server-8e28642ad5ff)
@@ -119,7 +119,7 @@ For further information on developing this awesome npm package, you're invited t
 
 ### Testing Environment
 
-In order to develop the `redux-chess` package locally, you may want to look at the [testing environment repo](https://github.com/programarivm/testing-redux-chess) as well.
+In order to develop the `redux-chess` package locally, you may want to look at the [testing environment repo](https://github.com/chesslab/testing-redux-chess) as well.
 
 ### License
 
