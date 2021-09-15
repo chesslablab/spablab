@@ -127,13 +127,8 @@ The MIT License.
 
 ### Contributions
 
-Would you help make this app better?
+- [How to Contribute to Chesslab](https://medium.com/geekculture/how-to-contribute-to-chesslab-cca73fefaf70)
 
-- Look at the open issues
-- Send a pull request
-- Drop [an email](https://programarivm.com/about)
-- Leave me a comment on [Twitter](https://twitter.com/programarivm)
-
-Happy learning!
+Happy learning and coding!
 
 Thank you, and keep it up.
