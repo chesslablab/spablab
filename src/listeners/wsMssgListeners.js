@@ -20,6 +20,13 @@ export const wsMssgListeners = (data) => dispatch => {
     case '/accept' === cmd:
       if (data['/accept'].jwt) {
         dispatch(onAccept(data));
+      } else {
+        dispatch({
+          type: alertActionTypes.INFO_DISPLAY,
+          payload: {
+            info: 'Invalid invite code.'
+          }
+        });
       }
       break;
     case '/playfen' === cmd:
