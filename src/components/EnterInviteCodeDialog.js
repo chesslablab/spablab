@@ -38,6 +38,7 @@ const EnterInviteCodeDialog = () => {
         <form className={classes.root} onSubmit={handlePlay}>
           <TextField
             fullWidth
+            required
             name="hash"
             label="Code"
           />
