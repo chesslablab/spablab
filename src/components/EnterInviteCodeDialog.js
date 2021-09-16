@@ -21,14 +21,12 @@ const EnterInviteCodeDialog = () => {
 
   const handlePlay = (event) => {
     event.preventDefault();
-    if (!state.mode.playfriend.color) {
-      wsMssgQuit(state).then(() => {
-        wsMssgAccept(state, event.target.elements.hash.value).then(() => {
-          dispatch(startBoard({ back: state.board.history.length - 1 }));
-          dispatch({ type: enterInviteCodeDialogActions.CLOSE });
-        });
+    wsMssgQuit(state).then(() => {
+      wsMssgAccept(state, event.target.elements.hash.value).then(() => {
+        dispatch(startBoard({ back: state.board.history.length - 1 }));
+        dispatch({ type: enterInviteCodeDialogActions.CLOSE });
       });
-    }
+    });
   }
 
   return (
