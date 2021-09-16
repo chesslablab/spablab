@@ -157,6 +157,11 @@ export const onPlayfen = (data) => dispatch => {
       payload: payload
     });
   }
+  if (data['/playfen'].mate) {
+    dispatch({
+      type: modeActionTypes.CHECKMATE
+    });
+  }
 };
 
 export const onHeuristicPicture = (data) => dispatch => {

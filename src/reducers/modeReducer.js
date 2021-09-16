@@ -46,6 +46,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         playfriend: newPlayfriend
       };
+    case modeActionTypes.CHECKMATE:
+      let newState = Object.assign({}, initialState);
+      newState.current = state.current;
+      return newState;
     default:
       return state;
   }
