@@ -127,7 +127,7 @@ The MIT License.
 
 ### Contributions
 
-- [How to Contribute to Chesslab](https://medium.com/geekculture/how-to-contribute-to-chesslab-cca73fefaf70)
+- [How to Contribute to ChesslabLab](https://medium.com/geekculture/how-to-contribute-to-chesslab-cca73fefaf70)
 
 Happy learning and coding!
 
