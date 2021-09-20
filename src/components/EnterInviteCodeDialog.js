@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import enterInviteCodeDialogActions from '../constants/enterInviteCodeDialogActionTypes';
-import { startBoard } from '../actions/boardActions';
 import { wsMssgAccept, wsMssgQuit } from '../actions/serverActions';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -23,7 +22,6 @@ const EnterInviteCodeDialog = () => {
     event.preventDefault();
     wsMssgQuit(state).then(() => {
       wsMssgAccept(state, event.target.elements.hash.value).then(() => {
-        dispatch(startBoard({ back: state.board.history.length - 1 }));
         dispatch({ type: enterInviteCodeDialogActions.CLOSE });
       });
     });

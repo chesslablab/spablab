@@ -1,4 +1,3 @@
-import { startBoard } from '../actions/boardActions';
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
@@ -61,7 +60,7 @@ export const wsMssgListener = (data) => dispatch => {
 export const onStartAnalysis = (data) => dispatch => {
   dispatch({ type: alertActionTypes.INFO_CLOSE });
   dispatch({ type: modeActionTypes.SET_ANALYSIS });
-  dispatch(startBoard({ back: 0 }));
+  dispatch({ type: boardActionTypes.START });
 };
 
 export const onStartLoadfen = (data) => dispatch => {
@@ -102,13 +101,14 @@ export const onStartPlayfriend = (data) => dispatch => {
   if (jwtDecoded.color === Pgn.symbol.BLACK) {
     dispatch({ type: boardActionTypes.FLIP });
   }
-  dispatch(startBoard({ back: 0 }));
+  dispatch({ type: boardActionTypes.START });
 };
 
 export const onAccept = (data) => dispatch => {
   if (!store.getState().mode.playfriend.color) {
     const jwtDecoded = jwt_decode(data['/accept'].jwt);
     const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+    dispatch({ type: boardActionTypes.START });
     dispatch({
       type: modeActionTypes.SET_PLAYFRIEND,
       payload: {
