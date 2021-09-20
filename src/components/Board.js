@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import boardActionTypes from '../constants/boardActionTypes';
-import modeActionTypes from '../constants/modeActionTypes';
-import modeNames from '../constants/modeNames';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
+import boardActionTypes from '../constants/boardActionTypes';
+import modeNames from '../constants/modeNames';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
