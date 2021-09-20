@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
 
-export const wsMssgListeners = (data) => dispatch => {
+export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/start' === cmd:
