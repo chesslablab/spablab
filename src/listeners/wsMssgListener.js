@@ -102,6 +102,7 @@ export const onStartPlayfriend = (data) => dispatch => {
   if (jwtDecoded.color === Pgn.symbol.BLACK) {
     dispatch({ type: boardActionTypes.FLIP });
   }
+  dispatch(startBoard({ back: 0 }));
 };
 
 export const onAccept = (data) => dispatch => {

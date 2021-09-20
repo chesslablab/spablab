@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
-import { startBoard } from '../actions/boardActions';
 import { wsMssgStartPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 import { makeStyles } from '@material-ui/core/styles';
 import Pgn from '../utils/Pgn';
@@ -33,11 +32,7 @@ const CreateInviteCodeDialog = () => {
     if (color === 'rand') {
       color = randColor();
     }
-    wsMssgQuit(state).then(() => {
-      wsMssgStartPlayfriend(state, color, time).then(() => {
-        dispatch(startBoard({ back: state.board.history.length - 1 }));
-      });
-    });
+    wsMssgQuit(state).then(() => wsMssgStartPlayfriend(state, color, time));
   }
 
   return (
