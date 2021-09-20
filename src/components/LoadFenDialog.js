@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
-import { startBoard } from '../actions/boardActions';
 import { wsMssgStartLoadfen, wsMssgQuit } from '../actions/serverActions';
 import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActions from '../constants/loadFenDialogActionTypes';
@@ -25,7 +24,7 @@ const LoadFenDialog = () => {
     event.preventDefault();
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadfen(state, event.target.elements.fen.value).then(() => {
-        dispatch({ type: loadFenDialogActions.CLOSE }); 
+        dispatch({ type: loadFenDialogActions.CLOSE });
       });
     });
   }

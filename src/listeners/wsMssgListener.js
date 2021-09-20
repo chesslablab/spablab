@@ -7,11 +7,13 @@ import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
 
-export const wsMssgListeners = (data) => dispatch => {
+export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/start' === cmd:
-      if (data['/start'].mode === modeNames.LOADFEN) {
+      if (data['/start'].mode === modeNames.ANALYSIS) {
+        dispatch(onStartAnalysis(data));
+      } else if (data['/start'].mode === modeNames.LOADFEN) {
         dispatch(onStartLoadfen(data));
       } else if (data['/start'].mode === modeNames.PLAYFRIEND) {
         dispatch(onStartPlayfriend(data));
@@ -55,6 +57,12 @@ export const wsMssgListeners = (data) => dispatch => {
   }
 };
 
+export const onStartAnalysis = (data) => dispatch => {
+  dispatch({ type: alertActionTypes.INFO_CLOSE });
+  dispatch({ type: modeActionTypes.SET_ANALYSIS });
+  dispatch({ type: boardActionTypes.START });
+};
+
 export const onStartLoadfen = (data) => dispatch => {
   if (data['/start'].fen) {
     dispatch({ type: alertActionTypes.INFO_CLOSE });
@@ -93,12 +101,14 @@ export const onStartPlayfriend = (data) => dispatch => {
   if (jwtDecoded.color === Pgn.symbol.BLACK) {
     dispatch({ type: boardActionTypes.FLIP });
   }
+  dispatch({ type: boardActionTypes.START });
 };
 
 export const onAccept = (data) => dispatch => {
   if (!store.getState().mode.playfriend.color) {
     const jwtDecoded = jwt_decode(data['/accept'].jwt);
     const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+    dispatch({ type: boardActionTypes.START });
     dispatch({
       type: modeActionTypes.SET_PLAYFRIEND,
       payload: {
