@@ -11,7 +11,7 @@ import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDial
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import { wsConnect, wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgStartLoadfen, wsMssgQuit } from '../actions/serverActions';
+import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
 
 const Buttons = ({props}) => {
   const state = useSelector(state => state);
