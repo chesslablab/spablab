@@ -1,3 +1,4 @@
+import { startBoard } from '../actions/boardActions';
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
@@ -11,7 +12,9 @@ export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/start' === cmd:
-      if (data['/start'].mode === modeNames.LOADFEN) {
+      if (data['/start'].mode === modeNames.ANALYSIS) {
+        dispatch(onStartAnalysis(data));
+      } else if (data['/start'].mode === modeNames.LOADFEN) {
         dispatch(onStartLoadfen(data));
       } else if (data['/start'].mode === modeNames.PLAYFRIEND) {
         dispatch(onStartPlayfriend(data));
@@ -53,6 +56,12 @@ export const wsMssgListener = (data) => dispatch => {
     default:
       break;
   }
+};
+
+export const onStartAnalysis = (data) => dispatch => {
+  dispatch({ type: alertActionTypes.INFO_CLOSE });
+  dispatch({ type: modeActionTypes.SET_ANALYSIS });
+  dispatch(startBoard({ back: 0 }));
 };
 
 export const onStartLoadfen = (data) => dispatch => {

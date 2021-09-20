@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
-import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
@@ -14,12 +13,7 @@ const Board = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(wsConnect(state, props)).then((ws) => {
-      wsMssgStartAnalysis(ws).then(() => {
-        dispatch({ type: modeActionTypes.SET_ANALYSIS });
-        dispatch(startBoard({ back: state.board.history.length - 1 }));
-      });
-    });
+    dispatch(wsConnect(state, props)).then(ws => wsMssgStartAnalysis(ws));
   }, [dispatch]);
 
   const pickPiece = (payload) => {

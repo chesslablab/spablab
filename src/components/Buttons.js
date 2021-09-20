@@ -11,7 +11,6 @@ import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDial
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import { startBoard } from '../actions/boardActions';
 import { wsConnect, wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgStartLoadfen, wsMssgQuit } from '../actions/serverActions';
 
 const Buttons = ({props}) => {
@@ -47,13 +46,7 @@ const Buttons = ({props}) => {
       <Button
         startIcon={<TuneIcon />}
         style={{textTransform: 'none'}}
-        onClick={() => wsMssgQuit(state).then(() => {
-          wsMssgStartAnalysis(state.server.ws).then(() => {
-            dispatch({ type: alertActionTypes.INFO_CLOSE });
-            dispatch({ type: modeActionTypes.SET_ANALYSIS });
-            dispatch(startBoard({ back: state.board.history.length - 1 }));
-          });
-        })}
+        onClick={() => wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws))}
       >
         Analysis board
       </Button>
