@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import LoadFenDialog from './LoadFenDialog';
@@ -60,6 +61,7 @@ const Chess = ({props}) => {
           <Paper elevation={3} className={classes.paper}>
             <MoveValidator />
           </Paper>
+          <Button variant="outlined">Propose a Takeback</Button>
           <InfoAlert />
         </Grid>
       </Grid>
