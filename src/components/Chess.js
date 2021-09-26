@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Chess = ({props}) => {
-  const state = useSelector(state => state);
   const classes = useStyles();
 
   return (
