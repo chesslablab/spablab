@@ -13,6 +13,7 @@ import Buttons from './Buttons.js';
 import History from './History';
 import MainBreadcrumbs from './MainBreadcrumbs';
 import MoveValidator from './MoveValidator.js';
+import ButtonsPlayFriendMode from './ButtonsPlayFriendMode.js';
 import Timers from './Timers';
 import InfoAlert from './InfoAlert.js';
 import '../index.css';
@@ -59,6 +60,7 @@ const Chess = ({props}) => {
           <Timers />
           <Paper elevation={3} className={classes.paper}>
             <MoveValidator />
+            <ButtonsPlayFriendMode />
           </Paper>
           <InfoAlert />
         </Grid>
