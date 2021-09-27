@@ -129,6 +129,4 @@ The MIT License.
 
 See the [contributing guidelines](https://github.com/chesslablab/redux-chess/blob/master/CONTRIBUTING.md).
 
-Happy learning and coding!
-
-Thank you, and keep it up.
+Happy learning and coding! Thank you, and keep it up.
