@@ -2,10 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import LoadFenDialog from './LoadFenDialog';
+import RequestTakebackDialog from './RequestTakebackDialog';
 import CreateInviteCodeDialog from './CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import HeuristicPictureDialog from './HeuristicPictureDialog';
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Chess = ({props}) => {
-  const state = useSelector(state => state);
   const classes = useStyles();
 
   return (
@@ -67,6 +66,7 @@ const Chess = ({props}) => {
           <InfoAlert />
         </Grid>
       </Grid>
+      <RequestTakebackDialog />
       <LoadFenDialog />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
