@@ -5,6 +5,7 @@ import { CssBaseline } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import LoadFenDialog from './LoadFenDialog';
+import RequestTakebackDialog from './RequestTakebackDialog';
 import CreateInviteCodeDialog from './CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import HeuristicPictureDialog from './HeuristicPictureDialog';
@@ -67,6 +68,7 @@ const Chess = ({props}) => {
           <InfoAlert />
         </Grid>
       </Grid>
+      <RequestTakebackDialog />
       <LoadFenDialog />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
