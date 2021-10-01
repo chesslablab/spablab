@@ -25,6 +25,11 @@ const ButtonsPlayFriendMode = () => {
         >
           Propose a takeback
         </Button>
+        <Button 
+        variant="outlined"
+        >
+          Offer Draw
+        </Button>
       </div>
     );
   }
