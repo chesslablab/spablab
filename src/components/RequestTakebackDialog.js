@@ -29,7 +29,7 @@ const RequestTakebackDialog = () => {
 
   return (
     <Dialog open={state.requestTakebackDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>The opponent Proposed a Takeback</DialogTitle>
+      <DialogTitle>The opponent proposed a takeback</DialogTitle>
       <DialogContent>
         <form className={classes.root} onSubmit={handleTakeback}>
           <DialogActions>
