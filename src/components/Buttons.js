@@ -7,11 +7,12 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
+import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
+import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFEN } from '../actions/serverActions';
 
 const Buttons = ({props}) => {
   const state = useSelector(state => state);
@@ -113,6 +114,16 @@ const Buttons = ({props}) => {
         >
           Heuristic picture
         </MenuItem>
+        <MenuItem
+          key={2}
+          onClick={() => {
+            dispatch({ type: getFenDialogActionTypes.OPEN });
+            handleCloseLoadfen();
+            }}
+        >
+          FEN
+        </MenuItem>
+
       </Menu>
     </div>
   );
