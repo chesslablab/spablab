@@ -104,8 +104,7 @@ const Board = ({props}) => {
               onClick={() => {
                 handleMovement();
               }}
-              onDrag={(ev) => {
-                ev.preventDefault();
+              onDragStart={() => {
                 handleMovement();
               }}
               onDrop={(ev) => {
