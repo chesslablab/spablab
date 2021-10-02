@@ -80,20 +80,40 @@ const Board = ({props}) => {
               }
             }
           }
+
+          const handleMovement = () => {
+            if (!state.board.mate && state.history.back === 0) {
+              if (
+                state.board.picked &&
+                state.board.turn !== Piece.color(payload.piece)
+              ) {
+                dispatch({
+                  type: boardActionTypes.LEAVE_PIECE,
+                  payload: payload,
+                });
+              } else {
+                pickPiece(payload);
+              }
+            }
+          };
+
           row.push(<div
               key={k}
+              draggable="true"
               className={['square', color, payload.algebraic, isLegal, isSelected, isCheck].join(' ')}
               onClick={() => {
-                if (!state.board.mate && state.history.back === 0) {
-                  if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-                    dispatch({
-                      type: boardActionTypes.LEAVE_PIECE,
-                      payload: payload
-                    });
-                  } else {
-                    pickPiece(payload);
-                  }
-                }
+                handleMovement();
+              }}
+              onDrag={(ev) => {
+                ev.preventDefault();
+                handleMovement();
+              }}
+              onDrop={(ev) => {
+                ev.preventDefault();
+                handleMovement();
+              }}
+              onDragOver={(ev) => {
+                ev.preventDefault();
               }}>
               <span tabIndex={k}>
                 <img src={Piece.unicode[piece].char} />
