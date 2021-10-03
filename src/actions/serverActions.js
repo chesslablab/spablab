@@ -50,3 +50,7 @@ export const wsMssgPiece = async (state, algebraic) => {
 export const wsMssgHeuristicpicture = async (state) => {
   return await state.server.ws.send(`/heuristicpicture`);
 };
+
+export const wsMssgStartGetfen = async (state) => {
+  return await state.server.ws.send(`/fen`);
+};

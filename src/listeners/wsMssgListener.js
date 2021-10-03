@@ -1,11 +1,13 @@
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
+import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
+
 
 export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
@@ -51,6 +53,9 @@ export const wsMssgListener = (data) => dispatch => {
       break;
     case '/heuristicpicture' === cmd:
       dispatch(onHeuristicPicture(data));
+      break;
+    case '/fen' === cmd:
+      dispatch(onStartGetFen(data));
       break;
     default:
       break;
@@ -181,6 +186,16 @@ export const onHeuristicPicture = (data) => dispatch => {
   };
   dispatch({
     type: heuristicPictureDialogActionTypes.OPEN,
+    payload: payload
+  });
+};
+
+export const onStartGetFen = (data) => dispatch => {
+  const payload = {
+    fen: data['/fen']
+  };
+  dispatch({
+    type: getFenDialogActionTypes.OPEN,
     payload: payload
   });
 };
