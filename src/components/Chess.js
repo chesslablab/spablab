@@ -16,7 +16,6 @@ import History from './History';
 import MainBreadcrumbs from './MainBreadcrumbs';
 import MoveValidator from './MoveValidator.js';
 import ButtonsPlayFriendMode from './ButtonsPlayFriendMode.js';
-import ButtonResignGame from './ButtonsResignGame.js';
 import Timers from './Timers';
 import InfoAlert from './InfoAlert.js';
 import '../index.css';
@@ -64,7 +63,6 @@ const Chess = ({props}) => {
           <Paper elevation={3} className={classes.paper}>
             <MoveValidator />
             <ButtonsPlayFriendMode />
-            <ButtonResignGame />
           </Paper>
           <InfoAlert />
         </Grid>
