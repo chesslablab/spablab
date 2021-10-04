@@ -22,7 +22,7 @@ const ButtonsPlayFriendMode = () => {
     setAnchorElRequestTakeback(null);
   };  
 
-  if (!state.mode.playfriend.accepted) {
+  if (state.mode.playfriend.accepted) {
     return (
       <div>
         <Button 
