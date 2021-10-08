@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
+import offerDrawDialogActionTypes from '../constants/offerDrawDialogActionTypes';
 import requestTakebackDialogActionTypes from '../constants/requestTakebackDialogActionTypes';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,35 +18,42 @@ const ButtonsPlayFriendMode = () => {
   const classes = useStyles();
 
   const [anchorElRequestTakeback, setAnchorElRequestTakeback] = React.useState(null);
+  const [anchorElOfferDraw, setAnchorElOfferDraw] = React.useState(null);
 
   const handleCloseRequestTakeback = () => {
     setAnchorElRequestTakeback(null);
-  };  
+  };
+
+  const handleCloseOfferDraw = () => {
+    setAnchorElOfferDraw(null);
+  };
 
   if (state.mode.playfriend.accepted) {
     return (
       <div>
-        <Button 
-        variant="outlined"
-        className={classes.paperButton}
-        onClick={() => {
-          dispatch({ type: requestTakebackDialogActionTypes.OPEN });
-          handleCloseRequestTakeback();
-        }}
+        <Button
+          variant="outlined"
+          className={classes.paperButton}
+          onClick={() => {
+            dispatch({ type: requestTakebackDialogActionTypes.OPEN });
+            handleCloseRequestTakeback();
+          }}
         >
           Propose a takeback
         </Button>
-
-        <Button 
-        variant="outlined"
-        className={classes.paperButton}
+        <Button
+          variant="outlined"
+          className={classes.paperButton}
+          onClick={() => {
+            dispatch({ type: offerDrawDialogActionTypes.OPEN });
+            handleCloseOfferDraw();
+          }}
         >
           Offer draw
         </Button>
-
-        <Button 
-        variant="outlined"
-        className={classes.paperButton}
+        <Button
+          variant="outlined"
+          className={classes.paperButton}
         >
           Resign
         </Button>
