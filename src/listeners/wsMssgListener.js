@@ -1,5 +1,6 @@
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
+import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
 import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -12,6 +13,11 @@ import Pgn from '../utils/Pgn';
 export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
+    case '/draw' === cmd:
+      if (data['/draw'] === 'propose') {
+        dispatch(onDrawPropose());
+      }
+      break;
     case '/start' === cmd:
       if (data['/start'].mode === modeNames.ANALYSIS) {
         dispatch(onStartAnalysis(data));
@@ -197,5 +203,12 @@ export const onStartGetFen = (data) => dispatch => {
   dispatch({
     type: getFenDialogActionTypes.OPEN,
     payload: payload
+  });
+};
+
+export const onDrawPropose = () => dispatch => {
+  console.log('bar');
+  dispatch({
+    type: drawAcceptDialogActionTypes.OPEN
   });
 };
