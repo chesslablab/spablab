@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import offerDrawDialogActionTypes from '../constants/offerDrawDialogActionTypes';
 import { wsMssgDraw } from '../actions/serverActions';
 
-const OfferDrawDialog = () => {
+const DrawOfferDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const handleOfferDraw = (event) => {
+  const handleDrawOffer = (event) => {
     event.preventDefault();
     wsMssgDraw(state, 'propose').then((data) => {
       dispatch({ type: offerDrawDialogActionTypes.CLOSE });
@@ -19,7 +19,7 @@ const OfferDrawDialog = () => {
     <Dialog open={state.offerDrawDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Offer draw</DialogTitle>
       <DialogContent>
-        <form onSubmit={handleOfferDraw}>
+        <form onSubmit={handleDrawOffer}>
           <DialogActions>
             <Button type="submit">
               Accept
@@ -34,4 +34,4 @@ const OfferDrawDialog = () => {
   );
 }
 
-export default OfferDrawDialog;
+export default DrawOfferDialog;

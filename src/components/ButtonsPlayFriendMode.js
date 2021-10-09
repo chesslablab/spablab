@@ -18,14 +18,14 @@ const ButtonsPlayFriendMode = () => {
   const classes = useStyles();
 
   const [anchorElRequestTakeback, setAnchorElRequestTakeback] = React.useState(null);
-  const [anchorElOfferDraw, setAnchorElOfferDraw] = React.useState(null);
+  const [anchorElDrawOffer, setAnchorElDrawOffer] = React.useState(null);
 
   const handleCloseRequestTakeback = () => {
     setAnchorElRequestTakeback(null);
   };
 
-  const handleCloseOfferDraw = () => {
-    setAnchorElOfferDraw(null);
+  const handleCloseDrawOffer = () => {
+    setAnchorElDrawOffer(null);
   };
 
   if (state.mode.playfriend.accepted) {
@@ -46,7 +46,7 @@ const ButtonsPlayFriendMode = () => {
           className={classes.paperButton}
           onClick={() => {
             dispatch({ type: offerDrawDialogActionTypes.OPEN });
-            handleCloseOfferDraw();
+            handleCloseDrawOffer();
           }}
         >
           Offer draw
