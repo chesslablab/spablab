@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
+import modeActionTypes from '../constants/modeActionTypes';
 import { wsMssgDraw } from '../actions/serverActions';
 
 const DrawAcceptDialog = () => {
@@ -10,7 +11,7 @@ const DrawAcceptDialog = () => {
 
   const handleDrawAccept = (event) => {
     event.preventDefault();
-    wsMssgDraw(state, 'accept').then(() => {
+    wsMssgDraw(state, 'accept').then((data) => {
       dispatch({ type: drawAcceptDialogActionTypes.CLOSE });
     });
   }

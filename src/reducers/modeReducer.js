@@ -51,8 +51,13 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.CHECKMATE:
       newState.current = state.current;
       return newState;
+    // TODO:
+    // Use constant names for draw actions
     case modeActionTypes.DRAW_PROPOSE:
       newState.playfriend.draw = 'propose';
+      return newState;
+    case modeActionTypes.DRAW_ACCEPT:
+      newState.playfriend.draw = 'accept';
       return newState;
     default:
       return state;

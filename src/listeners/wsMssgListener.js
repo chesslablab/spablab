@@ -14,8 +14,12 @@ export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/draw' === cmd:
+      // TODO:
+      // Use constant names for draw actions
       if (data['/draw'] === 'propose') {
         dispatch(onDrawPropose());
+      } else if (data['/draw'] === 'accept') {
+        dispatch(onDrawAccept());
       }
       break;
     case '/start' === cmd:
@@ -208,8 +212,10 @@ export const onStartGetFen = (data) => dispatch => {
 
 export const onDrawPropose = () => dispatch => {
   if (!store.getState().mode.playfriend.draw) {
-    dispatch({
-      type: drawAcceptDialogActionTypes.OPEN
-    });
+    dispatch({ type: drawAcceptDialogActionTypes.OPEN });
   }
+};
+
+export const onDrawAccept = () => dispatch => {
+  dispatch({ type: modeActionTypes.DRAW_ACCEPT });
 };
