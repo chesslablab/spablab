@@ -207,8 +207,9 @@ export const onStartGetFen = (data) => dispatch => {
 };
 
 export const onDrawPropose = () => dispatch => {
-  console.log('bar');
-  dispatch({
-    type: drawAcceptDialogActionTypes.OPEN
-  });
+  if (!store.getState().mode.playfriend.draw) {
+    dispatch({
+      type: drawAcceptDialogActionTypes.OPEN
+    });
+  }
 };

@@ -8,6 +8,7 @@ const initialState = {
     jwt_decoded: null,
     hash: null,
     color: null,
+    draw: null,
     accepted: false,
     timer: {
       start: null,
@@ -18,6 +19,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  const newState = Object.assign({}, initialState);
   switch (action.type) {
     case modeActionTypes.SET_ANALYSIS:
       return initialState;
@@ -47,8 +49,10 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.CHECKMATE:
-      let newState = Object.assign({}, initialState);
       newState.current = state.current;
+      return newState;
+    case modeActionTypes.DRAW_PROPOSE:
+      newState.playfriend.draw = 'propose';
       return newState;
     default:
       return state;
