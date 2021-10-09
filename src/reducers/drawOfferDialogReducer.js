@@ -1,4 +1,4 @@
-import offerDrawDialogActionTypes from '../constants/offerDrawDialogActionTypes';
+import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case offerDrawDialogActionTypes.CLOSE:
+    case drawOfferDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case offerDrawDialogActionTypes.OPEN:
+    case drawOfferDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,

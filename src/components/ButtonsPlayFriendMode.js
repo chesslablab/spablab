@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import offerDrawDialogActionTypes from '../constants/offerDrawDialogActionTypes';
+import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
 import requestTakebackDialogActionTypes from '../constants/requestTakebackDialogActionTypes';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +45,7 @@ const ButtonsPlayFriendMode = () => {
           variant="outlined"
           className={classes.paperButton}
           onClick={() => {
-            dispatch({ type: offerDrawDialogActionTypes.OPEN });
+            dispatch({ type: drawOfferDialogActionTypes.OPEN });
             handleCloseDrawOffer();
           }}
         >
