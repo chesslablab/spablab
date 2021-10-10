@@ -10,6 +10,8 @@ import RequestTakebackDialog from './RequestTakebackDialog';
 import CreateInviteCodeDialog from './CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import HeuristicPictureDialog from './HeuristicPictureDialog';
+import DrawAcceptDialog from './DrawAcceptDialog';
+import DrawOfferDialog from './DrawOfferDialog';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
 import History from './History';
@@ -72,6 +74,8 @@ const Chess = ({props}) => {
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
       <HeuristicPictureDialog />
+      <DrawAcceptDialog />
+      <DrawOfferDialog />
       <GetFenDialog />
     </Provider>
   );
