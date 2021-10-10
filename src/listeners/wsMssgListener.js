@@ -14,8 +14,7 @@ export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/draw' === cmd:
-      // TODO:
-      // Use constant names for draw actions
+      // TODO: Use constant names for draw actions
       if (data['/draw'] === 'propose') {
         dispatch(onDrawPropose());
       } else if (data['/draw'] === 'accept') {
@@ -218,4 +217,10 @@ export const onDrawPropose = () => dispatch => {
 
 export const onDrawAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.DRAW_ACCEPT });
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Draw offer accepted.'
+    }
+  });
 };
