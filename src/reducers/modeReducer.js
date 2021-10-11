@@ -8,6 +8,7 @@ const initialState = {
     jwt_decoded: null,
     hash: null,
     color: null,
+    takeback: null,
     accepted: false,
     timer: {
       start: null,
@@ -49,6 +50,12 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.CHECKMATE:
       let newState = Object.assign({}, initialState);
       newState.current = state.current;
+      return newState;
+    case modeActionTypes.TAKEBACK_PROPOSE:
+      newState.playfriend.takeback = 'propose';
+      return newState;
+    case modeActionTypes.TAKEBACK_ACCEPT:
+      newState.playfriend.takeback = 'accept';
       return newState;
     default:
       return state;

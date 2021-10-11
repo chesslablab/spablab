@@ -2,8 +2,8 @@ import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
-import { wsMssgStartLoadfen, wsMssgQuit } from '../actions/serverActions';
-import requestTakebackDialogActionTypes from '../constants/requestTakebackDialogActionTypes';
+import { wsMssgTakeback } from '../actions/serverActions';
+import takebackOfferDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,30 +13,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RequestTakebackDialog = () => {
+const TakebackOfferDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const handleTakeback = (event) => {
+  const handleTakebackOffer = (event) => {
     event.preventDefault();
-    wsMssgQuit(state).then(() => {
-      wsMssgStartLoadfen(state, event.target.elements.takeback.value).then(() => {
-        dispatch({ type: requestTakebackDialogActionTypes.CLOSE });
-      });
+    wsMssgTakeback(state, 'propose').then((data) => {
+      dispatch({ type: modeActionTypes.TAKEBACK_PROPOSE });
+      dispatch({ type: takebackOfferDialogActionTypes.CLOSE });
     });
   }
 
   return (
-    <Dialog open={state.requestTakebackDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>The opponent proposed a takeback</DialogTitle>
+    <Dialog open={state.takebackOfferDialog.open} maxWidth="sm" fullWidth={true}>
+      <DialogTitle>Request a takeback</DialogTitle>
       <DialogContent>
-        <form className={classes.root} onSubmit={handleTakeback}>
+        <form className={classes.root} onSubmit={handleTakebackOffer}>
           <DialogActions>
             <Button type="submit">
               Accept
             </Button>
-            <Button onClick={() => dispatch({ type: requestTakebackDialogActionTypes.CLOSE })}>
+            <Button onClick={() => dispatch({ type: takebackOfferDialogActionTypes.CLOSE })}>
               Cancel
             </Button>
           </DialogActions>
@@ -46,4 +45,4 @@ const RequestTakebackDialog = () => {
   );
 }
 
-export default RequestTakebackDialog;
+export default TakebackOfferDialog;

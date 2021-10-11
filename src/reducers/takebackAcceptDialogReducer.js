@@ -1,4 +1,4 @@
-import requestTakebackDialogActionTypes from '../constants/requestTakebackDialogActionTypes';
+import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case requestTakebackDialogActionTypes.CLOSE:
+    case takebackAcceptDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case requestTakebackDialogActionTypes.OPEN:
+    case takebackAcceptDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,

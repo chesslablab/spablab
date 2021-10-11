@@ -6,7 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import LoadFenDialog from './LoadFenDialog';
 import GetFenDialog from './GetFenDialog';
-import RequestTakebackDialog from './RequestTakebackDialog';
+import TakebackOfferDialog from './TakebackOfferDialog';
+import TakebackAcceptDialog from './TakebackAcceptDialog';
 import CreateInviteCodeDialog from './CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import HeuristicPictureDialog from './HeuristicPictureDialog';
@@ -67,7 +68,8 @@ const Chess = ({props}) => {
           <InfoAlert />
         </Grid>
       </Grid>
-      <RequestTakebackDialog />
+      <TakebackAcceptDialog />
+      <TakebackOfferDialog />
       <LoadFenDialog />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />

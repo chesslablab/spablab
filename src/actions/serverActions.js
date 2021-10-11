@@ -54,3 +54,7 @@ export const wsMssgHeuristicpicture = async (state) => {
 export const wsMssgStartGetfen = async (state) => {
   return await state.server.ws.send(`/fen`);
 };
+
+export const wsMssgTakeback = async (state, action) => {
+  return await state.server.ws.send(`/takeback ${action}`);
+};
