@@ -81,12 +81,9 @@ const Board = ({props}) => {
             }
           }
 
-          const handleMovement = () => {
-            if (!state.board.mate && state.history.back === 0) {
-              if (
-                state.board.picked &&
-                state.board.turn !== Piece.color(payload.piece)
-              ) {
+          const handleMove = () => {
+            if (!state.board.mate && !state.mode.playfriend.draw && state.history.back === 0) {
+              if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
                 dispatch({
                   type: boardActionTypes.LEAVE_PIECE,
                   payload: payload,
@@ -102,14 +99,14 @@ const Board = ({props}) => {
               draggable="true"
               className={['square', color, payload.algebraic, isLegal, isSelected, isCheck].join(' ')}
               onClick={() => {
-                handleMovement();
+                handleMove();
               }}
               onDragStart={() => {
-                handleMovement();
+                handleMove();
               }}
               onDrop={(ev) => {
                 ev.preventDefault();
-                handleMovement();
+                handleMove();
               }}
               onDragOver={(ev) => {
                 ev.preventDefault();

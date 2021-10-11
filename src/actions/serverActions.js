@@ -58,3 +58,6 @@ export const wsMssgStartGetfen = async (state) => {
 export const wsMssgTakeback = async (state, action) => {
   return await state.server.ws.send(`/takeback ${action}`);
 };
+export const wsMssgDraw = async (state, action) => {
+  return await state.server.ws.send(`/draw ${action}`);
+};
