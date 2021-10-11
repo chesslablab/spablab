@@ -2,6 +2,7 @@ import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
+import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
 import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
@@ -13,6 +14,12 @@ import Pgn from '../utils/Pgn';
 export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
+    case '/takeback' === cmd:
+      if(data['/takeback'] === 'propose'){
+        dispatch(onTakebackPropose());
+      } else if (data['/takeback'] === 'accept'){
+        dispatch(onTakebackAccept());
+      }
     case '/draw' === cmd:
       // TODO: Use constant names for draw actions
       if (data['/draw'] === 'propose') {
@@ -207,6 +214,16 @@ export const onStartGetFen = (data) => dispatch => {
     type: getFenDialogActionTypes.OPEN,
     payload: payload
   });
+};
+
+export const onTakebackPropose = () => dispatch => {
+  if (!store.getState().mode.playfriend.takeback) {
+    dispatch({ type: takebackAcceptDialogActionTypes.OPEN });
+  }
+};
+
+export const onTakebackAccept = () => dispatch => {
+  dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
 };
 
 export const onDrawPropose = () => dispatch => {

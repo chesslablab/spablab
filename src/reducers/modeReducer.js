@@ -8,6 +8,7 @@ const initialState = {
     jwt_decoded: null,
     hash: null,
     color: null,
+    takeback: null,
     draw: null,
     accepted: false,
     timer: {
@@ -20,6 +21,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, initialState);
+  const newPlayfriend = Object.assign({}, state.playfriend);
   switch (action.type) {
     case modeActionTypes.SET_ANALYSIS:
       return initialState;
@@ -35,7 +37,6 @@ const reducer = (state = initialState, action) => {
         playfriend: action.payload.playfriend
       };
     case modeActionTypes.ACCEPT_PLAYFRIEND:
-      let newPlayfriend = Object.assign({}, state.playfriend);
       const time = new Date();
       time.setSeconds(time.getSeconds() + parseInt(newPlayfriend.jwt_decoded.min) * 60);
       newPlayfriend.accepted = true;
@@ -53,15 +54,44 @@ const reducer = (state = initialState, action) => {
       return newState;
     // TODO:
     // Use constant names for draw actions
+    case modeActionTypes.TAKEBACK_ACCEPT:
+      newPlayfriend.takeback = 'accept';
+      return {
+        ...state,
+        playfriend: newPlayfriend
+      };
+    case modeActionTypes.TAKEBACK_DECLINE:
+      newPlayfriend.draw = null;
+      return {
+        ...state,
+        playfriend: newPlayfriend
+      };
+    case modeActionTypes.TAKEBACK_PROPOSE:
+      newPlayfriend.takeback = 'propose';
+      return {
+        ...state,
+        playfriend: newPlayfriend
+      };
+    // TODO:
+    // Use constant names for draw actions
     case modeActionTypes.DRAW_ACCEPT:
-      newState.playfriend.draw = 'accept';
-      return newState;
+      newPlayfriend.draw = 'accept';
+      return {
+        ...state,
+        playfriend: newPlayfriend
+      };
     case modeActionTypes.DRAW_DECLINE:
-      newState.playfriend.draw = null;
-      return newState;
+      newPlayfriend.draw = null;
+      return {
+        ...state,
+        playfriend: newPlayfriend
+      };
     case modeActionTypes.DRAW_PROPOSE:
-      newState.playfriend.draw = 'propose';
-      return newState;
+      newPlayfriend.draw = 'propose';
+      return {
+        ...state,
+        playfriend: newPlayfriend
+      };
     default:
       return state;
   }
