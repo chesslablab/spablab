@@ -52,14 +52,17 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.CHECKMATE:
       newState.current = state.current;
       return newState;
-    case modeActionTypes.TAKEBACK_PROPOSE:
-      newState.playfriend.takeback = 'propose';
+    // TODO:
+    // Use constant names for draw actions
+    case modeActionTypes.TAKEBACK_ACCEPT:
+      newState.playfriend.takeback = 'accept';
       return newState;
     case modeActionTypes.TAKEBACK_DECLINE:
       newState.playfriend.draw = null;
       return newState;
-    case modeActionTypes.TAKEBACK_ACCEPT:
-      newState.playfriend.takeback = 'accept';
+    case modeActionTypes.TAKEBACK_PROPOSE:
+      newState.playfriend.takeback = 'propose';
+      return newState;
     // TODO:
     // Use constant names for draw actions
     case modeActionTypes.DRAW_ACCEPT:
