@@ -218,13 +218,14 @@ export const onStartGetFen = (data) => dispatch => {
 
 export const onTakebackPropose = () => dispatch => {
   if (!store.getState().mode.playfriend.takeback) {
-    dispatch({ type: requestTakebackAcceptDialogActionTypes.OPEN });
+    dispatch({ type: takebackAcceptDialogActionTypes.OPEN });
   }
 };
 
 export const onTakebackAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
 };
+
 export const onDrawPropose = () => dispatch => {
   if (!store.getState().mode.playfriend.draw) {
     dispatch({ type: drawAcceptDialogActionTypes.OPEN });
