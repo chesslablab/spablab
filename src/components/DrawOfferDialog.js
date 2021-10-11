@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
+import { wsMssgDraw } from '../actions/serverActions';
 import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import { wsMssgDraw } from '../actions/serverActions';
 
 const DrawOfferDialog = () => {
   const state = useSelector(state => state);
