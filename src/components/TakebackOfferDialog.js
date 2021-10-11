@@ -19,7 +19,7 @@ const TakebackOfferDialog = () => {
 
   return (
     <Dialog open={state.takebackOfferDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Request a takeback</DialogTitle>
+      <DialogTitle>Propose a tackeback</DialogTitle>
       <DialogContent>
         <form onSubmit={handleTakebackOffer}>
           <DialogActions>
