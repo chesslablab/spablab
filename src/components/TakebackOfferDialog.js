@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgTakeback } from '../actions/serverActions';
-import takebackOfferDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
+import takebackOfferDialogActionTypes from '../constants/takebackOfferDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 
 const TakebackOfferDialog = () => {
