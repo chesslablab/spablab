@@ -1,22 +1,13 @@
 import React from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from '@material-ui/core/styles';
 import { wsMssgTakeback } from '../actions/serverActions';
 import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+import modeActionTypes from '../constants/modeActionTypes';
 
 const TakebackAcceptDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
@@ -34,15 +25,15 @@ const TakebackAcceptDialog = () => {
 
   return (
     <Dialog open={state.takebackAcceptDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>The opponent proposed a takeback</DialogTitle>
+      <DialogTitle>A takeback is being proposed</DialogTitle>
       <DialogContent>
-        <form className={classes.root} onSubmit={handleTakebackAccept}>
+        <form onSubmit={handleTakebackAccept}>
           <DialogActions>
             <Button type="submit">
               Accept
             </Button>
             <Button onClick={() => dispatch({ type: takebackAcceptDialogActionTypes.CLOSE })}>
-              Cancel
+              Decline
             </Button>
           </DialogActions>
         </form>
