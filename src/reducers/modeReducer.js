@@ -8,11 +8,8 @@ const initialState = {
     jwt_decoded: null,
     hash: null,
     color: null,
-<<<<<<< HEAD
     takeback: null,
-=======
     draw: null,
->>>>>>> b330831dfc99772781186b0a5ce02feeb36b9681
     accepted: false,
     timer: {
       start: null,
@@ -55,13 +52,14 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.CHECKMATE:
       newState.current = state.current;
       return newState;
-<<<<<<< HEAD
     case modeActionTypes.TAKEBACK_PROPOSE:
       newState.playfriend.takeback = 'propose';
       return newState;
+    case modeActionTypes.TAKEBACK_DECLINE:
+      newState.playfriend.draw = null;
+      return newState;
     case modeActionTypes.TAKEBACK_ACCEPT:
       newState.playfriend.takeback = 'accept';
-=======
     // TODO:
     // Use constant names for draw actions
     case modeActionTypes.DRAW_ACCEPT:
@@ -72,7 +70,6 @@ const reducer = (state = initialState, action) => {
       return newState;
     case modeActionTypes.DRAW_PROPOSE:
       newState.playfriend.draw = 'propose';
->>>>>>> b330831dfc99772781186b0a5ce02feeb36b9681
       return newState;
     default:
       return state;

@@ -14,14 +14,12 @@ import Pgn from '../utils/Pgn';
 export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
-<<<<<<< HEAD
     case '/takeback' === cmd:
       if(data['/takeback'] === 'propose'){
         dispatch(onTakebackPropose());
       } else if (data['/takeback'] === 'accept'){
         dispatch(onTakebackAccept());
       }
-=======
     case '/draw' === cmd:
       // TODO: Use constant names for draw actions
       if (data['/draw'] === 'propose') {
@@ -30,7 +28,6 @@ export const wsMssgListener = (data) => dispatch => {
         dispatch(onDrawAccept());
       }
       break;
->>>>>>> b330831dfc99772781186b0a5ce02feeb36b9681
     case '/start' === cmd:
       if (data['/start'].mode === modeNames.ANALYSIS) {
         dispatch(onStartAnalysis(data));
@@ -219,7 +216,6 @@ export const onStartGetFen = (data) => dispatch => {
   });
 };
 
-<<<<<<< HEAD
 export const onTakebackPropose = () => dispatch => {
   if (!store.getState().mode.playfriend.takeback) {
     dispatch({ type: requestTakebackAcceptDialogActionTypes.OPEN });
@@ -229,7 +225,6 @@ export const onTakebackPropose = () => dispatch => {
 export const onTakebackAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
 };
-=======
 export const onDrawPropose = () => dispatch => {
   if (!store.getState().mode.playfriend.draw) {
     dispatch({ type: drawAcceptDialogActionTypes.OPEN });
@@ -245,4 +240,3 @@ export const onDrawAccept = () => dispatch => {
     }
   });
 };
->>>>>>> b330831dfc99772781186b0a5ce02feeb36b9681

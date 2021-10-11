@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import takebackOfferDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
 import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
-import requestTakebackDialogActionTypes from '../constants/requestTakebackDialogActionTypes';
 
 const useStyles = makeStyles((theme) => ({
   paperButton: {
