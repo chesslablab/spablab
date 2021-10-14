@@ -14,7 +14,7 @@ import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFEN } from '../actions/serverActions';
 
-const Buttons = ({props}) => {
+const Buttons = ({ props }) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -46,14 +46,14 @@ const Buttons = ({props}) => {
     <div>
       <Button
         startIcon={<TuneIcon />}
-        style={{textTransform: 'none'}}
+        style={{ textTransform: 'none' }}
         onClick={() => wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws))}
       >
         Analysis board
       </Button>
       <Button
         startIcon={<PublishIcon />}
-        style={{textTransform: 'none'}}
+        style={{ textTransform: 'none' }}
         onClick={() => {
           dispatch({ type: loadFenDialogActionTypes.OPEN });
           handleCloseLoadfen();
@@ -64,7 +64,7 @@ const Buttons = ({props}) => {
       <Button
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
-        style={{textTransform: 'none'}}
+        style={{ textTransform: 'none' }}
       >
         Invite a friend
       </Button>
@@ -119,11 +119,16 @@ const Buttons = ({props}) => {
           onClick={() => {
             dispatch({ type: getFenDialogActionTypes.OPEN });
             handleCloseLoadfen();
-            }}
+          }}
         >
           FEN
         </MenuItem>
-
+        <MenuItem key={3}
+        // TODO: Implement logic for capturing a screenshot of the chess board
+        // onClick={() => console.log("Capturing a screenshot")}
+        >
+          Image
+        </MenuItem>
       </Menu>
     </div>
   );
