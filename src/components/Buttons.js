@@ -12,6 +12,7 @@ import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDial
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import { DownloadImage } from './DownloadImage'
 import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFEN } from '../actions/serverActions';
 
 const Buttons = ({ props }) => {
@@ -41,6 +42,8 @@ const Buttons = ({ props }) => {
   const handleClickSettings = (event) => {
     setAnchorElSettings(event.currentTarget);
   };
+
+  const handleDownloadImage = () => DownloadImage();
 
   return (
     <div>
@@ -124,8 +127,7 @@ const Buttons = ({ props }) => {
           FEN
         </MenuItem>
         <MenuItem key={3}
-        // TODO: Implement logic for capturing a screenshot of the chess board
-        // onClick={() => console.log("Capturing a screenshot")}
+          onClick={() => handleDownloadImage()}
         >
           Image
         </MenuItem>

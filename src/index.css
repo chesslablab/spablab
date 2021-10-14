@@ -79,3 +79,7 @@
     line-height: 10vw;
   }
 }
+
+.board {
+  width: fit-content;
+}
