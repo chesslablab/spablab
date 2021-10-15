@@ -82,6 +82,8 @@ Commands available:
 /ascii Prints the ASCII representation of the game.
 /castling Gets the castling status.
 /captures Gets the pieces captured by both players.
+/draw {"action":["accept","decline","propose"]} Allows to offer a draw.
+/events Gets the events taking place on the game.
 /fen Prints the FEN string representation of the game.
 /heuristicpicture Takes a balanced heuristic picture of the current game.
 /history The current game's history.
@@ -91,8 +93,11 @@ Commands available:
 /pieces {"color":["w","b"]} Gets the pieces on the board by color.
 /playfen {"fen":"string"} Plays a chess move in shortened FEN format.
 /quit Quits a game.
+/resign {"action":["accept"]} Allows to resign a game.
 /start {"mode":["analysis","loadfen","playfriend"],"fen":"string","color":["w","b"],"min":"int"} Starts a new game.
 /status The current game status.
+/takeback {"action":["accept","decline","propose"]} Allows to manage a takeback.
+/undomove Undoes the last move.
 
 Listening to commands...
 ```
