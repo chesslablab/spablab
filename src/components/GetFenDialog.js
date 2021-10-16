@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
-import { wsMssgStartGetfen, wsMssgQuit } from '../actions/serverActions';
+import { wsMssgFen, wsMssgQuit } from '../actions/serverActions';
 import getFenDialogActions from '../constants/getFenDialogActionTypes';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +19,7 @@ const GetFenDialog = () => {
   const classes = useStyles();
 
   const handleGet = () => {
-    wsMssgStartGetfen(state);
+    wsMssgFen(state);
   }
 
   return (
