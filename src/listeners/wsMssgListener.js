@@ -71,7 +71,7 @@ export const wsMssgListener = (data) => dispatch => {
       dispatch(onHeuristicPicture(data));
       break;
     case '/fen' === cmd:
-      dispatch(onStartGetFen(data));
+      dispatch(onFen(data));
       break;
     default:
       break;
@@ -206,12 +206,12 @@ export const onHeuristicPicture = (data) => dispatch => {
   });
 };
 
-export const onStartGetFen = (data) => dispatch => {
+export const onFen = (data) => dispatch => {
   const payload = {
     fen: data['/fen']
   };
   dispatch({
-    type: fenDialogActionTypes.OPEN,
+    type: fenDialogActionTypes.SET,
     payload: payload
   });
 };

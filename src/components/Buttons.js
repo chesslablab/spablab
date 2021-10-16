@@ -13,7 +13,7 @@ import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialog
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import { DownloadImage } from './DownloadImage'
-import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFEN } from '../actions/serverActions';
+import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFen } from '../actions/serverActions';
 
 const Buttons = ({ props }) => {
   const state = useSelector(state => state);
@@ -120,8 +120,10 @@ const Buttons = ({ props }) => {
         <MenuItem
           key={2}
           onClick={() => {
-            dispatch({ type: fenDialogActionTypes.OPEN });
-            handleCloseLoadfen();
+            wsMssgFen(state).then(() => {
+              handleCloseLoadfen();
+              dispatch({ type: fenDialogActionTypes.OPEN });
+            });
           }}
         >
           FEN
