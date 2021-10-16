@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgFen, wsMssgQuit } from '../actions/serverActions';
-import getFenDialogActions from '../constants/getFenDialogActionTypes';
+import fenDialogActions from '../constants/fenDialogActionTypes';
 
 const GetFenDialog = () => {
   const state = useSelector(state => state);
@@ -13,7 +13,7 @@ const GetFenDialog = () => {
   }
 
   return (
-    <Dialog open={state.getFenDialog.open} onEntered={handleGet} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.fenDialog.open} onEntered={handleGet} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Get FEN</DialogTitle>
       <DialogContent>
         <form>
@@ -22,16 +22,16 @@ const GetFenDialog = () => {
             name="fen"
             label="FEN string"
             disabled
-            value = {state.getFenDialog.fen ? state.getFenDialog.fen : "NOT RECEIVED"}
+            value = {state.fenDialog.fen ? state.fenDialog.fen : "NOT RECEIVED"}
           />
           <DialogActions>
             <Button onClick={() => {
-                if(state.getFenDialog.fen) navigator.clipboard.writeText(state.getFenDialog.fen);
-                dispatch({ type: getFenDialogActions.CLOSE });
+                if(state.fenDialog.fen) navigator.clipboard.writeText(state.fenDialog.fen);
+                dispatch({ type: fenDialogActions.CLOSE });
             }}>
               Copy FEN
             </Button>
-            <Button onClick={() => dispatch({ type: getFenDialogActions.CLOSE })}>
+            <Button onClick={() => dispatch({ type: fenDialogActions.CLOSE })}>
               Close
             </Button>
           </DialogActions>

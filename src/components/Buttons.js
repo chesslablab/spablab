@@ -7,7 +7,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
-import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
+import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
@@ -120,7 +120,7 @@ const Buttons = ({ props }) => {
         <MenuItem
           key={2}
           onClick={() => {
-            dispatch({ type: getFenDialogActionTypes.OPEN });
+            dispatch({ type: fenDialogActionTypes.OPEN });
             handleCloseLoadfen();
           }}
         >

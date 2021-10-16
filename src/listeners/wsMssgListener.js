@@ -3,7 +3,7 @@ import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
-import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
+import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
@@ -211,7 +211,7 @@ export const onStartGetFen = (data) => dispatch => {
     fen: data['/fen']
   };
   dispatch({
-    type: getFenDialogActionTypes.OPEN,
+    type: fenDialogActionTypes.OPEN,
     payload: payload
   });
 };
