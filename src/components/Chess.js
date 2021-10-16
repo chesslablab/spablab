@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import LoadFenDialog from './LoadFenDialog';
 import GetFenDialog from './GetFenDialog';
 import TakebackOfferDialog from './TakebackOfferDialog';
 import TakebackAcceptDialog from './TakebackAcceptDialog';
@@ -72,7 +71,6 @@ const Chess = ({ props }) => {
       </Grid>
       <TakebackAcceptDialog />
       <TakebackOfferDialog />
-      <LoadFenDialog />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
       <HeuristicPictureDialog />
