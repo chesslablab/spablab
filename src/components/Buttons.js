@@ -121,8 +121,8 @@ const Buttons = ({ props }) => {
           key={2}
           onClick={() => {
             wsMssgFen(state).then(() => {
-              handleCloseLoadfen();
               dispatch({ type: fenDialogActionTypes.OPEN });
+              handleCloseSettings();
             });
           }}
         >
