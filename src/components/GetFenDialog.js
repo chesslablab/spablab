@@ -1,22 +1,12 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from '@material-ui/core/styles';
 import { wsMssgFen, wsMssgQuit } from '../actions/serverActions';
 import getFenDialogActions from '../constants/getFenDialogActionTypes';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
 
 const GetFenDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   const handleGet = () => {
     wsMssgFen(state);
@@ -26,7 +16,7 @@ const GetFenDialog = () => {
     <Dialog open={state.getFenDialog.open} onEntered={handleGet} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Get FEN</DialogTitle>
       <DialogContent>
-        <form className={classes.root} >
+        <form>
           <TextField
             fullWidth
             name="fen"
