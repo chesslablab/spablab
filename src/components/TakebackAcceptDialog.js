@@ -11,9 +11,7 @@ const TakebackAcceptDialog = () => {
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, 'accept').then((data) => {
-      dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
-    });
+    wsMssgTakeback(state, 'accept');
   }
 
   const handleTakebackDecline = (event) => {

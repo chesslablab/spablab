@@ -9,6 +9,7 @@ import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
+import { wsMssgUndomove } from '../actions/serverActions';
 
 
 export const wsMssgListener = (data) => dispatch => {
@@ -223,7 +224,10 @@ export const onTakebackPropose = () => dispatch => {
 };
 
 export const onTakebackAccept = () => dispatch => {
-  dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
+  wsMssgUndomove(store.getState()).then(() => {
+    dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
+    dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
+  });
 };
 
 export const onDrawPropose = () => dispatch => {
