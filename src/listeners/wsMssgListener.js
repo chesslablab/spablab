@@ -250,4 +250,5 @@ export const onUndoMove = (data) => dispatch => {
     type: boardActionTypes.UNDO_MOVE,
     payload: data['/undomove']
   });
+  dispatch({ type: modeActionTypes.TAKEBACK_DECLINE });
 };
