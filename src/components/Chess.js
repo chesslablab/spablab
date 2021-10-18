@@ -13,6 +13,7 @@ import EnterInviteCodeDialog from './EnterInviteCodeDialog';
 import HeuristicPictureDialog from './HeuristicPictureDialog';
 import DrawAcceptDialog from './DrawAcceptDialog';
 import DrawOfferDialog from './DrawOfferDialog';
+import ResignAcceptDialog from './ResignAcceptDialog';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
 import History from './History';
@@ -72,13 +73,14 @@ const Chess = ({ props }) => {
       </Grid>
       <TakebackAcceptDialog />
       <TakebackOfferDialog />
+      <LoadFenDialog />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
-      <LoadFenDialog />
-      <FenDialog />
       <HeuristicPictureDialog />
+      <FenDialog />
       <DrawAcceptDialog />
       <DrawOfferDialog />
+      <ResignAcceptDialog />
     </Provider>
   );
 }

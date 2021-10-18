@@ -82,7 +82,11 @@ const Board = ({props}) => {
           }
 
           const handleMove = () => {
-            if (!state.board.mate && !state.mode.playfriend.draw && state.history.back === 0) {
+            if (!state.board.mate &&
+              !state.mode.playfriend.draw &&
+              !state.mode.playfriend.resign &&
+              state.history.back === 0
+            ) {
               if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
                 dispatch({
                   type: boardActionTypes.LEAVE_PIECE,

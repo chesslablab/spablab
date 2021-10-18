@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import takebackOfferDialogActionTypes from '../constants/takebackOfferDialogActionTypes';
 import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
+import resignAcceptDialogActionTypes from '../constants/resignAcceptDialogActionTypes';
 
 const useStyles = makeStyles((theme) => ({
   paperButton: {
@@ -19,6 +20,7 @@ const ButtonsPlayFriendMode = () => {
 
   const [anchorElRequestTakeback, setAnchorElRequestTakeback] = React.useState(null);
   const [anchorElDrawOffer, setAnchorElDrawOffer] = React.useState(null);
+  const [anchorElResignAccept, setAnchorElResignAccept] = React.useState(null);
 
   const handleCloseRequestTakeback = () => {
     setAnchorElRequestTakeback(null);
@@ -26,6 +28,10 @@ const ButtonsPlayFriendMode = () => {
 
   const handleCloseDrawOffer = () => {
     setAnchorElDrawOffer(null);
+  };
+
+  const handleCloseResignAccept = () => {
+    setAnchorElResignAccept(null);
   };
 
   if (state.mode.playfriend.accepted) {
@@ -54,6 +60,10 @@ const ButtonsPlayFriendMode = () => {
         <Button
           variant="outlined"
           className={classes.paperButton}
+          onClick={() => {
+            dispatch({ type: resignAcceptDialogActionTypes.OPEN });
+            handleCloseResignAccept();
+          }}
         >
           Resign
         </Button>
