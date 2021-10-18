@@ -10,16 +10,16 @@ import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
 
-
 export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/takeback' === cmd:
-      if(data['/takeback'] === 'propose'){
+      if (data['/takeback'] === 'propose') {
         dispatch(onTakebackPropose());
-      } else if (data['/takeback'] === 'accept'){
+      } else if (data['/takeback'] === 'accept') {
         dispatch(onTakebackAccept());
       }
+      break;
     case '/draw' === cmd:
       // TODO: Use constant names for draw actions
       if (data['/draw'] === 'propose') {
@@ -72,6 +72,9 @@ export const wsMssgListener = (data) => dispatch => {
       break;
     case '/fen' === cmd:
       dispatch(onFen(data));
+      break;
+    case '/undomove' === cmd:
+      dispatch(onUndoMove(data));
       break;
     default:
       break;
@@ -240,4 +243,12 @@ export const onDrawAccept = () => dispatch => {
       info: 'Draw offer accepted.'
     }
   });
+};
+
+export const onUndoMove = (data) => dispatch => {
+  dispatch({
+    type: boardActionTypes.UNDO_MOVE,
+    payload: data['/undomove']
+  });
+  dispatch({ type: modeActionTypes.TAKEBACK_DECLINE });
 };

@@ -61,3 +61,7 @@ export const wsMssgTakeback = async (state, action) => {
 export const wsMssgDraw = async (state, action) => {
   return await state.server.ws.send(`/draw ${action}`);
 };
+
+export const wsMssgUndoMove = async (state) => {
+  return await state.server.ws.send(`/undomove`);
+};
