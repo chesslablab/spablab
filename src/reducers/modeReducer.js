@@ -61,7 +61,7 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.TAKEBACK_DECLINE:
-      newPlayfriend.draw = null;
+      newPlayfriend.takeback = null;
       return {
         ...state,
         playfriend: newPlayfriend
