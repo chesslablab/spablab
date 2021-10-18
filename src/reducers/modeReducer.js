@@ -10,6 +10,7 @@ const initialState = {
     color: null,
     takeback: null,
     draw: null,
+    resign: null,
     accepted: false,
     timer: {
       start: null,
@@ -88,6 +89,12 @@ const reducer = (state = initialState, action) => {
       };
     case modeActionTypes.DRAW_PROPOSE:
       newPlayfriend.draw = 'propose';
+      return {
+        ...state,
+        playfriend: newPlayfriend
+      };
+    case modeActionTypes.RESIGN_ACCEPT:
+      newPlayfriend.resign = 'accept';
       return {
         ...state,
         playfriend: newPlayfriend

@@ -76,6 +76,11 @@ export const wsMssgListener = (data) => dispatch => {
     case '/undomove' === cmd:
       dispatch(onUndoMove(data));
       break;
+    case '/resign' === cmd:
+      if (data['/resign'] === 'accept') {
+        dispatch(onResignAccept());
+      }
+      break;
     default:
       break;
   }
@@ -251,4 +256,14 @@ export const onUndoMove = (data) => dispatch => {
     payload: data['/undomove']
   });
   dispatch({ type: modeActionTypes.TAKEBACK_DECLINE });
+};
+
+export const onResignAccept = () => dispatch => {
+  dispatch({ type: modeActionTypes.RESIGN_ACCEPT });
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Chess game resigned.'
+    }
+  });
 };

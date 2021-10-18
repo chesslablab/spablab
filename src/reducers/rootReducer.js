@@ -14,6 +14,7 @@ import enterCodeDialogReducer from './enterCodeDialogReducer';
 import heuristicPictureDialogReducer from './heuristicPictureDialogReducer';
 import drawAcceptDialogReducer from './drawAcceptDialogReducer';
 import drawOfferDialogReducer from './drawOfferDialogReducer';
+import resignAcceptDialogReducer from './resignAcceptDialogReducer';
 
 const rootReducer = combineReducers({
   alert: alertReducer,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   enterCodeDialog: enterCodeDialogReducer,
   heuristicPictureDialog: heuristicPictureDialogReducer,
   drawAcceptDialog: drawAcceptDialogReducer,
-  drawOfferDialog: drawOfferDialogReducer
+  drawOfferDialog: drawOfferDialogReducer,
+  resignAcceptDialog: resignAcceptDialogReducer
 });
 
 export default rootReducer;
