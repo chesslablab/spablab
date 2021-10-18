@@ -9,18 +9,17 @@ import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
-import { wsMssgUndomove } from '../actions/serverActions';
-
 
 export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/takeback' === cmd:
-      if(data['/takeback'] === 'propose'){
+      if (data['/takeback'] === 'propose') {
         dispatch(onTakebackPropose());
-      } else if (data['/takeback'] === 'accept'){
+      } else if (data['/takeback'] === 'accept') {
         dispatch(onTakebackAccept());
       }
+      break;
     case '/draw' === cmd:
       // TODO: Use constant names for draw actions
       if (data['/draw'] === 'propose') {
@@ -73,6 +72,9 @@ export const wsMssgListener = (data) => dispatch => {
       break;
     case '/fen' === cmd:
       dispatch(onStartGetFen(data));
+      break;
+    case '/undomove' === cmd:
+      dispatch(onUndoMove(data));
       break;
     default:
       break;
@@ -224,10 +226,7 @@ export const onTakebackPropose = () => dispatch => {
 };
 
 export const onTakebackAccept = () => dispatch => {
-  wsMssgUndomove(store.getState()).then(() => {
-    dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
-    dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
-  });
+  dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
 };
 
 export const onDrawPropose = () => dispatch => {
@@ -243,5 +242,12 @@ export const onDrawAccept = () => dispatch => {
     payload: {
       info: 'Draw offer accepted.'
     }
+  });
+};
+
+export const onUndoMove = (data) => dispatch => {
+  dispatch({
+    type: boardActionTypes.UNDO_MOVE,
+    payload: data['/undomove']
   });
 };

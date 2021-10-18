@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import { wsMssgTakeback } from '../actions/serverActions';
+import { wsMssgTakeback, wsMssgUndoMove } from '../actions/serverActions';
 import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 
@@ -11,7 +11,11 @@ const TakebackAcceptDialog = () => {
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, 'accept');
+    wsMssgTakeback(state, 'accept').then(() => {
+      wsMssgUndoMove(state).then(() => {
+        dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
+      });
+    });
   }
 
   const handleTakebackDecline = (event) => {

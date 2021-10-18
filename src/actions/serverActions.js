@@ -62,6 +62,6 @@ export const wsMssgDraw = async (state, action) => {
   return await state.server.ws.send(`/draw ${action}`);
 };
 
-export const wsMssgUndomove = async (state) => {
+export const wsMssgUndoMove = async (state) => {
   return await state.server.ws.send(`/undomove`);
 };
