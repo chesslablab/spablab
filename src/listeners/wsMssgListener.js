@@ -244,6 +244,9 @@ export const onDrawPropose = () => dispatch => {
 
 export const onDrawAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.DRAW_ACCEPT });
+  // TODO:
+  // Replace modeActionTypes.CHECKMATE with modeActionTypes.GAME_OVER
+  dispatch({ type: modeActionTypes.CHECKMATE });
   dispatch({
     type: alertActionTypes.INFO_DISPLAY,
     payload: {
@@ -272,6 +275,9 @@ export const onUndoMove = (data) => dispatch => {
 
 export const onResignAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.RESIGN_ACCEPT });
+  // TODO:
+  // Replace modeActionTypes.CHECKMATE with modeActionTypes.GAME_OVER
+  dispatch({ type: modeActionTypes.CHECKMATE });
   dispatch({
     type: alertActionTypes.INFO_DISPLAY,
     payload: {
