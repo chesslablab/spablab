@@ -200,7 +200,7 @@ export const onPlayfen = (data) => dispatch => {
   }
   if (data['/playfen'].mate) {
     dispatch({
-      type: modeActionTypes.CHECKMATE
+      type: modeActionTypes.RESET
     });
   }
 };
@@ -244,9 +244,7 @@ export const onDrawPropose = () => dispatch => {
 
 export const onDrawAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.DRAW_ACCEPT });
-  // TODO:
-  // Replace modeActionTypes.CHECKMATE with modeActionTypes.GAME_OVER
-  dispatch({ type: modeActionTypes.CHECKMATE });
+  dispatch({ type: modeActionTypes.RESET });
   dispatch({
     type: alertActionTypes.INFO_DISPLAY,
     payload: {
@@ -275,9 +273,7 @@ export const onUndoMove = (data) => dispatch => {
 
 export const onResignAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.RESIGN_ACCEPT });
-  // TODO:
-  // Replace modeActionTypes.CHECKMATE with modeActionTypes.GAME_OVER
-  dispatch({ type: modeActionTypes.CHECKMATE });
+  dispatch({ type: modeActionTypes.RESET });
   dispatch({
     type: alertActionTypes.INFO_DISPLAY,
     payload: {

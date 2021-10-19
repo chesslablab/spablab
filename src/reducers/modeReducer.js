@@ -50,7 +50,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         playfriend: newPlayfriend
       };
-    case modeActionTypes.CHECKMATE:
+    case modeActionTypes.RESET:
       newState.current = state.current;
       return newState;
     // TODO:
