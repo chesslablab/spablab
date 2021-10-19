@@ -35,40 +35,45 @@ const ButtonsPlayFriendMode = () => {
   };
 
   if (state.mode.playfriend.accepted) {
-    return (
-      <div>
-        <Button
-        variant="outlined"
-        className={classes.paperButton}
-        onClick={() => {
-          dispatch({ type: takebackOfferDialogActionTypes.OPEN });
-          handleCloseRequestTakeback();
-        }}
-        >
-          Propose a takeback
-        </Button>
-        <Button
+    if (!state.board.mate &&
+      !state.mode.playfriend.draw &&
+      !state.mode.playfriend.resign
+    ) {
+      return (
+        <div>
+          <Button
           variant="outlined"
           className={classes.paperButton}
           onClick={() => {
-            dispatch({ type: drawOfferDialogActionTypes.OPEN });
-            handleCloseDrawOffer();
+            dispatch({ type: takebackOfferDialogActionTypes.OPEN });
+            handleCloseRequestTakeback();
           }}
-        >
-          Offer draw
-        </Button>
-        <Button
-          variant="outlined"
-          className={classes.paperButton}
-          onClick={() => {
-            dispatch({ type: resignAcceptDialogActionTypes.OPEN });
-            handleCloseResignAccept();
-          }}
-        >
-          Resign
-        </Button>
-      </div>
-    );
+          >
+            Propose a takeback
+          </Button>
+          <Button
+            variant="outlined"
+            className={classes.paperButton}
+            onClick={() => {
+              dispatch({ type: drawOfferDialogActionTypes.OPEN });
+              handleCloseDrawOffer();
+            }}
+          >
+            Offer draw
+          </Button>
+          <Button
+            variant="outlined"
+            className={classes.paperButton}
+            onClick={() => {
+              dispatch({ type: resignAcceptDialogActionTypes.OPEN });
+              handleCloseResignAccept();
+            }}
+          >
+            Resign
+          </Button>
+        </div>
+      );
+    }
   }
 
   return null;
