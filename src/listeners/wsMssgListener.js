@@ -26,6 +26,8 @@ export const wsMssgListener = (data) => dispatch => {
         dispatch(onDrawPropose());
       } else if (data['/draw'] === 'accept') {
         dispatch(onDrawAccept());
+      } else if (data['/draw'] === 'decline') {
+        dispatch(onDrawDecline());
       }
       break;
     case '/start' === cmd:
@@ -246,6 +248,16 @@ export const onDrawAccept = () => dispatch => {
     type: alertActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Draw offer accepted.'
+    }
+  });
+};
+
+export const onDrawDecline = () => dispatch => {
+  dispatch({ type: modeActionTypes.DRAW_DECLINE });
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Draw offer declined.'
     }
   });
 };
