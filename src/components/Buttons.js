@@ -128,8 +128,13 @@ const Buttons = ({ props }) => {
         >
           FEN
         </MenuItem>
-        <MenuItem key={3}
-          onClick={() => handleDownloadImage()}
+        <MenuItem
+          key={3}
+          onClick={() => {
+            handleDownloadImage().then(() => {
+              handleCloseSettings();
+            });
+          }}
         >
           Image
         </MenuItem>
