@@ -31,7 +31,7 @@ export const DownloadImage = async () => {
   const base64Image = croppedCanvas.toDataURL('image/png', 1);
   const a = document.createElement('a');
   a.href = base64Image;
-  a.download = "chess board.png";
+  a.download = "chessboard.png";
   a.click();
   a.remove();
 }
