@@ -6,7 +6,7 @@ import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
 // dialog reducers
 import loadFenDialogReducer from './loadFenDialogReducer';
-import getFenDialogReducer from './getFenDialogReducer';
+import fenDialogReducer from './fenDialogReducer';
 import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
 import createInvitationDialogReducer from './createInvitationDialogReducer';
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   server: serverReducer,
   // dialog reducers
   loadFenDialog: loadFenDialogReducer,
-  getFenDialog: getFenDialogReducer,
+  fenDialog: fenDialogReducer,
   takebackAcceptDialog: takebackAcceptDialogReducer,
   takebackOfferDialog: takebackOfferDialogReducer,
   createInvitationDialog: createInvitationDialogReducer,

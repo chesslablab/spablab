@@ -32,7 +32,7 @@ const DrawAcceptDialog = () => {
             <Button type="submit">
               Accept
             </Button>
-            <Button onClick={() => dispatch({ type: drawAcceptDialogActionTypes.CLOSE })}>
+            <Button onClick={handleDrawDecline}>
               Decline
             </Button>
           </DialogActions>

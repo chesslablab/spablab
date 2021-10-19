@@ -3,7 +3,7 @@ import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
-import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
+import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
@@ -26,6 +26,8 @@ export const wsMssgListener = (data) => dispatch => {
         dispatch(onDrawPropose());
       } else if (data['/draw'] === 'accept') {
         dispatch(onDrawAccept());
+      } else if (data['/draw'] === 'decline') {
+        dispatch(onDrawDecline());
       }
       break;
     case '/start' === cmd:
@@ -71,7 +73,7 @@ export const wsMssgListener = (data) => dispatch => {
       dispatch(onHeuristicPicture(data));
       break;
     case '/fen' === cmd:
-      dispatch(onStartGetFen(data));
+      dispatch(onFen(data));
       break;
     case '/undomove' === cmd:
       dispatch(onUndoMove(data));
@@ -214,12 +216,12 @@ export const onHeuristicPicture = (data) => dispatch => {
   });
 };
 
-export const onStartGetFen = (data) => dispatch => {
+export const onFen = (data) => dispatch => {
   const payload = {
     fen: data['/fen']
   };
   dispatch({
-    type: getFenDialogActionTypes.OPEN,
+    type: fenDialogActionTypes.SET,
     payload: payload
   });
 };
@@ -242,10 +244,23 @@ export const onDrawPropose = () => dispatch => {
 
 export const onDrawAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.DRAW_ACCEPT });
+  // TODO:
+  // Replace modeActionTypes.CHECKMATE with modeActionTypes.GAME_OVER
+  dispatch({ type: modeActionTypes.CHECKMATE });
   dispatch({
     type: alertActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Draw offer accepted.'
+    }
+  });
+};
+
+export const onDrawDecline = () => dispatch => {
+  dispatch({ type: modeActionTypes.DRAW_DECLINE });
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Draw offer declined.'
     }
   });
 };
@@ -260,6 +275,9 @@ export const onUndoMove = (data) => dispatch => {
 
 export const onResignAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.RESIGN_ACCEPT });
+  // TODO:
+  // Replace modeActionTypes.CHECKMATE with modeActionTypes.GAME_OVER
+  dispatch({ type: modeActionTypes.CHECKMATE });
   dispatch({
     type: alertActionTypes.INFO_DISPLAY,
     payload: {

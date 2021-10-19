@@ -1,21 +1,26 @@
-import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
+import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 
 const initialState = {
-  open: false
+  open: false,
+  fen: ''
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case getFenDialogActionTypes.CLOSE:
+    case fenDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case getFenDialogActionTypes.OPEN:
+    case fenDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,
-        fen: action.payload ? action.payload.fen : null
+      };
+    case fenDialogActionTypes.SET:
+      return {
+        ...state,
+        fen: action.payload.fen,
       };
     default:
       return state;

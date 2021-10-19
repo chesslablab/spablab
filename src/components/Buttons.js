@@ -7,13 +7,13 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
-import getFenDialogActionTypes from '../constants/getFenDialogActionTypes';
+import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import { DownloadImage } from './DownloadImage'
-import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFEN } from '../actions/serverActions';
+import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFen } from '../actions/serverActions';
 
 const Buttons = ({ props }) => {
   const state = useSelector(state => state);
@@ -120,14 +120,21 @@ const Buttons = ({ props }) => {
         <MenuItem
           key={2}
           onClick={() => {
-            dispatch({ type: getFenDialogActionTypes.OPEN });
-            handleCloseLoadfen();
+            wsMssgFen(state).then(() => {
+              dispatch({ type: fenDialogActionTypes.OPEN });
+              handleCloseSettings();
+            });
           }}
         >
           FEN
         </MenuItem>
-        <MenuItem key={3}
-          onClick={() => handleDownloadImage()}
+        <MenuItem
+          key={3}
+          onClick={() => {
+            handleDownloadImage().then(() => {
+              handleCloseSettings();
+            });
+          }}
         >
           Image
         </MenuItem>
