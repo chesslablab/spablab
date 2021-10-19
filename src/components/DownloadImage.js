@@ -7,6 +7,7 @@ export const DownloadImage = async () => {
   const history = document.getElementsByClassName('history')[0];
 
   const canvas = await html2canvas(node, {
+    logging: false,
     width: board.clientWidth,
     height: node.clientHeight - buttons.clientHeight - history.clientHeight,
     y: buttons.clientHeight
