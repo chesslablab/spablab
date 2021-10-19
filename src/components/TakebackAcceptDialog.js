@@ -8,10 +8,11 @@ import modeActionTypes from '../constants/modeActionTypes';
 const TakebackAcceptDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+  const {ACCEPT, DECLINE} = modeActionTypes;
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, 'accept').then(() => {
+    wsMssgTakeback(state, ACCEPT).then(() => {
       wsMssgUndoMove(state).then(() => {
         dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
       });
@@ -20,7 +21,7 @@ const TakebackAcceptDialog = () => {
 
   const handleTakebackDecline = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, 'decline').then(() => {
+    wsMssgTakeback(state, DECLINE).then(() => {
       dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
     });
   }

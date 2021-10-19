@@ -12,21 +12,22 @@ import Pgn from '../utils/Pgn';
 
 export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
+  const {ACCEPT, DECLINE, PROPOSE} = modeActionTypes;
   switch (true) {
     case '/takeback' === cmd:
-      if (data['/takeback'] === 'propose') {
+      if (data['/takeback'] === PROPOSE) {
         dispatch(onTakebackPropose());
-      } else if (data['/takeback'] === 'accept') {
+      } else if (data['/takeback'] === ACCEPT) {
         dispatch(onTakebackAccept());
       }
       break;
     case '/draw' === cmd:
       // TODO: Use constant names for draw actions
-      if (data['/draw'] === 'propose') {
+      if (data['/draw'] === PROPOSE) {
         dispatch(onDrawPropose());
-      } else if (data['/draw'] === 'accept') {
+      } else if (data['/draw'] === ACCEPT) {
         dispatch(onDrawAccept());
-      } else if (data['/draw'] === 'decline') {
+      } else if (data['/draw'] === DECLINE) {
         dispatch(onDrawDecline());
       }
       break;
@@ -79,7 +80,7 @@ export const wsMssgListener = (data) => dispatch => {
       dispatch(onUndoMove(data));
       break;
     case '/resign' === cmd:
-      if (data['/resign'] === 'accept') {
+      if (data['/resign'] === ACCEPT) {
         dispatch(onResignAccept());
       }
       break;

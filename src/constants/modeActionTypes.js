@@ -10,7 +10,10 @@ const modeActionTypes = {
 	TAKEBACK_ACCEPT: 'TAKEBACK_ACCEPT',
 	TAKEBACK_DECLINE: 'TAKEBACK_DECLINE',
 	TAKEBACK_PROPOSE: 'TAKEBACK_PROPOSE',
-	RESIGN_ACCEPT: 'RESIGN_ACCEPT'
+	RESIGN_ACCEPT: 'RESIGN_ACCEPT',
+  DECLINE: 'decline',
+  ACCEPT: 'accept',
+  PROPOSE: 'propose',
 };
 
 export default modeActionTypes;

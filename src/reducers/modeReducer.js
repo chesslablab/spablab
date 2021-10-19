@@ -56,7 +56,7 @@ const reducer = (state = initialState, action) => {
     // TODO:
     // Use constant names for draw actions
     case modeActionTypes.TAKEBACK_ACCEPT:
-      newPlayfriend.takeback = 'accept';
+      newPlayfriend.takeback = modeActionTypes.ACCEPT;
       return {
         ...state,
         playfriend: newPlayfriend
@@ -68,7 +68,7 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.TAKEBACK_PROPOSE:
-      newPlayfriend.takeback = 'propose';
+      newPlayfriend.takeback = modeActionTypes.PROPOSE;
       return {
         ...state,
         playfriend: newPlayfriend
@@ -76,7 +76,7 @@ const reducer = (state = initialState, action) => {
     // TODO:
     // Use constant names for draw actions
     case modeActionTypes.DRAW_ACCEPT:
-      newPlayfriend.draw = 'accept';
+      newPlayfriend.draw = modeActionTypes.ACCEPT;
       return {
         ...state,
         playfriend: newPlayfriend
@@ -88,13 +88,13 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.DRAW_PROPOSE:
-      newPlayfriend.draw = 'propose';
+      newPlayfriend.draw = modeActionTypes.PROPOSE;
       return {
         ...state,
         playfriend: newPlayfriend
       };
     case modeActionTypes.RESIGN_ACCEPT:
-      newPlayfriend.resign = 'accept';
+      newPlayfriend.resign = modeActionTypes.ACCEPT;
       return {
         ...state,
         playfriend: newPlayfriend
