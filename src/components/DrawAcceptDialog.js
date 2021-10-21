@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import Wording from '../utils/Wording.js';
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgDraw } from '../actions/serverActions';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
@@ -11,14 +12,16 @@ const DrawAcceptDialog = () => {
 
   const handleDrawAccept = (event) => {
     event.preventDefault();
-    wsMssgDraw(state, 'accept').then((data) => {
+    const verb = Wording.extract(modeActionTypes.DRAW_ACCEPT, Wording.verb.ACCEPT);
+    wsMssgDraw(state, verb.toLowerCase()).then((data) => {
       dispatch({ type: drawAcceptDialogActionTypes.CLOSE });
     });
   }
 
   const handleDrawDecline = (event) => {
     event.preventDefault();
-    wsMssgDraw(state, 'decline').then(() => {
+    const verb = Wording.extract(modeActionTypes.DRAW_DECLINE, Wording.verb.DECLINE);
+    wsMssgDraw(state, verb.toLowerCase()).then(() => {
       dispatch({ type: drawAcceptDialogActionTypes.CLOSE });
     });
   }

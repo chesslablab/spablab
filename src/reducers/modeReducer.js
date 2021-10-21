@@ -1,5 +1,6 @@
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
+import Wording from '../utils/Wording.js';
 
 const initialState = {
   current: modeNames.ANALYSIS,
@@ -73,10 +74,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         playfriend: newPlayfriend
       };
-    // TODO:
-    // Use constant names for draw actions
     case modeActionTypes.DRAW_ACCEPT:
-      newPlayfriend.draw = 'accept';
+      newPlayfriend.draw = Wording.extract(modeActionTypes.DRAW_ACCEPT, Wording.verb.ACCEPT).toLowerCase();
       return {
         ...state,
         playfriend: newPlayfriend
@@ -88,7 +87,7 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.DRAW_PROPOSE:
-      newPlayfriend.draw = 'propose';
+      newPlayfriend.draw = Wording.extract(modeActionTypes.DRAW_PROPOSE, Wording.verb.PROPOSE).toLowerCase();
       return {
         ...state,
         playfriend: newPlayfriend
