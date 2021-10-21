@@ -22,11 +22,11 @@ export const wsMssgListener = (data) => dispatch => {
       }
       break;
     case '/draw' === cmd:
-      if (data['/draw'] === Wording.extract(modeActionTypes.DRAW_PROPOSE, Wording.verb.PROPOSE).toLowerCase()) {
+      if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
         dispatch(onDrawPropose());
-      } else if (data['/draw'] === Wording.extract(modeActionTypes.DRAW_ACCEPT, Wording.verb.ACCEPT).toLowerCase()) {
+      } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
         dispatch(onDrawAccept());
-      } else if (data['/draw'] === Wording.extract(modeActionTypes.DRAW_DECLINE, Wording.verb.DECLINE).toLowerCase()) {
+      } else if (data['/draw'] === Wording.verb.DECLINE.toLowerCase()) {
         dispatch(onDrawDecline());
       }
       break;
@@ -79,7 +79,7 @@ export const wsMssgListener = (data) => dispatch => {
       dispatch(onUndoMove(data));
       break;
     case '/resign' === cmd:
-      if (data['/resign'] === Wording.extract(modeActionTypes.RESIGN_ACCEPT, Wording.verb.ACCEPT).toLowerCase()) {
+      if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
         dispatch(onResignAccept());
       }
       break;

@@ -12,16 +12,14 @@ const DrawAcceptDialog = () => {
 
   const handleDrawAccept = (event) => {
     event.preventDefault();
-    const verb = Wording.extract(modeActionTypes.DRAW_ACCEPT, Wording.verb.ACCEPT);
-    wsMssgDraw(state, verb.toLowerCase()).then((data) => {
+    wsMssgDraw(state, Wording.verb.ACCEPT.toLowerCase()).then((data) => {
       dispatch({ type: drawAcceptDialogActionTypes.CLOSE });
     });
   }
 
   const handleDrawDecline = (event) => {
     event.preventDefault();
-    const verb = Wording.extract(modeActionTypes.DRAW_DECLINE, Wording.verb.DECLINE);
-    wsMssgDraw(state, verb.toLowerCase()).then(() => {
+    wsMssgDraw(state,  Wording.verb.DECLINE.toLowerCase()).then(() => {
       dispatch({ type: drawAcceptDialogActionTypes.CLOSE });
     });
   }
