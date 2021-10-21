@@ -93,7 +93,7 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.RESIGN_ACCEPT:
-      newPlayfriend.resign = 'accept';
+      newPlayfriend.resign = Wording.extract(modeActionTypes.RESIGN_ACCEPT, Wording.verb.ACCEPT).toLowerCase();
       return {
         ...state,
         playfriend: newPlayfriend
