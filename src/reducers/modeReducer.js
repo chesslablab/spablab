@@ -75,7 +75,7 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.DRAW_ACCEPT:
-      newPlayfriend.draw = Wording.extract(modeActionTypes.DRAW_ACCEPT, Wording.verb.ACCEPT).toLowerCase();
+      newPlayfriend.draw = Wording.verb.ACCEPT.toLowerCase();
       return {
         ...state,
         playfriend: newPlayfriend
@@ -87,13 +87,13 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.DRAW_PROPOSE:
-      newPlayfriend.draw = Wording.extract(modeActionTypes.DRAW_PROPOSE, Wording.verb.PROPOSE).toLowerCase();
+      newPlayfriend.draw = Wording.verb.PROPOSE.toLowerCase();
       return {
         ...state,
         playfriend: newPlayfriend
       };
     case modeActionTypes.RESIGN_ACCEPT:
-      newPlayfriend.resign = Wording.extract(modeActionTypes.RESIGN_ACCEPT, Wording.verb.ACCEPT).toLowerCase();
+      newPlayfriend.resign = Wording.verb.ACCEPT.toLowerCase();
       return {
         ...state,
         playfriend: newPlayfriend
