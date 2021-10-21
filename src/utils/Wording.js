@@ -13,7 +13,11 @@ export default class Wording {
     // ...
   ];
 
-  static contains = (haystack, needle) => {
-    return haystack.split('_').includes(needle);
+  static extract = (haystack, needle) => {
+    if (haystack.split('_').includes(needle)) {
+      return needle;
+    }
+
+    return null;
   }
 }
