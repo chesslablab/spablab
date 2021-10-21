@@ -79,7 +79,7 @@ export const wsMssgListener = (data) => dispatch => {
       dispatch(onUndoMove(data));
       break;
     case '/resign' === cmd:
-      if (data['/resign'] === 'accept') {
+      if (data['/resign'] === Wording.extract(modeActionTypes.RESIGN_ACCEPT, Wording.verb.ACCEPT).toLowerCase()) {
         dispatch(onResignAccept());
       }
       break;
