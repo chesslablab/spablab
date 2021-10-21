@@ -9,6 +9,7 @@ import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Pgn from '../utils/Pgn';
+import Wording from '../utils/Wording.js';
 
 export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
@@ -21,12 +22,11 @@ export const wsMssgListener = (data) => dispatch => {
       }
       break;
     case '/draw' === cmd:
-      // TODO: Use constant names for draw actions
-      if (data['/draw'] === 'propose') {
+      if (data['/draw'] === Wording.extract(modeActionTypes.DRAW_PROPOSE, Wording.verb.PROPOSE).toLowerCase()) {
         dispatch(onDrawPropose());
-      } else if (data['/draw'] === 'accept') {
+      } else if (data['/draw'] === Wording.extract(modeActionTypes.DRAW_ACCEPT, Wording.verb.ACCEPT).toLowerCase()) {
         dispatch(onDrawAccept());
-      } else if (data['/draw'] === 'decline') {
+      } else if (data['/draw'] === Wording.extract(modeActionTypes.DRAW_DECLINE, Wording.verb.DECLINE).toLowerCase()) {
         dispatch(onDrawDecline());
       }
       break;
