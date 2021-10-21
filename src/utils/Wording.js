@@ -1,4 +1,4 @@
-export default class Scrabble {
+export default class Wording {
   static verb = {
     ACCEPT: 'ACCEPT',
     DECLINE: 'DECLINE',
@@ -7,9 +7,9 @@ export default class Scrabble {
   };
 
   static verbs = [
-    Scrabble.verb.ACCEPT,
-    Scrabble.verb.DECLINE,
-    Scrabble.verb.PROPOSE,
+    Wording.verb.ACCEPT,
+    Wording.verb.DECLINE,
+    Wording.verb.PROPOSE,
     // ...
   ];
 
