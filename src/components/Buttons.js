@@ -48,6 +48,13 @@ const Buttons = ({ props }) => {
   return (
     <div>
       <Button
+        startIcon={<GroupAddIcon />}
+        onClick={handleClickPlayFriend}
+        style={{ textTransform: 'none' }}
+      >
+        Invite a friend
+      </Button>
+      <Button
         startIcon={<TuneIcon />}
         style={{ textTransform: 'none' }}
         onClick={() => wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws))}
@@ -63,13 +70,6 @@ const Buttons = ({ props }) => {
         }}
       >
         Load FEN
-      </Button>
-      <Button
-        startIcon={<GroupAddIcon />}
-        onClick={handleClickPlayFriend}
-        style={{ textTransform: 'none' }}
-      >
-        Invite a friend
       </Button>
       <Menu
         anchorEl={anchorElPlayFriend}
