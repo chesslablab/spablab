@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import Wording from '../utils/Wording.js';
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgTakeback } from '../actions/serverActions';
 import takebackOfferDialogActionTypes from '../constants/takebackOfferDialogActionTypes';
@@ -11,7 +12,7 @@ const TakebackOfferDialog = () => {
 
   const handleTakebackOffer = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, 'propose').then((data) => {
+    wsMssgTakeback(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch({ type: modeActionTypes.TAKEBACK_PROPOSE });
       dispatch({ type: takebackOfferDialogActionTypes.CLOSE });
     });

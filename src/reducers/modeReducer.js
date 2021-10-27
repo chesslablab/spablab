@@ -69,7 +69,7 @@ const reducer = (state = initialState, action) => {
         playfriend: newPlayfriend
       };
     case modeActionTypes.TAKEBACK_PROPOSE:
-      newPlayfriend.takeback = 'propose';
+      newPlayfriend.takeback = Wording.verb.PROPOSE.toLowerCase();
       return {
         ...state,
         playfriend: newPlayfriend
