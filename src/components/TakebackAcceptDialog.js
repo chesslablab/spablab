@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import Wording from '../utils/Wording.js';
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgTakeback, wsMssgUndoMove } from '../actions/serverActions';
 import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
@@ -11,7 +12,7 @@ const TakebackAcceptDialog = () => {
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, 'accept').then(() => {
+    wsMssgTakeback(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
       wsMssgUndoMove(state).then(() => {
         dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
       });
@@ -20,7 +21,7 @@ const TakebackAcceptDialog = () => {
 
   const handleTakebackDecline = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, 'decline').then(() => {
+    wsMssgTakeback(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
       dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
     });
   }
