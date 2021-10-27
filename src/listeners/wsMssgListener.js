@@ -15,9 +15,9 @@ export const wsMssgListener = (data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/takeback' === cmd:
-      if (data['/takeback'] === 'propose') {
+      if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
         dispatch(onTakebackPropose());
-      } else if (data['/takeback'] === 'accept') {
+      } else if (data['/takeback'] ===  Wording.verb.ACCEPT.toLowerCase()) {
         dispatch(onTakebackAccept());
       }
       break;

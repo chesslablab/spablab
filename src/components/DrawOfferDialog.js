@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import Wording from '../utils/Wording.js';
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgDraw } from '../actions/serverActions';
 import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
@@ -11,7 +12,7 @@ const DrawOfferDialog = () => {
 
   const handleDrawOffer = (event) => {
     event.preventDefault();
-    wsMssgDraw(state, 'propose').then((data) => {
+    wsMssgDraw(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch({ type: modeActionTypes.DRAW_PROPOSE });
       dispatch({ type: drawOfferDialogActionTypes.CLOSE });
     });
