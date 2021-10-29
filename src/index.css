@@ -34,10 +34,14 @@
   width: 100%;
 }
 
-.is-selected span,
+.is-selected,
+.is-legal {
+  opacity: 0.65;
+}
+
 .is-legal span {
-  box-shadow: inset -5px 0 0 #aed6f1, inset 0 -5px 0 #aed6f1,
-    inset 5px 0 0 #aed6f1, inset 0 5px 0 #aed6f1;
+  box-shadow: inset -1px 0 0 #c5c5c5, inset 0 -1px 0 #c5c5c5,
+    inset 1px 0 0 #c5c5c5, inset 0 1px 0 #c5c5c5;
 }
 
 .is-check span {
@@ -46,11 +50,11 @@
 }
 
 .square.w {
-  background-color: #f8f8f8;
+  background-color: #ffce9e;
 }
 
 .square.b {
-  background-color: #a9a9a9;
+  background-color: #d18b47;
 }
 
 .board.past {
