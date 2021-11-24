@@ -41,6 +41,19 @@ describe('toFen()', () => {
     ];
     expect(Ascii.toFen(board)).toBe('r1bqk1nr/ppppbppp/2n5/4p3/4P3/5N2/PPPPBPPP/RNBQ1RK1');
   });
+  it('is r1bqkbnR/pppp1p2/2n5/4p1p1/2B1P3/5N2/PPPP1PP1/RNBQK3', () => {
+    const board = [
+      [ ' r ', ' . ', ' b ', ' q ', ' k ', ' b ', ' n ', ' R ' ],
+      [ ' p ', ' p ', ' p ', ' p ', ' . ', ' p ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' n ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' p ', ' . ' ],
+      [ ' . ', ' . ', ' B ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' . ', ' N ', ' . ', ' . ' ],
+      [ ' P ', ' P ', ' P ', ' P ', ' . ', ' P ', ' P ', ' . ' ],
+      [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' . ', ' . ', ' . ' ]
+    ];
+    expect(Ascii.toFen(board)).toBe('r1bqkbnR/pppp1p2/2n5/4p1p1/2B1P3/5N2/PPPP1PP1/RNBQK3');
+  });
 });
 
 describe('flip()', () => {
