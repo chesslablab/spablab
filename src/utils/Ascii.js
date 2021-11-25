@@ -14,30 +14,26 @@ export default class Ascii {
 
   static toFen = (ascii) => {
     let string = '';
-    Ascii.promote(ascii)
-      .forEach((item, i) => {
-        string += item.join('').replace(/\s/g, '');
-        if (i !== 7) {
-          string += '/';
-        }
-      });
-
+    Ascii.promote(ascii).forEach((item, i) => {
+      string += item.join('').replace(/\s/g, '');
+      if (i !== 7) {
+        string += '/';
+      }
+    });
     let filtered = '';
     let strSplit = string.split('');
     let n = 1;
     strSplit.forEach((item, i) => {
-      if (strSplit[i] === '.' && strSplit[i+1]) {
+      if (strSplit[i] === '.') {
         if (strSplit[i+1] === '.') {
           n++;
         } else {
           filtered += n;
           n = 1;
         }
-      } else if (strSplit[i] !== '.') {
+      } else {
         filtered += strSplit[i];
         n = 1;
-      } else {
-        filtered += 1;
       }
     });
 
