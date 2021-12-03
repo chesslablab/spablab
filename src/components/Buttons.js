@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem } from '@material-ui/core';
+import ComputerIcon from '@material-ui/icons/Computer';
 import TuneIcon from '@material-ui/icons/Tune';
 import PublishIcon from '@material-ui/icons/Publish';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
@@ -19,16 +20,21 @@ const Buttons = ({ props }) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [anchorElLoadfen, setAnchorElLoadfen] = React.useState(null);
   const [anchorElPlayFriend, setAnchorElPlayFriend] = React.useState(null);
+  const [anchorElPlayWithTheComputer, setAnchorElPlayWithTheComputer] = React.useState(null);
+  const [anchorElLoadfen, setAnchorElLoadfen] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
-
-  const handleCloseLoadfen = () => {
-    setAnchorElLoadfen(null);
-  };
 
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
+  };
+
+  const handleClosePlayWithTheComputer = () => {
+    setAnchorElPlayWithTheComputer(null);
+  };
+
+  const handleCloseLoadfen = () => {
+    setAnchorElLoadfen(null);
   };
 
   const handleCloseSettings = () => {
@@ -37,6 +43,10 @@ const Buttons = ({ props }) => {
 
   const handleClickPlayFriend = (event) => {
     setAnchorElPlayFriend(event.currentTarget);
+  };
+
+  const handleClickPlayWithTheComputer = (event) => {
+    setAnchorElPlayWithTheComputer(event.currentTarget);
   };
 
   const handleClickSettings = (event) => {
@@ -54,6 +64,23 @@ const Buttons = ({ props }) => {
       >
         Invite a Friend
       </Button>
+      <Menu
+        anchorEl={anchorElPlayFriend}
+        keepMounted
+        open={Boolean(anchorElPlayFriend)}
+        onClose={handleClosePlayFriend}
+      >
+        <MenuItem onClick={() => {
+          dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
+          dispatch({ type: alertActionTypes.INFO_CLOSE });
+          dispatch({ type: modeActionTypes.SET_ANALYSIS });
+          handleClosePlayFriend();
+        }}>Create Invite Code</MenuItem>
+        <MenuItem onClick={() => {
+          dispatch({ type: enterInviteCodeDialogActionTypes.OPEN });
+          handleClosePlayFriend();
+        }}>Enter Invite Code</MenuItem>
+      </Menu>
       <Button
         startIcon={<TuneIcon />}
         style={{ textTransform: 'none' }}
@@ -61,6 +88,23 @@ const Buttons = ({ props }) => {
       >
         Analysis Board
       </Button>
+      <Button
+        startIcon={<ComputerIcon />}
+        onClick={handleClickPlayWithTheComputer}
+        style={{ textTransform: 'none' }}
+      >
+        Play With the Computer
+      </Button>
+      <Menu
+        anchorEl={anchorElPlayWithTheComputer}
+        keepMounted
+        open={Boolean(anchorElPlayWithTheComputer)}
+        onClose={handleClosePlayWithTheComputer}
+      >
+        <MenuItem onClick={() => {
+          // TODO
+        }}>Like a Grandmaster</MenuItem>
+      </Menu>
       <Button
         startIcon={<PublishIcon />}
         style={{ textTransform: 'none' }}
@@ -80,23 +124,6 @@ const Buttons = ({ props }) => {
       >
         Load PGN
       </Button>
-      <Menu
-        anchorEl={anchorElPlayFriend}
-        keepMounted
-        open={Boolean(anchorElPlayFriend)}
-        onClose={handleClosePlayFriend}
-      >
-        <MenuItem onClick={() => {
-          dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
-          dispatch({ type: alertActionTypes.INFO_CLOSE });
-          dispatch({ type: modeActionTypes.SET_ANALYSIS });
-          handleClosePlayFriend();
-        }}>Create Invite Code</MenuItem>
-        <MenuItem onClick={() => {
-          dispatch({ type: enterInviteCodeDialogActionTypes.OPEN });
-          handleClosePlayFriend();
-        }}>Enter Invite Code</MenuItem>
-      </Menu>
       <Button
         onClick={handleClickSettings}
         startIcon={<SettingsIcon />}
