@@ -71,6 +71,15 @@ const Buttons = ({ props }) => {
       >
         Load FEN
       </Button>
+      <Button
+        startIcon={<PublishIcon />}
+        style={{ textTransform: 'none' }}
+        onClick={() => {
+          // TODO
+        }}
+      >
+        Load PGN
+      </Button>
       <Menu
         anchorEl={anchorElPlayFriend}
         keepMounted
