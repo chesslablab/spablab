@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
+import AlgebraicNotationFiles from './AlgebraicNotationFiles';
+import AlgebraicNotationRanks from './AlgebraicNotationRanks';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -121,7 +123,7 @@ const Board = ({props}) => {
               </span>
             </div>
           );
-          
+
           k++;
       });
       rows.push(<div key={i} className="board-row">{row}</div>);
@@ -131,8 +133,12 @@ const Board = ({props}) => {
   }
 
   return (
-    <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
-      {board()}
+    <div>
+      <AlgebraicNotationRanks />
+      <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+        {board()}
+      </div>
+      <AlgebraicNotationFiles />
     </div>
   );
 }
