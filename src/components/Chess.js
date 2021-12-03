@@ -55,9 +55,6 @@ const Chess = ({ props }) => {
           <Grid item xs={12} >
             <Board props={props} />
           </Grid>
-          <Grid item xs={12} style={{ clear: 'both' }} className="history">
-            <History />
-          </Grid>
         </Grid>
         <Grid item xs={12} md={6} className={classes.panel}>
           <Grid item xs={12} className={classes.breadcrumbs}>
@@ -65,6 +62,7 @@ const Chess = ({ props }) => {
           </Grid>
           <Timers />
           <Paper elevation={3} className={classes.paper}>
+            <History />
             <MoveValidator />
             <ButtonsPlayFriendMode />
           </Paper>
