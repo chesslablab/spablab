@@ -52,14 +52,14 @@ const Buttons = ({ props }) => {
         onClick={handleClickPlayFriend}
         style={{ textTransform: 'none' }}
       >
-        Invite a friend
+        Invite a Friend
       </Button>
       <Button
         startIcon={<TuneIcon />}
         style={{ textTransform: 'none' }}
         onClick={() => wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws))}
       >
-        Analysis board
+        Analysis Board
       </Button>
       <Button
         startIcon={<PublishIcon />}
