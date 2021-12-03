@@ -27,6 +27,30 @@
   line-height: 11.5vh;
 }
 
+.an-files span {
+  width: 9vh;
+  float: left;
+  text-align: center;
+}
+
+.an-files span.empty {
+  width: 2vh;
+  float: left;
+  display: list-item;
+}
+
+.an-ranks {
+  width: 2vh;
+  float: left;
+}
+
+.an-ranks span {
+  height: 9vh;
+  line-height: 9vh;
+  display: block;
+  clear: both;
+}
+
 .square span::selection {
   background: transparent;
 }
@@ -82,6 +106,15 @@
   .square span {
     height: 8.5vw;
     width: 8.5vw;
+    line-height: 10vw;
+  }
+
+  .an-files span {
+    width: 8.5vw;
+  }
+
+  .an-ranks span {
+    height: 8.5vw;
     line-height: 10vw;
   }
 }
