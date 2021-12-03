@@ -5,6 +5,8 @@
 
 .board {
   font-family: FreeSerif, sans-serif;
+  display: block;
+  overflow: auto;
 }
 
 .board-row {
