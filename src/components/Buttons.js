@@ -82,11 +82,11 @@ const Buttons = ({ props }) => {
           dispatch({ type: alertActionTypes.INFO_CLOSE });
           dispatch({ type: modeActionTypes.SET_ANALYSIS });
           handleClosePlayFriend();
-        }}>Create invite code</MenuItem>
+        }}>Create Invite Code</MenuItem>
         <MenuItem onClick={() => {
           dispatch({ type: enterInviteCodeDialogActionTypes.OPEN });
           handleClosePlayFriend();
-        }}>Enter invite code</MenuItem>
+        }}>Enter Invite Code</MenuItem>
       </Menu>
       <Button
         onClick={handleClickSettings}
@@ -105,7 +105,7 @@ const Buttons = ({ props }) => {
             handleCloseSettings();
           }}
         >
-          Flip board
+          Flip Board
         </MenuItem>
         <MenuItem
           key={1}
@@ -115,7 +115,7 @@ const Buttons = ({ props }) => {
             });
           }}
         >
-          Heuristic picture
+          Heuristic Picture
         </MenuItem>
         <MenuItem
           key={2}
