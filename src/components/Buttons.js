@@ -131,6 +131,14 @@ const Buttons = ({ props }) => {
         <MenuItem
           key={3}
           onClick={() => {
+            // TODO
+          }}
+        >
+          PGN Movetext
+        </MenuItem>
+        <MenuItem
+          key={4}
+          onClick={() => {
             handleDownloadImage().then(() => {
               handleCloseSettings();
             });
