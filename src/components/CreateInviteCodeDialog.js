@@ -65,6 +65,14 @@ const CreateInviteCodeDialog = () => {
             defaultValue={10}
             inputProps={{ min: "1", max: "60", step: "1" }}
           />
+          <TextField
+            fullWidth
+            type="number"
+            name="increment"
+            label="Increment in seconds"
+            defaultValue={1}
+            inputProps={{ min: "1", max: "60", step: "1" }}
+          />
           {
             state.mode.playfriend.hash
               ?  <TextField
