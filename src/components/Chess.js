@@ -19,7 +19,7 @@ import Buttons from './Buttons.js';
 import History from './History';
 import MainBreadcrumbs from './MainBreadcrumbs';
 import MoveValidator from './MoveValidator.js';
-import ButtonsPlayFriendMode from './ButtonsPlayFriendMode.js';
+import { default as ButtonsPlayFriendMode } from './PlayFriendMode/Buttons.js';
 import Timers from './Timers';
 import InfoAlert from './InfoAlert.js';
 import '../index.css';

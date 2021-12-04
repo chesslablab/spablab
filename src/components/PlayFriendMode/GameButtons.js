@@ -1,10 +1,11 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import takebackOfferDialogActionTypes from '../constants/takebackOfferDialogActionTypes';
-import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
-import resignAcceptDialogActionTypes from '../constants/resignAcceptDialogActionTypes';
+import takebackOfferDialogActionTypes from '../../constants/takebackOfferDialogActionTypes';
+import drawOfferDialogActionTypes from '../../constants/drawOfferDialogActionTypes';
+import resignAcceptDialogActionTypes from '../../constants/resignAcceptDialogActionTypes';
 
 const useStyles = makeStyles((theme) => ({
   paperButton: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonsPlayFriendMode = () => {
+const GameButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -40,19 +41,17 @@ const ButtonsPlayFriendMode = () => {
       !state.mode.playfriend.resign
     ) {
       return (
-        <div>
+        <ButtonGroup size="small" aria-label="small button group">
           <Button
-          variant="outlined"
-          className={classes.paperButton}
-          onClick={() => {
-            dispatch({ type: takebackOfferDialogActionTypes.OPEN });
-            handleCloseRequestTakeback();
-          }}
+            className={classes.paperButton}
+            onClick={() => {
+              dispatch({ type: takebackOfferDialogActionTypes.OPEN });
+              handleCloseRequestTakeback();
+            }}
           >
             Propose a takeback
           </Button>
           <Button
-            variant="outlined"
             className={classes.paperButton}
             onClick={() => {
               dispatch({ type: drawOfferDialogActionTypes.OPEN });
@@ -62,7 +61,6 @@ const ButtonsPlayFriendMode = () => {
             Offer draw
           </Button>
           <Button
-            variant="outlined"
             className={classes.paperButton}
             onClick={() => {
               dispatch({ type: resignAcceptDialogActionTypes.OPEN });
@@ -71,7 +69,7 @@ const ButtonsPlayFriendMode = () => {
           >
             Resign
           </Button>
-        </div>
+        </ButtonGroup>
       );
     }
   }
@@ -79,4 +77,4 @@ const ButtonsPlayFriendMode = () => {
   return null;
 }
 
-export default ButtonsPlayFriendMode;
+export default GameButtons;
