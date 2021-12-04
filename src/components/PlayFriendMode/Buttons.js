@@ -3,9 +3,9 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import takebackOfferDialogActionTypes from '../constants/takebackOfferDialogActionTypes';
-import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
-import resignAcceptDialogActionTypes from '../constants/resignAcceptDialogActionTypes';
+import takebackOfferDialogActionTypes from '../../constants/takebackOfferDialogActionTypes';
+import drawOfferDialogActionTypes from '../../constants/drawOfferDialogActionTypes';
+import resignAcceptDialogActionTypes from '../../constants/resignAcceptDialogActionTypes';
 
 const useStyles = makeStyles((theme) => ({
   paperButton: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonsPlayFriendMode = () => {
+const Buttons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -77,4 +77,4 @@ const ButtonsPlayFriendMode = () => {
   return null;
 }
 
-export default ButtonsPlayFriendMode;
+export default Buttons;
