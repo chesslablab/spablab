@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import takebackOfferDialogActionTypes from '../constants/takebackOfferDialogActionTypes';
@@ -40,19 +41,17 @@ const ButtonsPlayFriendMode = () => {
       !state.mode.playfriend.resign
     ) {
       return (
-        <div>
+        <ButtonGroup size="small" aria-label="small button group">
           <Button
-          variant="outlined"
-          className={classes.paperButton}
-          onClick={() => {
-            dispatch({ type: takebackOfferDialogActionTypes.OPEN });
-            handleCloseRequestTakeback();
-          }}
+            className={classes.paperButton}
+            onClick={() => {
+              dispatch({ type: takebackOfferDialogActionTypes.OPEN });
+              handleCloseRequestTakeback();
+            }}
           >
             Propose a takeback
           </Button>
           <Button
-            variant="outlined"
             className={classes.paperButton}
             onClick={() => {
               dispatch({ type: drawOfferDialogActionTypes.OPEN });
@@ -62,7 +61,6 @@ const ButtonsPlayFriendMode = () => {
             Offer draw
           </Button>
           <Button
-            variant="outlined"
             className={classes.paperButton}
             onClick={() => {
               dispatch({ type: resignAcceptDialogActionTypes.OPEN });
@@ -71,7 +69,7 @@ const ButtonsPlayFriendMode = () => {
           >
             Resign
           </Button>
-        </div>
+        </ButtonGroup>
       );
     }
   }
