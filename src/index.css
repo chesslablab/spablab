@@ -6,7 +6,7 @@
 .board {
   font-family: FreeSerif, sans-serif;
   display: block;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .board-row {
