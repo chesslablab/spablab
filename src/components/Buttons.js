@@ -22,7 +22,7 @@ const Buttons = ({ props }) => {
 
   const [anchorElPlayFriend, setAnchorElPlayFriend] = React.useState(null);
   const [anchorElPlayWithTheComputer, setAnchorElPlayWithTheComputer] = React.useState(null);
-  const [anchorElLoadfen, setAnchorElLoadfen] = React.useState(null);
+  const [anchorElLoad, setAnchorElLoad] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
   const handleClosePlayFriend = () => {
@@ -33,8 +33,8 @@ const Buttons = ({ props }) => {
     setAnchorElPlayWithTheComputer(null);
   };
 
-  const handleCloseLoadfen = () => {
-    setAnchorElLoadfen(null);
+  const handleCloseLoad = () => {
+    setAnchorElLoad(null);
   };
 
   const handleCloseSettings = () => {
@@ -47,6 +47,10 @@ const Buttons = ({ props }) => {
 
   const handleClickPlayWithTheComputer = (event) => {
     setAnchorElPlayWithTheComputer(event.currentTarget);
+  };
+
+  const handleClickLoad = (event) => {
+    setAnchorElLoad(event.currentTarget);
   };
 
   const handleClickSettings = (event) => {
@@ -107,23 +111,25 @@ const Buttons = ({ props }) => {
       </Menu>
       <Button
         startIcon={<PublishIcon />}
+        onClick={handleClickLoad}
         style={{ textTransform: 'none' }}
-        onClick={() => {
+      >
+        Load
+      </Button>
+      <Menu
+        anchorEl={anchorElLoad}
+        keepMounted
+        open={Boolean(anchorElLoad)}
+        onClose={handleCloseLoad}
+      >
+        <MenuItem onClick={() => {
           dispatch({ type: loadFenDialogActionTypes.OPEN });
-          handleCloseLoadfen();
-        }}
-      >
-        Load FEN
-      </Button>
-      <Button
-        startIcon={<PublishIcon />}
-        style={{ textTransform: 'none' }}
-        onClick={() => {
+          handleCloseLoad();
+        }}>FEN</MenuItem>
+        <MenuItem onClick={() => {
           // TODO
-        }}
-      >
-        Load PGN
-      </Button>
+        }}>PGN</MenuItem>
+      </Menu>
       <Button
         onClick={handleClickSettings}
         startIcon={<SettingsIcon />}
