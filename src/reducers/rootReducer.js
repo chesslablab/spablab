@@ -15,6 +15,7 @@ import heuristicPictureDialogReducer from './heuristicPictureDialogReducer';
 import drawAcceptDialogReducer from './drawAcceptDialogReducer';
 import drawOfferDialogReducer from './drawOfferDialogReducer';
 import resignAcceptDialogReducer from './resignAcceptDialogReducer';
+import pgnDialogReducer from './pgnDialogReducer';
 
 const rootReducer = combineReducers({
   alert: alertReducer,
@@ -32,7 +33,8 @@ const rootReducer = combineReducers({
   heuristicPictureDialog: heuristicPictureDialogReducer,
   drawAcceptDialog: drawAcceptDialogReducer,
   drawOfferDialog: drawOfferDialogReducer,
-  resignAcceptDialog: resignAcceptDialogReducer
+  resignAcceptDialog: resignAcceptDialogReducer,
+  pgnDialog: pgnDialogReducer
 });
 
 export default rootReducer;

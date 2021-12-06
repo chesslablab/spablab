@@ -13,6 +13,7 @@ import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDial
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import pgnDialogActionTypes from '../constants/pgnDialogActionTypes';
 import { DownloadImage } from './DownloadImage'
 import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFen } from '../actions/serverActions';
 
@@ -174,6 +175,8 @@ const Buttons = ({ props }) => {
           key={3}
           onClick={() => {
             // TODO
+            dispatch({ type: pgnDialogActionTypes.OPEN });
+            handleCloseSettings();
           }}
         >
           PGN Movetext
