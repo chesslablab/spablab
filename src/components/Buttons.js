@@ -8,6 +8,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
+import loadPgnDialogActionTypes from '../constants/loadPgnDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
@@ -128,7 +129,8 @@ const Buttons = ({ props }) => {
           handleCloseLoad();
         }}>FEN</MenuItem>
         <MenuItem onClick={() => {
-          // TODO
+          dispatch({ type: loadPgnDialogActionTypes.OPEN });
+          handleCloseLoad();
         }}>PGN</MenuItem>
       </Menu>
       <Button
