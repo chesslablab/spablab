@@ -22,8 +22,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  const newState = Object.assign({}, initialState);
-  const newPlayfriend = Object.assign({}, state.playfriend);
   switch (action.type) {
     case modeActionTypes.SET_ANALYSIS:
       return initialState;
@@ -40,63 +38,76 @@ const reducer = (state = initialState, action) => {
       };
     case modeActionTypes.ACCEPT_PLAYFRIEND:
       const time = new Date();
-      time.setSeconds(time.getSeconds() + parseInt(newPlayfriend.jwt_decoded.min) * 60);
-      newPlayfriend.accepted = true;
-      newPlayfriend.timer = {
-        start: time,
-        w: time,
-        b: time
-      };
+      time.setSeconds(time.getSeconds() + parseInt(state.playfriend.jwt_decoded.min) * 60);
       return {
         ...state,
-        playfriend: newPlayfriend
+        playfriend: {
+          ...state.playfriend,
+          accepted: true,
+          timer: {
+            start: time,
+            w: time,
+            b: time
+          }
+        }
       };
     case modeActionTypes.RESET:
-      newState.current = state.current;
-      return newState;
-    // TODO:
-    // Use constant names for draw actions
+      return initialState;
     case modeActionTypes.TAKEBACK_ACCEPT:
-      newPlayfriend.takeback = Wording.verb.ACCEPT.toLowerCase();
       return {
         ...state,
-        playfriend: newPlayfriend
+        playfriend: {
+          ...state.playfriend,
+          takeback: Wording.verb.ACCEPT.toLowerCase()
+        }
       };
     case modeActionTypes.TAKEBACK_DECLINE:
-      newPlayfriend.takeback = null;
       return {
         ...state,
-        playfriend: newPlayfriend
+        playfriend: {
+          ...state.playfriend,
+          takeback: null
+        }
       };
     case modeActionTypes.TAKEBACK_PROPOSE:
-      newPlayfriend.takeback = Wording.verb.PROPOSE.toLowerCase();
       return {
         ...state,
-        playfriend: newPlayfriend
+        playfriend: {
+          ...state.playfriend,
+          takeback: Wording.verb.PROPOSE.toLowerCase()
+        }
       };
     case modeActionTypes.DRAW_ACCEPT:
-      newPlayfriend.draw = Wording.verb.ACCEPT.toLowerCase();
       return {
         ...state,
-        playfriend: newPlayfriend
+        playfriend: {
+          ...state.playfriend,
+          draw: Wording.verb.ACCEPT.toLowerCase()
+        }
       };
     case modeActionTypes.DRAW_DECLINE:
-      newPlayfriend.draw = null;
       return {
         ...state,
-        playfriend: newPlayfriend
+        playfriend: {
+          ...state.playfriend,
+          draw: null
+        }
       };
     case modeActionTypes.DRAW_PROPOSE:
-      newPlayfriend.draw = Wording.verb.PROPOSE.toLowerCase();
       return {
         ...state,
-        playfriend: newPlayfriend
+        playfriend: {
+          ...state.playfriend,
+          draw: Wording.verb.PROPOSE.toLowerCase()
+        }
       };
     case modeActionTypes.RESIGN_ACCEPT:
-      newPlayfriend.resign = Wording.verb.ACCEPT.toLowerCase();
       return {
         ...state,
-        playfriend: newPlayfriend
+        playfriend: {
+          ...state.playfriend,
+          resign: Wording.verb.ACCEPT.toLowerCase()
+        }
       };
     default:
       return state;

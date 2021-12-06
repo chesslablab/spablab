@@ -19,14 +19,14 @@ const reducer = (state = initialState, action) => {
   const newAscii = JSON.parse(JSON.stringify(state.history[state.history.length - 1]));
   switch (action.type) {
     case boardActionTypes.START:
-      return Object.assign({}, initialState);
+      return initialState;
     case boardActionTypes.START_FEN:
-      let fenState = Object.assign({}, initialState);
-      let fenSplit = action.payload.fen.split(' ');
-      fenState.history = [];
-      fenState.history.push(Ascii.toAscii(fenSplit[0]));
-      fenState.turn = fenSplit[1];
-      return fenState;
+      const fenSplit = action.payload.fen.split(' ');
+      return {
+        ...state,
+        turn: fenSplit[1],
+        history: [Ascii.toAscii(fenSplit[0])]
+      }
     case boardActionTypes.PICK_PIECE:
       return {
         ...state,
@@ -99,14 +99,13 @@ const reducer = (state = initialState, action) => {
         flip: newFlip
       }
     case boardActionTypes.LEGAL_MOVES:
-      const newPicked = Object.assign({}, state.picked);
-      newPicked.legal_moves = action.payload.moves;
-      if (action.payload.en_passant) {
-        newPicked.en_passant = action.payload.en_passant;
-      }
       return {
         ...state,
-        picked: newPicked
+        picked: {
+          ...state.picked,
+          legal_moves: action.payload.moves,
+          en_passant: action.payload.en_passant
+        }
       }
     case boardActionTypes.UNDO_MOVE:
       newHistory.splice(-1);
