@@ -29,10 +29,11 @@ const CreateInviteCodeDialog = () => {
     event.preventDefault();
     let color = event.target.elements.color.value;
     let time = event.target.elements.time.value;
+    let increment = event.target.elements.increment.value;
     if (color === 'rand') {
       color = randColor();
     }
-    wsMssgQuit(state).then(() => wsMssgStartPlayfriend(state, color, time));
+    wsMssgQuit(state).then(() => wsMssgStartPlayfriend(state, color, time, increment));
   }
 
   return (
