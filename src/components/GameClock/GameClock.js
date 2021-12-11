@@ -1,16 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import TimerBlack from './TimerBlack';
-import TimerWhite from './TimerWhite';
+import BlackTimer from './BlackTimer';
+import WhiteTimer from './WhiteTimer';
 
-const Timers = () => {
+const GameClock = () => {
   const state = useSelector(state => state);
 
   if (!state.board.mate && state.mode.playfriend.accepted) {
     return (
-      <div className="timers">
-        <TimerWhite />
-        <TimerBlack />
+      <div>
+        <WhiteTimer /><BlackTimer />
       </div>
     );
   }
@@ -18,4 +17,4 @@ const Timers = () => {
   return null;
 }
 
-export default Timers;
+export default GameClock;
