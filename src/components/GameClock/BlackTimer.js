@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import Box from '@material-ui/core/Box';
 import { useSelector } from "react-redux";
 import { useTimer } from 'react-timer-hook';
-import modeActionTypes from '../../constants/modeActionTypes';
 import Pgn from '../../utils/Pgn';
 
 const BlackTimer = () => {
