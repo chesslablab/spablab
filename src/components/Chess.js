@@ -22,7 +22,7 @@ import History from './History';
 import MainBreadcrumbs from './MainBreadcrumbs';
 import MoveValidator from './MoveValidator.js';
 import { default as ButtonsPlayFriendMode } from './PlayFriendMode/Buttons.js';
-import Timers from './Timers';
+import GameClock from './GameClock/GameClock';
 import InfoAlert from './InfoAlert.js';
 import '../index.css';
 import store from '../store';
@@ -58,8 +58,8 @@ const Chess = ({ props }) => {
           <Grid item xs={12} className={classes.breadcrumbs}>
             <MainBreadcrumbs />
           </Grid>
-          <Timers />
           <Paper elevation={3} className={classes.paper}>
+            <GameClock />
             <History />
             <MoveValidator />
             <ButtonsPlayFriendMode />

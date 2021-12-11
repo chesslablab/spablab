@@ -1,6 +1,7 @@
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import Wording from '../utils/Wording.js';
+import Pgn from '../utils/Pgn';
 
 const initialState = {
   current: modeNames.ANALYSIS,
@@ -14,9 +15,7 @@ const initialState = {
     resign: null,
     accepted: false,
     timer: {
-      start: null,
-      w: null,
-      b: null
+      expiry_timestamp: null
     }
   }
 };
@@ -37,17 +36,15 @@ const reducer = (state = initialState, action) => {
         playfriend: action.payload.playfriend
       };
     case modeActionTypes.ACCEPT_PLAYFRIEND:
-      const time = new Date();
-      time.setSeconds(time.getSeconds() + parseInt(state.playfriend.jwt_decoded.min) * 60);
+      const expiryTimestamp = new Date();
+      expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(state.playfriend.jwt_decoded.min) * 60);
       return {
         ...state,
         playfriend: {
           ...state.playfriend,
           accepted: true,
           timer: {
-            start: time,
-            w: time,
-            b: time
+            expiry_timestamp: expiryTimestamp
           }
         }
       };
