@@ -7,6 +7,7 @@
   font-family: FreeSerif, sans-serif;
   display: block;
   overflow: hidden;
+  width: fit-content;
 }
 
 .board-row {
@@ -87,17 +88,6 @@
   opacity: 0.8;
 }
 
-.timers {
-  margin: 0.5em 0;
-  font-size: 1.5em;
-  clear: both;
-}
-
-.timer-white {
-  float: left;
-  margin-right: 1em;
-}
-
 @media (max-width: 768px) {
   .square {
     font-size: 8.5vw;
@@ -117,8 +107,4 @@
     height: 8.5vw;
     line-height: 10vw;
   }
-}
-
-.board {
-  width: fit-content;
 }
