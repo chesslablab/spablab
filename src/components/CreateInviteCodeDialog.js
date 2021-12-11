@@ -29,10 +29,11 @@ const CreateInviteCodeDialog = () => {
     event.preventDefault();
     let color = event.target.elements.color.value;
     let time = event.target.elements.time.value;
+    let increment = event.target.elements.increment.value;
     if (color === 'rand') {
       color = randColor();
     }
-    wsMssgQuit(state).then(() => wsMssgStartPlayfriend(state, color, time));
+    wsMssgQuit(state).then(() => wsMssgStartPlayfriend(state, color, time, increment));
   }
 
   return (
@@ -70,8 +71,8 @@ const CreateInviteCodeDialog = () => {
             type="number"
             name="increment"
             label="Increment in seconds"
-            defaultValue={1}
-            inputProps={{ min: "1", max: "60", step: "1" }}
+            defaultValue={0}
+            inputProps={{ min: "0", max: "60", step: "1" }}
           />
           {
             state.mode.playfriend.hash
