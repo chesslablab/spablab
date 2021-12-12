@@ -152,9 +152,9 @@ export const onAccept = (data) => dispatch => {
         }
       }
     });
-    if (color === Pgn.symbol.BLACK) {
-      dispatch({ type: boardActionTypes.FLIP });
-    }
+  }
+  if (store.getState().mode.playfriend.color === Pgn.symbol.BLACK) {
+    dispatch({ type: boardActionTypes.FLIP });
   }
   dispatch({ type: modeActionTypes.ACCEPT_PLAYFRIEND });
   dispatch({ type: alertActionTypes.INFO_CLOSE });
