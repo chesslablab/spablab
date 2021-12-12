@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import alertActionTypes from '../constants/alertActionTypes';
-import modeActionTypes from '../constants/modeActionTypes';
-import createInviteCodeDialogActions from '../constants/createInviteCodeDialogActionTypes';
-import { wsMssgStartPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../actions/serverActions';
+import alertActionTypes from '../../constants/alertActionTypes';
+import modeActionTypes from '../../constants/modeActionTypes';
+import createInviteCodeDialogActions from '../../constants/createInviteCodeDialogActionTypes';
+import { wsMssgStartPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../../actions/serverActions';
 import { makeStyles } from '@material-ui/core/styles';
-import Pgn from '../utils/Pgn';
+import Pgn from '../../utils/Pgn';
 
 const useStyles = makeStyles((theme) => ({
   root: {

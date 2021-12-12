@@ -1,13 +1,19 @@
 import React from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
-import Wording from '../utils/Wording.js';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
+import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
-import { wsMssgDraw } from '../actions/serverActions';
-import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
-import modeActionTypes from '../constants/modeActionTypes';
+import { wsMssgDraw } from "../../actions/serverActions";
+import drawOfferDialogActionTypes from "../../constants/drawOfferDialogActionTypes";
+import modeActionTypes from "../../constants/modeActionTypes";
 
 const DrawOfferDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const handleDrawOffer = (event) => {
@@ -16,7 +22,7 @@ const DrawOfferDialog = () => {
       dispatch({ type: modeActionTypes.DRAW_PROPOSE });
       dispatch({ type: drawOfferDialogActionTypes.CLOSE });
     });
-  }
+  };
 
   return (
     <Dialog open={state.drawOfferDialog.open} maxWidth="sm" fullWidth={true}>
@@ -24,10 +30,12 @@ const DrawOfferDialog = () => {
       <DialogContent>
         <form onSubmit={handleDrawOffer}>
           <DialogActions>
-            <Button type="submit">
-              Accept
-            </Button>
-            <Button onClick={() => dispatch({ type: drawOfferDialogActionTypes.CLOSE })}>
+            <Button type="submit">Accept</Button>
+            <Button
+              onClick={() =>
+                dispatch({ type: drawOfferDialogActionTypes.CLOSE })
+              }
+            >
               Cancel
             </Button>
           </DialogActions>
@@ -35,6 +43,6 @@ const DrawOfferDialog = () => {
       </DialogContent>
     </Dialog>
   );
-}
+};
 
 export default DrawOfferDialog;

@@ -1,13 +1,19 @@
 import React from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
-import Wording from '../utils/Wording.js';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
+import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
-import { wsMssgTakeback } from '../actions/serverActions';
-import takebackOfferDialogActionTypes from '../constants/takebackOfferDialogActionTypes';
-import modeActionTypes from '../constants/modeActionTypes';
+import { wsMssgTakeback } from "../../actions/serverActions";
+import takebackOfferDialogActionTypes from "../../constants/takebackOfferDialogActionTypes";
+import modeActionTypes from "../../constants/modeActionTypes";
 
 const TakebackOfferDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const handleTakebackOffer = (event) => {
@@ -16,18 +22,24 @@ const TakebackOfferDialog = () => {
       dispatch({ type: modeActionTypes.TAKEBACK_PROPOSE });
       dispatch({ type: takebackOfferDialogActionTypes.CLOSE });
     });
-  }
+  };
 
   return (
-    <Dialog open={state.takebackOfferDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog
+      open={state.takebackOfferDialog.open}
+      maxWidth="sm"
+      fullWidth={true}
+    >
       <DialogTitle>Propose a tackeback</DialogTitle>
       <DialogContent>
         <form onSubmit={handleTakebackOffer}>
           <DialogActions>
-            <Button type="submit">
-              Accept
-            </Button>
-            <Button onClick={() => dispatch({ type: takebackOfferDialogActionTypes.CLOSE })}>
+            <Button type="submit">Accept</Button>
+            <Button
+              onClick={() =>
+                dispatch({ type: takebackOfferDialogActionTypes.CLOSE })
+              }
+            >
               Cancel
             </Button>
           </DialogActions>
@@ -35,6 +47,6 @@ const TakebackOfferDialog = () => {
       </DialogContent>
     </Dialog>
   );
-}
+};
 
 export default TakebackOfferDialog;
