@@ -3,7 +3,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import { useDispatch, useSelector } from "react-redux";
 import fenDialogActions from '../../constants/fenDialogActionTypes';
 
-const GetFenDialog = () => {
+const FenDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -35,4 +35,4 @@ const GetFenDialog = () => {
   );
 }
 
-export default GetFenDialog;
+export default FenDialog;
