@@ -1,8 +1,7 @@
 import pgnDialogActionTypes from '../constants/pgnDialogActionTypes';
 
 const initialState = {
-  open: false,
-  pgn: ''
+  open: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,11 +15,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         open: true,
-      };
-    case pgnDialogActionTypes.SET:
-      return {
-        ...state,
-        pgn: action.payload.pgn,
       };
     default:
       return state;

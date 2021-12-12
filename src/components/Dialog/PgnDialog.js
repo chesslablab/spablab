@@ -23,7 +23,7 @@ const PgnDialog = () => {
             fullWidth
             name="pgn"
             disabled
-            value={state.pgnDialog.pgn}
+            value={state.board.movetext}
           />
           <DialogActions>
             <Button
