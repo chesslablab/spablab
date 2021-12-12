@@ -23,12 +23,12 @@ const PgnDialog = () => {
             fullWidth
             name="pgn"
             disabled
-            value={state.board.movetext}
+            value={state.board.movetext ? state.board.movetext : ''}
           />
           <DialogActions>
             <Button
               onClick={() => {
-                // TODO
+                state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null;
                 dispatch({ type: pgnDialogActions.CLOSE });
               }}
             >
