@@ -1,31 +1,31 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Provider } from 'react-redux';
-import { CssBaseline } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import LoadFenDialog from './LoadFenDialog';
-import FenDialog from './FenDialog';
-import TakebackOfferDialog from './TakebackOfferDialog';
-import TakebackAcceptDialog from './TakebackAcceptDialog';
-import CreateInviteCodeDialog from './CreateInviteCodeDialog';
-import EnterInviteCodeDialog from './EnterInviteCodeDialog';
-import HeuristicPictureDialog from './HeuristicPictureDialog';
-import DrawAcceptDialog from './DrawAcceptDialog';
-import DrawOfferDialog from './DrawOfferDialog';
-import ResignAcceptDialog from './ResignAcceptDialog';
-import PgnDialog from './PgnDialog';
-import LoadPgnDialog from './LoadPgnDialog';
-import Board from './Board.js';
-import Buttons from './Buttons.js';
-import History from './History';
-import MainBreadcrumbs from './MainBreadcrumbs';
-import MoveValidator from './MoveValidator.js';
-import { default as ButtonsPlayFriendMode } from './PlayFriendMode/Buttons.js';
-import GameClock from './GameClock/GameClock';
-import InfoAlert from './InfoAlert.js';
-import '../index.css';
-import store from '../store';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Provider } from "react-redux";
+import { CssBaseline } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import LoadFenDialog from "./Dialog/LoadFenDialog";
+import FenDialog from "./Dialog/FenDialog";
+import TakebackOfferDialog from "./Dialog/TakebackOfferDialog";
+import TakebackAcceptDialog from "./Dialog/TakebackAcceptDialog";
+import CreateInviteCodeDialog from "./Dialog/CreateInviteCodeDialog";
+import EnterInviteCodeDialog from "./Dialog/EnterInviteCodeDialog";
+import HeuristicPictureDialog from "./Dialog/HeuristicPictureDialog";
+import DrawAcceptDialog from "./Dialog/DrawAcceptDialog";
+import DrawOfferDialog from "./Dialog/DrawOfferDialog";
+import ResignAcceptDialog from "./Dialog/ResignAcceptDialog";
+import PgnDialog from "./Dialog/PgnDialog";
+import LoadPgnDialog from "./Dialog/LoadPgnDialog";
+import Board from "./Board.js";
+import Buttons from "./Buttons.js";
+import History from "./History";
+import MainBreadcrumbs from "./MainBreadcrumbs";
+import MoveValidator from "./MoveValidator.js";
+import { default as ButtonsPlayFriendMode } from "./PlayFriendMode/Buttons.js";
+import GameClock from "./GameClock/GameClock";
+import InfoAlert from "./InfoAlert.js";
+import "../index.css";
+import store from "../store";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,6 +81,6 @@ const Chess = ({ props }) => {
       <LoadPgnDialog />
     </Provider>
   );
-}
+};
 
 export default Chess;

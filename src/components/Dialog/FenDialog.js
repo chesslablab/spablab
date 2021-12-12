@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import fenDialogActions from '../constants/fenDialogActionTypes';
+import fenDialogActions from '../../constants/fenDialogActionTypes';
 
 const GetFenDialog = () => {
   const state = useSelector(state => state);

@@ -1,10 +1,17 @@
 import React from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import pgnDialogActions from '../constants/pgnDialogActionTypes';
+import pgnDialogActions from "../../constants/pgnDialogActionTypes";
 
 const PgnDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   return (
@@ -19,10 +26,12 @@ const PgnDialog = () => {
             value={state.pgnDialog.pgn}
           />
           <DialogActions>
-            <Button onClick={() => {
+            <Button
+              onClick={() => {
                 // TODO
                 dispatch({ type: pgnDialogActions.CLOSE });
-            }}>
+              }}
+            >
               Copy
             </Button>
             <Button onClick={() => dispatch({ type: pgnDialogActions.CLOSE })}>
@@ -33,6 +42,6 @@ const PgnDialog = () => {
       </DialogContent>
     </Dialog>
   );
-}
+};
 
 export default PgnDialog;
