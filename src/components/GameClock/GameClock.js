@@ -9,8 +9,7 @@ const GameClock = () => {
   if (state.mode.playfriend.accepted) {
     if (!state.board.mate &&
       !state.mode.playfriend.draw &&
-      !state.mode.playfriend.resign &&
-      !state.mode.playfriend.timer.over
+      !state.mode.playfriend.resign
     ) {
       return (
         <div>
