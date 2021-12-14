@@ -13,7 +13,6 @@ const WhiteTimer = () => {
   const timer = useTimer({
     expiryTimestamp,
     onExpire: () => {
-      timer.pause();
       dispatch({
         type: modeActionTypes.TIMER_OVER,
         payload: {

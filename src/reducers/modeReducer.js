@@ -34,7 +34,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         current: action.payload.current,
-        playfriend: action.payload.playfriend
+        playfriend: {
+          ...state.playfriend,
+          ...action.payload.playfriend
+        }
       };
     case modeActionTypes.ACCEPT_PLAYFRIEND:
       const expiryTimestamp = new Date();

@@ -38,7 +38,8 @@ const GameButtons = () => {
   if (state.mode.playfriend.accepted) {
     if (!state.board.mate &&
       !state.mode.playfriend.draw &&
-      !state.mode.playfriend.resign
+      !state.mode.playfriend.resign &&
+      !state.mode.playfriend.timer.over
     ) {
       return (
         <ButtonGroup size="small" aria-label="small button group">
