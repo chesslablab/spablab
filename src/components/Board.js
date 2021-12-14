@@ -45,6 +45,7 @@ const Board = ({props}) => {
     if (!state.board.mate &&
       !state.mode.playfriend.draw &&
       !state.mode.playfriend.resign &&
+      !state.mode.playfriend.timer.over &&
       state.history.back === 0
     ) {
       if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
