@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Box from '@material-ui/core/Box';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
+import alertActionTypes from '../../constants/alertActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
 import Pgn from '../../utils/Pgn';
 
@@ -12,10 +13,17 @@ const WhiteTimer = () => {
   const timer = useTimer({
     expiryTimestamp,
     onExpire: () => {
+      timer.pause();
       dispatch({
         type: modeActionTypes.TIMER_OVER,
         payload: {
           color: Pgn.symbol.WHITE
+        }
+      });
+      dispatch({
+        type: alertActionTypes.INFO_DISPLAY,
+        payload: {
+          info: 'Black wins.'
         }
       });
     }
