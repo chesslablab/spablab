@@ -15,7 +15,8 @@ const initialState = {
     resign: null,
     accepted: false,
     timer: {
-      expiry_timestamp: null
+      expiry_timestamp: null,
+      over: null
     }
   }
 };
@@ -44,6 +45,7 @@ const reducer = (state = initialState, action) => {
           ...state.playfriend,
           accepted: true,
           timer: {
+            ...state.playfriend.timer,
             expiry_timestamp: expiryTimestamp
           }
         }
@@ -104,6 +106,17 @@ const reducer = (state = initialState, action) => {
         playfriend: {
           ...state.playfriend,
           resign: Wording.verb.ACCEPT.toLowerCase()
+        }
+      };
+    case modeActionTypes.TIMER_OVER:
+      return {
+        ...state,
+        playfriend: {
+          ...state.playfriend,
+          timer: {
+            ...state.playfriend.timer,
+            over: action.payload.color
+          }
         }
       };
     default:

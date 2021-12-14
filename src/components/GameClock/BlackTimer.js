@@ -1,13 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import Box from '@material-ui/core/Box';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
+import modeActionTypes from '../../constants/modeActionTypes';
 import Pgn from '../../utils/Pgn';
 
 const BlackTimer = () => {
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
   const expiryTimestamp = state.mode.playfriend.timer.expiry_timestamp;
-  const timer = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+  const timer = useTimer({
+    expiryTimestamp,
+    onExpire: () => {
+      dispatch({
+        type: modeActionTypes.TIMER_OVER,
+        payload: {
+          color: Pgn.symbol.BLACK
+        }
+      });
+    }
+  });
   const isInitialMount = useRef(true);
 
   useEffect(() => {
