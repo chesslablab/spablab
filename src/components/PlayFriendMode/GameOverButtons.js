@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Wording from "../../utils/Wording.js";
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 
@@ -15,21 +16,25 @@ const GameOverButtons = () => {
 
   const classes = useStyles();
 
-  // TODO: The buttons should also get displayed when the game has been resigned
-  // and when a draw has been accepted. 
-  if (state.board.mate) {
-    return (
-      <ButtonGroup variant="contained" size="small" aria-label="small button group">
-        <Button
-          className={classes.paperButton}
-          onClick={() => {
-            // TODO
-          }}
-        >
-          Rematch
-        </Button>
-      </ButtonGroup>
-    );
+  if (state.mode.playfriend.accepted) {
+    if (state.board.mate ||
+      state.mode.playfriend.draw === Wording.verb.ACCEPT.toLowerCase() ||
+      state.mode.playfriend.resign === Wording.verb.ACCEPT.toLowerCase() ||
+      state.mode.playfriend.timer.over
+    ) {
+      return (
+        <ButtonGroup variant="contained" size="small" aria-label="small button group">
+          <Button
+            className={classes.paperButton}
+            onClick={() => {
+              // TODO
+            }}
+          >
+            Rematch
+          </Button>
+        </ButtonGroup>
+      );
+    }
   }
 
   return null;

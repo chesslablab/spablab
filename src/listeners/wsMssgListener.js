@@ -197,11 +197,6 @@ export const onPlayfen = (data) => dispatch => {
       payload: payload
     });
   }
-  if (data['/playfen'].mate) {
-    dispatch({
-      type: modeActionTypes.RESET
-    });
-  }
 };
 
 export const onHeuristicPicture = (data) => dispatch => {

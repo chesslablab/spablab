@@ -53,8 +53,6 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    case modeActionTypes.RESET:
-      return initialState;
     case modeActionTypes.TAKEBACK_ACCEPT:
       return {
         ...state,
