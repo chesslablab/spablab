@@ -124,8 +124,7 @@ export const onStartPlayfriend = (data) => dispatch => {
         jwt: data['/start'].jwt,
         jwt_decoded: jwtDecoded,
         hash: data['/start'].hash,
-        color: jwtDecoded.color,
-        accepted: false
+        color: jwtDecoded.color
       }
     }
   });
@@ -198,11 +197,6 @@ export const onPlayfen = (data) => dispatch => {
       payload: payload
     });
   }
-  if (data['/playfen'].mate) {
-    dispatch({
-      type: modeActionTypes.RESET
-    });
-  }
 };
 
 export const onHeuristicPicture = (data) => dispatch => {
@@ -244,7 +238,6 @@ export const onDrawPropose = () => dispatch => {
 
 export const onDrawAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.DRAW_ACCEPT });
-  dispatch({ type: modeActionTypes.RESET });
   dispatch({
     type: alertActionTypes.INFO_DISPLAY,
     payload: {
@@ -273,7 +266,6 @@ export const onUndoMove = (data) => dispatch => {
 
 export const onResignAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.RESIGN_ACCEPT });
-  dispatch({ type: modeActionTypes.RESET });
   dispatch({
     type: alertActionTypes.INFO_DISPLAY,
     payload: {

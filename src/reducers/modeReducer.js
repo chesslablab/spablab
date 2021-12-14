@@ -15,7 +15,8 @@ const initialState = {
     resign: null,
     accepted: false,
     timer: {
-      expiry_timestamp: null
+      expiry_timestamp: null,
+      over: null
     }
   }
 };
@@ -33,7 +34,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         current: action.payload.current,
-        playfriend: action.payload.playfriend
+        playfriend: {
+          ...state.playfriend,
+          ...action.payload.playfriend
+        }
       };
     case modeActionTypes.ACCEPT_PLAYFRIEND:
       const expiryTimestamp = new Date();
@@ -44,12 +48,11 @@ const reducer = (state = initialState, action) => {
           ...state.playfriend,
           accepted: true,
           timer: {
+            ...state.playfriend.timer,
             expiry_timestamp: expiryTimestamp
           }
         }
       };
-    case modeActionTypes.RESET:
-      return initialState;
     case modeActionTypes.TAKEBACK_ACCEPT:
       return {
         ...state,
@@ -104,6 +107,17 @@ const reducer = (state = initialState, action) => {
         playfriend: {
           ...state.playfriend,
           resign: Wording.verb.ACCEPT.toLowerCase()
+        }
+      };
+    case modeActionTypes.TIMER_OVER:
+      return {
+        ...state,
+        playfriend: {
+          ...state.playfriend,
+          timer: {
+            ...state.playfriend.timer,
+            over: action.payload.color
+          }
         }
       };
     default:
