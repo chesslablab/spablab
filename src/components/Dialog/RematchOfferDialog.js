@@ -8,8 +8,7 @@ import {
 } from "@material-ui/core";
 import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
-// TODO
-// import { wsMssgRematch } from "../../actions/serverActions";
+import { wsMssgRematch } from "../../actions/serverActions";
 import rematchOfferDialogActionTypes from "../../constants/rematchOfferDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 
@@ -19,12 +18,10 @@ const RematchOfferDialog = () => {
 
   const handleRematchOffer = (event) => {
     event.preventDefault();
-    // TODO
-    // wsMssgRematch(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
-    //  dispatch({ type: modeActionTypes.REMATCH_PROPOSE });
-    //  dispatch({ type: rematchOfferDialogActionTypes.CLOSE });
-    // });
-    console.log('TODO');
+    wsMssgRematch(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
+      dispatch({ type: modeActionTypes.REMATCH_PROPOSE });
+      dispatch({ type: rematchOfferDialogActionTypes.CLOSE });
+    });
   };
 
   return (
