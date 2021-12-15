@@ -1,6 +1,7 @@
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
+import rematchAcceptDialogActionTypes from '../constants/rematchAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
@@ -81,6 +82,15 @@ export const wsMssgListener = (data) => dispatch => {
     case '/resign' === cmd:
       if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
         dispatch(onResignAccept());
+      }
+      break;
+    case '/rematch' === cmd:
+      if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
+        dispatch(onRematchPropose());
+      } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
+        dispatch(onRematchAccept());
+      } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
+        dispatch(onRematchDecline());
       }
       break;
     default:
@@ -270,6 +280,32 @@ export const onResignAccept = () => dispatch => {
     type: alertActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Chess game resigned.'
+    }
+  });
+};
+
+export const onRematchPropose = () => dispatch => {
+  if (!store.getState().mode.playfriend.rematch) {
+    dispatch({ type: rematchAcceptDialogActionTypes.OPEN });
+  }
+};
+
+export const onRematchAccept = () => dispatch => {
+  dispatch({ type: modeActionTypes.REMATCH_ACCEPT });
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Rematch accepted.'
+    }
+  });
+};
+
+export const onRematchDecline = () => dispatch => {
+  dispatch({ type: modeActionTypes.REMATCH_DECLINE });
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Rematch declined.'
     }
   });
 };
