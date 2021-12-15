@@ -16,6 +16,7 @@ import DrawOfferDialog from "./Dialog/DrawOfferDialog";
 import ResignAcceptDialog from "./Dialog/ResignAcceptDialog";
 import PgnDialog from "./Dialog/PgnDialog";
 import LoadPgnDialog from "./Dialog/LoadPgnDialog";
+import RematchOfferDialog from "./Dialog/RematchOfferDialog";
 import Board from "./Board.js";
 import Buttons from "./Buttons.js";
 import History from "./History";
@@ -79,6 +80,7 @@ const Chess = ({ props }) => {
       <ResignAcceptDialog />
       <PgnDialog />
       <LoadPgnDialog />
+      <RematchOfferDialog />
     </Provider>
   );
 };
