@@ -22,7 +22,7 @@ const AlgebraicNotationFiles = () => {
 
   return (
     <div className="an-files">
-      <span className="empty">&nbsp;</span>
+      <span className="empty"></span>
       <span>h</span>
       <span>g</span>
       <span>f</span>
