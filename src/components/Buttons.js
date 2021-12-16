@@ -64,6 +64,7 @@ const Buttons = ({ props }) => {
   return (
     <div>
       <Button
+        fullWidth={true}
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
         style={{ textTransform: 'none' }}
@@ -88,6 +89,7 @@ const Buttons = ({ props }) => {
         }}>Enter Invite Code</MenuItem>
       </Menu>
       <Button
+        fullWidth={true}
         startIcon={<TuneIcon />}
         style={{ textTransform: 'none' }}
         onClick={() => wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws))}
@@ -95,6 +97,7 @@ const Buttons = ({ props }) => {
         Analysis Board
       </Button>
       <Button
+        fullWidth={true}
         startIcon={<ComputerIcon />}
         onClick={handleClickPlayWithTheComputer}
         style={{ textTransform: 'none' }}
@@ -112,6 +115,7 @@ const Buttons = ({ props }) => {
         }}>Like a Grandmaster</MenuItem>
       </Menu>
       <Button
+        fullWidth={true}
         startIcon={<PublishIcon />}
         onClick={handleClickLoad}
         style={{ textTransform: 'none' }}
@@ -134,9 +138,13 @@ const Buttons = ({ props }) => {
         }}>PGN</MenuItem>
       </Menu>
       <Button
+        fullWidth={true}
         onClick={handleClickSettings}
         startIcon={<SettingsIcon />}
-      />
+        style={{ textTransform: 'none' }}
+      >
+        Settings
+      </Button>
       <Menu
         anchorEl={anchorElSettings}
         keepMounted

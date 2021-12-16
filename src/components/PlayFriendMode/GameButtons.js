@@ -42,7 +42,12 @@ const GameButtons = () => {
       !state.mode.playfriend.timer.over
     ) {
       return (
-        <ButtonGroup size="small" aria-label="small button group">
+        <ButtonGroup
+          size="small"
+          aria-label="small button group"
+          orientation="vertical"
+          fullWidth={true}
+        >
           <Button
             className={classes.paperButton}
             onClick={() => {
