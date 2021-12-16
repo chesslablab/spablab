@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, ButtonGroup, Menu, MenuItem } from '@material-ui/core';
+import { Button, Menu, MenuItem } from '@material-ui/core';
 import ComputerIcon from '@material-ui/icons/Computer';
 import TuneIcon from '@material-ui/icons/Tune';
 import PublishIcon from '@material-ui/icons/Publish';
@@ -62,12 +62,9 @@ const Buttons = ({ props }) => {
   const handleDownloadImage = () => DownloadImage();
 
   return (
-    <ButtonGroup
-      orientation="vertical"
-      aria-label="vertical contained button group"
-      variant="text"
-    >
+    <div>
       <Button
+        fullWidth={true}
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
         style={{ textTransform: 'none' }}
@@ -92,6 +89,7 @@ const Buttons = ({ props }) => {
         }}>Enter Invite Code</MenuItem>
       </Menu>
       <Button
+        fullWidth={true}
         startIcon={<TuneIcon />}
         style={{ textTransform: 'none' }}
         onClick={() => wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws))}
@@ -99,6 +97,7 @@ const Buttons = ({ props }) => {
         Analysis Board
       </Button>
       <Button
+        fullWidth={true}
         startIcon={<ComputerIcon />}
         onClick={handleClickPlayWithTheComputer}
         style={{ textTransform: 'none' }}
@@ -116,6 +115,7 @@ const Buttons = ({ props }) => {
         }}>Like a Grandmaster</MenuItem>
       </Menu>
       <Button
+        fullWidth={true}
         startIcon={<PublishIcon />}
         onClick={handleClickLoad}
         style={{ textTransform: 'none' }}
@@ -138,6 +138,7 @@ const Buttons = ({ props }) => {
         }}>PGN</MenuItem>
       </Menu>
       <Button
+        fullWidth={true}
         onClick={handleClickSettings}
         startIcon={<SettingsIcon />}
         style={{ textTransform: 'none' }}
@@ -201,7 +202,7 @@ const Buttons = ({ props }) => {
           Image
         </MenuItem>
       </Menu>
-    </ButtonGroup>
+    </div>
   );
 }
 

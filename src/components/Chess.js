@@ -55,9 +55,11 @@ const Chess = ({ props }) => {
           <Buttons props={props} />
           <Paper className={classes.paper}>
             <MainBreadcrumbs />
-            <GameClock />
             <History />
-            <MoveValidator />
+            <GameClock />
+            <Grid container className={classes.container}>
+              <MoveValidator />
+            </Grid>
             <ButtonsPlayFriendMode />
           </Paper>
           <InfoAlert />
