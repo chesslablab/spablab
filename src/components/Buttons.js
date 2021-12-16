@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Menu, MenuItem } from '@material-ui/core';
+import { Button, ButtonGroup, Menu, MenuItem } from '@material-ui/core';
 import ComputerIcon from '@material-ui/icons/Computer';
 import TuneIcon from '@material-ui/icons/Tune';
 import PublishIcon from '@material-ui/icons/Publish';
@@ -62,7 +62,11 @@ const Buttons = ({ props }) => {
   const handleDownloadImage = () => DownloadImage();
 
   return (
-    <div>
+    <ButtonGroup
+      orientation="vertical"
+      aria-label="vertical contained button group"
+      variant="text"
+    >
       <Button
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
@@ -136,7 +140,10 @@ const Buttons = ({ props }) => {
       <Button
         onClick={handleClickSettings}
         startIcon={<SettingsIcon />}
-      />
+        style={{ textTransform: 'none' }}
+      >
+        Settings
+      </Button>
       <Menu
         anchorEl={anchorElSettings}
         keepMounted
@@ -194,7 +201,7 @@ const Buttons = ({ props }) => {
           Image
         </MenuItem>
       </Menu>
-    </div>
+    </ButtonGroup>
   );
 }
 

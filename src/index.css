@@ -15,21 +15,25 @@
 }
 
 .square {
-  font-size: 8.5vh;
   text-align: center;
   float: left;
   cursor: pointer;
 }
 
 .square span {
-  height: 9vh;
-  width: 9vh;
+  height: 10vh;
+  width: 10vh;
   display: block;
-  line-height: 11.5vh;
+}
+
+.an-files {
+  display: table;
+  color: #808080;
+  font-weight: bold;
 }
 
 .an-files span {
-  width: 9vh;
+  width: 10vh;
   float: left;
   text-align: center;
 }
@@ -38,6 +42,7 @@
   width: 2vh;
   float: left;
   display: list-item;
+  visibility: hidden;
 }
 
 .an-ranks {
@@ -46,10 +51,12 @@
 }
 
 .an-ranks span {
-  height: 9vh;
-  line-height: 9vh;
+  height: 10vh;
+  line-height: 10vh;
   display: block;
   clear: both;
+  color: #808080;
+  font-weight: bold;
 }
 
 .square span::selection {
@@ -89,22 +96,17 @@
 }
 
 @media (max-width: 768px) {
-  .square {
-    font-size: 8.5vw;
-  }
-
   .square span {
-    height: 8.5vw;
-    width: 8.5vw;
-    line-height: 10vw;
+    height: 10vw;
+    width: 10vw;
   }
 
   .an-files span {
-    width: 8.5vw;
+    width: 9.5vw;
   }
 
   .an-ranks span {
-    height: 8.5vw;
+    height: 9.5vw;
     line-height: 10vw;
   }
 }

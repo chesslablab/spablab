@@ -30,18 +30,17 @@ import "../index.css";
 import store from "../store";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  container: {
     flexGrow: 1,
-  },
-  panel: {
-    marginTop: theme.spacing(5),
+    padding: theme.spacing(2),
   },
   paper: {
-    padding: theme.spacing(2),
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
-  },
-  breadcrumbs: {
-    marginBottom: theme.spacing(2),
+    paddingTop: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
 }));
 
@@ -51,22 +50,20 @@ const Chess = ({ props }) => {
   return (
     <Provider store={store}>
       <CssBaseline />
-      <Grid container className={classes.root}>
-        <Grid item xs={12} md={5}>
+      <Grid container className={classes.container}>
+        <Grid item xs={12} md={3} className={classes.container}>
           <Buttons props={props} />
-          <Board props={props} />
-        </Grid>
-        <Grid item xs={12} md={6} className={classes.panel}>
-          <Grid item xs={12} className={classes.breadcrumbs}>
+          <Paper className={classes.paper}>
             <MainBreadcrumbs />
-          </Grid>
-          <Paper elevation={3} className={classes.paper}>
             <GameClock />
             <History />
             <MoveValidator />
             <ButtonsPlayFriendMode />
           </Paper>
           <InfoAlert />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Board props={props} />
         </Grid>
       </Grid>
       <TakebackAcceptDialog />

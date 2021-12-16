@@ -11,7 +11,7 @@ const MoveValidator = ({props}) => {
   }
 
   return (
-    <Typography variant="subtitle1" gutterBottom>
+    <Typography variant="subtitle1">
       {state.board.movetext}
     </Typography>
   );
