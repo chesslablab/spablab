@@ -1,6 +1,7 @@
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
+import rematchAcceptDialogActionTypes from '../constants/rematchAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
@@ -82,6 +83,18 @@ export const wsMssgListener = (data) => dispatch => {
       if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
         dispatch(onResignAccept());
       }
+      break;
+    case '/rematch' === cmd:
+      if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
+        dispatch(onRematchPropose());
+      } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
+        dispatch(onRematchAccept());
+      } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
+        dispatch(onRematchDecline());
+      }
+      break;
+    case '/restart' === cmd:
+      dispatch(onRestart(data));
       break;
     default:
       break;
@@ -272,4 +285,60 @@ export const onResignAccept = () => dispatch => {
       info: 'Chess game resigned.'
     }
   });
+};
+
+export const onRematchPropose = () => dispatch => {
+  if (!store.getState().mode.playfriend.rematch) {
+    dispatch({ type: rematchAcceptDialogActionTypes.OPEN });
+  }
+};
+
+export const onRematchAccept = () => dispatch => {
+  dispatch({ type: modeActionTypes.REMATCH_ACCEPT });
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Rematch accepted.'
+    }
+  });
+};
+
+export const onRematchDecline = () => dispatch => {
+  dispatch({ type: modeActionTypes.REMATCH_DECLINE });
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Rematch declined.'
+    }
+  });
+};
+
+export const onRestart = (data) => dispatch => {
+  const jwtDecoded = jwt_decode(data['/restart'].jwt);
+  const expiryTimestamp = new Date();
+  expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
+  dispatch({
+    type: modeActionTypes.SET_PLAYFRIEND,
+    payload: {
+      current: modeNames.PLAYFRIEND,
+      playfriend: {
+        jwt: data['/restart'].jwt,
+        jwt_decoded: jwtDecoded,
+        hash: data['/restart'].hash,
+        color: store.getState().mode.playfriend.color,
+        takeback: null,
+        draw: null,
+        resign: null,
+        rematch: null,
+        timer: {
+          expiry_timestamp: expiryTimestamp,
+          over: null
+        }
+      }
+    }
+  });
+  dispatch({ type: boardActionTypes.START });
+  if (store.getState().mode.playfriend.color === Pgn.symbol.BLACK) {
+    dispatch({ type: boardActionTypes.FLIP });
+  }
 };

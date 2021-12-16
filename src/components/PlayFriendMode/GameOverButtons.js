@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Wording from "../../utils/Wording.js";
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import rematchOfferDialogActionTypes from "../../constants/rematchOfferDialogActionTypes";
 
 const useStyles = makeStyles((theme) => ({
   paperButton: {
@@ -13,8 +14,15 @@ const useStyles = makeStyles((theme) => ({
 
 const GameOverButtons = () => {
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
 
   const classes = useStyles();
+
+  const [anchorElRematchOffer, setAnchorElRematchOffer] = React.useState(null);
+
+  const handleCloseRematchOffer = () => {
+    setAnchorElRematchOffer(null);
+  };
 
   if (state.mode.playfriend.accepted) {
     if (state.board.mate ||
@@ -27,10 +35,11 @@ const GameOverButtons = () => {
           <Button
             className={classes.paperButton}
             onClick={() => {
-              // TODO
+              dispatch({ type: rematchOfferDialogActionTypes.OPEN });
+              handleCloseRematchOffer();
             }}
           >
-            Rematch
+            Offer Rematch
           </Button>
         </ButtonGroup>
       );

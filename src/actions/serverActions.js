@@ -58,6 +58,7 @@ export const wsMssgFen = async (state) => {
 export const wsMssgTakeback = async (state, action) => {
   return await state.server.ws.send(`/takeback ${action}`);
 };
+
 export const wsMssgDraw = async (state, action) => {
   return await state.server.ws.send(`/draw ${action}`);
 };
@@ -68,4 +69,12 @@ export const wsMssgUndoMove = async (state) => {
 
 export const wsMssgResign = async (state, action) => {
   return await state.server.ws.send(`/resign ${action}`);
+};
+
+export const wsMssgRematch = async (state, action) => {
+  return await state.server.ws.send(`/rematch ${action}`);
+};
+
+export const wsMssgRestart = async (state) => {
+  return await state.server.ws.send(`/restart ${state.mode.playfriend.hash}`);
 };

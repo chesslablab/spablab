@@ -17,6 +17,8 @@ import drawOfferDialogReducer from './drawOfferDialogReducer';
 import resignAcceptDialogReducer from './resignAcceptDialogReducer';
 import pgnDialogReducer from './pgnDialogReducer';
 import loadPgnDialogReducer from './loadPgnDialogReducer';
+import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
+import rematchOfferDialogReducer from './rematchOfferDialogReducer';
 
 const rootReducer = combineReducers({
   alert: alertReducer,
@@ -36,7 +38,9 @@ const rootReducer = combineReducers({
   drawOfferDialog: drawOfferDialogReducer,
   resignAcceptDialog: resignAcceptDialogReducer,
   pgnDialog: pgnDialogReducer,
-  loadPgnDialog: loadPgnDialogReducer
+  loadPgnDialog: loadPgnDialogReducer,
+  rematchAcceptDialog: rematchAcceptDialogReducer,
+  rematchOfferDialog: rematchOfferDialogReducer
 });
 
 export default rootReducer;

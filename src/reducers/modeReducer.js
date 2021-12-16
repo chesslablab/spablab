@@ -13,6 +13,7 @@ const initialState = {
     takeback: null,
     draw: null,
     resign: null,
+    rematch: null,
     accepted: false,
     timer: {
       expiry_timestamp: null,
@@ -118,6 +119,30 @@ const reducer = (state = initialState, action) => {
             ...state.playfriend.timer,
             over: action.payload.color
           }
+        }
+      };
+    case modeActionTypes.REMATCH_ACCEPT:
+      return {
+        ...state,
+        playfriend: {
+          ...state.playfriend,
+          rematch: Wording.verb.ACCEPT.toLowerCase()
+        }
+      };
+    case modeActionTypes.REMATCH_DECLINE:
+      return {
+        ...state,
+        playfriend: {
+          ...state.playfriend,
+          rematch: null
+        }
+      };
+    case modeActionTypes.REMATCH_PROPOSE:
+      return {
+        ...state,
+        playfriend: {
+          ...state.playfriend,
+          rematch: Wording.verb.PROPOSE.toLowerCase()
         }
       };
     default:
