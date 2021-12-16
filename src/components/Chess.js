@@ -34,13 +34,19 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(2),
   },
-  paper: {
-    marginTop: theme.spacing(2),
+  buttons: {
     marginBottom: theme.spacing(2),
+  },
+  leftCol: {
+    marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+  paper: {
     paddingTop: theme.spacing(1),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     paddingBottom: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
 }));
 
@@ -51,8 +57,10 @@ const Chess = ({ props }) => {
     <Provider store={store}>
       <CssBaseline />
       <Grid container className={classes.container}>
-        <Grid item xs={12} md={3} className={classes.container}>
+        <Grid item xs={12} className={classes.buttons}>
           <Buttons props={props} />
+        </Grid>
+        <Grid item xs={12} md={3} className={classes.leftCol}>
           <Paper className={classes.paper}>
             <MainBreadcrumbs />
             <History />
