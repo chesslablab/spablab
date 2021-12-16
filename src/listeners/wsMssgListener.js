@@ -315,6 +315,8 @@ export const onRematchDecline = () => dispatch => {
 
 export const onRestart = (data) => dispatch => {
   const jwtDecoded = jwt_decode(data['/restart'].jwt);
+  const expiryTimestamp = new Date();
+  expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
   dispatch({
     type: modeActionTypes.SET_PLAYFRIEND,
     payload: {
@@ -327,7 +329,11 @@ export const onRestart = (data) => dispatch => {
         takeback: null,
         draw: null,
         resign: null,
-        rematch: null
+        rematch: null,
+        timer: {
+          expiry_timestamp: expiryTimestamp,
+          over: null
+        }
       }
     }
   });
