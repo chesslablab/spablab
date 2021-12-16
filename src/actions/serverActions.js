@@ -74,3 +74,7 @@ export const wsMssgResign = async (state, action) => {
 export const wsMssgRematch = async (state, action) => {
   return await state.server.ws.send(`/rematch ${action}`);
 };
+
+export const wsMssgRestart = async (state) => {
+  return await state.server.ws.send(`/restart ${state.mode.playfriend.hash}`);
+};

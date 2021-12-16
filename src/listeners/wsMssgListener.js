@@ -93,6 +93,9 @@ export const wsMssgListener = (data) => dispatch => {
         dispatch(onRematchDecline());
       }
       break;
+    case '/restart' === cmd:
+      dispatch(onRestart(data));
+      break;
     default:
       break;
   }
@@ -308,4 +311,28 @@ export const onRematchDecline = () => dispatch => {
       info: 'Rematch declined.'
     }
   });
+};
+
+export const onRestart = (data) => dispatch => {
+  const jwtDecoded = jwt_decode(data['/restart'].jwt);
+  dispatch({
+    type: modeActionTypes.SET_PLAYFRIEND,
+    payload: {
+      current: modeNames.PLAYFRIEND,
+      playfriend: {
+        jwt: data['/restart'].jwt,
+        jwt_decoded: jwtDecoded,
+        hash: data['/restart'].hash,
+        color: store.getState().mode.playfriend.color,
+        takeback: null,
+        draw: null,
+        resign: null,
+        rematch: null
+      }
+    }
+  });
+  dispatch({ type: boardActionTypes.START });
+  if (store.getState().mode.playfriend.color === Pgn.symbol.BLACK) {
+    dispatch({ type: boardActionTypes.FLIP });
+  }
 };

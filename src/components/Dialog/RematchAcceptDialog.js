@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
-import { wsMssgRematch } from "../../actions/serverActions";
+import { wsMssgRematch, wsMssgRestart } from "../../actions/serverActions";
 import rematchAcceptDialogActionTypes from "../../constants/rematchAcceptDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 
@@ -18,8 +18,9 @@ const RematchAcceptDialog = () => {
 
   const handleRematchAccept = (event) => {
     event.preventDefault();
-    wsMssgRematch(state, Wording.verb.ACCEPT.toLowerCase()).then((data) => {
+    wsMssgRematch(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
       dispatch({ type: rematchAcceptDialogActionTypes.CLOSE });
+      wsMssgRestart(state);
     });
   };
 
