@@ -21,8 +21,8 @@
 }
 
 .square span {
-  height: 10vh;
-  width: 10vh;
+  height: 9vh;
+  width: 9vh;
   display: block;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .an-files span {
-  width: 10vh;
+  width: 9vh;
   float: left;
   text-align: center;
 }
@@ -51,8 +51,8 @@
 }
 
 .an-ranks span {
-  height: 10vh;
-  line-height: 10vh;
+  height: 9vh;
+  line-height: 9vh;
   display: block;
   clear: both;
   color: #808080;
