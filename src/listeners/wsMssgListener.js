@@ -36,6 +36,8 @@ export const wsMssgListener = (data) => dispatch => {
         dispatch(onStartAnalysis(data));
       } else if (data['/start'].mode === modeNames.LOADFEN) {
         dispatch(onStartLoadfen(data));
+      } else if (data['/start'].mode === modeNames.LOADPGN) {
+        dispatch(onStartLoadpgn(data));
       } else if (data['/start'].mode === modeNames.PLAYFRIEND) {
         dispatch(onStartPlayfriend(data));
       }
@@ -122,6 +124,28 @@ export const onStartLoadfen = (data) => dispatch => {
       type: alertActionTypes.INFO_DISPLAY,
       payload: {
         info: 'Invalid FEN.'
+      }
+    });
+  }
+};
+
+export const onStartLoadpgn = (data) => dispatch => {
+  if (data['/start'].movetext) {
+    dispatch({ type: alertActionTypes.INFO_CLOSE });
+    dispatch({ type: modeActionTypes.SET_LOADPGN });
+    dispatch({
+      type: boardActionTypes.START_PGN,
+      payload: {
+        turn: data['/start'].turn,
+        movetext: data['/start'].movetext,
+        history: data['/start'].history
+      }
+    });
+  } else {
+    dispatch({
+      type: alertActionTypes.INFO_DISPLAY,
+      payload: {
+        info: 'Invalid PGN movetext.'
       }
     });
   }

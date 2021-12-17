@@ -27,6 +27,13 @@ const reducer = (state = initialState, action) => {
         turn: fenSplit[1],
         history: [Ascii.toAscii(fenSplit[0])]
       }
+    case boardActionTypes.START_PGN:
+      return {
+        ...state,
+        turn: action.payload.turn,
+        history: action.payload.history,
+        movetext: action.payload.movetext
+      }
     case boardActionTypes.PICK_PIECE:
       return {
         ...state,
