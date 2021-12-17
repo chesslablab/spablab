@@ -136,8 +136,9 @@ export const onStartLoadpgn = (data) => dispatch => {
     dispatch({
       type: boardActionTypes.START_PGN,
       payload: {
-        fen: data['/start'].fen,
+        turn: data['/start'].turn,
         movetext: data['/start'].movetext,
+        history: data['/start'].history
       }
     });
   } else {

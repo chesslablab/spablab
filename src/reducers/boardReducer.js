@@ -21,18 +21,17 @@ const reducer = (state = initialState, action) => {
     case boardActionTypes.START:
       return initialState;
     case boardActionTypes.START_FEN:
-      const fenSplitStartFen = action.payload.fen.split(' ');
+      const fenSplit = action.payload.fen.split(' ');
       return {
         ...state,
-        turn: fenSplitStartFen[1],
-        history: [Ascii.toAscii(fenSplitStartFen[0])]
+        turn: fenSplit[1],
+        history: [Ascii.toAscii(fenSplit[0])]
       }
     case boardActionTypes.START_PGN:
-      const fenSplitStartPgn = action.payload.fen.split(' ');
       return {
         ...state,
-        turn: fenSplitStartPgn[1],
-        history: [Ascii.toAscii(fenSplitStartPgn[0])],
+        turn: action.payload.turn,
+        history: action.payload.history,
         movetext: action.payload.movetext
       }
     case boardActionTypes.PICK_PIECE:
