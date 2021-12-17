@@ -36,6 +36,8 @@ export const wsMssgListener = (data) => dispatch => {
         dispatch(onStartAnalysis(data));
       } else if (data['/start'].mode === modeNames.LOADFEN) {
         dispatch(onStartLoadfen(data));
+      } else if (data['/start'].mode === modeNames.LOADPGN) {
+        dispatch(onStartLoadpgn(data));
       } else if (data['/start'].mode === modeNames.PLAYFRIEND) {
         dispatch(onStartPlayfriend(data));
       }
@@ -125,6 +127,11 @@ export const onStartLoadfen = (data) => dispatch => {
       }
     });
   }
+};
+
+export const onStartLoadpgn = (data) => dispatch => {
+  // TODO
+  console.log('TODO');
 };
 
 export const onStartPlayfriend = (data) => dispatch => {

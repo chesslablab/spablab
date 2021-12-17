@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { wsMssgQuit } from "../../actions/serverActions";
+import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
 import boardActionTypes from "../../constants/boardActionTypes";
 import loadPgnDialogActions from "../../constants/loadPgnDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
@@ -29,8 +29,12 @@ const LoadPgnDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    // TODO
-    dispatch({ type: loadPgnDialogActions.CLOSE });
+    console.log(event.target.elements.pgn.value);
+    wsMssgQuit(state).then(() => {
+      wsMssgStartLoadpgn(state, event.target.elements.pgn.value).then(() => {
+        dispatch({ type: loadPgnDialogActions.CLOSE });
+      });
+    });
   };
 
   return (
