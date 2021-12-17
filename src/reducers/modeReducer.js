@@ -31,6 +31,11 @@ const reducer = (state = initialState, action) => {
         ...initialState,
         current: modeNames.LOADFEN
       };
+    case modeActionTypes.SET_LOADPGN:
+      return {
+        ...initialState,
+        current: modeNames.LOADPGN
+      };
     case modeActionTypes.SET_PLAYFRIEND:
       return {
         ...state,

@@ -130,8 +130,24 @@ export const onStartLoadfen = (data) => dispatch => {
 };
 
 export const onStartLoadpgn = (data) => dispatch => {
-  // TODO
-  console.log('TODO');
+  if (data['/start'].movetext) {
+    dispatch({ type: alertActionTypes.INFO_CLOSE });
+    dispatch({ type: modeActionTypes.SET_LOADPGN });
+    dispatch({
+      type: boardActionTypes.START_PGN,
+      payload: {
+        fen: data['/start'].fen,
+        movetext: data['/start'].movetext,
+      }
+    });
+  } else {
+    dispatch({
+      type: alertActionTypes.INFO_DISPLAY,
+      payload: {
+        info: 'Invalid PGN movetext.'
+      }
+    });
+  }
 };
 
 export const onStartPlayfriend = (data) => dispatch => {

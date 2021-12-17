@@ -29,7 +29,6 @@ const LoadPgnDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    console.log(event.target.elements.pgn.value);
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, event.target.elements.pgn.value).then(() => {
         dispatch({ type: loadPgnDialogActions.CLOSE });

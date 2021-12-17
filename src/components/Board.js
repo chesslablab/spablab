@@ -18,7 +18,11 @@ const Board = ({props}) => {
   }, [dispatch]);
 
   const pickPiece = (payload) => {
-    if (modeNames.ANALYSIS === state.mode.current || modeNames.LOADFEN === state.mode.current) {
+    if (
+      modeNames.ANALYSIS === state.mode.current ||
+      modeNames.LOADFEN === state.mode.current ||
+      modeNames.LOADPGN === state.mode.current
+    ) {
       if (state.board.turn === Piece.color(payload.piece)) {
         dispatch({
           type: boardActionTypes.PICK_PIECE,

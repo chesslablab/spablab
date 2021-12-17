@@ -18,6 +18,12 @@ const MainBreadcrumbs = ({props}) => {
         FEN board
       </Typography>
     );
+  } else if (state.mode.current === modeNames.LOADPGN) {
+    return (
+      <Typography style={{color:"#404040"}} variant="h6" component="div">
+        PGN board
+      </Typography>
+    );
   } else if (state.mode.current === modeNames.PLAYFRIEND) {
     return (
       <Typography style={{color:"#404040"}} variant="h6" component="div">
