@@ -9,8 +9,8 @@ import loadFenDialogReducer from './loadFenDialogReducer';
 import fenDialogReducer from './fenDialogReducer';
 import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
-import createInvitationDialogReducer from './createInvitationDialogReducer';
-import enterCodeDialogReducer from './enterCodeDialogReducer';
+import createInviteCodeDialogReducer from './createInviteCodeDialogReducer';
+import enterInviteCodeDialogReducer from './enterInviteCodeDialogReducer';
 import heuristicPictureDialogReducer from './heuristicPictureDialogReducer';
 import drawAcceptDialogReducer from './drawAcceptDialogReducer';
 import drawOfferDialogReducer from './drawOfferDialogReducer';
@@ -31,8 +31,8 @@ const rootReducer = combineReducers({
   fenDialog: fenDialogReducer,
   takebackAcceptDialog: takebackAcceptDialogReducer,
   takebackOfferDialog: takebackOfferDialogReducer,
-  createInvitationDialog: createInvitationDialogReducer,
-  enterCodeDialog: enterCodeDialogReducer,
+  createInviteCodeDialog: createInviteCodeDialogReducer,
+  enterInviteCodeDialog: enterInviteCodeDialogReducer,
   heuristicPictureDialog: heuristicPictureDialogReducer,
   drawAcceptDialog: drawAcceptDialogReducer,
   drawOfferDialog: drawOfferDialogReducer,

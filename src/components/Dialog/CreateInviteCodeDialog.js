@@ -37,7 +37,7 @@ const CreateInviteCodeDialog = () => {
   }
 
   return (
-    <Dialog open={state.createInvitationDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.createInviteCodeDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Create invite code</DialogTitle>
       <DialogContent>
         <form className={classes.root} onSubmit={handleCreateCode}>

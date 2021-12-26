@@ -55,6 +55,6 @@ describe("Chess", () => {
   it("opens the 'Invite a friend' dialog", () => {
     const action = { type: createInviteCodeDialogActions.OPEN };
     const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
-    expect(result.current.state.createInvitationDialog.open).toBe(true);
+    expect(result.current.state.createInviteCodeDialog.open).toBe(true);
   });
 });

@@ -35,7 +35,7 @@ const EnterInviteCodeDialog = () => {
   };
 
   return (
-    <Dialog open={state.enterCodeDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.enterInviteCodeDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Enter invite code</DialogTitle>
       <DialogContent>
         <form className={classes.root} onSubmit={handlePlay}>
