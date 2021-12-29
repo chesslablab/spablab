@@ -35,4 +35,18 @@ describe('toRows()', () => {
     ];
     expect(Movetext.toRows(string)).toEqual(expected);
   });
+  it('is 1.e4 e5 2.Nf3 Nc6', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6';
+    const expected = [
+      {
+        w: 'e4',
+        b: 'e5',
+      },
+      {
+        w: 'Nf3',
+        b: 'Nc6',
+      }
+    ];
+    expect(Movetext.toRows(string)).toEqual(expected);
+  });
 });
