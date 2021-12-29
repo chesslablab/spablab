@@ -3,10 +3,11 @@ export default class Movetext {
     let rows = [];
     const arr = string.split(' ');
     arr.map((item, i) => {
-      if (i === 0) {
-        arr[i+1]
-          ? rows.push({ w: arr[i].split('.')[1], b: arr[i+1] })
-          : rows.push({ w: arr[i].split('.')[1], b: '' });
+      if (i % 2 === 0) {
+        rows.push({
+          w: arr[i].split('.')[1],
+          b: arr[i+1] ? arr[i+1] : ''
+        });
       }
     });
 
