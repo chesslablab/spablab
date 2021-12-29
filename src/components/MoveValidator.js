@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { wsMssgPlayfen } from '../actions/serverActions';
 import Paper from '@material-ui/core/Paper';
@@ -9,7 +10,16 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Movetext from '../utils/Movetext.js';
 
+const useStyles = makeStyles({
+  table: {
+    maxHeight: 300,
+    display: 'flex',
+    flexDirection: 'column-reverse'
+  },
+});
+
 const MoveValidator = ({props}) => {
+  const classes = useStyles();
   const state = useSelector(state => state);
 
   if (state.board.fen) {
@@ -17,8 +27,8 @@ const MoveValidator = ({props}) => {
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+    <TableContainer component={Paper} className={classes.table}>
+      <Table stickyHeader aria-label="simple table">
         <TableBody>
           {
             Movetext.toRows(state.board.movetext).map((row, i) => (
