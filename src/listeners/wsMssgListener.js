@@ -383,10 +383,16 @@ export const onRestart = (data) => dispatch => {
 };
 
 export const onResponse = (data) => dispatch => {
-  dispatch({
-    type: boardActionTypes.RESPONSE,
-    payload: {
-      fen: data['/response']
-    }
-  });
+  if (data['/response']) {
+    dispatch({
+      type: boardActionTypes.RESPONSE,
+      payload: {
+        turn: data['/response'].turn,
+        check: data['/response'].check,
+        mate: data['/response'].mate,
+        movetext: data['/response'].movetext,
+        fen: data['/response'].fen,
+      }
+    });
+  }
 };
