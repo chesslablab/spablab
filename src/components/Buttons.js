@@ -16,7 +16,13 @@ import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import pgnDialogActionTypes from '../constants/pgnDialogActionTypes';
 import { DownloadImage } from './DownloadImage'
-import { wsMssgHeuristicpicture, wsMssgStartAnalysis, wsMssgQuit, wsMssgFen } from '../actions/serverActions';
+import {
+  wsMssgStartAnalysis,
+  wsMssgStartGrandmaster,
+  wsMssgHeuristicpicture,
+  wsMssgQuit,
+  wsMssgFen
+} from '../actions/serverActions';
 
 const Buttons = ({ props }) => {
   const state = useSelector(state => state);
@@ -107,9 +113,16 @@ const Buttons = ({ props }) => {
         open={Boolean(anchorElPlayWithTheComputer)}
         onClose={handleClosePlayWithTheComputer}
       >
-        <MenuItem onClick={() => {
-          // TODO
-        }}>Like a Grandmaster</MenuItem>
+        <MenuItem
+          onClick={() => {
+            wsMssgQuit(state).then(() => {
+              wsMssgStartGrandmaster(state.server.ws);
+              handleClosePlayWithTheComputer();
+            });
+          }}
+        >
+            Like a Grandmaster
+        </MenuItem>
       </Menu>
       <Button
         startIcon={<PublishIcon />}

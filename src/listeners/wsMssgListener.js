@@ -1,3 +1,4 @@
+import { wsMssgResponse } from '../actions/serverActions';
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
@@ -34,6 +35,8 @@ export const wsMssgListener = (data) => dispatch => {
     case '/start' === cmd:
       if (data['/start'].mode === modeNames.ANALYSIS) {
         dispatch(onStartAnalysis(data));
+      } else if (data['/start'].mode === modeNames.GRANDMASTER) {
+        dispatch(onStartGrandmaster(data));
       } else if (data['/start'].mode === modeNames.LOADFEN) {
         dispatch(onStartLoadfen(data));
       } else if (data['/start'].mode === modeNames.LOADPGN) {
@@ -66,6 +69,9 @@ export const wsMssgListener = (data) => dispatch => {
         }
       }
       dispatch(onPlayfen(data));
+      if (store.getState().mode.current === modeNames.GRANDMASTER) {
+        wsMssgResponse(store.getState());
+      }
       break;
     case '/piece' === cmd:
       if (data['/piece']) {
@@ -98,6 +104,9 @@ export const wsMssgListener = (data) => dispatch => {
     case '/restart' === cmd:
       dispatch(onRestart(data));
       break;
+    case '/response' === cmd:
+      dispatch(onResponse(data));
+      break;
     default:
       break;
   }
@@ -106,6 +115,12 @@ export const wsMssgListener = (data) => dispatch => {
 export const onStartAnalysis = (data) => dispatch => {
   dispatch({ type: alertActionTypes.INFO_CLOSE });
   dispatch({ type: modeActionTypes.SET_ANALYSIS });
+  dispatch({ type: boardActionTypes.START });
+};
+
+export const onStartGrandmaster = (data) => dispatch => {
+  dispatch({ type: alertActionTypes.INFO_CLOSE });
+  dispatch({ type: modeActionTypes.SET_GRANDMASTER });
   dispatch({ type: boardActionTypes.START });
 };
 
@@ -364,5 +379,33 @@ export const onRestart = (data) => dispatch => {
   dispatch({ type: boardActionTypes.START });
   if (store.getState().mode.playfriend.color === Pgn.symbol.BLACK) {
     dispatch({ type: boardActionTypes.FLIP });
+  }
+};
+
+export const onResponse = (data) => dispatch => {
+  if (data['/response']) {
+    dispatch({
+      type: alertActionTypes.INFO_DISPLAY,
+      payload: {
+        info: 'Awesome! This move was made by a chess grandmaster.'
+      }
+    });
+    dispatch({
+      type: boardActionTypes.RESPONSE,
+      payload: {
+        turn: data['/response'].turn,
+        check: data['/response'].check,
+        mate: data['/response'].mate,
+        movetext: data['/response'].movetext,
+        fen: data['/response'].fen,
+      }
+    });
+  } else {
+    dispatch({
+      type: alertActionTypes.INFO_DISPLAY,
+      payload: {
+        info: 'This line was not found in the grandmaster database.'
+      }
+    });
   }
 };

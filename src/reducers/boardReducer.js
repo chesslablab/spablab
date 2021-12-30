@@ -144,6 +144,18 @@ const reducer = (state = initialState, action) => {
         turn: newTurn,
         history: newHistory
       }
+    case boardActionTypes.RESPONSE:
+      newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
+      return {
+        ...state,
+        turn: action.payload.turn,
+        check: action.payload.check,
+        mate: action.payload.mate,
+        picked: null,
+        fen: null,
+        history: newHistory,
+        movetext: action.payload.movetext
+      }
     default:
       return state;
   }

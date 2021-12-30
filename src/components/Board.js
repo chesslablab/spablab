@@ -20,6 +20,7 @@ const Board = ({props}) => {
   const pickPiece = (payload) => {
     if (
       modeNames.ANALYSIS === state.mode.current ||
+      modeNames.GRANDMASTER === state.mode.current ||
       modeNames.LOADFEN === state.mode.current ||
       modeNames.LOADPGN === state.mode.current
     ) {
