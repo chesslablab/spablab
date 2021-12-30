@@ -9,6 +9,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
 import store from '../store';
+import { wsMssgResponse } from '../actions/serverActions';
 import Pgn from '../utils/Pgn';
 import Wording from '../utils/Wording.js';
 
@@ -68,6 +69,9 @@ export const wsMssgListener = (data) => dispatch => {
         }
       }
       dispatch(onPlayfen(data));
+      if (store.getState().mode.current === modeNames.GRANDMASTER) {
+        wsMssgResponse(store.getState());
+      }
       break;
     case '/piece' === cmd:
       if (data['/piece']) {

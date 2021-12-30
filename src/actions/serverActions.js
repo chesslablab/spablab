@@ -86,3 +86,7 @@ export const wsMssgRestart = async (state) => {
 export const wsMssgStartLoadpgn = async (state, movetext) => {
   return await state.server.ws.send(`/start loadpgn "${movetext}"`);
 };
+
+export const wsMssgResponse = async (state) => {
+  return await state.server.ws.send(`/response`);
+};
