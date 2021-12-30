@@ -385,6 +385,12 @@ export const onRestart = (data) => dispatch => {
 export const onResponse = (data) => dispatch => {
   if (data['/response']) {
     dispatch({
+      type: alertActionTypes.INFO_DISPLAY,
+      payload: {
+        info: 'Awesome! This move was made by a chess grandmaster.'
+      }
+    });
+    dispatch({
       type: boardActionTypes.RESPONSE,
       payload: {
         turn: data['/response'].turn,
@@ -392,6 +398,13 @@ export const onResponse = (data) => dispatch => {
         mate: data['/response'].mate,
         movetext: data['/response'].movetext,
         fen: data['/response'].fen,
+      }
+    });
+  } else {
+    dispatch({
+      type: alertActionTypes.INFO_DISPLAY,
+      payload: {
+        info: 'This line was not found in the grandmaster database.'
       }
     });
   }
