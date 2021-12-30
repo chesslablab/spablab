@@ -1,3 +1,4 @@
+import { wsMssgResponse } from '../actions/serverActions';
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
@@ -9,7 +10,6 @@ import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
 import store from '../store';
-import { wsMssgResponse } from '../actions/serverActions';
 import Pgn from '../utils/Pgn';
 import Wording from '../utils/Wording.js';
 
@@ -103,6 +103,9 @@ export const wsMssgListener = (data) => dispatch => {
       break;
     case '/restart' === cmd:
       dispatch(onRestart(data));
+      break;
+    case '/response' === cmd:
+      dispatch(onResponse(data));
       break;
     default:
       break;
@@ -377,4 +380,13 @@ export const onRestart = (data) => dispatch => {
   if (store.getState().mode.playfriend.color === Pgn.symbol.BLACK) {
     dispatch({ type: boardActionTypes.FLIP });
   }
+};
+
+export const onResponse = (data) => dispatch => {
+  dispatch({
+    type: boardActionTypes.RESPONSE,
+    payload: {
+      fen: data['/response']
+    }
+  });
 };

@@ -144,6 +144,10 @@ const reducer = (state = initialState, action) => {
         turn: newTurn,
         history: newHistory
       }
+    case boardActionTypes.RESPONSE:
+      // TODO
+      console.log(action);
+      return state;
     default:
       return state;
   }
