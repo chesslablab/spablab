@@ -26,6 +26,11 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case modeActionTypes.SET_ANALYSIS:
       return initialState;
+    case modeActionTypes.SET_GRANDMASTER:
+      return {
+        ...initialState,
+        current: modeNames.GRANDMASTER
+      };
     case modeActionTypes.SET_LOADFEN:
       return {
         ...initialState,

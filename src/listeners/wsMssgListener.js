@@ -34,6 +34,8 @@ export const wsMssgListener = (data) => dispatch => {
     case '/start' === cmd:
       if (data['/start'].mode === modeNames.ANALYSIS) {
         dispatch(onStartAnalysis(data));
+      } else if (data['/start'].mode === modeNames.GRANDMASTER) {
+        dispatch(onStartGrandmaster(data));
       } else if (data['/start'].mode === modeNames.LOADFEN) {
         dispatch(onStartLoadfen(data));
       } else if (data['/start'].mode === modeNames.LOADPGN) {
@@ -106,6 +108,12 @@ export const wsMssgListener = (data) => dispatch => {
 export const onStartAnalysis = (data) => dispatch => {
   dispatch({ type: alertActionTypes.INFO_CLOSE });
   dispatch({ type: modeActionTypes.SET_ANALYSIS });
+  dispatch({ type: boardActionTypes.START });
+};
+
+export const onStartGrandmaster = (data) => dispatch => {
+  dispatch({ type: alertActionTypes.INFO_CLOSE });
+  dispatch({ type: modeActionTypes.SET_GRANDMASTER });
   dispatch({ type: boardActionTypes.START });
 };
 
