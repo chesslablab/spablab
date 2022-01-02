@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import alertActionTypes from '../../constants/alertActionTypes';
-import modeActionTypes from '../../constants/modeActionTypes';
-import createInviteCodeDialogActions from '../../constants/createInviteCodeDialogActionTypes';
-import { wsMssgStartPlayfriend, wsMssgStartAnalysis, wsMssgQuit } from '../../actions/serverActions';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { wsMssgQuit, wsMssgStartPlayfriend } from '../../actions/serverActions';
+import createInviteCodeDialogActions from '../../constants/createInviteCodeDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,18 +19,14 @@ const CreateInviteCodeDialog = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const randColor = () => {
-    return Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
-  }
-
   const handleCreateCode = (event) => {
     event.preventDefault();
-    let color = event.target.elements.color.value;
+    let color;
+    event.target.elements.color.value === 'rand'
+      ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+      : color = event.target.elements.color.value;
     let time = event.target.elements.time.value;
     let increment = event.target.elements.increment.value;
-    if (color === 'rand') {
-      color = randColor();
-    }
     wsMssgQuit(state).then(() => wsMssgStartPlayfriend(state, color, time, increment));
   }
 
@@ -80,7 +74,7 @@ const CreateInviteCodeDialog = () => {
                     fullWidth
                     type="text"
                     name="sharecode"
-                    label="Share code with friend"
+                    label="Share this code with a friend"
                     value={state.mode.playfriend.hash}
                   />
               : null
@@ -90,25 +84,9 @@ const CreateInviteCodeDialog = () => {
               !state.mode.playfriend.hash
                 ? <div>
                     <Button type="submit">Create code</Button>
-                    <Button onClick={() => {
-                      wsMssgQuit(state).then(() => {
-                        wsMssgStartAnalysis(state.server.ws).then(() => {
-                          dispatch({ type: createInviteCodeDialogActions.CLOSE });
-                        });
-                      });
-                    }}>
-                      Cancel
-                    </Button>
+                    <Button onClick={() => dispatch({ type: createInviteCodeDialogActions.CLOSE })}>Cancel</Button>
                   </div>
-                : <Button onClick={() => {
-                    dispatch({ type: createInviteCodeDialogActions.CLOSE });
-                    dispatch({
-                      type: alertActionTypes.INFO_DISPLAY,
-                      payload: {
-                        info: 'Waiting for friend to accept invitation...'
-                      }
-                    });
-                }}>Play</Button>
+                : <Button onClick={() => dispatch({ type: createInviteCodeDialogActions.CLOSE })}>Play</Button>
             }
           </DialogActions>
         </form>

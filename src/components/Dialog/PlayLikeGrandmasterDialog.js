@@ -1,13 +1,9 @@
-import React, { useState } from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
 import { wsMssgQuit, wsMssgResponse, wsMssgStartGrandmaster } from '../../actions/serverActions';
 import playLikeGrandmasterDialogActions from '../../constants/playLikeGrandmasterDialogActionTypes';
 import Pgn from '../../utils/Pgn';
-
-const randColor = () => {
-  return Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
-}
 
 const PlayLikeGrandmasterDialog = () => {
   const state = useSelector(state => state);
@@ -17,7 +13,7 @@ const PlayLikeGrandmasterDialog = () => {
     event.preventDefault();
     let color;
     event.target.elements.color.value === 'rand'
-      ? color = randColor()
+      ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
     if (Pgn.symbol.WHITE === color) {
         wsMssgQuit(state).then(() => {

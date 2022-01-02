@@ -191,6 +191,12 @@ export const onStartPlayfriend = (data) => dispatch => {
   if (jwtDecoded.color === Pgn.symbol.BLACK) {
     dispatch({ type: boardActionTypes.FLIP });
   }
+  dispatch({
+    type: alertActionTypes.INFO_DISPLAY,
+    payload: {
+      info: 'Waiting for friend to accept invitation...'
+    }
+  });
   dispatch({ type: boardActionTypes.START });
 };
 
