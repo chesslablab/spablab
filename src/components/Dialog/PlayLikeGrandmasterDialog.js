@@ -26,8 +26,8 @@ const PlayLikeGrandmasterDialog = () => {
     let color = event.target.elements.color.value;
     wsMssgQuit(state).then(() => {
       // TODO: Add color paramenter
-      // wsMssgStartGrandmaster(state.server.ws, color),
-      wsMssgStartGrandmaster(state.server.ws);
+      // wsMssgStartGrandmaster(state, color),
+      wsMssgStartGrandmaster(state);
       dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
     });
   }
