@@ -23,8 +23,8 @@ export const wsMssgStartAnalysis = async (ws) => {
   return await ws.send('/start analysis');
 };
 
-export const wsMssgStartGrandmaster = async (ws) => {
-  return await ws.send('/start grandmaster');
+export const wsMssgStartGrandmaster = async (state, color) => {
+  return await state.server.ws.send(`/start grandmaster ${color}`);
 };
 
 export const wsMssgStartLoadfen = async (state, string) => {

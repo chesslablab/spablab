@@ -19,6 +19,7 @@ import pgnDialogReducer from './pgnDialogReducer';
 import loadPgnDialogReducer from './loadPgnDialogReducer';
 import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
 import rematchOfferDialogReducer from './rematchOfferDialogReducer';
+import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer';
 
 const rootReducer = combineReducers({
   alert: alertReducer,
@@ -40,7 +41,8 @@ const rootReducer = combineReducers({
   pgnDialog: pgnDialogReducer,
   loadPgnDialog: loadPgnDialogReducer,
   rematchAcceptDialog: rematchAcceptDialogReducer,
-  rematchOfferDialog: rematchOfferDialogReducer
+  rematchOfferDialog: rematchOfferDialogReducer,
+  playLikeGrandmasterDialog: playLikeGrandmasterDialogReducer
 });
 
 export default rootReducer;

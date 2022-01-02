@@ -119,9 +119,17 @@ export const onStartAnalysis = (data) => dispatch => {
 };
 
 export const onStartGrandmaster = (data) => dispatch => {
+  dispatch({
+    type: modeActionTypes.SET_GRANDMASTER,
+    payload: {
+      color: data['/start'].color
+    }
+  });
   dispatch({ type: alertActionTypes.INFO_CLOSE });
-  dispatch({ type: modeActionTypes.SET_GRANDMASTER });
   dispatch({ type: boardActionTypes.START });
+  if (data['/start'].color === Pgn.symbol.BLACK) {
+    dispatch({ type: boardActionTypes.FLIP });
+  }
 };
 
 export const onStartLoadfen = (data) => dispatch => {
