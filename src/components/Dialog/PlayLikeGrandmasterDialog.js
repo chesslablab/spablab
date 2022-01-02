@@ -1,42 +1,46 @@
 import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
-import alertActionTypes from '../../constants/alertActionTypes';
-import modeActionTypes from '../../constants/modeActionTypes';
+import { wsMssgQuit, wsMssgResponse, wsMssgStartGrandmaster } from '../../actions/serverActions';
 import playLikeGrandmasterDialogActions from '../../constants/playLikeGrandmasterDialogActionTypes';
-import { wsMssgQuit, wsMssgStartGrandmaster } from '../../actions/serverActions';
-import { makeStyles } from '@material-ui/core/styles';
 import Pgn from '../../utils/Pgn';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+const randColor = () => {
+  return Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK;
+}
 
 const PlayLikeGrandmasterDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    let color = event.target.elements.color.value;
-    wsMssgQuit(state).then(() => {
-      // TODO: Add color paramenter
-      // wsMssgStartGrandmaster(state, color),
-      wsMssgStartGrandmaster(state);
-      dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
-    });
+    let color;
+    event.target.elements.color.value === 'rand'
+      ? color = randColor()
+      : color = event.target.elements.color.value;
+    if (Pgn.symbol.WHITE === color) {
+        wsMssgQuit(state).then(() => {
+          wsMssgStartGrandmaster(state).then(() => {
+            dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
+          });
+        });
+    } else {
+      wsMssgQuit(state).then(() => {
+        wsMssgStartGrandmaster(state).then(() => {
+          wsMssgResponse(state).then((data) => {
+            dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
+          });
+        });
+      });
+    }
   }
 
   return (
     <Dialog open={state.playLikeGrandmasterDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Play like a grandmaster</DialogTitle>
       <DialogContent>
-        <form className={classes.root} onSubmit={handleCreateCode}>
+        <form onSubmit={handleCreateCode}>
           <TextField
             select
             fullWidth
