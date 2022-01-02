@@ -12,6 +12,7 @@ import loadPgnDialogActionTypes from '../constants/loadPgnDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
+import playLikeGrandmasterDialogActionTypes from '../constants/playLikeGrandmasterDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import pgnDialogActionTypes from '../constants/pgnDialogActionTypes';
@@ -115,10 +116,8 @@ const Buttons = ({ props }) => {
       >
         <MenuItem
           onClick={() => {
-            wsMssgQuit(state).then(() => {
-              wsMssgStartGrandmaster(state.server.ws);
-              handleClosePlayWithTheComputer();
-            });
+            dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
+            handleClosePlayWithTheComputer();
           }}
         >
             Like a Grandmaster
