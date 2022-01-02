@@ -12,6 +12,12 @@ const MainBreadcrumbs = ({props}) => {
         Analysis board
       </Typography>
     );
+  } else if (state.mode.current === modeNames.GRANDMASTER) {
+    return (
+      <Typography style={{color:"#404040"}} variant="h6" component="div">
+        Like a grandmaster
+      </Typography>
+    );
   } else if (state.mode.current === modeNames.LOADFEN) {
     return (
       <Typography style={{color:"#404040"}} variant="h6" component="div">
