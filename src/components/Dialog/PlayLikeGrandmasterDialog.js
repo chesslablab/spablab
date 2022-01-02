@@ -21,14 +21,14 @@ const PlayLikeGrandmasterDialog = () => {
       : color = event.target.elements.color.value;
     if (Pgn.symbol.WHITE === color) {
         wsMssgQuit(state).then(() => {
-          wsMssgStartGrandmaster(state).then(() => {
+          wsMssgStartGrandmaster(state, color).then(() => {
             dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
           });
         });
     } else {
       wsMssgQuit(state).then(() => {
-        wsMssgStartGrandmaster(state).then(() => {
-          wsMssgResponse(state).then((data) => {
+        wsMssgStartGrandmaster(state, color).then(() => {
+          wsMssgResponse(state).then(() => {
             dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
           });
         });

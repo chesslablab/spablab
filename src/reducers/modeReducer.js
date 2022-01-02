@@ -5,6 +5,9 @@ import Pgn from '../utils/Pgn';
 
 const initialState = {
   current: modeNames.ANALYSIS,
+  grandmaster: {
+    color: null
+  },
   playfriend: {
     jwt: null,
     jwt_decoded: null,
@@ -29,7 +32,10 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.SET_GRANDMASTER:
       return {
         ...initialState,
-        current: modeNames.GRANDMASTER
+        current: modeNames.GRANDMASTER,
+        grandmaster: {
+          color: action.payload.color
+        }
       };
     case modeActionTypes.SET_LOADFEN:
       return {
