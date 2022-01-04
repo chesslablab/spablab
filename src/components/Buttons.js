@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Menu, MenuItem } from '@material-ui/core';
+import { Button, Menu, MenuItem } from '@mui/material';
 import ComputerIcon from '@material-ui/icons/Computer';
 import TuneIcon from '@material-ui/icons/Tune';
 import PublishIcon from '@material-ui/icons/Publish';

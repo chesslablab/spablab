@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { Legend, LineChart, Line, XAxis, YAxis } from 'recharts';
 
 const getDimensions = (items) => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, ButtonGroup } from '@material-ui/core';
+import { Button, ButtonGroup } from '@mui/material';
 import FastRewindIcon from '@material-ui/icons/FastRewind';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';

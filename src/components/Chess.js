@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Provider } from "react-redux";
-import { CssBaseline } from "@material-ui/core";
+import { CssBaseline } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import LoadFenDialog from "./Dialog/LoadFenDialog";

@@ -5,7 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgResign } from "../../actions/serverActions";
 import resignAcceptDialogActionTypes from "../../constants/resignAcceptDialogActionTypes";
