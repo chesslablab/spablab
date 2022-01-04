@@ -1,11 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { makeStyles } from '@mui/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { wsMssgQuit, wsMssgResponse, wsMssgStartGrandmaster } from '../../actions/serverActions';
 import playLikeGrandmasterDialogActions from '../../constants/playLikeGrandmasterDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 
+const useStyles = makeStyles({
+  form: {
+    marginTop: 10,
+  },
+});
+
 const PlayLikeGrandmasterDialog = () => {
+  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -36,7 +44,7 @@ const PlayLikeGrandmasterDialog = () => {
     <Dialog open={state.playLikeGrandmasterDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Play like a grandmaster</DialogTitle>
       <DialogContent>
-        <form onSubmit={handleCreateCode}>
+        <form className={classes.form} onSubmit={handleCreateCode}>
           <TextField
             select
             fullWidth

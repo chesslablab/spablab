@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Button, ButtonGroup, Menu, MenuItem } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
 import TuneIcon from '@mui/icons-material/Tune';
@@ -33,6 +34,8 @@ const Buttons = ({ props }) => {
   const [anchorElPlayWithTheComputer, setAnchorElPlayWithTheComputer] = React.useState(null);
   const [anchorElLoad, setAnchorElLoad] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
+
+   const matches = useMediaQuery("(min-width:768px)");
 
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
@@ -69,7 +72,12 @@ const Buttons = ({ props }) => {
   const handleDownloadImage = () => DownloadImage();
 
   return (
-    <ButtonGroup variant="contained" aria-label="outlined primary button group">
+    <ButtonGroup
+      variant="contained"
+      aria-label="outlined primary button group"
+      orientation={`${matches ? `horizontal` : `vertical`}`}
+      fullWidth={matches ? false : true}
+    >
       <Button
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
