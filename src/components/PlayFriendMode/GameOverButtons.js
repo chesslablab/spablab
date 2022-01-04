@@ -2,21 +2,12 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Wording from "../../utils/Wording.js";
-import { makeStyles } from '@mui/styles';
 import { useDispatch, useSelector } from "react-redux";
 import rematchOfferDialogActionTypes from "../../constants/rematchOfferDialogActionTypes";
-
-const useStyles = makeStyles({
-  paperButton: {
-    textTransform: "none",
-  },
-});
 
 const GameOverButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-
-  const classes = useStyles();
 
   const [anchorElRematchOffer, setAnchorElRematchOffer] = React.useState(null);
 
@@ -33,7 +24,6 @@ const GameOverButtons = () => {
       return (
         <ButtonGroup variant="contained" size="small" aria-label="small button group">
           <Button
-            className={classes.paperButton}
             onClick={() => {
               dispatch({ type: rematchOfferDialogActionTypes.OPEN });
               handleCloseRematchOffer();

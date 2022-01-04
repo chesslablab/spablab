@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
 import Grid from "@mui/material/Grid";
@@ -30,43 +29,20 @@ import InfoAlert from "./InfoAlert.js";
 import "../index.css";
 import store from "../store";
 
-const useStyles = makeStyles({
-  container: {
-    flexGrow: 1,
-    // padding: theme.spacing(2),
-  },
-  buttons: {
-    // marginBottom: theme.spacing(2),
-  },
-  leftCol: {
-    // marginRight: theme.spacing(2),
-    // marginBottom: theme.spacing(2),
-  },
-  paper: {
-    // paddingTop: theme.spacing(1),
-    // paddingLeft: theme.spacing(2),
-    // paddingRight: theme.spacing(2),
-    // paddingBottom: theme.spacing(2),
-    // marginBottom: theme.spacing(2),
-  },
-});
-
 const Chess = ({ props }) => {
-  const classes = useStyles();
-
   return (
     <Provider store={store}>
       <CssBaseline />
-      <Grid container className={classes.container}>
-        <Grid item xs={12} className={classes.buttons}>
+      <Grid container>
+        <Grid item xs={12}>
           <Buttons props={props} />
         </Grid>
-        <Grid item xs={12} md={3} className={classes.leftCol}>
-          <Paper className={classes.paper}>
+        <Grid item xs={12} md={3}>
+          <Paper>
             <MainBreadcrumbs />
             <History />
             <GameClock />
-            <Grid container className={classes.container}>
+            <Grid container>
               <MoveValidator />
             </Grid>
             <ButtonsPlayFriendMode />

@@ -1,23 +1,14 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import { makeStyles } from '@mui/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import takebackOfferDialogActionTypes from '../../constants/takebackOfferDialogActionTypes';
 import drawOfferDialogActionTypes from '../../constants/drawOfferDialogActionTypes';
 import resignAcceptDialogActionTypes from '../../constants/resignAcceptDialogActionTypes';
 
-const useStyles = makeStyles({
-  paperButton: {
-    textTransform: "none",
-  },
-});
-
 const GameButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-
-  const classes = useStyles();
 
   const [anchorElRequestTakeback, setAnchorElRequestTakeback] = React.useState(null);
   const [anchorElDrawOffer, setAnchorElDrawOffer] = React.useState(null);
@@ -49,7 +40,6 @@ const GameButtons = () => {
           fullWidth={true}
         >
           <Button
-            className={classes.paperButton}
             onClick={() => {
               dispatch({ type: takebackOfferDialogActionTypes.OPEN });
               handleCloseRequestTakeback();
@@ -58,7 +48,6 @@ const GameButtons = () => {
             Propose a takeback
           </Button>
           <Button
-            className={classes.paperButton}
             onClick={() => {
               dispatch({ type: drawOfferDialogActionTypes.OPEN });
               handleCloseDrawOffer();
@@ -67,7 +56,6 @@ const GameButtons = () => {
             Offer draw
           </Button>
           <Button
-            className={classes.paperButton}
             onClick={() => {
               dispatch({ type: resignAcceptDialogActionTypes.OPEN });
               handleCloseResignAccept();

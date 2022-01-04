@@ -1,31 +1,14 @@
 import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@mui/styles";
 import { wsMssgStartLoadfen, wsMssgQuit } from "../../actions/serverActions";
 import boardActionTypes from "../../constants/boardActionTypes";
 import loadFenDialogActions from "../../constants/loadFenDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 
-const useStyles = makeStyles({
-  root: {
-    "& .MuiTextField-root": {
-      // margin: theme.spacing(1),
-    },
-  },
-});
-
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   const handleLoad = (event) => {
     event.preventDefault();
@@ -40,13 +23,11 @@ const LoadFenDialog = () => {
     <Dialog open={state.loadFenDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Load FEN</DialogTitle>
       <DialogContent>
-        <form className={classes.root} onSubmit={handleLoad}>
+        <form onSubmit={handleLoad}>
           <TextField fullWidth required name="fen" label="FEN string" />
           <DialogActions>
             <Button type="submit">Load</Button>
-            <Button
-              onClick={() => dispatch({ type: loadFenDialogActions.CLOSE })}
-            >
+            <Button onClick={() => dispatch({ type: loadFenDialogActions.CLOSE })}>
               Cancel
             </Button>
           </DialogActions>
