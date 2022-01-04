@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
 import { wsMssgPlayfen } from '../actions/serverActions';
 import Paper from '@mui/material/Paper';

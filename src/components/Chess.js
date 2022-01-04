@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@material-ui/core";
 import Grid from "@mui/material/Grid";

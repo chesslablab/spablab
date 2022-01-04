@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Wording from "../../utils/Wording.js";
-import { makeStyles } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import { useDispatch, useSelector } from "react-redux";
 import rematchOfferDialogActionTypes from "../../constants/rematchOfferDialogActionTypes";
 
