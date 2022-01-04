@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Button, ButtonGroup, Menu, MenuItem } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
 import TuneIcon from '@mui/icons-material/Tune';
 import PublishIcon from '@mui/icons-material/Publish';
@@ -69,11 +69,10 @@ const Buttons = ({ props }) => {
   const handleDownloadImage = () => DownloadImage();
 
   return (
-    <div>
+    <ButtonGroup variant="contained" aria-label="outlined primary button group">
       <Button
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
-        style={{ textTransform: 'none' }}
       >
         Invite a Friend
       </Button>
@@ -96,7 +95,6 @@ const Buttons = ({ props }) => {
       </Menu>
       <Button
         startIcon={<TuneIcon />}
-        style={{ textTransform: 'none' }}
         onClick={() => wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws))}
       >
         Analysis Board
@@ -104,7 +102,6 @@ const Buttons = ({ props }) => {
       <Button
         startIcon={<ComputerIcon />}
         onClick={handleClickPlayWithTheComputer}
-        style={{ textTransform: 'none' }}
       >
         Play With the Computer
       </Button>
@@ -126,7 +123,6 @@ const Buttons = ({ props }) => {
       <Button
         startIcon={<PublishIcon />}
         onClick={handleClickLoad}
-        style={{ textTransform: 'none' }}
       >
         Load
       </Button>
@@ -148,7 +144,6 @@ const Buttons = ({ props }) => {
       <Button
         onClick={handleClickSettings}
         startIcon={<SettingsIcon />}
-        style={{ textTransform: 'none' }}
       >
         Settings
       </Button>
@@ -209,7 +204,7 @@ const Buttons = ({ props }) => {
           Image
         </MenuItem>
       </Menu>
-    </div>
+    </ButtonGroup>
   );
 }
 
