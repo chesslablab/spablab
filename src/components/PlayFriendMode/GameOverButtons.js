@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Wording from "../../utils/Wording.js";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/material/styles';
 import { useDispatch, useSelector } from "react-redux";
 import rematchOfferDialogActionTypes from "../../constants/rematchOfferDialogActionTypes";
 

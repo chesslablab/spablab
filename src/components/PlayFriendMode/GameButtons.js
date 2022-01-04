@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { makeStyles } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { makeStyles } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import takebackOfferDialogActionTypes from '../../constants/takebackOfferDialogActionTypes';
 import drawOfferDialogActionTypes from '../../constants/drawOfferDialogActionTypes';

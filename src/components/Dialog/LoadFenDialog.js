@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material/styles";
 import { wsMssgStartLoadfen, wsMssgQuit } from "../../actions/serverActions";
 import boardActionTypes from "../../constants/boardActionTypes";
 import loadFenDialogActions from "../../constants/loadFenDialogActionTypes";

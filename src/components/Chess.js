@@ -1,9 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material/styles";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 import LoadFenDialog from "./Dialog/LoadFenDialog";
 import FenDialog from "./Dialog/FenDialog";
 import TakebackOfferDialog from "./Dialog/TakebackOfferDialog";
