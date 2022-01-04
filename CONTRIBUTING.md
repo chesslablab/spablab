@@ -16,10 +16,10 @@ Once you're ready, fork the repo and create a new branch from `master` as per th
 $ git checkout -b issue/n-the-title-of-the-issue
 ```
 
-For example, if the title of the issue is [Rearrange the main buttons #171](https://github.com/chesslablab/redux-chess/issues/171) then its corresponding Git branch should be checked out from `master` like this.
+For example, if the title of the issue is [Update to MUI 5 #236](https://github.com/chesslablab/redux-chess/issues/236) then its corresponding Git branch should be checked out from `master` like this.
 
 ```text
-$ git checkout -b issue/171-rearrange-the-main-buttons
+$ git checkout -b issue/236-update-to-MUI-5
 ```
 
 That's it.
