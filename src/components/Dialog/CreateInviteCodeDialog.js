@@ -1,23 +1,24 @@
 import React from "react";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { wsMssgQuit, wsMssgStartPlayfriend } from '../../actions/serverActions';
 import createInviteCodeDialogActions from '../../constants/createInviteCodeDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const useStyles = makeStyles({
+  form: {
+    marginTop: 10,
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
+      padding: 15,
     },
   },
-}));
+});
 
 const CreateInviteCodeDialog = () => {
+  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   const handleCreateCode = (event) => {
     event.preventDefault();
@@ -34,7 +35,7 @@ const CreateInviteCodeDialog = () => {
     <Dialog open={state.createInviteCodeDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Create invite code</DialogTitle>
       <DialogContent>
-        <form className={classes.root} onSubmit={handleCreateCode}>
+        <form className={classes.form} onSubmit={handleCreateCode}>
           <TextField
             select
             fullWidth

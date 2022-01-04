@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { wsMssgQuit, wsMssgResponse, wsMssgStartGrandmaster } from '../../actions/serverActions';
 import playLikeGrandmasterDialogActions from '../../constants/playLikeGrandmasterDialogActionTypes';
 import Pgn from '../../utils/Pgn';

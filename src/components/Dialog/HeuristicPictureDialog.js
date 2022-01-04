@@ -5,8 +5,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-} from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+} from "@mui/material";
+import Alert from "@mui/material/Alert";
 import HeuristicPicture from "../HeuristicPicture.js";
 import { useDispatch, useSelector } from "react-redux";
 import heuristicPictureDialogActions from "../../constants/heuristicPictureDialogActionTypes";

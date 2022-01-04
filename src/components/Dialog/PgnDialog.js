@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import pgnDialogActions from "../../constants/pgnDialogActionTypes";
 

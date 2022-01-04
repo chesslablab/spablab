@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/material/Alert';
 
 const InfoAlert = ({props}) => {
   const state = useSelector(state => state);

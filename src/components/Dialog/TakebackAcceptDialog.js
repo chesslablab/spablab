@@ -5,7 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-} from "@material-ui/core";
+} from "@mui/material";
 import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgTakeback, wsMssgUndoMove } from "../../actions/serverActions";
