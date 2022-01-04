@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem } from '@mui/material';
-import ComputerIcon from '@material-ui/icons/Computer';
-import TuneIcon from '@material-ui/icons/Tune';
-import PublishIcon from '@material-ui/icons/Publish';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import SettingsIcon from '@material-ui/icons/Settings';
+import ComputerIcon from '@mui/icons-material/Computer';
+import TuneIcon from '@mui/icons-material/Tune';
+import PublishIcon from '@mui/icons-material/Publish';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';

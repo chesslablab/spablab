@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup } from '@mui/material';
-import FastRewindIcon from '@material-ui/icons/FastRewind';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import FastForwardIcon from '@material-ui/icons/FastForward';
+import FastRewindIcon from '@mui/icons-material/FastRewind';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import FastForwardIcon from '@mui/icons-material/FastForward';
 import { useDispatch, useSelector } from 'react-redux';
 import { goToBeginning, goBack, goForward, goToEnd } from '../actions/historyActions';
 
