@@ -6,11 +6,11 @@ import { makeStyles } from '@mui/styles';
 import { useDispatch, useSelector } from "react-redux";
 import rematchOfferDialogActionTypes from "../../constants/rematchOfferDialogActionTypes";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   paperButton: {
     textTransform: "none",
   },
-}));
+});
 
 const GameOverButtons = () => {
   const state = useSelector(state => state);

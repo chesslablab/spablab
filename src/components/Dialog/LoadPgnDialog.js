@@ -14,13 +14,13 @@ import boardActionTypes from "../../constants/boardActionTypes";
 import loadPgnDialogActions from "../../constants/loadPgnDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     "& .MuiTextField-root": {
-      margin: theme.spacing(1),
+      // margin: theme.spacing(1),
     },
   },
-}));
+});
 
 const LoadPgnDialog = () => {
   const state = useSelector((state) => state);

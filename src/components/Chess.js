@@ -30,26 +30,26 @@ import InfoAlert from "./InfoAlert.js";
 import "../index.css";
 import store from "../store";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   container: {
     flexGrow: 1,
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
   },
   buttons: {
-    marginBottom: theme.spacing(2),
+    // marginBottom: theme.spacing(2),
   },
   leftCol: {
-    marginRight: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+    // marginRight: theme.spacing(2),
+    // marginBottom: theme.spacing(2),
   },
   paper: {
-    paddingTop: theme.spacing(1),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+    // paddingTop: theme.spacing(1),
+    // paddingLeft: theme.spacing(2),
+    // paddingRight: theme.spacing(2),
+    // paddingBottom: theme.spacing(2),
+    // marginBottom: theme.spacing(2),
   },
-}));
+});
 
 const Chess = ({ props }) => {
   const classes = useStyles();

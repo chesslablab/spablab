@@ -7,11 +7,11 @@ import takebackOfferDialogActionTypes from '../../constants/takebackOfferDialogA
 import drawOfferDialogActionTypes from '../../constants/drawOfferDialogActionTypes';
 import resignAcceptDialogActionTypes from '../../constants/resignAcceptDialogActionTypes';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   paperButton: {
     textTransform: "none",
   },
-}));
+});
 
 const GameButtons = () => {
   const state = useSelector(state => state);

@@ -6,13 +6,13 @@ import { wsMssgQuit, wsMssgStartPlayfriend } from '../../actions/serverActions';
 import createInviteCodeDialogActions from '../../constants/createInviteCodeDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
+      // margin: theme.spacing(1),
     },
   },
-}));
+});
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
