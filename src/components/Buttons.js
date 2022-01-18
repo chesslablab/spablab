@@ -111,7 +111,7 @@ const Buttons = ({ props }) => {
         startIcon={<ComputerIcon />}
         onClick={handleClickPlayWithTheComputer}
       >
-        Play With the Computer
+        Training
       </Button>
       <Menu
         anchorEl={anchorElPlayWithTheComputer}
