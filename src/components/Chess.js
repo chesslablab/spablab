@@ -19,6 +19,7 @@ import LoadPgnDialog from "./Dialog/LoadPgnDialog";
 import RematchAcceptDialog from "./Dialog/RematchAcceptDialog";
 import RematchOfferDialog from "./Dialog/RematchOfferDialog";
 import PlayLikeGrandmasterDialog from "./Dialog/PlayLikeGrandmasterDialog";
+import EcoOpeningsDialog from "./Dialog/EcoOpeningsDialog";
 import Board from "./Board.js";
 import Buttons from "./Buttons.js";
 import History from "./History";
@@ -75,6 +76,7 @@ const Chess = ({ props }) => {
       <RematchAcceptDialog />
       <RematchOfferDialog />
       <PlayLikeGrandmasterDialog />
+      <EcoOpeningsDialog />
     </Provider>
   );
 };
