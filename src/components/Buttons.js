@@ -121,6 +121,15 @@ const Buttons = ({ props }) => {
       >
         <MenuItem
           onClick={() => {
+            // TODO
+            // dispatch({ type: ecoChessOpeningsDialogActionTypes.OPEN });
+            handleCloseTraining();
+          }}
+        >
+            ECO Openings
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
             dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
             handleCloseTraining();
           }}
