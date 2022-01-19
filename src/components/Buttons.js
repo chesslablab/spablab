@@ -13,6 +13,9 @@ import loadPgnDialogActionTypes from '../constants/loadPgnDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
+import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
+import openingSearchNameDialogActionTypes from '../constants/openingSearchNameDialogActionTypes';
+import openingSearchMovetextDialogActionTypes from '../constants/openingSearchMovetextDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/playLikeGrandmasterDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -31,7 +34,8 @@ const Buttons = ({ props }) => {
   const dispatch = useDispatch();
 
   const [anchorElPlayFriend, setAnchorElPlayFriend] = React.useState(null);
-  const [anchorElPlayWithTheComputer, setAnchorElPlayWithTheComputer] = React.useState(null);
+  const [anchorElTraining, setAnchorElTraining] = React.useState(null);
+  const [anchorElOpeningSearch, setAnchorElOpeningSearch] = React.useState(null);
   const [anchorElLoad, setAnchorElLoad] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
@@ -41,8 +45,12 @@ const Buttons = ({ props }) => {
     setAnchorElPlayFriend(null);
   };
 
-  const handleClosePlayWithTheComputer = () => {
-    setAnchorElPlayWithTheComputer(null);
+  const handleCloseTraining = () => {
+    setAnchorElTraining(null);
+  };
+
+  const handleCloseOpeningSearch = () => {
+    setAnchorElOpeningSearch(null);
   };
 
   const handleCloseLoad = () => {
@@ -57,8 +65,12 @@ const Buttons = ({ props }) => {
     setAnchorElPlayFriend(event.currentTarget);
   };
 
-  const handleClickPlayWithTheComputer = (event) => {
-    setAnchorElPlayWithTheComputer(event.currentTarget);
+  const handleClickTraining = (event) => {
+    setAnchorElTraining(event.currentTarget);
+  };
+
+  const handleClickOpeningSearch = (event) => {
+    setAnchorElOpeningSearch(event.currentTarget);
   };
 
   const handleClickLoad = (event) => {
@@ -109,23 +121,60 @@ const Buttons = ({ props }) => {
       </Button>
       <Button
         startIcon={<ComputerIcon />}
-        onClick={handleClickPlayWithTheComputer}
+        onClick={handleClickTraining}
       >
         Training
       </Button>
       <Menu
-        anchorEl={anchorElPlayWithTheComputer}
+        anchorEl={anchorElTraining}
         keepMounted
-        open={Boolean(anchorElPlayWithTheComputer)}
-        onClose={handleClosePlayWithTheComputer}
+        open={Boolean(anchorElTraining)}
+        onClose={handleCloseTraining}
       >
         <MenuItem
           onClick={() => {
             dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
-            handleClosePlayWithTheComputer();
+            handleCloseTraining();
           }}
         >
             Like a Grandmaster
+        </MenuItem>
+      </Menu>
+      <Button
+        startIcon={<ComputerIcon />}
+        onClick={handleClickOpeningSearch}
+      >
+        Opening Search
+      </Button>
+      <Menu
+        anchorEl={anchorElOpeningSearch}
+        keepMounted
+        open={Boolean(anchorElOpeningSearch)}
+        onClose={handleCloseOpeningSearch}
+      >
+        <MenuItem
+          onClick={() => {
+            dispatch({ type: openingSearchEcoDialogActionTypes.OPEN });
+            handleCloseOpeningSearch();
+          }}
+        >
+            ECO Code
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch({ type: openingSearchNameDialogActionTypes.OPEN });
+            handleCloseOpeningSearch();
+          }}
+        >
+            Name
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch({ type: openingSearchMovetextDialogActionTypes.OPEN });
+            handleCloseOpeningSearch();
+          }}
+        >
+            Movetext
         </MenuItem>
       </Menu>
       <Button
@@ -194,7 +243,6 @@ const Buttons = ({ props }) => {
         <MenuItem
           key={3}
           onClick={() => {
-            // TODO
             dispatch({ type: pgnDialogActionTypes.OPEN });
             handleCloseSettings();
           }}

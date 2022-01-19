@@ -20,6 +20,9 @@ import loadPgnDialogReducer from './loadPgnDialogReducer';
 import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
 import rematchOfferDialogReducer from './rematchOfferDialogReducer';
 import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer';
+import openingSearchEcoDialogReducer from './openingSearchEcoDialogReducer';
+import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
+import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 
 const rootReducer = combineReducers({
   alert: alertReducer,
@@ -42,7 +45,10 @@ const rootReducer = combineReducers({
   loadPgnDialog: loadPgnDialogReducer,
   rematchAcceptDialog: rematchAcceptDialogReducer,
   rematchOfferDialog: rematchOfferDialogReducer,
-  playLikeGrandmasterDialog: playLikeGrandmasterDialogReducer
+  playLikeGrandmasterDialog: playLikeGrandmasterDialogReducer,
+  openingSearchEcoDialog: openingSearchEcoDialogReducer,
+  openingSearchNameDialog: openingSearchNameDialogReducer,
+  openingSearchMovetextDialog: openingSearchMovetextDialogReducer
 });
 
 export default rootReducer;
