@@ -1,4 +1,4 @@
-import ecoOpeningsDialogActionTypes from '../constants/ecoOpeningsDialogActionTypes';
+import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ecoOpeningsDialogActionTypes.CLOSE:
+    case openingSearchEcoDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case ecoOpeningsDialogActionTypes.OPEN:
+    case openingSearchEcoDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,

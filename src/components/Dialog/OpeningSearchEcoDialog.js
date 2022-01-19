@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem,
   Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
 } from '@mui/material';
-import openingSearchEcoDialogActions from '../../constants/ecoOpeningsDialogActionTypes';
+import openingSearchEcoDialogActions from '../../constants/openingSearchEcoDialogActionTypes';
 
 const useStyles = makeStyles({
   form: {

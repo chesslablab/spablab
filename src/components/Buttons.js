@@ -12,7 +12,7 @@ import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
 import loadPgnDialogActionTypes from '../constants/loadPgnDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
-import ecoOpeningsDialogActionTypes from '../constants/ecoOpeningsDialogActionTypes';
+import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/playLikeGrandmasterDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
@@ -152,7 +152,7 @@ const Buttons = ({ props }) => {
       >
         <MenuItem
           onClick={() => {
-            dispatch({ type: ecoOpeningsDialogActionTypes.OPEN });
+            dispatch({ type: openingSearchEcoDialogActionTypes.OPEN });
             handleCloseOpeningSearch();
           }}
         >
