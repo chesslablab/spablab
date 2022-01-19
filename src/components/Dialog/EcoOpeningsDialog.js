@@ -29,7 +29,7 @@ const EcoOpeningsDialog = () => {
 
   return (
     <Dialog open={state.ecoOpeningsDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>ECO Openings</DialogTitle>
+      <DialogTitle>ECO Code</DialogTitle>
       <DialogContent>
         <form className={classes.form} onSubmit={handleSearch}>
           <TextField

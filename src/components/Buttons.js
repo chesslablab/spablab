@@ -33,6 +33,7 @@ const Buttons = ({ props }) => {
 
   const [anchorElPlayFriend, setAnchorElPlayFriend] = React.useState(null);
   const [anchorElTraining, setAnchorElTraining] = React.useState(null);
+  const [anchorElOpeningSearch, setAnchorElOpeningSearch] = React.useState(null);
   const [anchorElLoad, setAnchorElLoad] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
@@ -44,6 +45,10 @@ const Buttons = ({ props }) => {
 
   const handleCloseTraining = () => {
     setAnchorElTraining(null);
+  };
+
+  const handleCloseOpeningSearch = () => {
+    setAnchorElOpeningSearch(null);
   };
 
   const handleCloseLoad = () => {
@@ -60,6 +65,10 @@ const Buttons = ({ props }) => {
 
   const handleClickTraining = (event) => {
     setAnchorElTraining(event.currentTarget);
+  };
+
+  const handleClickOpeningSearch = (event) => {
+    setAnchorElOpeningSearch(event.currentTarget);
   };
 
   const handleClickLoad = (event) => {
@@ -122,19 +131,32 @@ const Buttons = ({ props }) => {
       >
         <MenuItem
           onClick={() => {
-            dispatch({ type: ecoOpeningsDialogActionTypes.OPEN });
-            handleCloseTraining();
-          }}
-        >
-            ECO Openings
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
             dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
             handleCloseTraining();
           }}
         >
             Like a Grandmaster
+        </MenuItem>
+      </Menu>
+      <Button
+        startIcon={<ComputerIcon />}
+        onClick={handleClickOpeningSearch}
+      >
+        Opening Search
+      </Button>
+      <Menu
+        anchorEl={anchorElOpeningSearch}
+        keepMounted
+        open={Boolean(anchorElOpeningSearch)}
+        onClose={handleCloseOpeningSearch}
+      >
+        <MenuItem
+          onClick={() => {
+            dispatch({ type: ecoOpeningsDialogActionTypes.OPEN });
+            handleCloseOpeningSearch();
+          }}
+        >
+            ECO Code
         </MenuItem>
       </Menu>
       <Button
