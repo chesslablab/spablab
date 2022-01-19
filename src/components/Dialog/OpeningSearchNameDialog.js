@@ -29,13 +29,16 @@ const OpeningSearchNameDialog = () => {
 
   return (
     <Dialog open={state.openingSearchNameDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>ECO Code</DialogTitle>
+      <DialogTitle>Name</DialogTitle>
       <DialogContent>
         <form className={classes.form} onSubmit={handleSearch}>
           <TextField fullWidth required name="name" label="Name" />
           <DialogActions>
             <Button type="submit">Search</Button>
-            <Button onClick={() => dispatch({ type: openingSearchNameDialogActions.CLOSE })}>
+            <Button onClick={() => {
+              setOpenings([]);
+              dispatch({ type: openingSearchNameDialogActions.CLOSE });
+            }}>
               Cancel
             </Button>
           </DialogActions>

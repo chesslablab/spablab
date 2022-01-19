@@ -58,7 +58,10 @@ const OpeningSearchEcoDialog = () => {
           </TextField>
           <DialogActions>
             <Button type="submit">Search</Button>
-            <Button onClick={() => dispatch({ type: openingSearchEcoDialogActions.CLOSE })}>
+            <Button onClick={() => {
+              setOpenings([]);
+              dispatch({ type: openingSearchEcoDialogActions.CLOSE });
+            }}>
               Cancel
             </Button>
           </DialogActions>
