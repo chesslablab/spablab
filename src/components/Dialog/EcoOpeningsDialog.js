@@ -31,6 +31,7 @@ const EcoOpeningsDialog = () => {
             fullWidth
             name="code"
             label="Code"
+            defaultValue=""
           >
             <MenuItem key={0} value="A">
               A: Flank Openings
