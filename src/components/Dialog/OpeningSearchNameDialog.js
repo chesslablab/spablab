@@ -28,7 +28,7 @@ const OpeningSearchNameDialog = () => {
   }
 
   return (
-    <Dialog open={state.ecoOpeningsDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.openingSearchNameDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>ECO Code</DialogTitle>
       <DialogContent>
         <form className={classes.form} onSubmit={handleSearch}>
