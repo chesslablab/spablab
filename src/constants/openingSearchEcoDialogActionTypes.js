@@ -1,6 +1,6 @@
 const openingSearchEcoDialogActionTypes = {
-	CLOSE: 'CLOSE_ECO_CHESS_OPENINGS_DIALOG',
-	OPEN: 'OPEN_ECO_CHESS_OPENINGS_DIALOG'
+	CLOSE: 'CLOSE_OPENING_SEARCH_ECO_DIALOG',
+	OPEN: 'OPEN_OPENING_SEARCH_ECO_DIALOG'
 };
 
 export default openingSearchEcoDialogActionTypes;

@@ -12,8 +12,9 @@ import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
 import loadPgnDialogActionTypes from '../constants/loadPgnDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
-import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
+import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
+import openingSearchNameDialogActionTypes from '../constants/openingSearchNameDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/playLikeGrandmasterDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -158,6 +159,14 @@ const Buttons = ({ props }) => {
         >
             ECO Code
         </MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch({ type: openingSearchNameDialogActionTypes.OPEN });
+            handleCloseOpeningSearch();
+          }}
+        >
+            Name
+        </MenuItem>
       </Menu>
       <Button
         startIcon={<PublishIcon />}
@@ -225,7 +234,6 @@ const Buttons = ({ props }) => {
         <MenuItem
           key={3}
           onClick={() => {
-            // TODO
             dispatch({ type: pgnDialogActionTypes.OPEN });
             handleCloseSettings();
           }}
