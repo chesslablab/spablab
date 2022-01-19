@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem,
   Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
 } from '@mui/material';
-import ecoOpeningsDialogActions from '../../constants/ecoOpeningsDialogActionTypes';
+import openingSearchEcoDialogActions from '../../constants/ecoOpeningsDialogActionTypes';
 
 const useStyles = makeStyles({
   form: {
@@ -58,7 +58,7 @@ const OpeningSearchEcoDialog = () => {
           </TextField>
           <DialogActions>
             <Button type="submit">Search</Button>
-            <Button onClick={() => dispatch({ type: ecoOpeningsDialogActions.CLOSE })}>
+            <Button onClick={() => dispatch({ type: openingSearchEcoDialogActions.CLOSE })}>
               Cancel
             </Button>
           </DialogActions>
