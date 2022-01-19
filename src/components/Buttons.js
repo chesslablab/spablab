@@ -31,7 +31,7 @@ const Buttons = ({ props }) => {
   const dispatch = useDispatch();
 
   const [anchorElPlayFriend, setAnchorElPlayFriend] = React.useState(null);
-  const [anchorElPlayWithTheComputer, setAnchorElPlayWithTheComputer] = React.useState(null);
+  const [anchorElTraining, setAnchorElTraining] = React.useState(null);
   const [anchorElLoad, setAnchorElLoad] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
@@ -41,8 +41,8 @@ const Buttons = ({ props }) => {
     setAnchorElPlayFriend(null);
   };
 
-  const handleClosePlayWithTheComputer = () => {
-    setAnchorElPlayWithTheComputer(null);
+  const handleCloseTraining = () => {
+    setAnchorElTraining(null);
   };
 
   const handleCloseLoad = () => {
@@ -57,8 +57,8 @@ const Buttons = ({ props }) => {
     setAnchorElPlayFriend(event.currentTarget);
   };
 
-  const handleClickPlayWithTheComputer = (event) => {
-    setAnchorElPlayWithTheComputer(event.currentTarget);
+  const handleClickTraining = (event) => {
+    setAnchorElTraining(event.currentTarget);
   };
 
   const handleClickLoad = (event) => {
@@ -109,20 +109,20 @@ const Buttons = ({ props }) => {
       </Button>
       <Button
         startIcon={<ComputerIcon />}
-        onClick={handleClickPlayWithTheComputer}
+        onClick={handleClickTraining}
       >
         Training
       </Button>
       <Menu
-        anchorEl={anchorElPlayWithTheComputer}
+        anchorEl={anchorElTraining}
         keepMounted
-        open={Boolean(anchorElPlayWithTheComputer)}
-        onClose={handleClosePlayWithTheComputer}
+        open={Boolean(anchorElTraining)}
+        onClose={handleCloseTraining}
       >
         <MenuItem
           onClick={() => {
             dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
-            handleClosePlayWithTheComputer();
+            handleCloseTraining();
           }}
         >
             Like a Grandmaster
