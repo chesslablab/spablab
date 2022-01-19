@@ -12,6 +12,7 @@ import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
 import loadPgnDialogActionTypes from '../constants/loadPgnDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
+import ecoChessOpeningsDialogActionTypes from '../constants/ecoChessOpeningsDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/playLikeGrandmasterDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
@@ -121,8 +122,7 @@ const Buttons = ({ props }) => {
       >
         <MenuItem
           onClick={() => {
-            // TODO
-            // dispatch({ type: ecoChessOpeningsDialogActionTypes.OPEN });
+            dispatch({ type: ecoChessOpeningsDialogActionTypes.OPEN });
             handleCloseTraining();
           }}
         >
