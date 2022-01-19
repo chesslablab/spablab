@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@mui/styles';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem,
+  Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
+} from '@mui/material';
 import ecoOpeningsDialogActions from '../../constants/ecoOpeningsDialogActionTypes';
 
 const useStyles = makeStyles({
@@ -13,12 +15,16 @@ const useStyles = makeStyles({
 const EcoOpeningsDialog = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
+  const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
 
   const handleSearch = (event) => {
     event.preventDefault();
-    // TODO
-    console.log('TODO');
+    fetch('https://pchess.net/api/opening', {
+      method: 'POST',
+      body: JSON.stringify({ eco: event.target.elements.code.value })
+    }).then(res => res.json())
+      .then(res => setOpenings(res));
   }
 
   return (
@@ -29,9 +35,10 @@ const EcoOpeningsDialog = () => {
           <TextField
             select
             fullWidth
+            required
             name="code"
             label="Code"
-            defaultValue=""
+            defaultValue="A"
           >
             <MenuItem key={0} value="A">
               A: Flank Openings
@@ -56,6 +63,21 @@ const EcoOpeningsDialog = () => {
             </Button>
           </DialogActions>
         </form>
+        <TableContainer component={Paper}>
+          <Table stickyHeader aria-label="simple table">
+            <TableBody>
+              {
+                openings.map((item, i) => (
+                  <TableRow key={i}>
+                    <TableCell align="right">{item.eco}</TableCell>
+                    <TableCell align="right">{item.name}</TableCell>
+                    <TableCell align="right">{item.movetext}</TableCell>
+                  </TableRow>
+                ))
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
       </DialogContent>
     </Dialog>
   );
