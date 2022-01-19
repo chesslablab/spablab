@@ -22,6 +22,7 @@ import rematchOfferDialogReducer from './rematchOfferDialogReducer';
 import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer';
 import openingSearchEcoDialogReducer from './openingSearchEcoDialogReducer';
 import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
+import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 
 const rootReducer = combineReducers({
   alert: alertReducer,
@@ -46,7 +47,8 @@ const rootReducer = combineReducers({
   rematchOfferDialog: rematchOfferDialogReducer,
   playLikeGrandmasterDialog: playLikeGrandmasterDialogReducer,
   openingSearchEcoDialog: openingSearchEcoDialogReducer,
-  openingSearchNameDialog: openingSearchNameDialogReducer
+  openingSearchNameDialog: openingSearchNameDialogReducer,
+  openingSearchMovetextDialog: openingSearchMovetextDialogReducer
 });
 
 export default rootReducer;

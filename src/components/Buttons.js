@@ -15,6 +15,7 @@ import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDial
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
 import openingSearchNameDialogActionTypes from '../constants/openingSearchNameDialogActionTypes';
+import openingSearchMovetextDialogActionTypes from '../constants/openingSearchMovetextDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/playLikeGrandmasterDialogActionTypes';
 import alertActionTypes from '../constants/alertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -166,6 +167,14 @@ const Buttons = ({ props }) => {
           }}
         >
             Name
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch({ type: openingSearchMovetextDialogActionTypes.OPEN });
+            handleCloseOpeningSearch();
+          }}
+        >
+            Movetext
         </MenuItem>
       </Menu>
       <Button
