@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const EcoOpeningsDialog = () => {
+const OpeningSearchEcoDialog = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -83,4 +83,4 @@ const EcoOpeningsDialog = () => {
   );
 }
 
-export default EcoOpeningsDialog;
+export default OpeningSearchEcoDialog;
