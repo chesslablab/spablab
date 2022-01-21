@@ -252,16 +252,82 @@ export const onPlayfen = (data) => dispatch => {
     fen: data['/playfen'].fen
   };
   if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
+    if (store.getState().mode.current === modeNames.ANALYSIS) {
+      fetch('https://pchess.net/api/opening', {
+        method: 'POST',
+        body: JSON.stringify({ movetext: payload.movetext })
+      }).then(res => res.json())
+        .then(res => {
+          let info = '';
+          res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
+          if (info) {
+            dispatch({
+              type: alertActionTypes.INFO_DISPLAY,
+              payload: {
+                info: info
+              }
+            });
+          } else {
+            dispatch({
+              type: alertActionTypes.INFO_CLOSE
+            });
+          }
+        });
+    }
     dispatch({
       type: boardActionTypes.CASTLED_SHORT,
       payload: payload
     });
   } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_LONG) {
+    if (store.getState().mode.current === modeNames.ANALYSIS) {
+      fetch('https://pchess.net/api/opening', {
+        method: 'POST',
+        body: JSON.stringify({ movetext: payload.movetext })
+      }).then(res => res.json())
+        .then(res => {
+          let info = '';
+          res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
+          if (info) {
+            dispatch({
+              type: alertActionTypes.INFO_DISPLAY,
+              payload: {
+                info: info
+              }
+            });
+          } else {
+            dispatch({
+              type: alertActionTypes.INFO_CLOSE
+            });
+          }
+        });
+    }
     dispatch({
       type: boardActionTypes.CASTLED_LONG,
       payload: payload
     });
   } else if (data['/playfen'].legal === true) {
+    if (store.getState().mode.current === modeNames.ANALYSIS) {
+      fetch('https://pchess.net/api/opening', {
+        method: 'POST',
+        body: JSON.stringify({ movetext: payload.movetext })
+      }).then(res => res.json())
+        .then(res => {
+          let info = '';
+          res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
+          if (info) {
+            dispatch({
+              type: alertActionTypes.INFO_DISPLAY,
+              payload: {
+                info: info
+              }
+            });
+          } else {
+            dispatch({
+              type: alertActionTypes.INFO_CLOSE
+            });
+          }
+        });
+    }
     dispatch({
       type: boardActionTypes.VALID_MOVE,
       payload: payload

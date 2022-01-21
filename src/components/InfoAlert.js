@@ -6,6 +6,8 @@ import Alert from '@mui/material/Alert';
 const useStyles = makeStyles({
   infoAlert: {
     marginTop: 10,
+    maxHeight: 300,
+    overflowY: 'scroll',
   },
 });
 
@@ -14,9 +16,12 @@ const InfoAlert = ({props}) => {
   const state = useSelector(state => state);
 
   if (state.alert.open) {
+    let text = state.alert.info.split('\n').map((line, i) => {
+      return <p key={i}>{line}</p>
+    });
     return (
       <Alert className={classes.infoAlert} severity="info">
-        {state.alert.info}
+        {text}
       </Alert>
     );
   }
