@@ -1,6 +1,7 @@
 import { wsMssgResponse } from '../actions/serverActions';
 import alertActionTypes from '../constants/alertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
+import historyActionTypes from '../constants/historyActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/rematchAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
@@ -33,6 +34,13 @@ export const wsMssgListener = (data) => dispatch => {
       }
       break;
     case '/start' === cmd:
+      dispatch({ type: alertActionTypes.INFO_CLOSE });
+      dispatch({
+        type: historyActionTypes.GO_TO_BEGINNING,
+        payload: {
+          back: 0
+        }
+      });
       if (data['/start'].mode === modeNames.ANALYSIS) {
         dispatch(onStartAnalysis(data));
       } else if (data['/start'].mode === modeNames.GRANDMASTER) {
@@ -113,7 +121,6 @@ export const wsMssgListener = (data) => dispatch => {
 };
 
 export const onStartAnalysis = (data) => dispatch => {
-  dispatch({ type: alertActionTypes.INFO_CLOSE });
   dispatch({ type: modeActionTypes.SET_ANALYSIS });
   dispatch({ type: boardActionTypes.START });
 };
@@ -125,7 +132,6 @@ export const onStartGrandmaster = (data) => dispatch => {
       color: data['/start'].color
     }
   });
-  dispatch({ type: alertActionTypes.INFO_CLOSE });
   dispatch({ type: boardActionTypes.START });
   if (data['/start'].color === Pgn.symbol.BLACK) {
     dispatch({ type: boardActionTypes.FLIP });
@@ -134,7 +140,6 @@ export const onStartGrandmaster = (data) => dispatch => {
 
 export const onStartLoadfen = (data) => dispatch => {
   if (data['/start'].fen) {
-    dispatch({ type: alertActionTypes.INFO_CLOSE });
     dispatch({ type: modeActionTypes.SET_LOADFEN });
     dispatch({
       type: boardActionTypes.START_FEN,
@@ -154,7 +159,6 @@ export const onStartLoadfen = (data) => dispatch => {
 
 export const onStartLoadpgn = (data) => dispatch => {
   if (data['/start'].movetext) {
-    dispatch({ type: alertActionTypes.INFO_CLOSE });
     dispatch({ type: modeActionTypes.SET_LOADPGN });
     dispatch({
       type: boardActionTypes.START_PGN,
