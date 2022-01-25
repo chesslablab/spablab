@@ -1,5 +1,5 @@
 import { wsMssgResponse } from '../actions/serverActions';
-import chessOpeningAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningAjaxLoaderActionTypes';
+import chessOpeningAnalysisAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningAnalysisAjaxLoaderActionTypes';
 import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
@@ -37,7 +37,7 @@ export const wsMssgListener = (data) => dispatch => {
       break;
     case '/start' === cmd:
       // hide ajax loaders
-      dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
+      dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
       // close alerts
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: infoAlertActionTypes.CLOSE });
@@ -261,7 +261,7 @@ export const onPlayfen = (data) => dispatch => {
   if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
+      dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
@@ -279,7 +279,7 @@ export const onPlayfen = (data) => dispatch => {
           } else {
             dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
           }
-          dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
+          dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
         });
     }
     dispatch({
@@ -289,7 +289,7 @@ export const onPlayfen = (data) => dispatch => {
   } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_LONG) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
+      dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
@@ -307,7 +307,7 @@ export const onPlayfen = (data) => dispatch => {
           } else {
             dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
           }
-          dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
+          dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
         });
     }
     dispatch({
@@ -317,7 +317,7 @@ export const onPlayfen = (data) => dispatch => {
   } else if (data['/playfen'].legal === true) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
+      dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
@@ -335,7 +335,7 @@ export const onPlayfen = (data) => dispatch => {
           } else {
             dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
           }
-          dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
+          dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
         });
     }
     dispatch({

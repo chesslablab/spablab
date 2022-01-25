@@ -1,4 +1,4 @@
-import chessOpeningAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningAjaxLoaderActionTypes';
+import chessOpeningAnalysisAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningAnalysisAjaxLoaderActionTypes';
 
 const initialState = {
   show: false
@@ -6,11 +6,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case chessOpeningAjaxLoaderActionTypes.SHOW:
+    case chessOpeningAnalysisAjaxLoaderActionTypes.SHOW:
       return {
         show: true
       };
-    case chessOpeningAjaxLoaderActionTypes.HIDE:
+    case chessOpeningAnalysisAjaxLoaderActionTypes.HIDE:
       return initialState;
     default:
       return state;
