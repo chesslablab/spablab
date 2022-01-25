@@ -35,6 +35,7 @@ export const wsMssgListener = (data) => dispatch => {
       }
       break;
     case '/start' === cmd:
+      dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
       dispatch({ type: infoAlertActionTypes.CLOSE });
       dispatch({
         type: historyActionTypes.GO_TO_BEGINNING,
@@ -269,9 +270,7 @@ export const onPlayfen = (data) => dispatch => {
               }
             });
           } else {
-            dispatch({
-              type: chessOpeningAlertActionTypes.CLOSE
-            });
+            dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
           }
         });
     }
@@ -296,9 +295,7 @@ export const onPlayfen = (data) => dispatch => {
               }
             });
           } else {
-            dispatch({
-              type: chessOpeningAlertActionTypes.CLOSE
-            });
+            dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
           }
         });
     }
@@ -323,9 +320,7 @@ export const onPlayfen = (data) => dispatch => {
               }
             });
           } else {
-            dispatch({
-              type: chessOpeningAlertActionTypes.CLOSE
-            });
+            dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
           }
         });
     }
