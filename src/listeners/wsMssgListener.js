@@ -1,4 +1,5 @@
 import { wsMssgResponse } from '../actions/serverActions';
+import chessOpeningAlertActionTypes from '../constants/alert/chessOpeningAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
@@ -262,14 +263,14 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: infoAlertActionTypes.DISPLAY,
+              type: chessOpeningAlertActionTypes.DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
             dispatch({
-              type: infoAlertActionTypes.CLOSE
+              type: chessOpeningAlertActionTypes.CLOSE
             });
           }
         });
@@ -289,14 +290,14 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: infoAlertActionTypes.DISPLAY,
+              type: chessOpeningAlertActionTypes.DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
             dispatch({
-              type: infoAlertActionTypes.CLOSE
+              type: chessOpeningAlertActionTypes.CLOSE
             });
           }
         });
@@ -316,14 +317,14 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: infoAlertActionTypes.DISPLAY,
+              type: chessOpeningAlertActionTypes.DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
             dispatch({
-              type: infoAlertActionTypes.CLOSE
+              type: chessOpeningAlertActionTypes.CLOSE
             });
           }
         });

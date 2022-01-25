@@ -4,6 +4,7 @@ import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
 // alert reducers
+import chessOpeningAlertReducer from './chessOpeningAlertReducer';
 import infoAlertReducer from './infoAlertReducer';
 // dialog reducers
 import loadFenDialogReducer from './loadFenDialogReducer';
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   mode: modeReducer,
   server: serverReducer,
   // alert reducers
+  chessOpeningAlert: chessOpeningAlertReducer,
   infoAlert: infoAlertReducer,
   // dialog reducers
   loadFenDialog: loadFenDialogReducer,

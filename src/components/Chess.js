@@ -4,6 +4,10 @@ import { CssBaseline } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+// alert components
+import ChessOpeningAlert from "./Alert/ChessOpeningAlert.js";
+import InfoAlert from "./Alert/InfoAlert.js";
+// dialog components
 import LoadFenDialog from "./Dialog/LoadFenDialog";
 import FenDialog from "./Dialog/FenDialog";
 import TakebackOfferDialog from "./Dialog/TakebackOfferDialog";
@@ -29,7 +33,6 @@ import MainBreadcrumbs from "./MainBreadcrumbs";
 import MoveValidator from "./MoveValidator.js";
 import { default as ButtonsPlayFriendMode } from "./PlayFriendMode/Buttons.js";
 import GameClock from "./GameClock/GameClock";
-import InfoAlert from "./Alert/InfoAlert.js";
 import "../index.css";
 import store from "../store";
 
@@ -57,6 +60,7 @@ const Chess = ({ props }) => {
             <MoveValidator />
             <ButtonsPlayFriendMode />
           </Paper>
+          <ChessOpeningAlert />
           <InfoAlert />
         </Grid>
         <Grid item xs={12} md={6}>
