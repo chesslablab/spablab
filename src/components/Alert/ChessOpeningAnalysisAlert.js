@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 import Alert from '@mui/material/Alert';
 
 const useStyles = makeStyles({
-  chessOpeningAlert: {
+  infoAlert: {
     marginTop: 10,
     maxHeight: 300,
     overflowY: 'scroll',
@@ -18,12 +18,12 @@ const ChessOpeningAnalysisAlert = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
-  if (state.chessOpeningAlert.open) {
-    let text = state.chessOpeningAlert.info.split('\n').map((line, i) => {
+  if (state.chessOpeningAnalysisAlert.open) {
+    let text = state.chessOpeningAnalysisAlert.info.split('\n').map((line, i) => {
       return <div className={classes.line} key={i}>{line}</div>
     });
     return (
-      <Alert className={classes.chessOpeningAlert} severity="info">
+      <Alert className={classes.infoAlert} severity="info">
         {text}
       </Alert>
     );

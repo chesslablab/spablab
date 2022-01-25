@@ -36,7 +36,7 @@ const rootReducer = combineReducers({
   // ajax loader reducers
   chessOpeningAjaxLoader: chessOpeningAjaxLoaderReducer,
   // alert reducers
-  chessOpeningAlert: chessOpeningAnalysisAlertReducer,
+  chessOpeningAnalysisAlert: chessOpeningAnalysisAlertReducer,
   infoAlert: infoAlertReducer,
   // dialog reducers
   loadFenDialog: loadFenDialogReducer,
