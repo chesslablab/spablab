@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import alertReducer from './alertReducer';
 import boardReducer from './boardReducer';
 import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
+// alert reducers
+import infoAlertReducer from './infoAlertReducer';
 // dialog reducers
 import loadFenDialogReducer from './loadFenDialogReducer';
 import fenDialogReducer from './fenDialogReducer';
@@ -25,11 +26,12 @@ import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 
 const rootReducer = combineReducers({
-  alert: alertReducer,
   board: boardReducer,
   history: historyReducer,
   mode: modeReducer,
   server: serverReducer,
+  // alert reducers
+  infoAlert: infoAlertReducer,
   // dialog reducers
   loadFenDialog: loadFenDialogReducer,
   fenDialog: fenDialogReducer,
