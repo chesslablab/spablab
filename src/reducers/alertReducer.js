@@ -7,12 +7,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case alertInfoActionTypes.DISPLAY_INFO_ALERT:
+    case alertInfoActionTypes.DISPLAY:
       return {
         info: action.payload.info,
         open: true
       };
-    case alertInfoActionTypes.CLOSE_INFO_ALERT:
+    case alertInfoActionTypes.CLOSE:
       return initialState;
     default:
       return state;

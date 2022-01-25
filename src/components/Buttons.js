@@ -104,7 +104,7 @@ const Buttons = ({ props }) => {
       >
         <MenuItem onClick={() => {
           dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
-          dispatch({ type: alertInfoActionTypes.CLOSE_INFO_ALERT });
+          dispatch({ type: alertInfoActionTypes.CLOSE });
           dispatch({ type: modeActionTypes.SET_ANALYSIS });
           handleClosePlayFriend();
         }}>Create Invite Code</MenuItem>

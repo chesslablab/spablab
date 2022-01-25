@@ -20,7 +20,7 @@ const WhiteTimer = () => {
         }
       });
       dispatch({
-        type: alertInfoActionTypes.DISPLAY_INFO_ALERT,
+        type: alertInfoActionTypes.DISPLAY,
         payload: {
           info: 'Black wins.'
         }
