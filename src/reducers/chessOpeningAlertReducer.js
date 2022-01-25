@@ -1,4 +1,4 @@
-import chessOpeningAlertActionTypes from '../constants/alert/chessOpeningAlertActionTypes';
+import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 
 const initialState = {
   info: null,
@@ -7,12 +7,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case chessOpeningAlertActionTypes.DISPLAY:
+    case chessOpeningAnalysisAlertActionTypes.DISPLAY:
       return {
         info: action.payload.info,
         open: true
       };
-    case chessOpeningAlertActionTypes.CLOSE:
+    case chessOpeningAnalysisAlertActionTypes.CLOSE:
       return initialState;
     default:
       return state;

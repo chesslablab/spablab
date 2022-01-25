@@ -1,6 +1,6 @@
 import { wsMssgResponse } from '../actions/serverActions';
 import chessOpeningAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningAjaxLoaderActionTypes';
-import chessOpeningAlertActionTypes from '../constants/alert/chessOpeningAlertActionTypes';
+import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
@@ -39,7 +39,7 @@ export const wsMssgListener = (data) => dispatch => {
       // hide ajax loaders
       dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
       // close alerts
-      dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+      dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: infoAlertActionTypes.CLOSE });
       // reset history browser
       dispatch({
@@ -260,7 +260,7 @@ export const onPlayfen = (data) => dispatch => {
   };
   if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
-      dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+      dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
@@ -271,13 +271,13 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: chessOpeningAlertActionTypes.DISPLAY,
+              type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
-            dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+            dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
           }
           dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
         });
@@ -288,7 +288,7 @@ export const onPlayfen = (data) => dispatch => {
     });
   } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_LONG) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
-      dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+      dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
@@ -299,13 +299,13 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: chessOpeningAlertActionTypes.DISPLAY,
+              type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
-            dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+            dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
           }
           dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
         });
@@ -316,7 +316,7 @@ export const onPlayfen = (data) => dispatch => {
     });
   } else if (data['/playfen'].legal === true) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
-      dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+      dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
@@ -327,13 +327,13 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: chessOpeningAlertActionTypes.DISPLAY,
+              type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
-            dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+            dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
           }
           dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
         });
