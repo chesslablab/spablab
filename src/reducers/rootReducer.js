@@ -3,6 +3,8 @@ import boardReducer from './boardReducer';
 import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
+// ajax loader reducers
+import chessOpeningAjaxLoaderReducer from './chessOpeningAjaxLoaderReducer';
 // alert reducers
 import chessOpeningAlertReducer from './chessOpeningAlertReducer';
 import infoAlertReducer from './infoAlertReducer';
@@ -31,6 +33,8 @@ const rootReducer = combineReducers({
   history: historyReducer,
   mode: modeReducer,
   server: serverReducer,
+  // ajax loader reducers
+  chessOpeningAjaxLoader: chessOpeningAjaxLoaderReducer,
   // alert reducers
   chessOpeningAlert: chessOpeningAlertReducer,
   infoAlert: infoAlertReducer,

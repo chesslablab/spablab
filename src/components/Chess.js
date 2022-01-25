@@ -4,6 +4,8 @@ import { CssBaseline } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+// ajax loader components
+import ChessOpeningAjaxLoader from "./AjaxLoader/ChessOpeningAjaxLoader.js";
 // alert components
 import ChessOpeningAlert from "./Alert/ChessOpeningAlert.js";
 import InfoAlert from "./Alert/InfoAlert.js";
@@ -60,6 +62,7 @@ const Chess = ({ props }) => {
             <MoveValidator />
             <ButtonsPlayFriendMode />
           </Paper>
+          <ChessOpeningAjaxLoader />
           <ChessOpeningAlert />
           <InfoAlert />
         </Grid>

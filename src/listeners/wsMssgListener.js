@@ -1,4 +1,5 @@
 import { wsMssgResponse } from '../actions/serverActions';
+import chessOpeningAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningAjaxLoaderActionTypes';
 import chessOpeningAlertActionTypes from '../constants/alert/chessOpeningAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
@@ -35,8 +36,12 @@ export const wsMssgListener = (data) => dispatch => {
       }
       break;
     case '/start' === cmd:
+      // hide ajax loaders
+      dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
+      // close alerts
       dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
       dispatch({ type: infoAlertActionTypes.CLOSE });
+      // reset history browser
       dispatch({
         type: historyActionTypes.GO_TO_BEGINNING,
         payload: {
@@ -255,6 +260,8 @@ export const onPlayfen = (data) => dispatch => {
   };
   if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
+      dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+      dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
@@ -272,6 +279,7 @@ export const onPlayfen = (data) => dispatch => {
           } else {
             dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
           }
+          dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
         });
     }
     dispatch({
@@ -280,6 +288,8 @@ export const onPlayfen = (data) => dispatch => {
     });
   } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_LONG) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
+      dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+      dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
@@ -297,6 +307,7 @@ export const onPlayfen = (data) => dispatch => {
           } else {
             dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
           }
+          dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
         });
     }
     dispatch({
@@ -305,6 +316,8 @@ export const onPlayfen = (data) => dispatch => {
     });
   } else if (data['/playfen'].legal === true) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
+      dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
+      dispatch({ type: chessOpeningAjaxLoaderActionTypes.SHOW });
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
@@ -322,6 +335,7 @@ export const onPlayfen = (data) => dispatch => {
           } else {
             dispatch({ type: chessOpeningAlertActionTypes.CLOSE });
           }
+          dispatch({ type: chessOpeningAjaxLoaderActionTypes.HIDE });
         });
     }
     dispatch({
