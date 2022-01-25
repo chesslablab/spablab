@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ChessOpeningAlert = ({props}) => {
+const ChessOpeningAnalysisAlert = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
@@ -32,4 +32,4 @@ const ChessOpeningAlert = ({props}) => {
   return null;
 }
 
-export default ChessOpeningAlert;
+export default ChessOpeningAnalysisAlert;

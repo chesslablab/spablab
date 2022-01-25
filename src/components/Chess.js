@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 // ajax loader components
 import ChessOpeningAnalysisAjaxLoader from "./AjaxLoader/ChessOpeningAnalysisAjaxLoader.js";
 // alert components
-import ChessOpeningAlert from "./Alert/ChessOpeningAlert.js";
+import ChessOpeningAnalysisAlert from "./Alert/ChessOpeningAnalysisAlert.js";
 import InfoAlert from "./Alert/InfoAlert.js";
 // dialog components
 import LoadFenDialog from "./Dialog/LoadFenDialog";
@@ -63,7 +63,7 @@ const Chess = ({ props }) => {
             <ButtonsPlayFriendMode />
           </Paper>
           <ChessOpeningAnalysisAjaxLoader />
-          <ChessOpeningAlert />
+          <ChessOpeningAnalysisAlert />
           <InfoAlert />
         </Grid>
         <Grid item xs={12} md={6}>
