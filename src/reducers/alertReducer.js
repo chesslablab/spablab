@@ -1,4 +1,4 @@
-import alertInfoActionTypes from '../constants/alert/alertInfoActionTypes';
+import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 
 const initialState = {
   info: null,
@@ -7,12 +7,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case alertInfoActionTypes.DISPLAY:
+    case infoAlertActionTypes.DISPLAY:
       return {
         info: action.payload.info,
         open: true
       };
-    case alertInfoActionTypes.CLOSE:
+    case infoAlertActionTypes.CLOSE:
       return initialState;
     default:
       return state;

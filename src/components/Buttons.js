@@ -17,7 +17,7 @@ import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDial
 import openingSearchNameDialogActionTypes from '../constants/openingSearchNameDialogActionTypes';
 import openingSearchMovetextDialogActionTypes from '../constants/openingSearchMovetextDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/playLikeGrandmasterDialogActionTypes';
-import alertInfoActionTypes from '../constants/alert/alertInfoActionTypes';
+import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import pgnDialogActionTypes from '../constants/pgnDialogActionTypes';
 import { DownloadImage } from './DownloadImage'
@@ -104,7 +104,7 @@ const Buttons = ({ props }) => {
       >
         <MenuItem onClick={() => {
           dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
-          dispatch({ type: alertInfoActionTypes.CLOSE });
+          dispatch({ type: infoAlertActionTypes.CLOSE });
           dispatch({ type: modeActionTypes.SET_ANALYSIS });
           handleClosePlayFriend();
         }}>Create Invite Code</MenuItem>
