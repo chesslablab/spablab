@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
-import alertActionTypes from '../../constants/alertActionTypes';
+import alertInfoActionTypes from '../../constants/alert/alertInfoActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
 import Pgn from '../../utils/Pgn';
 
@@ -20,7 +20,7 @@ const BlackTimer = () => {
         }
       });
       dispatch({
-        type: alertActionTypes.INFO_DISPLAY,
+        type: alertInfoActionTypes.INFO_DISPLAY,
         payload: {
           info: 'White wins.'
         }

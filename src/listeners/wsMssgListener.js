@@ -1,5 +1,5 @@
 import { wsMssgResponse } from '../actions/serverActions';
-import alertActionTypes from '../constants/alertActionTypes';
+import alertInfoActionTypes from '../constants/alert/alertInfoActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
@@ -34,7 +34,7 @@ export const wsMssgListener = (data) => dispatch => {
       }
       break;
     case '/start' === cmd:
-      dispatch({ type: alertActionTypes.INFO_CLOSE });
+      dispatch({ type: alertInfoActionTypes.INFO_CLOSE });
       dispatch({
         type: historyActionTypes.GO_TO_BEGINNING,
         payload: {
@@ -58,7 +58,7 @@ export const wsMssgListener = (data) => dispatch => {
         dispatch(onAccept(data));
       } else {
         dispatch({
-          type: alertActionTypes.INFO_DISPLAY,
+          type: alertInfoActionTypes.INFO_DISPLAY,
           payload: {
             info: 'Invalid invite code.'
           }
@@ -149,7 +149,7 @@ export const onStartLoadfen = (data) => dispatch => {
     });
   } else {
     dispatch({
-      type: alertActionTypes.INFO_DISPLAY,
+      type: alertInfoActionTypes.INFO_DISPLAY,
       payload: {
         info: 'Invalid FEN.'
       }
@@ -170,7 +170,7 @@ export const onStartLoadpgn = (data) => dispatch => {
     });
   } else {
     dispatch({
-      type: alertActionTypes.INFO_DISPLAY,
+      type: alertInfoActionTypes.INFO_DISPLAY,
       payload: {
         info: 'Invalid PGN movetext.'
       }
@@ -196,7 +196,7 @@ export const onStartPlayfriend = (data) => dispatch => {
     dispatch({ type: boardActionTypes.FLIP });
   }
   dispatch({
-    type: alertActionTypes.INFO_DISPLAY,
+    type: alertInfoActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Waiting for friend to accept invitation...'
     }
@@ -226,7 +226,7 @@ export const onAccept = (data) => dispatch => {
     dispatch({ type: boardActionTypes.FLIP });
   }
   dispatch({ type: modeActionTypes.ACCEPT_PLAYFRIEND });
-  dispatch({ type: alertActionTypes.INFO_CLOSE });
+  dispatch({ type: alertInfoActionTypes.INFO_CLOSE });
 };
 
 export const onPiece = (data) => dispatch => {
@@ -262,14 +262,14 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: alertActionTypes.INFO_DISPLAY,
+              type: alertInfoActionTypes.INFO_DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
             dispatch({
-              type: alertActionTypes.INFO_CLOSE
+              type: alertInfoActionTypes.INFO_CLOSE
             });
           }
         });
@@ -289,14 +289,14 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: alertActionTypes.INFO_DISPLAY,
+              type: alertInfoActionTypes.INFO_DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
             dispatch({
-              type: alertActionTypes.INFO_CLOSE
+              type: alertInfoActionTypes.INFO_CLOSE
             });
           }
         });
@@ -316,14 +316,14 @@ export const onPlayfen = (data) => dispatch => {
           res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
           if (info) {
             dispatch({
-              type: alertActionTypes.INFO_DISPLAY,
+              type: alertInfoActionTypes.INFO_DISPLAY,
               payload: {
                 info: info
               }
             });
           } else {
             dispatch({
-              type: alertActionTypes.INFO_CLOSE
+              type: alertInfoActionTypes.INFO_CLOSE
             });
           }
         });
@@ -375,7 +375,7 @@ export const onDrawPropose = () => dispatch => {
 export const onDrawAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.DRAW_ACCEPT });
   dispatch({
-    type: alertActionTypes.INFO_DISPLAY,
+    type: alertInfoActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Draw offer accepted.'
     }
@@ -385,7 +385,7 @@ export const onDrawAccept = () => dispatch => {
 export const onDrawDecline = () => dispatch => {
   dispatch({ type: modeActionTypes.DRAW_DECLINE });
   dispatch({
-    type: alertActionTypes.INFO_DISPLAY,
+    type: alertInfoActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Draw offer declined.'
     }
@@ -403,7 +403,7 @@ export const onUndoMove = (data) => dispatch => {
 export const onResignAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.RESIGN_ACCEPT });
   dispatch({
-    type: alertActionTypes.INFO_DISPLAY,
+    type: alertInfoActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Chess game resigned.'
     }
@@ -419,7 +419,7 @@ export const onRematchPropose = () => dispatch => {
 export const onRematchAccept = () => dispatch => {
   dispatch({ type: modeActionTypes.REMATCH_ACCEPT });
   dispatch({
-    type: alertActionTypes.INFO_DISPLAY,
+    type: alertInfoActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Rematch accepted.'
     }
@@ -429,7 +429,7 @@ export const onRematchAccept = () => dispatch => {
 export const onRematchDecline = () => dispatch => {
   dispatch({ type: modeActionTypes.REMATCH_DECLINE });
   dispatch({
-    type: alertActionTypes.INFO_DISPLAY,
+    type: alertInfoActionTypes.INFO_DISPLAY,
     payload: {
       info: 'Rematch declined.'
     }
@@ -469,7 +469,7 @@ export const onRestart = (data) => dispatch => {
 export const onResponse = (data) => dispatch => {
   if (data['/response']) {
     dispatch({
-      type: alertActionTypes.INFO_DISPLAY,
+      type: alertInfoActionTypes.INFO_DISPLAY,
       payload: {
         info: 'Awesome! This move was made by a chess grandmaster.'
       }
@@ -486,7 +486,7 @@ export const onResponse = (data) => dispatch => {
     });
   } else {
     dispatch({
-      type: alertActionTypes.INFO_DISPLAY,
+      type: alertInfoActionTypes.INFO_DISPLAY,
       payload: {
         info: 'This line was not found in the grandmaster database.'
       }
