@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
-import alertReducer from './alertReducer';
 import boardReducer from './boardReducer';
 import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
+// ajax loader reducers
+import chessOpeningAjaxLoaderReducer from './chessOpeningAjaxLoaderReducer';
+// alert reducers
+import chessOpeningAnalysisAlertReducer from './chessOpeningAnalysisAlertReducer';
+import infoAlertReducer from './infoAlertReducer';
 // dialog reducers
 import loadFenDialogReducer from './loadFenDialogReducer';
 import fenDialogReducer from './fenDialogReducer';
@@ -25,11 +29,15 @@ import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 
 const rootReducer = combineReducers({
-  alert: alertReducer,
   board: boardReducer,
   history: historyReducer,
   mode: modeReducer,
   server: serverReducer,
+  // ajax loader reducers
+  chessOpeningAjaxLoader: chessOpeningAjaxLoaderReducer,
+  // alert reducers
+  chessOpeningAnalysisAlert: chessOpeningAnalysisAlertReducer,
+  infoAlert: infoAlertReducer,
   // dialog reducers
   loadFenDialog: loadFenDialogReducer,
   fenDialog: fenDialogReducer,

@@ -4,6 +4,12 @@ import { CssBaseline } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+// ajax loader components
+import ChessOpeningAnalysisAjaxLoader from "./AjaxLoader/ChessOpeningAnalysisAjaxLoader.js";
+// alert components
+import ChessOpeningAnalysisAlert from "./Alert/ChessOpeningAnalysisAlert.js";
+import InfoAlert from "./Alert/InfoAlert.js";
+// dialog components
 import LoadFenDialog from "./Dialog/LoadFenDialog";
 import FenDialog from "./Dialog/FenDialog";
 import TakebackOfferDialog from "./Dialog/TakebackOfferDialog";
@@ -29,7 +35,6 @@ import MainBreadcrumbs from "./MainBreadcrumbs";
 import MoveValidator from "./MoveValidator.js";
 import { default as ButtonsPlayFriendMode } from "./PlayFriendMode/Buttons.js";
 import GameClock from "./GameClock/GameClock";
-import InfoAlert from "./InfoAlert.js";
 import "../index.css";
 import store from "../store";
 
@@ -57,6 +62,8 @@ const Chess = ({ props }) => {
             <MoveValidator />
             <ButtonsPlayFriendMode />
           </Paper>
+          <ChessOpeningAnalysisAjaxLoader />
+          <ChessOpeningAnalysisAlert />
           <InfoAlert />
         </Grid>
         <Grid item xs={12} md={6}>
