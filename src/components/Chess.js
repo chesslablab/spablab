@@ -29,7 +29,7 @@ import MainBreadcrumbs from "./MainBreadcrumbs";
 import MoveValidator from "./MoveValidator.js";
 import { default as ButtonsPlayFriendMode } from "./PlayFriendMode/Buttons.js";
 import GameClock from "./GameClock/GameClock";
-import InfoAlert from "./InfoAlert.js";
+import InfoAlert from "./Alert/InfoAlert.js";
 import "../index.css";
 import store from "../store";
 
