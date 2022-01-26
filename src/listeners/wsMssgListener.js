@@ -72,13 +72,13 @@ export const wsMssgListener = (data) => dispatch => {
         });
       }
       break;
-    case '/playfen' === cmd:
+    case '/play_fen' === cmd:
       if (store.getState().mode.current === modeNames.PLAYFRIEND) {
-        if (store.getState().mode.playfriend.color !== data['/playfen'].turn) {
+        if (store.getState().mode.playfriend.color !== data['/play_fen'].turn) {
           dispatch({
             type: boardActionTypes.PLAYFRIEND_MOVE,
             payload: {
-              fen: data['/playfen'].fen
+              fen: data['/play_fen'].fen
             }
           });
         }
@@ -93,13 +93,13 @@ export const wsMssgListener = (data) => dispatch => {
         dispatch(onPiece(data));
       }
       break;
-    case '/heuristicpicture' === cmd:
+    case '/heuristic_picture' === cmd:
       dispatch(onHeuristicPicture(data));
       break;
     case '/fen' === cmd:
       dispatch(onFen(data));
       break;
-    case '/undomove' === cmd:
+    case '/undo_move' === cmd:
       dispatch(onUndoMove(data));
       break;
     case '/resign' === cmd:
@@ -253,12 +253,12 @@ export const onPiece = (data) => dispatch => {
 
 export const onPlayfen = (data) => dispatch => {
   const payload = {
-    check: data['/playfen'].check,
-    mate: data['/playfen'].mate,
-    movetext: data['/playfen'].movetext,
-    fen: data['/playfen'].fen
+    check: data['/play_fen'].check,
+    mate: data['/play_fen'].mate,
+    movetext: data['/play_fen'].movetext,
+    fen: data['/play_fen'].fen
   };
-  if (data['/playfen'].legal === Pgn.symbol.CASTLING_SHORT) {
+  if (data['/play_fen'].legal === Pgn.symbol.CASTLING_SHORT) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
@@ -286,7 +286,7 @@ export const onPlayfen = (data) => dispatch => {
       type: boardActionTypes.CASTLED_SHORT,
       payload: payload
     });
-  } else if (data['/playfen'].legal === Pgn.symbol.CASTLING_LONG) {
+  } else if (data['/play_fen'].legal === Pgn.symbol.CASTLING_LONG) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
@@ -314,7 +314,7 @@ export const onPlayfen = (data) => dispatch => {
       type: boardActionTypes.CASTLED_LONG,
       payload: payload
     });
-  } else if (data['/playfen'].legal === true) {
+  } else if (data['/play_fen'].legal === true) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
@@ -347,8 +347,8 @@ export const onPlayfen = (data) => dispatch => {
 
 export const onHeuristicPicture = (data) => dispatch => {
   const payload = {
-    dimensions: data['/heuristicpicture'].dimensions,
-    balance: data['/heuristicpicture'].balance
+    dimensions: data['/heuristic_picture'].dimensions,
+    balance: data['/heuristic_picture'].balance
   };
   dispatch({
     type: heuristicPictureDialogActionTypes.OPEN,
@@ -405,7 +405,7 @@ export const onDrawDecline = () => dispatch => {
 export const onUndoMove = (data) => dispatch => {
   dispatch({
     type: boardActionTypes.UNDO_MOVE,
-    payload: data['/undomove']
+    payload: data['/undo_move']
   });
   dispatch({ type: modeActionTypes.TAKEBACK_DECLINE });
 };
