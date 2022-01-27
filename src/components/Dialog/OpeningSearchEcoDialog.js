@@ -5,6 +5,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
   MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
 } from '@mui/material';
 import PublishIcon from '@mui/icons-material/Publish';
+import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
 import openingSearchEcoDialogActions from '../../constants/openingSearchEcoDialogActionTypes';
 
 const useStyles = makeStyles({
@@ -18,6 +19,14 @@ const OpeningSearchEcoDialog = () => {
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
+
+  const handleLoad = (movetext) => {
+    wsMssgQuit(state).then(() => {
+      wsMssgStartLoadpgn(state, movetext).then(() => {
+        dispatch({ type: openingSearchEcoDialogActions.CLOSE });
+      });
+    });
+  };
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -80,9 +89,7 @@ const OpeningSearchEcoDialog = () => {
                       <IconButton
                         aria-label="load"
                         color="primary"
-                        onClick={() => {
-                          console.log('foo');
-                        }}
+                        onClick={() => handleLoad(item.movetext)}
                       >
                         <PublishIcon />
                       </IconButton>
