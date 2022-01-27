@@ -84,13 +84,13 @@ Commands available:
 /captures Gets the pieces captured by both players.
 /draw {"action":["accept","decline","propose"]} Allows to offer a draw.
 /fen Prints the FEN string representation of the game.
-/heuristicpicture Takes a balanced heuristic picture of the current game.
+/heuristic_picture Takes a balanced heuristic picture of the current game.
 /history The current game's history.
-/ischeck Finds out if the game is in check.
-/ismate Finds out if the game is over.
+/is_check Finds out if the game is in check.
+/is_mate Finds out if the game is over.
 /piece {"position":"string"} Gets a piece by its position on the board.
 /pieces {"color":["w","b"]} Gets the pieces on the board by color.
-/playfen {"fen":"string"} Plays a chess move in shortened FEN format.
+/play_fen {"fen":"string"} Plays a chess move in shortened FEN format.
 /quit Quits a game.
 /rematch {"action":["accept","decline","propose"]} Allows to offer a rematch.
 /resign {"action":["accept"]} Allows to resign a game.
@@ -99,7 +99,7 @@ Commands available:
 /start {"mode":["analysis","grandmaster","loadfen","loadpgn","playfriend"],"fen":"string","movetext":"string","color":["w","b"],"min":"int","increment":"int"} Starts a new game.
 /status The current game status.
 /takeback {"action":["accept","decline","propose"]} Allows to manage a takeback.
-/undomove Undoes the last move.
+/undo_move Undoes the last move.
 
 Listening to commands...
 ```
