@@ -22,9 +22,7 @@ For example, if the title of the issue is [Update to MUI 5 #236](https://github.
 $ git checkout -b issue/236-update-to-MUI-5
 ```
 
-That's it.
-
-For further information please visit:
+That's it! For further information please visit:
 
 - [Redux Chess Testing Application](https://github.com/chesslablab/testing-redux-chess)
 - [PHP Chess Server](https://github.com/chesslablab/chess-server)
@@ -33,7 +31,7 @@ For further information please visit:
 
 ### But hang on a minute
 
-It's not always peaches and cream, especially at the beginning of your career path to becoming a full-stack developer. So I thought that it'd be helpful to share some of my favorite episodes on creating a startupish product, from tesing and DevOps to data science, among others.
+It may not be as easy as it sounds, especially at the beginning of your career path to becoming a full-stack developer. So I thought that it'd be helpful to share some of my favorite episodes on creating a startupish product, from tesing and DevOps to data science, among others.
 
 #### React
 
