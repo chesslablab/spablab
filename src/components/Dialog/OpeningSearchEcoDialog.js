@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@mui/styles';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem,
-  Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
+  MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
 } from '@mui/material';
+import PublishIcon from '@mui/icons-material/Publish';
+import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
 import openingSearchEcoDialogActions from '../../constants/openingSearchEcoDialogActionTypes';
 
 const useStyles = makeStyles({
@@ -17,6 +19,14 @@ const OpeningSearchEcoDialog = () => {
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
+
+  const handleLoad = (movetext) => {
+    wsMssgQuit(state).then(() => {
+      wsMssgStartLoadpgn(state, movetext).then(() => {
+        dispatch({ type: openingSearchEcoDialogActions.CLOSE });
+      });
+    });
+  };
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -75,6 +85,15 @@ const OpeningSearchEcoDialog = () => {
                     <TableCell align="right">{item.eco}</TableCell>
                     <TableCell align="right">{item.name}</TableCell>
                     <TableCell align="right">{item.movetext}</TableCell>
+                    <TableCell align="right">
+                      <IconButton
+                        aria-label="load"
+                        color="primary"
+                        onClick={() => handleLoad(item.movetext)}
+                      >
+                        <PublishIcon />
+                      </IconButton>
+                    </TableCell>
                   </TableRow>
                 ))
               }
