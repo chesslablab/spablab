@@ -1,7 +1,7 @@
 # ChesslabLab
 ## Open Source Community
 
-The game of chess involves quite a few different aspects of software development, which makes it a perfect topic for learning full-stack web development as well as for playing around with machine learning libraries. A bunch of public chess repos ranging from React and JavaScript to PHP are available on the [ChesslabLab](https://github.com/chesslablab) community on GitHub.
+The game of chess involves quite a few different aspects of software development, which makes it a perfect topic for learning full-stack web development as well as for playing around with machine learning libraries. A bunch of public chess repos ranging from React and JavaScript to PHP are available on the ChesslabLab community on GitHub.
 
 ### Contributing guidelines
 
