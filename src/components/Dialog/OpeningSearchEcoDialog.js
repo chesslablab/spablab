@@ -4,9 +4,12 @@ import { makeStyles } from '@mui/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
   MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
 } from '@mui/material';
+import ChessOpeningSearchEcoAjaxLoader from "../AjaxLoader/ChessOpeningSearchEcoAjaxLoader.js";
 import PublishIcon from '@mui/icons-material/Publish';
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import openingSearchEcoDialogActions from '../../constants/openingSearchEcoDialogActionTypes';
+import chessOpeningSearchEcoAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchEcoAjaxLoaderActionTypes';
+import openingSearchEcoDialogActionTypes from '../../constants/openingSearchEcoDialogActionTypes';
+
 
 const useStyles = makeStyles({
   form: {
@@ -23,18 +26,23 @@ const OpeningSearchEcoDialog = () => {
   const handleLoad = (movetext) => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, movetext).then(() => {
-        dispatch({ type: openingSearchEcoDialogActions.CLOSE });
+        dispatch({ type: openingSearchEcoDialogActionTypes.CLOSE });
       });
     });
   };
 
   const handleChange = (event) => {
     event.preventDefault();
+    setOpenings([]);
+    dispatch({ type: chessOpeningSearchEcoAjaxLoaderActionTypes.SHOW });
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
       body: JSON.stringify({ eco: event.target.value })
     }).then(res => res.json())
-      .then(res => setOpenings(res));
+      .then(res => {
+        setOpenings(res);
+        dispatch({ type: chessOpeningSearchEcoAjaxLoaderActionTypes.HIDE });
+      });
   }
 
   return (
@@ -73,12 +81,13 @@ const OpeningSearchEcoDialog = () => {
           <DialogActions>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: openingSearchEcoDialogActions.CLOSE });
+              dispatch({ type: openingSearchEcoDialogActionTypes.CLOSE });
             }}>
               Cancel
             </Button>
           </DialogActions>
         </form>
+        <ChessOpeningSearchEcoAjaxLoader />
         <TableContainer component={Paper}>
           <Table stickyHeader aria-label="simple table">
             <TableBody>
