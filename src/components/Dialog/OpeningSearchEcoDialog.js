@@ -28,11 +28,11 @@ const OpeningSearchEcoDialog = () => {
     });
   };
 
-  const handleSearch = (event) => {
+  const handleChange = (event) => {
     event.preventDefault();
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
-      body: JSON.stringify({ eco: event.target.elements.code.value })
+      body: JSON.stringify({ eco: event.target.value })
     }).then(res => res.json())
       .then(res => setOpenings(res));
   }
@@ -41,15 +41,19 @@ const OpeningSearchEcoDialog = () => {
     <Dialog open={state.openingSearchEcoDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>ECO Code</DialogTitle>
       <DialogContent>
-        <form className={classes.form} onSubmit={handleSearch}>
+        <form className={classes.form}>
           <TextField
             select
             fullWidth
             required
             name="code"
-            label="Code"
-            defaultValue="A"
+            label="Select an option"
+            defaultValue=""
+            onChange={handleChange}
           >
+            <MenuItem value="" disabled>
+              Select an option
+            </MenuItem>
             <MenuItem key={0} value="A">
               A: Flank Openings
             </MenuItem>
@@ -67,7 +71,6 @@ const OpeningSearchEcoDialog = () => {
             </MenuItem>
           </TextField>
           <DialogActions>
-            <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
               dispatch({ type: openingSearchEcoDialogActions.CLOSE });
