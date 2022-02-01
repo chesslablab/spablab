@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const OpeningSearchEcoDialog = () => {
+const ChessOpeningSearchEcoDialog = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -117,4 +117,4 @@ const OpeningSearchEcoDialog = () => {
   );
 }
 
-export default OpeningSearchEcoDialog;
+export default ChessOpeningSearchEcoDialog;

@@ -6,7 +6,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
 } from '@mui/material';
 import PublishIcon from '@mui/icons-material/Publish';
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import openingSearchMovetextDialogActions from '../../constants/openingSearchMovetextDialogActionTypes';
+import openingSearchNameDialogActions from '../../constants/openingSearchNameDialogActionTypes';
 
 const useStyles = makeStyles({
   form: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-const OpeningSearchMovetextDialog = () => {
+const ChessOpeningSearchNameDialog = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -23,7 +23,7 @@ const OpeningSearchMovetextDialog = () => {
   const handleLoad = (movetext) => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, movetext).then(() => {
-        dispatch({ type: openingSearchMovetextDialogActions.CLOSE });
+        dispatch({ type: openingSearchNameDialogActions.CLOSE });
       });
     });
   };
@@ -32,22 +32,22 @@ const OpeningSearchMovetextDialog = () => {
     event.preventDefault();
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
-      body: JSON.stringify({ movetext: event.target.elements.movetext.value })
+      body: JSON.stringify({ name: event.target.elements.name.value })
     }).then(res => res.json())
       .then(res => setOpenings(res));
   }
 
   return (
-    <Dialog open={state.openingSearchMovetextDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Movetext</DialogTitle>
+    <Dialog open={state.openingSearchNameDialog.open} maxWidth="sm" fullWidth={true}>
+      <DialogTitle>Name</DialogTitle>
       <DialogContent>
         <form className={classes.form} onSubmit={handleSearch}>
-          <TextField fullWidth required name="movetext" label="Movetext" />
+          <TextField fullWidth required name="name" label="Name" />
           <DialogActions>
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: openingSearchMovetextDialogActions.CLOSE });
+              dispatch({ type: openingSearchNameDialogActions.CLOSE });
             }}>
               Cancel
             </Button>
@@ -82,4 +82,4 @@ const OpeningSearchMovetextDialog = () => {
   );
 }
 
-export default OpeningSearchMovetextDialog;
+export default ChessOpeningSearchNameDialog;
