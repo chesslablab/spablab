@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-const OpeningSearchMovetextDialog = () => {
+const ChessOpeningSearchMovetextDialog = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -82,4 +82,4 @@ const OpeningSearchMovetextDialog = () => {
   );
 }
 
-export default OpeningSearchMovetextDialog;
+export default ChessOpeningSearchMovetextDialog;

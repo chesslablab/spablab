@@ -27,7 +27,7 @@ import RematchOfferDialog from "./Dialog/RematchOfferDialog";
 import PlayLikeGrandmasterDialog from "./Dialog/PlayLikeGrandmasterDialog";
 import ChessOpeningSearchEcoDialog from "./Dialog/ChessOpeningSearchEcoDialog";
 import OpeningSearchNameDialog from "./Dialog/ChessOpeningSearchNameDialog";
-import OpeningSearchMovetextDialog from "./Dialog/ChessOpeningSearchMovetextDialog";
+import ChessOpeningSearchMovetextDialog from "./Dialog/ChessOpeningSearchMovetextDialog";
 import Board from "./Board.js";
 import Buttons from "./Buttons.js";
 import History from "./History";
@@ -87,7 +87,7 @@ const Chess = ({ props }) => {
       <PlayLikeGrandmasterDialog />
       <ChessOpeningSearchEcoDialog />
       <OpeningSearchNameDialog />
-      <OpeningSearchMovetextDialog />
+      <ChessOpeningSearchMovetextDialog />
     </Provider>
   );
 };
