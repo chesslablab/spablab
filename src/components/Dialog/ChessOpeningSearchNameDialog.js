@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-const OpeningSearchNameDialog = () => {
+const ChessOpeningSearchNameDialog = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -82,4 +82,4 @@ const OpeningSearchNameDialog = () => {
   );
 }
 
-export default OpeningSearchNameDialog;
+export default ChessOpeningSearchNameDialog;
