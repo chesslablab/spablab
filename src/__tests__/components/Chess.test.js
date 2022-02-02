@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import boardActionTypes from 'constants/boardActionTypes';
-import createInviteCodeDialogActions from 'constants/createInviteCodeDialogActionTypes';
+import createInviteCodeDialogActions from 'constants/dialog/createInviteCodeDialogActionTypes';
 import store from 'store';
 
 const SyncDispatcher = (action) => {

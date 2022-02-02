@@ -11,7 +11,7 @@ import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
 import loadPgnDialogActionTypes from '../constants/loadPgnDialogActionTypes';
 import fenDialogActionTypes from '../constants/fenDialogActionTypes';
-import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
+import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
 import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
 import openingSearchNameDialogActionTypes from '../constants/openingSearchNameDialogActionTypes';
