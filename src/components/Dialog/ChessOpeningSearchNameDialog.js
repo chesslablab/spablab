@@ -23,6 +23,7 @@ const ChessOpeningSearchNameDialog = () => {
   const handleLoad = (movetext) => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, movetext).then(() => {
+        setOpenings([]);
         dispatch({ type: openingSearchNameDialogActions.CLOSE });
       });
     });
