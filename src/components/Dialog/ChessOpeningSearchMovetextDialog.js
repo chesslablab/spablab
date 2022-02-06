@@ -6,7 +6,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
 } from '@mui/material';
 import PublishIcon from '@mui/icons-material/Publish';
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import openingSearchMovetextDialogActions from '../../constants/dialog/openingSearchMovetextDialogActionTypes';
+import openingSearchMovetextDialogActions from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 
 const useStyles = makeStyles({
   form: {

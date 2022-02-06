@@ -5,8 +5,10 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
   MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
 } from '@mui/material';
 import PublishIcon from '@mui/icons-material/Publish';
+import ChessOpeningSearchNameAjaxLoader from "../AjaxLoader/ChessOpeningSearchNameAjaxLoader.js";
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import openingSearchNameDialogActions from '../../constants/dialog/openingSearchNameDialogActionTypes';
+import chessOpeningSearchNameAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchNameAjaxLoaderActionTypes';
+import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 
 const useStyles = makeStyles({
   form: {
@@ -24,18 +26,23 @@ const ChessOpeningSearchNameDialog = () => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, movetext).then(() => {
         setOpenings([]);
-        dispatch({ type: openingSearchNameDialogActions.CLOSE });
+        dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
       });
     });
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
+    setOpenings([]);
+    dispatch({ type: chessOpeningSearchNameAjaxLoaderActionTypes.SHOW });
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
       body: JSON.stringify({ name: event.target.elements.name.value })
     }).then(res => res.json())
-      .then(res => setOpenings(res));
+      .then(res => {
+        setOpenings(res);
+        dispatch({ type: chessOpeningSearchNameAjaxLoaderActionTypes.HIDE });
+      });
   }
 
   return (
@@ -48,12 +55,13 @@ const ChessOpeningSearchNameDialog = () => {
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: openingSearchNameDialogActions.CLOSE });
+              dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
             }}>
               Cancel
             </Button>
           </DialogActions>
         </form>
+        <ChessOpeningSearchNameAjaxLoader />
         <TableContainer component={Paper}>
           <Table stickyHeader aria-label="simple table">
             <TableBody>
