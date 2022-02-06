@@ -1,4 +1,4 @@
-import openingSearchNameDialogActionTypes from '../constants/openingSearchNameDialogActionTypes';
+import openingSearchNameDialogActionTypes from '../constants/dialog/openingSearchNameDialogActionTypes';
 
 const initialState = {
   open: false

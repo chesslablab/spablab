@@ -1,4 +1,4 @@
-import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
+import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
 
 const initialState = {
   open: false,

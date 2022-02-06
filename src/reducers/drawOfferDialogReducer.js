@@ -1,4 +1,4 @@
-import drawOfferDialogActionTypes from '../constants/drawOfferDialogActionTypes';
+import drawOfferDialogActionTypes from '../constants/dialog/drawOfferDialogActionTypes';
 
 const initialState = {
   open: false

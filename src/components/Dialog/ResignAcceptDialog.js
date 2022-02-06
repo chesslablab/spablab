@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgResign } from "../../actions/serverActions";
-import resignAcceptDialogActionTypes from "../../constants/resignAcceptDialogActionTypes";
+import resignAcceptDialogActionTypes from "../../constants/dialog/resignAcceptDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 import Wording from "../../utils/Wording.js";
 

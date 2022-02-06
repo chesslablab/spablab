@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@mui/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { wsMssgQuit, wsMssgResponse, wsMssgStartGrandmaster } from '../../actions/serverActions';
-import playLikeGrandmasterDialogActions from '../../constants/playLikeGrandmasterDialogActionTypes';
+import playLikeGrandmasterDialogActions from '../../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 
 const useStyles = makeStyles({

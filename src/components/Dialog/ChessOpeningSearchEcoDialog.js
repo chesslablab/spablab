@@ -8,7 +8,7 @@ import ChessOpeningSearchEcoAjaxLoader from "../AjaxLoader/ChessOpeningSearchEco
 import PublishIcon from '@mui/icons-material/Publish';
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
 import chessOpeningSearchEcoAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchEcoAjaxLoaderActionTypes';
-import openingSearchEcoDialogActionTypes from '../../constants/openingSearchEcoDialogActionTypes';
+import openingSearchEcoDialogActionTypes from '../../constants/dialog/openingSearchEcoDialogActionTypes';
 
 
 const useStyles = makeStyles({

@@ -3,7 +3,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Te
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@mui/styles';
 import { wsMssgQuit, wsMssgStartPlayfriend } from '../../actions/serverActions';
-import createInviteCodeDialogActions from '../../constants/createInviteCodeDialogActionTypes';
+import createInviteCodeDialogActions from '../../constants/dialog/createInviteCodeDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 
 const useStyles = makeStyles({

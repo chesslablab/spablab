@@ -1,4 +1,4 @@
-import resignAcceptDialogActionTypes from '../constants/resignAcceptDialogActionTypes';
+import resignAcceptDialogActionTypes from '../constants/dialog/resignAcceptDialogActionTypes';
 
 const initialState = {
   open: false

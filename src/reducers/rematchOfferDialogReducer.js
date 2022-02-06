@@ -1,4 +1,4 @@
-import rematchOfferDialogActionTypes from '../constants/rematchOfferDialogActionTypes';
+import rematchOfferDialogActionTypes from '../constants/dialog/rematchOfferDialogActionTypes';
 
 const initialState = {
   open: false

@@ -9,7 +9,7 @@ import {
 import Alert from "@mui/material/Alert";
 import HeuristicPicture from "../HeuristicPicture.js";
 import { useDispatch, useSelector } from "react-redux";
-import heuristicPictureDialogActions from "../../constants/heuristicPictureDialogActionTypes";
+import heuristicPictureDialogActions from "../../constants/dialog/heuristicPictureDialogActionTypes";
 
 const HeuristicPictureDialog = () => {
   const state = useSelector((state) => state);

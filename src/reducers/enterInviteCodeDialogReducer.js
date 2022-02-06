@@ -1,4 +1,4 @@
-import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
+import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
 
 const initialState = {
   open: false

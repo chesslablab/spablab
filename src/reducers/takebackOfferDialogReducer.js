@@ -1,4 +1,4 @@
-import takebackOfferDialogActionTypes from '../constants/takebackOfferDialogActionTypes';
+import takebackOfferDialogActionTypes from '../constants/dialog/takebackOfferDialogActionTypes';
 
 const initialState = {
   open: false

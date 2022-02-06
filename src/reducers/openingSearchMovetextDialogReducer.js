@@ -1,4 +1,4 @@
-import openingSearchMovetextDialogActionTypes from '../constants/openingSearchMovetextDialogActionTypes';
+import openingSearchMovetextDialogActionTypes from '../constants/dialog/openingSearchMovetextDialogActionTypes';
 
 const initialState = {
   open: false

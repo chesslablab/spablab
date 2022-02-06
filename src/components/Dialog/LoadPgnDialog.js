@@ -3,7 +3,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
 import boardActionTypes from "../../constants/boardActionTypes";
-import loadPgnDialogActions from "../../constants/loadPgnDialogActionTypes";
+import loadPgnDialogActions from "../../constants/dialog/loadPgnDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 
 const LoadPgnDialog = () => {

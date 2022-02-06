@@ -2,9 +2,9 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useSelector, useDispatch } from 'react-redux';
-import takebackOfferDialogActionTypes from '../../constants/takebackOfferDialogActionTypes';
-import drawOfferDialogActionTypes from '../../constants/drawOfferDialogActionTypes';
-import resignAcceptDialogActionTypes from '../../constants/resignAcceptDialogActionTypes';
+import takebackOfferDialogActionTypes from '../../constants/dialog/takebackOfferDialogActionTypes';
+import drawOfferDialogActionTypes from '../../constants/dialog/drawOfferDialogActionTypes';
+import resignAcceptDialogActionTypes from '../../constants/dialog/resignAcceptDialogActionTypes';
 
 const GameButtons = () => {
   const state = useSelector(state => state);
