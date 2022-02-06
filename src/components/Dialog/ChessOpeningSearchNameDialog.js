@@ -8,7 +8,7 @@ import PublishIcon from '@mui/icons-material/Publish';
 import ChessOpeningSearchNameAjaxLoader from "../AjaxLoader/ChessOpeningSearchNameAjaxLoader.js";
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
 import chessOpeningSearchNameAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchNameAjaxLoaderActionTypes';
-import openingSearchNameDialogActionTypes from '../../constants/dialog/openingSearchNameDialogActionTypes';
+import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 
 const useStyles = makeStyles({
   form: {
@@ -26,7 +26,7 @@ const ChessOpeningSearchNameDialog = () => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, movetext).then(() => {
         setOpenings([]);
-        dispatch({ type: openingSearchNameDialogActionTypes.CLOSE });
+        dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
       });
     });
   };
@@ -55,7 +55,7 @@ const ChessOpeningSearchNameDialog = () => {
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: openingSearchNameDialogActionTypes.CLOSE });
+              dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
             }}>
               Cancel
             </Button>

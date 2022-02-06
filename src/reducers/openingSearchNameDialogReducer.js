@@ -1,4 +1,4 @@
-import openingSearchNameDialogActionTypes from '../constants/dialog/openingSearchNameDialogActionTypes';
+import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case openingSearchNameDialogActionTypes.CLOSE:
+    case chessOpeningSearchNameDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case openingSearchNameDialogActionTypes.OPEN:
+    case chessOpeningSearchNameDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,

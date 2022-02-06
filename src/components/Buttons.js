@@ -14,8 +14,8 @@ import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
-import openingSearchNameDialogActionTypes from '../constants/dialog/openingSearchNameDialogActionTypes';
-import openingSearchMovetextDialogActionTypes from '../constants/dialog/openingSearchMovetextDialogActionTypes';
+import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
+import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import pgnDialogActionTypes from '../constants/dialog/pgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
@@ -162,7 +162,7 @@ const Buttons = ({ props }) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            dispatch({ type: openingSearchNameDialogActionTypes.OPEN });
+            dispatch({ type: chessOpeningSearchNameDialogActionTypes.OPEN });
             handleCloseOpeningSearch();
           }}
         >
@@ -170,7 +170,7 @@ const Buttons = ({ props }) => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            dispatch({ type: openingSearchMovetextDialogActionTypes.OPEN });
+            dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.OPEN });
             handleCloseOpeningSearch();
           }}
         >

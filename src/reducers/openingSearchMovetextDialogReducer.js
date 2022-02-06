@@ -1,4 +1,4 @@
-import openingSearchMovetextDialogActionTypes from '../constants/dialog/openingSearchMovetextDialogActionTypes';
+import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case openingSearchMovetextDialogActionTypes.CLOSE:
+    case chessOpeningSearchMovetextDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case openingSearchMovetextDialogActionTypes.OPEN:
+    case chessOpeningSearchMovetextDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,
