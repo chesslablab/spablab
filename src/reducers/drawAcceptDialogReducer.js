@@ -1,4 +1,4 @@
-import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
+import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 
 const initialState = {
   open: false

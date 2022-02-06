@@ -9,7 +9,7 @@ import {
 import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgRematch } from "../../actions/serverActions";
-import rematchOfferDialogActionTypes from "../../constants/rematchOfferDialogActionTypes";
+import rematchOfferDialogActionTypes from "../../constants/dialog/rematchOfferDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 
 const RematchOfferDialog = () => {

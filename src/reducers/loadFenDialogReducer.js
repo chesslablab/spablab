@@ -1,4 +1,4 @@
-import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
+import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
 
 const initialState = {
   open: false

@@ -4,11 +4,11 @@ import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpenin
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
-import drawAcceptDialogActionTypes from '../constants/drawAcceptDialogActionTypes';
-import rematchAcceptDialogActionTypes from '../constants/rematchAcceptDialogActionTypes';
-import heuristicPictureDialogActionTypes from '../constants/heuristicPictureDialogActionTypes';
-import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
-import fenDialogActionTypes from '../constants/fenDialogActionTypes';
+import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
+import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
+import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
+import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
+import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";

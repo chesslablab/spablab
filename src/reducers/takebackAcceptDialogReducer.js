@@ -1,4 +1,4 @@
-import takebackAcceptDialogActionTypes from '../constants/takebackAcceptDialogActionTypes';
+import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 
 const initialState = {
   open: false

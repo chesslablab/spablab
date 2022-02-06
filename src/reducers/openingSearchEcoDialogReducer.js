@@ -1,4 +1,4 @@
-import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
+import openingSearchEcoDialogActionTypes from '../constants/dialog/openingSearchEcoDialogActionTypes';
 
 const initialState = {
   open: false

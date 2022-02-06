@@ -1,4 +1,4 @@
-import fenDialogActionTypes from '../constants/fenDialogActionTypes';
+import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 
 const initialState = {
   open: false,

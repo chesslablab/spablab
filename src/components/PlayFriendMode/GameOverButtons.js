@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
-import rematchOfferDialogActionTypes from "../../constants/rematchOfferDialogActionTypes";
+import rematchOfferDialogActionTypes from "../../constants/dialog/rematchOfferDialogActionTypes";
 
 const GameOverButtons = () => {
   const state = useSelector(state => state);

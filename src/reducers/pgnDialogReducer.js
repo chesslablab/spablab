@@ -1,4 +1,4 @@
-import pgnDialogActionTypes from '../constants/pgnDialogActionTypes';
+import pgnDialogActionTypes from '../constants/dialog/pgnDialogActionTypes';
 
 const initialState = {
   open: false

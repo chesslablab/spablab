@@ -9,7 +9,7 @@ import {
 import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgTakeback } from "../../actions/serverActions";
-import takebackOfferDialogActionTypes from "../../constants/takebackOfferDialogActionTypes";
+import takebackOfferDialogActionTypes from "../../constants/dialog/takebackOfferDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 
 const TakebackOfferDialog = () => {

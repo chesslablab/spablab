@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, TextField } from "@mui/material";
 import { wsMssgAccept, wsMssgQuit } from "../../actions/serverActions";
-import enterInviteCodeDialogActions from "../../constants/enterInviteCodeDialogActionTypes";
+import enterInviteCodeDialogActions from "../../constants/dialog/enterInviteCodeDialogActionTypes";
 
 const EnterInviteCodeDialog = () => {
   const state = useSelector((state) => state);

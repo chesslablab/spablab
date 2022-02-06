@@ -8,18 +8,18 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
-import loadFenDialogActionTypes from '../constants/loadFenDialogActionTypes';
-import loadPgnDialogActionTypes from '../constants/loadPgnDialogActionTypes';
-import fenDialogActionTypes from '../constants/fenDialogActionTypes';
-import createInviteCodeDialogActionTypes from '../constants/createInviteCodeDialogActionTypes';
-import enterInviteCodeDialogActionTypes from '../constants/enterInviteCodeDialogActionTypes';
-import openingSearchEcoDialogActionTypes from '../constants/openingSearchEcoDialogActionTypes';
-import openingSearchNameDialogActionTypes from '../constants/openingSearchNameDialogActionTypes';
-import openingSearchMovetextDialogActionTypes from '../constants/openingSearchMovetextDialogActionTypes';
-import playLikeGrandmasterDialogActionTypes from '../constants/playLikeGrandmasterDialogActionTypes';
+import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
+import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
+import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
+import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
+import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
+import openingSearchEcoDialogActionTypes from '../constants/dialog/openingSearchEcoDialogActionTypes';
+import openingSearchNameDialogActionTypes from '../constants/dialog/openingSearchNameDialogActionTypes';
+import openingSearchMovetextDialogActionTypes from '../constants/dialog/openingSearchMovetextDialogActionTypes';
+import pgnDialogActionTypes from '../constants/dialog/pgnDialogActionTypes';
+import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import pgnDialogActionTypes from '../constants/pgnDialogActionTypes';
 import { DownloadImage } from './DownloadImage'
 import {
   wsMssgStartAnalysis,

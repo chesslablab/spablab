@@ -9,7 +9,7 @@ import {
 import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
 import { wsMssgDraw } from "../../actions/serverActions";
-import drawOfferDialogActionTypes from "../../constants/drawOfferDialogActionTypes";
+import drawOfferDialogActionTypes from "../../constants/dialog/drawOfferDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 
 const DrawOfferDialog = () => {

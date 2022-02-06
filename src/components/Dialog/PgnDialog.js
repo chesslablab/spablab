@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import pgnDialogActions from "../../constants/pgnDialogActionTypes";
+import pgnDialogActions from "../../constants/dialog/pgnDialogActionTypes";
 
 const PgnDialog = () => {
   const state = useSelector((state) => state);
