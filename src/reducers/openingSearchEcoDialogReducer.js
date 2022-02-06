@@ -1,4 +1,4 @@
-import openingSearchEcoDialogActionTypes from '../constants/dialog/openingSearchEcoDialogActionTypes';
+import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case openingSearchEcoDialogActionTypes.CLOSE:
+    case chessOpeningSearchEcoDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case openingSearchEcoDialogActionTypes.OPEN:
+    case chessOpeningSearchEcoDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,

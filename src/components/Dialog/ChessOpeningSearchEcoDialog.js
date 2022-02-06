@@ -8,7 +8,7 @@ import ChessOpeningSearchEcoAjaxLoader from "../AjaxLoader/ChessOpeningSearchEco
 import PublishIcon from '@mui/icons-material/Publish';
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
 import chessOpeningSearchEcoAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchEcoAjaxLoaderActionTypes';
-import openingSearchEcoDialogActionTypes from '../../constants/dialog/openingSearchEcoDialogActionTypes';
+import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 
 
 const useStyles = makeStyles({
@@ -26,7 +26,7 @@ const ChessOpeningSearchEcoDialog = () => {
   const handleLoad = (movetext) => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, movetext).then(() => {
-        dispatch({ type: openingSearchEcoDialogActionTypes.CLOSE });
+        dispatch({ type: chessOpeningSearchEcoDialogActionTypes.CLOSE });
       });
     });
   };
@@ -81,7 +81,7 @@ const ChessOpeningSearchEcoDialog = () => {
           <DialogActions>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: openingSearchEcoDialogActionTypes.CLOSE });
+              dispatch({ type: chessOpeningSearchEcoDialogActionTypes.CLOSE });
             }}>
               Cancel
             </Button>

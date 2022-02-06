@@ -13,7 +13,7 @@ import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTyp
 import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
-import openingSearchEcoDialogActionTypes from '../constants/dialog/openingSearchEcoDialogActionTypes';
+import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import openingSearchNameDialogActionTypes from '../constants/dialog/openingSearchNameDialogActionTypes';
 import openingSearchMovetextDialogActionTypes from '../constants/dialog/openingSearchMovetextDialogActionTypes';
 import pgnDialogActionTypes from '../constants/dialog/pgnDialogActionTypes';
@@ -154,7 +154,7 @@ const Buttons = ({ props }) => {
       >
         <MenuItem
           onClick={() => {
-            dispatch({ type: openingSearchEcoDialogActionTypes.OPEN });
+            dispatch({ type: chessOpeningSearchEcoDialogActionTypes.OPEN });
             handleCloseOpeningSearch();
           }}
         >
