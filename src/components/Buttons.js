@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Button, ButtonGroup, Menu, MenuItem } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
-import TuneIcon from '@mui/icons-material/Tune';
-import PublishIcon from '@mui/icons-material/Publish';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import PublishIcon from '@mui/icons-material/Publish';
+import PsychologyIcon from '@mui/icons-material/Psychology';
 import SettingsIcon from '@mui/icons-material/Settings';
+import TuneIcon from '@mui/icons-material/Tune';
 import { useDispatch, useSelector } from 'react-redux';
 import boardActionTypes from '../constants/boardActionTypes';
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
@@ -120,7 +121,7 @@ const Buttons = ({ props }) => {
         Analysis Board
       </Button>
       <Button
-        startIcon={<ComputerIcon />}
+        startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
       >
         Training
