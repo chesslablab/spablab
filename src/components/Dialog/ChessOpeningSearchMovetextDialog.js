@@ -25,6 +25,7 @@ const ChessOpeningSearchMovetextDialog = () => {
   const handleLoad = (movetext) => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, movetext).then(() => {
+        setOpenings([]);
         dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
       });
     });
@@ -60,6 +61,7 @@ const ChessOpeningSearchMovetextDialog = () => {
             </Button>
           </DialogActions>
         </form>
+        <ChessOpeningSearchMovetextAjaxLoader />
         <TableContainer component={Paper}>
           <Table stickyHeader aria-label="simple table">
             <TableBody>
