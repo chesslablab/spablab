@@ -5,8 +5,10 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
   MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
 } from '@mui/material';
 import PublishIcon from '@mui/icons-material/Publish';
+import ChessOpeningSearchMovetextAjaxLoader from "../AjaxLoader/ChessOpeningSearchMovetextAjaxLoader.js";
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import openingSearchMovetextDialogActions from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
+import chessOpeningSearchMovetextAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchMovetextAjaxLoaderActionTypes';
+import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 
 const useStyles = makeStyles({
   form: {
@@ -23,18 +25,23 @@ const ChessOpeningSearchMovetextDialog = () => {
   const handleLoad = (movetext) => {
     wsMssgQuit(state).then(() => {
       wsMssgStartLoadpgn(state, movetext).then(() => {
-        dispatch({ type: openingSearchMovetextDialogActions.CLOSE });
+        dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
       });
     });
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
+    setOpenings([]);
+    dispatch({ type: chessOpeningSearchMovetextAjaxLoaderActionTypes.SHOW });
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
       body: JSON.stringify({ movetext: event.target.elements.movetext.value })
     }).then(res => res.json())
-      .then(res => setOpenings(res));
+    .then(res => {
+      setOpenings(res);
+      dispatch({ type: chessOpeningSearchMovetextAjaxLoaderActionTypes.HIDE });
+    });
   }
 
   return (
@@ -47,7 +54,7 @@ const ChessOpeningSearchMovetextDialog = () => {
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: openingSearchMovetextDialogActions.CLOSE });
+              dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
             }}>
               Cancel
             </Button>
