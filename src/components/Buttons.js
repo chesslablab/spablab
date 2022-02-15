@@ -40,7 +40,7 @@ const Buttons = ({ props }) => {
   const [anchorElLoad, setAnchorElLoad] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
-   const matches = useMediaQuery("(min-width:768px)");
+  const matches = useMediaQuery("(min-width:768px)");
 
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
@@ -86,8 +86,9 @@ const Buttons = ({ props }) => {
 
   return (
     <ButtonGroup
-      variant="contained"
-      aria-label="outlined primary button group"
+      size="small"
+      variant="text"
+      aria-label="text button group"
       orientation={`${matches ? `horizontal` : `vertical`}`}
       fullWidth={matches ? false : true}
     >
@@ -193,11 +194,11 @@ const Buttons = ({ props }) => {
         <MenuItem onClick={() => {
           dispatch({ type: loadFenDialogActionTypes.OPEN });
           handleCloseLoad();
-        }}>FEN</MenuItem>
+        }}>FEN String</MenuItem>
         <MenuItem onClick={() => {
           dispatch({ type: loadPgnDialogActionTypes.OPEN });
           handleCloseLoad();
-        }}>PGN</MenuItem>
+        }}>PGN Movetext</MenuItem>
       </Menu>
       <Button
         onClick={handleClickSettings}
@@ -239,7 +240,7 @@ const Buttons = ({ props }) => {
             });
           }}
         >
-          FEN
+          FEN String
         </MenuItem>
         <MenuItem
           key={3}
