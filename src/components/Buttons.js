@@ -259,7 +259,15 @@ const Buttons = ({ props }) => {
             });
           }}
         >
-          Image
+          PNG Image
+        </MenuItem>
+        <MenuItem
+          key={5}
+          onClick={() => {
+            // TODO
+          }}
+        >
+          GIF Animation
         </MenuItem>
       </Menu>
     </ButtonGroup>
