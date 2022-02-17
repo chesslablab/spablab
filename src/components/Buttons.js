@@ -84,6 +84,22 @@ const Buttons = ({ props }) => {
 
   const handleDownloadImage = () => DownloadImage();
 
+  const handleDownloadMp4 = async () => {
+    await fetch('https://pchess.net/api/download_mp4', {
+      method: 'POST',
+      body: JSON.stringify({ movetext: state.board.movetext })
+    }).then(res => res.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "chessgame.mp4";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+  }
+
   return (
     <ButtonGroup
       size="small"
@@ -264,10 +280,12 @@ const Buttons = ({ props }) => {
         <MenuItem
           key={5}
           onClick={() => {
-            // TODO
+            handleDownloadMp4().then(() => {
+              handleCloseSettings();
+            });
           }}
         >
-          GIF Animation
+          MP4 Video
         </MenuItem>
       </Menu>
     </ButtonGroup>
