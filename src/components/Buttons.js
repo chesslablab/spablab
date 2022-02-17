@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Button, ButtonGroup, Menu, MenuItem } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
+import DownloadIcon from '@mui/icons-material/Download';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import PublishIcon from '@mui/icons-material/Publish';
 import PsychologyIcon from '@mui/icons-material/Psychology';
@@ -38,6 +39,7 @@ const Buttons = ({ props }) => {
   const [anchorElTraining, setAnchorElTraining] = React.useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = React.useState(null);
   const [anchorElLoad, setAnchorElLoad] = React.useState(null);
+  const [anchorElDownload, setAnchorElDownload] = React.useState(null);
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
   const matches = useMediaQuery("(min-width:768px)");
@@ -58,6 +60,10 @@ const Buttons = ({ props }) => {
     setAnchorElLoad(null);
   };
 
+  const handleCloseDownload = () => {
+    setAnchorElDownload(null);
+  };
+
   const handleCloseSettings = () => {
     setAnchorElSettings(null);
   };
@@ -76,6 +82,10 @@ const Buttons = ({ props }) => {
 
   const handleClickLoad = (event) => {
     setAnchorElLoad(event.currentTarget);
+  };
+
+  const handleClickDownload = (event) => {
+    setAnchorElDownload(event.currentTarget);
   };
 
   const handleClickSettings = (event) => {
@@ -149,13 +159,18 @@ const Buttons = ({ props }) => {
         open={Boolean(anchorElTraining)}
         onClose={handleCloseTraining}
       >
-        <MenuItem
-          onClick={() => {
-            dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
+        <MenuItem onClick={() => {
+          wsMssgHeuristicpicture(state).then(() => {
             handleCloseTraining();
-          }}
-        >
-            Like a Grandmaster
+          });
+        }}>
+          Heuristic Picture
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
+          handleCloseTraining();
+        }}>
+          Like a Grandmaster
         </MenuItem>
       </Menu>
       <Button
@@ -170,29 +185,23 @@ const Buttons = ({ props }) => {
         open={Boolean(anchorElOpeningSearch)}
         onClose={handleCloseOpeningSearch}
       >
-        <MenuItem
-          onClick={() => {
-            dispatch({ type: chessOpeningSearchEcoDialogActionTypes.OPEN });
-            handleCloseOpeningSearch();
-          }}
-        >
-            ECO Code
+        <MenuItem onClick={() => {
+          dispatch({ type: chessOpeningSearchEcoDialogActionTypes.OPEN });
+          handleCloseOpeningSearch();
+        }}>
+          ECO Code
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            dispatch({ type: chessOpeningSearchNameDialogActionTypes.OPEN });
-            handleCloseOpeningSearch();
-          }}
-        >
-            Name
+        <MenuItem onClick={() => {
+          dispatch({ type: chessOpeningSearchNameDialogActionTypes.OPEN });
+          handleCloseOpeningSearch();
+        }}>
+          Name
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.OPEN });
-            handleCloseOpeningSearch();
-          }}
-        >
-            Movetext
+        <MenuItem onClick={() => {
+          dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.OPEN });
+          handleCloseOpeningSearch();
+        }}>
+          Movetext
         </MenuItem>
       </Menu>
       <Button
@@ -217,6 +226,33 @@ const Buttons = ({ props }) => {
         }}>PGN Movetext</MenuItem>
       </Menu>
       <Button
+        startIcon={<DownloadIcon />}
+        onClick={handleClickDownload}
+      >
+        Download
+      </Button>
+      <Menu
+        anchorEl={anchorElDownload}
+        keepMounted
+        open={Boolean(anchorElDownload)}
+        onClose={handleCloseDownload}
+      >
+        <MenuItem onClick={() => {
+          handleDownloadImage().then(() => {
+            handleCloseDownload();
+          });
+        }}>
+          PNG Image
+        </MenuItem>
+        <MenuItem onClick={() => {
+          handleDownloadMp4().then(() => {
+            handleCloseDownload();
+          });
+        }}>
+          MP4 Video
+        </MenuItem>
+      </Menu>
+      <Button
         onClick={handleClickSettings}
         startIcon={<SettingsIcon />}
       >
@@ -228,64 +264,25 @@ const Buttons = ({ props }) => {
         open={Boolean(anchorElSettings)}
         onClose={handleCloseSettings}
       >
-        <MenuItem
-          key={0}
-          onClick={() => {
-            dispatch({ type: boardActionTypes.FLIP });
-            handleCloseSettings();
-          }}
-        >
+        <MenuItem onClick={() => {
+          dispatch({ type: boardActionTypes.FLIP });
+          handleCloseSettings();
+        }}>
           Flip Board
         </MenuItem>
-        <MenuItem
-          key={1}
-          onClick={() => {
-            wsMssgHeuristicpicture(state).then(() => {
-              handleCloseSettings();
-            });
-          }}
-        >
-          Heuristic Picture
-        </MenuItem>
-        <MenuItem
-          key={2}
-          onClick={() => {
-            wsMssgFen(state).then(() => {
-              dispatch({ type: fenDialogActionTypes.OPEN });
-              handleCloseSettings();
-            });
-          }}
-        >
+        <MenuItem onClick={() => {
+          wsMssgFen(state).then(() => {
+            dispatch({ type: fenDialogActionTypes.OPEN });
+            handleCloseSettings();
+          });
+        }}>
           FEN String
         </MenuItem>
-        <MenuItem
-          key={3}
-          onClick={() => {
-            dispatch({ type: pgnDialogActionTypes.OPEN });
-            handleCloseSettings();
-          }}
-        >
+        <MenuItem onClick={() => {
+          dispatch({ type: pgnDialogActionTypes.OPEN });
+          handleCloseSettings();
+        }}>
           PGN Movetext
-        </MenuItem>
-        <MenuItem
-          key={4}
-          onClick={() => {
-            handleDownloadImage().then(() => {
-              handleCloseSettings();
-            });
-          }}
-        >
-          PNG Image
-        </MenuItem>
-        <MenuItem
-          key={5}
-          onClick={() => {
-            handleDownloadMp4().then(() => {
-              handleCloseSettings();
-            });
-          }}
-        >
-          MP4 Video
         </MenuItem>
       </Menu>
     </ButtonGroup>
