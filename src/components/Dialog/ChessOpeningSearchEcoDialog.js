@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@mui/styles';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
-  MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
-} from '@mui/material';
-import ChessOpeningSearchEcoAjaxLoader from "../AjaxLoader/ChessOpeningSearchEcoAjaxLoader.js";
-import PublishIcon from '@mui/icons-material/Publish';
-import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import chessOpeningSearchEcoAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchEcoAjaxLoaderActionTypes';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
+import ChessOpeningSearchAjaxLoader from "../AjaxLoader/ChessOpeningSearchAjaxLoader.js";
+import ChessOpeningSearchResult from "./ChessOpeningSearchResult.js";
+import chessOpeningSearchAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchAjaxLoaderActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
-
 
 const useStyles = makeStyles({
   form: {
@@ -23,25 +19,17 @@ const ChessOpeningSearchEcoDialog = () => {
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
 
-  const handleLoad = (movetext) => {
-    wsMssgQuit(state).then(() => {
-      wsMssgStartLoadpgn(state, movetext).then(() => {
-        dispatch({ type: chessOpeningSearchEcoDialogActionTypes.CLOSE });
-      });
-    });
-  };
-
   const handleChange = (event) => {
     event.preventDefault();
     setOpenings([]);
-    dispatch({ type: chessOpeningSearchEcoAjaxLoaderActionTypes.SHOW });
+    dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.SHOW });
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
       body: JSON.stringify({ eco: event.target.value })
     }).then(res => res.json())
       .then(res => {
         setOpenings(res);
-        dispatch({ type: chessOpeningSearchEcoAjaxLoaderActionTypes.HIDE });
+        dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.HIDE });
       });
   }
 
@@ -87,31 +75,8 @@ const ChessOpeningSearchEcoDialog = () => {
             </Button>
           </DialogActions>
         </form>
-        <ChessOpeningSearchEcoAjaxLoader />
-        <TableContainer component={Paper}>
-          <Table stickyHeader aria-label="simple table">
-            <TableBody>
-              {
-                openings.map((item, i) => (
-                  <TableRow key={i}>
-                    <TableCell align="right">{item.eco}</TableCell>
-                    <TableCell align="right">{item.name}</TableCell>
-                    <TableCell align="right">{item.movetext}</TableCell>
-                    <TableCell align="right">
-                      <IconButton
-                        aria-label="load"
-                        color="primary"
-                        onClick={() => handleLoad(item.movetext)}
-                      >
-                        <PublishIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))
-              }
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <ChessOpeningSearchAjaxLoader />
+        <ChessOpeningSearchResult props={{ openings: openings }} />
       </DialogContent>
     </Dialog>
   );

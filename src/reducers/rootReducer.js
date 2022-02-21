@@ -5,9 +5,7 @@ import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
 // ajax loader reducers
 import chessOpeningAjaxLoaderReducer from './chessOpeningAjaxLoaderReducer';
-import chessOpeningSearchEcoAjaxLoaderReducer from './chessOpeningSearchEcoAjaxLoaderReducer';
-import chessOpeningSearchNameAjaxLoaderReducer from './chessOpeningSearchNameAjaxLoaderReducer';
-import chessOpeningSearchMovetextAjaxLoaderReducer from './chessOpeningSearchMovetextAjaxLoaderReducer';
+import chessOpeningSearchAjaxLoaderReducer from './chessOpeningSearchAjaxLoaderReducer';
 // alert reducers
 import chessOpeningAnalysisAlertReducer from './chessOpeningAnalysisAlertReducer';
 import infoAlertReducer from './infoAlertReducer';
@@ -38,9 +36,7 @@ const rootReducer = combineReducers({
   server: serverReducer,
   // ajax loader reducers
   chessOpeningAjaxLoader: chessOpeningAjaxLoaderReducer,
-  chessOpeningSearchEcoAjaxLoader: chessOpeningSearchEcoAjaxLoaderReducer,
-  chessOpeningSearchNameAjaxLoader: chessOpeningSearchNameAjaxLoaderReducer,
-  chessOpeningSearchMovetextAjaxLoader: chessOpeningSearchMovetextAjaxLoaderReducer,
+  chessOpeningSearchAjaxLoader: chessOpeningSearchAjaxLoaderReducer,
   // alert reducers
   chessOpeningAnalysisAlert: chessOpeningAnalysisAlertReducer,
   infoAlert: infoAlertReducer,

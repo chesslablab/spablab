@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@mui/styles';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
-  MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
-} from '@mui/material';
-import PublishIcon from '@mui/icons-material/Publish';
-import ChessOpeningSearchNameAjaxLoader from "../AjaxLoader/ChessOpeningSearchNameAjaxLoader.js";
-import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import chessOpeningSearchNameAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchNameAjaxLoaderActionTypes';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import ChessOpeningSearchAjaxLoader from "../AjaxLoader/ChessOpeningSearchAjaxLoader.js";
+import ChessOpeningSearchResult from "./ChessOpeningSearchResult.js";
+import chessOpeningSearchAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchAjaxLoaderActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 
 const useStyles = makeStyles({
@@ -22,26 +19,17 @@ const ChessOpeningSearchNameDialog = () => {
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
 
-  const handleLoad = (movetext) => {
-    wsMssgQuit(state).then(() => {
-      wsMssgStartLoadpgn(state, movetext).then(() => {
-        setOpenings([]);
-        dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
-      });
-    });
-  };
-
   const handleSearch = (event) => {
     event.preventDefault();
     setOpenings([]);
-    dispatch({ type: chessOpeningSearchNameAjaxLoaderActionTypes.SHOW });
+    dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.SHOW });
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
       body: JSON.stringify({ name: event.target.elements.name.value })
     }).then(res => res.json())
       .then(res => {
         setOpenings(res);
-        dispatch({ type: chessOpeningSearchNameAjaxLoaderActionTypes.HIDE });
+        dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.HIDE });
       });
   }
 
@@ -61,31 +49,8 @@ const ChessOpeningSearchNameDialog = () => {
             </Button>
           </DialogActions>
         </form>
-        <ChessOpeningSearchNameAjaxLoader />
-        <TableContainer component={Paper}>
-          <Table stickyHeader aria-label="simple table">
-            <TableBody>
-              {
-                openings.map((item, i) => (
-                  <TableRow key={i}>
-                    <TableCell align="right">{item.eco}</TableCell>
-                    <TableCell align="right">{item.name}</TableCell>
-                    <TableCell align="right">{item.movetext}</TableCell>
-                    <TableCell align="right">
-                      <IconButton
-                        aria-label="load"
-                        color="primary"
-                        onClick={() => handleLoad(item.movetext)}
-                      >
-                        <PublishIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))
-              }
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <ChessOpeningSearchAjaxLoader />
+        <ChessOpeningSearchResult props={{ openings: openings }} />
       </DialogContent>
     </Dialog>
   );

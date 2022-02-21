@@ -9,11 +9,11 @@ const useStyles = makeStyles({
   },
 });
 
-const ChessOpeningSearchMovetextAjaxLoader = ({props}) => {
+const ChessOpeningSearchAjaxLoader = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
-  if (state.chessOpeningSearchMovetextAjaxLoader.show) {
+  if (state.chessOpeningSearchAjaxLoader.show) {
     return (
       <div className={classes.loading}>
         <img src={loading} alt="loading" />
@@ -24,4 +24,4 @@ const ChessOpeningSearchMovetextAjaxLoader = ({props}) => {
   return null;
 }
 
-export default ChessOpeningSearchMovetextAjaxLoader;
+export default ChessOpeningSearchAjaxLoader;
