@@ -4,10 +4,10 @@ import { makeStyles } from '@mui/styles';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
   MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
 } from '@mui/material';
-import ChessOpeningSearchEcoAjaxLoader from "../AjaxLoader/ChessOpeningSearchEcoAjaxLoader.js";
+import ChessOpeningSearchAjaxLoader from "../AjaxLoader/ChessOpeningSearchAjaxLoader.js";
 import PublishIcon from '@mui/icons-material/Publish';
 import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import chessOpeningSearchEcoAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchEcoAjaxLoaderActionTypes';
+import chessOpeningSearchAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchAjaxLoaderActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 
 
@@ -34,14 +34,14 @@ const ChessOpeningSearchEcoDialog = () => {
   const handleChange = (event) => {
     event.preventDefault();
     setOpenings([]);
-    dispatch({ type: chessOpeningSearchEcoAjaxLoaderActionTypes.SHOW });
+    dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.SHOW });
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
       body: JSON.stringify({ eco: event.target.value })
     }).then(res => res.json())
       .then(res => {
         setOpenings(res);
-        dispatch({ type: chessOpeningSearchEcoAjaxLoaderActionTypes.HIDE });
+        dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.HIDE });
       });
   }
 
@@ -87,7 +87,7 @@ const ChessOpeningSearchEcoDialog = () => {
             </Button>
           </DialogActions>
         </form>
-        <ChessOpeningSearchEcoAjaxLoader />
+        <ChessOpeningSearchAjaxLoader />
         <TableContainer component={Paper}>
           <Table stickyHeader aria-label="simple table">
             <TableBody>

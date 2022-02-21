@@ -1,4 +1,4 @@
-import chessOpeningSearchEcoAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningSearchEcoAjaxLoaderActionTypes';
+import chessOpeningSearchAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningSearchAjaxLoaderActionTypes';
 
 const initialState = {
   show: false
@@ -6,11 +6,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case chessOpeningSearchEcoAjaxLoaderActionTypes.SHOW:
+    case chessOpeningSearchAjaxLoaderActionTypes.SHOW:
       return {
         show: true
       };
-    case chessOpeningSearchEcoAjaxLoaderActionTypes.HIDE:
+    case chessOpeningSearchAjaxLoaderActionTypes.HIDE:
       return initialState;
     default:
       return state;
