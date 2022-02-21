@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@mui/styles';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton,
-  MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField
-} from '@mui/material';
-import PublishIcon from '@mui/icons-material/Publish';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import ChessOpeningSearchAjaxLoader from "../AjaxLoader/ChessOpeningSearchAjaxLoader.js";
-import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
+import ChessOpeningSearchResult from "./ChessOpeningSearchResult.js";
 import chessOpeningSearchAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchAjaxLoaderActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 
@@ -21,15 +18,6 @@ const ChessOpeningSearchNameDialog = () => {
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
-
-  const handleLoad = (movetext) => {
-    wsMssgQuit(state).then(() => {
-      wsMssgStartLoadpgn(state, movetext).then(() => {
-        setOpenings([]);
-        dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
-      });
-    });
-  };
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -62,30 +50,7 @@ const ChessOpeningSearchNameDialog = () => {
           </DialogActions>
         </form>
         <ChessOpeningSearchAjaxLoader />
-        <TableContainer component={Paper}>
-          <Table stickyHeader aria-label="simple table">
-            <TableBody>
-              {
-                openings.map((item, i) => (
-                  <TableRow key={i}>
-                    <TableCell align="right">{item.eco}</TableCell>
-                    <TableCell align="right">{item.name}</TableCell>
-                    <TableCell align="right">{item.movetext}</TableCell>
-                    <TableCell align="right">
-                      <IconButton
-                        aria-label="load"
-                        color="primary"
-                        onClick={() => handleLoad(item.movetext)}
-                      >
-                        <PublishIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))
-              }
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <ChessOpeningSearchResult props={{ openings: openings }} />
       </DialogContent>
     </Dialog>
   );
