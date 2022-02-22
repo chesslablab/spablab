@@ -20,7 +20,6 @@ import HeuristicPictureDialog from "./Dialog/HeuristicPictureDialog";
 import DrawAcceptDialog from "./Dialog/DrawAcceptDialog";
 import DrawOfferDialog from "./Dialog/DrawOfferDialog";
 import ResignAcceptDialog from "./Dialog/ResignAcceptDialog";
-import PgnDialog from "./Dialog/PgnDialog";
 import LoadPgnDialog from "./Dialog/LoadPgnDialog";
 import RematchAcceptDialog from "./Dialog/RematchAcceptDialog";
 import RematchOfferDialog from "./Dialog/RematchOfferDialog";
@@ -80,7 +79,6 @@ const Chess = ({ props }) => {
       <DrawAcceptDialog />
       <DrawOfferDialog />
       <ResignAcceptDialog />
-      <PgnDialog />
       <LoadPgnDialog />
       <RematchAcceptDialog />
       <RematchOfferDialog />

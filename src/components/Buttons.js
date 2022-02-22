@@ -18,7 +18,6 @@ import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCod
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
-import pgnDialogActionTypes from '../constants/dialog/pgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -290,12 +289,6 @@ const Buttons = ({ props }) => {
           });
         }}>
           FEN String
-        </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch({ type: pgnDialogActionTypes.OPEN });
-          handleCloseSettings();
-        }}>
-          PGN Movetext
         </MenuItem>
       </Menu>
     </ButtonGroup>

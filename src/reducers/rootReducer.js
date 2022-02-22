@@ -20,7 +20,6 @@ import heuristicPictureDialogReducer from './heuristicPictureDialogReducer';
 import drawAcceptDialogReducer from './drawAcceptDialogReducer';
 import drawOfferDialogReducer from './drawOfferDialogReducer';
 import resignAcceptDialogReducer from './resignAcceptDialogReducer';
-import pgnDialogReducer from './pgnDialogReducer';
 import loadPgnDialogReducer from './loadPgnDialogReducer';
 import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
 import rematchOfferDialogReducer from './rematchOfferDialogReducer';
@@ -51,7 +50,6 @@ const rootReducer = combineReducers({
   drawAcceptDialog: drawAcceptDialogReducer,
   drawOfferDialog: drawOfferDialogReducer,
   resignAcceptDialog: resignAcceptDialogReducer,
-  pgnDialog: pgnDialogReducer,
   loadPgnDialog: loadPgnDialogReducer,
   rematchAcceptDialog: rematchAcceptDialogReducer,
   rematchOfferDialog: rematchOfferDialogReducer,
