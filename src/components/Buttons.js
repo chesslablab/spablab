@@ -22,7 +22,6 @@ import pgnDialogActionTypes from '../constants/dialog/pgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import { DownloadImage } from './DownloadImage'
 import {
   wsMssgStartAnalysis,
   wsMssgStartGrandmaster,
@@ -92,7 +91,21 @@ const Buttons = ({ props }) => {
     setAnchorElSettings(event.currentTarget);
   };
 
-  const handleDownloadImage = () => DownloadImage();
+  const handleDownloadImage = async () => {
+    await fetch('https://pchess.net/api/download_image', {
+      method: 'POST',
+      body: JSON.stringify({ movetext: state.board.movetext })
+    }).then(res => res.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "chessboard.png";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+  }
 
   const handleDownloadMp4 = async () => {
     await fetch('https://pchess.net/api/download_mp4', {
