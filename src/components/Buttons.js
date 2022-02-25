@@ -24,6 +24,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import {
   wsMssgStartAnalysis,
   wsMssgStartGrandmaster,
+  wsMssgStartLoadpgn,
   wsMssgHeuristicpicture,
   wsMssgQuit,
   wsMssgFen
@@ -122,6 +123,24 @@ const Buttons = ({ props }) => {
       });
   }
 
+  const handleRandomTournamentGame = async () => {
+    await fetch('https://pchess.net/api/tournament', {
+      method: 'POST'
+    }).then(res => res.json())
+      .then(res => {
+        wsMssgQuit(state).then(() => {
+          wsMssgStartLoadpgn(state, res.movetext).then(() => {
+            dispatch({
+              type: infoAlertActionTypes.DISPLAY,
+              payload: {
+                info: `Event: ${res.Event} \n Site: ${res.Site} \n White: ${res.White}`
+              }
+            });
+          });
+        });
+      });
+  }
+
   return (
     <ButtonGroup
       size="small"
@@ -183,6 +202,13 @@ const Buttons = ({ props }) => {
           handleCloseTraining();
         }}>
           Guess the Move
+        </MenuItem>
+        <MenuItem onClick={() => {
+          handleRandomTournamentGame().then(() => {
+            handleCloseTraining();
+          });
+        }}>
+          Random Tournament Game
         </MenuItem>
       </Menu>
       <Button
