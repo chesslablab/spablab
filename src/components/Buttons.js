@@ -182,7 +182,7 @@ const Buttons = ({ props }) => {
           dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
           handleCloseTraining();
         }}>
-          Like a Grandmaster
+          Guess the Move
         </MenuItem>
       </Menu>
       <Button

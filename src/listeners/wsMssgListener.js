@@ -481,7 +481,7 @@ export const onResponse = (data) => dispatch => {
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
-        info: 'Awesome! This move was made by a chess grandmaster.'
+        info: 'Awesome! This is a good move.'
       }
     });
     dispatch({
@@ -498,7 +498,7 @@ export const onResponse = (data) => dispatch => {
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
-        info: 'This line was not found in the grandmaster database.'
+        info: 'Hmm. This line was not found in the database.'
       }
     });
   }

@@ -42,7 +42,7 @@ const PlayLikeGrandmasterDialog = () => {
 
   return (
     <Dialog open={state.playLikeGrandmasterDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Play like a grandmaster</DialogTitle>
+      <DialogTitle>Guess the move</DialogTitle>
       <DialogContent>
         <form className={classes.form} onSubmit={handleCreateCode}>
           <TextField
