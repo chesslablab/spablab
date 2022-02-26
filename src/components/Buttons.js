@@ -138,7 +138,13 @@ const Buttons = ({ props }) => {
         dispatch({
           type: infoAlertActionTypes.DISPLAY,
           payload: {
-            info: `Event: ${res.Event} \n Site: ${res.Site} \n White: ${res.White}`
+            info: `Event: ${res.Event} \n
+              Site: ${res.Site} \n
+              Date: ${res.Date} \n
+              White: ${res.White} \n
+              Black: ${res.Black} \n
+              Result: ${res.Result} \n
+              ECO: ${res.ECO}`
           }
         });
         wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, res.movetext));
