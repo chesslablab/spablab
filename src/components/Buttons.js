@@ -9,13 +9,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TuneIcon from '@mui/icons-material/Tune';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  wsMssgStartAnalysis,
-  wsMssgStartLoadpgn,
-  wsMssgHeuristicpicture,
-  wsMssgQuit,
-  wsMssgFen
-} from '../actions/serverActions';
+import { wsMssgFen, wsMssgQuit, wsMssgStartAnalysis, wsMssgStartLoadpgn } from '../actions/serverActions';
 import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
@@ -199,9 +193,6 @@ const Buttons = ({ props }) => {
         open={Boolean(anchorElTraining)}
         onClose={handleCloseTraining}
       >
-        <MenuItem onClick={() => wsMssgHeuristicpicture(state).then(() => handleCloseTraining())}>
-          Heuristic Picture
-        </MenuItem>
         <MenuItem onClick={() => {
           dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
           handleCloseTraining();
