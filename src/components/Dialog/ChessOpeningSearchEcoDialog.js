@@ -26,11 +26,10 @@ const ChessOpeningSearchEcoDialog = () => {
     fetch('https://pchess.net/api/opening', {
       method: 'POST',
       body: JSON.stringify({ eco: event.target.value })
-    }).then(res => res.json())
-      .then(res => {
-        setOpenings(res);
-        dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.HIDE });
-      });
+    })
+    .then(res => res.json())
+    .then(res => setOpenings(res))
+    .finally(() => dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.HIDE }));
   }
 
   return (

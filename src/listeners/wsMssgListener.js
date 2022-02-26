@@ -3,7 +3,6 @@ import chessOpeningAnalysisAjaxLoaderActionTypes from '../constants/ajaxLoader/c
 import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
-import historyActionTypes from '../constants/historyActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
@@ -36,18 +35,6 @@ export const wsMssgListener = (data) => dispatch => {
       }
       break;
     case '/start' === cmd:
-      // hide ajax loaders
-      dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
-      // close alerts
-      dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      dispatch({ type: infoAlertActionTypes.CLOSE });
-      // reset history browser
-      dispatch({
-        type: historyActionTypes.GO_TO_BEGINNING,
-        payload: {
-          back: 0
-        }
-      });
       if (data['/start'].mode === modeNames.ANALYSIS) {
         dispatch(onStartAnalysis(data));
       } else if (data['/start'].mode === modeNames.GRANDMASTER) {
@@ -279,6 +266,8 @@ export const onPlayfen = (data) => dispatch => {
           } else {
             dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
           }
+        })
+        .finally(() => {
           dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
         });
     }
@@ -293,22 +282,25 @@ export const onPlayfen = (data) => dispatch => {
       fetch('https://pchess.net/api/opening', {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
-      }).then(res => res.json())
-        .then(res => {
-          let info = '';
-          res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
-          if (info) {
-            dispatch({
-              type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
-              payload: {
-                info: info
-              }
-            });
-          } else {
-            dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-          }
-          dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
-        });
+      })
+      .then(res => res.json())
+      .then(res => {
+        let info = '';
+        res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
+        if (info) {
+          dispatch({
+            type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
+            payload: {
+              info: info
+            }
+          });
+        } else {
+          dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
+        }
+      })
+      .finally(() => {
+        dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
+      });
     }
     dispatch({
       type: boardActionTypes.CASTLED_LONG,
@@ -335,6 +327,7 @@ export const onPlayfen = (data) => dispatch => {
           } else {
             dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
           }
+        }).finally(() => {
           dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
         });
     }

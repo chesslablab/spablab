@@ -9,7 +9,15 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TuneIcon from '@mui/icons-material/Tune';
 import { useDispatch, useSelector } from 'react-redux';
-import boardActionTypes from '../constants/boardActionTypes';
+import {
+  wsMssgStartAnalysis,
+  wsMssgStartLoadpgn,
+  wsMssgHeuristicpicture,
+  wsMssgQuit,
+  wsMssgFen
+} from '../actions/serverActions';
+import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
+import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
 import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
 import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
@@ -19,16 +27,9 @@ import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpe
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
-import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
+import boardActionTypes from '../constants/boardActionTypes';
+import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import {
-  wsMssgStartAnalysis,
-  wsMssgStartGrandmaster,
-  wsMssgStartLoadpgn,
-  wsMssgHeuristicpicture,
-  wsMssgQuit,
-  wsMssgFen
-} from '../actions/serverActions';
 
 const Buttons = ({ props }) => {
   const state = useSelector(state => state);
@@ -42,6 +43,13 @@ const Buttons = ({ props }) => {
   const [anchorElSettings, setAnchorElSettings] = React.useState(null);
 
   const matches = useMediaQuery("(min-width:768px)");
+
+  const reset = () => {
+    dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
+    dispatch({ type: infoAlertActionTypes.CLOSE });
+    dispatch({ type: historyActionTypes.GO_TO_BEGINNING, payload: { back: 0 }});
+    wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws));
+  };
 
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
@@ -68,18 +76,22 @@ const Buttons = ({ props }) => {
   };
 
   const handleClickPlayFriend = (event) => {
+    reset();
     setAnchorElPlayFriend(event.currentTarget);
   };
 
   const handleClickTraining = (event) => {
+    reset();
     setAnchorElTraining(event.currentTarget);
   };
 
   const handleClickOpeningSearch = (event) => {
+    reset();
     setAnchorElOpeningSearch(event.currentTarget);
   };
 
   const handleClickLoad = (event) => {
+    reset();
     setAnchorElLoad(event.currentTarget);
   };
 
@@ -128,16 +140,14 @@ const Buttons = ({ props }) => {
       method: 'POST'
     }).then(res => res.json())
       .then(res => {
-        wsMssgQuit(state).then(() => {
-          wsMssgStartLoadpgn(state, res.movetext).then(() => {
-            dispatch({
-              type: infoAlertActionTypes.DISPLAY,
-              payload: {
-                info: `Event: ${res.Event} \n Site: ${res.Site} \n White: ${res.White}`
-              }
-            });
-          });
+        dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
+        dispatch({
+          type: infoAlertActionTypes.DISPLAY,
+          payload: {
+            info: `Event: ${res.Event} \n Site: ${res.Site} \n White: ${res.White}`
+          }
         });
+        wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, res.movetext));
       });
   }
 
@@ -163,7 +173,6 @@ const Buttons = ({ props }) => {
       >
         <MenuItem onClick={() => {
           dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
-          dispatch({ type: infoAlertActionTypes.CLOSE });
           dispatch({ type: modeActionTypes.SET_ANALYSIS });
           handleClosePlayFriend();
         }}>Create Invite Code</MenuItem>
@@ -174,7 +183,7 @@ const Buttons = ({ props }) => {
       </Menu>
       <Button
         startIcon={<TuneIcon />}
-        onClick={() => wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws))}
+        onClick={() => reset()}
       >
         Analysis Board
       </Button>
@@ -190,11 +199,7 @@ const Buttons = ({ props }) => {
         open={Boolean(anchorElTraining)}
         onClose={handleCloseTraining}
       >
-        <MenuItem onClick={() => {
-          wsMssgHeuristicpicture(state).then(() => {
-            handleCloseTraining();
-          });
-        }}>
+        <MenuItem onClick={() => wsMssgHeuristicpicture(state).then(() => handleCloseTraining())}>
           Heuristic Picture
         </MenuItem>
         <MenuItem onClick={() => {
@@ -203,11 +208,7 @@ const Buttons = ({ props }) => {
         }}>
           Guess the Move
         </MenuItem>
-        <MenuItem onClick={() => {
-          handleRandomTournamentGame().then(() => {
-            handleCloseTraining();
-          });
-        }}>
+        <MenuItem onClick={() => handleRandomTournamentGame().then(() => handleCloseTraining())}>
           Random Tournament Game
         </MenuItem>
       </Menu>
@@ -275,18 +276,10 @@ const Buttons = ({ props }) => {
         open={Boolean(anchorElDownload)}
         onClose={handleCloseDownload}
       >
-        <MenuItem onClick={() => {
-          handleDownloadImage().then(() => {
-            handleCloseDownload();
-          });
-        }}>
+        <MenuItem onClick={() => handleDownloadImage().then(() => handleCloseDownload())}>
           PNG Image
         </MenuItem>
-        <MenuItem onClick={() => {
-          handleDownloadMp4().then(() => {
-            handleCloseDownload();
-          });
-        }}>
+        <MenuItem onClick={() => handleDownloadMp4().then(() => handleCloseDownload())}>
           MP4 Video
         </MenuItem>
       </Menu>

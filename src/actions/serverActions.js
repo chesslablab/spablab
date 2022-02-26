@@ -31,6 +31,10 @@ export const wsMssgStartLoadfen = async (state, string) => {
   return await state.server.ws.send(`/start loadfen "${string}"`);
 };
 
+export const wsMssgStartLoadpgn = async (state, movetext) => {
+  return await state.server.ws.send(`/start loadpgn "${movetext}"`);
+};
+
 export const wsMssgStartPlayfriend = async (state, color, time, increment) => {
   return await state.server.ws.send(`/start playfriend ${color} ${time} ${increment}`);
 };
@@ -81,10 +85,6 @@ export const wsMssgRematch = async (state, action) => {
 
 export const wsMssgRestart = async (state) => {
   return await state.server.ws.send(`/restart ${state.mode.playfriend.hash}`);
-};
-
-export const wsMssgStartLoadpgn = async (state, movetext) => {
-  return await state.server.ws.send(`/start loadpgn "${movetext}"`);
 };
 
 export const wsMssgResponse = async (state) => {
