@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, ButtonGroup } from '@mui/material';
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import FastForwardIcon from '@mui/icons-material/FastForward';
 import { useDispatch, useSelector } from 'react-redux';
-import { goToBeginning, goBack, goForward, goToEnd } from '../actions/historyActions';
+import boardActionTypes from '../constants/boardActionTypes';
+import historyActionTypes from '../constants/historyActionTypes';
 
 const History = () => {
   const state = useSelector(state => state);
@@ -16,22 +17,36 @@ const History = () => {
       <Button
         startIcon={<FastRewindIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
-        onClick={() => dispatch(goToBeginning({ back: state.board.history.length - 1}))}
+        onClick={() => dispatch({
+          type: historyActionTypes.GO_TO_BEGINNING,
+          payload: {
+            back: state.board.history.length - 1
+          }
+        })}
       />
       <Button
         startIcon={<SkipPreviousIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
-        onClick={() => dispatch(goBack())}
+        onClick={() => {
+          dispatch({ type: historyActionTypes.GO_BACK });
+          dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+        }}
       />
       <Button
         startIcon={<SkipNextIcon />}
         disabled={state.history.back === 0}
-        onClick={() => dispatch(goForward())}
+        onClick={() => {
+          dispatch({ type: historyActionTypes.GO_FORWARD });
+          dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+        }}
       />
       <Button
         startIcon={<FastForwardIcon />}
         disabled={state.history.back === 0}
-        onClick={() => dispatch(goToEnd())}
+        onClick={() => {
+          dispatch({ type: historyActionTypes.GO_TO_END });
+          dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+        }}
       />
     </ButtonGroup>
   );

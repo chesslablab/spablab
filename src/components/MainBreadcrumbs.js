@@ -25,7 +25,7 @@ const MainBreadcrumbs = ({props}) => {
   } else if (state.mode.current === modeNames.GRANDMASTER) {
     return (
       <Typography className={classes.breadcrumbs} variant="p" component="div">
-        Like a grandmaster
+        Guess the move
       </Typography>
     );
   } else if (state.mode.current === modeNames.LOADFEN) {

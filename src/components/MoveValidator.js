@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { wsMssgPlayfen } from '../actions/serverActions';
+import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../actions/serverActions';
 import { makeStyles } from '@mui/styles';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {
   Button,
+  ButtonGroup,
   Paper,
   Table,
   TableBody,
@@ -48,16 +50,20 @@ const MoveValidator = ({props}) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button
-        size="small"
-        variant="text"
-        startIcon={<ContentCopyIcon />}
-        onClick={() => {
-          state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null;
-        }}
-      >
-        Copy
-      </Button>
+      <ButtonGroup size="small" variant="text" aria-label="small button group">
+        <Button
+          startIcon={<ContentCopyIcon />}
+          onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
+        >
+          Copy
+        </Button>
+        <Button
+          startIcon={<BarChartIcon />}
+          onClick={() => wsMssgHeuristicpicture(state)}
+        >
+          Heuristic Picture
+        </Button>
+      </ButtonGroup>
     </div>
   );
 }

@@ -17,34 +17,25 @@ const PlayLikeGrandmasterDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const handleCreateCode = (event) => {
+  const handlePlay = (event) => {
     event.preventDefault();
     let color;
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
+    dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
     if (Pgn.symbol.WHITE === color) {
-        wsMssgQuit(state).then(() => {
-          wsMssgStartGrandmaster(state, color).then(() => {
-            dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
-          });
-        });
+      wsMssgQuit(state).then(() => wsMssgStartGrandmaster(state, color));
     } else {
-      wsMssgQuit(state).then(() => {
-        wsMssgStartGrandmaster(state, color).then(() => {
-          wsMssgResponse(state).then(() => {
-            dispatch({ type: playLikeGrandmasterDialogActions.CLOSE });
-          });
-        });
-      });
+      wsMssgQuit(state).then(() => wsMssgStartGrandmaster(state, color).then(() => wsMssgResponse(state)));
     }
   }
 
   return (
     <Dialog open={state.playLikeGrandmasterDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Play like a grandmaster</DialogTitle>
+      <DialogTitle>Guess the move</DialogTitle>
       <DialogContent>
-        <form className={classes.form} onSubmit={handleCreateCode}>
+        <form className={classes.form} onSubmit={handlePlay}>
           <TextField
             select
             fullWidth
