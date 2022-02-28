@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ChessOpeningSearchMovetextDialog = () => {
+const ChessOpeningSearchMovetextDialog = ({ props }) => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -23,7 +23,7 @@ const ChessOpeningSearchMovetextDialog = () => {
     event.preventDefault();
     setOpenings([]);
     dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.SHOW });
-    fetch('https://pchess.net/api/opening', {
+    fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
       method: 'POST',
       body: JSON.stringify({ movetext: event.target.elements.movetext.value })
     })

@@ -15,7 +15,7 @@ import store from '../store';
 import Pgn from '../utils/Pgn';
 import Wording from '../utils/Wording.js';
 
-export const wsMssgListener = (data) => dispatch => {
+export const wsMssgListener = (props, data) => dispatch => {
   const cmd = Object.keys(data)[0];
   switch (true) {
     case '/takeback' === cmd:
@@ -70,7 +70,7 @@ export const wsMssgListener = (data) => dispatch => {
           });
         }
       }
-      dispatch(onPlayfen(data));
+      dispatch(onPlayfen(props, data));
       if (store.getState().mode.current === modeNames.GRANDMASTER) {
         wsMssgResponse(store.getState());
       }
@@ -238,7 +238,7 @@ export const onPiece = (data) => dispatch => {
   });
 };
 
-export const onPlayfen = (data) => dispatch => {
+export const onPlayfen = (props, data) => dispatch => {
   const payload = {
     check: data['/play_fen'].check,
     mate: data['/play_fen'].mate,
@@ -249,7 +249,7 @@ export const onPlayfen = (data) => dispatch => {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
-      fetch('https://pchess.net/api/opening', {
+      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
       }).then(res => res.json())
@@ -279,7 +279,7 @@ export const onPlayfen = (data) => dispatch => {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
-      fetch('https://pchess.net/api/opening', {
+      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
       })
@@ -310,7 +310,7 @@ export const onPlayfen = (data) => dispatch => {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
-      fetch('https://pchess.net/api/opening', {
+      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
       }).then(res => res.json())

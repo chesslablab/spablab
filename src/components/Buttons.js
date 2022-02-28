@@ -98,7 +98,7 @@ const Buttons = ({ props }) => {
   };
 
   const handleDownloadImage = async () => {
-    await fetch('https://pchess.net/api/download_image', {
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_image`, {
       method: 'POST',
       body: JSON.stringify({ movetext: state.board.movetext })
     }).then(res => res.blob())
@@ -114,7 +114,7 @@ const Buttons = ({ props }) => {
   }
 
   const handleDownloadMp4 = async () => {
-    await fetch('https://pchess.net/api/download_mp4', {
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
       method: 'POST',
       body: JSON.stringify({ movetext: state.board.movetext })
     }).then(res => res.blob())
@@ -130,7 +130,7 @@ const Buttons = ({ props }) => {
   }
 
   const handleRandomTournamentGame = async () => {
-    await fetch('https://pchess.net/api/tournament', {
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/tournament`, {
       method: 'POST'
     }).then(res => res.json())
       .then(res => {

@@ -83,9 +83,9 @@ const Chess = ({ props }) => {
       <RematchAcceptDialog />
       <RematchOfferDialog />
       <PlayLikeGrandmasterDialog />
-      <ChessOpeningSearchEcoDialog />
-      <ChessOpeningSearchNameDialog />
-      <ChessOpeningSearchMovetextDialog />
+      <ChessOpeningSearchEcoDialog props={props} />
+      <ChessOpeningSearchNameDialog props={props} />
+      <ChessOpeningSearchMovetextDialog props={props} />
     </Provider>
   );
 };
