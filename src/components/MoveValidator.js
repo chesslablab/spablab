@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../actions/serverActions';
 import { makeStyles } from '@mui/styles';
@@ -29,9 +29,11 @@ const MoveValidator = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
-  if (state.board.fen) {
-    wsMssgPlayfen(state);
-  }
+  useEffect(() => {
+    if (state.board.fen) {
+      wsMssgPlayfen(state);
+    }
+  }, [state.board.fen]);
 
   return (
     <div>
