@@ -245,37 +245,27 @@ export const onPlayfen = (props, data) => dispatch => {
     movetext: data['/play_fen'].movetext,
     fen: data['/play_fen'].fen
   };
-  if (data['/play_fen'].legal === Pgn.symbol.CASTLING_SHORT) {
-    if (store.getState().mode.current === modeNames.ANALYSIS) {
-      dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
-      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
-        method: 'POST',
-        body: JSON.stringify({ movetext: payload.movetext })
-      }).then(res => res.json())
-        .then(res => {
-          let info = '';
-          res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
-          if (info) {
-            dispatch({
-              type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
-              payload: {
-                info: info
-              }
-            });
-          } else {
-            dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-          }
-        })
-        .finally(() => {
-          dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
-        });
+  if (
+    data['/play_fen'].legal === Pgn.symbol.CASTLING_SHORT ||
+    data['/play_fen'].legal === Pgn.symbol.CASTLING_LONG ||
+    data['/play_fen'].legal === true
+  ) {
+    if (data['/play_fen'].legal === Pgn.symbol.CASTLING_SHORT) {
+      dispatch({
+        type: boardActionTypes.CASTLED_SHORT,
+        payload: payload
+      });
+    } else if (data['/play_fen'].legal === Pgn.symbol.CASTLING_LONG) {
+      dispatch({
+        type: boardActionTypes.CASTLED_LONG,
+        payload: payload
+      });
+    } else {
+      dispatch({
+        type: boardActionTypes.VALID_MOVE,
+        payload: payload
+      });
     }
-    dispatch({
-      type: boardActionTypes.CASTLED_SHORT,
-      payload: payload
-    });
-  } else if (data['/play_fen'].legal === Pgn.symbol.CASTLING_LONG) {
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
       dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
@@ -302,39 +292,6 @@ export const onPlayfen = (props, data) => dispatch => {
         dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
       });
     }
-    dispatch({
-      type: boardActionTypes.CASTLED_LONG,
-      payload: payload
-    });
-  } else if (data['/play_fen'].legal === true) {
-    if (store.getState().mode.current === modeNames.ANALYSIS) {
-      dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
-      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
-        method: 'POST',
-        body: JSON.stringify({ movetext: payload.movetext })
-      }).then(res => res.json())
-        .then(res => {
-          let info = '';
-          res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
-          if (info) {
-            dispatch({
-              type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
-              payload: {
-                info: info
-              }
-            });
-          } else {
-            dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-          }
-        }).finally(() => {
-          dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
-        });
-    }
-    dispatch({
-      type: boardActionTypes.VALID_MOVE,
-      payload: payload
-    });
   }
 };
 
