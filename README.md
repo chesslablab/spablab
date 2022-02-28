@@ -22,7 +22,7 @@ Figure 2. Evaluation after 1.d4 d5 2.c4 Nc6 3.cxd5 Qxd5 4.e3 e5 5.Nc3 Bb4 6.Bd2 
 
 ### Examples
 
-Initialization with the sandbox chess server:
+Initialization with the sandbox environment:
 
 ```js
 import React from 'react';
@@ -30,6 +30,11 @@ import ReactDOM from 'react-dom';
 import { Chess } from '@chesslablab/redux-chess';
 
 const props = {
+  api: {
+    prot: 'https',
+    host: 'pchess.net',
+    port: '443'
+  },
   server: {
     prot: 'wss',
     host: 'pchess.net',
@@ -44,7 +49,7 @@ ReactDOM.render(
 
 ```
 
-Initialization with a custom [local chess server](https://github.com/chesslablab/chess-server):
+Initialization with a local environment consisting of a [Chess API](https://github.com/chesslablab/chess-api) and a [Chess Server](https://github.com/chesslablab/chess-server):
 
 ```js
 import React from 'react';
@@ -52,6 +57,11 @@ import ReactDOM from 'react-dom';
 import { Chess } from '@chesslablab/redux-chess';
 
 const props = {
+  api: {
+    prot: 'https',
+    host: 'api.local',
+    port: '443'
+  },
   server: {
     prot: 'ws',
     host: '127.0.0.1',
