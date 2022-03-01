@@ -18,7 +18,7 @@ const HeuristicPictureDialog = () => {
   return (
     <Dialog
       open={state.heuristicPictureDialog.open}
-      maxWidth="md"
+      maxWidth="xl"
       fullWidth={true}
     >
       <DialogTitle>Heuristic picture</DialogTitle>

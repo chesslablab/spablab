@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
-import { Legend, LineChart, Line, XAxis, YAxis } from 'recharts';
+import { Legend, LineChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 const getDimensions = (items) => {
   return Object.keys(items).map(item => {
@@ -18,13 +18,14 @@ const initData = (dim) => {
 
 const buildCharts = (data) => {
   return Object.keys(data).map(key =>
-    <Grid key={key} item xs={3}>
-      <LineChart width={200} height={150} data={data[key]}>
-        <XAxis dataKey="n" />
-        <YAxis domain={[-1, 1]} />
-        <Legend />
-        <Line type="monotone" dataKey={key} stroke="#007a99" dot={false} strokeWidth={2} />
-      </LineChart>
+    <Grid key={key} item xs={12} sm={6} md={3}>
+      <ResponsiveContainer width="100%" aspect={4.0/3.0}>
+        <LineChart data={data[key]}>
+          <YAxis domain={[-1, 1]} />
+          <Legend />
+          <Line type="monotone" dataKey={key} stroke="#007a99" dot={false} strokeWidth={2} />
+        </LineChart>
+      </ResponsiveContainer>
     </Grid>
   );
 };
