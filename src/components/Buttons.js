@@ -9,7 +9,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TuneIcon from '@mui/icons-material/Tune';
 import { useDispatch, useSelector } from 'react-redux';
-import { wsMssgFen, wsMssgQuit, wsMssgStartAnalysis, wsMssgStartLoadpgn } from '../actions/serverActions';
+import { wsMssgQuit, wsMssgStartAnalysis, wsMssgStartLoadpgn } from '../actions/serverActions';
 import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
@@ -100,7 +100,7 @@ const Buttons = ({ props }) => {
   const handleDownloadImage = async () => {
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_image`, {
       method: 'POST',
-      body: JSON.stringify({ movetext: state.board.movetext })
+      body: JSON.stringify({ fen: state.board.fen })
     }).then(res => res.blob())
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
@@ -299,10 +299,8 @@ const Buttons = ({ props }) => {
           Flip Board
         </MenuItem>
         <MenuItem onClick={() => {
-          wsMssgFen(state).then(() => {
-            dispatch({ type: fenDialogActionTypes.OPEN });
-            handleCloseSettings();
-          });
+          dispatch({ type: fenDialogActionTypes.OPEN });
+          handleCloseSettings();
         }}>
           FEN String
         </MenuItem>

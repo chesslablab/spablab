@@ -3,11 +3,12 @@ import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 
 const initialState = {
+  short_fen: null,
+  fen: null,
   turn: Pgn.symbol.WHITE,
   check: false,
   mate: false,
   picked: null,
-  fen: null,
   history: [ Ascii.board ],
   movetext: null,
   flip: Pgn.symbol.WHITE
@@ -24,12 +25,14 @@ const reducer = (state = initialState, action) => {
       const fenSplit = action.payload.fen.split(' ');
       return {
         ...state,
+        fen: action.payload.fen,
         turn: fenSplit[1],
         history: [Ascii.toAscii(fenSplit[0])]
       }
     case boardActionTypes.START_PGN:
       return {
         ...state,
+        fen: action.payload.fen,
         turn: action.payload.turn,
         history: action.payload.history,
         movetext: action.payload.movetext
@@ -62,11 +65,11 @@ const reducer = (state = initialState, action) => {
         newHistory.push(newAscii);
         return {
           ...state,
+          short_fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
           turn: newTurn,
           check: false,
           mate: false,
           picked: null,
-          fen: Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`,
           history: newHistory
         };
       }
@@ -75,16 +78,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         picked: null,
-        fen: null
+        short_fen: null
       };
     case boardActionTypes.CASTLED_SHORT:
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       return {
         ...state,
+        short_fen: null,
+        fen: action.payload.fen,
         check: action.payload.check,
         mate: action.payload.mate,
         picked: null,
-        fen: null,
         history: newHistory,
         movetext: action.payload.movetext
       }
@@ -92,10 +96,11 @@ const reducer = (state = initialState, action) => {
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       return {
         ...state,
+        short_fen: null,
+        fen: action.payload.fen,
         check: action.payload.check,
         mate: action.payload.mate,
         picked: null,
-        fen: null,
         history: newHistory,
         movetext: action.payload.movetext
       }
@@ -118,11 +123,12 @@ const reducer = (state = initialState, action) => {
       newHistory.splice(-1);
       return {
         ...state,
+        short_fen: null,
+        fen: action.payload.fen,
         turn: action.payload.turn,
         check: action.payload.isCheck,
         mate: action.payload.isMate,
         picked: null,
-        fen: null,
         history: newHistory,
         movetext: action.payload.movetext
       }
@@ -130,10 +136,11 @@ const reducer = (state = initialState, action) => {
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       return {
         ...state,
+        short_fen: null,
+        fen: action.payload.fen,
         check: action.payload.check,
         mate: action.payload.mate,
         picked: null,
-        fen: null,
         history: newHistory,
         movetext: action.payload.movetext
       }
@@ -148,11 +155,12 @@ const reducer = (state = initialState, action) => {
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
       return {
         ...state,
+        short_fen: null,
+        fen: action.payload.fen,
         turn: action.payload.turn,
         check: action.payload.check,
         mate: action.payload.mate,
         picked: null,
-        fen: null,
         history: newHistory,
         movetext: action.payload.movetext
       }
