@@ -159,6 +159,7 @@ export const onStartLoadpgn = (data) => dispatch => {
       payload: {
         turn: data['/start'].turn,
         movetext: data['/start'].movetext,
+        fen: data['/start'].fen,
         history: data['/start'].history
       }
     });
