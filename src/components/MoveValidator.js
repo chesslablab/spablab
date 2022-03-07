@@ -30,10 +30,10 @@ const MoveValidator = ({props}) => {
   const state = useSelector(state => state);
 
   useEffect(() => {
-    if (state.board.fen) {
+    if (state.board.short_fen) {
       wsMssgPlayfen(state);
     }
-  }, [state.board.fen]);
+  }, [state.board.short_fen]);
 
   return (
     <div>

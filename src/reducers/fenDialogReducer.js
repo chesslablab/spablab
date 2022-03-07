@@ -1,8 +1,7 @@
 import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 
 const initialState = {
-  open: false,
-  fen: ''
+  open: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,11 +15,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         open: true,
-      };
-    case fenDialogActionTypes.SET:
-      return {
-        ...state,
-        fen: action.payload.fen,
       };
     default:
       return state;

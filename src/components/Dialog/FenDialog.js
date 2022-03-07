@@ -15,12 +15,14 @@ const FenDialog = () => {
           <TextField
             fullWidth
             name="fen"
-            disabled
-            value={state.fenDialog.fen}
+            value={state.board.fen}
+            InputProps={{
+              readOnly: true,
+            }}
           />
           <DialogActions>
             <Button onClick={() => {
-                state.fenDialog.fen ? navigator.clipboard.writeText(state.fenDialog.fen) : null;
+                state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null;
                 dispatch({ type: fenDialogActions.CLOSE });
             }}>
               Copy FEN

@@ -40,7 +40,7 @@ export const wsMssgStartPlayfriend = async (state, color, time, increment) => {
 };
 
 export const wsMssgPlayfen = async (state) => {
-  return await state.server.ws.send(`/play_fen "${state.board.fen}"`);
+  return await state.server.ws.send(`/play_fen "${state.board.short_fen}"`);
 };
 
 export const wsMssgQuit = async (state) => {
@@ -57,10 +57,6 @@ export const wsMssgPiece = async (state, algebraic) => {
 
 export const wsMssgHeuristicpicture = async (state) => {
   return await state.server.ws.send(`/heuristic_picture`);
-};
-
-export const wsMssgFen = async (state) => {
-  return await state.server.ws.send(`/fen`);
 };
 
 export const wsMssgTakeback = async (state, action) => {
