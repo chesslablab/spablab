@@ -1,16 +1,10 @@
-import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
-import Wording from "../../utils/Wording.js";
-import { useDispatch, useSelector } from "react-redux";
-import { wsMssgRematch, wsMssgRestart } from "../../actions/serverActions";
-import rematchAcceptDialogActionTypes from "../../constants/dialog/rematchAcceptDialogActionTypes";
-import modeActionTypes from "../../constants/modeActionTypes";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { wsMssgRematch, wsMssgRestart } from '../../actions/serverActions';
+import rematchAcceptDialogActionTypes from '../../constants/dialog/rematchAcceptDialogActionTypes';
+import modeActionTypes from '../../constants/modeActionTypes';
+import Wording from '../../utils/Wording.js';
 
 const RematchAcceptDialog = () => {
   const state = useSelector((state) => state);

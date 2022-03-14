@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { Alert } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import Alert from '@mui/material/Alert';
 
 const useStyles = makeStyles({
   infoAlert: {

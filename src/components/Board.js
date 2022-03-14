@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AlgebraicNotationFiles from './AlgebraicNotationFiles';
+import AlgebraicNotationRanks from './AlgebraicNotationRanks';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
-import AlgebraicNotationFiles from './AlgebraicNotationFiles';
-import AlgebraicNotationRanks from './AlgebraicNotationRanks';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';

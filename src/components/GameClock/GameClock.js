@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
+import { makeStyles } from '@mui/styles';
 import BlackTimer from './BlackTimer';
 import WhiteTimer from './WhiteTimer';
 

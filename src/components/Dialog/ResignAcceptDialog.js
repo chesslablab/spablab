@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { wsMssgResign } from "../../actions/serverActions";
 import resignAcceptDialogActionTypes from "../../constants/dialog/resignAcceptDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";

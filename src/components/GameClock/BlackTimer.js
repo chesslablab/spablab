@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
+import { Box } from '@mui/material';
 import infoAlertActionTypes from '../../constants/alert/infoAlertActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
 import Pgn from '../../utils/Pgn';

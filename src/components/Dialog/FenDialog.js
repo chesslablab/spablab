@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import { useDispatch, useSelector } from "react-redux";
 import fenDialogActions from '../../constants/dialog/fenDialogActionTypes';
 
 const FenDialog = () => {

@@ -1,16 +1,10 @@
 import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
-import Wording from "../../utils/Wording.js";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { wsMssgRematch } from "../../actions/serverActions";
 import rematchOfferDialogActionTypes from "../../constants/dialog/rematchOfferDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
+import Wording from "../../utils/Wording.js";
 
 const RematchOfferDialog = () => {
   const state = useSelector((state) => state);

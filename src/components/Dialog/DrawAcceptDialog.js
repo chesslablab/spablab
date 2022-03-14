@@ -1,9 +1,9 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import { wsMssgDraw } from "../../actions/serverActions";
-import drawAcceptDialogActionTypes from "../../constants/dialog/drawAcceptDialogActionTypes";
-import Wording from "../../utils/Wording.js";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { wsMssgDraw } from '../../actions/serverActions';
+import drawAcceptDialogActionTypes from '../../constants/dialog/drawAcceptDialogActionTypes';
+import Wording from '../../utils/Wording.js';
 
 const DrawAcceptDialog = () => {
   const state = useSelector((state) => state);

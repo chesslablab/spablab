@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Legend, LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 import { Grid } from '@mui/material';
-import { Legend, LineChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 const getDimensions = (items) => {
   return Object.keys(items).map(item => {

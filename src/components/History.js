@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, ButtonGroup } from '@mui/material';
-import FastRewindIcon from '@mui/icons-material/FastRewind';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import FastForwardIcon from '@mui/icons-material/FastForward';
 import { useDispatch, useSelector } from 'react-redux';
+import FastForwardIcon from '@mui/icons-material/FastForward';
+import FastRewindIcon from '@mui/icons-material/FastRewind';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import { Button, ButtonGroup } from '@mui/material';
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 

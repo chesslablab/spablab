@@ -1,8 +1,8 @@
-import React from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { wsMssgStartLoadpgn, wsMssgQuit } from "../../actions/serverActions";
-import loadPgnDialogActions from "../../constants/dialog/loadPgnDialogActionTypes";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import { wsMssgStartLoadpgn, wsMssgQuit } from '../../actions/serverActions';
+import loadPgnDialogActions from '../../constants/dialog/loadPgnDialogActionTypes';
 
 const LoadPgnDialog = () => {
   const state = useSelector((state) => state);

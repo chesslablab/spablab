@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../actions/serverActions';
-import { makeStyles } from '@mui/styles';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {
@@ -14,6 +12,8 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import { makeStyles } from '@mui/styles';
+import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../actions/serverActions';
 import Movetext from '../utils/Movetext.js';
 
 const useStyles = makeStyles({

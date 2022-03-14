@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
-import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from '@mui/styles';
 import { wsMssgQuit, wsMssgStartPlayfriend } from '../../actions/serverActions';
 import createInviteCodeDialogActions from '../../constants/dialog/createInviteCodeDialogActionTypes';

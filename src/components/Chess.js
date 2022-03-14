@@ -1,41 +1,36 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { CssBaseline } from "@mui/material";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { CssBaseline, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-// ajax loader components
-import ChessOpeningAnalysisAjaxLoader from "./AjaxLoader/ChessOpeningAnalysisAjaxLoader.js";
-// alert components
-import ChessOpeningAnalysisAlert from "./Alert/ChessOpeningAnalysisAlert.js";
-import InfoAlert from "./Alert/InfoAlert.js";
-// dialog components
-import LoadFenDialog from "./Dialog/LoadFenDialog";
-import FenDialog from "./Dialog/FenDialog";
-import TakebackOfferDialog from "./Dialog/TakebackOfferDialog";
-import TakebackAcceptDialog from "./Dialog/TakebackAcceptDialog";
-import CreateInviteCodeDialog from "./Dialog/CreateInviteCodeDialog";
-import EnterInviteCodeDialog from "./Dialog/EnterInviteCodeDialog";
-import HeuristicPictureDialog from "./Dialog/HeuristicPictureDialog";
-import DrawAcceptDialog from "./Dialog/DrawAcceptDialog";
-import DrawOfferDialog from "./Dialog/DrawOfferDialog";
-import ResignAcceptDialog from "./Dialog/ResignAcceptDialog";
-import LoadPgnDialog from "./Dialog/LoadPgnDialog";
-import RematchAcceptDialog from "./Dialog/RematchAcceptDialog";
-import RematchOfferDialog from "./Dialog/RematchOfferDialog";
-import PlayLikeGrandmasterDialog from "./Dialog/PlayLikeGrandmasterDialog";
-import ChessOpeningSearchEcoDialog from "./Dialog/ChessOpeningSearchEcoDialog";
-import ChessOpeningSearchNameDialog from "./Dialog/ChessOpeningSearchNameDialog";
-import ChessOpeningSearchMovetextDialog from "./Dialog/ChessOpeningSearchMovetextDialog";
-import Board from "./Board.js";
-import Buttons from "./Buttons.js";
-import History from "./History";
-import MainBreadcrumbs from "./MainBreadcrumbs";
-import MoveValidator from "./MoveValidator.js";
-import { default as ButtonsPlayFriendMode } from "./PlayFriendMode/Buttons.js";
-import GameClock from "./GameClock/GameClock";
-import "../index.css";
-import store from "../store";
+import ChessOpeningAnalysisAjaxLoader from './AjaxLoader/ChessOpeningAnalysisAjaxLoader.js';
+import ChessOpeningAnalysisAlert from './Alert/ChessOpeningAnalysisAlert.js';
+import InfoAlert from './Alert/InfoAlert.js';
+import ChessOpeningSearchEcoDialog from './Dialog/ChessOpeningSearchEcoDialog';
+import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetextDialog';
+import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
+import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
+import DrawAcceptDialog from './Dialog/DrawAcceptDialog';
+import DrawOfferDialog from './Dialog/DrawOfferDialog';
+import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
+import FenDialog from './Dialog/FenDialog';
+import HeuristicPictureDialog from './Dialog/HeuristicPictureDialog';
+import LoadFenDialog from './Dialog/LoadFenDialog';
+import LoadPgnDialog from './Dialog/LoadPgnDialog';
+import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
+import RematchAcceptDialog from './Dialog/RematchAcceptDialog';
+import RematchOfferDialog from './Dialog/RematchOfferDialog';
+import ResignAcceptDialog from './Dialog/ResignAcceptDialog';
+import TakebackAcceptDialog from './Dialog/TakebackAcceptDialog';
+import TakebackOfferDialog from './Dialog/TakebackOfferDialog';
+import GameClock from './GameClock/GameClock';
+import { default as ButtonsPlayFriendMode } from './PlayFriendMode/Buttons.js';
+import Board from './Board.js';
+import Buttons from './Buttons.js';
+import History from './History';
+import MainBreadcrumbs from './MainBreadcrumbs';
+import MoveValidator from './MoveValidator.js';
+import '../index.css';
+import store from '../store';
 
 const useStyles = makeStyles({
   paper: {
@@ -69,23 +64,23 @@ const Chess = ({ props }) => {
           <Board props={props} />
         </Grid>
       </Grid>
-      <TakebackAcceptDialog />
-      <TakebackOfferDialog />
-      <LoadFenDialog />
+      <ChessOpeningSearchEcoDialog props={props} />
+      <ChessOpeningSearchMovetextDialog props={props} />
+      <ChessOpeningSearchNameDialog props={props} />
       <CreateInviteCodeDialog />
-      <EnterInviteCodeDialog />
-      <HeuristicPictureDialog />
-      <FenDialog />
       <DrawAcceptDialog />
       <DrawOfferDialog />
-      <ResignAcceptDialog />
+      <EnterInviteCodeDialog />
+      <FenDialog />
+      <HeuristicPictureDialog />
+      <LoadFenDialog />
       <LoadPgnDialog />
+      <PlayLikeGrandmasterDialog />
       <RematchAcceptDialog />
       <RematchOfferDialog />
-      <PlayLikeGrandmasterDialog />
-      <ChessOpeningSearchEcoDialog props={props} />
-      <ChessOpeningSearchNameDialog props={props} />
-      <ChessOpeningSearchMovetextDialog props={props} />
+      <ResignAcceptDialog />
+      <TakebackAcceptDialog />
+      <TakebackOfferDialog />
     </Provider>
   );
 };
