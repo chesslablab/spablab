@@ -46,7 +46,11 @@ const HeuristicPicture = () => {
         });
       });
     });
-    return <Grid container spacing={3}>
+    return <Grid
+      className="heuristic-picture"
+      container
+      spacing={3}
+    >
       {buildCharts(data)}
     </Grid>;
   }
