@@ -33,6 +33,11 @@ const HeuristicPictureDialog = () => {
          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
            Heuristic Picture
          </Typography>
+         <Button color="inherit" onClick={() => {
+           // TODO 
+         }}>
+           Download
+         </Button>
          <Button autoFocus color="inherit" onClick={() => dispatch({ type: heuristicPictureDialogActions.CLOSE })}>
            Close
          </Button>
