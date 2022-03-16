@@ -1,9 +1,24 @@
+import html2canvas from 'html2canvas';
 import * as React from 'react';
 import { Alert, AppBar, Button, Dialog, IconButton, Toolbar, Typography, Slide } from '@mui/material/';
 import CloseIcon from '@mui/icons-material/Close';
 import HeuristicPicture from "../HeuristicPicture.js";
 import { useDispatch, useSelector } from "react-redux";
 import heuristicPictureDialogActions from "../../constants/dialog/heuristicPictureDialogActionTypes";
+
+const handleDownloadImage = async () => {
+  const heuristicPicture = document.getElementsByClassName('heuristic-picture')[0];
+  const canvas = await html2canvas(heuristicPicture, {
+    logging: false,
+    width: heuristicPicture.clientWidth,
+    height: heuristicPicture.clientHeight
+  });
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/png', 1);
+  a.download = "heuristic_picture.png";
+  a.click();
+  a.remove();
+}
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -33,9 +48,7 @@ const HeuristicPictureDialog = () => {
          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
            Heuristic Picture
          </Typography>
-         <Button color="inherit" onClick={() => {
-           // TODO 
-         }}>
+         <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
          </Button>
          <Button autoFocus color="inherit" onClick={() => dispatch({ type: heuristicPictureDialogActions.CLOSE })}>
