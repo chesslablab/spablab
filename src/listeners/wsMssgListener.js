@@ -5,7 +5,7 @@ import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
-import genericAjaxDialogActionTypes from '../constants/dialog/genericAjaxDialogActionTypes';
+import ajaxDialogActionTypes from '../constants/dialog/ajaxDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
@@ -302,7 +302,7 @@ export const onHeuristicPicture = (data) => dispatch => {
     dimensions: data['/heuristic_picture'].dimensions,
     balance: data['/heuristic_picture'].balance
   };
-  dispatch({ type: genericAjaxDialogActionTypes.CLOSE });
+  dispatch({ type: ajaxDialogActionTypes.CLOSE });
   dispatch({
     type: heuristicPictureDialogActionTypes.OPEN,
     payload: payload

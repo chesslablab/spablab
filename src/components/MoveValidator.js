@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../actions/serverActions';
-import genericAjaxDialogActionTypes from '../constants/dialog/genericAjaxDialogActionTypes';
+import ajaxDialogActionTypes from '../constants/dialog/ajaxDialogActionTypes';
 import Movetext from '../utils/Movetext.js';
 
 const useStyles = makeStyles({
@@ -64,7 +64,7 @@ const MoveValidator = ({props}) => {
         <Button
           startIcon={<BarChartIcon />}
           onClick={() => {
-            dispatch({ type: genericAjaxDialogActionTypes.OPEN });
+            dispatch({ type: ajaxDialogActionTypes.OPEN });
             wsMssgHeuristicpicture(state);
           }}
         >

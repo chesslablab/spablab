@@ -1,4 +1,4 @@
-import genericAjaxDialogActionTypes from '../constants/dialog/genericAjaxDialogActionTypes';
+import ajaxDialogActionTypes from '../constants/dialog/ajaxDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case genericAjaxDialogActionTypes.CLOSE:
+    case ajaxDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case genericAjaxDialogActionTypes.OPEN:
+    case ajaxDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,
