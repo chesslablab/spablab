@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { wsMssgQuit, wsMssgStartLoadpgn } from '../../actions/serverActions';
+import ajaxDialogActionTypes from '../../constants/dialog/ajaxDialogActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
@@ -15,6 +16,7 @@ const ChessOpeningSearchResult = ({props}) => {
     dispatch({ type: chessOpeningSearchEcoDialogActionTypes.CLOSE });
     dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
     dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
+    dispatch({ type: ajaxDialogActionTypes.OPEN });
     wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, movetext));
   };
 

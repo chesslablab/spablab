@@ -154,6 +154,7 @@ export const onStartLoadfen = (data) => dispatch => {
 
 export const onStartLoadpgn = (data) => dispatch => {
   if (data['/start'].movetext) {
+    dispatch({ type: ajaxDialogActionTypes.CLOSE });
     dispatch({ type: modeActionTypes.SET_LOADPGN });
     dispatch({
       type: boardActionTypes.START_PGN,
