@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { wsMssgStartLoadpgn, wsMssgQuit } from '../../actions/serverActions';
-import loadPgnDialogActions from '../../constants/dialog/loadPgnDialogActionTypes';
+import loadPgnDialogActionTypes from '../../constants/dialog/loadPgnDialogActionTypes';
 
 const LoadPgnDialog = () => {
   const state = useSelector((state) => state);
@@ -10,7 +10,7 @@ const LoadPgnDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    dispatch({ type: loadPgnDialogActions.CLOSE });
+    dispatch({ type: loadPgnDialogActionTypes.CLOSE });
     wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, event.target.elements.pgn.value));
   };
 
@@ -29,7 +29,7 @@ const LoadPgnDialog = () => {
           />
           <DialogActions>
             <Button type="submit">Load</Button>
-            <Button onClick={() => dispatch({ type: loadPgnDialogActions.CLOSE })}>
+            <Button onClick={() => dispatch({ type: loadPgnDialogActionTypes.CLOSE })}>
               Cancel
             </Button>
           </DialogActions>

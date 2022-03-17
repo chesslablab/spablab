@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import fenDialogActions from '../../constants/dialog/fenDialogActionTypes';
+import fenDialogActionTypes from '../../constants/dialog/fenDialogActionTypes';
 
 const FenDialog = () => {
   const state = useSelector(state => state);
@@ -23,11 +23,11 @@ const FenDialog = () => {
           <DialogActions>
             <Button onClick={() => {
                 state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null;
-                dispatch({ type: fenDialogActions.CLOSE });
+                dispatch({ type: fenDialogActionTypes.CLOSE });
             }}>
               Copy FEN
             </Button>
-            <Button onClick={() => dispatch({ type: fenDialogActions.CLOSE })}>
+            <Button onClick={() => dispatch({ type: fenDialogActionTypes.CLOSE })}>
               Close
             </Button>
           </DialogActions>

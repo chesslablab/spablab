@@ -4,7 +4,7 @@ import { Alert, AppBar, Button, Dialog, IconButton, Toolbar, Typography, Slide }
 import CloseIcon from '@mui/icons-material/Close';
 import HeuristicPicture from "../HeuristicPicture.js";
 import { useDispatch, useSelector } from "react-redux";
-import heuristicPictureDialogActions from "../../constants/dialog/heuristicPictureDialogActionTypes";
+import heuristicPictureDialogActionTypes from "../../constants/dialog/heuristicPictureDialogActionTypes";
 
 const handleDownloadImage = async () => {
   const heuristicPicture = document.getElementsByClassName('heuristic-picture')[0];
@@ -32,7 +32,7 @@ const HeuristicPictureDialog = () => {
     <Dialog
       fullScreen
       open={state.heuristicPictureDialog.open}
-      onClose={() => dispatch({ type: heuristicPictureDialogActions.CLOSE })}
+      onClose={() => dispatch({ type: heuristicPictureDialogActionTypes.CLOSE })}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -40,7 +40,7 @@ const HeuristicPictureDialog = () => {
          <IconButton
            edge="start"
            color="inherit"
-           onClick={() => dispatch({ type: heuristicPictureDialogActions.CLOSE })}
+           onClick={() => dispatch({ type: heuristicPictureDialogActionTypes.CLOSE })}
            aria-label="close"
          >
            <CloseIcon />
@@ -51,7 +51,7 @@ const HeuristicPictureDialog = () => {
          <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
          </Button>
-         <Button autoFocus color="inherit" onClick={() => dispatch({ type: heuristicPictureDialogActions.CLOSE })}>
+         <Button autoFocus color="inherit" onClick={() => dispatch({ type: heuristicPictureDialogActionTypes.CLOSE })}>
            Close
          </Button>
        </Toolbar>

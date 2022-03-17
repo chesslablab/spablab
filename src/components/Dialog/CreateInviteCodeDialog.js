@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { wsMssgQuit, wsMssgStartPlayfriend } from '../../actions/serverActions';
-import createInviteCodeDialogActions from '../../constants/dialog/createInviteCodeDialogActionTypes';
+import createInviteCodeDialogActionTypes from '../../constants/dialog/createInviteCodeDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 
 const useStyles = makeStyles({
@@ -85,9 +85,9 @@ const CreateInviteCodeDialog = () => {
               !state.mode.playfriend.hash
                 ? <div>
                     <Button type="submit">Create code</Button>
-                    <Button onClick={() => dispatch({ type: createInviteCodeDialogActions.CLOSE })}>Cancel</Button>
+                    <Button onClick={() => dispatch({ type: createInviteCodeDialogActionTypes.CLOSE })}>Cancel</Button>
                   </div>
-                : <Button onClick={() => dispatch({ type: createInviteCodeDialogActions.CLOSE })}>Play</Button>
+                : <Button onClick={() => dispatch({ type: createInviteCodeDialogActionTypes.CLOSE })}>Play</Button>
             }
           </DialogActions>
         </form>
