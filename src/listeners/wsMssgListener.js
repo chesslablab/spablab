@@ -1,6 +1,5 @@
 import { wsMssgResponse } from '../actions/serverActions';
 import chessOpeningAnalysisAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningAnalysisAjaxLoaderActionTypes';
-import genericAjaxLoaderActionTypes from '../constants/ajaxLoader/genericAjaxLoaderActionTypes';
 import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
@@ -303,7 +302,6 @@ export const onHeuristicPicture = (data) => dispatch => {
     dimensions: data['/heuristic_picture'].dimensions,
     balance: data['/heuristic_picture'].balance
   };
-  dispatch({ type: genericAjaxLoaderActionTypes.HIDE });
   dispatch({ type: genericAjaxDialogActionTypes.CLOSE });
   dispatch({
     type: heuristicPictureDialogActionTypes.OPEN,

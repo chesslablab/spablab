@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../actions/serverActions';
-import genericAjaxLoaderActionTypes from '../constants/ajaxLoader/genericAjaxLoaderActionTypes';
 import genericAjaxDialogActionTypes from '../constants/dialog/genericAjaxDialogActionTypes';
 import Movetext from '../utils/Movetext.js';
 
@@ -66,7 +65,6 @@ const MoveValidator = ({props}) => {
           startIcon={<BarChartIcon />}
           onClick={() => {
             dispatch({ type: genericAjaxDialogActionTypes.OPEN });
-            dispatch({ type: genericAjaxLoaderActionTypes.SHOW });
             wsMssgHeuristicpicture(state);
           }}
         >
