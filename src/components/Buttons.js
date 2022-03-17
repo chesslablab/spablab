@@ -28,12 +28,12 @@ const Buttons = ({ props }) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [anchorElPlayFriend, setAnchorElPlayFriend] = React.useState(null);
-  const [anchorElTraining, setAnchorElTraining] = React.useState(null);
-  const [anchorElOpeningSearch, setAnchorElOpeningSearch] = React.useState(null);
-  const [anchorElLoad, setAnchorElLoad] = React.useState(null);
-  const [anchorElDownload, setAnchorElDownload] = React.useState(null);
-  const [anchorElSettings, setAnchorElSettings] = React.useState(null);
+  const [anchorElPlayFriend, setAnchorElPlayFriend] = useState(null);
+  const [anchorElTraining, setAnchorElTraining] = useState(null);
+  const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
+  const [anchorElLoad, setAnchorElLoad] = useState(null);
+  const [anchorElDownload, setAnchorElDownload] = useState(null);
+  const [anchorElSettings, setAnchorElSettings] = useState(null);
 
   const matches = useMediaQuery("(min-width:768px)");
 

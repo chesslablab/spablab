@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import drawOfferDialogActionTypes from '../../constants/dialog/drawOfferDialogActionTypes';
@@ -9,9 +9,9 @@ const GameButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [anchorElRequestTakeback, setAnchorElRequestTakeback] = React.useState(null);
-  const [anchorElDrawOffer, setAnchorElDrawOffer] = React.useState(null);
-  const [anchorElResignAccept, setAnchorElResignAccept] = React.useState(null);
+  const [anchorElRequestTakeback, setAnchorElRequestTakeback] = useState(null);
+  const [anchorElDrawOffer, setAnchorElDrawOffer] = useState(null);
+  const [anchorElResignAccept, setAnchorElResignAccept] = useState(null);
 
   const handleCloseRequestTakeback = () => {
     setAnchorElRequestTakeback(null);

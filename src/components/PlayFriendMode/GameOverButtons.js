@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
 import Wording from "../../utils/Wording.js";
@@ -8,7 +8,7 @@ const GameOverButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [anchorElRematchOffer, setAnchorElRematchOffer] = React.useState(null);
+  const [anchorElRematchOffer, setAnchorElRematchOffer] = useState(null);
 
   const handleCloseRematchOffer = () => {
     setAnchorElRematchOffer(null);
