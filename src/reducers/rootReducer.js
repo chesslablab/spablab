@@ -6,6 +6,7 @@ import serverReducer from './serverReducer';
 // ajax loader reducers
 import chessOpeningAjaxLoaderReducer from './chessOpeningAjaxLoaderReducer';
 import chessOpeningSearchAjaxLoaderReducer from './chessOpeningSearchAjaxLoaderReducer';
+import genericAjaxLoaderReducer from './genericAjaxLoaderReducer';
 // alert reducers
 import chessOpeningAnalysisAlertReducer from './chessOpeningAnalysisAlertReducer';
 import infoAlertReducer from './infoAlertReducer';
@@ -27,6 +28,7 @@ import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer
 import openingSearchEcoDialogReducer from './openingSearchEcoDialogReducer';
 import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
+import genericAjaxDialogReducer from './genericAjaxDialogReducer';
 
 const rootReducer = combineReducers({
   board: boardReducer,
@@ -36,6 +38,7 @@ const rootReducer = combineReducers({
   // ajax loader reducers
   chessOpeningAjaxLoader: chessOpeningAjaxLoaderReducer,
   chessOpeningSearchAjaxLoader: chessOpeningSearchAjaxLoaderReducer,
+  genericAjaxLoader: genericAjaxLoaderReducer,
   // alert reducers
   chessOpeningAnalysisAlert: chessOpeningAnalysisAlertReducer,
   infoAlert: infoAlertReducer,
@@ -56,7 +59,8 @@ const rootReducer = combineReducers({
   playLikeGrandmasterDialog: playLikeGrandmasterDialogReducer,
   openingSearchEcoDialog: openingSearchEcoDialogReducer,
   openingSearchNameDialog: openingSearchNameDialogReducer,
-  openingSearchMovetextDialog: openingSearchMovetextDialogReducer
+  openingSearchMovetextDialog: openingSearchMovetextDialogReducer,
+  genericAjaxDialog: genericAjaxDialogReducer
 });
 
 export default rootReducer;

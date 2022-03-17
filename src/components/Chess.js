@@ -13,6 +13,7 @@ import DrawAcceptDialog from './Dialog/DrawAcceptDialog';
 import DrawOfferDialog from './Dialog/DrawOfferDialog';
 import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
 import FenDialog from './Dialog/FenDialog';
+import GenericAjaxDialog from './Dialog/GenericAjaxDialog';
 import HeuristicPictureDialog from './Dialog/HeuristicPictureDialog';
 import LoadFenDialog from './Dialog/LoadFenDialog';
 import LoadPgnDialog from './Dialog/LoadPgnDialog';
@@ -72,6 +73,7 @@ const Chess = ({ props }) => {
       <DrawOfferDialog />
       <EnterInviteCodeDialog />
       <FenDialog />
+      <GenericAjaxDialog />
       <HeuristicPictureDialog />
       <LoadFenDialog />
       <LoadPgnDialog />
