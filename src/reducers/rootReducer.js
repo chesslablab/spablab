@@ -27,6 +27,7 @@ import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer
 import openingSearchEcoDialogReducer from './openingSearchEcoDialogReducer';
 import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
+import ajaxDialogReducer from './ajaxDialogReducer';
 
 const rootReducer = combineReducers({
   board: boardReducer,
@@ -56,7 +57,8 @@ const rootReducer = combineReducers({
   playLikeGrandmasterDialog: playLikeGrandmasterDialogReducer,
   openingSearchEcoDialog: openingSearchEcoDialogReducer,
   openingSearchNameDialog: openingSearchNameDialogReducer,
-  openingSearchMovetextDialog: openingSearchMovetextDialogReducer
+  openingSearchMovetextDialog: openingSearchMovetextDialogReducer,
+  ajaxDialog: ajaxDialogReducer
 });
 
 export default rootReducer;

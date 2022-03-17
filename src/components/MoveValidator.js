@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {
@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../actions/serverActions';
+import ajaxDialogActionTypes from '../constants/dialog/ajaxDialogActionTypes';
 import Movetext from '../utils/Movetext.js';
 
 const useStyles = makeStyles({
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
 const MoveValidator = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (state.board.short_fen) {
@@ -61,7 +63,10 @@ const MoveValidator = ({props}) => {
         </Button>
         <Button
           startIcon={<BarChartIcon />}
-          onClick={() => wsMssgHeuristicpicture(state)}
+          onClick={() => {
+            dispatch({ type: ajaxDialogActionTypes.OPEN });
+            wsMssgHeuristicpicture(state);
+          }}
         >
           Heuristic Picture
         </Button>
