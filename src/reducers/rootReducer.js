@@ -58,7 +58,7 @@ const rootReducer = combineReducers({
   openingSearchEcoDialog: openingSearchEcoDialogReducer,
   openingSearchNameDialog: openingSearchNameDialogReducer,
   openingSearchMovetextDialog: openingSearchMovetextDialogReducer,
-  ajaxDialog: progressDialogReducer
+  progressDialog: progressDialogReducer
 });
 
 export default rootReducer;
