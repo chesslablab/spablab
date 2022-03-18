@@ -24,6 +24,10 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column-reverse'
   },
+  currentMove: {
+    backgroundColor: '#ececec !important',
+    fontWeight: 'bold !important'
+  }
 });
 
 const MoveValidator = ({props}) => {
@@ -37,20 +41,40 @@ const MoveValidator = ({props}) => {
     }
   }, [state.board.short_fen]);
 
+  const highlight = (n) => {
+    if (n === state.board.history.length + state.history.back - 1) {
+      return classes.currentMove;
+    }
+
+    return '';
+  };
+
+  const tableRows = () => {
+    let rows = [];
+    Movetext.toRows(state.board.movetext)
+      .forEach((row, i) => {
+        rows.push(
+          <TableRow key={i}>
+            <TableCell align="right">{i + 1}</TableCell>
+            <TableCell align="right" className={highlight(((i + 1) * 2) - 1)}>
+              {row.w}
+            </TableCell>
+            <TableCell align="right" className={highlight((i + 1) * 2)}>
+              {row.b}
+            </TableCell>
+          </TableRow>
+        );
+    });
+
+    return rows;
+  };
+
   return (
     <div>
       <TableContainer component={Paper} className={classes.table}>
-        <Table stickyHeader aria-label="simple table">
+        <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
-            {
-              Movetext.toRows(state.board.movetext).map((row, i) => (
-                <TableRow key={i}>
-                  <TableCell align="right">{i + 1}</TableCell>
-                  <TableCell align="right">{row.w}</TableCell>
-                  <TableCell align="right">{row.b}</TableCell>
-                </TableRow>
-              ))
-            }
+            {tableRows()}
           </TableBody>
         </Table>
       </TableContainer>
