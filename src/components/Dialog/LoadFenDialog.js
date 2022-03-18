@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { wsMssgStartLoadfen, wsMssgQuit } from '../../actions/serverActions';
-import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
 import loadFenDialogActionTypes from '../../constants/dialog/loadFenDialogActionTypes';
+import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
