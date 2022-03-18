@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { wsMssgStartLoadfen, wsMssgQuit } from '../../actions/serverActions';
+import ajaxDialogActionTypes from '../../constants/dialog/ajaxDialogActionTypes';
 import loadFenDialogActionTypes from '../../constants/dialog/loadFenDialogActionTypes';
 
 const LoadFenDialog = () => {
@@ -11,6 +12,7 @@ const LoadFenDialog = () => {
   const handleLoad = (event) => {
     event.preventDefault();
     dispatch({ type: loadFenDialogActionTypes.CLOSE });
+    dispatch({ type: ajaxDialogActionTypes.OPEN });
     wsMssgQuit(state).then(() => wsMssgStartLoadfen(state, event.target.elements.fen.value));
   };
 

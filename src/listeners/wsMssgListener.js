@@ -134,6 +134,7 @@ export const onStartGrandmaster = (data) => dispatch => {
 };
 
 export const onStartLoadfen = (data) => dispatch => {
+  dispatch({ type: ajaxDialogActionTypes.CLOSE });
   if (data['/start'].fen) {
     dispatch({ type: modeActionTypes.SET_LOADFEN });
     dispatch({
@@ -153,8 +154,8 @@ export const onStartLoadfen = (data) => dispatch => {
 };
 
 export const onStartLoadpgn = (data) => dispatch => {
+  dispatch({ type: ajaxDialogActionTypes.CLOSE });
   if (data['/start'].movetext) {
-    dispatch({ type: ajaxDialogActionTypes.CLOSE });
     dispatch({ type: modeActionTypes.SET_LOADPGN });
     dispatch({
       type: boardActionTypes.START_PGN,

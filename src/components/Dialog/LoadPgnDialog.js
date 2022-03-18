@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { wsMssgStartLoadpgn, wsMssgQuit } from '../../actions/serverActions';
+import ajaxDialogActionTypes from '../../constants/dialog/ajaxDialogActionTypes';
 import loadPgnDialogActionTypes from '../../constants/dialog/loadPgnDialogActionTypes';
 
 const LoadPgnDialog = () => {
@@ -11,6 +12,7 @@ const LoadPgnDialog = () => {
   const handleLoad = (event) => {
     event.preventDefault();
     dispatch({ type: loadPgnDialogActionTypes.CLOSE });
+    dispatch({ type: ajaxDialogActionTypes.OPEN });
     wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, event.target.elements.pgn.value));
   };
 

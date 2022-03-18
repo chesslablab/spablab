@@ -133,25 +133,26 @@ const Buttons = ({ props }) => {
   }
 
   const handleRandomTournamentGame = async () => {
+    dispatch({ type: ajaxDialogActionTypes.OPEN });
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/tournament`, {
       method: 'POST'
-    }).then(res => res.json())
-      .then(res => {
-        dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-        dispatch({
-          type: infoAlertActionTypes.DISPLAY,
-          payload: {
-            info: `Event: ${res.Event} \n
-              Site: ${res.Site} \n
-              Date: ${res.Date} \n
-              White: ${res.White} \n
-              Black: ${res.Black} \n
-              Result: ${res.Result} \n
-              ECO: ${res.ECO}`
-          }
-        });
-        wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, res.movetext));
+    })
+    .then(res => res.json())
+    .then(res => {
+      dispatch({
+        type: infoAlertActionTypes.DISPLAY,
+        payload: {
+          info: `Event: ${res.Event} \n
+            Site: ${res.Site} \n
+            Date: ${res.Date} \n
+            White: ${res.White} \n
+            Black: ${res.Black} \n
+            Result: ${res.Result} \n
+            ECO: ${res.ECO}`
+        }
       });
+      wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, res.movetext));
+    });
   }
 
   return (
