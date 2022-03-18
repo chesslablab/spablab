@@ -24,6 +24,10 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column-reverse'
   },
+  currentMove: {
+    backgroundColor: '#ececec !important',
+    fontWeight: 'bold !important'
+  }
 });
 
 const MoveValidator = ({props}) => {
@@ -37,17 +41,29 @@ const MoveValidator = ({props}) => {
     }
   }, [state.board.short_fen]);
 
+  const rows = Movetext.toRows(state.board.movetext);
+
   return (
     <div>
       <TableContainer component={Paper} className={classes.table}>
-        <Table stickyHeader aria-label="simple table">
+        <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
             {
-              Movetext.toRows(state.board.movetext).map((row, i) => (
+              rows.map((row, i) => (
                 <TableRow key={i}>
                   <TableCell align="right">{i + 1}</TableCell>
-                  <TableCell align="right">{row.w}</TableCell>
-                  <TableCell align="right">{row.b}</TableCell>
+                  <TableCell
+                    align="right"
+                    className={rows.length == i + 1 && !row.b  ? classes.currentMove : ''}
+                  >
+                    {row.w}
+                  </TableCell>
+                  <TableCell
+                    align="right"
+                    className={rows.length == i + 1 && row.b  ? classes.currentMove : ''}
+                  >
+                    {row.b}
+                  </TableCell>
                 </TableRow>
               ))
             }
