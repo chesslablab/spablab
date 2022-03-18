@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Dialog, DialogContent, LinearProgress } from '@mui/material';
 
-const AjaxDialog = ({ props }) => {
+const ProgressDialog = ({ props }) => {
   const state = useSelector(state => state);
 
   return (
@@ -16,4 +16,4 @@ const AjaxDialog = ({ props }) => {
   );
 }
 
-export default AjaxDialog;
+export default ProgressDialog;
