@@ -11,7 +11,7 @@ import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/materia
 import { wsMssgQuit, wsMssgStartAnalysis, wsMssgStartLoadpgn } from '../actions/serverActions';
 import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
-import ajaxDialogActionTypes from '../constants/dialog/ajaxDialogActionTypes';
+import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
@@ -114,7 +114,7 @@ const Buttons = ({ props }) => {
   }
 
   const handleDownloadMp4 = async () => {
-    dispatch({ type: ajaxDialogActionTypes.OPEN });
+    dispatch({ type: progressDialogActionTypes.OPEN });
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
       method: 'POST',
       body: JSON.stringify({ movetext: state.board.movetext })
@@ -129,11 +129,11 @@ const Buttons = ({ props }) => {
       a.click();
       a.remove();
     })
-    .finally(() => dispatch({ type: ajaxDialogActionTypes.CLOSE }));
+    .finally(() => dispatch({ type: progressDialogActionTypes.CLOSE }));
   }
 
   const handleRandomTournamentGame = async () => {
-    dispatch({ type: ajaxDialogActionTypes.OPEN });
+    dispatch({ type: progressDialogActionTypes.OPEN });
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/tournament`, {
       method: 'POST'
     })

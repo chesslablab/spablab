@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { wsMssgStartLoadpgn, wsMssgQuit } from '../../actions/serverActions';
-import ajaxDialogActionTypes from '../../constants/dialog/ajaxDialogActionTypes';
+import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
 import loadPgnDialogActionTypes from '../../constants/dialog/loadPgnDialogActionTypes';
 
 const LoadPgnDialog = () => {
@@ -12,7 +12,7 @@ const LoadPgnDialog = () => {
   const handleLoad = (event) => {
     event.preventDefault();
     dispatch({ type: loadPgnDialogActionTypes.CLOSE });
-    dispatch({ type: ajaxDialogActionTypes.OPEN });
+    dispatch({ type: progressDialogActionTypes.OPEN });
     wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, event.target.elements.pgn.value));
   };
 

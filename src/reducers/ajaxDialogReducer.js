@@ -1,4 +1,4 @@
-import ajaxDialogActionTypes from '../constants/dialog/ajaxDialogActionTypes';
+import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 
 const initialState = {
   open: false
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ajaxDialogActionTypes.CLOSE:
+    case progressDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
       };
-    case ajaxDialogActionTypes.OPEN:
+    case progressDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,
