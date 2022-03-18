@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { wsMssgStartLoadpgn, wsMssgQuit } from '../../actions/serverActions';
 import loadPgnDialogActionTypes from '../../constants/dialog/loadPgnDialogActionTypes';
+import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
 
 const LoadPgnDialog = () => {
   const state = useSelector((state) => state);
@@ -11,6 +12,7 @@ const LoadPgnDialog = () => {
   const handleLoad = (event) => {
     event.preventDefault();
     dispatch({ type: loadPgnDialogActionTypes.CLOSE });
+    dispatch({ type: progressDialogActionTypes.OPEN });
     wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, event.target.elements.pgn.value));
   };
 

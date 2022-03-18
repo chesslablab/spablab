@@ -5,10 +5,10 @@ import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
-import ajaxDialogActionTypes from '../constants/dialog/ajaxDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
+import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
@@ -134,6 +134,7 @@ export const onStartGrandmaster = (data) => dispatch => {
 };
 
 export const onStartLoadfen = (data) => dispatch => {
+  dispatch({ type: progressDialogActionTypes.CLOSE });
   if (data['/start'].fen) {
     dispatch({ type: modeActionTypes.SET_LOADFEN });
     dispatch({
@@ -153,8 +154,8 @@ export const onStartLoadfen = (data) => dispatch => {
 };
 
 export const onStartLoadpgn = (data) => dispatch => {
+  dispatch({ type: progressDialogActionTypes.CLOSE });
   if (data['/start'].movetext) {
-    dispatch({ type: ajaxDialogActionTypes.CLOSE });
     dispatch({ type: modeActionTypes.SET_LOADPGN });
     dispatch({
       type: boardActionTypes.START_PGN,
@@ -303,7 +304,7 @@ export const onHeuristicPicture = (data) => dispatch => {
     dimensions: data['/heuristic_picture'].dimensions,
     balance: data['/heuristic_picture'].balance
   };
-  dispatch({ type: ajaxDialogActionTypes.CLOSE });
+  dispatch({ type: progressDialogActionTypes.CLOSE });
   dispatch({
     type: heuristicPictureDialogActionTypes.OPEN,
     payload: payload
