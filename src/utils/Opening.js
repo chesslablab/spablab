@@ -5,7 +5,7 @@ export default class Opening {
     return openings.filter(item => item.eco.startsWith(eco));
   }
 
-  static startsWith = (movetext) => {
+  static byMovetext = (movetext) => {
     return openings.filter(item => item.movetext.startsWith(movetext));
   }
 }

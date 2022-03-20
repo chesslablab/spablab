@@ -16,16 +16,13 @@ describe('byMovetext()', () => {
   it('is 290 openings that start with D', () => {
     expect(Opening.byEco('E').length).toBe(290);
   });
-  it('starts with foo', () => {
-    const openings = Opening.startsWith('foo');
-    expect(openings.length).toBe(0);
+  it('is 0 openings that start with foo', () => {
+    expect(Opening.byMovetext('foo').length).toBe(0);
   });
-  it('starts with 1.e4 e5', () => {
-    const openings = Opening.startsWith('1.e4 e5');
-    expect(openings.length).toBe(990);
+  it('is 990 openings that start with 1.e4 e5', () => {
+    expect(Opening.byMovetext('1.e4 e5').length).toBe(990);
   });
-  it('starts with 1.e4 e5 2.Nf3', () => {
-    const openings = Opening.startsWith('1.e4 e5 2.Nf3');
-    expect(openings.length).toBe(651);
+  it('is 651 openings that starts with 1.e4 e5 2.Nf3', () => {
+    expect(Opening.byMovetext('1.e4 e5 2.Nf3').length).toBe(651);
   });
 });
