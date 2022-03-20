@@ -8,4 +8,8 @@ export default class Opening {
   static byMovetext = (movetext) => {
     return openings.filter(item => item.movetext.startsWith(movetext));
   }
+
+  static byName = (name) => {
+    return openings.filter(item => item.name.toLowerCase().includes(name.toLowerCase()));
+  }
 }

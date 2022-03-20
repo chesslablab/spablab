@@ -29,3 +29,12 @@ describe('byMovetext()', () => {
     expect(Opening.byMovetext('1.e4 e5 2.Nf3').length).toBe(651);
   });
 });
+
+describe('Name()', () => {
+  it('is 381 including Sicilian', () => {
+    expect(Opening.byName('Sicilian').length).toBe(381);
+  });
+  it('is 381 including sicilian', () => {
+    expect(Opening.byName('sicilian').length).toBe(381);
+  });
+});
