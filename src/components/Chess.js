@@ -27,7 +27,6 @@ import { default as ButtonsPlayFriendMode } from './PlayFriendMode/Buttons.js';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
 import History from './History';
-import MainBreadcrumbs from './MainBreadcrumbs';
 import MoveValidator from './MoveValidator.js';
 import '../index.css';
 import store from '../store';
@@ -50,7 +49,6 @@ const Chess = ({ props }) => {
         </Grid>
         <Grid item xs={12} md={3}>
           <Paper className={classes.paper}>
-            <MainBreadcrumbs />
             <History />
             <GameClock />
             <MoveValidator />
