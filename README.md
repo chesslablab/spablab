@@ -15,16 +15,19 @@ Check out [this demo](https://programarivm.github.io/demo-redux-chess).
 > Please note the sandbox server may not be up and running all the time.
 
 ![Figure 1](/src/assets/img/docs/figure-01.png)
-Figure 1. Analysis board.
+Figure 1. Play a Friend > Create Invite Code
 
 ![Figure 2](/src/assets/img/docs/figure-02.png)
-Figure 2. Heuristic picture of the game.
+Figure 2. Analysis Board
 
 ![Figure 3](/src/assets/img/docs/figure-03.png)
-Figure 3. Chess opening search.
+Figure 3. Training > Random Tournament Game
 
 ![Figure 4](/src/assets/img/docs/figure-04.png)
-Figure 4. Invite a friend.
+Figure 4. Heuristic picture of a game
+
+![Figure 5](/src/assets/img/docs/figure-05.png)
+Figure 5. Opening Search > ECO Code
 
 ### Examples
 
