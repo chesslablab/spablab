@@ -92,7 +92,7 @@ const MoveValidator = ({props}) => {
             wsMssgHeuristicpicture(state);
           }}
         >
-          Heuristic Picture
+          Heuristic Pic
         </Button>
       </ButtonGroup>
     </div>
