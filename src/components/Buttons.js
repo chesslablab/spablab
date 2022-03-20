@@ -167,7 +167,7 @@ const Buttons = ({ props }) => {
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
       >
-        Invite a Friend
+        Play a Friend
       </Button>
       <Menu
         anchorEl={anchorElPlayFriend}
