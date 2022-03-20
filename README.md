@@ -15,10 +15,16 @@ Check out [this demo](https://programarivm.github.io/demo-redux-chess).
 > Please note the sandbox server may not be up and running all the time.
 
 ![Figure 1](/src/assets/img/docs/figure-01.png)
-Figure 1. The Chigorin Defense to the Queen's Gambit
+Figure 1. Analysis board.
 
 ![Figure 2](/src/assets/img/docs/figure-02.png)
-Figure 2. Heuristic picture after 1.d4 d5 2.c4 Nc6 3.cxd5 Qxd5 4.e3 e5 5.Nc3 Bb4 6.Bd2 Bxc3
+Figure 2. Heuristic picture of the game.
+
+![Figure 3](/src/assets/img/docs/figure-03.png)
+Figure 3. Chess opening search.
+
+![Figure 4](/src/assets/img/docs/figure-04.png)
+Figure 4. Invite a friend.
 
 ### Examples
 
