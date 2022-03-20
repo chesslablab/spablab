@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ComputerIcon from '@mui/icons-material/Computer';
 import DownloadIcon from '@mui/icons-material/Download';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import PublishIcon from '@mui/icons-material/Publish';
 import PsychologyIcon from '@mui/icons-material/Psychology';
+import PublishIcon from '@mui/icons-material/Publish';
+import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
@@ -214,7 +214,7 @@ const Buttons = ({ props }) => {
         </MenuItem>
       </Menu>
       <Button
-        startIcon={<ComputerIcon />}
+        startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >
         Opening Search
