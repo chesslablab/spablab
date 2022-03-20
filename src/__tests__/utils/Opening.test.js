@@ -1,6 +1,6 @@
 import Opening from 'utils/Opening.js';
 
-describe('byMovetext()', () => {
+describe('byEco()', () => {
   it('is 720 starting with A', () => {
     expect(Opening.byEco('A').length).toBe(720);
   });
@@ -16,6 +16,9 @@ describe('byMovetext()', () => {
   it('is 290 starting with D', () => {
     expect(Opening.byEco('E').length).toBe(290);
   });
+});
+
+describe('byMovetext()', () => {
   it('is 0 starting with foo', () => {
     expect(Opening.byMovetext('foo').length).toBe(0);
   });
