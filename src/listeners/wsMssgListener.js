@@ -12,6 +12,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
 import store from '../store';
+import Opening from '../utils/Opening.js';
 import Pgn from '../utils/Pgn';
 import Wording from '../utils/Wording.js';
 
@@ -270,26 +271,20 @@ export const onPlayfen = (props, data) => dispatch => {
       });
     }
     if (store.getState().mode.current === modeNames.ANALYSIS) {
+      let info = '';
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
-        method: 'POST',
-        body: JSON.stringify({ movetext: payload.movetext })
-      })
-      .then(res => res.json())
-      .then(res => {
-        let info = '';
-        res.forEach(item => info += `${item.eco}, ${item.name}` + '\n');
-        if (info) {
-          dispatch({
-            type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
-            payload: {
-              info: info
-            }
-          });
-        } else {
-          dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-        }
-      });
+      Opening.byMovetext(payload.movetext)
+        .forEach(item => info += `${item.eco}, ${item.name}` + '\n');
+      if (info) {
+        dispatch({
+          type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
+          payload: {
+            info: info
+          }
+        });
+      } else {
+        dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
+      }
     }
   }
 };

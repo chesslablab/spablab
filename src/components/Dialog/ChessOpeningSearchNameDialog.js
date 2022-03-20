@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ChessOpeningSearchAjaxLoader from '../AjaxLoader/ChessOpeningSearchAjaxLoader.js';
 import ChessOpeningSearchResult from './ChessOpeningSearchResult.js';
-import chessOpeningSearchAjaxLoaderActionTypes from '../../constants/ajaxLoader/chessOpeningSearchAjaxLoaderActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
+import Opening from '../../utils/Opening.js';
 
 const useStyles = makeStyles({
   form: {
@@ -22,14 +21,7 @@ const ChessOpeningSearchNameDialog = ({ props }) => {
   const handleSearch = (event) => {
     event.preventDefault();
     setOpenings([]);
-    dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.SHOW });
-    fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
-      method: 'POST',
-      body: JSON.stringify({ name: event.target.elements.name.value })
-    })
-    .then(res => res.json())
-    .then(res => setOpenings(res))
-    .finally(() => dispatch({ type: chessOpeningSearchAjaxLoaderActionTypes.HIDE }));
+    setOpenings(Opening.byName(event.target.elements.name.value));
   }
 
   return (
@@ -48,7 +40,6 @@ const ChessOpeningSearchNameDialog = ({ props }) => {
             </Button>
           </DialogActions>
         </form>
-        <ChessOpeningSearchAjaxLoader />
         <ChessOpeningSearchResult props={{ openings: openings }} />
       </DialogContent>
     </Dialog>
