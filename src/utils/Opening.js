@@ -6,7 +6,7 @@ export default class Opening {
   }
 
   static byMovetext = (movetext) => {
-    return openings.filter(item => item.movetext.startsWith(movetext));
+    return openings.filter(item => item.movetext.includes(movetext));
   }
 
   static byName = (name) => {

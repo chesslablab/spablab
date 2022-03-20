@@ -19,14 +19,20 @@ describe('byEco()', () => {
 });
 
 describe('byMovetext()', () => {
-  it('is 0 starting with foo', () => {
+  it('is 0 including foo', () => {
     expect(Opening.byMovetext('foo').length).toBe(0);
   });
-  it('is 990 starting with 1.e4 e5', () => {
+  it('is 990 including 1.e4 e5', () => {
     expect(Opening.byMovetext('1.e4 e5').length).toBe(990);
   });
-  it('is 651 starting with 1.e4 e5 2.Nf3', () => {
+  it('is 651 including 1.e4 e5 2.Nf3', () => {
     expect(Opening.byMovetext('1.e4 e5 2.Nf3').length).toBe(651);
+  });
+  it('is 6 including 2.Nf3 e4', () => {
+    expect(Opening.byMovetext('2.Nf3 e4').length).toBe(6);
+  });
+  it('is 2 including 2.d4 g6', () => {
+    expect(Opening.byMovetext('2.d4 g6').length).toBe(2);
   });
 });
 
