@@ -3,9 +3,6 @@ import boardReducer from './boardReducer';
 import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
-// ajax loader reducers
-import chessOpeningAjaxLoaderReducer from './chessOpeningAjaxLoaderReducer';
-import chessOpeningSearchAjaxLoaderReducer from './chessOpeningSearchAjaxLoaderReducer';
 // alert reducers
 import chessOpeningAnalysisAlertReducer from './chessOpeningAnalysisAlertReducer';
 import infoAlertReducer from './infoAlertReducer';
@@ -34,9 +31,6 @@ const rootReducer = combineReducers({
   history: historyReducer,
   mode: modeReducer,
   server: serverReducer,
-  // ajax loader reducers
-  chessOpeningAjaxLoader: chessOpeningAjaxLoaderReducer,
-  chessOpeningSearchAjaxLoader: chessOpeningSearchAjaxLoaderReducer,
   // alert reducers
   chessOpeningAnalysisAlert: chessOpeningAnalysisAlertReducer,
   infoAlert: infoAlertReducer,
