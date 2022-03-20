@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { CssBaseline, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ChessOpeningAnalysisAjaxLoader from './AjaxLoader/ChessOpeningAnalysisAjaxLoader.js';
 import ChessOpeningAnalysisAlert from './Alert/ChessOpeningAnalysisAlert.js';
 import InfoAlert from './Alert/InfoAlert.js';
 import ChessOpeningSearchEcoDialog from './Dialog/ChessOpeningSearchEcoDialog';
@@ -57,7 +56,6 @@ const Chess = ({ props }) => {
             <MoveValidator />
             <ButtonsPlayFriendMode />
           </Paper>
-          <ChessOpeningAnalysisAjaxLoader />
           <ChessOpeningAnalysisAlert />
           <InfoAlert />
         </Grid>

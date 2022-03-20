@@ -4,7 +4,6 @@ import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
 // ajax loader reducers
-import chessOpeningAjaxLoaderReducer from './chessOpeningAjaxLoaderReducer';
 import chessOpeningSearchAjaxLoaderReducer from './chessOpeningSearchAjaxLoaderReducer';
 // alert reducers
 import chessOpeningAnalysisAlertReducer from './chessOpeningAnalysisAlertReducer';
@@ -35,7 +34,6 @@ const rootReducer = combineReducers({
   mode: modeReducer,
   server: serverReducer,
   // ajax loader reducers
-  chessOpeningAjaxLoader: chessOpeningAjaxLoaderReducer,
   chessOpeningSearchAjaxLoader: chessOpeningSearchAjaxLoaderReducer,
   // alert reducers
   chessOpeningAnalysisAlert: chessOpeningAnalysisAlertReducer,

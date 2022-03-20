@@ -1,5 +1,4 @@
 import { wsMssgResponse } from '../actions/serverActions';
-import chessOpeningAnalysisAjaxLoaderActionTypes from '../constants/ajaxLoader/chessOpeningAnalysisAjaxLoaderActionTypes';
 import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
@@ -272,7 +271,6 @@ export const onPlayfen = (props, data) => dispatch => {
     }
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.SHOW });
       fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/opening`, {
         method: 'POST',
         body: JSON.stringify({ movetext: payload.movetext })
@@ -291,9 +289,6 @@ export const onPlayfen = (props, data) => dispatch => {
         } else {
           dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
         }
-      })
-      .finally(() => {
-        dispatch({ type: chessOpeningAnalysisAjaxLoaderActionTypes.HIDE });
       });
     }
   }
