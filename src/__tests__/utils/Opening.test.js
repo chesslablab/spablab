@@ -36,7 +36,7 @@ describe('byMovetext()', () => {
   });
 });
 
-describe('Name()', () => {
+describe('byName()', () => {
   it('is 381 including Sicilian', () => {
     expect(Opening.byName('Sicilian').length).toBe(381);
   });
