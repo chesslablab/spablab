@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { wsMssgQuit, wsMssgStartLoadpgn } from '../actions/serverActions';
-import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
-import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
-import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
-import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
+import { wsMssgQuit, wsMssgStartLoadpgn } from '../../actions/serverActions';
+import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
+import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
+import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
+import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
 
 const useStyles = makeStyles({
   tableContainer: {

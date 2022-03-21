@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ChessOpeningSearchResultTable from './ChessOpeningSearchResultTable.js';
+import ChessOpeningSearchResultTable from '../Table/ChessOpeningSearchResultTable.js';
 import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import Opening from '../../utils/Opening.js';
 

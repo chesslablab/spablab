@@ -22,12 +22,12 @@ import TakebackAcceptDialog from './Dialog/TakebackAcceptDialog';
 import TakebackOfferDialog from './Dialog/TakebackOfferDialog';
 import GameClock from './GameClock/GameClock';
 import { default as ButtonsPlayFriendMode } from './PlayFriendMode/Buttons.js';
+import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
+import MoveValidatorTable from './Table/MoveValidatorTable.js';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
-import ChessOpeningAnalysisTable from './ChessOpeningAnalysisTable.js';
 import History from './History';
 import InfoAlert from './InfoAlert.js';
-import MoveValidator from './MoveValidator.js';
 import '../index.css';
 import store from '../store';
 
@@ -51,7 +51,7 @@ const Chess = ({ props }) => {
           <Paper className={classes.paper}>
             <History />
             <GameClock />
-            <MoveValidator />
+            <MoveValidatorTable />
             <ButtonsPlayFriendMode />
           </Paper>
           <ChessOpeningAnalysisTable />
