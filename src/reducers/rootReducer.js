@@ -4,7 +4,6 @@ import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
 // alert reducers
-import chessOpeningAnalysisAlertReducer from './chessOpeningAnalysisAlertReducer';
 import infoAlertReducer from './infoAlertReducer';
 // dialog reducers
 import loadFenDialogReducer from './loadFenDialogReducer';
@@ -25,16 +24,14 @@ import openingSearchEcoDialogReducer from './openingSearchEcoDialogReducer';
 import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 import progressDialogReducer from './progressDialogReducer';
+import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 
 const rootReducer = combineReducers({
   board: boardReducer,
   history: historyReducer,
   mode: modeReducer,
   server: serverReducer,
-  // alert reducers
-  chessOpeningAnalysisAlert: chessOpeningAnalysisAlertReducer,
   infoAlert: infoAlertReducer,
-  // dialog reducers
   loadFenDialog: loadFenDialogReducer,
   fenDialog: fenDialogReducer,
   takebackAcceptDialog: takebackAcceptDialogReducer,
@@ -52,7 +49,8 @@ const rootReducer = combineReducers({
   openingSearchEcoDialog: openingSearchEcoDialogReducer,
   openingSearchNameDialog: openingSearchNameDialogReducer,
   openingSearchMovetextDialog: openingSearchMovetextDialogReducer,
-  progressDialog: progressDialogReducer
+  progressDialog: progressDialogReducer,
+  chessOpeningAnalysisTable: chessOpeningAnalysisTableReducer
 });
 
 export default rootReducer;
