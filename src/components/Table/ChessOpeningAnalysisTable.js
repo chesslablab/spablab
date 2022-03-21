@@ -9,9 +9,9 @@ import chessOpeningAnalysisTableActionTypes from '../../constants/table/chessOpe
 
 const useStyles = makeStyles({
   tableContainer: {
-    marginTop: 10,
-    maxHeight: 300,
+    maxHeight: 200,
     overflowY: 'scroll',
+    marginBottom: 10,
   },
 });
 

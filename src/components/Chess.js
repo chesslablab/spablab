@@ -49,14 +49,14 @@ const Chess = ({ props }) => {
           <Buttons props={props} />
         </Grid>
         <Grid item xs={12} md={3}>
+          <ChessOpeningAnalysisTable />
+          <TournamentGameTable />
           <Paper className={classes.paper}>
             <History />
             <GameClock />
             <MoveValidatorTable />
             <ButtonsPlayFriendMode />
           </Paper>
-          <ChessOpeningAnalysisTable />
-          <TournamentGameTable />
           <InfoAlert />
         </Grid>
         <Grid item xs={12} md={6}>
