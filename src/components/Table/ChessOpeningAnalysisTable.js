@@ -5,6 +5,7 @@ import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRo
 import { makeStyles } from '@mui/styles';
 import { wsMssgQuit, wsMssgStartLoadpgn } from '../../actions/serverActions';
 import chessOpeningAnalysisTableActionTypes from '../../constants/chessOpeningAnalysisTableActionTypes';
+import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -21,6 +22,7 @@ const ChessOpeningAnalysisTable = ({props}) => {
 
   const handleLoad = (movetext) => {
     dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
+    dispatch({ type: progressDialogActionTypes.OPEN });
     wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, movetext));
   };
 
