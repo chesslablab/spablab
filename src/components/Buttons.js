@@ -9,7 +9,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { wsMssgQuit, wsMssgStartAnalysis, wsMssgStartLoadpgn } from '../actions/serverActions';
-import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
@@ -22,6 +21,7 @@ import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTyp
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
+import chessOpeningAnalysisTableActionTypes from '../constants/chessOpeningAnalysisTableActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 
@@ -39,7 +39,7 @@ const Buttons = ({ props }) => {
   const matches = useMediaQuery("(min-width:768px)");
 
   const reset = () => {
-    dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
+    dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
     dispatch({ type: infoAlertActionTypes.CLOSE });
     dispatch({ type: historyActionTypes.GO_TO_BEGINNING, payload: { back: 0 }});
     wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws));

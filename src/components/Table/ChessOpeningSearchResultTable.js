@@ -8,7 +8,7 @@ import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
 
-const ChessOpeningSearchResult = ({props}) => {
+const ChessOpeningSearchResultTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -48,4 +48,4 @@ const ChessOpeningSearchResult = ({props}) => {
   );
 }
 
-export default ChessOpeningSearchResult;
+export default ChessOpeningSearchResultTable;

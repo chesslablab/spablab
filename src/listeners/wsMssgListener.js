@@ -1,5 +1,4 @@
 import { wsMssgResponse } from '../actions/serverActions';
-import chessOpeningAnalysisAlertActionTypes from '../constants/alert/chessOpeningAnalysisAlertActionTypes';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
@@ -8,6 +7,7 @@ import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPict
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
+import chessOpeningAnalysisTableActionTypes from '../constants/chessOpeningAnalysisTableActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
@@ -271,19 +271,17 @@ export const onPlayfen = (props, data) => dispatch => {
       });
     }
     if (store.getState().mode.current === modeNames.ANALYSIS) {
-      let info = '';
-      dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
-      Opening.byMovetext(payload.movetext)
-        .forEach(item => info += `${item.eco}, ${item.name}` + '\n');
-      if (info) {
+      dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
+      let rows = Opening.analysis(payload.movetext);
+      if (rows) {
         dispatch({
-          type: chessOpeningAnalysisAlertActionTypes.DISPLAY,
+          type: chessOpeningAnalysisTableActionTypes.DISPLAY,
           payload: {
-            info: info
+            rows: rows
           }
         });
       } else {
-        dispatch({ type: chessOpeningAnalysisAlertActionTypes.CLOSE });
+        dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
       }
     }
   }

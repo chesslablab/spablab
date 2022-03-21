@@ -13,13 +13,14 @@ import {
   TableRow,
 } from "@mui/material";
 import { makeStyles } from '@mui/styles';
-import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../actions/serverActions';
-import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
-import Movetext from '../utils/Movetext.js';
+import { wsMssgHeuristicpicture, wsMssgPlayfen } from '../../actions/serverActions';
+import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
+import Movetext from '../../utils/Movetext.js';
 
 const useStyles = makeStyles({
   table: {
     marginTop: 10,
+    marginBottom: 10,
     maxHeight: 300,
     display: 'flex',
     flexDirection: 'column-reverse'
@@ -30,7 +31,7 @@ const useStyles = makeStyles({
   }
 });
 
-const MoveValidator = ({props}) => {
+const MoveValidatorTable = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -99,4 +100,4 @@ const MoveValidator = ({props}) => {
   );
 }
 
-export default MoveValidator;
+export default MoveValidatorTable;
