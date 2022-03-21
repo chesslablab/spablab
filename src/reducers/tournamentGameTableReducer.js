@@ -1,4 +1,4 @@
-import tournamentGameTableActionTypes from '../constants/tournamentGameTableActionTypes';
+import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
 
 const initialState = {
   rows: [],

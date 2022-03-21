@@ -20,9 +20,9 @@ import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTyp
 import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
+import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
+import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
-import chessOpeningAnalysisTableActionTypes from '../constants/chessOpeningAnalysisTableActionTypes';
-import tournamentGameTableActionTypes from '../constants/tournamentGameTableActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 

@@ -1,4 +1,4 @@
-import chessOpeningAnalysisTableActionTypes from '../constants/chessOpeningAnalysisTableActionTypes';
+import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 
 const initialState = {
   rows: [],

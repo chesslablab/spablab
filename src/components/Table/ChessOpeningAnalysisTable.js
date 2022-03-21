@@ -4,8 +4,8 @@ import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { wsMssgQuit, wsMssgStartLoadpgn } from '../../actions/serverActions';
-import chessOpeningAnalysisTableActionTypes from '../../constants/chessOpeningAnalysisTableActionTypes';
 import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
+import chessOpeningAnalysisTableActionTypes from '../../constants/table/chessOpeningAnalysisTableActionTypes';
 
 const useStyles = makeStyles({
   tableContainer: {

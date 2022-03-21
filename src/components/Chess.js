@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { CssBaseline, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import InfoAlert from './Alert/InfoAlert.js';
 import ChessOpeningSearchEcoDialog from './Dialog/ChessOpeningSearchEcoDialog';
 import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetextDialog';
 import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
@@ -28,7 +29,6 @@ import TournamentGameTable from './Table/TournamentGameTable.js';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
 import History from './History';
-import InfoAlert from './InfoAlert.js';
 import '../index.css';
 import store from '../store';
 
