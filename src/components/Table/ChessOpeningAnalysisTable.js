@@ -34,7 +34,6 @@ const ChessOpeningAnalysisTable = ({props}) => {
             {
               state.chessOpeningAnalysisTable.rows.map((item, i) => (
                 <TableRow key={i}>
-                  <TableCell align="right">{item.eco}</TableCell>
                   <TableCell align="right">{item.name}</TableCell>
                   <TableCell align="right">
                     <IconButton
