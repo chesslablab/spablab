@@ -272,7 +272,7 @@ export const onPlayfen = (props, data) => dispatch => {
     }
     if (store.getState().mode.current === modeNames.ANALYSIS) {
       dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
-      let rows = Opening.byMovetext(payload.movetext);
+      let rows = Opening.analysis(payload.movetext);
       if (rows) {
         dispatch({
           type: chessOpeningAnalysisTableActionTypes.DISPLAY,

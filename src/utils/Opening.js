@@ -12,4 +12,8 @@ export default class Opening {
   static byName = (name) => {
     return openings.filter(item => item.name.toLowerCase().includes(name.toLowerCase()));
   }
+
+  static analysis = (movetext, size = 15) => {
+    return Opening.byMovetext(movetext).sort(() => Math.random() - 0.5).slice(0, size);
+  }
 }

@@ -4,19 +4,13 @@ import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { wsMssgQuit, wsMssgStartLoadpgn } from '../../actions/serverActions';
-import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
-import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
-import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
-import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
+import chessOpeningAnalysisTableActionTypes from '../../constants/chessOpeningAnalysisTableActionTypes';
 
 const useStyles = makeStyles({
   tableContainer: {
     marginTop: 10,
     maxHeight: 300,
     overflowY: 'scroll',
-  },
-  line: {
-    marginBottom: 10,
   },
 });
 
@@ -26,10 +20,7 @@ const ChessOpeningAnalysisTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {
-    dispatch({ type: chessOpeningSearchEcoDialogActionTypes.CLOSE });
-    dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
-    dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
-    dispatch({ type: progressDialogActionTypes.OPEN });
+    dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
     wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, movetext));
   };
 
