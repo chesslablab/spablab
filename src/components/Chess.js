@@ -24,6 +24,7 @@ import GameClock from './GameClock/GameClock';
 import { default as ButtonsPlayFriendMode } from './PlayFriendMode/Buttons.js';
 import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
 import MoveValidatorTable from './Table/MoveValidatorTable.js';
+import TournamentGameTable from './Table/TournamentGameTable.js';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
 import History from './History';
@@ -55,6 +56,7 @@ const Chess = ({ props }) => {
             <ButtonsPlayFriendMode />
           </Paper>
           <ChessOpeningAnalysisTable />
+          <TournamentGameTable />
           <InfoAlert />
         </Grid>
         <Grid item xs={12} md={6}>

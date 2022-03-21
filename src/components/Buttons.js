@@ -22,6 +22,7 @@ import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGr
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/chessOpeningAnalysisTableActionTypes';
+import tournamentGameTableActionTypes from '../constants/tournamentGameTableActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 
@@ -40,6 +41,7 @@ const Buttons = ({ props }) => {
 
   const reset = () => {
     dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
+    dispatch({ type: tournamentGameTableActionTypes.CLOSE });
     dispatch({ type: infoAlertActionTypes.CLOSE });
     dispatch({ type: historyActionTypes.GO_TO_BEGINNING, payload: { back: 0 }});
     wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws));
@@ -140,15 +142,38 @@ const Buttons = ({ props }) => {
     .then(res => res.json())
     .then(res => {
       dispatch({
-        type: infoAlertActionTypes.DISPLAY,
+        type: tournamentGameTableActionTypes.DISPLAY,
         payload: {
-          info: `Event: ${res.Event} \n
-            Site: ${res.Site} \n
-            Date: ${res.Date} \n
-            White: ${res.White} \n
-            Black: ${res.Black} \n
-            Result: ${res.Result} \n
-            ECO: ${res.ECO}`
+          rows: [
+            {
+              tag: 'Event',
+              val: res.Event
+            },
+            {
+              tag: 'Site',
+              val: res.Site
+            },
+            {
+              tag: 'Date',
+              val: res.Date
+            },
+            {
+              tag: 'White',
+              val: res.White
+            },
+            {
+              tag: 'Black',
+              val: res.Black
+            },
+            {
+              tag: 'Result',
+              val: res.Result
+            },
+            {
+              tag: 'ECO',
+              val: res.ECO
+            }
+          ]
         }
       });
       wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, res.movetext));
