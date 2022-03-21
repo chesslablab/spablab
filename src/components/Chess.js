@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { CssBaseline, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import InfoAlert from './Alert/InfoAlert.js';
 import ChessOpeningSearchEcoDialog from './Dialog/ChessOpeningSearchEcoDialog';
 import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetextDialog';
 import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
@@ -24,10 +25,10 @@ import GameClock from './GameClock/GameClock';
 import { default as ButtonsPlayFriendMode } from './PlayFriendMode/Buttons.js';
 import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
 import MoveValidatorTable from './Table/MoveValidatorTable.js';
+import TournamentGameTable from './Table/TournamentGameTable.js';
 import Board from './Board.js';
 import Buttons from './Buttons.js';
 import History from './History';
-import InfoAlert from './InfoAlert.js';
 import '../index.css';
 import store from '../store';
 
@@ -48,13 +49,14 @@ const Chess = ({ props }) => {
           <Buttons props={props} />
         </Grid>
         <Grid item xs={12} md={3}>
+          <ChessOpeningAnalysisTable />
+          <TournamentGameTable />
           <Paper className={classes.paper}>
             <History />
             <GameClock />
             <MoveValidatorTable />
             <ButtonsPlayFriendMode />
           </Paper>
-          <ChessOpeningAnalysisTable />
           <InfoAlert />
         </Grid>
         <Grid item xs={12} md={6}>

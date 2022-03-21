@@ -25,6 +25,7 @@ import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 import progressDialogReducer from './progressDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
+import tournamentGameTableReducer from './tournamentGameTableReducer';
 
 const rootReducer = combineReducers({
   board: boardReducer,
@@ -50,7 +51,8 @@ const rootReducer = combineReducers({
   openingSearchNameDialog: openingSearchNameDialogReducer,
   openingSearchMovetextDialog: openingSearchMovetextDialogReducer,
   progressDialog: progressDialogReducer,
-  chessOpeningAnalysisTable: chessOpeningAnalysisTableReducer
+  chessOpeningAnalysisTable: chessOpeningAnalysisTableReducer,
+  tournamentGameTable: tournamentGameTableReducer
 });
 
 export default rootReducer;

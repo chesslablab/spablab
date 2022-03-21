@@ -1,13 +1,13 @@
 import { wsMssgResponse } from '../actions/serverActions';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
-import boardActionTypes from '../constants/boardActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
-import chessOpeningAnalysisTableActionTypes from '../constants/chessOpeningAnalysisTableActionTypes';
+import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
+import boardActionTypes from '../constants/boardActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";

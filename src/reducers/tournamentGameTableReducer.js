@@ -1,4 +1,4 @@
-import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
+import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
 
 const initialState = {
   rows: [],
@@ -7,12 +7,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case chessOpeningAnalysisTableActionTypes.DISPLAY:
+    case tournamentGameTableActionTypes.DISPLAY:
       return {
         rows: action.payload.rows,
         open: true
       };
-    case chessOpeningAnalysisTableActionTypes.CLOSE:
+    case tournamentGameTableActionTypes.CLOSE:
       return initialState;
     default:
       return state;
