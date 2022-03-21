@@ -5,6 +5,7 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   tableContainer: {
+    overflowY: 'scroll',
     marginBottom: 10,
   },
 });
