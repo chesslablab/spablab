@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ChessOpeningSearchResult from './ChessOpeningSearchResult.js';
+import ChessOpeningSearchResultTable from './ChessOpeningSearchResultTable.js';
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 import Opening from '../../utils/Opening.js';
 
@@ -40,7 +40,7 @@ const ChessOpeningSearchNameDialog = ({ props }) => {
             </Button>
           </DialogActions>
         </form>
-        <ChessOpeningSearchResult props={{ openings: openings }} />
+        <ChessOpeningSearchResultTable props={{ openings: openings }} />
       </DialogContent>
     </Dialog>
   );
