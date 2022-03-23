@@ -20,10 +20,10 @@ const TournamentGameTable = ({props}) => {
         <Table stickyHeader size="small" aria-label="Chess Openings">
           <TableBody>
             {
-              state.tournamentGameTable.rows.map((item, i) => (
-                <TableRow key={i}>
-                  <TableCell align="right">{item.tag}</TableCell>
-                  <TableCell align="left">{item.val}</TableCell>
+              Object.entries(state.tournamentGameTable.game).map(([key, val]) => (
+                <TableRow key={key}>
+                  <TableCell align="right">{key}</TableCell>
+                  <TableCell align="left">{val}</TableCell>
                 </TableRow>
               ))
             }

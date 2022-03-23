@@ -25,6 +25,7 @@ import tournamentGameTableActionTypes from '../constants/table/tournamentGameTab
 import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import Tournament from '../utils/Tournament.js';
 
 const Buttons = ({ props }) => {
   const state = useSelector(state => state);
@@ -136,48 +137,16 @@ const Buttons = ({ props }) => {
 
   const handleRandomTournamentGame = async () => {
     dispatch({ type: progressDialogActionTypes.OPEN });
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/tournament`, {
-      method: 'POST'
-    })
-    .then(res => res.json())
-    .then(res => {
-      dispatch({
-        type: tournamentGameTableActionTypes.DISPLAY,
-        payload: {
-          rows: [
-            {
-              tag: 'Event',
-              val: res.Event
-            },
-            {
-              tag: 'Site',
-              val: res.Site
-            },
-            {
-              tag: 'Date',
-              val: res.Date
-            },
-            {
-              tag: 'White',
-              val: res.White
-            },
-            {
-              tag: 'Black',
-              val: res.Black
-            },
-            {
-              tag: 'Result',
-              val: res.Result
-            },
-            {
-              tag: 'ECO',
-              val: res.ECO
-            }
-          ]
-        }
-      });
-      wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, res.movetext));
+    let game = Tournament.rand();
+    const movetext = game.movetext;
+    delete game.movetext;
+    dispatch({
+      type: tournamentGameTableActionTypes.DISPLAY,
+      payload: {
+        game: game
+      }
     });
+    wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, movetext));
   }
 
   return (
