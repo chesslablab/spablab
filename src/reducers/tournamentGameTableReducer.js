@@ -1,7 +1,7 @@
 import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
 
 const initialState = {
-  rows: [],
+  game: {},
   open: false
 };
 
@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case tournamentGameTableActionTypes.DISPLAY:
       return {
-        rows: action.payload.rows,
+        game: action.payload.game,
         open: true
       };
     case tournamentGameTableActionTypes.CLOSE:
