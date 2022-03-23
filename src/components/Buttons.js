@@ -137,16 +137,22 @@ const Buttons = ({ props }) => {
 
   const handleRandomTournamentGame = async () => {
     dispatch({ type: progressDialogActionTypes.OPEN });
-    let game = Tournament.rand();
-    const movetext = game.movetext;
-    delete game.movetext;
+    const game = Tournament.rand();
     dispatch({
       type: tournamentGameTableActionTypes.DISPLAY,
       payload: {
-        game: game
+        game: {
+          Event: game.Event,
+          Site: game.Site,
+          Date: game.Date,
+          White: game.White,
+          Black: game.Black,
+          Result: game.Result,
+          ECO: game.ECO
+        }
       }
     });
-    wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, movetext));
+    wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, game.movetext));
   }
 
   return (

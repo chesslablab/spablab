@@ -1,4 +1,4 @@
-const tournaments = require('../assets/js/tournaments.json');
+const tournaments = require('../assets/json/tournaments.json');
 
 export default class Tournament {
   static rand = () => {

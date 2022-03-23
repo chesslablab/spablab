@@ -1,4 +1,4 @@
-const openings = require('../assets/js/openings.json');
+const openings = require('../assets/json/openings.json');
 
 export default class Opening {
   static byEco = (eco) => {
