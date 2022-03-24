@@ -5,7 +5,6 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import PublishIcon from '@mui/icons-material/Publish';
 import SearchIcon from '@mui/icons-material/Search';
-import SettingsIcon from '@mui/icons-material/Settings';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { wsMssgQuit, wsMssgStartAnalysis, wsMssgStartLoadpgn } from '../actions/serverActions';
@@ -15,14 +14,12 @@ import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/che
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
-import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
 import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
-import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import Tournament from '../utils/Tournament.js';
@@ -36,9 +33,8 @@ const Buttons = ({ props }) => {
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
   const [anchorElLoad, setAnchorElLoad] = useState(null);
   const [anchorElDownload, setAnchorElDownload] = useState(null);
-  const [anchorElSettings, setAnchorElSettings] = useState(null);
 
-  const matches = useMediaQuery("(min-width:768px)");
+  const matches = useMediaQuery("(min-width:600px)");
 
   const reset = () => {
     dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
@@ -68,10 +64,6 @@ const Buttons = ({ props }) => {
     setAnchorElDownload(null);
   };
 
-  const handleCloseSettings = () => {
-    setAnchorElSettings(null);
-  };
-
   const handleClickPlayFriend = (event) => {
     reset();
     setAnchorElPlayFriend(event.currentTarget);
@@ -94,10 +86,6 @@ const Buttons = ({ props }) => {
 
   const handleClickDownload = (event) => {
     setAnchorElDownload(event.currentTarget);
-  };
-
-  const handleClickSettings = (event) => {
-    setAnchorElSettings(event.currentTarget);
   };
 
   const handleDownloadImage = async () => {
@@ -282,31 +270,6 @@ const Buttons = ({ props }) => {
         </MenuItem>
         <MenuItem onClick={() => handleDownloadMp4().then(() => handleCloseDownload())}>
           MP4 Video
-        </MenuItem>
-      </Menu>
-      <Button
-        onClick={handleClickSettings}
-        startIcon={<SettingsIcon />}
-      >
-        Settings
-      </Button>
-      <Menu
-        anchorEl={anchorElSettings}
-        keepMounted
-        open={Boolean(anchorElSettings)}
-        onClose={handleCloseSettings}
-      >
-        <MenuItem onClick={() => {
-          dispatch({ type: boardActionTypes.FLIP });
-          handleCloseSettings();
-        }}>
-          Flip Board
-        </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch({ type: fenDialogActionTypes.OPEN });
-          handleCloseSettings();
-        }}>
-          FEN String
         </MenuItem>
       </Menu>
     </ButtonGroup>

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AlgebraicNotationFiles from './AlgebraicNotationFiles';
-import AlgebraicNotationRanks from './AlgebraicNotationRanks';
+import SquareAlgebraicNotation from './AlgebraicNotation/SquareAlgebraicNotation';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
@@ -84,7 +83,6 @@ const Board = ({props}) => {
           state.board.flip === Pgn.symbol.WHITE
             ? payload = {...payload, i: i, j: j, algebraic: Ascii.fromIndexToAlgebraic(i, j)}
             : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
-          // todo: use the optional chaining operator
           if (state.board.picked) {
             if (state.board.picked.algebraic === payload.algebraic) {
               isSelected = 'is-selected';
@@ -105,7 +103,6 @@ const Board = ({props}) => {
               }
             }
           }
-
           row.push(<div
               key={k}
               className={['square', color, payload.algebraic, isLegal, isSelected, isCheck].join(' ')}
@@ -120,6 +117,7 @@ const Board = ({props}) => {
                 ev.preventDefault();
               }}>
               <span tabIndex={k}>
+                <SquareAlgebraicNotation props={{ square: payload.algebraic }} />
                 <img src={Piece.unicode[piece].char}
                   draggable="true"
                   onDragStart={(ev) => {
@@ -129,7 +127,6 @@ const Board = ({props}) => {
               </span>
             </div>
           );
-
           k++;
       });
       rows.push(<div key={i} className="board-row">{row}</div>);
@@ -139,12 +136,8 @@ const Board = ({props}) => {
   }
 
   return (
-    <div>
-      <AlgebraicNotationRanks />
-      <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
-        {board()}
-      </div>
-      <AlgebraicNotationFiles />
+    <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+      {board()}
     </div>
   );
 }

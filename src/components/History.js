@@ -13,7 +13,7 @@ const History = () => {
   const dispatch = useDispatch();
 
   return (
-    <ButtonGroup variant="outlined" aria-label="outlined button group" size="small">
+    <ButtonGroup variant="text" aria-label="History" size="small">
       <Button
         startIcon={<FastRewindIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}

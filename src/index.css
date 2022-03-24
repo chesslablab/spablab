@@ -1,13 +1,7 @@
-#redux-chess {
-  display: flex;
-  flex-direction: column;
-}
-
 .board {
-  font-family: FreeSerif, sans-serif;
-  display: block;
-  overflow: hidden;
-  width: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-grid;
+  grid-template-columns: 100%;
 }
 
 .board-row {
@@ -26,39 +20,6 @@
   display: block;
 }
 
-.an-files {
-  display: table;
-  color: #808080;
-  font-weight: bold;
-}
-
-.an-files span {
-  width: 9vh;
-  float: left;
-  text-align: center;
-}
-
-.an-files span.empty {
-  width: 2vh;
-  float: left;
-  display: list-item;
-  visibility: hidden;
-}
-
-.an-ranks {
-  width: 2vh;
-  float: left;
-}
-
-.an-ranks span {
-  height: 9vh;
-  line-height: 9vh;
-  display: block;
-  clear: both;
-  color: #808080;
-  font-weight: bold;
-}
-
 .square span::selection {
   background: transparent;
 }
@@ -66,6 +27,8 @@
 .square span img {
   z-index: 1;
   width: 100%;
+  position: relative;
+  top: -18vh;
 }
 
 .is-selected,
@@ -73,12 +36,12 @@
   opacity: 0.65;
 }
 
-.is-legal span {
+.square.is-legal > span {
   box-shadow: inset -1px 0 0 #c5c5c5, inset 0 -1px 0 #c5c5c5,
     inset 1px 0 0 #c5c5c5, inset 0 1px 0 #c5c5c5;
 }
 
-.is-check span {
+.square.is-check > span {
   box-shadow: inset -5px 0 0 #fdd57d, inset 0 -5px 0 #fdd57d,
     inset 5px 0 0 #fdd57d, inset 0 5px 0 #fdd57d;
 }
@@ -95,18 +58,13 @@
   opacity: 0.85;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .square span {
-    height: 10vw;
-    width: 10vw;
+    height: 10vh;
+    width: 10vh;
   }
 
-  .an-files span {
-    width: 9.5vw;
-  }
-
-  .an-ranks span {
-    height: 9.5vw;
-    line-height: 10vw;
+  .square span img {
+    top: -20vh;
   }
 }
