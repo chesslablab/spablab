@@ -43,7 +43,7 @@ const Chess = ({ props }) => {
           <TournamentGameTable />
           <InfoAlert />
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={6}>
           <Board props={props} />
         </Grid>
       </Grid>

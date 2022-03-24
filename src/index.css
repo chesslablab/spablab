@@ -63,10 +63,3 @@
 .board.past {
   opacity: 0.85;
 }
-
-@media (max-width: 768px) {
-  .square span {
-    height: 10vw;
-    width: 10vw;
-  }
-}
