@@ -18,7 +18,10 @@ import History from './History';
 const useStyles = makeStyles({
   game: {
     background: '#f6f6f6',
-    height: '35vh'
+    height: 245
+  },
+  gameButtons: {
+    background: '#f6f6f6'
   }
 });
 
@@ -32,8 +35,10 @@ const Game = ({ props }) => {
         <GameClock />
         <MoveValidatorTable />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} className={classes.gameButtons}>
         <GameButtons />
+      </Grid>
+      <Grid item xs={12}>
         <PlayFriendModeButtons />
       </Grid>
       <DrawAcceptDialog />

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import CachedIcon from '@mui/icons-material/Cached';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { Button, ButtonGroup } from "@mui/material";
 import { wsMssgHeuristicpicture } from '../actions/serverActions';
+import boardActionTypes from '../constants/boardActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 
 const GameButtons = ({props}) => {
@@ -11,7 +13,13 @@ const GameButtons = ({props}) => {
   const dispatch = useDispatch();
 
   return (
-    <ButtonGroup size="small" variant="text" aria-label="small button group">
+    <ButtonGroup size="small" variant="text" aria-label="Game">
+      <Button
+        startIcon={<CachedIcon />}
+        onClick={() => dispatch({ type: boardActionTypes.FLIP })}
+      >
+        Flip
+      </Button>
       <Button
         startIcon={<ContentCopyIcon />}
         onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
@@ -25,7 +33,7 @@ const GameButtons = ({props}) => {
           wsMssgHeuristicpicture(state);
         }}
       >
-        Heuristic Pic
+        Heuristics
       </Button>
     </ButtonGroup>
   );

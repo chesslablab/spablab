@@ -22,7 +22,6 @@ import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGr
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
-import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import Tournament from '../utils/Tournament.js';
@@ -296,12 +295,6 @@ const Buttons = ({ props }) => {
         open={Boolean(anchorElSettings)}
         onClose={handleCloseSettings}
       >
-        <MenuItem onClick={() => {
-          dispatch({ type: boardActionTypes.FLIP });
-          handleCloseSettings();
-        }}>
-          Flip Board
-        </MenuItem>
         <MenuItem onClick={() => {
           dispatch({ type: fenDialogActionTypes.OPEN });
           handleCloseSettings();
