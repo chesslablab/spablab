@@ -20,6 +20,14 @@ const useStyles = makeStyles({
     background: '#f6f6f6',
     height: 245
   },
+  history: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  gameClock: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   gameButtons: {
     background: '#f6f6f6'
   }
@@ -31,8 +39,12 @@ const Game = ({ props }) => {
   return (
     <Grid container>
       <Grid item xs={12} className={classes.game}>
-        <History />
-        <GameClock />
+        <Grid item xs={12} className={classes.history}>
+          <History />
+        </Grid>
+        <Grid item xs={12} className={classes.gameClock}>
+          <GameClock />
+        </Grid>
         <MoveValidatorTable />
       </Grid>
       <Grid item xs={12} className={classes.gameButtons}>
