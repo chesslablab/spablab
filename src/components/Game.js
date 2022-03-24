@@ -29,6 +29,8 @@ const useStyles = makeStyles({
     justifyContent: 'center',
   },
   gameButtons: {
+    display: 'flex',
+    justifyContent: 'center',
     background: '#f6f6f6'
   }
 });

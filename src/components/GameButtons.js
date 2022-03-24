@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CachedIcon from '@mui/icons-material/Cached';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { Button, ButtonGroup } from "@mui/material";
+import { IconButton, Stack } from "@mui/material";
 import { wsMssgHeuristicpicture } from '../actions/serverActions';
 import boardActionTypes from '../constants/boardActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
@@ -13,29 +13,38 @@ const GameButtons = ({props}) => {
   const dispatch = useDispatch();
 
   return (
-    <ButtonGroup size="small" variant="text" aria-label="Game">
-      <Button
-        startIcon={<CachedIcon />}
+    <Stack direction="row" spacing={1}>
+      <IconButton
+        color="primary"
+        size="large"
+        title="Flip"
+        aria-label="flip"
         onClick={() => dispatch({ type: boardActionTypes.FLIP })}
       >
-        Flip
-      </Button>
-      <Button
-        startIcon={<ContentCopyIcon />}
+        <CachedIcon />
+      </IconButton>
+      <IconButton
+        color="primary"
+        size="large"
+        title="Copy"
+        aria-label="copy"
         onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
       >
-        Copy
-      </Button>
-      <Button
-        startIcon={<BarChartIcon />}
+        <ContentCopyIcon />
+      </IconButton>
+      <IconButton
+        color="primary"
+        size="large"
+        title="Heuristics"
+        aria-label="heuristics"
         onClick={() => {
           dispatch({ type: progressDialogActionTypes.OPEN });
           wsMssgHeuristicpicture(state);
         }}
       >
-        Heuristics
-      </Button>
-    </ButtonGroup>
+        <BarChartIcon />
+      </IconButton>
+    </Stack>
   );
 }
 
