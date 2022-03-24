@@ -8,7 +8,8 @@ const useStyles = makeStyles({
     position: 'relative !important',
     top: '6.1vh',
     paddingLeft: '0.3vh',
-    fontSize: '80%'
+    fontSize: '80%',
+    color: '#303030'
   },
 });
 

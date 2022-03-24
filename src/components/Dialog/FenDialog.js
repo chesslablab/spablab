@@ -15,7 +15,7 @@ const FenDialog = () => {
           <TextField
             fullWidth
             name="fen"
-            value={state.board.fen}
+            value={state.board.fen ? state.board.fen : ''}
             InputProps={{
               readOnly: true,
             }}
