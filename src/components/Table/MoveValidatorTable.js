@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
+import { Slide, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { wsMssgPlayfen } from '../../actions/serverActions';
 import Movetext from '../../utils/Movetext.js';
@@ -53,13 +53,15 @@ const MoveValidatorTable = ({props}) => {
   };
 
   return (
-    <TableContainer className={classes.table}>
-      <Table stickyHeader size="small" aria-label="Movetext">
-        <TableBody>
-          {tableRows()}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Slide direction="down" in={state.board.movetext ? true : false} mountOnEnter unmountOnExit>
+      <TableContainer className={classes.table}>
+        <Table stickyHeader size="small" aria-label="Movetext">
+          <TableBody>
+            {tableRows()}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Slide>
   );
 }
 
