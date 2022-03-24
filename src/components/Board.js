@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FileAlgebraicNotation from './FileAlgebraicNotation';
-import RankAlgebraicNotation from './RankAlgebraicNotation';
+import SquareAlgebraicNotation from './AlgebraicNotation/SquareAlgebraicNotation';
 import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
@@ -118,8 +117,7 @@ const Board = ({props}) => {
                 ev.preventDefault();
               }}>
               <span tabIndex={k}>
-                <FileAlgebraicNotation props={{ square: payload.algebraic }} />
-                <RankAlgebraicNotation props={{ square: payload.algebraic }} />
+                <SquareAlgebraicNotation props={{ square: payload.algebraic }} />
                 <img src={Piece.unicode[piece].char}
                   draggable="true"
                   onDragStart={(ev) => {

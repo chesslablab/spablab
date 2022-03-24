@@ -4,10 +4,10 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   position: {
-    textAlign: 'right',
+    textAlign: 'left',
     position: 'relative !important',
-    top: '-9vh',
-    paddingRight: '0.25vh',
+    top: '6.1vh',
+    paddingLeft: '0.3vh',
     fontSize: '80%'
   },
 });
@@ -16,22 +16,18 @@ const char = (square, flip) => {
   let squares = [];
   let char = '';
   if (flip === 'w') {
-    squares = [
-      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'
-    ];
+    squares = [ 'a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1' ];
   } else {
-    squares = [
-      'a8', 'a7', 'a6', 'a5', 'a4', 'a3', 'a2', 'a1'
-    ];
+    squares = [ 'h8', 'g8', 'f8', 'e8', 'd8', 'c8', 'b8', 'a8' ];
   }
   if (squares.includes(square)) {
-    char = square.charAt(1);
+    char = square.charAt(0);
   }
 
   return char;
 };
 
-const RankAlgebraicNotation = ({props}) => {
+const FileAlgebraicNotation = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
@@ -42,4 +38,4 @@ const RankAlgebraicNotation = ({props}) => {
   );
 }
 
-export default RankAlgebraicNotation;
+export default FileAlgebraicNotation;
