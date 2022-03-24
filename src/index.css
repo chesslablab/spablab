@@ -57,3 +57,14 @@
 .board.past {
   opacity: 0.85;
 }
+
+@media (max-width: 600px) {
+  .square span {
+    height: 10vh;
+    width: 10vh;
+  }
+
+  .square span img {
+    top: -20vh;
+  }
+}
