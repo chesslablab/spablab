@@ -34,20 +34,17 @@ const Chess = ({ props }) => {
     <Provider store={store}>
       <CssBaseline />
       <Grid container spacing={2}>
-        <Grid item xs={12} className={classes.center}>
+        <Grid item xs={12}>
           <Buttons props={props} />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          TO DO
-        </Grid>
-        <Grid item xs={12} md={5} className={classes.center}>
-          <Board props={props} />
         </Grid>
         <Grid item xs={12} md={3}>
           <Game />
           <ChessOpeningAnalysisTable />
           <TournamentGameTable />
           <InfoAlert />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <Board props={props} />
         </Grid>
       </Grid>
       <ChessOpeningSearchEcoDialog props={props} />
