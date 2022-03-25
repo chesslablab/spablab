@@ -7,7 +7,6 @@ import Movetext from '../../utils/Movetext.js';
 
 const useStyles = makeStyles({
   table: {
-    marginBottom: 10,
     maxHeight: 200,
     display: 'flex',
     flexDirection: 'column-reverse'
@@ -40,11 +39,11 @@ const MoveValidatorTable = ({props}) => {
     return Movetext.toRows(state.board.movetext)
       .map((row, i) => (
         <TableRow key={i}>
-          <TableCell align="right">{i + 1}</TableCell>
-          <TableCell align="right" className={highlight(((i + 1) * 2) - 1)}>
+          <TableCell align="left">{i + 1}</TableCell>
+          <TableCell align="left" className={highlight(((i + 1) * 2) - 1)}>
             {row.w}
           </TableCell>
-          <TableCell align="right" className={highlight((i + 1) * 2)}>
+          <TableCell align="left" className={highlight((i + 1) * 2)}>
             {row.b}
           </TableCell>
         </TableRow>

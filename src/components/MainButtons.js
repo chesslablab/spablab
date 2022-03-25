@@ -24,7 +24,7 @@ import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import Tournament from '../utils/Tournament.js';
 
-const Buttons = ({ props }) => {
+const MainButtons = ({ props }) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ const Buttons = ({ props }) => {
   const [anchorElLoad, setAnchorElLoad] = useState(null);
   const [anchorElDownload, setAnchorElDownload] = useState(null);
 
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery("(min-width:900px)");
 
   const reset = () => {
     dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
@@ -145,10 +145,10 @@ const Buttons = ({ props }) => {
 
   return (
     <ButtonGroup
+      orientation="vertical"
       size="small"
       variant="text"
-      aria-label="text button group"
-      orientation={`${matches ? `horizontal` : `vertical`}`}
+      aria-label="Main Menu"
       fullWidth={matches ? false : true}
     >
       <Button
@@ -276,4 +276,4 @@ const Buttons = ({ props }) => {
   );
 }
 
-export default Buttons;
+export default MainButtons;

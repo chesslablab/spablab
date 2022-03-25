@@ -10,7 +10,7 @@ import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 
-const GameButtons = ({props}) => {
+const SecondaryButtons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -59,4 +59,4 @@ const GameButtons = ({props}) => {
   );
 }
 
-export default GameButtons;
+export default SecondaryButtons;

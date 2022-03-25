@@ -1,38 +1,27 @@
 import React from 'react';
 import { Box, Container, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import DrawAcceptDialog from './Dialog/DrawAcceptDialog';
-import DrawOfferDialog from './Dialog/DrawOfferDialog';
-import HeuristicPictureDialog from './Dialog/HeuristicPictureDialog';
-import RematchAcceptDialog from './Dialog/RematchAcceptDialog';
-import RematchOfferDialog from './Dialog/RematchOfferDialog';
-import ResignAcceptDialog from './Dialog/ResignAcceptDialog';
-import TakebackAcceptDialog from './Dialog/TakebackAcceptDialog';
-import TakebackOfferDialog from './Dialog/TakebackOfferDialog';
 import GameClock from './GameClock/GameClock';
-import { default as PlayFriendModeButtons } from './PlayFriendMode/Buttons.js';
+import FinishedButtons from './PlayFriendMode/FinishedButtons';
+import FinishedDialogs from './PlayFriendMode/FinishedDialogs';
+import InvitedButtons from './PlayFriendMode/InvitedButtons';
+import InvitedDialogs from './PlayFriendMode/InvitedDialogs';
 import MoveValidatorTable from './Table/MoveValidatorTable.js';
-import GameButtons from './GameButtons.js';
+import SecondaryButtons from './SecondaryButtons.js';
+import SecondaryDialogs from './SecondaryDialogs';
 import History from './History';
 
 const useStyles = makeStyles({
-  game: {
+  gameBox: {
     background: '#f6f6f6',
-    height: 245
   },
-  history: {
+  pgn: {
+    height: 230,
+  },
+  centered: {
     display: 'flex',
     justifyContent: 'center',
   },
-  gameClock: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  gameButtons: {
-    display: 'flex',
-    justifyContent: 'center',
-    background: '#f6f6f6'
-  }
 });
 
 const Game = ({ props }) => {
@@ -40,29 +29,29 @@ const Game = ({ props }) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} className={classes.game}>
-        <Grid item xs={12} className={classes.history}>
-          <History />
+      <Grid item xs={12} className={classes.gameBox}>
+        <Grid item xs={12} className={classes.pgn}>
+          <Grid item xs={12} className={classes.centered}>
+            <History />
+          </Grid>
+          <Grid item xs={12} className={classes.centered}>
+            <GameClock />
+          </Grid>
+          <Grid item xs={12}>
+            <MoveValidatorTable />
+          </Grid>
         </Grid>
-        <Grid item xs={12} className={classes.gameClock}>
-          <GameClock />
+        <Grid item xs={12} className={classes.centered}>
+          <SecondaryButtons />
         </Grid>
-        <MoveValidatorTable />
-      </Grid>
-      <Grid item xs={12} className={classes.gameButtons}>
-        <GameButtons />
       </Grid>
       <Grid item xs={12}>
-        <PlayFriendModeButtons />
+        <InvitedButtons />
+        <FinishedButtons />
       </Grid>
-      <DrawAcceptDialog />
-      <DrawOfferDialog />
-      <HeuristicPictureDialog />
-      <RematchAcceptDialog />
-      <RematchOfferDialog />
-      <ResignAcceptDialog />
-      <TakebackAcceptDialog />
-      <TakebackOfferDialog />
+      <SecondaryDialogs />
+      <InvitedDialogs />
+      <FinishedDialogs />
     </Grid>
   );
 };

@@ -16,14 +16,14 @@ import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
 import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
 import TournamentGameTable from './Table/TournamentGameTable.js';
 import Board from './Board.js';
-import Buttons from './Buttons.js';
 import Game from './Game.js';
+import MainButtons from './MainButtons.js';
 import '../index.css';
 import store from '../store';
 
 const useStyles = makeStyles({
-  center: {
-    textAlign: 'center',
+  right: {
+    textAlign: 'right',
   },
 });
 
@@ -34,17 +34,17 @@ const Chess = ({ props }) => {
     <Provider store={store}>
       <CssBaseline />
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Buttons props={props} />
+        <Grid item xs={12} md={2} className={classes.right}>
+          <MainButtons props={props} />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <Board props={props} />
         </Grid>
         <Grid item xs={12} md={3}>
           <Game />
           <ChessOpeningAnalysisTable />
           <TournamentGameTable />
           <InfoAlert />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Board props={props} />
         </Grid>
       </Grid>
       <ChessOpeningSearchEcoDialog props={props} />
