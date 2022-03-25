@@ -14,7 +14,6 @@ import History from './History';
 const useStyles = makeStyles({
   gameBox: {
     background: '#f6f6f6',
-    marginBottom: '15px !important' ,
   },
   pgn: {
     height: 230,
@@ -46,7 +45,7 @@ const Game = ({ props }) => {
           <SecondaryButtons />
         </Grid>
       </Grid>
-      <Grid item xs={12} className={classes.centered}>
+      <Grid item xs={12}>
         <InvitedButtons />
         <FinishedButtons />
       </Grid>

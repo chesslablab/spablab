@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   tableContainer: {
-    marginBottom: 15,
+    marginTop: 15,
   },
 });
 
