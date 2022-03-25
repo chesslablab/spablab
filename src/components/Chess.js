@@ -22,8 +22,8 @@ import '../index.css';
 import store from '../store';
 
 const useStyles = makeStyles({
-  center: {
-    textAlign: 'center',
+  right: {
+    textAlign: 'right',
   },
 });
 
@@ -34,17 +34,17 @@ const Chess = ({ props }) => {
     <Provider store={store}>
       <CssBaseline />
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={2} className={classes.right}>
           <Buttons props={props} />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <Board props={props} />
         </Grid>
         <Grid item xs={12} md={3}>
           <Game />
           <ChessOpeningAnalysisTable />
           <TournamentGameTable />
           <InfoAlert />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Board props={props} />
         </Grid>
       </Grid>
       <ChessOpeningSearchEcoDialog props={props} />

@@ -2,17 +2,14 @@
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
   grid-gap: 0;
-  grid-template-columns: repeat(8, [col] 10vw);
-  grid-template-rows: repeat(8, [row] 10vw);
-  width: 80vw;
+  grid-template-columns: repeat(8, [col] 5vw);
+  grid-template-rows: repeat(8, [row] 5vw);
   justify-content: center;
   align-content: center;
   margin: 0 auto;
 }
 
 .square {
-  font-size: calc(5vw);
-  padding-top: 1vw;
   text-align: center;
   cursor: pointer;
 }
@@ -47,4 +44,18 @@
 
 .board.past {
   opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .board {
+    grid-template-columns: repeat(8, [col] 10vw);
+    grid-template-rows: repeat(8, [row] 10vw);
+  }
+}
+
+@media (max-width: 600px) {
+  .board {
+    grid-template-columns: repeat(8, [col] 12vw);
+    grid-template-rows: repeat(8, [row] 12vw);
+  }
 }

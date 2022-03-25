@@ -34,7 +34,7 @@ const Buttons = ({ props }) => {
   const [anchorElLoad, setAnchorElLoad] = useState(null);
   const [anchorElDownload, setAnchorElDownload] = useState(null);
 
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery("(min-width:900px)");
 
   const reset = () => {
     dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
@@ -145,10 +145,10 @@ const Buttons = ({ props }) => {
 
   return (
     <ButtonGroup
+      orientation="vertical"
       size="small"
       variant="text"
       aria-label="text button group"
-      orientation={`${matches ? `horizontal` : `vertical`}`}
       fullWidth={matches ? false : true}
     >
       <Button
