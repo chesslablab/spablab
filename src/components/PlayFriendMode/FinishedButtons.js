@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
@@ -16,12 +16,6 @@ const FinishedButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [anchorElRematchOffer, setAnchorElRematchOffer] = useState(null);
-
-  const handleCloseRematchOffer = () => {
-    setAnchorElRematchOffer(null);
-  };
-
   if (state.mode.playfriend.accepted) {
     if (state.board.mate ||
       state.mode.playfriend.draw === Wording.verb.ACCEPT.toLowerCase() ||
@@ -36,12 +30,7 @@ const FinishedButtons = () => {
           aria-label="Game Over"
           fullWidth={true}
         >
-          <Button
-            onClick={() => {
-              dispatch({ type: rematchOfferDialogActionTypes.OPEN });
-              handleCloseRematchOffer();
-            }}
-          >
+          <Button onClick={() => dispatch({ type: rematchOfferDialogActionTypes.OPEN })}>
             Offer Rematch
           </Button>
         </ButtonGroup>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
@@ -17,22 +17,6 @@ const InvitedButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [anchorElRequestTakeback, setAnchorElRequestTakeback] = useState(null);
-  const [anchorElDrawOffer, setAnchorElDrawOffer] = useState(null);
-  const [anchorElResignAccept, setAnchorElResignAccept] = useState(null);
-
-  const handleCloseRequestTakeback = () => {
-    setAnchorElRequestTakeback(null);
-  };
-
-  const handleCloseDrawOffer = () => {
-    setAnchorElDrawOffer(null);
-  };
-
-  const handleCloseResignAccept = () => {
-    setAnchorElResignAccept(null);
-  };
-
   if (state.mode.playfriend.accepted) {
     if (!state.board.mate &&
       !state.mode.playfriend.draw &&
@@ -47,28 +31,13 @@ const InvitedButtons = () => {
           orientation="vertical"
           fullWidth={true}
         >
-          <Button
-            onClick={() => {
-              dispatch({ type: takebackOfferDialogActionTypes.OPEN });
-              handleCloseRequestTakeback();
-            }}
-          >
+          <Button onClick={() => dispatch({ type: takebackOfferDialogActionTypes.OPEN })}>
             Propose a takeback
           </Button>
-          <Button
-            onClick={() => {
-              dispatch({ type: drawOfferDialogActionTypes.OPEN });
-              handleCloseDrawOffer();
-            }}
-          >
+          <Button onClick={() => dispatch({ type: drawOfferDialogActionTypes.OPEN })}>
             Offer draw
           </Button>
-          <Button
-            onClick={() => {
-              dispatch({ type: resignAcceptDialogActionTypes.OPEN });
-              handleCloseResignAccept();
-            }}
-          >
+          <Button onClick={() => dispatch({ type: resignAcceptDialogActionTypes.OPEN })}>
             Resign
           </Button>
         </ButtonGroup>
