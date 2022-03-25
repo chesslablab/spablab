@@ -64,22 +64,18 @@ const Board = ({props}) => {
   };
 
   const board = () => {
-    let rows = [];
+    let squares = [];
     let color;
     let k = 0;
     Ascii.flip(
       state.board.flip,
       state.board.history[state.board.history.length - 1 + state.history.back]
     ).forEach((rank, i) => {
-      let row = [];
       rank.forEach((piece, j) => {
+          let img;
           let payload = { piece: piece };
-          let isLegal = '';
-          let isSelected = '';
-          let isCheck = '';
-          (i + k) % 2 !== 0
-            ? color = Pgn.symbol.BLACK
-            : color = Pgn.symbol.WHITE;
+          let isLegal, isSelected, isCheck = '';
+          (i + j) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
           state.board.flip === Pgn.symbol.WHITE
             ? payload = {...payload, i: i, j: j, algebraic: Ascii.fromIndexToAlgebraic(i, j)}
             : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
@@ -103,7 +99,15 @@ const Board = ({props}) => {
               }
             }
           }
-          row.push(<div
+          if (Piece.unicode[piece].char) {
+            img = <img src={Piece.unicode[piece].char}
+              draggable="true"
+              onDragStart={(ev) => {
+                handleMove(payload);
+              }}
+            />;
+          }
+          squares.push(<div
               key={k}
               className={['square', color, payload.algebraic, isLegal, isSelected, isCheck].join(' ')}
               onClick={() => {
@@ -116,23 +120,14 @@ const Board = ({props}) => {
               onDragOver={(ev) => {
                 ev.preventDefault();
               }}>
-              <span tabIndex={k}>
-                <SquareAlgebraicNotation props={{ square: payload.algebraic }} />
-                <img src={Piece.unicode[piece].char}
-                  draggable="true"
-                  onDragStart={(ev) => {
-                    handleMove(payload);
-                  }}
-                />
-              </span>
+              {img}
             </div>
           );
           k++;
       });
-      rows.push(<div key={i} className="board-row">{row}</div>);
     });
 
-    return rows;
+    return squares;
   }
 
   return (

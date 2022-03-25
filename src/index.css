@@ -1,34 +1,25 @@
 .board {
   font-family: Arial, Helvetica, sans-serif;
-  display: inline-grid;
-  grid-template-columns: 100%;
-}
-
-.board-row {
-  clear: both;
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(8, [col] 10vw);
+  grid-template-rows: repeat(8, [row] 10vw);
+  width: 80vw;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
 }
 
 .square {
+  font-size: calc(5vw);
+  padding-top: 1vw;
   text-align: center;
-  float: left;
   cursor: pointer;
 }
 
-.square span {
-  height: 9vh;
-  width: 9vh;
-  display: block;
-}
-
-.square span::selection {
-  background: transparent;
-}
-
-.square span img {
+.square img {
   z-index: 1;
   width: 100%;
-  position: relative;
-  top: -18vh;
 }
 
 .is-selected,
@@ -56,15 +47,4 @@
 
 .board.past {
   opacity: 0.85;
-}
-
-@media (max-width: 600px) {
-  .square span {
-    height: 10vh;
-    width: 10vh;
-  }
-
-  .square span img {
-    top: -20vh;
-  }
 }
