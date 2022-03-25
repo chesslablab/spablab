@@ -5,7 +5,7 @@ import drawOfferDialogActionTypes from '../../constants/dialog/drawOfferDialogAc
 import resignAcceptDialogActionTypes from '../../constants/dialog/resignAcceptDialogActionTypes';
 import takebackOfferDialogActionTypes from '../../constants/dialog/takebackOfferDialogActionTypes';
 
-const GameButtons = () => {
+const InvitedButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -70,4 +70,4 @@ const GameButtons = () => {
   return null;
 }
 
-export default GameButtons;
+export default InvitedButtons;

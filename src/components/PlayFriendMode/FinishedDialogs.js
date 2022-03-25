@@ -2,7 +2,7 @@ import React from 'react';
 import RematchAcceptDialog from '../Dialog/RematchAcceptDialog';
 import RematchOfferDialog from '../Dialog/RematchOfferDialog';
 
-const GameOverDialogs = () => {
+const FinishedDialogs = () => {
   return (
     <div>
       <RematchAcceptDialog />
@@ -11,4 +11,4 @@ const GameOverDialogs = () => {
   );
 }
 
-export default GameOverDialogs;
+export default FinishedDialogs;

@@ -16,8 +16,8 @@ import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
 import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
 import TournamentGameTable from './Table/TournamentGameTable.js';
 import Board from './Board.js';
-import Buttons from './Buttons.js';
 import Game from './Game.js';
+import MainButtons from './MainButtons.js';
 import '../index.css';
 import store from '../store';
 
@@ -35,7 +35,7 @@ const Chess = ({ props }) => {
       <CssBaseline />
       <Grid container spacing={2}>
         <Grid item xs={12} md={2} className={classes.right}>
-          <Buttons props={props} />
+          <MainButtons props={props} />
         </Grid>
         <Grid item xs={12} md={5}>
           <Board props={props} />

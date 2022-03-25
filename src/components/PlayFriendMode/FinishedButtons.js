@@ -4,7 +4,7 @@ import { Button, ButtonGroup } from '@mui/material/';
 import rematchOfferDialogActionTypes from "../../constants/dialog/rematchOfferDialogActionTypes";
 import Wording from "../../utils/Wording.js";
 
-const GameOverButtons = () => {
+const FinishedButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -38,4 +38,4 @@ const GameOverButtons = () => {
   return null;
 }
 
-export default GameOverButtons;
+export default FinishedButtons;

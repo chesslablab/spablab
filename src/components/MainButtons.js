@@ -24,7 +24,7 @@ import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import Tournament from '../utils/Tournament.js';
 
-const Buttons = ({ props }) => {
+const MainButtons = ({ props }) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -276,4 +276,4 @@ const Buttons = ({ props }) => {
   );
 }
 
-export default Buttons;
+export default MainButtons;

@@ -1,17 +1,20 @@
 import React from 'react';
 import { Box, Container, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import HeuristicPictureDialog from './Dialog/HeuristicPictureDialog';
 import GameClock from './GameClock/GameClock';
-import { default as PlayFriendModeButtons } from './PlayFriendMode/Buttons.js';
+import FinishedButtons from './PlayFriendMode/FinishedButtons';
+import FinishedDialogs from './PlayFriendMode/FinishedDialogs';
+import InvitedButtons from './PlayFriendMode/InvitedButtons';
+import InvitedDialogs from './PlayFriendMode/InvitedDialogs';
 import MoveValidatorTable from './Table/MoveValidatorTable.js';
-import GameButtons from './GameButtons.js';
+import SecondaryButtons from './SecondaryButtons.js';
+import SecondaryDialogs from './SecondaryDialogs';
 import History from './History';
 
 const useStyles = makeStyles({
-  box: {
+  gameBox: {
     background: '#f6f6f6',
-    marginBottom: 15,
+    marginBottom: '15px !important' ,
   },
   pgn: {
     height: 230,
@@ -27,7 +30,7 @@ const Game = ({ props }) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} className={classes.box}>
+      <Grid item xs={12} className={classes.gameBox}>
         <Grid item xs={12} className={classes.pgn}>
           <Grid item xs={12} className={classes.centered}>
             <History />
@@ -40,13 +43,16 @@ const Game = ({ props }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} className={classes.centered}>
-          <GameButtons />
+          <SecondaryButtons />
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <PlayFriendModeButtons />
+      <Grid item xs={12} className={classes.centered}>
+        <InvitedButtons />
+        <FinishedButtons />
       </Grid>
-      <HeuristicPictureDialog />
+      <SecondaryDialogs />
+      <InvitedDialogs />
+      <FinishedDialogs />
     </Grid>
   );
 };
