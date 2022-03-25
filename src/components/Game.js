@@ -16,23 +16,17 @@ import GameButtons from './GameButtons.js';
 import History from './History';
 
 const useStyles = makeStyles({
-  game: {
+  box: {
     background: '#f6f6f6',
-    height: 245
+    marginBottom: 15,
   },
-  history: {
+  pgn: {
+    height: 230,
+  },
+  centered: {
     display: 'flex',
     justifyContent: 'center',
   },
-  gameClock: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  gameButtons: {
-    display: 'flex',
-    justifyContent: 'center',
-    background: '#f6f6f6'
-  }
 });
 
 const Game = ({ props }) => {
@@ -40,17 +34,21 @@ const Game = ({ props }) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} className={classes.game}>
-        <Grid item xs={12} className={classes.history}>
-          <History />
+      <Grid item xs={12} className={classes.box}>
+        <Grid item xs={12} className={classes.pgn}>
+          <Grid item xs={12} className={classes.centered}>
+            <History />
+          </Grid>
+          <Grid item xs={12} className={classes.centered}>
+            <GameClock />
+          </Grid>
+          <Grid item xs={12}>
+            <MoveValidatorTable />
+          </Grid>
         </Grid>
-        <Grid item xs={12} className={classes.gameClock}>
-          <GameClock />
+        <Grid item xs={12} className={classes.centered}>
+          <GameButtons />
         </Grid>
-        <MoveValidatorTable />
-      </Grid>
-      <Grid item xs={12} className={classes.gameButtons}>
-        <GameButtons />
       </Grid>
       <Grid item xs={12}>
         <PlayFriendModeButtons />

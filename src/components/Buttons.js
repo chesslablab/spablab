@@ -148,7 +148,7 @@ const Buttons = ({ props }) => {
       orientation="vertical"
       size="small"
       variant="text"
-      aria-label="text button group"
+      aria-label="Main Menu"
       fullWidth={matches ? false : true}
     >
       <Button

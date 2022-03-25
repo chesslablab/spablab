@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   buttons: {
-    marginTop: 10,
+    marginBottom: 15,
   },
 });
 

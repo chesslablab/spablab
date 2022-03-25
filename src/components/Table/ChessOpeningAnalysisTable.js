@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   tableContainer: {
     maxHeight: 200,
     overflowY: 'scroll',
-    marginBottom: 10,
+    marginBottom: 15,
   },
 });
 

@@ -34,7 +34,7 @@ const GameButtons = () => {
       return (
         <ButtonGroup
           size="small"
-          aria-label="small button group"
+          aria-label="Game Buttons"
           orientation="vertical"
           fullWidth={true}
         >
