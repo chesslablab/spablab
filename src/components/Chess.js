@@ -37,7 +37,7 @@ const Chess = ({ props }) => {
         <Grid item xs={12} md={2} className={classes.right}>
           <MainButtons props={props} />
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={4}>
           <Board props={props} />
         </Grid>
         <Grid item xs={12} md={3}>

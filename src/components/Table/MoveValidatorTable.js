@@ -7,7 +7,7 @@ import Movetext from '../../utils/Movetext.js';
 
 const useStyles = makeStyles({
   table: {
-    maxHeight: 200,
+    maxHeight: 170,
     display: 'flex',
     flexDirection: 'column-reverse'
   },
