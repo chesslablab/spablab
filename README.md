@@ -1,12 +1,12 @@
 ## Redux Chess
 
-React chessboard connected to a [PHP Chess server](https://github.com/chesslablab/chess-server).
+Ready to create your own web chess apps?
 
-### Install
+Redux Chess is an easy-to-embed chessboard connected to a [chess server](https://github.com/chesslablab/chess-server) ready to npm install:
 
-Via npm:
-
-    $ npm i @chesslablab/redux-chess
+```
+$ npm i @chesslablab/redux-chess
+```
 
 ### Demo
 
