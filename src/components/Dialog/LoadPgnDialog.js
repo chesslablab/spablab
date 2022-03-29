@@ -28,6 +28,9 @@ const LoadPgnDialog = () => {
             rows={4}
             name="pgn"
             label="Movetext"
+            inputProps={{
+              spellCheck: false
+            }}
           />
           <DialogActions>
             <Button type="submit">Load</Button>
