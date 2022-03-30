@@ -18,6 +18,7 @@ import TournamentGameTable from './Table/TournamentGameTable.js';
 import Board from './Board.js';
 import Game from './Game.js';
 import MainButtons from './MainButtons.js';
+import SupportButtons from './SupportButtons.js';
 import '../index.css';
 import store from '../store';
 
@@ -35,7 +36,9 @@ const Chess = ({ props }) => {
       <CssBaseline />
       <Grid container spacing={2}>
         <Grid item xs={12} md={2} className={classes.right}>
-          <MainButtons props={props} />
+          <Grid item xs={12}>
+            <MainButtons props={props} />
+          </Grid>
         </Grid>
         <Grid item xs={12} md={4}>
           <Board props={props} />
@@ -45,6 +48,7 @@ const Chess = ({ props }) => {
           <ChessOpeningAnalysisTable />
           <TournamentGameTable />
           <InfoAlert />
+          <SupportButtons />
         </Grid>
       </Grid>
       <ChessOpeningSearchEcoDialog props={props} />
