@@ -1,13 +1,22 @@
 import React from 'react';
-import { Button, ButtonGroup, Paper, Typography, useMediaQuery } from '@mui/material/';
+import { Button, ButtonGroup, Container, Typography, useMediaQuery } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-  paper: {
-    marginTop: 15,
+  container: {
+    marginTop: 5,
     padding: 10,
-    textAlign:'center'
+    textAlign:'center',
+    color: '#707070',
   },
+  link: {
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    color: '#505050',
+    "&:hover": {
+      textDecoration: 'underline',
+    },
+  }
 });
 
 const Support = () => {
@@ -15,14 +24,14 @@ const Support = () => {
   const matches = useMediaQuery("(min-width:900px)");
 
   return (
-    <Paper className={classes.paper}>
+    <Container className={classes.container}>
       <Typography
         variant="caption"
         component="p"
         align="center"
         style={{ paddingBottom: 10 }}
       >
-        Support <a href="https://github.com/chesslablab">ChesslabLab</a> with a donation.
+        Support <a className={classes.link} href="https://github.com/chesslablab">ChesslabLab</a> with a donation.
       </Typography>
       <ButtonGroup
         orientation="vertical"
@@ -36,7 +45,7 @@ const Support = () => {
           Donate
         </Button>
       </ButtonGroup>
-    </Paper>
+    </Container>
   );
 };
 
