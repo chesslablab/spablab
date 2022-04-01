@@ -6,7 +6,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case historyActionTypes.GO_TO_BEGINNING:
+    case historyActionTypes.GO_TO:
       return {
         back: 0 - action.payload.back
       };
