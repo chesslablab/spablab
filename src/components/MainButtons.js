@@ -40,7 +40,7 @@ const MainButtons = ({ props }) => {
     dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
     dispatch({ type: tournamentGameTableActionTypes.CLOSE });
     dispatch({ type: infoAlertActionTypes.CLOSE });
-    dispatch({ type: historyActionTypes.GO_TO_BEGINNING, payload: { back: 0 }});
+    dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
     wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws));
   };
 

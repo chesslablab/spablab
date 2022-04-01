@@ -18,7 +18,7 @@ const History = () => {
         startIcon={<FastRewindIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
         onClick={() => dispatch({
-          type: historyActionTypes.GO_TO_BEGINNING,
+          type: historyActionTypes.GO_TO,
           payload: {
             back: state.board.history.length - 1
           }
