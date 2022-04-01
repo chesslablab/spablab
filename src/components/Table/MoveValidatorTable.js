@@ -16,11 +16,12 @@ const useStyles = makeStyles({
   move: {
     "&:hover": {
       color: "#ffffff",
-      background: "#1976d2 !important",
+      background: "#3d8cd9 !important",
       cursor: 'pointer'
     },
   },
   currentMove: {
+    color: "#ffffff !important",
     background: "#1976d2 !important",
     fontWeight: 'bold !important'
   }
