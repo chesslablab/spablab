@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Slide, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import { wsMssgPlayfen } from '../../actions/serverActions';
+import boardActionTypes from '../../constants/boardActionTypes';
+import historyActionTypes from '../../constants/historyActionTypes';
 import Movetext from '../../utils/Movetext.js';
 
 const useStyles = makeStyles({
@@ -10,6 +12,13 @@ const useStyles = makeStyles({
     maxHeight: 170,
     display: 'flex',
     flexDirection: 'column-reverse'
+  },
+  move: {
+    "&:hover": {
+      color: "#ffffff",
+      background: "#1976d2 !important",
+      cursor: 'pointer'
+    },
   },
   currentMove: {
     backgroundColor: '#ececec !important',
@@ -20,6 +29,7 @@ const useStyles = makeStyles({
 const MoveValidatorTable = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (state.board.short_fen) {
@@ -40,10 +50,24 @@ const MoveValidatorTable = ({props}) => {
       .map((row, i) => (
         <TableRow key={i}>
           <TableCell align="left">{i + 1}</TableCell>
-          <TableCell align="left" className={highlight(((i + 1) * 2) - 1)}>
+          <TableCell
+            align="left"
+            className={[classes.move, highlight(((i + 1) * 2) - 1)].join(' ')}
+            onClick={() => {
+              dispatch({ type: historyActionTypes.GO_BACK });
+              dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+            }}
+          >
             {row.w}
           </TableCell>
-          <TableCell align="left" className={highlight((i + 1) * 2)}>
+          <TableCell
+            align="left"
+            className={[classes.move, highlight((i + 1) * 2)].join(' ')}
+            onClick={() => {
+              dispatch({ type: historyActionTypes.GO_BACK });
+              dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+            }}
+          >
             {row.b}
           </TableCell>
         </TableRow>
