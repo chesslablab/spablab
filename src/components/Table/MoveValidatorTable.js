@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     },
   },
   currentMove: {
-    backgroundColor: '#ececec !important',
+    background: "#1976d2 !important",
     fontWeight: 'bold !important'
   }
 });
@@ -53,10 +53,12 @@ const MoveValidatorTable = ({props}) => {
           <TableCell
             align="left"
             className={[classes.move, highlight(((i + 1) * 2) - 1)].join(' ')}
-            onClick={() => {
-              dispatch({ type: historyActionTypes.GO_BACK });
-              dispatch({ type: boardActionTypes.BROWSE_HISTORY });
-            }}
+            onClick={() => dispatch({
+              type: historyActionTypes.GO_TO,
+              payload: {
+                back: state.board.history.length - 1 - (((i + 1) * 2) - 1)
+              }
+            })}
           >
             {row.w}
           </TableCell>
@@ -64,8 +66,10 @@ const MoveValidatorTable = ({props}) => {
             align="left"
             className={[classes.move, highlight((i + 1) * 2)].join(' ')}
             onClick={() => {
-              dispatch({ type: historyActionTypes.GO_BACK });
-              dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+              const back = state.board.history.length - 1 - ((i + 1) * 2);
+              if (back >= 0) {
+                dispatch({ type: historyActionTypes.GO_TO, payload: { back: back }});
+              }
             }}
           >
             {row.b}
