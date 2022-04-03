@@ -6,7 +6,6 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
 import { wsMssgHeuristicpicture } from '../actions/serverActions';
-import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 
@@ -28,9 +27,9 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         color="primary"
         size="large"
-        title="FEN String"
+        title="Copy FEN"
         aria-label="fen"
-        onClick={() => dispatch({ type: fenDialogActionTypes.OPEN })}
+        onClick={() => state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null}
       >
         <WidgetsIcon />
       </IconButton>

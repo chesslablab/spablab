@@ -8,7 +8,6 @@ import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetex
 import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
 import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
-import FenDialog from './Dialog/FenDialog';
 import ProgressDialog from './Dialog/ProgressDialog';
 import LoadFenDialog from './Dialog/LoadFenDialog';
 import LoadPgnDialog from './Dialog/LoadPgnDialog';
@@ -56,7 +55,6 @@ const Chess = ({ props }) => {
       <ChessOpeningSearchNameDialog props={props} />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
-      <FenDialog />
       <ProgressDialog />
       <LoadFenDialog />
       <LoadPgnDialog />

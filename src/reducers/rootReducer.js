@@ -7,7 +7,6 @@ import serverReducer from './serverReducer';
 import infoAlertReducer from './infoAlertReducer';
 // dialog reducers
 import loadFenDialogReducer from './loadFenDialogReducer';
-import fenDialogReducer from './fenDialogReducer';
 import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
 import createInviteCodeDialogReducer from './createInviteCodeDialogReducer';
@@ -34,7 +33,6 @@ const rootReducer = combineReducers({
   server: serverReducer,
   infoAlert: infoAlertReducer,
   loadFenDialog: loadFenDialogReducer,
-  fenDialog: fenDialogReducer,
   takebackAcceptDialog: takebackAcceptDialogReducer,
   takebackOfferDialog: takebackOfferDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,

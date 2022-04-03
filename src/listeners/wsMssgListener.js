@@ -4,7 +4,6 @@ import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogAct
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
 import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
-import fenDialogActionTypes from '../constants/dialog/fenDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
@@ -83,9 +82,6 @@ export const wsMssgListener = (props, data) => dispatch => {
       break;
     case '/heuristic_picture' === cmd:
       dispatch(onHeuristicPicture(data));
-      break;
-    case '/fen' === cmd:
-      dispatch(onFen(data));
       break;
     case '/undo_move' === cmd:
       dispatch(onUndoMove(data));
@@ -295,16 +291,6 @@ export const onHeuristicPicture = (data) => dispatch => {
   dispatch({ type: progressDialogActionTypes.CLOSE });
   dispatch({
     type: heuristicPictureDialogActionTypes.OPEN,
-    payload: payload
-  });
-};
-
-export const onFen = (data) => dispatch => {
-  const payload = {
-    fen: data['/fen']
-  };
-  dispatch({
-    type: fenDialogActionTypes.SET,
     payload: payload
   });
 };
