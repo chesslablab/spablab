@@ -36,10 +36,10 @@ let data = {};
 
 const HeuristicPicture = () => {
   const state = useSelector(state => state);
-  if (state.heuristicPictureDialog.heuristic_picture) {
-    dim = getDimensions(state.heuristicPictureDialog.heuristic_picture.dimensions);
+  if (state.heuristicPictureDialog.heuristics) {
+    dim = getDimensions(state.heuristicPictureDialog.heuristics.dimensions);
     data = initData(dim);
-    state.heuristicPictureDialog.heuristic_picture.balance.forEach((item, i) => {
+    state.heuristicPictureDialog.heuristics.balance.forEach((item, i) => {
       dim.forEach((dimension, j) => {
         data[dimension].push({
           [dimension]: item[j]

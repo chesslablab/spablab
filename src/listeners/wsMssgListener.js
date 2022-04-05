@@ -80,7 +80,7 @@ export const wsMssgListener = (props, data) => dispatch => {
         dispatch(onPiece(data));
       }
       break;
-    case '/heuristic_picture' === cmd:
+    case '/heuristics' === cmd:
       dispatch(onHeuristicPicture(data));
       break;
     case '/undo_move' === cmd:
@@ -285,8 +285,8 @@ export const onPlayfen = (props, data) => dispatch => {
 
 export const onHeuristicPicture = (data) => dispatch => {
   const payload = {
-    dimensions: data['/heuristic_picture'].dimensions,
-    balance: data['/heuristic_picture'].balance
+    dimensions: data['/heuristics'].dimensions,
+    balance: data['/heuristics'].balance
   };
   dispatch({ type: progressDialogActionTypes.CLOSE });
   dispatch({

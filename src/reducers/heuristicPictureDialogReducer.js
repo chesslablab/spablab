@@ -2,7 +2,7 @@ import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPict
 
 const initialState = {
   open: false,
-  heuristic_picture: null
+  heuristics: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,13 +11,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         open: false,
-        heuristic_picture: null,
+        heuristics: null,
       };
     case heuristicPictureDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,
-        heuristic_picture: action.payload
+        heuristics: action.payload
       }
     default:
       return state;

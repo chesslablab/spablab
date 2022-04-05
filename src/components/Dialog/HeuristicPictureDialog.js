@@ -15,7 +15,7 @@ const handleDownloadImage = async () => {
   });
   const a = document.createElement('a');
   a.href = canvas.toDataURL('image/png', 1);
-  a.download = "heuristic_picture.png";
+  a.download = "heuristics.png";
   a.click();
   a.remove();
 }
