@@ -2,7 +2,7 @@ import html2canvas from 'html2canvas';
 import * as React from 'react';
 import { Alert, AppBar, Button, Dialog, IconButton, Toolbar, Typography, Slide } from '@mui/material/';
 import CloseIcon from '@mui/icons-material/Close';
-import HeuristicPicture from "../HeuristicPicture.js";
+import Heuristics from "../Heuristics.js";
 import { useDispatch, useSelector } from "react-redux";
 import heuristicPictureDialogActionTypes from "../../constants/dialog/heuristicPictureDialogActionTypes";
 
@@ -24,7 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const HeuristicPictureDialog = () => {
+const HeuristicsDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -66,9 +66,9 @@ const HeuristicPictureDialog = () => {
        Black. Both forces being set to 0 means they're actually offset and,
        therefore, balanced.
      </Alert>
-     <HeuristicPicture />
+     <Heuristics />
     </Dialog>
   );
 };
 
-export default HeuristicPictureDialog;
+export default HeuristicsDialog;

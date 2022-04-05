@@ -1,10 +1,10 @@
 import React from 'react';
-import HeuristicPictureDialog from './Dialog/HeuristicPictureDialog';
+import HeuristicsDialog from './Dialog/HeuristicsDialog';
 
 const SecondaryDialogs = () => {
   return (
     <div>
-      <HeuristicPictureDialog />
+      <HeuristicsDialog />
     </div>
   );
 }

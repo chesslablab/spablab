@@ -81,7 +81,7 @@ export const wsMssgListener = (props, data) => dispatch => {
       }
       break;
     case '/heuristics' === cmd:
-      dispatch(onHeuristicPicture(data));
+      dispatch(onHeuristics(data));
       break;
     case '/undo_move' === cmd:
       dispatch(onUndoMove(data));
@@ -283,7 +283,7 @@ export const onPlayfen = (props, data) => dispatch => {
   }
 };
 
-export const onHeuristicPicture = (data) => dispatch => {
+export const onHeuristics = (data) => dispatch => {
   const payload = {
     dimensions: data['/heuristics'].dimensions,
     balance: data['/heuristics'].balance
