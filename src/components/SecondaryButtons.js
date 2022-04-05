@@ -5,7 +5,7 @@ import CachedIcon from '@mui/icons-material/Cached';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
-import { wsMssgHeuristicpicture } from '../actions/serverActions';
+import { wsMssgHeuristics } from '../actions/serverActions';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 
@@ -40,7 +40,7 @@ const SecondaryButtons = ({props}) => {
         aria-label="heuristics"
         onClick={() => {
           dispatch({ type: progressDialogActionTypes.OPEN });
-          wsMssgHeuristicpicture(state);
+          wsMssgHeuristics(state);
         }}
       >
         <BarChartIcon />
