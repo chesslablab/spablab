@@ -46,7 +46,7 @@ const HeuristicsDialog = () => {
            <CloseIcon />
          </IconButton>
          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-           Heuristic Picture
+           Heuristics
          </Typography>
          <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
