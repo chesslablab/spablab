@@ -1,4 +1,4 @@
-import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
+import heuristicsDialogActionTypes from '../constants/dialog/heuristicsDialogActionTypes';
 
 const initialState = {
   open: false,
@@ -7,13 +7,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case heuristicPictureDialogActionTypes.CLOSE:
+    case heuristicsDialogActionTypes.CLOSE:
       return {
         ...state,
         open: false,
         heuristics: null,
       };
-    case heuristicPictureDialogActionTypes.OPEN:
+    case heuristicsDialogActionTypes.OPEN:
       return {
         ...state,
         open: true,

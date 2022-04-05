@@ -11,7 +11,7 @@ import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
 import createInviteCodeDialogReducer from './createInviteCodeDialogReducer';
 import enterInviteCodeDialogReducer from './enterInviteCodeDialogReducer';
-import heuristicPictureDialogReducer from './heuristicPictureDialogReducer';
+import heuristicsDialogReducer from './heuristicsDialogReducer';
 import drawAcceptDialogReducer from './drawAcceptDialogReducer';
 import drawOfferDialogReducer from './drawOfferDialogReducer';
 import resignAcceptDialogReducer from './resignAcceptDialogReducer';
@@ -37,7 +37,7 @@ const rootReducer = combineReducers({
   takebackOfferDialog: takebackOfferDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,
   enterInviteCodeDialog: enterInviteCodeDialogReducer,
-  heuristicPictureDialog: heuristicPictureDialogReducer,
+  heuristicsDialog: heuristicsDialogReducer,
   drawAcceptDialog: drawAcceptDialogReducer,
   drawOfferDialog: drawOfferDialogReducer,
   resignAcceptDialog: resignAcceptDialogReducer,

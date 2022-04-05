@@ -2,7 +2,7 @@ import { wsMssgResponse } from '../actions/serverActions';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
-import heuristicPictureDialogActionTypes from '../constants/dialog/heuristicPictureDialogActionTypes';
+import heuristicsDialogActionTypes from '../constants/dialog/heuristicsDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
@@ -290,7 +290,7 @@ export const onHeuristics = (data) => dispatch => {
   };
   dispatch({ type: progressDialogActionTypes.CLOSE });
   dispatch({
-    type: heuristicPictureDialogActionTypes.OPEN,
+    type: heuristicsDialogActionTypes.OPEN,
     payload: payload
   });
 };

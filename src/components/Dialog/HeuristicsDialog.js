@@ -4,14 +4,14 @@ import { Alert, AppBar, Button, Dialog, IconButton, Toolbar, Typography, Slide }
 import CloseIcon from '@mui/icons-material/Close';
 import Heuristics from "../Heuristics.js";
 import { useDispatch, useSelector } from "react-redux";
-import heuristicPictureDialogActionTypes from "../../constants/dialog/heuristicPictureDialogActionTypes";
+import heuristicsDialogActionTypes from "../../constants/dialog/heuristicsDialogActionTypes";
 
 const handleDownloadImage = async () => {
-  const heuristicPicture = document.getElementsByClassName('heuristic-picture')[0];
-  const canvas = await html2canvas(heuristicPicture, {
+  const heuristics = document.getElementsByClassName('heuristic-picture')[0];
+  const canvas = await html2canvas(heuristics, {
     logging: false,
-    width: heuristicPicture.clientWidth,
-    height: heuristicPicture.clientHeight
+    width: heuristics.clientWidth,
+    height: heuristics.clientHeight
   });
   const a = document.createElement('a');
   a.href = canvas.toDataURL('image/png', 1);
@@ -31,8 +31,8 @@ const HeuristicsDialog = () => {
   return (
     <Dialog
       fullScreen
-      open={state.heuristicPictureDialog.open}
-      onClose={() => dispatch({ type: heuristicPictureDialogActionTypes.CLOSE })}
+      open={state.heuristicsDialog.open}
+      onClose={() => dispatch({ type: heuristicsDialogActionTypes.CLOSE })}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -40,7 +40,7 @@ const HeuristicsDialog = () => {
          <IconButton
            edge="start"
            color="inherit"
-           onClick={() => dispatch({ type: heuristicPictureDialogActionTypes.CLOSE })}
+           onClick={() => dispatch({ type: heuristicsDialogActionTypes.CLOSE })}
            aria-label="close"
          >
            <CloseIcon />
@@ -51,7 +51,7 @@ const HeuristicsDialog = () => {
          <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
          </Button>
-         <Button autoFocus color="inherit" onClick={() => dispatch({ type: heuristicPictureDialogActionTypes.CLOSE })}>
+         <Button autoFocus color="inherit" onClick={() => dispatch({ type: heuristicsDialogActionTypes.CLOSE })}>
            Close
          </Button>
        </Toolbar>
