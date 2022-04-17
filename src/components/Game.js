@@ -34,9 +34,6 @@ const Game = ({ props }) => {
           <Grid item xs={12} className={classes.centered}>
             <History />
           </Grid>
-          <Grid item xs={12} className={classes.centered}>
-            <GameClock />
-          </Grid>
           <Grid item xs={12}>
             <MoveValidatorTable />
           </Grid>
@@ -44,6 +41,9 @@ const Game = ({ props }) => {
         <Grid item xs={12} className={classes.centered}>
           <SecondaryButtons />
         </Grid>
+      </Grid>
+      <Grid item xs={12} className={classes.centered}>
+        <GameClock />
       </Grid>
       <Grid item xs={12}>
         <InvitedButtons />
