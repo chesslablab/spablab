@@ -17,7 +17,7 @@ const FinishedButtons = () => {
   const dispatch = useDispatch();
 
   if (state.mode.playfriend.accepted) {
-    if (state.board.mate ||
+    if (state.board.isMate ||
       state.mode.playfriend.draw === Wording.verb.ACCEPT.toLowerCase() ||
       state.mode.playfriend.resign === Wording.verb.ACCEPT.toLowerCase() ||
       state.mode.playfriend.timer.over

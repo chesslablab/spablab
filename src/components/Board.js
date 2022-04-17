@@ -45,7 +45,7 @@ const Board = ({props}) => {
   };
 
   const handleMove = (payload) => {
-    if (!state.board.mate &&
+    if (!state.board.isMate &&
       !state.mode.playfriend.draw &&
       !state.mode.playfriend.resign &&
       !state.mode.playfriend.timer.over &&
@@ -80,21 +80,21 @@ const Board = ({props}) => {
             : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
           if (state.board.picked) {
             if (state.board.picked.algebraic === payload.algebraic) {
-              isSelected = 'is-selected';
+              isSelected = 'isSelected';
             }
             if (state.board.picked.legal_moves) {
               if (state.board.picked.legal_moves.includes(payload.algebraic)) {
-                isLegal = 'is-legal';
+                isLegal = 'isLegal';
               }
             }
-          } else if (state.board.check) {
+          } else if (state.board.isCheck) {
             if (state.board.turn === Pgn.symbol.WHITE) {
               if (piece === ' K ') {
-                isCheck = 'is-check';
+                isCheck = 'isCheck';
               }
             } else if (state.board.turn === Pgn.symbol.BLACK) {
               if (piece === ' k ') {
-                isCheck = 'is-check';
+                isCheck = 'isCheck';
               }
             }
           }

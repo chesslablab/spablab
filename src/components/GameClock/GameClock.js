@@ -17,7 +17,7 @@ const GameClock = () => {
   const state = useSelector(state => state);
 
   if (state.mode.playfriend.accepted) {
-    if (!state.board.mate &&
+    if (!state.board.isMate &&
       !state.mode.playfriend.draw &&
       !state.mode.playfriend.resign
     ) {

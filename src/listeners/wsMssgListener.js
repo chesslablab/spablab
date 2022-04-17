@@ -240,22 +240,22 @@ export const onPiece = (data) => dispatch => {
 
 export const onPlayfen = (props, data) => dispatch => {
   const payload = {
-    check: data['/play_fen'].check,
-    mate: data['/play_fen'].mate,
+    isCheck: data['/play_fen'].isCheck,
+    isMate: data['/play_fen'].isMate,
     movetext: data['/play_fen'].movetext,
     fen: data['/play_fen'].fen
   };
   if (
-    data['/play_fen'].legal === Pgn.symbol.CASTLING_SHORT ||
-    data['/play_fen'].legal === Pgn.symbol.CASTLING_LONG ||
-    data['/play_fen'].legal === true
+    data['/play_fen'].isLegal === Pgn.symbol.CASTLING_SHORT ||
+    data['/play_fen'].isLegal === Pgn.symbol.CASTLING_LONG ||
+    data['/play_fen'].isLegal === true
   ) {
-    if (data['/play_fen'].legal === Pgn.symbol.CASTLING_SHORT) {
+    if (data['/play_fen'].isLegal === Pgn.symbol.CASTLING_SHORT) {
       dispatch({
         type: boardActionTypes.CASTLED_SHORT,
         payload: payload
       });
-    } else if (data['/play_fen'].legal === Pgn.symbol.CASTLING_LONG) {
+    } else if (data['/play_fen'].isLegal === Pgn.symbol.CASTLING_LONG) {
       dispatch({
         type: boardActionTypes.CASTLED_LONG,
         payload: payload
@@ -417,8 +417,8 @@ export const onResponse = (data) => dispatch => {
       type: boardActionTypes.RESPONSE,
       payload: {
         turn: data['/response'].turn,
-        check: data['/response'].check,
-        mate: data['/response'].mate,
+        isCheck: data['/response'].isCheck,
+        isMate: data['/response'].isMate,
         movetext: data['/response'].movetext,
         fen: data['/response'].fen,
       }

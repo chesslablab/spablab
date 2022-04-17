@@ -98,17 +98,9 @@ $ php cli/ws-server.php
 Welcome to PHP Chess Server
 Commands available:
 /accept {"id":"id"} Accepts a friend request to play a game.
-/ascii Prints the ASCII representation of the game.
-/castling Gets the castling status.
-/captures Gets the pieces captured by both players.
 /draw {"action":["accept","decline","propose"]} Allows to offer a draw.
-/fen Prints the FEN string representation of the game.
-/heuristic_picture Takes a balanced heuristic picture of the current game.
-/history The current game's history.
-/is_check Finds out if the game is in check.
-/is_mate Finds out if the game is over.
+/heuristics Takes a balanced heuristic picture of the current game.
 /piece {"position":"string"} Gets a piece by its position on the board.
-/pieces {"color":["w","b"]} Gets the pieces on the board by color.
 /play_fen {"fen":"string"} Plays a chess move in shortened FEN format.
 /quit Quits a game.
 /rematch {"action":["accept","decline","propose"]} Allows to offer a rematch.
@@ -116,7 +108,6 @@ Commands available:
 /response Returns a computer response to the current position.
 /restart {"hash":"string"} Restarts a game.
 /start {"mode":["analysis","grandmaster","loadfen","loadpgn","playfriend"],"fen":"string","movetext":"string","color":["w","b"],"min":"int","increment":"int"} Starts a new game.
-/status The current game status.
 /takeback {"action":["accept","decline","propose"]} Allows to manage a takeback.
 /undo_move Undoes the last move.
 
