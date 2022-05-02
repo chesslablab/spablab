@@ -10,7 +10,7 @@ $ npm i @chesslablab/redux-chess
 
 ### Demo
 
-Check out [this demo](https://programarivm.github.io/demo-redux-chess).
+Check out [this demo](https://www.chesslablab.com/).
 
 > Please note the sandbox server may not be up and running all the time.
 
