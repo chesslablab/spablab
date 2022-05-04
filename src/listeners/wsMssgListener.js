@@ -249,19 +249,15 @@ export const onPlayfen = (props, data) => dispatch => {
     movetext: data['/play_fen'].movetext,
     fen: data['/play_fen'].fen
   };
-  if (
-    data['/play_fen'].isLegal === Pgn.symbol.CASTLING_SHORT ||
-    data['/play_fen'].isLegal === Pgn.symbol.CASTLING_LONG ||
-    data['/play_fen'].isLegal === true
-  ) {
-    if (data['/play_fen'].isLegal === Pgn.symbol.CASTLING_SHORT) {
-      dispatch({
-        type: boardActionTypes.CASTLED_SHORT,
-        payload: payload
-      });
-    } else if (data['/play_fen'].isLegal === Pgn.symbol.CASTLING_LONG) {
+  if (data['/play_fen'].isLegal) {
+    if (data['/play_fen'].pgn === Pgn.symbol.CASTLING_LONG) {
       dispatch({
         type: boardActionTypes.CASTLED_LONG,
+        payload: payload
+      });
+    } else if (data['/play_fen'].pgn === Pgn.symbol.CASTLING_SHORT) {
+      dispatch({
+        type: boardActionTypes.CASTLED_SHORT,
         payload: payload
       });
     } else {
@@ -304,7 +300,7 @@ export const onHeuristicsExpanded = (data) => dispatch => {
     dimensions: data['/heuristics_expanded'].dimensions,
     balance: data['/heuristics_expanded'].balance
   };
-  // TODO 
+  // TODO ...
 };
 
 export const onTakebackPropose = () => dispatch => {
