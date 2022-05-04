@@ -43,7 +43,7 @@ const reducer = (state = initialState, action) => {
         picked: {
           i: action.payload.i,
           j: action.payload.j,
-          algebraic: action.payload.algebraic,
+          sq: action.payload.sq,
           piece: state.history[state.history.length - 1][action.payload.i][action.payload.j]
         }
       };
@@ -53,11 +53,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           picked: null
         };
-      } else if (state.picked.legal_moves.includes(action.payload.algebraic)) {
+      } else if (state.picked.legal_sqs.includes(action.payload.sq)) {
         newAscii[state.picked.i][state.picked.j] = ' . ';
         newAscii[action.payload.i][action.payload.j] = state.picked.piece;
         if (state.picked.en_passant) {
-          if (action.payload.algebraic.charAt(0) === state.picked.en_passant.charAt(0)) {
+          if (action.payload.sq.charAt(0) === state.picked.en_passant.charAt(0)) {
             const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant);
             newAscii[index[0]][index[1]] = ' . ';
           }
@@ -110,12 +110,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         flip: newFlip
       }
-    case boardActionTypes.LEGAL_MOVES:
+    case boardActionTypes.LEGAL_SQS:
       return {
         ...state,
         picked: {
           ...state.picked,
-          legal_moves: action.payload.moves,
+          legal_sqs: action.payload.sqs,
           en_passant: action.payload.en_passant
         }
       }

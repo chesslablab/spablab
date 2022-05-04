@@ -75,9 +75,9 @@ export const wsMssgListener = (props, data) => dispatch => {
         wsMssgResponse(store.getState());
       }
       break;
-    case '/piece' === cmd:
-      if (data['/piece']) {
-        dispatch(onPiece(data));
+    case '/legal_sqs' === cmd:
+      if (data['/legal_sqs']) {
+        dispatch(onLegalSqs(data));
       }
       break;
     case '/heuristics' === cmd:
@@ -223,17 +223,17 @@ export const onAccept = (data) => dispatch => {
   dispatch({ type: infoAlertActionTypes.CLOSE });
 };
 
-export const onPiece = (data) => dispatch => {
+export const onLegalSqs = (data) => dispatch => {
   const payload = {
-    piece: data['/piece'].identity,
-    position: data['/piece'].position,
-    moves: data['/piece'].moves
+    piece: data['/legal_sqs'].identity,
+    position: data['/legal_sqs'].position,
+    sqs: data['/legal_sqs'].sqs
   };
-  if (data['/piece'].enPassant) {
-    payload.en_passant = data['/piece'].enPassant;
+  if (data['/legal_sqs'].enPassant) {
+    payload.en_passant = data['/legal_sqs'].enPassant;
   }
   dispatch({
-    type: boardActionTypes.LEGAL_MOVES,
+    type: boardActionTypes.LEGAL_SQS,
     payload: payload
   });
 };

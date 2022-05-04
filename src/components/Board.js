@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { wsConnect, wsMssgStartAnalysis, wsMssgPiece } from '../actions/serverActions';
+import { wsConnect, wsMssgStartAnalysis, wsMssgLegalSqs } from '../actions/serverActions';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
 import Ascii from '../utils/Ascii';
@@ -27,7 +27,7 @@ const Board = ({props}) => {
           type: boardActionTypes.PICK_PIECE,
           payload: payload
         });
-        wsMssgPiece(state, payload.algebraic);
+        wsMssgLegalSqs(state, payload.sq);
       }
     } else if (modeNames.PLAYFRIEND === state.mode.current) {
       if (state.mode.playfriend.accepted) {
@@ -37,7 +37,7 @@ const Board = ({props}) => {
               type: boardActionTypes.PICK_PIECE,
               payload: payload
             });
-            wsMssgPiece(state, payload.algebraic);
+            wsMssgLegalSqs(state, payload.sq);
           }
         }
       }
@@ -76,14 +76,14 @@ const Board = ({props}) => {
           let isLegal, isSelected, isCheck = '';
           (i + j) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
           state.board.flip === Pgn.symbol.WHITE
-            ? payload = {...payload, i: i, j: j, algebraic: Ascii.fromIndexToAlgebraic(i, j)}
-            : payload = {...payload, i: 7 - i, j: 7 - j, algebraic: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
+            ? payload = {...payload, i: i, j: j, sq: Ascii.fromIndexToAlgebraic(i, j)}
+            : payload = {...payload, i: 7 - i, j: 7 - j, sq: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
           if (state.board.picked) {
-            if (state.board.picked.algebraic === payload.algebraic) {
+            if (state.board.picked.sq === payload.sq) {
               isSelected = 'isSelected';
             }
-            if (state.board.picked.legal_moves) {
-              if (state.board.picked.legal_moves.includes(payload.algebraic)) {
+            if (state.board.picked.legal_sqs) {
+              if (state.board.picked.legal_sqs.includes(payload.sq)) {
                 isLegal = 'isLegal';
               }
             }
@@ -108,7 +108,7 @@ const Board = ({props}) => {
           }
           squares.push(<div
               key={k}
-              className={['square', color, payload.algebraic, isLegal, isSelected, isCheck].join(' ')}
+              className={['square', color, payload.sq, isLegal, isSelected, isCheck].join(' ')}
               onClick={() => {
                 handleMove(payload);
               }}

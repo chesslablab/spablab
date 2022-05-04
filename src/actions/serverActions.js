@@ -51,8 +51,8 @@ export const wsMssgAccept = async (state, hash) => {
   return await state.server.ws.send(`/accept ${hash}`);
 };
 
-export const wsMssgPiece = async (state, algebraic) => {
-  return await state.server.ws.send(`/piece ${algebraic}`);
+export const wsMssgLegalSqs = async (state, sq) => {
+  return await state.server.ws.send(`/legal_sqs ${sq}`);
 };
 
 export const wsMssgHeuristics = async (state) => {
