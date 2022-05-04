@@ -1,4 +1,4 @@
-import { wsMssgResponse } from '../actions/serverActions';
+import { wsMssgHeuristicsExpanded, wsMssgResponse } from '../actions/serverActions';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
@@ -82,6 +82,9 @@ export const wsMssgListener = (props, data) => dispatch => {
       break;
     case '/heuristics' === cmd:
       dispatch(onHeuristics(data));
+      break;
+    case '/heuristics_expanded' === cmd:
+      dispatch(onHeuristicsExpanded(data));
       break;
     case '/undo_move' === cmd:
       dispatch(onUndoMove(data));
@@ -239,6 +242,7 @@ export const onLegalSqs = (data) => dispatch => {
 };
 
 export const onPlayfen = (props, data) => dispatch => {
+  wsMssgHeuristicsExpanded(store.getState());
   const payload = {
     isCheck: data['/play_fen'].isCheck,
     isMate: data['/play_fen'].isMate,
@@ -293,6 +297,14 @@ export const onHeuristics = (data) => dispatch => {
     type: heuristicsDialogActionTypes.OPEN,
     payload: payload
   });
+};
+
+export const onHeuristicsExpanded = (data) => dispatch => {
+  const payload = {
+    dimensions: data['/heuristics_expanded'].dimensions,
+    balance: data['/heuristics_expanded'].balance
+  };
+  // TODO 
 };
 
 export const onTakebackPropose = () => dispatch => {

@@ -59,6 +59,10 @@ export const wsMssgHeuristics = async (state) => {
   return await state.server.ws.send(`/heuristics`);
 };
 
+export const wsMssgHeuristicsExpanded = async (state) => {
+  return await state.server.ws.send(`/heuristics_expanded`);
+};
+
 export const wsMssgTakeback = async (state, action) => {
   return await state.server.ws.send(`/takeback ${action}`);
 };
