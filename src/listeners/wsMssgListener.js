@@ -83,7 +83,7 @@ export const wsMssgListener = (props, data) => dispatch => {
     case '/heuristics' === cmd:
       dispatch(onHeuristics(data));
       break;
-    case '/heuristics_expanded' === cmd:
+    case '/heuristics_bar' === cmd:
       dispatch(onHeuristicsExpanded(data));
       break;
     case '/undo_move' === cmd:
@@ -297,8 +297,8 @@ export const onHeuristics = (data) => dispatch => {
 
 export const onHeuristicsExpanded = (data) => dispatch => {
   const payload = {
-    dimensions: data['/heuristics_expanded'].dimensions,
-    balance: data['/heuristics_expanded'].balance
+    dimensions: data['/heuristics_bar'].dimensions,
+    balance: data['/heuristics_bar'].balance
   };
   // TODO ...
 };
