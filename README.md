@@ -100,7 +100,7 @@ Commands available:
 /accept {"id":"id"} Accepts a friend request to play a game.
 /draw {"action":["accept","decline","propose"]} Allows to offer a draw.
 /heuristics Takes a balanced heuristic picture of the current game.
-/piece {"position":"string"} Gets a piece by its position on the board.
+/legal_sqs {"position":"string"} Returns the legal squares of a piece.
 /play_fen {"fen":"string"} Plays a chess move in shortened FEN format.
 /quit Quits a game.
 /rematch {"action":["accept","decline","propose"]} Allows to offer a rematch.
