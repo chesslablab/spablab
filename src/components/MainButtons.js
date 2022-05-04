@@ -20,6 +20,7 @@ import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGr
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
+import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import Tournament from '../utils/Tournament.js';
@@ -37,6 +38,7 @@ const MainButtons = ({ props }) => {
   const matches = useMediaQuery("(min-width:900px)");
 
   const reset = () => {
+    dispatch({ type: heuristicsBarActionTypes.RESET });
     dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
     dispatch({ type: tournamentGameTableActionTypes.CLOSE });
     dispatch({ type: infoAlertActionTypes.CLOSE });

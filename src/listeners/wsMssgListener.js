@@ -1,4 +1,4 @@
-import { wsMssgHeuristicsExpanded, wsMssgResponse } from '../actions/serverActions';
+import { wsMssgHeuristicsBar, wsMssgResponse } from '../actions/serverActions';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
@@ -7,6 +7,7 @@ import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptD
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
+import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
@@ -84,7 +85,7 @@ export const wsMssgListener = (props, data) => dispatch => {
       dispatch(onHeuristics(data));
       break;
     case '/heuristics_bar' === cmd:
-      dispatch(onHeuristicsExpanded(data));
+      dispatch(onHeuristicsBar(data));
       break;
     case '/undo_move' === cmd:
       dispatch(onUndoMove(data));
@@ -153,6 +154,7 @@ export const onStartLoadfen = (data) => dispatch => {
 };
 
 export const onStartLoadpgn = (data) => dispatch => {
+  wsMssgHeuristicsBar(store.getState());
   dispatch({ type: progressDialogActionTypes.CLOSE });
   if (data['/start'].movetext) {
     dispatch({ type: modeActionTypes.SET_LOADPGN });
@@ -242,7 +244,7 @@ export const onLegalSqs = (data) => dispatch => {
 };
 
 export const onPlayfen = (props, data) => dispatch => {
-  wsMssgHeuristicsExpanded(store.getState());
+  wsMssgHeuristicsBar(store.getState());
   const payload = {
     isCheck: data['/play_fen'].isCheck,
     isMate: data['/play_fen'].isMate,
@@ -295,12 +297,15 @@ export const onHeuristics = (data) => dispatch => {
   });
 };
 
-export const onHeuristicsExpanded = (data) => dispatch => {
+export const onHeuristicsBar = (data) => dispatch => {
   const payload = {
     dimensions: data['/heuristics_bar'].dimensions,
     balance: data['/heuristics_bar'].balance
   };
-  // TODO ...
+  dispatch({
+    type: heuristicsBarActionTypes.UPDATE,
+    payload: payload
+  });
 };
 
 export const onTakebackPropose = () => dispatch => {

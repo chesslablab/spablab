@@ -11,6 +11,7 @@ import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
 import createInviteCodeDialogReducer from './createInviteCodeDialogReducer';
 import enterInviteCodeDialogReducer from './enterInviteCodeDialogReducer';
+import heuristicsBarReducer from './heuristicsBarReducer';
 import heuristicsDialogReducer from './heuristicsDialogReducer';
 import drawAcceptDialogReducer from './drawAcceptDialogReducer';
 import drawOfferDialogReducer from './drawOfferDialogReducer';
@@ -28,6 +29,7 @@ import tournamentGameTableReducer from './tournamentGameTableReducer';
 
 const rootReducer = combineReducers({
   board: boardReducer,
+  heuristicsBar: heuristicsBarReducer,
   history: historyReducer,
   mode: modeReducer,
   server: serverReducer,

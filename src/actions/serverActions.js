@@ -59,7 +59,7 @@ export const wsMssgHeuristics = async (state) => {
   return await state.server.ws.send(`/heuristics`);
 };
 
-export const wsMssgHeuristicsExpanded = async (state) => {
+export const wsMssgHeuristicsBar = async (state) => {
   return await state.server.ws.send(`/heuristics_bar`);
 };
 

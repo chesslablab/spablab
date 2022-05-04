@@ -16,6 +16,7 @@ import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
 import TournamentGameTable from './Table/TournamentGameTable.js';
 import Board from './Board.js';
 import Game from './Game.js';
+import HeuristicsBar from './HeuristicsBar.js';
 import MainButtons from './MainButtons.js';
 import SupportButtons from './SupportButtons.js';
 import '../index.css';
@@ -41,6 +42,7 @@ const Chess = ({ props }) => {
         </Grid>
         <Grid item xs={12} md={4}>
           <Board props={props} />
+          <HeuristicsBar />
         </Grid>
         <Grid item xs={12} md={3}>
           <Game />
