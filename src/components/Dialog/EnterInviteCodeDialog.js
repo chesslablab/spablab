@@ -18,7 +18,7 @@ const EnterInviteCodeDialog = () => {
   };
 
   return (
-    <Dialog open={state.enterInviteCodeDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.enterInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogContent>
         <form onSubmit={handlePlay}>
           <TextField fullWidth required name="hash" label="Invite code" />
