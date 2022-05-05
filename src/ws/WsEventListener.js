@@ -78,9 +78,6 @@ export default class WsEventListener {
       case '/heuristics_bar' === cmd:
         dispatch(WsEvent.onHeuristicsBar(data));
         break;
-      case '/heuristics_bar_fen' === cmd:
-        dispatch(WsEvent.onHeuristicsBarFen(data));
-        break;
       case '/undo_move' === cmd:
         dispatch(WsEvent.onUndoMove(data));
         break;

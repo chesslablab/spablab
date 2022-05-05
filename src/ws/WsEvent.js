@@ -44,7 +44,7 @@ export default class WsEvent {
           fen: data['/start'].fen
         }
       });
-      WsAction.heuristicsBarByFenString(store.getState(), data['/start'].fen);
+      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch({
         type: infoAlertActionTypes.DISPLAY,
@@ -68,7 +68,7 @@ export default class WsEvent {
           history: data['/start'].history
         }
       });
-      WsAction.heuristicsBar(store.getState());
+      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch({
         type: infoAlertActionTypes.DISPLAY,
@@ -172,10 +172,10 @@ export default class WsEvent {
       if (store.getState().mode.current === modeNames.ANALYSIS ||
         store.getState().mode.current === modeNames.LOADPGN
       ) {
-        WsAction.heuristicsBar(store.getState());
+        WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
       if (store.getState().mode.current === modeNames.LOADFEN) {
-        WsAction.heuristicsBarByFenString(store.getState(), store.getState().board.fen);
+        WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
       if (store.getState().mode.current === modeNames.ANALYSIS) {
         dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
@@ -210,17 +210,6 @@ export default class WsEvent {
     const payload = {
       dimensions: data['/heuristics_bar'].dimensions,
       balance: data['/heuristics_bar'].balance
-    };
-    dispatch({
-      type: heuristicsBarActionTypes.UPDATE,
-      payload: payload
-    });
-  }
-
-  static onHeuristicsBarFen = (data) => dispatch => {
-    const payload = {
-      dimensions: data['/heuristics_bar_fen'].dimensions,
-      balance: data['/heuristics_bar_fen'].balance
     };
     dispatch({
       type: heuristicsBarActionTypes.UPDATE,
