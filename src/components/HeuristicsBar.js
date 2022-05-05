@@ -29,7 +29,7 @@ const HeuristicsBar = () => {
     const dim = getDimensions(state.heuristicsBar.heuristics.dimensions);
     const data = initData(dim, state.heuristicsBar.heuristics.balance);
     return (
-      <ResponsiveContainer width="100%" aspect={4.0/2.0}>
+      <ResponsiveContainer width="100%" aspect={4.0/1.25}>
         <BarChart
           width={500}
           height={250}

@@ -244,7 +244,6 @@ export const onLegalSqs = (data) => dispatch => {
 };
 
 export const onPlayfen = (props, data) => dispatch => {
-  wsMssgHeuristicsBar(store.getState());
   const payload = {
     isCheck: data['/play_fen'].isCheck,
     isMate: data['/play_fen'].isMate,
@@ -269,6 +268,7 @@ export const onPlayfen = (props, data) => dispatch => {
       });
     }
     if (store.getState().mode.current === modeNames.ANALYSIS) {
+      wsMssgHeuristicsBar(store.getState());
       dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
       let rows = Opening.analysis(payload.movetext);
       if (rows) {
