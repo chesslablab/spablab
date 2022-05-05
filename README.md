@@ -24,7 +24,7 @@ Figure 2. Analysis Board
 Figure 3. Training > Random Tournament Game
 
 ![Figure 4](/src/assets/img/docs/figure-04.png)
-Figure 4. Heuristic picture of a game
+Figure 4. Heuristics of a game
 
 ![Figure 5](/src/assets/img/docs/figure-05.png)
 Figure 5. Opening Search > ECO Code
