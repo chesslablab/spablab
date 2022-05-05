@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { wsConnect, wsMssgStartAnalysis, wsMssgLegalSqs } from '../actions/serverActions';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
+import WsAction from '../ws/WsAction';
 
 const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(wsConnect(state, props)).then(ws => wsMssgStartAnalysis(ws));
+    dispatch(WsAction.connect(state, props)).then(ws => WsAction.startAnalysis(ws));
   }, [dispatch]);
 
   const pickPiece = (payload) => {
@@ -27,7 +27,7 @@ const Board = ({props}) => {
           type: boardActionTypes.PICK_PIECE,
           payload: payload
         });
-        wsMssgLegalSqs(state, payload.sq);
+        WsAction.legalSqs(state, payload.sq);
       }
     } else if (modeNames.PLAYFRIEND === state.mode.current) {
       if (state.mode.playfriend.accepted) {
@@ -37,7 +37,7 @@ const Board = ({props}) => {
               type: boardActionTypes.PICK_PIECE,
               payload: payload
             });
-            wsMssgLegalSqs(state, payload.sq);
+            WsAction.legalSqs(state, payload.sq);
           }
         }
       }

@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { wsMssgQuit, wsMssgResponse, wsMssgStartGrandmaster } from '../../actions/serverActions';
 import playLikeGrandmasterDialogActionTypes from '../../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import Pgn from '../../utils/Pgn';
+import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
   form: {
@@ -25,9 +25,9 @@ const PlayLikeGrandmasterDialog = () => {
       : color = event.target.elements.color.value;
     dispatch({ type: playLikeGrandmasterDialogActionTypes.CLOSE });
     if (Pgn.symbol.WHITE === color) {
-      wsMssgQuit(state).then(() => wsMssgStartGrandmaster(state, color));
+      WsAction.quit(state).then(() => WsAction.startGrandmaster(state, color));
     } else {
-      wsMssgQuit(state).then(() => wsMssgStartGrandmaster(state, color).then(() => wsMssgResponse(state)));
+      WsAction.quit(state).then(() => WsAction.startGrandmaster(state, color).then(() => WsAction.response(state)));
     }
   }
 

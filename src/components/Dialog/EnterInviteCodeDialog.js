@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, TextField } from '@mui/material';
-import { wsMssgAccept, wsMssgQuit } from '../../actions/serverActions';
 import enterInviteCodeDialogActionTypes from '../../constants/dialog/enterInviteCodeDialogActionTypes';
+import WsAction from '../../ws/WsAction';
 
 const EnterInviteCodeDialog = () => {
   const state = useSelector((state) => state);
@@ -10,8 +10,8 @@ const EnterInviteCodeDialog = () => {
 
   const handlePlay = (event) => {
     event.preventDefault();
-    wsMssgQuit(state).then(() => {
-      wsMssgAccept(state, event.target.elements.hash.value).then(() => {
+    WsAction.quit(state).then(() => {
+      WsAction.accept(state, event.target.elements.hash.value).then(() => {
         dispatch({ type: enterInviteCodeDialogActionTypes.CLOSE });
       });
     });

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
-import { wsMssgQuit, wsMssgStartPlayfriend } from '../../actions/serverActions';
 import createInviteCodeDialogActionTypes from '../../constants/dialog/createInviteCodeDialogActionTypes';
 import Pgn from '../../utils/Pgn';
+import WsAction from '../../ws/WsAction';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
@@ -28,7 +28,7 @@ const CreateCode = () => {
       : color = event.target.elements.color.value;
     let time = event.target.elements.time.value;
     let increment = event.target.elements.increment.value;
-    wsMssgQuit(state).then(() => wsMssgStartPlayfriend(state, color, time, increment));
+    WsAction.quit(state).then(() => WsAction.startPlayfriend(state, color, time, increment));
   }
 
   return (

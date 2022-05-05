@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { wsMssgRematch, wsMssgRestart } from '../../actions/serverActions';
 import rematchAcceptDialogActionTypes from '../../constants/dialog/rematchAcceptDialogActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
 import Wording from '../../utils/Wording.js';
+import WsAction from '../../ws/WsAction';
 
 const RematchAcceptDialog = () => {
   const state = useSelector((state) => state);
@@ -12,15 +12,15 @@ const RematchAcceptDialog = () => {
 
   const handleRematchAccept = (event) => {
     event.preventDefault();
-    wsMssgRematch(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
+    WsAction.rematch(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
       dispatch({ type: rematchAcceptDialogActionTypes.CLOSE });
-      wsMssgRestart(state);
+      WsAction.restart(state);
     });
   };
 
   const handleRematchDecline = (event) => {
     event.preventDefault();
-    wsMssgRematch(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
+    WsAction.rematch(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
       dispatch({ type: rematchAcceptDialogActionTypes.CLOSE });
     });
   };

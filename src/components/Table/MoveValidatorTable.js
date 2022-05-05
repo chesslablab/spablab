@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Slide, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { makeStyles } from '@mui/styles';
-import { wsMssgPlayfen } from '../../actions/serverActions';
 import boardActionTypes from '../../constants/boardActionTypes';
 import historyActionTypes from '../../constants/historyActionTypes';
 import Movetext from '../../utils/Movetext.js';
+import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
   table: {
@@ -34,7 +34,7 @@ const MoveValidatorTable = ({props}) => {
 
   useEffect(() => {
     if (state.board.short_fen) {
-      wsMssgPlayfen(state);
+      WsAction.playFen(state);
     }
   }, [state.board.short_fen]);
 

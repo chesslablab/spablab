@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { wsMssgTakeback } from '../../actions/serverActions';
 import takebackOfferDialogActionTypes from '../../constants/dialog/takebackOfferDialogActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
 import Wording from '../../utils/Wording.js';
+import WsAction from '../../ws/WsAction';
 
 const TakebackOfferDialog = () => {
   const state = useSelector((state) => state);
@@ -12,7 +12,7 @@ const TakebackOfferDialog = () => {
 
   const handleTakebackOffer = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
+    WsAction.takeback(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch({ type: modeActionTypes.TAKEBACK_PROPOSE });
       dispatch({ type: takebackOfferDialogActionTypes.CLOSE });
     });

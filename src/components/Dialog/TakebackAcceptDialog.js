@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { wsMssgTakeback, wsMssgUndoMove } from '../../actions/serverActions';
 import takebackAcceptDialogActionTypes from '../../constants/dialog/takebackAcceptDialogActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
 import Wording from '../../utils/Wording.js';
+import WsAction from '../../ws/WsAction';
 
 const TakebackAcceptDialog = () => {
   const state = useSelector((state) => state);
@@ -12,8 +12,8 @@ const TakebackAcceptDialog = () => {
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
-      wsMssgUndoMove(state).then(() => {
+    WsAction.takeback(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
+      WsAction.undoMove(state).then(() => {
         dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
       });
     });
@@ -21,7 +21,7 @@ const TakebackAcceptDialog = () => {
 
   const handleTakebackDecline = (event) => {
     event.preventDefault();
-    wsMssgTakeback(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
+    WsAction.takeback(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
       dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
     });
   };

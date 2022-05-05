@@ -7,7 +7,6 @@ import PublishIcon from '@mui/icons-material/Publish';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import { wsMssgQuit, wsMssgStartAnalysis, wsMssgStartLoadpgn } from '../actions/serverActions';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
@@ -24,6 +23,7 @@ import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import Tournament from '../utils/Tournament.js';
+import WsAction from '../ws/WsAction';
 
 const MainButtons = ({ props }) => {
   const state = useSelector(state => state);
@@ -43,7 +43,7 @@ const MainButtons = ({ props }) => {
     dispatch({ type: tournamentGameTableActionTypes.CLOSE });
     dispatch({ type: infoAlertActionTypes.CLOSE });
     dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
-    wsMssgQuit(state).then(() => wsMssgStartAnalysis(state.server.ws));
+    WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
   };
 
   const handleClosePlayFriend = () => {
@@ -142,7 +142,7 @@ const MainButtons = ({ props }) => {
         }
       }
     });
-    wsMssgQuit(state).then(() => wsMssgStartLoadpgn(state, game.movetext));
+    WsAction.quit(state).then(() => WsAction.startLoadpgn(state, game.movetext));
   }
 
   return (

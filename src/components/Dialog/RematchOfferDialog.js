@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import { wsMssgRematch } from "../../actions/serverActions";
 import rematchOfferDialogActionTypes from "../../constants/dialog/rematchOfferDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
 import Wording from "../../utils/Wording.js";
+import WsAction from '../../ws/WsAction';
 
 const RematchOfferDialog = () => {
   const state = useSelector((state) => state);
@@ -12,7 +12,7 @@ const RematchOfferDialog = () => {
 
   const handleRematchOffer = (event) => {
     event.preventDefault();
-    wsMssgRematch(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
+    WsAction.rematch(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch({ type: modeActionTypes.REMATCH_PROPOSE });
       dispatch({ type: rematchOfferDialogActionTypes.CLOSE });
     });
