@@ -54,25 +54,25 @@ const SecondaryButtons = ({props}) => {
     <Stack direction="row" spacing={1}>
       <IconButton
         color="primary"
-        size="medium"
+        size="small"
         title="Copy PGN"
         aria-label="copy"
         onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
       >
-        <ContentCopyIcon />
+        <ContentCopyIcon fontSize="inherit" />
       </IconButton>
       <IconButton
         color="primary"
-        size="medium"
+        size="small"
         title="Copy FEN"
         aria-label="fen"
         onClick={() => state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null}
       >
-        <WidgetsIcon />
+        <WidgetsIcon fontSize="inherit" />
       </IconButton>
       <IconButton
         color="primary"
-        size="medium"
+        size="small"
         title="Heuristics"
         aria-label="heuristics"
         onClick={() => {
@@ -80,34 +80,34 @@ const SecondaryButtons = ({props}) => {
           WsAction.heuristics(state);
         }}
       >
-        <BarChartIcon />
+        <BarChartIcon fontSize="inherit" />
       </IconButton>
       <IconButton
         color="primary"
-        size="medium"
+        size="small"
         title="Flip Board"
         aria-label="flip"
         onClick={() => dispatch({ type: boardActionTypes.FLIP })}
       >
-        <CachedIcon />
+        <CachedIcon fontSize="inherit" />
       </IconButton>
       <IconButton
         color="primary"
-        size="medium"
+        size="small"
         title="Download Image"
         aria-label="flip"
         onClick={() => handleDownloadImage()}
       >
-        <InsertPhotoIcon />
+        <InsertPhotoIcon fontSize="inherit" />
       </IconButton>
       <IconButton
         color="primary"
-        size="medium"
+        size="small"
         title="Download Video"
         aria-label="flip"
         onClick={() => handleDownloadMp4()}
       >
-        <VideoCameraBackIcon />
+        <VideoCameraBackIcon fontSize="inherit" />
       </IconButton>
     </Stack>
   );
