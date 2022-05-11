@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-import PublishIcon from '@mui/icons-material/Publish';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
@@ -29,9 +28,9 @@ const MainButtons = () => {
   const dispatch = useDispatch();
 
   const [anchorElPlayFriend, setAnchorElPlayFriend] = useState(null);
+  const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
-  const [anchorElLoad, setAnchorElLoad] = useState(null);
 
   const matches = useMediaQuery("(min-width:900px)");
 
@@ -48,6 +47,10 @@ const MainButtons = () => {
     setAnchorElPlayFriend(null);
   };
 
+  const handleCloseAnalysis = () => {
+    setAnchorElAnalysis(null);
+  };
+
   const handleCloseTraining = () => {
     setAnchorElTraining(null);
   };
@@ -56,13 +59,14 @@ const MainButtons = () => {
     setAnchorElOpeningSearch(null);
   };
 
-  const handleCloseLoad = () => {
-    setAnchorElLoad(null);
-  };
-
   const handleClickPlayFriend = (event) => {
     reset();
     setAnchorElPlayFriend(event.currentTarget);
+  };
+
+  const handleClickAnalysis = (event) => {
+    reset();
+    setAnchorElAnalysis(event.currentTarget);
   };
 
   const handleClickTraining = (event) => {
@@ -73,11 +77,6 @@ const MainButtons = () => {
   const handleClickOpeningSearch = (event) => {
     reset();
     setAnchorElOpeningSearch(event.currentTarget);
-  };
-
-  const handleClickLoad = (event) => {
-    reset();
-    setAnchorElLoad(event.currentTarget);
   };
 
   const handleRandomTournamentGame = async () => {
@@ -132,10 +131,35 @@ const MainButtons = () => {
       </Menu>
       <Button
         startIcon={<TuneIcon />}
-        onClick={() => reset()}
+        onClick={handleClickAnalysis}
       >
         Analysis Board
       </Button>
+      <Menu
+        anchorEl={anchorElAnalysis}
+        keepMounted
+        open={Boolean(anchorElAnalysis)}
+        onClose={handleCloseAnalysis}
+      >
+        <MenuItem onClick={() => {
+          reset();
+          handleCloseAnalysis();
+        }}>
+          Start Position
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch({ type: loadFenDialogActionTypes.OPEN });
+          handleCloseAnalysis();
+        }}>
+          FEN String
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch({ type: loadPgnDialogActionTypes.OPEN });
+          handleCloseAnalysis();
+        }}>
+          PGN Movetext
+        </MenuItem>
+      </Menu>
       <Button
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
@@ -188,27 +212,6 @@ const MainButtons = () => {
         }}>
           Movetext
         </MenuItem>
-      </Menu>
-      <Button
-        startIcon={<PublishIcon />}
-        onClick={handleClickLoad}
-      >
-        Load
-      </Button>
-      <Menu
-        anchorEl={anchorElLoad}
-        keepMounted
-        open={Boolean(anchorElLoad)}
-        onClose={handleCloseLoad}
-      >
-        <MenuItem onClick={() => {
-          dispatch({ type: loadFenDialogActionTypes.OPEN });
-          handleCloseLoad();
-        }}>FEN String</MenuItem>
-        <MenuItem onClick={() => {
-          dispatch({ type: loadPgnDialogActionTypes.OPEN });
-          handleCloseLoad();
-        }}>PGN Movetext</MenuItem>
       </Menu>
     </ButtonGroup>
   );
