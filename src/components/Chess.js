@@ -37,7 +37,7 @@ const Chess = ({ props }) => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={2} className={classes.right}>
           <Grid item xs={12}>
-            <MainButtons props={props} />
+            <MainButtons />
           </Grid>
         </Grid>
         <Grid item xs={12} md={4}>
@@ -45,7 +45,7 @@ const Chess = ({ props }) => {
           <HeuristicsBar />
         </Grid>
         <Grid item xs={12} md={3}>
-          <Game />
+          <Game props={props} />
           <ChessOpeningAnalysisTable />
           <TournamentGameTable />
           <InfoAlert />

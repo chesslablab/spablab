@@ -39,7 +39,7 @@ const Game = ({ props }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} className={classes.centered}>
-          <SecondaryButtons />
+          <SecondaryButtons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12} className={classes.centered}>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import DownloadIcon from '@mui/icons-material/Download';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import PublishIcon from '@mui/icons-material/Publish';
@@ -25,7 +24,7 @@ import modeActionTypes from '../constants/modeActionTypes';
 import Tournament from '../utils/Tournament.js';
 import WsAction from '../ws/WsAction';
 
-const MainButtons = ({ props }) => {
+const MainButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -33,7 +32,6 @@ const MainButtons = ({ props }) => {
   const [anchorElTraining, setAnchorElTraining] = useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
   const [anchorElLoad, setAnchorElLoad] = useState(null);
-  const [anchorElDownload, setAnchorElDownload] = useState(null);
 
   const matches = useMediaQuery("(min-width:900px)");
 
@@ -62,10 +60,6 @@ const MainButtons = ({ props }) => {
     setAnchorElLoad(null);
   };
 
-  const handleCloseDownload = () => {
-    setAnchorElDownload(null);
-  };
-
   const handleClickPlayFriend = (event) => {
     reset();
     setAnchorElPlayFriend(event.currentTarget);
@@ -85,45 +79,6 @@ const MainButtons = ({ props }) => {
     reset();
     setAnchorElLoad(event.currentTarget);
   };
-
-  const handleClickDownload = (event) => {
-    setAnchorElDownload(event.currentTarget);
-  };
-
-  const handleDownloadImage = async () => {
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_image`, {
-      method: 'POST',
-      body: JSON.stringify({ fen: state.board.fen })
-    }).then(res => res.blob())
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = "chessboard.png";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      });
-  }
-
-  const handleDownloadMp4 = async () => {
-    dispatch({ type: progressDialogActionTypes.OPEN });
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
-      method: 'POST',
-      body: JSON.stringify({ movetext: state.board.movetext })
-    })
-    .then(res => res.blob())
-    .then(blob => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = "chessgame.mp4";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    })
-    .finally(() => dispatch({ type: progressDialogActionTypes.CLOSE }));
-  }
 
   const handleRandomTournamentGame = async () => {
     dispatch({ type: progressDialogActionTypes.OPEN });
@@ -254,25 +209,6 @@ const MainButtons = ({ props }) => {
           dispatch({ type: loadPgnDialogActionTypes.OPEN });
           handleCloseLoad();
         }}>PGN Movetext</MenuItem>
-      </Menu>
-      <Button
-        startIcon={<DownloadIcon />}
-        onClick={handleClickDownload}
-      >
-        Download
-      </Button>
-      <Menu
-        anchorEl={anchorElDownload}
-        keepMounted
-        open={Boolean(anchorElDownload)}
-        onClose={handleCloseDownload}
-      >
-        <MenuItem onClick={() => handleDownloadImage().then(() => handleCloseDownload())}>
-          PNG Image
-        </MenuItem>
-        <MenuItem onClick={() => handleDownloadMp4().then(() => handleCloseDownload())}>
-          MP4 Video
-        </MenuItem>
       </Menu>
     </ButtonGroup>
   );
