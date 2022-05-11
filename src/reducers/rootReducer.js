@@ -3,9 +3,7 @@ import boardReducer from './boardReducer';
 import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
-// alert reducers
 import infoAlertReducer from './infoAlertReducer';
-// dialog reducers
 import loadFenDialogReducer from './loadFenDialogReducer';
 import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
@@ -26,6 +24,7 @@ import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogRed
 import progressDialogReducer from './progressDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 import tournamentGameTableReducer from './tournamentGameTableReducer';
+import watchDialogReducer from './watchDialogReducer';
 
 const rootReducer = combineReducers({
   board: boardReducer,
@@ -52,7 +51,8 @@ const rootReducer = combineReducers({
   openingSearchMovetextDialog: openingSearchMovetextDialogReducer,
   progressDialog: progressDialogReducer,
   chessOpeningAnalysisTable: chessOpeningAnalysisTableReducer,
-  tournamentGameTable: tournamentGameTableReducer
+  tournamentGameTable: tournamentGameTableReducer,
+  watchDialog: watchDialogReducer
 });
 
 export default rootReducer;

@@ -12,6 +12,7 @@ import ProgressDialog from './Dialog/ProgressDialog';
 import LoadFenDialog from './Dialog/LoadFenDialog';
 import LoadPgnDialog from './Dialog/LoadPgnDialog';
 import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
+import WatchDialog from './Dialog/WatchDialog';
 import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
 import TournamentGameTable from './Table/TournamentGameTable.js';
 import Board from './Board.js';
@@ -61,6 +62,7 @@ const Chess = ({ props }) => {
       <LoadFenDialog />
       <LoadPgnDialog />
       <PlayLikeGrandmasterDialog />
+      <WatchDialog />
     </Provider>
   );
 };

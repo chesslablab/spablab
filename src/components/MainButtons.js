@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
@@ -15,6 +16,7 @@ import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTyp
 import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
+import watchDialogActionTypes from '../constants/dialog/watchDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
 import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
@@ -213,6 +215,12 @@ const MainButtons = () => {
           Movetext
         </MenuItem>
       </Menu>
+      <Button
+        startIcon={<OndemandVideoIcon />}
+        onClick={() => dispatch({ type: watchDialogActionTypes.OPEN })}
+      >
+        Watch
+      </Button>
     </ButtonGroup>
   );
 }
