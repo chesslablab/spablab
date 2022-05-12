@@ -98,11 +98,11 @@ const CopyCode = () => {
         value={state.mode.playfriend.hash}
       />
       <DialogActions>
-        <Button onClick={() => navigator.clipboard.writeText(state.mode.playfriend.hash)}>
-          Copy Code
-        </Button>
-        <Button onClick={() => dispatch({ type: createInviteCodeDialogActionTypes.CLOSE })}>
-          Play
+        <Button onClick={() => {
+          navigator.clipboard.writeText(state.mode.playfriend.hash);
+          dispatch({ type: createInviteCodeDialogActionTypes.CLOSE });
+        }}>
+          Copy and Play
         </Button>
       </DialogActions>
     </DialogContent>
