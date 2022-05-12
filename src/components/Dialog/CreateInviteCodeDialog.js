@@ -1,6 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  MenuItem,
+  Slider,
+  TextField,
+  Typography
+} from '@mui/material';
 import createInviteCodeDialogActionTypes from '../../constants/dialog/createInviteCodeDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
@@ -34,6 +44,30 @@ const CreateCode = () => {
   return (
     <DialogContent>
       <form onSubmit={handleCreateCode}>
+        <Typography id="input-minutes" gutterBottom>
+          Minutes per side
+        </Typography>
+        <Slider
+          name="time"
+          aria-label="Minutes"
+          defaultValue={5}
+          valueLabelDisplay="auto"
+          step={1}
+          min={1}
+          max={60}
+        />
+        <Typography id="input-increment" gutterBottom>
+          Increment in seconds
+        </Typography>
+        <Slider
+          name="increment"
+          aria-label="Increment"
+          defaultValue={3}
+          valueLabelDisplay="auto"
+          step={1}
+          min={0}
+          max={60}
+        />
         <TextField
           select
           fullWidth
@@ -52,24 +86,6 @@ const CreateCode = () => {
             Black
           </MenuItem>
         </TextField>
-        <TextField
-          fullWidth
-          margin="dense"
-          type="number"
-          name="time"
-          label="Minutes"
-          defaultValue={5}
-          inputProps={{ min: "1", max: "60", step: "1" }}
-        />
-        <TextField
-          fullWidth
-          margin="dense"
-          type="number"
-          name="increment"
-          label="Increment in seconds"
-          defaultValue={0}
-          inputProps={{ min: "0", max: "60", step: "1" }}
-        />
         <DialogActions>
           <Button type="submit">
             Create Code
