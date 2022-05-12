@@ -6,7 +6,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { IconButton, Stack } from "@mui/material";
+import { IconButton, Stack, useMediaQuery } from "@mui/material";
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import WsAction from '../ws/WsAction';
@@ -14,6 +14,8 @@ import WsAction from '../ws/WsAction';
 const SecondaryButtons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+
+  const matches = useMediaQuery("(min-width:900px)");
 
   const handleDownloadImage = async () => {
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_image`, {
@@ -54,7 +56,7 @@ const SecondaryButtons = ({props}) => {
     <Stack direction="row" spacing={1}>
       <IconButton
         color="primary"
-        size="small"
+        size={matches ? 'small' : 'large'}
         title="Copy PGN"
         aria-label="copy"
         onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
@@ -63,7 +65,7 @@ const SecondaryButtons = ({props}) => {
       </IconButton>
       <IconButton
         color="primary"
-        size="small"
+        size={matches ? 'small' : 'large'}
         title="Copy FEN"
         aria-label="fen"
         onClick={() => state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null}
@@ -72,7 +74,7 @@ const SecondaryButtons = ({props}) => {
       </IconButton>
       <IconButton
         color="primary"
-        size="small"
+        size={matches ? 'small' : 'large'}
         title="Heuristics"
         aria-label="heuristics"
         onClick={() => {
@@ -84,7 +86,7 @@ const SecondaryButtons = ({props}) => {
       </IconButton>
       <IconButton
         color="primary"
-        size="small"
+        size={matches ? 'small' : 'large'}
         title="Flip Board"
         aria-label="flip"
         onClick={() => dispatch({ type: boardActionTypes.FLIP })}
@@ -93,7 +95,7 @@ const SecondaryButtons = ({props}) => {
       </IconButton>
       <IconButton
         color="primary"
-        size="small"
+        size={matches ? 'small' : 'large'}
         title="Download Image"
         aria-label="flip"
         onClick={() => handleDownloadImage()}
@@ -102,7 +104,7 @@ const SecondaryButtons = ({props}) => {
       </IconButton>
       <IconButton
         color="primary"
-        size="small"
+        size={matches ? 'small' : 'large'}
         title="Download Video"
         aria-label="flip"
         onClick={() => handleDownloadMp4()}

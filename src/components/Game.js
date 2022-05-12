@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     background: '#f6f6f6',
   },
   pgn: {
-    height: 195,
+    height: 205,
   },
   centered: {
     display: 'flex',
