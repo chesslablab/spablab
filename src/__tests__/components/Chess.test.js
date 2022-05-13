@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import boardActionTypes from 'constants/boardActionTypes';
-import createInviteCodeDialogActionTypes from 'constants/createInviteCodeDialogActionTypes';
+import createInviteCodeDialogActionTypes from 'constants/dialog/createInviteCodeDialogActionTypes';
+import loadFenDialogActionTypes from 'constants/dialog/loadFenDialogActionTypes';
 import store from 'store';
 
 const SyncDispatcher = (action) => {
@@ -40,7 +41,7 @@ describe("Chess", () => {
   });
   it("the first chess board square is a black rook before flipping the chess board", () => {
     const chess = mount(<Chess props={props} />);
-    const text = chess.find('.board-row').at(0).find('.square').at(0).find('span').text();
+    const text = chess.find('.board').at(0).find('.square').at(0).find('span').text();
     expect(store.getState().board.flip).toBe('w');
     expect(text).toEqual('♜');
   });
@@ -52,9 +53,14 @@ describe("Chess", () => {
     expect(result.current.state.board.flip).toBe('b');
     expect(text).toEqual('♖');
   });
-  it("opens the 'Invite a friend' dialog", () => {
+  it("opens the 'Play a Friend' > 'Create Invite Code' dialog", () => {
     const action = { type: createInviteCodeDialogActionTypes.OPEN };
     const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
     expect(result.current.state.createInviteCodeDialog.open).toBe(true);
+  });
+  it("opens the 'Analysis Board' > 'FEN String' dialog", () => {
+    const action = { type: loadFenDialogActionTypes.OPEN };
+    const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
+    expect(result.current.state.loadFenDialog.open).toBe(true);
   });
 });
