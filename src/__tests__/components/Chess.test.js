@@ -53,7 +53,7 @@ describe("Chess", () => {
     expect(result.current.state.board.flip).toBe('b');
     expect(text).toEqual('♖');
   });
-  it("opens the 'Invite a friend' dialog", () => {
+  it("opens the 'Play a Friend' > 'Create Invite Code' dialog", () => {
     const action = { type: createInviteCodeDialogActionTypes.OPEN };
     const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
     expect(result.current.state.createInviteCodeDialog.open).toBe(true);
