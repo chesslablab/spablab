@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import ChessOpeningSearchResultTable from '../Table/ChessOpeningSearchResultTable.js';
+import infoAlertActionTypes from '../../constants/alert/infoAlertActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 import Opening from '../../utils/Opening.js';
 
@@ -20,8 +21,17 @@ const ChessOpeningSearchNameDialog = ({ props }) => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    setOpenings([]);
-    setOpenings(Opening.byName(event.target.elements.name.value));
+    const openings = Opening.byName(event.target.elements.name.value);
+    setOpenings(openings);
+    if (openings.length === 0) {
+      dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
+      dispatch({
+        type: infoAlertActionTypes.DISPLAY,
+        payload: {
+          info: 'No results were found. Please try again.'
+        }
+      });
+    }
   }
 
   return (
