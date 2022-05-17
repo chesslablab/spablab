@@ -3,13 +3,6 @@ import { useSelector } from 'react-redux';
 import { Legend, LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 import { Grid } from '@mui/material';
 
-const getDimensions = (items) => {
-  return Object.keys(items).map(item => {
-    let word = item.split("\\").pop();
-    return word.substring(0, word.length - 10);
-  });
-};
-
 const initData = (dim) => {
   let data = {};
   dim.forEach(item => data[item] = []);
@@ -30,17 +23,14 @@ const buildCharts = (data) => {
   );
 };
 
-let dim = [];
-
 let data = {};
 
 const Heuristics = () => {
   const state = useSelector(state => state);
   if (state.heuristicsDialog.heuristics) {
-    dim = getDimensions(state.heuristicsDialog.heuristics.dimensions);
-    data = initData(dim);
+    const data = initData(state.heuristicsDialog.heuristics.dimensions);
     state.heuristicsDialog.heuristics.balance.forEach((item, i) => {
-      dim.forEach((dimension, j) => {
+      state.heuristicsDialog.heuristics.dimensions.forEach((dimension, j) => {
         data[dimension].push({
           [dimension]: item[j]
         });

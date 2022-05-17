@@ -10,13 +10,6 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const getDimensions = (items) => {
-  return Object.keys(items).map(item => {
-    let word = item.split("\\").pop();
-    return word.substring(0, word.length - 10);
-  });
-};
-
 const initData = (dim, balance) => {
   let data = [];
   dim.forEach((item, i) => data.push({ name: item, val: balance[i]}));
@@ -26,8 +19,10 @@ const initData = (dim, balance) => {
 const HeuristicsBar = () => {
   const state = useSelector(state => state);
   if (state.heuristicsBar.heuristics) {
-    const dim = getDimensions(state.heuristicsBar.heuristics.dimensions);
-    const data = initData(dim, state.heuristicsBar.heuristics.balance);
+    const data = initData(
+      state.heuristicsBar.heuristics.dimensions,
+      state.heuristicsBar.heuristics.balance
+    );
     return (
       <ResponsiveContainer width="100%" aspect={4.0/1.25}>
         <BarChart
