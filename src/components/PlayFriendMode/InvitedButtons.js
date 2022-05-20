@@ -17,11 +17,11 @@ const InvitedButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.playfriend.accepted) {
+  if (state.mode.play.accepted) {
     if (!state.board.isMate &&
-      !state.mode.playfriend.draw &&
-      !state.mode.playfriend.resign &&
-      !state.mode.playfriend.timer.over
+      !state.mode.play.draw &&
+      !state.mode.play.resign &&
+      !state.mode.play.timer.over
     ) {
       return (
         <ButtonGroup

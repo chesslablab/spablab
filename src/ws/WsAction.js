@@ -37,7 +37,7 @@ export default class WsAction {
   }
 
   static startPlayfriend = async (state, color, time, increment) => {
-    return await state.server.ws.send(`/start playfriend ${color} ${time} ${increment}`);
+    return await state.server.ws.send(`/start play ${color} ${time} ${increment}`);
   }
 
   static playFen = async (state) => {
@@ -85,7 +85,7 @@ export default class WsAction {
   }
 
   static restart = async (state) => {
-    return await state.server.ws.send(`/restart ${state.mode.playfriend.hash}`);
+    return await state.server.ws.send(`/restart ${state.mode.play.hash}`);
   }
 
   static response = async (state) => {

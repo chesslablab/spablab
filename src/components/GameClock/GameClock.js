@@ -16,10 +16,10 @@ const GameClock = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
-  if (state.mode.playfriend.accepted) {
+  if (state.mode.play.accepted) {
     if (!state.board.isMate &&
-      !state.mode.playfriend.draw &&
-      !state.mode.playfriend.resign
+      !state.mode.play.draw &&
+      !state.mode.play.resign
     ) {
       return (
         <div className={classes.timers}>

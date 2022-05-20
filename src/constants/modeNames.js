@@ -3,7 +3,7 @@ const modeNames = {
 	GRANDMASTER: 'grandmaster',
 	LOADFEN: 'loadfen',
 	LOADPGN: 'loadpgn',
-	PLAY: 'playfriend'
+	PLAY: 'play'
 };
 
 export default modeNames;

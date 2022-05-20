@@ -21,7 +21,7 @@ const CreateInviteCodeDialog = () => {
   return (
     <Dialog open={state.createInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Create invite code</DialogTitle>
-        {!state.mode.playfriend.hash ? <CreateCode /> : <CopyCode />}
+        {!state.mode.play.hash ? <CreateCode /> : <CopyCode />}
     </Dialog>
   );
 }
@@ -111,11 +111,11 @@ const CopyCode = () => {
         type="text"
         name="sharecode"
         label="Share this code with a friend"
-        value={state.mode.playfriend.hash}
+        value={state.mode.play.hash}
       />
       <DialogActions>
         <Button onClick={() => {
-          navigator.clipboard.writeText(state.mode.playfriend.hash);
+          navigator.clipboard.writeText(state.mode.play.hash);
           dispatch({ type: createInviteCodeDialogActionTypes.CLOSE });
         }}>
           Copy and Play

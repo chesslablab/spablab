@@ -8,7 +8,7 @@ const initialState = {
   grandmaster: {
     color: null
   },
-  playfriend: {
+  play: {
     jwt: null,
     jwt_decoded: null,
     hash: null,
@@ -51,21 +51,21 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         current: action.payload.current,
-        playfriend: {
-          ...state.playfriend,
-          ...action.payload.playfriend
+        play: {
+          ...state.play,
+          ...action.payload.play
         }
       };
     case modeActionTypes.ACCEPT_PLAY:
       const expiryTimestamp = new Date();
-      expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(state.playfriend.jwt_decoded.min) * 60);
+      expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(state.play.jwt_decoded.min) * 60);
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           accepted: true,
           timer: {
-            ...state.playfriend.timer,
+            ...state.play.timer,
             expiry_timestamp: expiryTimestamp
           }
         }
@@ -73,66 +73,66 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.TAKEBACK_ACCEPT:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           takeback: Wording.verb.ACCEPT.toLowerCase()
         }
       };
     case modeActionTypes.TAKEBACK_DECLINE:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           takeback: null
         }
       };
     case modeActionTypes.TAKEBACK_PROPOSE:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           takeback: Wording.verb.PROPOSE.toLowerCase()
         }
       };
     case modeActionTypes.DRAW_ACCEPT:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           draw: Wording.verb.ACCEPT.toLowerCase()
         }
       };
     case modeActionTypes.DRAW_DECLINE:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           draw: null
         }
       };
     case modeActionTypes.DRAW_PROPOSE:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           draw: Wording.verb.PROPOSE.toLowerCase()
         }
       };
     case modeActionTypes.RESIGN_ACCEPT:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           resign: Wording.verb.ACCEPT.toLowerCase()
         }
       };
     case modeActionTypes.TIMER_OVER:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           timer: {
-            ...state.playfriend.timer,
+            ...state.play.timer,
             over: action.payload.color
           }
         }
@@ -140,24 +140,24 @@ const reducer = (state = initialState, action) => {
     case modeActionTypes.REMATCH_ACCEPT:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           rematch: Wording.verb.ACCEPT.toLowerCase()
         }
       };
     case modeActionTypes.REMATCH_DECLINE:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           rematch: null
         }
       };
     case modeActionTypes.REMATCH_PROPOSE:
       return {
         ...state,
-        playfriend: {
-          ...state.playfriend,
+        play: {
+          ...state.play,
           rematch: Wording.verb.PROPOSE.toLowerCase()
         }
       };

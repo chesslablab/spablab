@@ -53,7 +53,7 @@ export default class WsEventListener {
         break;
       case '/play_fen' === cmd:
         if (store.getState().mode.current === modeNames.PLAY) {
-          if (store.getState().mode.playfriend.color !== data['/play_fen'].turn) {
+          if (store.getState().mode.play.color !== data['/play_fen'].turn) {
             dispatch({
               type: boardActionTypes.PLAY_MOVE,
               payload: {

@@ -85,7 +85,7 @@ export default class WsEvent {
       type: modeActionTypes.SET_PLAY,
       payload: {
         current: modeNames.PLAY,
-        playfriend: {
+        play: {
           jwt: data['/start'].jwt,
           jwt_decoded: jwtDecoded,
           hash: data['/start'].hash,
@@ -106,7 +106,7 @@ export default class WsEvent {
   }
 
   static onAccept = (data) => dispatch => {
-    if (!store.getState().mode.playfriend.color) {
+    if (!store.getState().mode.play.color) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
       const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       dispatch({ type: boardActionTypes.START });
@@ -114,7 +114,7 @@ export default class WsEvent {
         type: modeActionTypes.SET_PLAY,
         payload: {
           current: modeNames.PLAY,
-          playfriend: {
+          play: {
             jwt: data['/accept'].jwt,
             jwt_decoded: jwt_decode(data['/accept'].jwt),
             hash: data['/accept'].hash,
@@ -123,7 +123,7 @@ export default class WsEvent {
         }
       });
     }
-    if (store.getState().mode.playfriend.color === Pgn.symbol.BLACK) {
+    if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
       dispatch({ type: boardActionTypes.FLIP });
     }
     dispatch({ type: modeActionTypes.ACCEPT_PLAY });
@@ -218,7 +218,7 @@ export default class WsEvent {
   }
 
   static onTakebackPropose = () => dispatch => {
-    if (!store.getState().mode.playfriend.takeback) {
+    if (!store.getState().mode.play.takeback) {
       dispatch({ type: takebackAcceptDialogActionTypes.OPEN });
     }
   }
@@ -228,7 +228,7 @@ export default class WsEvent {
   }
 
   static onDrawPropose = () => dispatch => {
-    if (!store.getState().mode.playfriend.draw) {
+    if (!store.getState().mode.play.draw) {
       dispatch({ type: drawAcceptDialogActionTypes.OPEN });
     }
   }
@@ -272,7 +272,7 @@ export default class WsEvent {
   }
 
   static onRematchPropose = () => dispatch => {
-    if (!store.getState().mode.playfriend.rematch) {
+    if (!store.getState().mode.play.rematch) {
       dispatch({ type: rematchAcceptDialogActionTypes.OPEN });
     }
   }
@@ -305,11 +305,11 @@ export default class WsEvent {
       type: modeActionTypes.SET_PLAY,
       payload: {
         current: modeNames.PLAY,
-        playfriend: {
+        play: {
           jwt: data['/restart'].jwt,
           jwt_decoded: jwtDecoded,
           hash: data['/restart'].hash,
-          color: store.getState().mode.playfriend.color,
+          color: store.getState().mode.play.color,
           takeback: null,
           draw: null,
           resign: null,
@@ -322,7 +322,7 @@ export default class WsEvent {
       }
     });
     dispatch({ type: boardActionTypes.START });
-    if (store.getState().mode.playfriend.color === Pgn.symbol.BLACK) {
+    if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
       dispatch({ type: boardActionTypes.FLIP });
     }
   }
