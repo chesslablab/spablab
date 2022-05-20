@@ -38,7 +38,7 @@ const CreateCode = () => {
       : color = event.target.elements.color.value;
     let time = event.target.elements.time.value;
     let increment = event.target.elements.increment.value;
-    WsAction.quit(state).then(() => WsAction.startPlayfriend(state, color, time, increment));
+    WsAction.quit(state).then(() => WsAction.startPlay(state, color, time, increment));
   }
 
   return (

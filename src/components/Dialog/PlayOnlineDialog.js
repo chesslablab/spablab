@@ -30,7 +30,7 @@ const PlayOnlineDialog = () => {
 
     // TODO
     // Implement WsAction.startPlayonline
-    // WsAction.quit(state).then(() => WsAction.startPlayfriend(state, color, time, increment));
+    // WsAction.quit(state).then(() => WsAction.startPlay(state, color, time, increment));
 
     console.log('TODO');
   }
