@@ -79,7 +79,7 @@ export default class WsEvent {
     }
   }
 
-  static onStartPlayfriend = (data) => dispatch => {
+  static onStartPlay = (data) => dispatch => {
     const jwtDecoded = jwt_decode(data['/start'].jwt);
     dispatch({
       type: modeActionTypes.SET_PLAY,

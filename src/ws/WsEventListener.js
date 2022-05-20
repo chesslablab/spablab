@@ -36,7 +36,7 @@ export default class WsEventListener {
         } else if (data['/start'].mode === modeNames.LOADPGN) {
           dispatch(WsEvent.onStartLoadpgn(data));
         } else if (data['/start'].mode === modeNames.PLAY) {
-          dispatch(WsEvent.onStartPlayfriend(data));
+          dispatch(WsEvent.onStartPlay(data));
         }
         break;
       case '/accept' === cmd:
