@@ -7,7 +7,6 @@ import infoAlertReducer from './infoAlertReducer';
 import loadFenDialogReducer from './loadFenDialogReducer';
 import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
-import createGameDialogReducer from './createGameDialogReducer';
 import createInviteCodeDialogReducer from './createInviteCodeDialogReducer';
 import enterInviteCodeDialogReducer from './enterInviteCodeDialogReducer';
 import heuristicsBarReducer from './heuristicsBarReducer';
@@ -19,6 +18,7 @@ import loadPgnDialogReducer from './loadPgnDialogReducer';
 import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
 import rematchOfferDialogReducer from './rematchOfferDialogReducer';
 import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer';
+import playOnlineDialogReducer from './playOnlineDialogReducer';
 import openingSearchEcoDialogReducer from './openingSearchEcoDialogReducer';
 import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
@@ -37,7 +37,6 @@ const rootReducer = combineReducers({
   loadFenDialog: loadFenDialogReducer,
   takebackAcceptDialog: takebackAcceptDialogReducer,
   takebackOfferDialog: takebackOfferDialogReducer,
-  createGameDialog: createGameDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,
   enterInviteCodeDialog: enterInviteCodeDialogReducer,
   heuristicsDialog: heuristicsDialogReducer,
@@ -48,6 +47,7 @@ const rootReducer = combineReducers({
   rematchAcceptDialog: rematchAcceptDialogReducer,
   rematchOfferDialog: rematchOfferDialogReducer,
   playLikeGrandmasterDialog: playLikeGrandmasterDialogReducer,
+  playOnlineDialog: playOnlineDialogReducer,
   openingSearchEcoDialog: openingSearchEcoDialogReducer,
   openingSearchNameDialog: openingSearchNameDialogReducer,
   openingSearchMovetextDialog: openingSearchMovetextDialogReducer,

@@ -6,13 +6,13 @@ import InfoAlert from './Alert/InfoAlert.js';
 import ChessOpeningSearchEcoDialog from './Dialog/ChessOpeningSearchEcoDialog';
 import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetextDialog';
 import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
-import CreateGameDialog from './Dialog/CreateGameDialog';
 import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
 import ProgressDialog from './Dialog/ProgressDialog';
 import LoadFenDialog from './Dialog/LoadFenDialog';
 import LoadPgnDialog from './Dialog/LoadPgnDialog';
 import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
+import PlayOnlineDialog from './Dialog/PlayOnlineDialog';
 import WatchDialog from './Dialog/WatchDialog';
 import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
 import TournamentGameTable from './Table/TournamentGameTable.js';
@@ -57,13 +57,13 @@ const Chess = ({ props }) => {
       <ChessOpeningSearchEcoDialog props={props} />
       <ChessOpeningSearchMovetextDialog props={props} />
       <ChessOpeningSearchNameDialog props={props} />
-      <CreateGameDialog />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
       <ProgressDialog />
       <LoadFenDialog />
       <LoadPgnDialog />
       <PlayLikeGrandmasterDialog />
+      <PlayOnlineDialog />
       <WatchDialog />
     </Provider>
   );

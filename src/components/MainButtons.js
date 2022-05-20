@@ -11,12 +11,12 @@ import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
-import createGameDialogActionTypes from '../constants/dialog/createGameDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
 import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
+import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import watchDialogActionTypes from '../constants/dialog/watchDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
@@ -31,7 +31,6 @@ const MainButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [anchorElPlayOnline, setAnchorElPlayOnline] = useState(null);
   const [anchorElPlayFriend, setAnchorElPlayFriend] = useState(null);
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
@@ -48,10 +47,6 @@ const MainButtons = () => {
     WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
   };
 
-  const handleClosePlayOnline = () => {
-    setAnchorElPlayOnline(null);
-  };
-
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
   };
@@ -66,11 +61,6 @@ const MainButtons = () => {
 
   const handleCloseOpeningSearch = () => {
     setAnchorElOpeningSearch(null);
-  };
-
-  const handleClickPlayOnline = (event) => {
-    reset();
-    setAnchorElPlayOnline(event.currentTarget);
   };
 
   const handleClickPlayFriend = (event) => {
@@ -123,26 +113,10 @@ const MainButtons = () => {
     >
       <Button
         startIcon={<LanguageIcon />}
-        onClick={handleClickPlayOnline}
+        onClick={() => dispatch({ type: playOnlineDialogActionTypes.OPEN })}
       >
         Play Online
       </Button>
-      <Menu
-        anchorEl={anchorElPlayOnline}
-        keepMounted
-        open={Boolean(anchorElPlayOnline)}
-        onClose={handleClosePlayOnline}
-      >
-        <MenuItem onClick={() => {
-          dispatch({ type: createGameDialogActionTypes.OPEN });
-          dispatch({ type: modeActionTypes.SET_ANALYSIS });
-          handleClosePlayOnline();
-        }}>Create Game</MenuItem>
-        <MenuItem onClick={() => {
-          // dispatch({ type: enterInviteCodeDialogActionTypes.OPEN });
-          // handleClosePlayFriend();
-        }}>Browse Games</MenuItem>
-      </Menu>
       <Button
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
