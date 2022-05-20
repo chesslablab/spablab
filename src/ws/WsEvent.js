@@ -99,7 +99,7 @@ export default class WsEvent {
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
-        info: 'Waiting for friend to accept invitation...'
+        info: 'Waiting for player to accept invitation...'
       }
     });
     dispatch({ type: boardActionTypes.START });
