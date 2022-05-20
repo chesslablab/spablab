@@ -5,6 +5,7 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
+import LanguageIcon from '@mui/icons-material/Language';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
@@ -29,6 +30,7 @@ const MainButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
+  const [anchorElPlayOnline, setAnchorElPlayOnline] = useState(null);
   const [anchorElPlayFriend, setAnchorElPlayFriend] = useState(null);
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
@@ -45,6 +47,10 @@ const MainButtons = () => {
     WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
   };
 
+  const handleClosePlayOnline = () => {
+    setAnchorElPlayOnline(null);
+  };
+
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
   };
@@ -59,6 +65,11 @@ const MainButtons = () => {
 
   const handleCloseOpeningSearch = () => {
     setAnchorElOpeningSearch(null);
+  };
+
+  const handleClickPlayOnline = (event) => {
+    reset();
+    setAnchorElPlayOnline(event.currentTarget);
   };
 
   const handleClickPlayFriend = (event) => {
@@ -109,6 +120,28 @@ const MainButtons = () => {
       aria-label="Main Menu"
       fullWidth={matches ? false : true}
     >
+      <Button
+        startIcon={<LanguageIcon />}
+        onClick={handleClickPlayOnline}
+      >
+        Play Online
+      </Button>
+      <Menu
+        anchorEl={anchorElPlayOnline}
+        keepMounted
+        open={Boolean(anchorElPlayOnline)}
+        onClose={handleClosePlayOnline}
+      >
+        <MenuItem onClick={() => {
+          // dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
+          // dispatch({ type: modeActionTypes.SET_ANALYSIS });
+          // handleClosePlayFriend();
+        }}>Create Game</MenuItem>
+        <MenuItem onClick={() => {
+          // dispatch({ type: enterInviteCodeDialogActionTypes.OPEN });
+          // handleClosePlayFriend();
+        }}>Browse Games</MenuItem>
+      </Menu>
       <Button
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
