@@ -21,18 +21,17 @@ const PlayOnlineDialog = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    let color;
-    event.target.elements.color.value === 'rand'
-      ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-      : color = event.target.elements.color.value;
-    let time = event.target.elements.time.value;
-    let increment = event.target.elements.increment.value;
-
-    // TODO
-    // Implement WsAction.startPlayonline
-    // WsAction.quit(state).then(() => WsAction.startPlay(state, color, time, increment));
-
-    console.log('TODO');
+    const settings = {
+      color: event.target.elements.color.value === 'rand'
+        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+        : event.target.elements.color.value,
+      min: event.target.elements.min.value,
+      increment: event.target.elements.increment.value,
+      submode: 'online'
+    };
+    WsAction.quit(state).then(() =>
+      WsAction.startPlay(state, settings).then(() =>
+        dispatch({ type: playOnlineDialogActionTypes.CLOSE })));
   }
 
   return (
@@ -45,7 +44,7 @@ const PlayOnlineDialog = () => {
             Minutes per side
           </Typography>
           <Slider
-            name="time"
+            name="min"
             aria-label="Minutes"
             defaultValue={5}
             valueLabelDisplay="auto"

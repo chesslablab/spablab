@@ -32,21 +32,15 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    let color;
-    event.target.elements.color.value === 'rand'
-      ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-      : color = event.target.elements.color.value;
-    let min = event.target.elements.min.value;
-    let increment = event.target.elements.increment.value;
-    // WsAction.quit(state).then(() => WsAction.startPlay(state, color, min, increment));
-    WsAction.quit(state).then(() => WsAction.startPlay(
-      state,
-      {
-        color: color,
-        min: min,
-        increment: increment
-      })
-    );
+    const settings = {
+      color: event.target.elements.color.value === 'rand'
+        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+        : event.target.elements.color.value,
+      min: event.target.elements.min.value,
+      increment: event.target.elements.increment.value,
+      submode: 'friend'
+    };
+    WsAction.quit(state).then(() => WsAction.startPlay(state, settings));
   }
 
   return (
