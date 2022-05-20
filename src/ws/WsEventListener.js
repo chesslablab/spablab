@@ -35,7 +35,7 @@ export default class WsEventListener {
           dispatch(WsEvent.onStartLoadfen(data));
         } else if (data['/start'].mode === modeNames.LOADPGN) {
           dispatch(WsEvent.onStartLoadpgn(data));
-        } else if (data['/start'].mode === modeNames.PLAYFRIEND) {
+        } else if (data['/start'].mode === modeNames.PLAY) {
           dispatch(WsEvent.onStartPlayfriend(data));
         }
         break;
@@ -52,10 +52,10 @@ export default class WsEventListener {
         }
         break;
       case '/play_fen' === cmd:
-        if (store.getState().mode.current === modeNames.PLAYFRIEND) {
+        if (store.getState().mode.current === modeNames.PLAY) {
           if (store.getState().mode.playfriend.color !== data['/play_fen'].turn) {
             dispatch({
-              type: boardActionTypes.PLAYFRIEND_MOVE,
+              type: boardActionTypes.PLAY_MOVE,
               payload: {
                 fen: data['/play_fen'].fen
               }

@@ -82,9 +82,9 @@ export default class WsEvent {
   static onStartPlayfriend = (data) => dispatch => {
     const jwtDecoded = jwt_decode(data['/start'].jwt);
     dispatch({
-      type: modeActionTypes.SET_PLAYFRIEND,
+      type: modeActionTypes.SET_PLAY,
       payload: {
-        current: modeNames.PLAYFRIEND,
+        current: modeNames.PLAY,
         playfriend: {
           jwt: data['/start'].jwt,
           jwt_decoded: jwtDecoded,
@@ -111,9 +111,9 @@ export default class WsEvent {
       const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       dispatch({ type: boardActionTypes.START });
       dispatch({
-        type: modeActionTypes.SET_PLAYFRIEND,
+        type: modeActionTypes.SET_PLAY,
         payload: {
-          current: modeNames.PLAYFRIEND,
+          current: modeNames.PLAY,
           playfriend: {
             jwt: data['/accept'].jwt,
             jwt_decoded: jwt_decode(data['/accept'].jwt),
@@ -126,7 +126,7 @@ export default class WsEvent {
     if (store.getState().mode.playfriend.color === Pgn.symbol.BLACK) {
       dispatch({ type: boardActionTypes.FLIP });
     }
-    dispatch({ type: modeActionTypes.ACCEPT_PLAYFRIEND });
+    dispatch({ type: modeActionTypes.ACCEPT_PLAY });
     dispatch({ type: infoAlertActionTypes.CLOSE });
   }
 
@@ -302,9 +302,9 @@ export default class WsEvent {
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
     dispatch({
-      type: modeActionTypes.SET_PLAYFRIEND,
+      type: modeActionTypes.SET_PLAY,
       payload: {
-        current: modeNames.PLAYFRIEND,
+        current: modeNames.PLAY,
         playfriend: {
           jwt: data['/restart'].jwt,
           jwt_decoded: jwtDecoded,

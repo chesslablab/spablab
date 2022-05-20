@@ -29,7 +29,7 @@ const Board = ({props}) => {
         });
         WsAction.legalSqs(state, payload.sq);
       }
-    } else if (modeNames.PLAYFRIEND === state.mode.current) {
+    } else if (modeNames.PLAY === state.mode.current) {
       if (state.mode.playfriend.accepted) {
         if (state.mode.playfriend.color === state.board.turn) {
           if (state.board.turn === Piece.color(payload.piece)) {

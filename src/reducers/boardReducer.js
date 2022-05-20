@@ -144,7 +144,7 @@ const reducer = (state = initialState, action) => {
         history: newHistory,
         movetext: action.payload.movetext
       }
-    case boardActionTypes.PLAYFRIEND_MOVE:
+    case boardActionTypes.PLAY_MOVE:
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
       return {
         ...state,

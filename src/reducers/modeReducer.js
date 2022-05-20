@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
         ...initialState,
         current: modeNames.LOADPGN
       };
-    case modeActionTypes.SET_PLAYFRIEND:
+    case modeActionTypes.SET_PLAY:
       return {
         ...state,
         current: action.payload.current,
@@ -56,7 +56,7 @@ const reducer = (state = initialState, action) => {
           ...action.payload.playfriend
         }
       };
-    case modeActionTypes.ACCEPT_PLAYFRIEND:
+    case modeActionTypes.ACCEPT_PLAY:
       const expiryTimestamp = new Date();
       expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(state.playfriend.jwt_decoded.min) * 60);
       return {
