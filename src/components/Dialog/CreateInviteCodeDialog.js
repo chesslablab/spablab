@@ -36,9 +36,17 @@ const CreateCode = () => {
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
-    let time = event.target.elements.time.value;
+    let min = event.target.elements.min.value;
     let increment = event.target.elements.increment.value;
-    WsAction.quit(state).then(() => WsAction.startPlay(state, color, time, increment));
+    // WsAction.quit(state).then(() => WsAction.startPlay(state, color, min, increment));
+    WsAction.quit(state).then(() => WsAction.startPlay(
+      state,
+      {
+        color: color,
+        min: min,
+        increment: increment
+      })
+    );
   }
 
   return (
@@ -48,7 +56,7 @@ const CreateCode = () => {
           Minutes per side
         </Typography>
         <Slider
-          name="time"
+          name="min"
           aria-label="Minutes"
           defaultValue={5}
           valueLabelDisplay="auto"

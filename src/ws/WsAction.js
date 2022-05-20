@@ -36,8 +36,8 @@ export default class WsAction {
     return await state.server.ws.send(`/start loadpgn "${movetext}"`);
   }
 
-  static startPlay = async (state, color, time, increment) => {
-    return await state.server.ws.send(`/start play ${color} ${time} ${increment}`);
+  static startPlay = async (state, settings) => {
+    return await state.server.ws.send(`/start play ${JSON.stringify(settings)}`);
   }
 
   static playFen = async (state) => {
