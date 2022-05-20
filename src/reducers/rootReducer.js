@@ -7,6 +7,7 @@ import infoAlertReducer from './infoAlertReducer';
 import loadFenDialogReducer from './loadFenDialogReducer';
 import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
+import createGameDialogReducer from './createGameDialogReducer';
 import createInviteCodeDialogReducer from './createInviteCodeDialogReducer';
 import enterInviteCodeDialogReducer from './enterInviteCodeDialogReducer';
 import heuristicsBarReducer from './heuristicsBarReducer';
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   loadFenDialog: loadFenDialogReducer,
   takebackAcceptDialog: takebackAcceptDialogReducer,
   takebackOfferDialog: takebackOfferDialogReducer,
+  createGameDialog: createGameDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,
   enterInviteCodeDialog: enterInviteCodeDialogReducer,
   heuristicsDialog: heuristicsDialogReducer,

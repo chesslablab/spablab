@@ -6,6 +6,7 @@ import InfoAlert from './Alert/InfoAlert.js';
 import ChessOpeningSearchEcoDialog from './Dialog/ChessOpeningSearchEcoDialog';
 import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetextDialog';
 import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
+import CreateGameDialog from './Dialog/CreateGameDialog';
 import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
 import ProgressDialog from './Dialog/ProgressDialog';
@@ -56,6 +57,7 @@ const Chess = ({ props }) => {
       <ChessOpeningSearchEcoDialog props={props} />
       <ChessOpeningSearchMovetextDialog props={props} />
       <ChessOpeningSearchNameDialog props={props} />
+      <CreateGameDialog />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
       <ProgressDialog />

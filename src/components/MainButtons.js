@@ -11,6 +11,7 @@ import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
+import createGameDialogActionTypes from '../constants/dialog/createGameDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
@@ -133,9 +134,9 @@ const MainButtons = () => {
         onClose={handleClosePlayOnline}
       >
         <MenuItem onClick={() => {
-          // dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
-          // dispatch({ type: modeActionTypes.SET_ANALYSIS });
-          // handleClosePlayFriend();
+          dispatch({ type: createGameDialogActionTypes.OPEN });
+          dispatch({ type: modeActionTypes.SET_ANALYSIS });
+          handleClosePlayOnline();
         }}>Create Game</MenuItem>
         <MenuItem onClick={() => {
           // dispatch({ type: enterInviteCodeDialogActionTypes.OPEN });
