@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
+  IconButton,
   Paper,
   TableContainer,
   Table,
@@ -9,10 +11,20 @@ import {
   TableCell,
   TableBody
 } from '@mui/material';
+import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialogActionTypes';
+import WsAction from '../../ws/WsAction';
 
 const PlayOnlineTable = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const handlePlay = (hash) => {
+    WsAction.quit(state).then(() => {
+      WsAction.accept(state, hash).then(() => {
+        dispatch({ type: playOnlineDialogActionTypes.CLOSE });
+      });
+    });
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -22,6 +34,7 @@ const PlayOnlineTable = () => {
             <TableCell>Color</TableCell>
             <TableCell align="right">Minutes</TableCell>
             <TableCell align="right">Increment</TableCell>
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -30,6 +43,16 @@ const PlayOnlineTable = () => {
               <TableCell align="right">{row.color}</TableCell>
               <TableCell align="right">{row.min}</TableCell>
               <TableCell align="right">{row.increment}</TableCell>
+              <TableCell align="right">
+                <IconButton
+                  aria-label="load"
+                  color="primary"
+                  title="Play"
+                  onClick={() => handlePlay(row.hash)}
+                >
+                  <PlayArrowIcon />
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
