@@ -32,7 +32,7 @@ const PlayOnlineTable = () => {
         <TableHead>
           <TableRow>
             <TableCell>Player</TableCell>
-            <TableCell>Color</TableCell>
+            <TableCell align="right">Color</TableCell>
             <TableCell align="right">Minutes</TableCell>
             <TableCell align="right">Increment</TableCell>
             <TableCell align="right"></TableCell>
