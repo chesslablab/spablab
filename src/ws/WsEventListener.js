@@ -10,6 +10,11 @@ export default class WsEventListener {
   static listen = (props, data) => dispatch => {
     const cmd = Object.keys(data)[0];
     switch (true) {
+      case '/leave' === cmd:
+        if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
+          dispatch(WsEvent.onLeaveAccept());
+        }
+        break;
       case '/takeback' === cmd:
         if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
           dispatch(WsEvent.onTakebackPropose());

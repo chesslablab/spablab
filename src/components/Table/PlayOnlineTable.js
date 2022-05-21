@@ -31,6 +31,7 @@ const PlayOnlineTable = () => {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
+            <TableCell>Player</TableCell>
             <TableCell>Color</TableCell>
             <TableCell align="right">Minutes</TableCell>
             <TableCell align="right">Increment</TableCell>
@@ -40,6 +41,7 @@ const PlayOnlineTable = () => {
         <TableBody>
           {state.playOnlineDialog.rows.map((row, i) => (
             <TableRow key={i}>
+              <TableCell align="left">Anonymous</TableCell>
               <TableCell align="right">{row.color}</TableCell>
               <TableCell align="right">{row.min}</TableCell>
               <TableCell align="right">{row.increment}</TableCell>

@@ -17,6 +17,7 @@ const initialState = {
     draw: null,
     resign: null,
     rematch: null,
+    leave: null,
     accepted: false,
     timer: {
       expiry_timestamp: null,
@@ -159,6 +160,14 @@ const reducer = (state = initialState, action) => {
         play: {
           ...state.play,
           rematch: Wording.verb.PROPOSE.toLowerCase()
+        }
+      };
+    case modeActionTypes.LEAVE_ACCEPT:
+      return {
+        ...state,
+        play: {
+          ...state.play,
+          leave: Wording.verb.ACCEPT.toLowerCase()
         }
       };
     default:

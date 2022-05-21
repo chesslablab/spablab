@@ -100,7 +100,7 @@ export default class WsEvent {
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
-        info: 'Waiting for player to accept invitation...'
+        info: 'Waiting for player to join...'
       }
     });
     dispatch({ type: boardActionTypes.START });
@@ -297,6 +297,16 @@ export default class WsEvent {
       type: infoAlertActionTypes.DISPLAY,
       payload: {
         info: 'Rematch declined.'
+      }
+    });
+  }
+
+  static onLeaveAccept = () => dispatch => {
+    dispatch({ type: modeActionTypes.LEAVE_ACCEPT });
+    dispatch({
+      type: infoAlertActionTypes.DISPLAY,
+      payload: {
+        info: 'Your opponent left the game.'
       }
     });
   }

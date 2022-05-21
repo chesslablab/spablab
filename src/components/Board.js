@@ -48,6 +48,7 @@ const Board = ({props}) => {
     if (!state.board.isMate &&
       !state.mode.play.draw &&
       !state.mode.play.resign &&
+      !state.mode.play.leave &&
       !state.mode.play.timer.over &&
       state.history.back === 0
     ) {
