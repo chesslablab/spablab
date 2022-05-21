@@ -16,69 +16,6 @@ import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialog
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 
-const rows = [
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-];
-
 const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();

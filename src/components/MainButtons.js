@@ -113,7 +113,10 @@ const MainButtons = () => {
     >
       <Button
         startIcon={<LanguageIcon />}
-        onClick={() => dispatch({ type: playOnlineDialogActionTypes.OPEN })}
+        onClick={() => {
+          dispatch({ type: progressDialogActionTypes.OPEN });
+          WsAction.onlineGames(state);
+        }}
       >
         Play Online
       </Button>

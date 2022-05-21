@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Paper,
   TableContainer,
@@ -9,93 +10,26 @@ import {
   TableBody
 } from '@mui/material';
 
-const rows = [
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-  {
-    name: 'The name',
-    calories: 'Foo',
-    fat: 'Bar',
-    carbs: 'Foobar'
-  },
-];
-
 const PlayOnlineTable = () => {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+            <TableCell>Color</TableCell>
+            <TableCell align="right">Minutes</TableCell>
+            <TableCell align="right">Increment</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, i) => (
-            <TableRow
-              key={i}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
+          {state.playOnlineDialog.rows.map((row, i) => (
+            <TableRow key={i}>
+              <TableCell align="right">{row.color}</TableCell>
+              <TableCell align="right">{row.min}</TableCell>
+              <TableCell align="right">{row.increment}</TableCell>
             </TableRow>
           ))}
         </TableBody>

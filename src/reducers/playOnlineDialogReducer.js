@@ -1,7 +1,8 @@
 import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
 
 const initialState = {
-  open: false
+  open: false,
+  rows: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,12 +10,14 @@ const reducer = (state = initialState, action) => {
     case playOnlineDialogActionTypes.CLOSE:
       return {
         ...state,
-        open: false
+        open: false,
+        rows: [],
       };
     case playOnlineDialogActionTypes.OPEN:
       return {
         ...state,
-        open: true
+        open: true,
+        rows: action.payload
       }
     default:
       return state;

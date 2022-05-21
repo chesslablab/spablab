@@ -40,6 +40,10 @@ export default class WsAction {
     return await state.server.ws.send(`/start play ${JSON.stringify(settings)}`);
   }
 
+  static onlineGames = async (state) => {
+    return await state.server.ws.send('/online_games');
+  }
+
   static playFen = async (state) => {
     return await state.server.ws.send(`/play_fen "${state.board.short_fen}"`);
   }

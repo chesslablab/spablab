@@ -51,6 +51,9 @@ export default class WsEventListener {
           });
         }
         break;
+      case '/online_games' === cmd:
+        dispatch(WsEvent.onOnlineGames(data));
+        break;
       case '/play_fen' === cmd:
         if (store.getState().mode.current === modeNames.PLAY) {
           if (store.getState().mode.play.color !== data['/play_fen'].turn) {

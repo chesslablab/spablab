@@ -2,6 +2,7 @@ import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
 import heuristicsDialogActionTypes from '../constants/dialog/heuristicsDialogActionTypes';
+import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
@@ -128,6 +129,14 @@ export default class WsEvent {
     }
     dispatch({ type: modeActionTypes.ACCEPT_PLAY });
     dispatch({ type: infoAlertActionTypes.CLOSE });
+  }
+
+  static onOnlineGames = (data) => dispatch => {
+    dispatch({ type: progressDialogActionTypes.CLOSE });
+    dispatch({
+      type: playOnlineDialogActionTypes.OPEN,
+      payload: data['/online_games']
+    });
   }
 
   static onLegalSqs = (data) => dispatch => {
