@@ -11,9 +11,73 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+import PlayOnlineTable from './PlayOnlineTable';
 import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
+
+const rows = [
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+  {
+    name: 'The name',
+    calories: 'Foo',
+    fat: 'Bar',
+    carbs: 'Foobar'
+  },
+];
 
 const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
@@ -35,10 +99,13 @@ const PlayOnlineDialog = () => {
   }
 
   return (
-    <Dialog open={state.playOnlineDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.playOnlineDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Play online</DialogTitle>
-      Select a game from the list or create one.
       <DialogContent>
+        <Typography variant="body1" paragraph>
+          Select a game from the list or create one.
+        </Typography>
+        <PlayOnlineTable />
         <form onSubmit={handleCreateCode}>
           <Typography id="input-minutes" gutterBottom>
             Minutes per side
