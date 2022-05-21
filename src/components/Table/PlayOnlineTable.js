@@ -47,6 +47,7 @@ const PlayOnlineTable = () => {
               <TableCell align="right">{row.increment}</TableCell>
               <TableCell align="right">
                 <Button
+                  disabled={state.mode.play.hash === row.hash ? true : false}
                   variant="outlined"
                   startIcon={<PlayArrowIcon />}
                   onClick={() => handlePlay(row.hash)}
