@@ -140,17 +140,14 @@ export default class WsEvent {
   }
 
   static onLegalSqs = (data) => dispatch => {
-    const payload = {
-      piece: data['/legal_sqs'].identity,
-      position: data['/legal_sqs'].position,
-      sqs: data['/legal_sqs'].sqs
-    };
-    if (data['/legal_sqs'].enPassant) {
-      payload.en_passant = data['/legal_sqs'].enPassant;
-    }
     dispatch({
       type: boardActionTypes.LEGAL_SQS,
-      payload: payload
+      payload: {
+        piece: data['/legal_sqs'].identity,
+        position: data['/legal_sqs'].position,
+        sqs: data['/legal_sqs'].sqs,
+        en_passant: data['/legal_sqs'].enPassant ? data['/legal_sqs'].enPassant : ''
+      }
     });
   }
 
@@ -204,25 +201,23 @@ export default class WsEvent {
   }
 
   static onHeuristics = (data) => dispatch => {
-    const payload = {
-      dimensions: data['/heuristics'].dimensions,
-      balance: data['/heuristics'].balance
-    };
     dispatch({ type: progressDialogActionTypes.CLOSE });
     dispatch({
       type: heuristicsDialogActionTypes.OPEN,
-      payload: payload
+      payload: {
+        dimensions: data['/heuristics'].dimensions,
+        balance: data['/heuristics'].balance
+      }
     });
   }
 
   static onHeuristicsBar = (data) => dispatch => {
-    const payload = {
-      dimensions: data['/heuristics_bar'].dimensions,
-      balance: data['/heuristics_bar'].balance
-    };
     dispatch({
       type: heuristicsBarActionTypes.UPDATE,
-      payload: payload
+      payload: {
+        dimensions: data['/heuristics_bar'].dimensions,
+        balance: data['/heuristics_bar'].balance
+      }
     });
   }
 
