@@ -11,7 +11,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import PlayOnlineTable from './PlayOnlineTable';
+import PlayOnlineTable from '../Table/PlayOnlineTable';
 import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialogActionTypes';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
