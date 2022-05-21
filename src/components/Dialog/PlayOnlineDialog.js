@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   MenuItem,
+  Paper,
   Slider,
   TextField,
   Typography
@@ -39,61 +40,63 @@ const PlayOnlineDialog = () => {
     <Dialog open={state.playOnlineDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Play online</DialogTitle>
       <DialogContent>
-        <Typography variant="body1" paragraph>
-          Select a game from the list or create one.
-        </Typography>
         <PlayOnlineTable />
         <form onSubmit={handleCreateCode}>
-          <Typography id="input-minutes" gutterBottom>
-            Minutes per side
-          </Typography>
-          <Slider
-            name="min"
-            aria-label="Minutes"
-            defaultValue={5}
-            valueLabelDisplay="auto"
-            step={1}
-            min={1}
-            max={60}
-          />
-          <Typography id="input-increment" gutterBottom>
-            Increment in seconds
-          </Typography>
-          <Slider
-            name="increment"
-            aria-label="Increment"
-            defaultValue={3}
-            valueLabelDisplay="auto"
-            step={1}
-            min={0}
-            max={60}
-          />
-          <TextField
-            select
-            fullWidth
-            margin="dense"
-            name="color"
-            label="Color"
-            defaultValue="rand"
-          >
-            <MenuItem key={0} value="rand">
-              Random
-            </MenuItem>
-            <MenuItem key={1} value={Pgn.symbol.WHITE}>
-              White
-            </MenuItem>
-            <MenuItem key={2} value={Pgn.symbol.BLACK}>
-              Black
-            </MenuItem>
-          </TextField>
-          <DialogActions>
-            <Button type="submit">
-              Create Game
-            </Button>
-            <Button onClick={() => dispatch({ type: playOnlineDialogActionTypes.CLOSE })}>
-              Cancel
-            </Button>
-          </DialogActions>
+          <Paper style={{marginTop: 15, paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
+            <Typography variant="body1" paragraph>
+              Select a game from the list above or create one.
+            </Typography>
+            <Typography id="input-minutes" gutterBottom>
+              Minutes per side
+            </Typography>
+            <Slider
+              name="min"
+              aria-label="Minutes"
+              defaultValue={5}
+              valueLabelDisplay="auto"
+              step={1}
+              min={1}
+              max={60}
+            />
+            <Typography id="input-increment" gutterBottom>
+              Increment in seconds
+            </Typography>
+            <Slider
+              name="increment"
+              aria-label="Increment"
+              defaultValue={3}
+              valueLabelDisplay="auto"
+              step={1}
+              min={0}
+              max={60}
+            />
+            <TextField
+              select
+              fullWidth
+              margin="dense"
+              name="color"
+              label="Color"
+              defaultValue="rand"
+            >
+              <MenuItem key={0} value="rand">
+                Random
+              </MenuItem>
+              <MenuItem key={1} value={Pgn.symbol.WHITE}>
+                White
+              </MenuItem>
+              <MenuItem key={2} value={Pgn.symbol.BLACK}>
+                Black
+              </MenuItem>
+            </TextField>
+            <DialogActions>
+              <Button type="submit">
+                Create Game
+              </Button>
+              <Button onClick={() => dispatch({ type: playOnlineDialogActionTypes.CLOSE })}>
+                Cancel
+              </Button>
+            </DialogActions>
+          </Paper>
         </form>
       </DialogContent>
     </Dialog>

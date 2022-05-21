@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
-  IconButton,
+  Button,
   Paper,
   TableContainer,
   Table,
@@ -44,14 +44,13 @@ const PlayOnlineTable = () => {
               <TableCell align="right">{row.min}</TableCell>
               <TableCell align="right">{row.increment}</TableCell>
               <TableCell align="right">
-                <IconButton
-                  aria-label="load"
-                  color="primary"
-                  title="Play"
+                <Button
+                  variant="outlined"
+                  startIcon={<PlayArrowIcon />}
                   onClick={() => handlePlay(row.hash)}
                 >
-                  <PlayArrowIcon />
-                </IconButton>
+                  Play
+                </Button>
               </TableCell>
             </TableRow>
           ))}
