@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
@@ -18,6 +18,14 @@ import WsAction from '../../ws/WsAction';
 const PlayOnlineTable = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      WsAction.onlineGames(state);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handlePlay = (hash) => {
     WsAction.quit(state).then(() => {

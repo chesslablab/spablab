@@ -47,9 +47,6 @@ const PlayOnlineDialog = () => {
         <PlayOnlineTable />
         <form onSubmit={handleCreateCode}>
           <Paper style={{marginTop: 15, paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
-            <Typography variant="body1" paragraph>
-              Select a game from the list above or create one.
-            </Typography>
             <Typography id="input-minutes" gutterBottom>
               Minutes per side
             </Typography>
