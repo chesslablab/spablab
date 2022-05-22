@@ -65,22 +65,18 @@ const MainButtons = () => {
   };
 
   const handleClickPlayFriend = (event) => {
-    reset();
     setAnchorElPlayFriend(event.currentTarget);
   };
 
   const handleClickAnalysis = (event) => {
-    reset();
     setAnchorElAnalysis(event.currentTarget);
   };
 
   const handleClickTraining = (event) => {
-    reset();
     setAnchorElTraining(event.currentTarget);
   };
 
   const handleClickOpeningSearch = (event) => {
-    reset();
     setAnchorElOpeningSearch(event.currentTarget);
   };
 
