@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import PlayOnlineTable from '../Table/PlayOnlineTable';
 import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialogActionTypes';
+import modeActionTypes from '../../constants/modeActionTypes';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 
@@ -31,9 +32,12 @@ const PlayOnlineDialog = () => {
       increment: event.target.elements.increment.value,
       submode: 'online'
     };
-    WsAction.quit(state).then(() =>
-      WsAction.startPlay(state, settings).then(() =>
-        dispatch({ type: playOnlineDialogActionTypes.CLOSE })));
+    WsAction.quit(state).then(() => {
+      dispatch({ type: modeActionTypes.SET_ANALYSIS });
+      WsAction.startPlay(state, settings).then(() => {
+        dispatch({ type: playOnlineDialogActionTypes.CLOSE });
+      });
+    });
   }
 
   return (

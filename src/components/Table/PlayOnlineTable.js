@@ -12,6 +12,7 @@ import {
   TableBody
 } from '@mui/material';
 import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialogActionTypes';
+import modeActionTypes from '../../constants/modeActionTypes';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineTable = () => {
@@ -20,6 +21,7 @@ const PlayOnlineTable = () => {
 
   const handlePlay = (hash) => {
     WsAction.quit(state).then(() => {
+      dispatch({ type: modeActionTypes.SET_ANALYSIS });
       WsAction.accept(state, hash).then(() => {
         dispatch({ type: playOnlineDialogActionTypes.CLOSE });
       });
