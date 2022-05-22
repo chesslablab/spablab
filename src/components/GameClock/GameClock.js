@@ -20,7 +20,8 @@ const GameClock = () => {
     if (!state.board.isMate &&
       !state.mode.play.draw &&
       !state.mode.play.resign &&
-      !state.mode.play.leave
+      !state.mode.play.leave &&
+      !state.mode.play.timer.over
     ) {
       return (
         <div className={classes.timers}>
