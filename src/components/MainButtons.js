@@ -24,6 +24,7 @@ import tournamentGameTableActionTypes from '../constants/table/tournamentGameTab
 import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
+import modeNames from '../constants/modeNames';
 import Tournament from '../utils/Tournament.js';
 import WsAction from '../ws/WsAction';
 
@@ -110,7 +111,15 @@ const MainButtons = () => {
       variant="text"
       aria-label="Main Menu"
       fullWidth={matches ? false : true}
-    >
+      disabled={state.mode.current === modeNames.PLAY &&
+        state.mode.play.accepted &&
+        !state.mode.play.draw &&
+        !state.mode.play.resign &&
+        !state.mode.play.resign &&
+        !state.mode.play.leave &&
+        !state.mode.play.timer.over &&
+        !state.board.isMate
+      }>
       <Button
         startIcon={<LanguageIcon />}
         onClick={() => {

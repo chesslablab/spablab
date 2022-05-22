@@ -129,6 +129,7 @@ export default class WsEvent {
     }
     dispatch({ type: modeActionTypes.ACCEPT_PLAY });
     dispatch({ type: infoAlertActionTypes.CLOSE });
+    dispatch({ type: playOnlineDialogActionTypes.CLOSE });
   }
 
   static onOnlineGames = (data) => dispatch => {
