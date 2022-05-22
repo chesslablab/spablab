@@ -129,6 +129,9 @@ export default class WsEvent {
     }
     dispatch({ type: modeActionTypes.ACCEPT_PLAY });
     dispatch({ type: infoAlertActionTypes.CLOSE });
+    dispatch({ type: heuristicsBarActionTypes.RESET });
+    dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
+    dispatch({ type: tournamentGameTableActionTypes.CLOSE });
     dispatch({ type: playOnlineDialogActionTypes.CLOSE });
   }
 
