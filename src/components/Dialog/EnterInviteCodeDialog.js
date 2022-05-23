@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, TextField } from '@mui/material';
 import enterInviteCodeDialogActionTypes from '../../constants/dialog/enterInviteCodeDialogActionTypes';
+import modeActionTypes from '../../constants/modeActionTypes';
 import WsAction from '../../ws/WsAction';
 
 const EnterInviteCodeDialog = () => {
@@ -12,6 +13,7 @@ const EnterInviteCodeDialog = () => {
     event.preventDefault();
     WsAction.quit(state).then(() => {
       WsAction.accept(state, event.target.elements.hash.value).then(() => {
+        dispatch({ type: modeActionTypes.SET_ANALYSIS });
         dispatch({ type: enterInviteCodeDialogActionTypes.CLOSE });
       });
     });

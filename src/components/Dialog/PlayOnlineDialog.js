@@ -44,9 +44,8 @@ const PlayOnlineDialog = () => {
     <Dialog open={state.playOnlineDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Play online</DialogTitle>
       <DialogContent>
-        <PlayOnlineTable />
         <form onSubmit={handleCreateCode}>
-          <Paper style={{marginTop: 15, paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
+          <Paper style={{marginBottom: 15, paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
             <Typography id="input-minutes" gutterBottom>
               Minutes per side
             </Typography>
@@ -99,6 +98,7 @@ const PlayOnlineDialog = () => {
             </DialogActions>
           </Paper>
         </form>
+        <PlayOnlineTable />
       </DialogContent>
     </Dialog>
   );
