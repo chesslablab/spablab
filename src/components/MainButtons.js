@@ -25,7 +25,6 @@ import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
-import Tournament from '../utils/Tournament.js';
 import WsAction from '../ws/WsAction';
 
 const MainButtons = () => {
