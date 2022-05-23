@@ -15,19 +15,22 @@ Check out [this demo](https://www.chesslablab.com/).
 > Please note the sandbox server may not be up and running all the time.
 
 ![Figure 1](/src/assets/img/docs/figure-01.png)
-Figure 1. Play a Friend > Create Invite Code
+Figure 1. Play Online
 
 ![Figure 2](/src/assets/img/docs/figure-02.png)
-Figure 2. Analysis Board
+Figure 2. Play a Friend > Create Invite Code
 
 ![Figure 3](/src/assets/img/docs/figure-03.png)
-Figure 3. Training > Random Tournament Game
+Figure 3. Analysis Board
 
 ![Figure 4](/src/assets/img/docs/figure-04.png)
-Figure 4. Heuristics of a game
+Figure 4. Training > Random Tournament Game
 
 ![Figure 5](/src/assets/img/docs/figure-05.png)
-Figure 5. Opening Search > ECO Code
+Figure 5. Heuristics of a game
+
+![Figure 6](/src/assets/img/docs/figure-06.png)
+Figure 6. Opening Search > ECO Code
 
 ### Examples
 

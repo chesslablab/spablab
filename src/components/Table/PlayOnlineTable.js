@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
+  Alert,
   Button,
   Paper,
   TableContainer,
@@ -36,40 +37,48 @@ const PlayOnlineTable = () => {
     });
   };
 
-  return (
-    <TableContainer component={Paper}>
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="right">Minutes</TableCell>
-            <TableCell align="right">Increment</TableCell>
-            <TableCell align="center">Color</TableCell>
-            <TableCell align="center">Player</TableCell>
-            <TableCell align="right"></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {state.playOnlineDialog.rows.map((row, i) => (
-            <TableRow key={i}>
-              <TableCell align="right">{row.min}</TableCell>
-              <TableCell align="right">{row.increment}</TableCell>
-              <TableCell align="center">{row.color}</TableCell>
-              <TableCell align="center">Anonymous</TableCell>
-              <TableCell align="right">
-                <Button
-                  disabled={state.mode.play.hash === row.hash ? true : false}
-                  variant="outlined"
-                  startIcon={<PlayArrowIcon />}
-                  onClick={() => handlePlay(row.hash)}
-                >
-                  Play
-                </Button>
-              </TableCell>
+  if (state.playOnlineDialog.rows.length > 0) {
+    return (
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Minutes</TableCell>
+              <TableCell align="right">Increment</TableCell>
+              <TableCell align="center">Color</TableCell>
+              <TableCell align="center">Player</TableCell>
+              <TableCell align="right"></TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {state.playOnlineDialog.rows.map((row, i) => (
+              <TableRow key={i}>
+                <TableCell align="right">{row.min}</TableCell>
+                <TableCell align="right">{row.increment}</TableCell>
+                <TableCell align="center">{row.color}</TableCell>
+                <TableCell align="center">Anonymous</TableCell>
+                <TableCell align="right">
+                  <Button
+                    disabled={state.mode.play.hash === row.hash ? true : false}
+                    variant="outlined"
+                    startIcon={<PlayArrowIcon />}
+                    onClick={() => handlePlay(row.hash)}
+                  >
+                    Play
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
+
+  return (
+    <Alert severity="info">
+      Be the first to create a game!
+    </Alert>
   );
 };
 
