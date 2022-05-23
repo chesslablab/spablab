@@ -41,20 +41,20 @@ const PlayOnlineTable = () => {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Player</TableCell>
-            <TableCell align="right">Color</TableCell>
             <TableCell align="right">Minutes</TableCell>
             <TableCell align="right">Increment</TableCell>
+            <TableCell align="center">Color</TableCell>
+            <TableCell align="center">Player</TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {state.playOnlineDialog.rows.map((row, i) => (
             <TableRow key={i}>
-              <TableCell align="left">Anonymous</TableCell>
-              <TableCell align="right">{row.color}</TableCell>
               <TableCell align="right">{row.min}</TableCell>
               <TableCell align="right">{row.increment}</TableCell>
+              <TableCell align="center">{row.color}</TableCell>
+              <TableCell align="center">Anonymous</TableCell>
               <TableCell align="right">
                 <Button
                   disabled={state.mode.play.hash === row.hash ? true : false}

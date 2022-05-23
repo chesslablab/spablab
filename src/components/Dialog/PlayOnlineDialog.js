@@ -6,6 +6,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
   MenuItem,
   Paper,
   Slider,
@@ -46,48 +47,56 @@ const PlayOnlineDialog = () => {
       <DialogContent>
         <form onSubmit={handleCreateCode}>
           <Paper style={{marginBottom: 15, paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
-            <Typography id="input-minutes" gutterBottom>
-              Minutes per side
-            </Typography>
-            <Slider
-              name="min"
-              aria-label="Minutes"
-              defaultValue={5}
-              valueLabelDisplay="auto"
-              step={1}
-              min={1}
-              max={60}
-            />
-            <Typography id="input-increment" gutterBottom>
-              Increment in seconds
-            </Typography>
-            <Slider
-              name="increment"
-              aria-label="Increment"
-              defaultValue={3}
-              valueLabelDisplay="auto"
-              step={1}
-              min={0}
-              max={60}
-            />
-            <TextField
-              select
-              fullWidth
-              margin="dense"
-              name="color"
-              label="Color"
-              defaultValue="rand"
-            >
-              <MenuItem key={0} value="rand">
-                Random
-              </MenuItem>
-              <MenuItem key={1} value={Pgn.symbol.WHITE}>
-                White
-              </MenuItem>
-              <MenuItem key={2} value={Pgn.symbol.BLACK}>
-                Black
-              </MenuItem>
-            </TextField>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={4}>
+                <Typography id="input-minutes" gutterBottom>
+                  Minutes per side
+                </Typography>
+                <Slider
+                  name="min"
+                  aria-label="Minutes"
+                  defaultValue={5}
+                  valueLabelDisplay="auto"
+                  step={1}
+                  min={1}
+                  max={60}
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography id="input-increment" gutterBottom>
+                  Increment in seconds
+                </Typography>
+                <Slider
+                  name="increment"
+                  aria-label="Increment"
+                  defaultValue={3}
+                  valueLabelDisplay="auto"
+                  step={1}
+                  min={0}
+                  max={60}
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <TextField
+                  select
+                  fullWidth
+                  margin="dense"
+                  name="color"
+                  label="Color"
+                  defaultValue="rand"
+                >
+                  <MenuItem key={0} value="rand">
+                    Random
+                  </MenuItem>
+                  <MenuItem key={1} value={Pgn.symbol.WHITE}>
+                    White
+                  </MenuItem>
+                  <MenuItem key={2} value={Pgn.symbol.BLACK}>
+                    Black
+                  </MenuItem>
+                </TextField>
+              </Grid>
+            </Grid>
             <DialogActions>
               <Button type="submit">
                 Create Game
