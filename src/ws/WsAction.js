@@ -95,4 +95,8 @@ export default class WsAction {
   static response = async (state) => {
     return await state.server.ws.send(`/response`);
   }
+
+  static randomGame = async (state) => {
+    return await state.server.ws.send(`/random_game`);
+  }
 }

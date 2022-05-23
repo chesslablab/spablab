@@ -39,15 +39,6 @@ const MainButtons = () => {
 
   const matches = useMediaQuery("(min-width:900px)");
 
-  const reset = () => {
-    dispatch({ type: heuristicsBarActionTypes.RESET });
-    dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
-    dispatch({ type: tournamentGameTableActionTypes.CLOSE });
-    dispatch({ type: infoAlertActionTypes.CLOSE });
-    dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
-    WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
-  };
-
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
   };
@@ -79,26 +70,6 @@ const MainButtons = () => {
   const handleClickOpeningSearch = (event) => {
     setAnchorElOpeningSearch(event.currentTarget);
   };
-
-  const handleRandomTournamentGame = async () => {
-    dispatch({ type: progressDialogActionTypes.OPEN });
-    const game = Tournament.rand();
-    dispatch({
-      type: tournamentGameTableActionTypes.DISPLAY,
-      payload: {
-        game: {
-          Event: game.Event,
-          Site: game.Site,
-          Date: game.Date,
-          White: game.White,
-          Black: game.Black,
-          Result: game.Result,
-          ECO: game.ECO
-        }
-      }
-    });
-    WsAction.quit(state).then(() => WsAction.startLoadpgn(state, game.movetext));
-  }
 
   return (
     <ButtonGroup
@@ -160,7 +131,7 @@ const MainButtons = () => {
         onClose={handleCloseAnalysis}
       >
         <MenuItem onClick={() => {
-          reset();
+          WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
           handleCloseAnalysis();
         }}>
           Start Position
@@ -196,7 +167,11 @@ const MainButtons = () => {
         }}>
           Guess the Move
         </MenuItem>
-        <MenuItem onClick={() => handleRandomTournamentGame().then(() => handleCloseTraining())}>
+        <MenuItem onClick={() => {
+          dispatch({ type: progressDialogActionTypes.OPEN });
+          WsAction.quit(state).then(() => WsAction.randomGame(state));
+          handleCloseTraining();
+        }}>
           Random Tournament Game
         </MenuItem>
       </Menu>

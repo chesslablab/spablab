@@ -6,8 +6,10 @@ import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogAct
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
+import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
+import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import jwt_decode from "jwt-decode";
@@ -16,27 +18,38 @@ import Opening from '../utils/Opening.js';
 import Pgn from '../utils/Pgn';
 import WsAction from '../ws/WsAction';
 
+const reset = (dispatch) => {
+  dispatch({ type: heuristicsBarActionTypes.RESET });
+  dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
+  dispatch({ type: tournamentGameTableActionTypes.CLOSE });
+  dispatch({ type: infoAlertActionTypes.CLOSE });
+  dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
+  dispatch({ type: boardActionTypes.START });
+  dispatch({ type: progressDialogActionTypes.CLOSE });
+};
+
+
 export default class WsEvent {
   static onStartAnalysis = (data) => dispatch => {
+    reset(dispatch);
     dispatch({ type: modeActionTypes.SET_ANALYSIS });
-    dispatch({ type: boardActionTypes.START });
   }
 
   static onStartGrandmaster = (data) => dispatch => {
+    reset(dispatch);
     dispatch({
       type: modeActionTypes.SET_GRANDMASTER,
       payload: {
         color: data['/start'].color
       }
     });
-    dispatch({ type: boardActionTypes.START });
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch({ type: boardActionTypes.FLIP });
     }
   }
 
   static onStartLoadfen = (data) => dispatch => {
-    dispatch({ type: progressDialogActionTypes.CLOSE });
+    reset(dispatch);
     if (data['/start'].fen) {
       dispatch({ type: modeActionTypes.SET_LOADFEN });
       dispatch({
@@ -57,7 +70,7 @@ export default class WsEvent {
   }
 
   static onStartLoadpgn = (data) => dispatch => {
-    dispatch({ type: progressDialogActionTypes.CLOSE });
+    reset(dispatch);
     if (data['/start'].movetext) {
       dispatch({ type: modeActionTypes.SET_LOADPGN });
       dispatch({
@@ -81,6 +94,7 @@ export default class WsEvent {
   }
 
   static onStartPlay = (data) => dispatch => {
+    reset(dispatch);
     const jwtDecoded = jwt_decode(data['/start'].jwt);
     dispatch({
       type: modeActionTypes.SET_PLAY,
@@ -107,6 +121,7 @@ export default class WsEvent {
   }
 
   static onAccept = (data) => dispatch => {
+    reset(dispatch);
     if (!store.getState().mode.play.color) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
       const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
@@ -128,7 +143,6 @@ export default class WsEvent {
       dispatch({ type: boardActionTypes.FLIP });
     }
     dispatch({ type: modeActionTypes.ACCEPT_PLAY });
-    dispatch({ type: infoAlertActionTypes.CLOSE });
     dispatch({ type: playOnlineDialogActionTypes.CLOSE });
   }
 
@@ -365,6 +379,36 @@ export default class WsEvent {
         type: infoAlertActionTypes.DISPLAY,
         payload: {
           info: 'Hmm. This line was not found in the database.'
+        }
+      });
+    }
+  }
+
+  static onRandomGame = (data) => dispatch => {
+    reset(dispatch);
+    if (data['/random_game'].movetext) {
+      dispatch({ type: modeActionTypes.SET_LOADPGN });
+      dispatch({
+        type: boardActionTypes.START_PGN,
+        payload: {
+          turn: data['/random_game'].turn,
+          movetext: data['/random_game'].movetext,
+          fen: data['/random_game'].fen,
+          history: data['/random_game'].history
+        }
+      });
+      dispatch({
+        type: tournamentGameTableActionTypes.DISPLAY,
+        payload: {
+          game: data['/random_game'].game
+        }
+      });
+      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
+    } else {
+      dispatch({
+        type: infoAlertActionTypes.DISPLAY,
+        payload: {
+          info: 'A random game could not be loaded.'
         }
       });
     }
