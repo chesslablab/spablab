@@ -21,7 +21,7 @@ const CreateInviteCodeDialog = () => {
   return (
     <Dialog open={state.createInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Create invite code</DialogTitle>
-        {!state.mode.playfriend.hash ? <CreateCode /> : <CopyCode />}
+        {!state.mode.play.hash ? <CreateCode /> : <CopyCode />}
     </Dialog>
   );
 }
@@ -32,13 +32,15 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    let color;
-    event.target.elements.color.value === 'rand'
-      ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-      : color = event.target.elements.color.value;
-    let time = event.target.elements.time.value;
-    let increment = event.target.elements.increment.value;
-    WsAction.quit(state).then(() => WsAction.startPlayfriend(state, color, time, increment));
+    const settings = {
+      color: event.target.elements.color.value === 'rand'
+        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+        : event.target.elements.color.value,
+      min: event.target.elements.min.value,
+      increment: event.target.elements.increment.value,
+      submode: 'friend'
+    };
+    WsAction.quit(state).then(() => WsAction.startPlay(state, settings));
   }
 
   return (
@@ -48,7 +50,7 @@ const CreateCode = () => {
           Minutes per side
         </Typography>
         <Slider
-          name="time"
+          name="min"
           aria-label="Minutes"
           defaultValue={5}
           valueLabelDisplay="auto"
@@ -111,11 +113,11 @@ const CopyCode = () => {
         type="text"
         name="sharecode"
         label="Share this code with a friend"
-        value={state.mode.playfriend.hash}
+        value={state.mode.play.hash}
       />
       <DialogActions>
         <Button onClick={() => {
-          navigator.clipboard.writeText(state.mode.playfriend.hash);
+          navigator.clipboard.writeText(state.mode.play.hash);
           dispatch({ type: createInviteCodeDialogActionTypes.CLOSE });
         }}>
           Copy and Play

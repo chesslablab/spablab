@@ -29,9 +29,9 @@ const Board = ({props}) => {
         });
         WsAction.legalSqs(state, payload.sq);
       }
-    } else if (modeNames.PLAYFRIEND === state.mode.current) {
-      if (state.mode.playfriend.accepted) {
-        if (state.mode.playfriend.color === state.board.turn) {
+    } else if (modeNames.PLAY === state.mode.current) {
+      if (state.mode.play.accepted) {
+        if (state.mode.play.color === state.board.turn) {
           if (state.board.turn === Piece.color(payload.piece)) {
             dispatch({
               type: boardActionTypes.PICK_PIECE,
@@ -46,9 +46,10 @@ const Board = ({props}) => {
 
   const handleMove = (payload) => {
     if (!state.board.isMate &&
-      !state.mode.playfriend.draw &&
-      !state.mode.playfriend.resign &&
-      !state.mode.playfriend.timer.over &&
+      !state.mode.play.draw &&
+      !state.mode.play.resign &&
+      !state.mode.play.leave &&
+      !state.mode.play.timer.over &&
       state.history.back === 0
     ) {
       if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {

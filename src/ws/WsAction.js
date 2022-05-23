@@ -36,8 +36,12 @@ export default class WsAction {
     return await state.server.ws.send(`/start loadpgn "${movetext}"`);
   }
 
-  static startPlayfriend = async (state, color, time, increment) => {
-    return await state.server.ws.send(`/start playfriend ${color} ${time} ${increment}`);
+  static startPlay = async (state, settings) => {
+    return await state.server.ws.send(`/start play ${JSON.stringify(settings)}`);
+  }
+
+  static onlineGames = async (state) => {
+    return await state.server.ws.send('/online_games');
   }
 
   static playFen = async (state) => {
@@ -85,10 +89,14 @@ export default class WsAction {
   }
 
   static restart = async (state) => {
-    return await state.server.ws.send(`/restart ${state.mode.playfriend.hash}`);
+    return await state.server.ws.send(`/restart ${state.mode.play.hash}`);
   }
 
   static response = async (state) => {
     return await state.server.ws.send(`/response`);
+  }
+
+  static randomGame = async (state) => {
+    return await state.server.ws.send(`/random_game`);
   }
 }

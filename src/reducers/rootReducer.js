@@ -18,6 +18,7 @@ import loadPgnDialogReducer from './loadPgnDialogReducer';
 import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
 import rematchOfferDialogReducer from './rematchOfferDialogReducer';
 import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer';
+import playOnlineDialogReducer from './playOnlineDialogReducer';
 import openingSearchEcoDialogReducer from './openingSearchEcoDialogReducer';
 import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   rematchAcceptDialog: rematchAcceptDialogReducer,
   rematchOfferDialog: rematchOfferDialogReducer,
   playLikeGrandmasterDialog: playLikeGrandmasterDialogReducer,
+  playOnlineDialog: playOnlineDialogReducer,
   openingSearchEcoDialog: openingSearchEcoDialogReducer,
   openingSearchNameDialog: openingSearchNameDialogReducer,
   openingSearchMovetextDialog: openingSearchMovetextDialogReducer,

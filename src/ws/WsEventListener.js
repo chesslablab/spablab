@@ -10,6 +10,11 @@ export default class WsEventListener {
   static listen = (props, data) => dispatch => {
     const cmd = Object.keys(data)[0];
     switch (true) {
+      case '/leave' === cmd:
+        if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
+          dispatch(WsEvent.onLeaveAccept());
+        }
+        break;
       case '/takeback' === cmd:
         if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
           dispatch(WsEvent.onTakebackPropose());
@@ -35,8 +40,8 @@ export default class WsEventListener {
           dispatch(WsEvent.onStartLoadfen(data));
         } else if (data['/start'].mode === modeNames.LOADPGN) {
           dispatch(WsEvent.onStartLoadpgn(data));
-        } else if (data['/start'].mode === modeNames.PLAYFRIEND) {
-          dispatch(WsEvent.onStartPlayfriend(data));
+        } else if (data['/start'].mode === modeNames.PLAY) {
+          dispatch(WsEvent.onStartPlay(data));
         }
         break;
       case '/accept' === cmd:
@@ -51,11 +56,14 @@ export default class WsEventListener {
           });
         }
         break;
+      case '/online_games' === cmd:
+        dispatch(WsEvent.onOnlineGames(data));
+        break;
       case '/play_fen' === cmd:
-        if (store.getState().mode.current === modeNames.PLAYFRIEND) {
-          if (store.getState().mode.playfriend.color !== data['/play_fen'].turn) {
+        if (store.getState().mode.current === modeNames.PLAY) {
+          if (store.getState().mode.play.color !== data['/play_fen'].turn) {
             dispatch({
-              type: boardActionTypes.PLAYFRIEND_MOVE,
+              type: boardActionTypes.PLAY_MOVE,
               payload: {
                 fen: data['/play_fen'].fen
               }
@@ -100,6 +108,11 @@ export default class WsEventListener {
         break;
       case '/response' === cmd:
         dispatch(WsEvent.onResponse(data));
+        break;
+      case '/random_game' === cmd:
+        if (data['/random_game'].mode === modeNames.LOADPGN) {
+          dispatch(WsEvent.onRandomGame(data));
+        }
         break;
       default:
         break;

@@ -16,11 +16,11 @@ const FinishedButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.playfriend.accepted) {
+  if (state.mode.play.accepted) {
     if (state.board.isMate ||
-      state.mode.playfriend.draw === Wording.verb.ACCEPT.toLowerCase() ||
-      state.mode.playfriend.resign === Wording.verb.ACCEPT.toLowerCase() ||
-      state.mode.playfriend.timer.over
+      state.mode.play.draw === Wording.verb.ACCEPT.toLowerCase() ||
+      state.mode.play.resign === Wording.verb.ACCEPT.toLowerCase() ||
+      state.mode.play.timer.over
     ) {
       return (
         <ButtonGroup

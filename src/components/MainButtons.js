@@ -5,8 +5,8 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
+import LanguageIcon from '@mui/icons-material/Language';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
@@ -17,12 +17,8 @@ import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTyp
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import watchDialogActionTypes from '../constants/dialog/watchDialogActionTypes';
-import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
-import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
-import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
-import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
-import Tournament from '../utils/Tournament.js';
+import modeNames from '../constants/modeNames';
 import WsAction from '../ws/WsAction';
 
 const MainButtons = () => {
@@ -35,15 +31,6 @@ const MainButtons = () => {
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
 
   const matches = useMediaQuery("(min-width:900px)");
-
-  const reset = () => {
-    dispatch({ type: heuristicsBarActionTypes.RESET });
-    dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
-    dispatch({ type: tournamentGameTableActionTypes.CLOSE });
-    dispatch({ type: infoAlertActionTypes.CLOSE });
-    dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
-    WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
-  };
 
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
@@ -62,44 +49,20 @@ const MainButtons = () => {
   };
 
   const handleClickPlayFriend = (event) => {
-    reset();
     setAnchorElPlayFriend(event.currentTarget);
   };
 
   const handleClickAnalysis = (event) => {
-    reset();
     setAnchorElAnalysis(event.currentTarget);
   };
 
   const handleClickTraining = (event) => {
-    reset();
     setAnchorElTraining(event.currentTarget);
   };
 
   const handleClickOpeningSearch = (event) => {
-    reset();
     setAnchorElOpeningSearch(event.currentTarget);
   };
-
-  const handleRandomTournamentGame = async () => {
-    dispatch({ type: progressDialogActionTypes.OPEN });
-    const game = Tournament.rand();
-    dispatch({
-      type: tournamentGameTableActionTypes.DISPLAY,
-      payload: {
-        game: {
-          Event: game.Event,
-          Site: game.Site,
-          Date: game.Date,
-          White: game.White,
-          Black: game.Black,
-          Result: game.Result,
-          ECO: game.ECO
-        }
-      }
-    });
-    WsAction.quit(state).then(() => WsAction.startLoadpgn(state, game.movetext));
-  }
 
   return (
     <ButtonGroup
@@ -108,7 +71,24 @@ const MainButtons = () => {
       variant="text"
       aria-label="Main Menu"
       fullWidth={matches ? false : true}
-    >
+      disabled={state.mode.current === modeNames.PLAY &&
+        state.mode.play.accepted &&
+        !state.mode.play.draw &&
+        !state.mode.play.resign &&
+        !state.mode.play.resign &&
+        !state.mode.play.leave &&
+        !state.mode.play.timer.over &&
+        !state.board.isMate
+      }>
+      <Button
+        startIcon={<LanguageIcon />}
+        onClick={() => {
+          dispatch({ type: progressDialogActionTypes.OPEN });
+          WsAction.onlineGames(state);
+        }}
+      >
+        Play Online
+      </Button>
       <Button
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
@@ -144,7 +124,7 @@ const MainButtons = () => {
         onClose={handleCloseAnalysis}
       >
         <MenuItem onClick={() => {
-          reset();
+          WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
           handleCloseAnalysis();
         }}>
           Start Position
@@ -180,7 +160,11 @@ const MainButtons = () => {
         }}>
           Guess the Move
         </MenuItem>
-        <MenuItem onClick={() => handleRandomTournamentGame().then(() => handleCloseTraining())}>
+        <MenuItem onClick={() => {
+          dispatch({ type: progressDialogActionTypes.OPEN });
+          WsAction.quit(state).then(() => WsAction.randomGame(state));
+          handleCloseTraining();
+        }}>
           Random Tournament Game
         </MenuItem>
       </Menu>

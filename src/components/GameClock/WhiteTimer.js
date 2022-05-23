@@ -9,7 +9,7 @@ import Pgn from '../../utils/Pgn';
 const WhiteTimer = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const expiryTimestamp = state.mode.playfriend.timer.expiry_timestamp;
+  const expiryTimestamp = state.mode.play.timer.expiry_timestamp;
   const timer = useTimer({
     expiryTimestamp,
     onExpire: () => {
@@ -41,7 +41,7 @@ const WhiteTimer = () => {
         now.setSeconds(
           now.getSeconds() +
           elapsedSeconds +
-          parseInt(state.mode.playfriend.jwt_decoded.increment)
+          parseInt(state.mode.play.jwt_decoded.increment)
         );
         timer.restart(now);
         timer.pause();
