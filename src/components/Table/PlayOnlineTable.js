@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {
-  Alert,
   Button,
   Paper,
   TableContainer,
@@ -39,7 +38,7 @@ const PlayOnlineTable = () => {
 
   if (state.playOnlineDialog.rows.length > 0) {
     return (
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{marginTop: 15}}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -75,11 +74,7 @@ const PlayOnlineTable = () => {
     );
   }
 
-  return (
-    <Alert severity="info">
-      Be the first to create a game!
-    </Alert>
-  );
+  return null;
 };
 
 export default PlayOnlineTable;

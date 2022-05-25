@@ -46,7 +46,7 @@ const PlayOnlineDialog = () => {
       <DialogTitle>Play online</DialogTitle>
       <DialogContent>
         <form onSubmit={handleCreateCode}>
-          <Paper style={{marginBottom: 15, paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
+          <Paper style={{paddingTop: 15, paddingLeft: 15, paddingRight: 15}}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={4}>
                 <Typography id="input-minutes" gutterBottom>
