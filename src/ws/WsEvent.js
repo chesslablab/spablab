@@ -6,7 +6,7 @@ import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogAct
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
-import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
+import gameTableActionTypes from '../constants/table/gameTableActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
@@ -21,7 +21,7 @@ import WsAction from '../ws/WsAction';
 const reset = (dispatch) => {
   dispatch({ type: heuristicsBarActionTypes.RESET });
   dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
-  dispatch({ type: tournamentGameTableActionTypes.CLOSE });
+  dispatch({ type: gameTableActionTypes.CLOSE });
   dispatch({ type: infoAlertActionTypes.CLOSE });
   dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
   dispatch({ type: boardActionTypes.START });
@@ -361,9 +361,9 @@ export default class WsEvent {
     dispatch({ type: progressDialogActionTypes.CLOSE });
     if (data['/response']) {
       dispatch({
-        type: infoAlertActionTypes.DISPLAY,
+        type: gameTableActionTypes.DISPLAY,
         payload: {
-          info: 'Awesome! This is a good move.'
+          game: data['/response'].game
         }
       });
       dispatch({
@@ -383,6 +383,7 @@ export default class WsEvent {
           info: 'Hmm. This line was not found in the database.'
         }
       });
+      dispatch({ type: gameTableActionTypes.CLOSE });
     }
   }
 
@@ -400,7 +401,7 @@ export default class WsEvent {
         }
       });
       dispatch({
-        type: tournamentGameTableActionTypes.DISPLAY,
+        type: gameTableActionTypes.DISPLAY,
         payload: {
           game: data['/random_game'].game
         }

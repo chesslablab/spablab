@@ -1,4 +1,4 @@
-import tournamentGameTableActionTypes from '../constants/table/tournamentGameTableActionTypes';
+import gameTableActionTypes from '../constants/table/gameTableActionTypes';
 
 const initialState = {
   game: {},
@@ -7,12 +7,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case tournamentGameTableActionTypes.DISPLAY:
+    case gameTableActionTypes.DISPLAY:
       return {
         game: action.payload.game,
         open: true
       };
-    case tournamentGameTableActionTypes.CLOSE:
+    case gameTableActionTypes.CLOSE:
       return initialState;
     default:
       return state;

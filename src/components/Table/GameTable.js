@@ -9,18 +9,18 @@ const useStyles = makeStyles({
   },
 });
 
-const TournamentGameTable = ({props}) => {
+const GameTable = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
-  if (state.tournamentGameTable.open) {
+  if (state.gameTable.open) {
     return (
-      <Fade in={state.tournamentGameTable.open}>
+      <Fade in={state.gameTable.open}>
         <TableContainer component={Paper} className={classes.tableContainer}>
           <Table stickyHeader size="small" aria-label="Chess Openings">
             <TableBody>
               {
-                Object.entries(state.tournamentGameTable.game).map(([key, val]) => (
+                Object.entries(state.gameTable.game).map(([key, val]) => (
                   <TableRow key={key}>
                     <TableCell align="right">{key}</TableCell>
                     <TableCell align="left">{val}</TableCell>
@@ -37,4 +37,4 @@ const TournamentGameTable = ({props}) => {
   return null;
 }
 
-export default TournamentGameTable;
+export default GameTable;

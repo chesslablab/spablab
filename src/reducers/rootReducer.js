@@ -24,7 +24,7 @@ import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 import progressDialogReducer from './progressDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
-import tournamentGameTableReducer from './tournamentGameTableReducer';
+import gameTableReducer from './gameTableReducer';
 import watchDialogReducer from './watchDialogReducer';
 
 const rootReducer = combineReducers({
@@ -53,7 +53,7 @@ const rootReducer = combineReducers({
   openingSearchMovetextDialog: openingSearchMovetextDialogReducer,
   progressDialog: progressDialogReducer,
   chessOpeningAnalysisTable: chessOpeningAnalysisTableReducer,
-  tournamentGameTable: tournamentGameTableReducer,
+  gameTable: gameTableReducer,
   watchDialog: watchDialogReducer
 });
 

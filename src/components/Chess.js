@@ -15,7 +15,7 @@ import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
 import PlayOnlineDialog from './Dialog/PlayOnlineDialog';
 import WatchDialog from './Dialog/WatchDialog';
 import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
-import TournamentGameTable from './Table/TournamentGameTable.js';
+import GameTable from './Table/GameTable.js';
 import Board from './Board.js';
 import Game from './Game.js';
 import HeuristicsBar from './HeuristicsBar.js';
@@ -49,7 +49,7 @@ const Chess = ({ props }) => {
         <Grid item xs={12} md={3}>
           <Game props={props} />
           <ChessOpeningAnalysisTable />
-          <TournamentGameTable />
+          <GameTable />
           <InfoAlert />
           <SupportButtons />
         </Grid>
