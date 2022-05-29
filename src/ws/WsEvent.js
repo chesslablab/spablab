@@ -191,11 +191,9 @@ export default class WsEvent {
         });
       }
       if (store.getState().mode.current === modeNames.ANALYSIS ||
-        store.getState().mode.current === modeNames.LOADPGN
+        store.getState().mode.current === modeNames.LOADPGN ||
+        store.getState().mode.current === modeNames.LOADFEN
       ) {
-        WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
-      }
-      if (store.getState().mode.current === modeNames.LOADFEN) {
         WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
       if (store.getState().mode.current === modeNames.ANALYSIS) {
@@ -211,6 +209,9 @@ export default class WsEvent {
         } else {
           dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
         }
+      } else if (store.getState().mode.current === modeNames.GRANDMASTER) {
+        dispatch({ type: progressDialogActionTypes.OPEN });
+        WsAction.response(store.getState());
       }
     }
   }
@@ -357,6 +358,7 @@ export default class WsEvent {
   }
 
   static onResponse = (data) => dispatch => {
+    dispatch({ type: progressDialogActionTypes.CLOSE });
     if (data['/response']) {
       dispatch({
         type: infoAlertActionTypes.DISPLAY,
@@ -367,11 +369,11 @@ export default class WsEvent {
       dispatch({
         type: boardActionTypes.RESPONSE,
         payload: {
-          turn: data['/response'].turn,
-          isCheck: data['/response'].isCheck,
-          isMate: data['/response'].isMate,
-          movetext: data['/response'].movetext,
-          fen: data['/response'].fen,
+          turn: data['/response'].state.turn,
+          isCheck: data['/response'].state.isCheck,
+          isMate: data['/response'].state.isMate,
+          movetext: data['/response'].state.movetext,
+          fen: data['/response'].state.fen,
         }
       });
     } else {

@@ -71,9 +71,6 @@ export default class WsEventListener {
           }
         }
         dispatch(WsEvent.onPlayfen(props, data));
-        if (store.getState().mode.current === modeNames.GRANDMASTER) {
-          WsAction.response(store.getState());
-        }
         break;
       case '/legal_sqs' === cmd:
         if (data['/legal_sqs']) {
