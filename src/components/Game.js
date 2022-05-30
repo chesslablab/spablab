@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Container, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import GameClock from './GameClock/GameClock';
+import StartedButtonsGrandmasterMode from './GrandmasterMode/StartedButtonsGrandmasterMode';
 import FinishedButtonsPlayMode from './PlayMode/FinishedButtonsPlayMode';
 import FinishedDialogsPlayMode from './PlayMode/FinishedDialogsPlayMode';
 import StartedButtonsPlayMode from './PlayMode/StartedButtonsPlayMode';
@@ -46,6 +47,7 @@ const Game = ({ props }) => {
         <GameClock />
       </Grid>
       <Grid item xs={12}>
+        <StartedButtonsGrandmasterMode />
         <StartedButtonsPlayMode />
         <FinishedButtonsPlayMode />
       </Grid>

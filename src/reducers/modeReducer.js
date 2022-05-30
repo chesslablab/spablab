@@ -6,7 +6,8 @@ import Pgn from '../utils/Pgn';
 const initialState = {
   current: modeNames.ANALYSIS,
   grandmaster: {
-    color: null
+    color: null,
+    movetext: null
   },
   play: {
     jwt: null,
@@ -168,6 +169,14 @@ const reducer = (state = initialState, action) => {
         play: {
           ...state.play,
           leave: Wording.verb.ACCEPT.toLowerCase()
+        }
+      };
+    case modeActionTypes.GRANDMASTER_MOVETEXT:
+      return {
+        ...state,
+        grandmaster: {
+          ...state.grandmaster,
+          movetext: action.payload.movetext
         }
       };
     default:

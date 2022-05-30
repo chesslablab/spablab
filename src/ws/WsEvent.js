@@ -376,14 +376,27 @@ export default class WsEvent {
           fen: data['/response'].state.fen,
         }
       });
+      dispatch({
+        type: modeActionTypes.GRANDMASTER_MOVETEXT,
+        payload: {
+          movetext: data['/response'].state.movetext
+        }
+      });
+      dispatch({ type: infoAlertActionTypes.CLOSE });
     } else {
+      dispatch({ type: gameTableActionTypes.CLOSE });
+      dispatch({
+        type: modeActionTypes.GRANDMASTER_MOVETEXT,
+        payload: {
+          movetext: null
+        }
+      });
       dispatch({
         type: infoAlertActionTypes.DISPLAY,
         payload: {
           info: 'Hmm. This line was not found in the database.'
         }
       });
-      dispatch({ type: gameTableActionTypes.CLOSE });
     }
   }
 
