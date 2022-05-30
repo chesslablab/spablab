@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-const FinishedButtons = () => {
+const FinishedButtonsPlayMode = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -41,4 +41,4 @@ const FinishedButtons = () => {
   return null;
 }
 
-export default FinishedButtons;
+export default FinishedButtonsPlayMode;

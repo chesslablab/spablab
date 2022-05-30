@@ -2,10 +2,10 @@ import React from 'react';
 import { Box, Container, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import GameClock from './GameClock/GameClock';
-import FinishedButtons from './PlayMode/FinishedButtons';
-import FinishedDialogs from './PlayMode/FinishedDialogs';
-import InvitedButtons from './PlayMode/InvitedButtons';
-import InvitedDialogs from './PlayMode/InvitedDialogs';
+import FinishedButtonsPlayMode from './PlayMode/FinishedButtonsPlayMode';
+import FinishedDialogsPlayMode from './PlayMode/FinishedDialogsPlayMode';
+import InvitedButtonsPlayMode from './PlayMode/InvitedButtonsPlayMode';
+import InvitedDialogsPlayMode from './PlayMode/InvitedDialogsPlayMode';
 import MoveValidatorTable from './Table/MoveValidatorTable.js';
 import SecondaryButtons from './SecondaryButtons.js';
 import SecondaryDialogs from './SecondaryDialogs';
@@ -46,12 +46,12 @@ const Game = ({ props }) => {
         <GameClock />
       </Grid>
       <Grid item xs={12}>
-        <InvitedButtons />
-        <FinishedButtons />
+        <InvitedButtonsPlayMode />
+        <FinishedButtonsPlayMode />
       </Grid>
       <SecondaryDialogs />
-      <InvitedDialogs />
-      <FinishedDialogs />
+      <InvitedDialogsPlayMode />
+      <FinishedDialogsPlayMode />
     </Grid>
   );
 };

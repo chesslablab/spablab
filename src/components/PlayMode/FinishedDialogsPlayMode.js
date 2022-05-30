@@ -2,7 +2,7 @@ import React from 'react';
 import RematchAcceptDialog from '../Dialog/RematchAcceptDialog';
 import RematchOfferDialog from '../Dialog/RematchOfferDialog';
 
-const FinishedDialogs = () => {
+const FinishedDialogsPlayMode = () => {
   return (
     <div>
       <RematchAcceptDialog />
@@ -11,4 +11,4 @@ const FinishedDialogs = () => {
   );
 }
 
-export default FinishedDialogs;
+export default FinishedDialogsPlayMode;
