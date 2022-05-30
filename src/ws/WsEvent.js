@@ -192,7 +192,8 @@ export default class WsEvent {
       }
       if (store.getState().mode.current === modeNames.ANALYSIS ||
         store.getState().mode.current === modeNames.LOADPGN ||
-        store.getState().mode.current === modeNames.LOADFEN
+        store.getState().mode.current === modeNames.LOADFEN ||
+        store.getState().mode.current === modeNames.GRANDMASTER
       ) {
         WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
@@ -389,6 +390,7 @@ export default class WsEvent {
         }
       });
       dispatch({ type: infoAlertActionTypes.CLOSE });
+      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch({ type: gameTableActionTypes.CLOSE });
       dispatch({
@@ -400,7 +402,7 @@ export default class WsEvent {
       dispatch({
         type: infoAlertActionTypes.DISPLAY,
         payload: {
-          info: 'Hmm. This line was not found in the database.'
+          info: 'This move was not found in the database.'
         }
       });
     }
