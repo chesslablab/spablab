@@ -58,6 +58,14 @@ const reducer = (state = initialState, action) => {
           ...action.payload.play
         }
       };
+    case modeActionTypes.GRANDMASTER_MOVETEXT:
+      return {
+        ...state,
+        grandmaster: {
+          ...state.grandmaster,
+          movetext: action.payload.movetext
+        }
+      };
     case modeActionTypes.PLAY_ACCEPT:
       const expiryTimestamp = new Date();
       expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(state.play.jwt_decoded.min) * 60);
@@ -169,14 +177,6 @@ const reducer = (state = initialState, action) => {
         play: {
           ...state.play,
           leave: Wording.verb.ACCEPT.toLowerCase()
-        }
-      };
-    case modeActionTypes.GRANDMASTER_MOVETEXT:
-      return {
-        ...state,
-        grandmaster: {
-          ...state.grandmaster,
-          movetext: action.payload.movetext
         }
       };
     default:
