@@ -4,8 +4,8 @@ import { makeStyles } from '@mui/styles';
 import GameClock from './GameClock/GameClock';
 import FinishedButtonsPlayMode from './PlayMode/FinishedButtonsPlayMode';
 import FinishedDialogsPlayMode from './PlayMode/FinishedDialogsPlayMode';
-import InvitedButtonsPlayMode from './PlayMode/InvitedButtonsPlayMode';
-import InvitedDialogsPlayMode from './PlayMode/InvitedDialogsPlayMode';
+import StartedButtonsPlayMode from './PlayMode/StartedButtonsPlayMode';
+import StartedDialogsPlayMode from './PlayMode/StartedDialogsPlayMode';
 import MoveValidatorTable from './Table/MoveValidatorTable.js';
 import SecondaryButtons from './SecondaryButtons.js';
 import SecondaryDialogs from './SecondaryDialogs';
@@ -46,11 +46,11 @@ const Game = ({ props }) => {
         <GameClock />
       </Grid>
       <Grid item xs={12}>
-        <InvitedButtonsPlayMode />
+        <StartedButtonsPlayMode />
         <FinishedButtonsPlayMode />
       </Grid>
       <SecondaryDialogs />
-      <InvitedDialogsPlayMode />
+      <StartedDialogsPlayMode />
       <FinishedDialogsPlayMode />
     </Grid>
   );

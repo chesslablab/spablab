@@ -5,7 +5,7 @@ import ResignAcceptDialog from '../Dialog/ResignAcceptDialog';
 import TakebackAcceptDialog from '../Dialog/TakebackAcceptDialog';
 import TakebackOfferDialog from '../Dialog/TakebackOfferDialog';
 
-const InvitedDialogsPlayMode = () => {
+const StartedDialogsPlayMode = () => {
   return (
     <div>
       <DrawAcceptDialog />
@@ -17,4 +17,4 @@ const InvitedDialogsPlayMode = () => {
   );
 }
 
-export default InvitedDialogsPlayMode;
+export default StartedDialogsPlayMode;
