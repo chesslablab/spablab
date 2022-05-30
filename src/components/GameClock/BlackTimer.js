@@ -14,7 +14,7 @@ const BlackTimer = () => {
     expiryTimestamp,
     onExpire: () => {
       dispatch({
-        type: modeActionTypes.TIMER_OVER,
+        type: modeActionTypes.PLAY_TIMER_OVER,
         payload: {
           color: Pgn.symbol.BLACK
         }

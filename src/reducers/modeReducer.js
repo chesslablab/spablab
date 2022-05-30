@@ -58,7 +58,7 @@ const reducer = (state = initialState, action) => {
           ...action.payload.play
         }
       };
-    case modeActionTypes.ACCEPT_PLAY:
+    case modeActionTypes.PLAY_ACCEPT:
       const expiryTimestamp = new Date();
       expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(state.play.jwt_decoded.min) * 60);
       return {
@@ -72,7 +72,7 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    case modeActionTypes.TAKEBACK_ACCEPT:
+    case modeActionTypes.PLAY_TAKEBACK_ACCEPT:
       return {
         ...state,
         play: {
@@ -80,7 +80,7 @@ const reducer = (state = initialState, action) => {
           takeback: Wording.verb.ACCEPT.toLowerCase()
         }
       };
-    case modeActionTypes.TAKEBACK_DECLINE:
+    case modeActionTypes.PLAY_TAKEBACK_DECLINE:
       return {
         ...state,
         play: {
@@ -88,7 +88,7 @@ const reducer = (state = initialState, action) => {
           takeback: null
         }
       };
-    case modeActionTypes.TAKEBACK_PROPOSE:
+    case modeActionTypes.PLAY_TAKEBACK_PROPOSE:
       return {
         ...state,
         play: {
@@ -96,7 +96,7 @@ const reducer = (state = initialState, action) => {
           takeback: Wording.verb.PROPOSE.toLowerCase()
         }
       };
-    case modeActionTypes.DRAW_ACCEPT:
+    case modeActionTypes.PLAY_DRAW_ACCEPT:
       return {
         ...state,
         play: {
@@ -104,7 +104,7 @@ const reducer = (state = initialState, action) => {
           draw: Wording.verb.ACCEPT.toLowerCase()
         }
       };
-    case modeActionTypes.DRAW_DECLINE:
+    case modeActionTypes.PLAY_DRAW_DECLINE:
       return {
         ...state,
         play: {
@@ -112,7 +112,7 @@ const reducer = (state = initialState, action) => {
           draw: null
         }
       };
-    case modeActionTypes.DRAW_PROPOSE:
+    case modeActionTypes.PLAY_DRAW_PROPOSE:
       return {
         ...state,
         play: {
@@ -120,7 +120,7 @@ const reducer = (state = initialState, action) => {
           draw: Wording.verb.PROPOSE.toLowerCase()
         }
       };
-    case modeActionTypes.RESIGN_ACCEPT:
+    case modeActionTypes.PLAY_RESIGN_ACCEPT:
       return {
         ...state,
         play: {
@@ -128,7 +128,7 @@ const reducer = (state = initialState, action) => {
           resign: Wording.verb.ACCEPT.toLowerCase()
         }
       };
-    case modeActionTypes.TIMER_OVER:
+    case modeActionTypes.PLAY_TIMER_OVER:
       return {
         ...state,
         play: {
@@ -139,7 +139,7 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    case modeActionTypes.REMATCH_ACCEPT:
+    case modeActionTypes.PLAY_REMATCH_ACCEPT:
       return {
         ...state,
         play: {
@@ -147,7 +147,7 @@ const reducer = (state = initialState, action) => {
           rematch: Wording.verb.ACCEPT.toLowerCase()
         }
       };
-    case modeActionTypes.REMATCH_DECLINE:
+    case modeActionTypes.PLAY_REMATCH_DECLINE:
       return {
         ...state,
         play: {
@@ -155,7 +155,7 @@ const reducer = (state = initialState, action) => {
           rematch: null
         }
       };
-    case modeActionTypes.REMATCH_PROPOSE:
+    case modeActionTypes.PLAY_REMATCH_PROPOSE:
       return {
         ...state,
         play: {
@@ -163,7 +163,7 @@ const reducer = (state = initialState, action) => {
           rematch: Wording.verb.PROPOSE.toLowerCase()
         }
       };
-    case modeActionTypes.LEAVE_ACCEPT:
+    case modeActionTypes.PLAY_LEAVE_ACCEPT:
       return {
         ...state,
         play: {

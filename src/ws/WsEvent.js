@@ -142,7 +142,7 @@ export default class WsEvent {
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
       dispatch({ type: boardActionTypes.FLIP });
     }
-    dispatch({ type: modeActionTypes.ACCEPT_PLAY });
+    dispatch({ type: modeActionTypes.PLAY_ACCEPT });
     dispatch({ type: playOnlineDialogActionTypes.CLOSE });
   }
 
@@ -244,7 +244,7 @@ export default class WsEvent {
   }
 
   static onTakebackAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_TAKEBACK_ACCEPT });
   }
 
   static onDrawPropose = () => dispatch => {
@@ -254,7 +254,7 @@ export default class WsEvent {
   }
 
   static onDrawAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.DRAW_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_DRAW_ACCEPT });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -264,7 +264,7 @@ export default class WsEvent {
   }
 
   static onDrawDecline = () => dispatch => {
-    dispatch({ type: modeActionTypes.DRAW_DECLINE });
+    dispatch({ type: modeActionTypes.PLAY_DRAW_DECLINE });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -278,11 +278,11 @@ export default class WsEvent {
       type: boardActionTypes.UNDO_MOVE,
       payload: data['/undo_move']
     });
-    dispatch({ type: modeActionTypes.TAKEBACK_DECLINE });
+    dispatch({ type: modeActionTypes.PLAY_TAKEBACK_DECLINE });
   }
 
   static onResignAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.RESIGN_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_RESIGN_ACCEPT });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -298,7 +298,7 @@ export default class WsEvent {
   }
 
   static onRematchAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.REMATCH_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_REMATCH_ACCEPT });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -308,7 +308,7 @@ export default class WsEvent {
   }
 
   static onRematchDecline = () => dispatch => {
-    dispatch({ type: modeActionTypes.REMATCH_DECLINE });
+    dispatch({ type: modeActionTypes.PLAY_REMATCH_DECLINE });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -318,7 +318,7 @@ export default class WsEvent {
   }
 
   static onLeaveAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.LEAVE_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_LEAVE_ACCEPT });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
