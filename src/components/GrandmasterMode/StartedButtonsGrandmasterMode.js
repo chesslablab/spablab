@@ -17,7 +17,7 @@ const StartedButtonsGrandmasterMode = () => {
   const dispatch = useDispatch();
 
   if (state.mode.current === modeNames.GRANDMASTER) {
-    if (!state.mode.grandmaster.movetext) {
+    if (state.board.movetext && !state.mode.grandmaster.movetext) {
       return (
         <ButtonGroup
           className={classes.buttonGroup}
