@@ -278,7 +278,13 @@ export default class WsEvent {
       type: boardActionTypes.UNDO_MOVE,
       payload: data['/undo_move']
     });
-    dispatch({ type: modeActionTypes.PLAY_TAKEBACK_DECLINE });
+    if (data['/undo_move'].mode === modeNames.GRANDMASTER) {
+      dispatch({ type: progressDialogActionTypes.OPEN });
+      WsAction.response(store.getState());
+      WsAction.response(store.getState());
+    } else if (data['/undo_move'].mode === modeNames.PLAY) {
+      dispatch({ type: modeActionTypes.PLAY_TAKEBACK_DECLINE });
+    }
   }
 
   static onResignAccept = () => dispatch => {
