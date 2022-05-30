@@ -1,6 +1,6 @@
 const drawAcceptDialogActionTypes = {
-	CLOSE: 'CLOSE_DRAW_ACCEPT_DIALOG',
-	OPEN: 'OPEN_DRAW_ACCEPT_DIALOG'
+	CLOSE: 'CLOSE_PLAY_DRAW_ACCEPT_DIALOG',
+	OPEN: 'OPEN_PLAY_DRAW_ACCEPT_DIALOG'
 };
 
 export default drawAcceptDialogActionTypes;

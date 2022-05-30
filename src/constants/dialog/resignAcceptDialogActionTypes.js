@@ -1,6 +1,6 @@
 const resignAcceptDialogActionTypes = {
-	CLOSE: 'CLOSE_RESIGN_ACCEPT_DIALOG',
-	OPEN: 'OPEN_RESIGN_ACCEPT_DIALOG'
+	CLOSE: 'CLOSE_PLAY_RESIGN_ACCEPT_DIALOG',
+	OPEN: 'OPEN_PLAY_RESIGN_ACCEPT_DIALOG'
 };
 
 export default resignAcceptDialogActionTypes;

@@ -13,7 +13,7 @@ const DrawOfferDialog = () => {
   const handleDrawOffer = (event) => {
     event.preventDefault();
     WsAction.draw(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
-      dispatch({ type: modeActionTypes.DRAW_PROPOSE });
+      dispatch({ type: modeActionTypes.PLAY_DRAW_PROPOSE });
       dispatch({ type: drawOfferDialogActionTypes.CLOSE });
     });
   };

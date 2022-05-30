@@ -142,7 +142,7 @@ export default class WsEvent {
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
       dispatch({ type: boardActionTypes.FLIP });
     }
-    dispatch({ type: modeActionTypes.ACCEPT_PLAY });
+    dispatch({ type: modeActionTypes.PLAY_ACCEPT });
     dispatch({ type: playOnlineDialogActionTypes.CLOSE });
   }
 
@@ -192,7 +192,8 @@ export default class WsEvent {
       }
       if (store.getState().mode.current === modeNames.ANALYSIS ||
         store.getState().mode.current === modeNames.LOADPGN ||
-        store.getState().mode.current === modeNames.LOADFEN
+        store.getState().mode.current === modeNames.LOADFEN ||
+        store.getState().mode.current === modeNames.GRANDMASTER
       ) {
         WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
@@ -244,7 +245,7 @@ export default class WsEvent {
   }
 
   static onTakebackAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.TAKEBACK_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_TAKEBACK_ACCEPT });
   }
 
   static onDrawPropose = () => dispatch => {
@@ -254,7 +255,7 @@ export default class WsEvent {
   }
 
   static onDrawAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.DRAW_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_DRAW_ACCEPT });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -264,7 +265,7 @@ export default class WsEvent {
   }
 
   static onDrawDecline = () => dispatch => {
-    dispatch({ type: modeActionTypes.DRAW_DECLINE });
+    dispatch({ type: modeActionTypes.PLAY_DRAW_DECLINE });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -278,11 +279,17 @@ export default class WsEvent {
       type: boardActionTypes.UNDO_MOVE,
       payload: data['/undo_move']
     });
-    dispatch({ type: modeActionTypes.TAKEBACK_DECLINE });
+    if (data['/undo_move'].mode === modeNames.GRANDMASTER) {
+      dispatch({ type: progressDialogActionTypes.OPEN });
+      WsAction.response(store.getState());
+      WsAction.response(store.getState());
+    } else if (data['/undo_move'].mode === modeNames.PLAY) {
+      dispatch({ type: modeActionTypes.PLAY_TAKEBACK_DECLINE });
+    }
   }
 
   static onResignAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.RESIGN_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_RESIGN_ACCEPT });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -298,7 +305,7 @@ export default class WsEvent {
   }
 
   static onRematchAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.REMATCH_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_REMATCH_ACCEPT });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -308,7 +315,7 @@ export default class WsEvent {
   }
 
   static onRematchDecline = () => dispatch => {
-    dispatch({ type: modeActionTypes.REMATCH_DECLINE });
+    dispatch({ type: modeActionTypes.PLAY_REMATCH_DECLINE });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -318,7 +325,7 @@ export default class WsEvent {
   }
 
   static onLeaveAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.LEAVE_ACCEPT });
+    dispatch({ type: modeActionTypes.PLAY_LEAVE_ACCEPT });
     dispatch({
       type: infoAlertActionTypes.DISPLAY,
       payload: {
@@ -376,14 +383,28 @@ export default class WsEvent {
           fen: data['/response'].state.fen,
         }
       });
+      dispatch({
+        type: modeActionTypes.GRANDMASTER_MOVETEXT,
+        payload: {
+          movetext: data['/response'].state.movetext
+        }
+      });
+      dispatch({ type: infoAlertActionTypes.CLOSE });
+      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
+      dispatch({ type: gameTableActionTypes.CLOSE });
+      dispatch({
+        type: modeActionTypes.GRANDMASTER_MOVETEXT,
+        payload: {
+          movetext: null
+        }
+      });
       dispatch({
         type: infoAlertActionTypes.DISPLAY,
         payload: {
-          info: 'Hmm. This line was not found in the database.'
+          info: 'This move was not found in the database.'
         }
       });
-      dispatch({ type: gameTableActionTypes.CLOSE });
     }
   }
 

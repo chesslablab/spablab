@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const InvitedButtons = () => {
+const StartedButtonsPlayMode = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -49,4 +49,4 @@ const InvitedButtons = () => {
   return null;
 }
 
-export default InvitedButtons;
+export default StartedButtonsPlayMode;

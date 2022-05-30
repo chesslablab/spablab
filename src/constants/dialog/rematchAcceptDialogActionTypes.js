@@ -1,6 +1,6 @@
 const rematchAcceptDialogActionTypes = {
-	CLOSE: 'CLOSE_REMATCH_ACCEPT_DIALOG',
-	OPEN: 'OPEN_REMATCH_ACCEPT_DIALOG'
+	CLOSE: 'CLOSE_PLAY_REMATCH_ACCEPT_DIALOG',
+	OPEN: 'OPEN_PLAY_REMATCH_ACCEPT_DIALOG'
 };
 
 export default rematchAcceptDialogActionTypes;
