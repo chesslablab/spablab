@@ -100,20 +100,23 @@ The chessboard just sends messages to a WebSocket server so make sure the chess 
 $ php cli/ws-server.php
 Welcome to PHP Chess Server
 Commands available:
-/accept {"id":"id"} Accepts a friend request to play a game.
+/accept {"id":"id"} Accepts a request to play a game.
 /draw {"action":["accept","decline","propose"]} Allows to offer a draw.
 /heuristics Takes a balanced heuristic picture of the current game.
 /heuristics_bar {"fen":"string"} Takes an expanded heuristic picture of the current position.
+/leave {"action":["accept"]} Allows to leave a game.
 /legal_sqs {"position":"string"} Returns the legal squares of a piece.
+/online_games Returns the online games waiting to be accepted.
 /play_fen {"fen":"string"} Plays a chess move in shortened FEN format.
 /quit Quits a game.
+/random_game Starts a random game.
 /rematch {"action":["accept","decline","propose"]} Allows to offer a rematch.
 /resign {"action":["accept"]} Allows to resign a game.
-/response Returns a computer response to the current position.
+/grandmaster Returns a computer generated response to the current position.
 /restart {"hash":"string"} Restarts a game.
-/start {"mode":["analysis","grandmaster","loadfen","loadpgn","playfriend"],"fen":"string","movetext":"string","color":["w","b"],"min":"int","increment":"int"} Starts a new game.
+/start {"mode":["analysis","grandmaster","loadfen","loadpgn","play"],"fen":"string","movetext":"string","color":["w","b"],"settings":"string"} Starts a new game.
 /takeback {"action":["accept","decline","propose"]} Allows to manage a takeback.
-/undo_move Undoes the last move.
+/undo Undoes the last move.
 
 Listening to commands...
 ```
