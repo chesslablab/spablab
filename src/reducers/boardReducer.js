@@ -151,7 +151,7 @@ const reducer = (state = initialState, action) => {
         turn: newTurn,
         history: newHistory
       }
-    case boardActionTypes.RESPONSE:
+    case boardActionTypes.GRANDMASTER:
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
       return {
         ...state,

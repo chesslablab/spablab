@@ -375,7 +375,7 @@ export default class WsEvent {
         }
       });
       dispatch({
-        type: boardActionTypes.RESPONSE,
+        type: boardActionTypes.GRANDMASTER,
         payload: {
           turn: data['/grandmaster'].state.turn,
           isCheck: data['/grandmaster'].state.isCheck,

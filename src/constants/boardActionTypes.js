@@ -12,7 +12,7 @@ const boardActionTypes = {
 	UNDO_MOVE: 'UNDO_MOVE',
 	VALID_MOVE: 'VALID_MOVE',
 	PLAY_MOVE: 'PLAY_MOVE',
-	RESPONSE: 'RESPONSE'
+	GRANDMASTER: 'GRANDMASTER'
 };
 
 export default boardActionTypes;
