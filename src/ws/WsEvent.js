@@ -190,13 +190,6 @@ export default class WsEvent {
           payload: payload
         });
       }
-      if (store.getState().mode.current === modeNames.ANALYSIS ||
-        store.getState().mode.current === modeNames.LOADPGN ||
-        store.getState().mode.current === modeNames.LOADFEN ||
-        store.getState().mode.current === modeNames.GRANDMASTER
-      ) {
-        WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
-      }
       if (store.getState().mode.current === modeNames.ANALYSIS) {
         dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
         let rows = Opening.analysis(payload.movetext);
@@ -212,7 +205,15 @@ export default class WsEvent {
         }
       } else if (store.getState().mode.current === modeNames.GRANDMASTER) {
         dispatch({ type: progressDialogActionTypes.OPEN });
-        WsAction.response(store.getState());
+        WsAction.grandmaster(store.getState());
+      }
+      if (
+        store.getState().mode.current === modeNames.ANALYSIS ||
+        store.getState().mode.current === modeNames.LOADPGN ||
+        store.getState().mode.current === modeNames.LOADFEN ||
+        store.getState().mode.current === modeNames.GRANDMASTER
+      ) {
+        WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
     }
   }
@@ -281,8 +282,8 @@ export default class WsEvent {
     });
     if (data['/undo_move'].mode === modeNames.GRANDMASTER) {
       dispatch({ type: progressDialogActionTypes.OPEN });
-      WsAction.response(store.getState());
-      WsAction.response(store.getState());
+      WsAction.grandmaster(store.getState());
+      WsAction.grandmaster(store.getState());
     } else if (data['/undo_move'].mode === modeNames.PLAY) {
       dispatch({ type: modeActionTypes.PLAY_TAKEBACK_DECLINE });
     }
@@ -364,29 +365,29 @@ export default class WsEvent {
     }
   }
 
-  static onResponse = (data) => dispatch => {
+  static onGrandmaster = (data) => dispatch => {
     dispatch({ type: progressDialogActionTypes.CLOSE });
-    if (data['/response']) {
+    if (data['/grandmaster']) {
       dispatch({
         type: gameTableActionTypes.DISPLAY,
         payload: {
-          game: data['/response'].game
+          game: data['/grandmaster'].game
         }
       });
       dispatch({
         type: boardActionTypes.RESPONSE,
         payload: {
-          turn: data['/response'].state.turn,
-          isCheck: data['/response'].state.isCheck,
-          isMate: data['/response'].state.isMate,
-          movetext: data['/response'].state.movetext,
-          fen: data['/response'].state.fen,
+          turn: data['/grandmaster'].state.turn,
+          isCheck: data['/grandmaster'].state.isCheck,
+          isMate: data['/grandmaster'].state.isMate,
+          movetext: data['/grandmaster'].state.movetext,
+          fen: data['/grandmaster'].state.fen,
         }
       });
       dispatch({
         type: modeActionTypes.GRANDMASTER_MOVETEXT,
         payload: {
-          movetext: data['/response'].state.movetext
+          movetext: data['/grandmaster'].state.movetext
         }
       });
       dispatch({ type: infoAlertActionTypes.CLOSE });

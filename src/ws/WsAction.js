@@ -92,8 +92,8 @@ export default class WsAction {
     return await state.server.ws.send(`/restart ${state.mode.play.hash}`);
   }
 
-  static response = async (state) => {
-    return await state.server.ws.send(`/response`);
+  static grandmaster = async (state) => {
+    return await state.server.ws.send(`/grandmaster`);
   }
 
   static randomGame = async (state) => {
