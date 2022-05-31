@@ -76,8 +76,8 @@ export default class WsAction {
     return await state.server.ws.send(`/draw ${action}`);
   }
 
-  static undoMove = async (state) => {
-    return await state.server.ws.send(`/undo_move`);
+  static undo = async (state) => {
+    return await state.server.ws.send(`/undo`);
   }
 
   static resign = async (state, action) => {

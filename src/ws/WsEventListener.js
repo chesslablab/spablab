@@ -83,8 +83,8 @@ export default class WsEventListener {
       case '/heuristics_bar' === cmd:
         dispatch(WsEvent.onHeuristicsBar(data));
         break;
-      case '/undo_move' === cmd:
-        dispatch(WsEvent.onUndoMove(data));
+      case '/undo' === cmd:
+        dispatch(WsEvent.onUndo(data));
         break;
       case '/resign' === cmd:
         if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {

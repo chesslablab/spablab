@@ -275,16 +275,16 @@ export default class WsEvent {
     });
   }
 
-  static onUndoMove = (data) => dispatch => {
+  static onUndo = (data) => dispatch => {
     dispatch({
-      type: boardActionTypes.UNDO_MOVE,
-      payload: data['/undo_move']
+      type: boardActionTypes.UNDO,
+      payload: data['/undo']
     });
-    if (data['/undo_move'].mode === modeNames.GRANDMASTER) {
+    if (data['/undo'].mode === modeNames.GRANDMASTER) {
       dispatch({ type: progressDialogActionTypes.OPEN });
       WsAction.grandmaster(store.getState());
       WsAction.grandmaster(store.getState());
-    } else if (data['/undo_move'].mode === modeNames.PLAY) {
+    } else if (data['/undo'].mode === modeNames.PLAY) {
       dispatch({ type: modeActionTypes.PLAY_TAKEBACK_DECLINE });
     }
   }

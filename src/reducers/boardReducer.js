@@ -119,7 +119,7 @@ const reducer = (state = initialState, action) => {
           en_passant: action.payload.en_passant
         }
       }
-    case boardActionTypes.UNDO_MOVE:
+    case boardActionTypes.UNDO:
       newHistory.splice(-1);
       return {
         ...state,

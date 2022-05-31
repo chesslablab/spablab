@@ -27,7 +27,7 @@ const StartedButtonsGrandmasterMode = () => {
           fullWidth={true}
         >
           <Button onClick={() => {
-              WsAction.undoMove(state);
+              WsAction.undo(state);
           }}>
             Undo move
           </Button>

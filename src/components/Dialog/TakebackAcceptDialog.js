@@ -13,7 +13,7 @@ const TakebackAcceptDialog = () => {
   const handleTakebackAccept = (event) => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
-      WsAction.undoMove(state).then(() => {
+      WsAction.undo(state).then(() => {
         dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
       });
     });
