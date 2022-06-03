@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import { openingSearchEcoDialogClose } from '../../features/dialog/openingSearchEcoDialogSlice';
+import { openingSearchMovetextDialogClose } from '../../features/dialog/openingSearchMovetextDialogSlice';
 import { openingSearchNameDialogClose } from '../../features/dialog/openingSearchNameDialogSlice';
 import { progressDialogOpen } from '../../features/dialog/progressDialogSlice';
 import WsAction from '../../ws/WsAction';
@@ -14,7 +14,7 @@ const ChessOpeningSearchResultTable = ({props}) => {
 
   const handleLoad = (movetext) => {
     dispatch(openingSearchEcoDialogClose());
-    dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
+    dispatch(openingSearchMovetextDialogClose());
     dispatch(openingSearchNameDialogClose());
     dispatch(progressDialogOpen());
     WsAction.quit(state).then(() => WsAction.startLoadpgn(state, movetext));

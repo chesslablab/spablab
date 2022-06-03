@@ -7,13 +7,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import { loadFenDialogOpen } from '../features/dialog/loadFenDialogSlice';
 import { loadPgnDialogOpen } from '../features/dialog/loadPgnDialogSlice';
 import { openingSearchEcoDialogOpen } from '../features/dialog/openingSearchEcoDialogSlice';
+import { openingSearchMovetextDialogOpen } from '../features/dialog/openingSearchMovetextDialogSlice';
 import { openingSearchNameDialogOpen } from '../features/dialog/openingSearchNameDialogSlice';
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
@@ -193,7 +193,7 @@ const MainButtons = () => {
           Name
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.OPEN });
+          dispatch(openingSearchMovetextDialogOpen());
           handleCloseOpeningSearch();
         }}>
           Movetext

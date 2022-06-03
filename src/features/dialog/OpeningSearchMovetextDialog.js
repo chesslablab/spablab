@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ChessOpeningSearchResultTable from '../Table/ChessOpeningSearchResultTable.js';
-import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
+import { openingSearchMovetextDialogClose } from './openingSearchMovetextDialogSlice';
+import ChessOpeningSearchResultTable from '../../components/Table/ChessOpeningSearchResultTable.js';
 import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
 import Opening from '../../utils/Opening.js';
 
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ChessOpeningSearchMovetextDialog = ({ props }) => {
+const OpeningSearchMovetextDialog = ({ props }) => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -24,7 +24,7 @@ const ChessOpeningSearchMovetextDialog = ({ props }) => {
     const openings = Opening.byMovetext(event.target.elements.movetext.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
+      dispatch(openingSearchMovetextDialogClose());
       dispatch(infoAlertDisplay({ info: 'No results were found. Please try again.' }));
     }
   }
@@ -39,7 +39,7 @@ const ChessOpeningSearchMovetextDialog = ({ props }) => {
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
+              dispatch(openingSearchMovetextDialogClose());
             }}>
               Cancel
             </Button>
@@ -51,4 +51,4 @@ const ChessOpeningSearchMovetextDialog = ({ props }) => {
   );
 }
 
-export default ChessOpeningSearchMovetextDialog;
+export default OpeningSearchMovetextDialog;
