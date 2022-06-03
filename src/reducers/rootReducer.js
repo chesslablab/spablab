@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import boardReducer from './boardReducer';
 import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
@@ -27,7 +26,7 @@ import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer
 import gameTableReducer from './gameTableReducer';
 import watchDialogReducer from './watchDialogReducer';
 
-const rootReducer = combineReducers({
+const rootReducer = {
   board: boardReducer,
   heuristicsBar: heuristicsBarReducer,
   history: historyReducer,
@@ -55,6 +54,6 @@ const rootReducer = combineReducers({
   chessOpeningAnalysisTable: chessOpeningAnalysisTableReducer,
   gameTable: gameTableReducer,
   watchDialog: watchDialogReducer
-});
+};
 
 export default rootReducer;
