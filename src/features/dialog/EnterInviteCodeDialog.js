@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, TextField } from '@mui/material';
-import enterInviteCodeDialogActionTypes from '../../constants/dialog/enterInviteCodeDialogActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
+import { enterInviteCodeDialogClose } from '../../features/dialog/enterInviteCodeDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const EnterInviteCodeDialog = () => {
@@ -14,7 +14,7 @@ const EnterInviteCodeDialog = () => {
     WsAction.quit(state).then(() => {
       WsAction.accept(state, event.target.elements.hash.value).then(() => {
         dispatch({ type: modeActionTypes.SET_ANALYSIS });
-        dispatch({ type: enterInviteCodeDialogActionTypes.CLOSE });
+        dispatch(enterInviteCodeDialogClose());
       });
     });
   };
@@ -26,7 +26,7 @@ const EnterInviteCodeDialog = () => {
           <TextField fullWidth required name="hash" label="Invite code" />
           <DialogActions>
             <Button type="submit">Play</Button>
-            <Button onClick={() => dispatch({ type: enterInviteCodeDialogActionTypes.CLOSE })}>
+            <Button onClick={() => dispatch(enterInviteCodeDialogClose())}>
               Cancel
             </Button>
           </DialogActions>
