@@ -21,9 +21,9 @@ import playOnlineDialogReducer from './playOnlineDialogReducer';
 import openingSearchEcoDialogReducer from './openingSearchEcoDialogReducer';
 import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
-import progressDialogReducer from './progressDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 import gameTableReducer from './gameTableReducer';
+import progressDialogReducer from '../features/dialog/progressDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
 
 const rootReducer = {

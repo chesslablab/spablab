@@ -15,7 +15,7 @@ import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCod
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
 import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
-import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
+import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
@@ -83,7 +83,7 @@ const MainButtons = () => {
       <Button
         startIcon={<LanguageIcon />}
         onClick={() => {
-          dispatch({ type: progressDialogActionTypes.OPEN });
+          dispatch(progressDialogOpen());
           WsAction.onlineGames(state);
         }}
       >
@@ -161,7 +161,7 @@ const MainButtons = () => {
           Guess the Move
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch({ type: progressDialogActionTypes.OPEN });
+          dispatch(progressDialogOpen());
           WsAction.quit(state).then(() => WsAction.randomGame(state));
           handleCloseTraining();
         }}>

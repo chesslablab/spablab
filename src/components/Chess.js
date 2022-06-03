@@ -8,7 +8,7 @@ import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetex
 import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
 import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
-import ProgressDialog from './Dialog/ProgressDialog';
+import ProgressDialog from '../features/dialog/ProgressDialog';
 import LoadFenDialog from './Dialog/LoadFenDialog';
 import LoadPgnDialog from './Dialog/LoadPgnDialog';
 import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';

@@ -7,7 +7,10 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
-import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
+import {
+  progressDialogClose,
+  progressDialogOpen
+} from '../features/dialog/progressDialogSlice';
 import boardActionTypes from '../constants/boardActionTypes';
 import WsAction from '../ws/WsAction';
 
@@ -34,7 +37,7 @@ const SecondaryButtons = ({props}) => {
   }
 
   const handleDownloadMp4 = async () => {
-    dispatch({ type: progressDialogActionTypes.OPEN });
+    dispatch(progressDialogOpen());
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
       method: 'POST',
       body: JSON.stringify({ movetext: state.board.movetext })
@@ -49,7 +52,7 @@ const SecondaryButtons = ({props}) => {
       a.click();
       a.remove();
     })
-    .finally(() => dispatch({ type: progressDialogActionTypes.CLOSE }));
+    .finally(() => dispatch(progressDialogClose()));
   }
 
   return (
@@ -78,7 +81,7 @@ const SecondaryButtons = ({props}) => {
         title="Heuristics"
         aria-label="heuristics"
         onClick={() => {
-          dispatch({ type: progressDialogActionTypes.OPEN });
+          dispatch(progressDialogOpen());
           WsAction.heuristics(state);
         }}
       >

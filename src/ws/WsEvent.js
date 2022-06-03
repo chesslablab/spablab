@@ -4,7 +4,6 @@ import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDia
 import heuristicsDialogActionTypes from '../constants/dialog/heuristicsDialogActionTypes';
 import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
-import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import gameTableActionTypes from '../constants/table/gameTableActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
@@ -12,6 +11,10 @@ import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
+import {
+  progressDialogClose,
+  progressDialogOpen
+} from '../features/dialog/progressDialogSlice';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Opening from '../utils/Opening.js';
@@ -25,7 +28,7 @@ const reset = (dispatch) => {
   dispatch({ type: infoAlertActionTypes.CLOSE });
   dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
   dispatch({ type: boardActionTypes.START });
-  dispatch({ type: progressDialogActionTypes.CLOSE });
+  dispatch(progressDialogClose());
 };
 
 
@@ -147,7 +150,7 @@ export default class WsEvent {
   }
 
   static onOnlineGames = (data) => dispatch => {
-    dispatch({ type: progressDialogActionTypes.CLOSE });
+    dispatch(progressDialogClose());
     dispatch({
       type: playOnlineDialogActionTypes.OPEN,
       payload: data['/online_games']
@@ -204,7 +207,7 @@ export default class WsEvent {
           dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
         }
       } else if (store.getState().mode.current === modeNames.GRANDMASTER) {
-        dispatch({ type: progressDialogActionTypes.OPEN });
+        dispatch(progressDialogOpen());
         WsAction.grandmaster(store.getState());
       }
       if (
@@ -219,7 +222,7 @@ export default class WsEvent {
   }
 
   static onHeuristics = (data) => dispatch => {
-    dispatch({ type: progressDialogActionTypes.CLOSE });
+    dispatch(progressDialogClose());
     dispatch({
       type: heuristicsDialogActionTypes.OPEN,
       payload: {
@@ -281,7 +284,7 @@ export default class WsEvent {
       payload: data['/undo']
     });
     if (data['/undo'].mode === modeNames.GRANDMASTER) {
-      dispatch({ type: progressDialogActionTypes.OPEN });
+      dispatch(progressDialogOpen());
       WsAction.grandmaster(store.getState());
       WsAction.grandmaster(store.getState());
     } else if (data['/undo'].mode === modeNames.PLAY) {
@@ -366,7 +369,7 @@ export default class WsEvent {
   }
 
   static onGrandmaster = (data) => dispatch => {
-    dispatch({ type: progressDialogActionTypes.CLOSE });
+    dispatch(progressDialogClose());
     if (data['/grandmaster']) {
       dispatch({
         type: gameTableActionTypes.DISPLAY,

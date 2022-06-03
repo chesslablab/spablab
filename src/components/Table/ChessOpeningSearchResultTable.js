@@ -5,7 +5,7 @@ import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRo
 import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
-import progressDialogActionTypes from '../../constants/dialog/progressDialogActionTypes';
+import { progressDialogOpen } from '../../features/dialog/progressDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const ChessOpeningSearchResultTable = ({props}) => {
@@ -16,7 +16,7 @@ const ChessOpeningSearchResultTable = ({props}) => {
     dispatch({ type: chessOpeningSearchEcoDialogActionTypes.CLOSE });
     dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
     dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
-    dispatch({ type: progressDialogActionTypes.OPEN });
+    dispatch(progressDialogOpen());
     WsAction.quit(state).then(() => WsAction.startLoadpgn(state, movetext));
   };
 
