@@ -10,7 +10,7 @@ import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
 import ProgressDialog from '../features/dialog/ProgressDialog';
 import LoadFenDialog from './Dialog/LoadFenDialog';
-import LoadPgnDialog from './Dialog/LoadPgnDialog';
+import LoadPgnDialog from '../features/dialog/LoadPgnDialog';
 import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
 import PlayOnlineDialog from './Dialog/PlayOnlineDialog';
 import WatchDialog from '../features/dialog/WatchDialog';

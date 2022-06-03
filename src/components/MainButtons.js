@@ -13,8 +13,8 @@ import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOp
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
 import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
-import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
+import { loadPgnDialogOpen } from '../features/dialog/loadPgnDialogSlice';
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -136,7 +136,7 @@ const MainButtons = () => {
           FEN String
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch({ type: loadPgnDialogActionTypes.OPEN });
+          dispatch(loadPgnDialogOpen());
           handleCloseAnalysis();
         }}>
           PGN Movetext

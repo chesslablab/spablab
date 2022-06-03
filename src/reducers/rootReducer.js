@@ -13,7 +13,6 @@ import heuristicsDialogReducer from './heuristicsDialogReducer';
 import drawAcceptDialogReducer from './drawAcceptDialogReducer';
 import drawOfferDialogReducer from './drawOfferDialogReducer';
 import resignAcceptDialogReducer from './resignAcceptDialogReducer';
-import loadPgnDialogReducer from './loadPgnDialogReducer';
 import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
 import rematchOfferDialogReducer from './rematchOfferDialogReducer';
 import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer';
@@ -23,6 +22,7 @@ import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 import gameTableReducer from './gameTableReducer';
+import loadPgnDialogReducer from '../features/dialog/loadPgnDialogSlice';
 import progressDialogReducer from '../features/dialog/progressDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
 
