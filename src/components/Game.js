@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import GameClock from './GameClock/GameClock';
+import GameClock from '../features/gameClock/GameClock';
 import StartedButtonsGrandmasterMode from './GrandmasterMode/StartedButtonsGrandmasterMode';
 import FinishedButtonsPlayMode from './PlayMode/FinishedButtonsPlayMode';
 import FinishedDialogsPlayMode from './PlayMode/FinishedDialogsPlayMode';
