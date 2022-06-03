@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { openingSearchMovetextDialogClose } from './openingSearchMovetextDialogSlice';
-import ChessOpeningSearchResultTable from '../../components/Table/ChessOpeningSearchResultTable.js';
 import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
+import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
 import Opening from '../../utils/Opening.js';
 
 const useStyles = makeStyles({
@@ -45,7 +45,7 @@ const OpeningSearchMovetextDialog = ({ props }) => {
             </Button>
           </DialogActions>
         </form>
-        <ChessOpeningSearchResultTable props={{ openings: openings }} />
+        <OpeningSearchResultTable props={{ openings: openings }} />
       </DialogContent>
     </Dialog>
   );

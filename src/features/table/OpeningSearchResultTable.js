@@ -8,7 +8,7 @@ import { openingSearchNameDialogClose } from '../../features/dialog/openingSearc
 import { progressDialogOpen } from '../../features/dialog/progressDialogSlice';
 import WsAction from '../../ws/WsAction';
 
-const ChessOpeningSearchResultTable = ({props}) => {
+const OpeningSearchResultTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -48,4 +48,4 @@ const ChessOpeningSearchResultTable = ({props}) => {
   );
 }
 
-export default ChessOpeningSearchResultTable;
+export default OpeningSearchResultTable;
