@@ -1,10 +1,20 @@
 import html2canvas from 'html2canvas';
 import * as React from 'react';
-import { Alert, AppBar, Button, Dialog, IconButton, Toolbar, Typography, Slide } from '@mui/material/';
+import { Legend, LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
+import {
+  Alert,
+  AppBar,
+  Button,
+  Dialog,
+  Grid,
+  IconButton,
+  Toolbar,
+  Typography,
+  Slide
+} from '@mui/material/';
 import CloseIcon from '@mui/icons-material/Close';
-import Heuristics from "../Heuristics.js";
 import { useDispatch, useSelector } from "react-redux";
-import heuristicsDialogActionTypes from "../../constants/dialog/heuristicsDialogActionTypes";
+import { heuristicsDialogClose } from '../../features/dialog/heuristicsDialogSlice';
 
 const handleDownloadImage = async () => {
   const heuristics = document.getElementsByClassName('heuristic-picture')[0];
@@ -18,6 +28,49 @@ const handleDownloadImage = async () => {
   a.download = "heuristics.png";
   a.click();
   a.remove();
+};
+
+const initData = (dim) => {
+  let data = {};
+  dim.forEach(item => data[item] = []);
+  return data;
+};
+
+const charts = (data) => {
+  return Object.keys(data).map(key =>
+    <Grid key={key} item xs={12} sm={6} md={3}>
+      <ResponsiveContainer width="100%" aspect={4.0/3.0}>
+        <LineChart data={data[key]}>
+          <YAxis domain={[-1, 1]} />
+          <Legend />
+          <Line type="monotone" dataKey={key} stroke="#007a99" dot={false} strokeWidth={2} />
+        </LineChart>
+      </ResponsiveContainer>
+    </Grid>
+  );
+};
+
+const Heuristics = () => {
+  const state = useSelector(state => state);
+  if (state.heuristicsDialog.heuristics) {
+    const data = initData(state.heuristicsDialog.heuristics.dimensions);
+    state.heuristicsDialog.heuristics.balance.forEach((item, i) => {
+      state.heuristicsDialog.heuristics.dimensions.forEach((dimension, j) => {
+        data[dimension].push({
+          [dimension]: item[j]
+        });
+      });
+    });
+    return <Grid
+      className="heuristic-picture"
+      container
+      spacing={3}
+    >
+      {charts(data)}
+    </Grid>;
+  }
+
+  return null;
 }
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -32,7 +85,7 @@ const HeuristicsDialog = () => {
     <Dialog
       fullScreen
       open={state.heuristicsDialog.open}
-      onClose={() => dispatch({ type: heuristicsDialogActionTypes.CLOSE })}
+      onClose={() => dispatch(heuristicsDialogClose())}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -40,7 +93,7 @@ const HeuristicsDialog = () => {
          <IconButton
            edge="start"
            color="inherit"
-           onClick={() => dispatch({ type: heuristicsDialogActionTypes.CLOSE })}
+           onClick={() => dispatch(heuristicsDialogClose())}
            aria-label="close"
          >
            <CloseIcon />
@@ -51,7 +104,7 @@ const HeuristicsDialog = () => {
          <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
          </Button>
-         <Button autoFocus color="inherit" onClick={() => dispatch({ type: heuristicsDialogActionTypes.CLOSE })}>
+         <Button autoFocus color="inherit" onClick={() => dispatch(heuristicsDialogClose())}>
            Close
          </Button>
        </Toolbar>

@@ -1,6 +1,5 @@
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
-import heuristicsDialogActionTypes from '../constants/dialog/heuristicsDialogActionTypes';
 import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
@@ -14,6 +13,9 @@ import {
   infoAlertClose,
   infoAlertDisplay
 } from '../features/alert/infoAlertSlice';
+import {
+  heuristicsDialogOpen
+} from '../features/dialog/heuristicsDialogSlice';
 import {
   progressDialogClose,
   progressDialogOpen
@@ -211,13 +213,10 @@ export default class WsEvent {
 
   static onHeuristics = (data) => dispatch => {
     dispatch(progressDialogClose());
-    dispatch({
-      type: heuristicsDialogActionTypes.OPEN,
-      payload: {
-        dimensions: data['/heuristics'].dimensions,
-        balance: data['/heuristics'].balance
-      }
-    });
+    dispatch(heuristicsDialogOpen({
+      dimensions: data['/heuristics'].dimensions,
+      balance: data['/heuristics'].balance
+    }));
   }
 
   static onHeuristicsBar = (data) => dispatch => {
