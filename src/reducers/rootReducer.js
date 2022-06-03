@@ -15,7 +15,6 @@ import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
 import rematchOfferDialogReducer from './rematchOfferDialogReducer';
 import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer';
 import playOnlineDialogReducer from './playOnlineDialogReducer';
-import openingSearchNameDialogReducer from './openingSearchNameDialogReducer';
 import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 import gameTableReducer from './gameTableReducer';
@@ -23,6 +22,7 @@ import infoAlertReducer from '../features/alert/infoAlertSlice';
 import loadFenDialogReducer from '../features/dialog/loadFenDialogSlice';
 import loadPgnDialogReducer from '../features/dialog/loadPgnDialogSlice';
 import openingSearchEcoDialogReducer from '../features/dialog/openingSearchEcoDialogSlice';
+import openingSearchNameDialogReducer from '../features/dialog/openingSearchNameDialogSlice';
 import progressDialogReducer from '../features/dialog/progressDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
 

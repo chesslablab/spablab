@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ChessOpeningSearchResultTable from '../Table/ChessOpeningSearchResultTable.js';
-import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
+import { openingSearchNameDialogClose } from './openingSearchNameDialogSlice';
+import ChessOpeningSearchResultTable from '../../components/Table/ChessOpeningSearchResultTable.js';
 import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
 import Opening from '../../utils/Opening.js';
 
@@ -24,7 +24,7 @@ const ChessOpeningSearchNameDialog = ({ props }) => {
     const openings = Opening.byName(event.target.elements.name.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
+      dispatch(openingSearchNameDialogClose());
       dispatch(infoAlertDisplay({ info: 'No results were found. Please try again.' }));
     }
   }
@@ -39,7 +39,7 @@ const ChessOpeningSearchNameDialog = ({ props }) => {
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
+              dispatch(openingSearchNameDialogClose());
             }}>
               Cancel
             </Button>

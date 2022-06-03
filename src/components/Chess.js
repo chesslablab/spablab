@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 import InfoAlert from '../features/alert/InfoAlert.js';
 import OpeningSearchEcoDialog from '../features/dialog/OpeningSearchEcoDialog';
 import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetextDialog';
-import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
+import OpeningSearchNameDialog from '../features/dialog/OpeningSearchNameDialog';
 import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
 import ProgressDialog from '../features/dialog/ProgressDialog';
@@ -56,7 +56,7 @@ const Chess = ({ props }) => {
       </Grid>
       <OpeningSearchEcoDialog props={props} />
       <ChessOpeningSearchMovetextDialog props={props} />
-      <ChessOpeningSearchNameDialog props={props} />
+      <OpeningSearchNameDialog props={props} />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
       <ProgressDialog />
