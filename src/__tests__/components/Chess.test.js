@@ -7,7 +7,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import boardActionTypes from 'constants/boardActionTypes';
 import createInviteCodeDialogActionTypes from 'constants/dialog/createInviteCodeDialogActionTypes';
-import loadFenDialogActionTypes from 'constants/dialog/loadFenDialogActionTypes';
+import { loadFenDialogOpen } from 'features/dialog/loadFenDialogSlice';
 import store from 'store';
 
 const SyncDispatcher = (action) => {
@@ -59,8 +59,7 @@ describe("Chess", () => {
     expect(result.current.state.createInviteCodeDialog.open).toBe(true);
   });
   it("opens the 'Analysis Board' > 'FEN String' dialog", () => {
-    const action = { type: loadFenDialogActionTypes.OPEN };
-    const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
+    const { result } = renderHook(() => SyncDispatcher(loadFenDialogOpen()), { wrapper });
     expect(result.current.state.loadFenDialog.open).toBe(true);
   });
 });

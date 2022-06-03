@@ -12,8 +12,8 @@ import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/che
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
-import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
+import { loadFenDialogOpen } from '../features/dialog/loadFenDialogSlice';
 import { loadPgnDialogOpen } from '../features/dialog/loadPgnDialogSlice';
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
@@ -130,7 +130,7 @@ const MainButtons = () => {
           Start Position
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch({ type: loadFenDialogActionTypes.OPEN });
+          dispatch(loadFenDialogOpen());
           handleCloseAnalysis();
         }}>
           FEN String

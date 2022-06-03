@@ -9,7 +9,7 @@ import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog'
 import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './Dialog/EnterInviteCodeDialog';
 import ProgressDialog from '../features/dialog/ProgressDialog';
-import LoadFenDialog from './Dialog/LoadFenDialog';
+import LoadFenDialog from '../features/dialog/LoadFenDialog';
 import LoadPgnDialog from '../features/dialog/LoadPgnDialog';
 import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
 import PlayOnlineDialog from './Dialog/PlayOnlineDialog';
