@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import ChessOpeningSearchResultTable from '../Table/ChessOpeningSearchResultTable.js';
-import infoAlertActionTypes from '../../constants/alert/infoAlertActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
+import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
 import Opening from '../../utils/Opening.js';
 
 const useStyles = makeStyles({
@@ -25,12 +25,7 @@ const ChessOpeningSearchMovetextDialog = ({ props }) => {
     setOpenings(openings);
     if (openings.length === 0) {
       dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
-      dispatch({
-        type: infoAlertActionTypes.DISPLAY,
-        payload: {
-          info: 'No results were found. Please try again.'
-        }
-      });
+      dispatch(infoAlertDisplay({ info: 'No results were found. Please try again.' }));
     }
   }
 

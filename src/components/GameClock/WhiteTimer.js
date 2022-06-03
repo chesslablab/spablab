@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
 import { Box } from '@mui/material';
-import infoAlertActionTypes from '../../constants/alert/infoAlertActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
+import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
 import Pgn from '../../utils/Pgn';
 
 const WhiteTimer = () => {
@@ -19,12 +19,7 @@ const WhiteTimer = () => {
           color: Pgn.symbol.WHITE
         }
       });
-      dispatch({
-        type: infoAlertActionTypes.DISPLAY,
-        payload: {
-          info: 'Black wins.'
-        }
-      });
+      dispatch(infoAlertDisplay({ info: 'Black wins.' }));
     }
   });
   const isInitialMount = useRef(true);

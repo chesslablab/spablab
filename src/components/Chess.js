@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { CssBaseline, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import InfoAlert from './Alert/InfoAlert.js';
+import InfoAlert from '../features/alert/InfoAlert.js';
 import ChessOpeningSearchEcoDialog from './Dialog/ChessOpeningSearchEcoDialog';
 import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetextDialog';
 import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';

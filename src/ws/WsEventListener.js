@@ -1,6 +1,6 @@
-import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
+import { infoAlertDisplay } from '../features/alert/infoAlertSlice';
 import store from '../store';
 import Wording from '../utils/Wording.js';
 import WsAction from '../ws/WsAction';
@@ -48,12 +48,7 @@ export default class WsEventListener {
         if (data['/accept'].jwt) {
           dispatch(WsEvent.onAccept(data));
         } else {
-          dispatch({
-            type: infoAlertActionTypes.DISPLAY,
-            payload: {
-              info: 'Invalid invite code.'
-            }
-          });
+          dispatch(infoAlertDisplay({ info: 'Invalid invite code.' }));
         }
         break;
       case '/online_games' === cmd:

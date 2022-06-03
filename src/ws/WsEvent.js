@@ -1,4 +1,3 @@
-import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
 import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
 import heuristicsDialogActionTypes from '../constants/dialog/heuristicsDialogActionTypes';
@@ -11,6 +10,10 @@ import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
+import {
+  infoAlertClose,
+  infoAlertDisplay
+} from '../features/alert/infoAlertSlice';
 import {
   progressDialogClose,
   progressDialogOpen
@@ -25,7 +28,7 @@ const reset = (dispatch) => {
   dispatch({ type: heuristicsBarActionTypes.RESET });
   dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
   dispatch({ type: gameTableActionTypes.CLOSE });
-  dispatch({ type: infoAlertActionTypes.CLOSE });
+  dispatch(infoAlertClose());
   dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
   dispatch({ type: boardActionTypes.START });
   dispatch(progressDialogClose());
@@ -63,12 +66,7 @@ export default class WsEvent {
       });
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch({
-        type: infoAlertActionTypes.DISPLAY,
-        payload: {
-          info: 'Invalid FEN.'
-        }
-      });
+      dispatch(infoAlertDisplay({ info: 'Invalid FEN.' }));
     }
   }
 
@@ -87,12 +85,7 @@ export default class WsEvent {
       });
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch({
-        type: infoAlertActionTypes.DISPLAY,
-        payload: {
-          info: 'Invalid PGN movetext.'
-        }
-      });
+      dispatch(infoAlertDisplay({ info: 'Invalid PGN movetext.' }));
     }
   }
 
@@ -114,12 +107,7 @@ export default class WsEvent {
     if (jwtDecoded.color === Pgn.symbol.BLACK) {
       dispatch({ type: boardActionTypes.FLIP });
     }
-    dispatch({
-      type: infoAlertActionTypes.DISPLAY,
-      payload: {
-        info: 'Waiting for player to join...'
-      }
-    });
+    dispatch(infoAlertDisplay({ info: 'Waiting for player to join...' }));
     dispatch({ type: boardActionTypes.START });
   }
 
@@ -260,22 +248,12 @@ export default class WsEvent {
 
   static onDrawAccept = () => dispatch => {
     dispatch({ type: modeActionTypes.PLAY_DRAW_ACCEPT });
-    dispatch({
-      type: infoAlertActionTypes.DISPLAY,
-      payload: {
-        info: 'Draw offer accepted.'
-      }
-    });
+    dispatch(infoAlertDisplay({ info: 'Draw offer accepted.' }));
   }
 
   static onDrawDecline = () => dispatch => {
     dispatch({ type: modeActionTypes.PLAY_DRAW_DECLINE });
-    dispatch({
-      type: infoAlertActionTypes.DISPLAY,
-      payload: {
-        info: 'Draw offer declined.'
-      }
-    });
+    dispatch(infoAlertDisplay({ info: 'Draw offer declined.' }));
   }
 
   static onUndo = (data) => dispatch => {
@@ -294,12 +272,7 @@ export default class WsEvent {
 
   static onResignAccept = () => dispatch => {
     dispatch({ type: modeActionTypes.PLAY_RESIGN_ACCEPT });
-    dispatch({
-      type: infoAlertActionTypes.DISPLAY,
-      payload: {
-        info: 'Chess game resigned.'
-      }
-    });
+    dispatch(infoAlertDisplay({ info: 'Chess game resigned.' }));
   }
 
   static onRematchPropose = () => dispatch => {
@@ -310,32 +283,17 @@ export default class WsEvent {
 
   static onRematchAccept = () => dispatch => {
     dispatch({ type: modeActionTypes.PLAY_REMATCH_ACCEPT });
-    dispatch({
-      type: infoAlertActionTypes.DISPLAY,
-      payload: {
-        info: 'Rematch accepted.'
-      }
-    });
+    dispatch(infoAlertDisplay({ info: 'Rematch accepted.' }));
   }
 
   static onRematchDecline = () => dispatch => {
     dispatch({ type: modeActionTypes.PLAY_REMATCH_DECLINE });
-    dispatch({
-      type: infoAlertActionTypes.DISPLAY,
-      payload: {
-        info: 'Rematch declined.'
-      }
-    });
+    dispatch(infoAlertDisplay({ info: 'Rematch declined.' }));
   }
 
   static onLeaveAccept = () => dispatch => {
     dispatch({ type: modeActionTypes.PLAY_LEAVE_ACCEPT });
-    dispatch({
-      type: infoAlertActionTypes.DISPLAY,
-      payload: {
-        info: 'Your opponent left the game.'
-      }
-    });
+    dispatch(infoAlertDisplay({ info: 'Your opponent left the game.' }));
   }
 
   static onRestart = (data) => dispatch => {
@@ -393,7 +351,7 @@ export default class WsEvent {
           movetext: data['/grandmaster'].state.movetext
         }
       });
-      dispatch({ type: infoAlertActionTypes.CLOSE });
+      dispatch(infoAlertClose());
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch({ type: gameTableActionTypes.CLOSE });
@@ -403,12 +361,7 @@ export default class WsEvent {
           movetext: null
         }
       });
-      dispatch({
-        type: infoAlertActionTypes.DISPLAY,
-        payload: {
-          info: 'This move was not found in the database.'
-        }
-      });
+      dispatch(infoAlertDisplay({ info: 'This move was not found in the database.' }));
     }
   }
 
@@ -433,12 +386,7 @@ export default class WsEvent {
       });
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch({
-        type: infoAlertActionTypes.DISPLAY,
-        payload: {
-          info: 'A random game could not be loaded.'
-        }
-      });
+      dispatch(infoAlertDisplay({ info: 'A random game could not be loaded.' }));
     }
   }
 }
