@@ -133,7 +133,7 @@ const data = [
   }
 ];
 
-const buildVideos = (data) => {;
+const videos = (data) => {;
   const sort = data.sort(() => Math.random() - 0.5)
   return Object.keys(sort).map(key =>
     <Grid key={key} p={1} item xs={12} md={4}>
@@ -195,7 +195,7 @@ const WatchDialog = () => {
         </Toolbar>
       </AppBar>
       <Grid container className="watch-videos">
-        {buildVideos(data)}
+        {videos(data)}
       </Grid>
     </Dialog>
   );
