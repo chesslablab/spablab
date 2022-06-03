@@ -11,7 +11,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { createInviteCodeDialogClose } from '../../features/dialog/createInviteCodeDialogSlice';
+import { createInviteCodeDialogClose } from '../features/dialog/createInviteCodeDialogSlice';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 

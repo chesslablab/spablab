@@ -7,9 +7,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
 import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCodeDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
+import { createInviteCodeDialogOpen } from '../features/dialog/createInviteCodeDialogSlice';
 import { loadFenDialogOpen } from '../features/dialog/loadFenDialogSlice';
 import { loadPgnDialogOpen } from '../features/dialog/loadPgnDialogSlice';
 import { openingSearchEcoDialogOpen } from '../features/dialog/openingSearchEcoDialogSlice';
@@ -102,7 +102,7 @@ const MainButtons = () => {
         onClose={handleClosePlayFriend}
       >
         <MenuItem onClick={() => {
-          dispatch({ type: createInviteCodeDialogActionTypes.OPEN });
+          dispatch(createInviteCodeDialogOpen());
           dispatch({ type: modeActionTypes.SET_ANALYSIS });
           handleClosePlayFriend();
         }}>Create Invite Code</MenuItem>

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import boardActionTypes from 'constants/boardActionTypes';
-import createInviteCodeDialogActionTypes from 'constants/dialog/createInviteCodeDialogActionTypes';
+import { createInviteCodeDialogOpen } from 'features/dialog/createInviteCodeDialogSlice';
 import { loadFenDialogOpen } from 'features/dialog/loadFenDialogSlice';
 import store from 'store';
 
@@ -54,8 +54,7 @@ describe("Chess", () => {
     expect(text).toEqual('♖');
   });
   it("opens the 'Play a Friend' > 'Create Invite Code' dialog", () => {
-    const action = { type: createInviteCodeDialogActionTypes.OPEN };
-    const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
+    const { result } = renderHook(() => SyncDispatcher(createInviteCodeDialogOpen()), { wrapper });
     expect(result.current.state.createInviteCodeDialog.open).toBe(true);
   });
   it("opens the 'Analysis Board' > 'FEN String' dialog", () => {
