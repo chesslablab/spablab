@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { CssBaseline, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import InfoAlert from '../features/alert/InfoAlert.js';
-import ChessOpeningSearchEcoDialog from './Dialog/ChessOpeningSearchEcoDialog';
+import OpeningSearchEcoDialog from '../features/dialog/OpeningSearchEcoDialog';
 import ChessOpeningSearchMovetextDialog from './Dialog/ChessOpeningSearchMovetextDialog';
 import ChessOpeningSearchNameDialog from './Dialog/ChessOpeningSearchNameDialog';
 import CreateInviteCodeDialog from './Dialog/CreateInviteCodeDialog';
@@ -54,7 +54,7 @@ const Chess = ({ props }) => {
           <SupportButtons />
         </Grid>
       </Grid>
-      <ChessOpeningSearchEcoDialog props={props} />
+      <OpeningSearchEcoDialog props={props} />
       <ChessOpeningSearchMovetextDialog props={props} />
       <ChessOpeningSearchNameDialog props={props} />
       <CreateInviteCodeDialog />

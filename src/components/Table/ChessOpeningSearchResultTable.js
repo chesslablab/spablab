@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../../constants/dialog/chessOpeningSearchNameDialogActionTypes';
+import { openingSearchEcoDialogClose } from '../../features/dialog/openingSearchEcoDialogSlice';
 import { progressDialogOpen } from '../../features/dialog/progressDialogSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -13,7 +13,7 @@ const ChessOpeningSearchResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {
-    dispatch({ type: chessOpeningSearchEcoDialogActionTypes.CLOSE });
+    dispatch(openingSearchEcoDialogClose());
     dispatch({ type: chessOpeningSearchMovetextDialogActionTypes.CLOSE });
     dispatch({ type: chessOpeningSearchNameDialogActionTypes.CLOSE });
     dispatch(progressDialogOpen());

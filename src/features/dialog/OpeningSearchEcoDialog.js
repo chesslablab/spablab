@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ChessOpeningSearchResultTable from '../Table/ChessOpeningSearchResultTable.js';
-import chessOpeningSearchEcoDialogActionTypes from '../../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
+import ChessOpeningSearchResultTable from '../../components/Table/ChessOpeningSearchResultTable.js';
+import { openingSearchEcoDialogClose } from './openingSearchEcoDialogSlice';
 import Opening from '../../utils/Opening.js';
 
 const useStyles = makeStyles({
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ChessOpeningSearchEcoDialog = ({ props }) => {
+const OpeningSearchEcoDialog = ({ props }) => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -60,7 +60,7 @@ const ChessOpeningSearchEcoDialog = ({ props }) => {
           <DialogActions>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch({ type: chessOpeningSearchEcoDialogActionTypes.CLOSE });
+              dispatch(openingSearchEcoDialogClose());
             }}>
               Cancel
             </Button>
@@ -72,4 +72,4 @@ const ChessOpeningSearchEcoDialog = ({ props }) => {
   );
 }
 
-export default ChessOpeningSearchEcoDialog;
+export default OpeningSearchEcoDialog;

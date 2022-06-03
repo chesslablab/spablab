@@ -7,7 +7,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import chessOpeningSearchEcoDialogActionTypes from '../constants/dialog/chessOpeningSearchEcoDialogActionTypes';
 import chessOpeningSearchMovetextDialogActionTypes from '../constants/dialog/chessOpeningSearchMovetextDialogActionTypes';
 import chessOpeningSearchNameDialogActionTypes from '../constants/dialog/chessOpeningSearchNameDialogActionTypes';
 import createInviteCodeDialogActionTypes from '../constants/dialog/createInviteCodeDialogActionTypes';
@@ -15,6 +14,7 @@ import enterInviteCodeDialogActionTypes from '../constants/dialog/enterInviteCod
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import { loadFenDialogOpen } from '../features/dialog/loadFenDialogSlice';
 import { loadPgnDialogOpen } from '../features/dialog/loadPgnDialogSlice';
+import { openingSearchEcoDialogOpen } from '../features/dialog/openingSearchEcoDialogSlice';
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -181,7 +181,7 @@ const MainButtons = () => {
         onClose={handleCloseOpeningSearch}
       >
         <MenuItem onClick={() => {
-          dispatch({ type: chessOpeningSearchEcoDialogActionTypes.OPEN });
+          dispatch(openingSearchEcoDialogOpen());
           handleCloseOpeningSearch();
         }}>
           ECO Code
