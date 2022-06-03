@@ -16,7 +16,7 @@ import loadFenDialogActionTypes from '../constants/dialog/loadFenDialogActionTyp
 import loadPgnDialogActionTypes from '../constants/dialog/loadPgnDialogActionTypes';
 import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import progressDialogActionTypes from '../constants/dialog/progressDialogActionTypes';
-import watchDialogActionTypes from '../constants/dialog/watchDialogActionTypes';
+import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import WsAction from '../ws/WsAction';
@@ -201,7 +201,7 @@ const MainButtons = () => {
       </Menu>
       <Button
         startIcon={<OndemandVideoIcon />}
-        onClick={() => dispatch({ type: watchDialogActionTypes.OPEN })}
+        onClick={() => dispatch(watchDialogOpen())}
       >
         Watch
       </Button>

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { AppBar, Button, Dialog, IconButton, Toolbar, Typography, Slide } from '@mui/material/';
 import CloseIcon from '@mui/icons-material/Close';
-import Videos from "../Videos.js";
+import Videos from "./Videos.js";
 import { useDispatch, useSelector } from "react-redux";
-import watchDialogActionTypes from "../../constants/dialog/watchDialogActionTypes";
+import { watchDialogClose } from '../../features/dialog/watchDialogSlice';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -17,7 +17,7 @@ const WatchDialog = () => {
     <Dialog
       fullScreen
       open={state.watchDialog.open}
-      onClose={() => dispatch({ type: watchDialogActionTypes.CLOSE })}
+      onClose={() => dispatch(watchDialogClose())}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -25,7 +25,7 @@ const WatchDialog = () => {
           <IconButton
             edge="start"
             color="inherit"
-            onClick={() => dispatch({ type: watchDialogActionTypes.CLOSE })}
+            onClick={() => dispatch(watchDialogClose())}
             aria-label="close"
           >
             <CloseIcon />
@@ -33,7 +33,7 @@ const WatchDialog = () => {
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             Watch
           </Typography>
-          <Button autoFocus color="inherit" onClick={() => dispatch({ type: watchDialogActionTypes.CLOSE })}>
+          <Button autoFocus color="inherit" onClick={() => dispatch(watchDialogClose())}>
             Close
           </Button>
         </Toolbar>

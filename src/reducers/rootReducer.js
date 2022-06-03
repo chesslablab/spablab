@@ -24,7 +24,7 @@ import openingSearchMovetextDialogReducer from './openingSearchMovetextDialogRed
 import progressDialogReducer from './progressDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 import gameTableReducer from './gameTableReducer';
-import watchDialogReducer from './watchDialogReducer';
+import watchDialogReducer from '../features/dialog/watchDialogSlice';
 
 const rootReducer = {
   board: boardReducer,

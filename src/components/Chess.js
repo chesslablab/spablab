@@ -13,7 +13,7 @@ import LoadFenDialog from './Dialog/LoadFenDialog';
 import LoadPgnDialog from './Dialog/LoadPgnDialog';
 import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
 import PlayOnlineDialog from './Dialog/PlayOnlineDialog';
-import WatchDialog from './Dialog/WatchDialog';
+import WatchDialog from '../features/dialog/WatchDialog';
 import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
 import GameTable from './Table/GameTable.js';
 import Board from './Board.js';
