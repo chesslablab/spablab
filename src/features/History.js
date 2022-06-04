@@ -5,8 +5,13 @@ import FastRewindIcon from '@mui/icons-material/FastRewind';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { Button, ButtonGroup } from '@mui/material';
-import historyActionTypes from '../constants/historyActionTypes';
 import { boardBrowseHistory } from '../features/boardSlice';
+import {
+  historyGoTo,
+  historyGoBack,
+  historyGoForward,
+  historyGoToEnd
+} from '../features/historySlice';
 
 const History = () => {
   const state = useSelector(state => state);
@@ -17,18 +22,13 @@ const History = () => {
       <Button
         startIcon={<FastRewindIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
-        onClick={() => dispatch({
-          type: historyActionTypes.GO_TO,
-          payload: {
-            back: state.board.history.length - 1
-          }
-        })}
+        onClick={() => dispatch(historyGoTo({ back: state.board.history.length - 1 }))}
       />
       <Button
         startIcon={<SkipPreviousIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
         onClick={() => {
-          dispatch({ type: historyActionTypes.GO_BACK });
+          dispatch(historyGoBack());
           dispatch(boardBrowseHistory());
         }}
       />
@@ -36,7 +36,7 @@ const History = () => {
         startIcon={<SkipNextIcon />}
         disabled={state.history.back === 0}
         onClick={() => {
-          dispatch({ type: historyActionTypes.GO_FORWARD });
+          dispatch(historyGoForward());
           dispatch(boardBrowseHistory());
         }}
       />
@@ -44,7 +44,7 @@ const History = () => {
         startIcon={<FastForwardIcon />}
         disabled={state.history.back === 0}
         onClick={() => {
-          dispatch({ type: historyActionTypes.GO_TO_END });
+          dispatch(historyGoToEnd());
           dispatch(boardBrowseHistory());
         }}
       />

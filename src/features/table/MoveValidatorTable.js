@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Slide, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { makeStyles } from '@mui/styles';
-import historyActionTypes from '../../constants/historyActionTypes';
+import { historyGoTo } from '../../features/historySlice';
 import Movetext from '../../utils/Movetext.js';
 import WsAction from '../../ws/WsAction';
 
@@ -53,12 +53,9 @@ const MoveValidatorTable = ({props}) => {
           <TableCell
             align="left"
             className={[classes.move, highlight(((i + 1) * 2) - 1)].join(' ')}
-            onClick={() => dispatch({
-              type: historyActionTypes.GO_TO,
-              payload: {
-                back: state.board.history.length - 1 - (((i + 1) * 2) - 1)
-              }
-            })}
+            onClick={() => dispatch(historyGoTo({
+              back: state.board.history.length - 1 - (((i + 1) * 2) - 1) }
+            ))}
           >
             {row.w}
           </TableCell>
@@ -68,7 +65,7 @@ const MoveValidatorTable = ({props}) => {
             onClick={() => {
               const back = state.board.history.length - 1 - ((i + 1) * 2);
               if (back >= 0) {
-                dispatch({ type: historyActionTypes.GO_TO, payload: { back: back }});
+                dispatch(historyGoTo({ back: back }));
               }
             }}
           >

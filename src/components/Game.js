@@ -10,7 +10,7 @@ import StartedDialogsPlayMode from '../features/playMode/StartedDialogsPlayMode'
 import MoveValidatorTable from '../features/table/MoveValidatorTable.js';
 import SecondaryButtons from './SecondaryButtons.js';
 import SecondaryDialogs from './SecondaryDialogs';
-import History from './History';
+import History from '../features/History';
 
 const useStyles = makeStyles({
   gameBox: {

@@ -1,7 +1,6 @@
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import gameTableActionTypes from '../constants/table/gameTableActionTypes';
 import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
-import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import {
@@ -40,6 +39,9 @@ import {
   boardUndo,
   boardGrandmaster
 } from '../features/boardSlice';
+import {
+  historyGoTo
+} from '../features/historySlice';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Opening from '../utils/Opening.js';
@@ -51,7 +53,7 @@ const reset = (dispatch) => {
   dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
   dispatch({ type: gameTableActionTypes.CLOSE });
   dispatch(infoAlertClose());
-  dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
+  dispatch(historyGoTo({ back: 0 }));
   dispatch(boardStart());
   dispatch(progressDialogClose());
 };
