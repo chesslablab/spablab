@@ -1,6 +1,5 @@
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import gameTableActionTypes from '../constants/table/gameTableActionTypes';
-import boardActionTypes from '../constants/boardActionTypes';
 import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -29,6 +28,18 @@ import {
 import {
   takebackAcceptDialogOpen
 } from '../features/dialog/takebackAcceptDialogSlice';
+import {
+  boardStart,
+  boardStartFen,
+  boardStartPgn,
+  boardFlip,
+  boardLegalSqs,
+  boardCastledLong,
+  boardCastledShort,
+  boardValidMove,
+  boardUndo,
+  boardGrandmaster
+} from '../features/boardSlice';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Opening from '../utils/Opening.js';
@@ -41,7 +52,7 @@ const reset = (dispatch) => {
   dispatch({ type: gameTableActionTypes.CLOSE });
   dispatch(infoAlertClose());
   dispatch({ type: historyActionTypes.GO_TO, payload: { back: 0 }});
-  dispatch({ type: boardActionTypes.START });
+  dispatch(boardStart());
   dispatch(progressDialogClose());
 };
 
@@ -61,7 +72,7 @@ export default class WsEvent {
       }
     });
     if (data['/start'].color === Pgn.symbol.BLACK) {
-      dispatch({ type: boardActionTypes.FLIP });
+      dispatch(boardFlip());
     }
   }
 
@@ -69,12 +80,7 @@ export default class WsEvent {
     reset(dispatch);
     if (data['/start'].fen) {
       dispatch({ type: modeActionTypes.SET_LOADFEN });
-      dispatch({
-        type: boardActionTypes.START_FEN,
-        payload: {
-          fen: data['/start'].fen
-        }
-      });
+      dispatch(boardStartFen({ fen: data['/start'].fen }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(infoAlertDisplay({ info: 'Invalid FEN.' }));
@@ -85,15 +91,12 @@ export default class WsEvent {
     reset(dispatch);
     if (data['/start'].movetext) {
       dispatch({ type: modeActionTypes.SET_LOADPGN });
-      dispatch({
-        type: boardActionTypes.START_PGN,
-        payload: {
-          turn: data['/start'].turn,
-          movetext: data['/start'].movetext,
-          fen: data['/start'].fen,
-          history: data['/start'].history
-        }
-      });
+      dispatch(boardStartPgn({
+        turn: data['/start'].turn,
+        movetext: data['/start'].movetext,
+        fen: data['/start'].fen,
+        history: data['/start'].history
+      }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(infoAlertDisplay({ info: 'Invalid PGN movetext.' }));
@@ -116,10 +119,10 @@ export default class WsEvent {
       }
     });
     if (jwtDecoded.color === Pgn.symbol.BLACK) {
-      dispatch({ type: boardActionTypes.FLIP });
+      dispatch(boardFlip());
     }
     dispatch(infoAlertDisplay({ info: 'Waiting for player to join...' }));
-    dispatch({ type: boardActionTypes.START });
+    dispatch(boardStart());
   }
 
   static onAccept = (data) => dispatch => {
@@ -127,7 +130,7 @@ export default class WsEvent {
     if (!store.getState().mode.play.color) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
       const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      dispatch({ type: boardActionTypes.START });
+      dispatch(boardStart());
       dispatch({
         type: modeActionTypes.SET_PLAY,
         payload: {
@@ -142,7 +145,7 @@ export default class WsEvent {
       });
     }
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
-      dispatch({ type: boardActionTypes.FLIP });
+      dispatch(boardFlip());
     }
     dispatch({ type: modeActionTypes.PLAY_ACCEPT });
     dispatch(playOnlineDialogClose());
@@ -154,15 +157,12 @@ export default class WsEvent {
   }
 
   static onLegalSqs = (data) => dispatch => {
-    dispatch({
-      type: boardActionTypes.LEGAL_SQS,
-      payload: {
-        piece: data['/legal_sqs'].identity,
-        position: data['/legal_sqs'].position,
-        sqs: data['/legal_sqs'].sqs,
-        en_passant: data['/legal_sqs'].enPassant ? data['/legal_sqs'].enPassant : ''
-      }
-    });
+    dispatch(boardLegalSqs({
+      piece: data['/legal_sqs'].identity,
+      position: data['/legal_sqs'].position,
+      sqs: data['/legal_sqs'].sqs,
+      en_passant: data['/legal_sqs'].enPassant ? data['/legal_sqs'].enPassant : ''
+    }));
   }
 
   static onPlayfen = (props, data) => dispatch => {
@@ -174,20 +174,11 @@ export default class WsEvent {
     };
     if (data['/play_fen'].isLegal) {
       if (data['/play_fen'].pgn === Pgn.symbol.CASTLING_LONG) {
-        dispatch({
-          type: boardActionTypes.CASTLED_LONG,
-          payload: payload
-        });
+        dispatch(boardCastledLong(payload));
       } else if (data['/play_fen'].pgn === Pgn.symbol.CASTLING_SHORT) {
-        dispatch({
-          type: boardActionTypes.CASTLED_SHORT,
-          payload: payload
-        });
+        dispatch(boardCastledShort(payload));
       } else {
-        dispatch({
-          type: boardActionTypes.VALID_MOVE,
-          payload: payload
-        });
+        dispatch(boardValidMove(payload));
       }
       if (store.getState().mode.current === modeNames.ANALYSIS) {
         dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
@@ -262,10 +253,7 @@ export default class WsEvent {
   }
 
   static onUndo = (data) => dispatch => {
-    dispatch({
-      type: boardActionTypes.UNDO,
-      payload: data['/undo']
-    });
+    dispatch(boardUndo(data['/undo']));
     if (data['/undo'].mode === modeNames.GRANDMASTER) {
       dispatch(progressDialogOpen());
       WsAction.grandmaster(store.getState());
@@ -325,9 +313,9 @@ export default class WsEvent {
         }
       }
     });
-    dispatch({ type: boardActionTypes.START });
+    dispatch(boardStart());
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
-      dispatch({ type: boardActionTypes.FLIP });
+      dispatch(boardFlip());
     }
   }
 
@@ -340,16 +328,13 @@ export default class WsEvent {
           game: data['/grandmaster'].game
         }
       });
-      dispatch({
-        type: boardActionTypes.GRANDMASTER,
-        payload: {
-          turn: data['/grandmaster'].state.turn,
-          isCheck: data['/grandmaster'].state.isCheck,
-          isMate: data['/grandmaster'].state.isMate,
-          movetext: data['/grandmaster'].state.movetext,
-          fen: data['/grandmaster'].state.fen,
-        }
-      });
+      dispatch(boardGrandmaster({
+        turn: data['/grandmaster'].state.turn,
+        isCheck: data['/grandmaster'].state.isCheck,
+        isMate: data['/grandmaster'].state.isMate,
+        movetext: data['/grandmaster'].state.movetext,
+        fen: data['/grandmaster'].state.fen
+      }));
       dispatch({
         type: modeActionTypes.GRANDMASTER_MOVETEXT,
         payload: {
@@ -374,15 +359,12 @@ export default class WsEvent {
     reset(dispatch);
     if (data['/random_game'].movetext) {
       dispatch({ type: modeActionTypes.SET_LOADPGN });
-      dispatch({
-        type: boardActionTypes.START_PGN,
-        payload: {
-          turn: data['/random_game'].turn,
-          movetext: data['/random_game'].movetext,
-          fen: data['/random_game'].fen,
-          history: data['/random_game'].history
-        }
-      });
+      dispatch(boardStartPgn({
+        turn: data['/random_game'].turn,
+        movetext: data['/random_game'].movetext,
+        fen: data['/random_game'].fen,
+        history: data['/random_game'].history
+      }));
       dispatch({
         type: gameTableActionTypes.DISPLAY,
         payload: {

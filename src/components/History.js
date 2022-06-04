@@ -5,8 +5,8 @@ import FastRewindIcon from '@mui/icons-material/FastRewind';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { Button, ButtonGroup } from '@mui/material';
-import boardActionTypes from '../constants/boardActionTypes';
 import historyActionTypes from '../constants/historyActionTypes';
+import { boardBrowseHistory } from '../features/boardSlice';
 
 const History = () => {
   const state = useSelector(state => state);
@@ -29,7 +29,7 @@ const History = () => {
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
         onClick={() => {
           dispatch({ type: historyActionTypes.GO_BACK });
-          dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+          dispatch(boardBrowseHistory());
         }}
       />
       <Button
@@ -37,7 +37,7 @@ const History = () => {
         disabled={state.history.back === 0}
         onClick={() => {
           dispatch({ type: historyActionTypes.GO_FORWARD });
-          dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+          dispatch(boardBrowseHistory());
         }}
       />
       <Button
@@ -45,7 +45,7 @@ const History = () => {
         disabled={state.history.back === 0}
         onClick={() => {
           dispatch({ type: historyActionTypes.GO_TO_END });
-          dispatch({ type: boardActionTypes.BROWSE_HISTORY });
+          dispatch(boardBrowseHistory());
         }}
       />
     </ButtonGroup>

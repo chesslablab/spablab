@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
+import {
+  boardPickPiece,
+  boardLeavePiece
+} from '../features/boardSlice';
 import Ascii from '../utils/Ascii';
 import Pgn from '../utils/Pgn';
 import Piece from '../utils/Piece';
@@ -23,20 +26,14 @@ const Board = ({props}) => {
       modeNames.LOADPGN === state.mode.current
     ) {
       if (state.board.turn === Piece.color(payload.piece)) {
-        dispatch({
-          type: boardActionTypes.PICK_PIECE,
-          payload: payload
-        });
+        dispatch(boardPickPiece(payload));
         WsAction.legalSqs(state, payload.sq);
       }
     } else if (modeNames.PLAY === state.mode.current) {
       if (state.mode.play.accepted) {
         if (state.mode.play.color === state.board.turn) {
           if (state.board.turn === Piece.color(payload.piece)) {
-            dispatch({
-              type: boardActionTypes.PICK_PIECE,
-              payload: payload
-            });
+            dispatch(boardPickPiece(payload));
             WsAction.legalSqs(state, payload.sq);
           }
         }
@@ -53,10 +50,7 @@ const Board = ({props}) => {
       state.history.back === 0
     ) {
       if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-        dispatch({
-          type: boardActionTypes.LEAVE_PIECE,
-          payload: payload,
-        });
+        dispatch(boardLeavePiece(payload));
       } else {
         pickPiece(payload);
       }

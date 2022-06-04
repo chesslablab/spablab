@@ -1,6 +1,6 @@
-import boardActionTypes from '../constants/boardActionTypes';
 import modeNames from '../constants/modeNames';
 import { infoAlertDisplay } from '../features/alert/infoAlertSlice';
+import { boardPlayMove } from '../features/boardSlice';
 import store from '../store';
 import Wording from '../utils/Wording.js';
 import WsAction from '../ws/WsAction';
@@ -57,12 +57,7 @@ export default class WsEventListener {
       case '/play_fen' === cmd:
         if (store.getState().mode.current === modeNames.PLAY) {
           if (store.getState().mode.play.color !== data['/play_fen'].turn) {
-            dispatch({
-              type: boardActionTypes.PLAY_MOVE,
-              payload: {
-                fen: data['/play_fen'].fen
-              }
-            });
+            dispatch(boardPlayMove({ fen: data['/play_fen'].fen }));
           }
         }
         dispatch(WsEvent.onPlayfen(props, data));

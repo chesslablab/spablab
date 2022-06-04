@@ -1,4 +1,3 @@
-import boardReducer from './boardReducer';
 import historyReducer from './historyReducer';
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
@@ -25,6 +24,7 @@ import resignAcceptDialogReducer from '../features/dialog/resignAcceptDialogSlic
 import takebackAcceptDialogReducer from '../features/dialog/takebackAcceptDialogSlice';
 import takebackOfferDialogReducer from '../features/dialog/takebackOfferDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
+import boardReducer from '../features/boardSlice';
 
 const rootReducer = {
   board: boardReducer,

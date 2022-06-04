@@ -5,9 +5,9 @@ import { act } from 'react-dom/test-utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
-import boardActionTypes from 'constants/boardActionTypes';
 import { createInviteCodeDialogOpen } from 'features/dialog/createInviteCodeDialogSlice';
 import { loadFenDialogOpen } from 'features/dialog/loadFenDialogSlice';
+import { boardFlip } from 'features/boardSlice';
 import store from 'store';
 
 const SyncDispatcher = (action) => {
@@ -46,8 +46,7 @@ describe("Chess", () => {
     expect(text).toEqual('♜');
   });
   it("the first chess board square is a white rook after flipping the chess board", () => {
-    const action = { type: boardActionTypes.FLIP };
-    const { result } = renderHook(() => SyncDispatcher(action), { wrapper });
+    const { result } = renderHook(() => SyncDispatcher(boardFlip()), { wrapper });
     const chess = mount(<Chess props={props} />);
     const text = chess.find('.board-row').at(0).find('.square').at(0).find('span').text();
     expect(result.current.state.board.flip).toBe('b');
