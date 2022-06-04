@@ -1,16 +1,16 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import GameClock from '../features/gameClock/GameClock';
-import StartedButtonsGrandmasterMode from '../features/grandmasterMode/StartedButtonsGrandmasterMode';
-import FinishedButtonsPlayMode from '../features/playMode/FinishedButtonsPlayMode';
-import FinishedDialogsPlayMode from '../features/playMode/FinishedDialogsPlayMode';
-import StartedButtonsPlayMode from '../features/playMode/StartedButtonsPlayMode';
-import StartedDialogsPlayMode from '../features/playMode/StartedDialogsPlayMode';
-import MoveValidatorTable from '../features/table/MoveValidatorTable.js';
-import SecondaryButtons from '../features/SecondaryButtons.js';
+import GameClock from './gameClock/GameClock';
+import StartedButtonsGrandmasterMode from './grandmasterMode/StartedButtonsGrandmasterMode';
+import FinishedButtonsPlayMode from './playMode/FinishedButtonsPlayMode';
+import FinishedDialogsPlayMode from './playMode/FinishedDialogsPlayMode';
+import StartedButtonsPlayMode from './playMode/StartedButtonsPlayMode';
+import StartedDialogsPlayMode from './playMode/StartedDialogsPlayMode';
+import MoveValidatorTable from './table/MoveValidatorTable.js';
+import SecondaryButtons from './SecondaryButtons.js';
 import SecondaryDialogs from './SecondaryDialogs';
-import History from '../features/History';
+import History from './History';
 
 const useStyles = makeStyles({
   gameBox: {

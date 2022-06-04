@@ -1,3 +1,3 @@
-import Chess from './components/Chess';
+import Chess from './features/Chess';
 
 export { Chess };

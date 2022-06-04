@@ -1,5 +1,5 @@
 import React from 'react';
-import HeuristicsDialog from '../features/dialog/HeuristicsDialog';
+import HeuristicsDialog from './dialog/HeuristicsDialog';
 
 const SecondaryDialogs = () => {
   return (
