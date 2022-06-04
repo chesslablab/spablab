@@ -3,7 +3,7 @@ import DrawAcceptDialog from '../../features/dialog/DrawAcceptDialog';
 import DrawOfferDialog from '../../features/dialog/DrawOfferDialog';
 import ResignAcceptDialog from '../../features/dialog/ResignAcceptDialog';
 import TakebackAcceptDialog from '../../features/dialog/TakebackAcceptDialog';
-import TakebackOfferDialog from '../Dialog/TakebackOfferDialog';
+import TakebackOfferDialog from '../..features/dialog/TakebackOfferDialog';
 
 const StartedDialogsPlayMode = () => {
   return (

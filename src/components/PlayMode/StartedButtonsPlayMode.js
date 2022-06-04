@@ -4,7 +4,7 @@ import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 import { drawOfferDialogOpen } from '../../features/dialog/drawOfferDialogSlice';
 import { resignAcceptDialogOpen } from '../../features/dialog/resignAcceptDialogSlice';
-import takebackOfferDialogActionTypes from '../../constants/dialog/takebackOfferDialogActionTypes';
+import { takebackOfferDialogOpen } from '../../features/dialog/takebackOfferDialogSlice';
 
 const useStyles = makeStyles({
   buttonGroup: {
@@ -32,7 +32,7 @@ const StartedButtonsPlayMode = () => {
           orientation="vertical"
           fullWidth={true}
         >
-          <Button onClick={() => dispatch({ type: takebackOfferDialogActionTypes.OPEN })}>
+          <Button onClick={() => dispatch(takebackOfferDialogOpen())}>
             Propose a takeback
           </Button>
           <Button onClick={() => dispatch(drawOfferDialogOpen())}>
