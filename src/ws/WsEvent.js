@@ -1,4 +1,3 @@
-import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import gameTableActionTypes from '../constants/table/gameTableActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
@@ -16,6 +15,10 @@ import {
 import {
   heuristicsDialogOpen
 } from '../features/dialog/heuristicsDialogSlice';
+import {
+  playOnlineDialogClose,
+  playOnlineDialogOpen
+} from '../features/dialog/playOnlineDialogSlice';
 import {
   progressDialogClose,
   progressDialogOpen
@@ -142,15 +145,12 @@ export default class WsEvent {
       dispatch({ type: boardActionTypes.FLIP });
     }
     dispatch({ type: modeActionTypes.PLAY_ACCEPT });
-    dispatch({ type: playOnlineDialogActionTypes.CLOSE });
+    dispatch(playOnlineDialogClose());
   }
 
   static onOnlineGames = (data) => dispatch => {
     dispatch(progressDialogClose());
-    dispatch({
-      type: playOnlineDialogActionTypes.OPEN,
-      payload: data['/online_games']
-    });
+    dispatch(playOnlineDialogOpen(data['/online_games']));
   }
 
   static onLegalSqs = (data) => dispatch => {

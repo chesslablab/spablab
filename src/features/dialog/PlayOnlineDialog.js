@@ -14,8 +14,8 @@ import {
   Typography
 } from '@mui/material';
 import PlayOnlineTable from '../../features/table/PlayOnlineTable';
-import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialogActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
+import { playOnlineDialogClose } from '../../features/dialog/playOnlineDialogSlice';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 
@@ -36,7 +36,7 @@ const PlayOnlineDialog = () => {
     WsAction.quit(state).then(() => {
       dispatch({ type: modeActionTypes.SET_ANALYSIS });
       WsAction.startPlay(state, settings).then(() => {
-        dispatch({ type: playOnlineDialogActionTypes.CLOSE });
+        dispatch(playOnlineDialogClose());
       });
     });
   }
@@ -101,7 +101,7 @@ const PlayOnlineDialog = () => {
               <Button type="submit">
                 Create Game
               </Button>
-              <Button onClick={() => dispatch({ type: playOnlineDialogActionTypes.CLOSE })}>
+              <Button onClick={() => dispatch(playOnlineDialogClose())}>
                 Cancel
               </Button>
             </DialogActions>

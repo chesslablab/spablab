@@ -11,8 +11,8 @@ import {
   TableCell,
   TableBody
 } from '@mui/material';
-import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialogActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
+import { playOnlineDialogClose } from '../../features/dialog/playOnlineDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineTable = () => {
@@ -31,7 +31,7 @@ const PlayOnlineTable = () => {
     WsAction.quit(state).then(() => {
       dispatch({ type: modeActionTypes.SET_ANALYSIS });
       WsAction.accept(state, hash).then(() => {
-        dispatch({ type: playOnlineDialogActionTypes.CLOSE });
+        dispatch(playOnlineDialogClose());
       });
     });
   };

@@ -12,7 +12,7 @@ import ProgressDialog from '../features/dialog/ProgressDialog';
 import LoadFenDialog from '../features/dialog/LoadFenDialog';
 import LoadPgnDialog from '../features/dialog/LoadPgnDialog';
 import PlayLikeGrandmasterDialog from '../features/dialog/PlayLikeGrandmasterDialog';
-import PlayOnlineDialog from './Dialog/PlayOnlineDialog';
+import PlayOnlineDialog from '../features/dialog/PlayOnlineDialog';
 import WatchDialog from '../features/dialog/WatchDialog';
 import OpeningAnalysisTable from '../features/table/OpeningAnalysisTable.js';
 import GameTable from '../features/table/GameTable.js';
