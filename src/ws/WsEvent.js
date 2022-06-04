@@ -1,4 +1,3 @@
-import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import gameTableActionTypes from '../constants/table/gameTableActionTypes';
 import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -28,6 +27,10 @@ import {
   takebackAcceptDialogOpen
 } from '../features/dialog/takebackAcceptDialogSlice';
 import {
+  openingAnalysisTableClose,
+  openingAnalysisTableDisplay
+} from '../features/table/openingAnalysisTableSlice';
+import {
   boardStart,
   boardStartFen,
   boardStartPgn,
@@ -50,7 +53,7 @@ import WsAction from '../ws/WsAction';
 
 const reset = (dispatch) => {
   dispatch({ type: heuristicsBarActionTypes.RESET });
-  dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
+  dispatch(openingAnalysisTableClose());
   dispatch({ type: gameTableActionTypes.CLOSE });
   dispatch(infoAlertClose());
   dispatch(historyGoTo({ back: 0 }));
@@ -183,17 +186,12 @@ export default class WsEvent {
         dispatch(boardValidMove(payload));
       }
       if (store.getState().mode.current === modeNames.ANALYSIS) {
-        dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
+        dispatch(openingAnalysisTableClose());
         let rows = Opening.analysis(payload.movetext);
         if (rows) {
-          dispatch({
-            type: chessOpeningAnalysisTableActionTypes.DISPLAY,
-            payload: {
-              rows: rows
-            }
-          });
+          dispatch(openingAnalysisTableDisplay({ rows: rows }));
         } else {
-          dispatch({ type: chessOpeningAnalysisTableActionTypes.CLOSE });
+          dispatch(openingAnalysisTableClose());
         }
       } else if (store.getState().mode.current === modeNames.GRANDMASTER) {
         dispatch(progressDialogOpen());

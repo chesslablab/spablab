@@ -1,7 +1,6 @@
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
 import heuristicsBarReducer from './heuristicsBarReducer';
-import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 import gameTableReducer from './gameTableReducer';
 import infoAlertReducer from '../features/alert/infoAlertSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
@@ -23,6 +22,7 @@ import resignAcceptDialogReducer from '../features/dialog/resignAcceptDialogSlic
 import takebackAcceptDialogReducer from '../features/dialog/takebackAcceptDialogSlice';
 import takebackOfferDialogReducer from '../features/dialog/takebackOfferDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
+import openingAnalysisTableReducer from '../features/table/openingAnalysisTableSlice';
 import boardReducer from '../features/boardSlice';
 import historyReducer from '../features/historySlice';
 
@@ -51,7 +51,7 @@ const rootReducer = {
   openingSearchNameDialog: openingSearchNameDialogReducer,
   openingSearchMovetextDialog: openingSearchMovetextDialogReducer,
   progressDialog: progressDialogReducer,
-  chessOpeningAnalysisTable: chessOpeningAnalysisTableReducer,
+  openingAnalysisTable: openingAnalysisTableReducer,
   gameTable: gameTableReducer,
   watchDialog: watchDialogReducer
 };
