@@ -1,5 +1,4 @@
 import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
-import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
 import gameTableActionTypes from '../constants/table/gameTableActionTypes';
 import boardActionTypes from '../constants/boardActionTypes';
@@ -13,7 +12,7 @@ import {
 } from '../features/alert/infoAlertSlice';
 import {
   drawAcceptDialogOpen
-} from '../features/dialog/drawAcceptDialogSlice'
+} from '../features/dialog/drawAcceptDialogSlice';
 import {
   heuristicsDialogOpen
 } from '../features/dialog/heuristicsDialogSlice';
@@ -24,6 +23,9 @@ import {
 import {
   rematchAcceptDialogOpen
 } from '../features/dialog/rematchAcceptDialogSlice';
+import {
+  takebackAcceptDialogOpen
+} from '../features/dialog/takebackAcceptDialogSlice';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Opening from '../utils/Opening.js';
@@ -235,7 +237,7 @@ export default class WsEvent {
 
   static onTakebackPropose = () => dispatch => {
     if (!store.getState().mode.play.takeback) {
-      dispatch({ type: takebackAcceptDialogActionTypes.OPEN });
+      dispatch(takebackAcceptDialogOpen());
     }
   }
 

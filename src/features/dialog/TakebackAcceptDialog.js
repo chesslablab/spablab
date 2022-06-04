@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import takebackAcceptDialogActionTypes from '../../constants/dialog/takebackAcceptDialogActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
+import { takebackAcceptDialogClose } from '../../features/dialog/takebackAcceptDialogSlice';
 import Wording from '../../utils/Wording.js';
 import WsAction from '../../ws/WsAction';
 
@@ -14,7 +14,7 @@ const TakebackAcceptDialog = () => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
       WsAction.undo(state).then(() => {
-        dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
+        dispatch(takebackAcceptDialogClose());
       });
     });
   };
@@ -22,7 +22,7 @@ const TakebackAcceptDialog = () => {
   const handleTakebackDecline = (event) => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
-      dispatch({ type: takebackAcceptDialogActionTypes.CLOSE });
+      dispatch(takebackAcceptDialogClose());
     });
   };
 
@@ -37,11 +37,7 @@ const TakebackAcceptDialog = () => {
         <form onSubmit={handleTakebackAccept}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button
-              onClick={() =>
-                dispatch({ type: takebackAcceptDialogActionTypes.CLOSE })
-              }
-            >
+            <Button onClick={() => dispatch(takebackAcceptDialogClose())}>
               Decline
             </Button>
           </DialogActions>
