@@ -11,7 +11,7 @@ import EnterInviteCodeDialog from '../features/dialog/EnterInviteCodeDialog';
 import ProgressDialog from '../features/dialog/ProgressDialog';
 import LoadFenDialog from '../features/dialog/LoadFenDialog';
 import LoadPgnDialog from '../features/dialog/LoadPgnDialog';
-import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
+import PlayLikeGrandmasterDialog from '../features/dialog/PlayLikeGrandmasterDialog';
 import PlayOnlineDialog from './Dialog/PlayOnlineDialog';
 import WatchDialog from '../features/dialog/WatchDialog';
 import OpeningAnalysisTable from '../features/table/OpeningAnalysisTable.js';

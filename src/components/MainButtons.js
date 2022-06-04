@@ -7,7 +7,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import playLikeGrandmasterDialogActionTypes from '../constants/dialog/playLikeGrandmasterDialogActionTypes';
 import { createInviteCodeDialogOpen } from '../features/dialog/createInviteCodeDialogSlice';
 import { enterInviteCodeDialogOpen } from '../features/dialog/enterInviteCodeDialogSlice';
 import { loadFenDialogOpen } from '../features/dialog/loadFenDialogSlice';
@@ -15,6 +14,7 @@ import { loadPgnDialogOpen } from '../features/dialog/loadPgnDialogSlice';
 import { openingSearchEcoDialogOpen } from '../features/dialog/openingSearchEcoDialogSlice';
 import { openingSearchMovetextDialogOpen } from '../features/dialog/openingSearchMovetextDialogSlice';
 import { openingSearchNameDialogOpen } from '../features/dialog/openingSearchNameDialogSlice';
+import { playLikeGrandmasterDialogOpen } from '../features/dialog/playLikeGrandmasterDialogSlice';
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
 import modeActionTypes from '../constants/modeActionTypes';
@@ -155,7 +155,7 @@ const MainButtons = () => {
         onClose={handleCloseTraining}
       >
         <MenuItem onClick={() => {
-          dispatch({ type: playLikeGrandmasterDialogActionTypes.OPEN });
+          dispatch(playLikeGrandmasterDialogOpen());
           handleCloseTraining();
         }}>
           Guess the Move

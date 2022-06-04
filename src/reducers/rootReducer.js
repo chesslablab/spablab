@@ -8,7 +8,6 @@ import heuristicsBarReducer from './heuristicsBarReducer';
 import resignAcceptDialogReducer from './resignAcceptDialogReducer';
 import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
 import rematchOfferDialogReducer from './rematchOfferDialogReducer';
-import playLikeGrandmasterDialogReducer from './playLikeGrandmasterDialogReducer';
 import playOnlineDialogReducer from './playOnlineDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 import gameTableReducer from './gameTableReducer';
@@ -23,6 +22,7 @@ import loadPgnDialogReducer from '../features/dialog/loadPgnDialogSlice';
 import openingSearchEcoDialogReducer from '../features/dialog/openingSearchEcoDialogSlice';
 import openingSearchMovetextDialogReducer from '../features/dialog/openingSearchMovetextDialogSlice';
 import openingSearchNameDialogReducer from '../features/dialog/openingSearchNameDialogSlice';
+import playLikeGrandmasterDialogReducer from '../features/dialog/playLikeGrandmasterDialogSlice';
 import progressDialogReducer from '../features/dialog/progressDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
 

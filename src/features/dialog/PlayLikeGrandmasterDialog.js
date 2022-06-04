@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import playLikeGrandmasterDialogActionTypes from '../../constants/dialog/playLikeGrandmasterDialogActionTypes';
+import { playLikeGrandmasterDialogClose } from '../../features/dialog/playLikeGrandmasterDialogSlice';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 
@@ -23,7 +23,7 @@ const PlayLikeGrandmasterDialog = () => {
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
-    dispatch({ type: playLikeGrandmasterDialogActionTypes.CLOSE });
+    dispatch(playLikeGrandmasterDialogClose());
     if (Pgn.symbol.WHITE === color) {
       WsAction.quit(state).then(() => WsAction.startGrandmaster(state, color));
     } else {
@@ -57,7 +57,7 @@ const PlayLikeGrandmasterDialog = () => {
           </TextField>
           <DialogActions>
             <Button type="submit">Play</Button>
-            <Button onClick={() => dispatch({ type: playLikeGrandmasterDialogActionTypes.CLOSE })}>
+            <Button onClick={() => dispatch(playLikeGrandmasterDialogClose())}>
               Cancel
             </Button>
           </DialogActions>
