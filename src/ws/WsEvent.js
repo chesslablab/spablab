@@ -1,4 +1,3 @@
-import gameTableActionTypes from '../constants/table/gameTableActionTypes';
 import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
@@ -27,6 +26,10 @@ import {
   takebackAcceptDialogOpen
 } from '../features/dialog/takebackAcceptDialogSlice';
 import {
+  gameTableClose,
+  gameTableDisplay
+} from '../features/table/gameTableSlice';
+import {
   openingAnalysisTableClose,
   openingAnalysisTableDisplay
 } from '../features/table/openingAnalysisTableSlice';
@@ -54,7 +57,7 @@ import WsAction from '../ws/WsAction';
 const reset = (dispatch) => {
   dispatch({ type: heuristicsBarActionTypes.RESET });
   dispatch(openingAnalysisTableClose());
-  dispatch({ type: gameTableActionTypes.CLOSE });
+  dispatch(gameTableClose());
   dispatch(infoAlertClose());
   dispatch(historyGoTo({ back: 0 }));
   dispatch(boardStart());
@@ -322,12 +325,7 @@ export default class WsEvent {
   static onGrandmaster = (data) => dispatch => {
     dispatch(progressDialogClose());
     if (data['/grandmaster']) {
-      dispatch({
-        type: gameTableActionTypes.DISPLAY,
-        payload: {
-          game: data['/grandmaster'].game
-        }
-      });
+      dispatch(gameTableDisplay({ game: data['/grandmaster'].game }));
       dispatch(boardGrandmaster({
         turn: data['/grandmaster'].state.turn,
         isCheck: data['/grandmaster'].state.isCheck,
@@ -344,7 +342,7 @@ export default class WsEvent {
       dispatch(infoAlertClose());
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch({ type: gameTableActionTypes.CLOSE });
+      dispatch(gameTableClose());
       dispatch({
         type: modeActionTypes.GRANDMASTER_MOVETEXT,
         payload: {
@@ -365,12 +363,7 @@ export default class WsEvent {
         fen: data['/random_game'].fen,
         history: data['/random_game'].history
       }));
-      dispatch({
-        type: gameTableActionTypes.DISPLAY,
-        payload: {
-          game: data['/random_game'].game
-        }
-      });
+      dispatch(gameTableDisplay({ game: data['/random_game'].game }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(infoAlertDisplay({ info: 'A random game could not be loaded.' }));
