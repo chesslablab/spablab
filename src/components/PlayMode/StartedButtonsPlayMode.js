@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 import { drawOfferDialogOpen } from '../../features/dialog/drawOfferDialogSlice';
-import resignAcceptDialogActionTypes from '../../constants/dialog/resignAcceptDialogActionTypes';
+import { resignAcceptDialogOpen } from '../../features/dialog/resignAcceptDialogSlice';
 import takebackOfferDialogActionTypes from '../../constants/dialog/takebackOfferDialogActionTypes';
 
 const useStyles = makeStyles({
@@ -38,7 +38,7 @@ const StartedButtonsPlayMode = () => {
           <Button onClick={() => dispatch(drawOfferDialogOpen())}>
             Offer draw
           </Button>
-          <Button onClick={() => dispatch({ type: resignAcceptDialogActionTypes.OPEN })}>
+          <Button onClick={() => dispatch(resignAcceptDialogOpen())}>
             Resign
           </Button>
         </ButtonGroup>
