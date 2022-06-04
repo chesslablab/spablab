@@ -8,7 +8,7 @@ import FinishedDialogsPlayMode from '../features/playMode/FinishedDialogsPlayMod
 import StartedButtonsPlayMode from '../features/playMode/StartedButtonsPlayMode';
 import StartedDialogsPlayMode from '../features/playMode/StartedDialogsPlayMode';
 import MoveValidatorTable from '../features/table/MoveValidatorTable.js';
-import SecondaryButtons from './SecondaryButtons.js';
+import SecondaryButtons from '../features/SecondaryButtons.js';
 import SecondaryDialogs from './SecondaryDialogs';
 import History from '../features/History';
 
