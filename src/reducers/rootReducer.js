@@ -5,7 +5,6 @@ import serverReducer from './serverReducer';
 import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
 import heuristicsBarReducer from './heuristicsBarReducer';
-import drawAcceptDialogReducer from './drawAcceptDialogReducer';
 import drawOfferDialogReducer from './drawOfferDialogReducer';
 import resignAcceptDialogReducer from './resignAcceptDialogReducer';
 import rematchAcceptDialogReducer from './rematchAcceptDialogReducer';
@@ -16,6 +15,7 @@ import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer
 import gameTableReducer from './gameTableReducer';
 import infoAlertReducer from '../features/alert/infoAlertSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
+import drawAcceptDialogReducer from '../features/dialog/drawAcceptDialogSlice';
 import enterInviteCodeDialogReducer from '../features/dialog/enterInviteCodeDialogSlice';
 import heuristicsDialogReducer from '../features/dialog/heuristicsDialogSlice';
 import loadFenDialogReducer from '../features/dialog/loadFenDialogSlice';

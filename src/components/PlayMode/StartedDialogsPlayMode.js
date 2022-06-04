@@ -1,5 +1,5 @@
 import React from 'react';
-import DrawAcceptDialog from '../Dialog/DrawAcceptDialog';
+import DrawAcceptDialog from '../../features/dialog/DrawAcceptDialog';
 import DrawOfferDialog from '../Dialog/DrawOfferDialog';
 import ResignAcceptDialog from '../Dialog/ResignAcceptDialog';
 import TakebackAcceptDialog from '../Dialog/TakebackAcceptDialog';

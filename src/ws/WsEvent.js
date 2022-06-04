@@ -1,4 +1,3 @@
-import drawAcceptDialogActionTypes from '../constants/dialog/drawAcceptDialogActionTypes';
 import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
 import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
@@ -13,6 +12,9 @@ import {
   infoAlertClose,
   infoAlertDisplay
 } from '../features/alert/infoAlertSlice';
+import {
+  drawAcceptDialogOpen
+} from '../features/dialog/drawAcceptDialogSlice'
 import {
   heuristicsDialogOpen
 } from '../features/dialog/heuristicsDialogSlice';
@@ -241,7 +243,7 @@ export default class WsEvent {
 
   static onDrawPropose = () => dispatch => {
     if (!store.getState().mode.play.draw) {
-      dispatch({ type: drawAcceptDialogActionTypes.OPEN });
+      dispatch(drawAcceptDialogOpen());
     }
   }
 
