@@ -1,4 +1,3 @@
-import heuristicsBarActionTypes from '../constants/heuristicsBarActionTypes';
 import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import {
@@ -46,6 +45,10 @@ import {
   boardGrandmaster
 } from '../features/boardSlice';
 import {
+  heuristicsBarReset,
+  heuristicsBarUpdate
+} from '../features/heuristicsBarSlice';
+import {
   historyGoTo
 } from '../features/historySlice';
 import jwt_decode from "jwt-decode";
@@ -55,7 +58,7 @@ import Pgn from '../utils/Pgn';
 import WsAction from '../ws/WsAction';
 
 const reset = (dispatch) => {
-  dispatch({ type: heuristicsBarActionTypes.RESET });
+  dispatch(heuristicsBarReset());
   dispatch(openingAnalysisTableClose());
   dispatch(gameTableClose());
   dispatch(infoAlertClose());
@@ -220,13 +223,10 @@ export default class WsEvent {
   }
 
   static onHeuristicsBar = (data) => dispatch => {
-    dispatch({
-      type: heuristicsBarActionTypes.UPDATE,
-      payload: {
-        dimensions: data['/heuristics_bar'].dimensions,
-        balance: data['/heuristics_bar'].balance
-      }
-    });
+    dispatch(heuristicsBarUpdate({
+      dimensions: data['/heuristics_bar'].dimensions,
+      balance: data['/heuristics_bar'].balance
+    }));
   }
 
   static onTakebackPropose = () => dispatch => {

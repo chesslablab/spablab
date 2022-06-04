@@ -18,7 +18,7 @@ import OpeningAnalysisTable from '../features/table/OpeningAnalysisTable.js';
 import GameTable from '../features/table/GameTable.js';
 import Board from '../features/Board.js';
 import Game from './Game.js';
-import HeuristicsBar from './HeuristicsBar.js';
+import HeuristicsBar from '../features/HeuristicsBar.js';
 import MainButtons from './MainButtons.js';
 import SupportButtons from './SupportButtons.js';
 import '../index.css';

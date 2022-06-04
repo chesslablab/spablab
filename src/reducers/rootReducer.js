@@ -1,6 +1,5 @@
 import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
-import heuristicsBarReducer from './heuristicsBarReducer';
 import infoAlertReducer from '../features/alert/infoAlertSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
 import drawAcceptDialogReducer from '../features/dialog/drawAcceptDialogSlice';
@@ -24,6 +23,7 @@ import watchDialogReducer from '../features/dialog/watchDialogSlice';
 import gameTableReducer from '../features/table/gameTableSlice';
 import openingAnalysisTableReducer from '../features/table/openingAnalysisTableSlice';
 import boardReducer from '../features/boardSlice';
+import heuristicsBarReducer from '../features/heuristicsBarSlice';
 import historyReducer from '../features/historySlice';
 
 const rootReducer = {
