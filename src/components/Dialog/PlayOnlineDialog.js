@@ -13,7 +13,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import PlayOnlineTable from '../Table/PlayOnlineTable';
+import PlayOnlineTable from '../../features/table/PlayOnlineTable';
 import playOnlineDialogActionTypes from '../../constants/dialog/playOnlineDialogActionTypes';
 import modeActionTypes from '../../constants/modeActionTypes';
 import Pgn from '../../utils/Pgn';

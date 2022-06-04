@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ChessOpeningAnalysisTable = ({props}) => {
+const OpeningAnalysisTable = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -56,4 +56,4 @@ const ChessOpeningAnalysisTable = ({props}) => {
   return null;
 }
 
-export default ChessOpeningAnalysisTable;
+export default OpeningAnalysisTable;

@@ -14,8 +14,8 @@ import LoadPgnDialog from '../features/dialog/LoadPgnDialog';
 import PlayLikeGrandmasterDialog from './Dialog/PlayLikeGrandmasterDialog';
 import PlayOnlineDialog from './Dialog/PlayOnlineDialog';
 import WatchDialog from '../features/dialog/WatchDialog';
-import ChessOpeningAnalysisTable from './Table/ChessOpeningAnalysisTable.js';
-import GameTable from './Table/GameTable.js';
+import OpeningAnalysisTable from '../features/table/OpeningAnalysisTable.js';
+import GameTable from '../features/table/GameTable.js';
 import Board from './Board.js';
 import Game from './Game.js';
 import HeuristicsBar from './HeuristicsBar.js';
@@ -48,7 +48,7 @@ const Chess = ({ props }) => {
         </Grid>
         <Grid item xs={12} md={3}>
           <Game props={props} />
-          <ChessOpeningAnalysisTable />
+          <OpeningAnalysisTable />
           <GameTable />
           <InfoAlert />
           <SupportButtons />
