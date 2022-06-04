@@ -1,4 +1,3 @@
-import rematchAcceptDialogActionTypes from '../constants/dialog/rematchAcceptDialogActionTypes';
 import playOnlineDialogActionTypes from '../constants/dialog/playOnlineDialogActionTypes';
 import takebackAcceptDialogActionTypes from '../constants/dialog/takebackAcceptDialogActionTypes';
 import chessOpeningAnalysisTableActionTypes from '../constants/table/chessOpeningAnalysisTableActionTypes';
@@ -22,6 +21,9 @@ import {
   progressDialogClose,
   progressDialogOpen
 } from '../features/dialog/progressDialogSlice';
+import {
+  rematchAcceptDialogOpen
+} from '../features/dialog/rematchAcceptDialogSlice';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Opening from '../utils/Opening.js';
@@ -278,7 +280,7 @@ export default class WsEvent {
 
   static onRematchPropose = () => dispatch => {
     if (!store.getState().mode.play.rematch) {
-      dispatch({ type: rematchAcceptDialogActionTypes.OPEN });
+      dispatch(rematchAcceptDialogOpen());
     }
   }
 
