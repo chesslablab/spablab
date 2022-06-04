@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
-import rematchOfferDialogActionTypes from "../../constants/dialog/rematchOfferDialogActionTypes";
+import { rematchOfferDialogOpen } from '../../features/dialog/rematchOfferDialogSlice';
 import Wording from "../../utils/Wording.js";
 
 const useStyles = makeStyles({
@@ -30,7 +30,7 @@ const FinishedButtonsPlayMode = () => {
           aria-label="Game Over"
           fullWidth={true}
         >
-          <Button onClick={() => dispatch({ type: rematchOfferDialogActionTypes.OPEN })}>
+          <Button onClick={() => dispatch(rematchOfferDialogOpen())}>
             Offer Rematch
           </Button>
         </ButtonGroup>

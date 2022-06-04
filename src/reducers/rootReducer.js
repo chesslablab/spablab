@@ -6,7 +6,6 @@ import takebackAcceptDialogReducer from './takebackAcceptDialogReducer';
 import takebackOfferDialogReducer from './takebackOfferDialogReducer';
 import heuristicsBarReducer from './heuristicsBarReducer';
 import resignAcceptDialogReducer from './resignAcceptDialogReducer';
-import rematchOfferDialogReducer from './rematchOfferDialogReducer';
 import playOnlineDialogReducer from './playOnlineDialogReducer';
 import chessOpeningAnalysisTableReducer from './chessOpeningAnalysisTableReducer';
 import gameTableReducer from './gameTableReducer';
@@ -24,6 +23,7 @@ import openingSearchNameDialogReducer from '../features/dialog/openingSearchName
 import playLikeGrandmasterDialogReducer from '../features/dialog/playLikeGrandmasterDialogSlice';
 import progressDialogReducer from '../features/dialog/progressDialogSlice';
 import rematchAcceptDialogReducer from '../features/dialog/rematchAcceptDialogSlice';
+import rematchOfferDialogReducer from '../features/dialog/rematchOfferDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
 
 const rootReducer = {

@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import rematchOfferDialogActionTypes from "../../constants/dialog/rematchOfferDialogActionTypes";
 import modeActionTypes from "../../constants/modeActionTypes";
+import { rematchOfferDialogClose } from '../../features/dialog/rematchOfferDialogSlice';
 import Wording from "../../utils/Wording.js";
 import WsAction from '../../ws/WsAction';
 
@@ -14,7 +14,7 @@ const RematchOfferDialog = () => {
     event.preventDefault();
     WsAction.rematch(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch({ type: modeActionTypes.PLAY_REMATCH_PROPOSE });
-      dispatch({ type: rematchOfferDialogActionTypes.CLOSE });
+      dispatch(rematchOfferDialogClose());
     });
   };
 
@@ -25,11 +25,7 @@ const RematchOfferDialog = () => {
         <form onSubmit={handleRematchOffer}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button
-              onClick={() =>
-                dispatch({ type: rematchOfferDialogActionTypes.CLOSE })
-              }
-            >
+            <Button onClick={() => dispatch(rematchOfferDialogClose())}>
               Cancel
             </Button>
           </DialogActions>
