@@ -12,7 +12,7 @@ const gameTableSlice = createSlice({
     gameTableClose: () => initialState,
     gameTableDisplay(state, action) {
       state.open = true,
-      state.rows = action.payload.game;
+      state.game = action.payload.game;
     }
   }
 });
