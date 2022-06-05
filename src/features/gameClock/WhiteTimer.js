@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 import { Box } from '@mui/material';
 import Pgn from '../../common/Pgn';
 import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
-import { modePlayTimerOver } from '../../features/modeSlice';
+import { modePlayTimeOver } from '../../features/modeSlice';
 
 const WhiteTimer = () => {
   const state = useSelector(state => state);
@@ -13,7 +13,7 @@ const WhiteTimer = () => {
   const timer = useTimer({
     expiryTimestamp,
     onExpire: () => {
-      dispatch(modePlayTimerOver({ color: Pgn.symbol.WHITE }));
+      dispatch(modePlayTimeOver({ color: Pgn.symbol.WHITE }));
       dispatch(infoAlertDisplay({ info: 'Black wins.' }));
     }
   });
