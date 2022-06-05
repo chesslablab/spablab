@@ -2,6 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { CssBaseline, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import '../index.css';
+import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';
@@ -21,8 +23,6 @@ import Game from './Game.js';
 import HeuristicsBar from './HeuristicsBar.js';
 import MainButtons from './MainButtons.js';
 import SupportButtons from './SupportButtons.js';
-import '../index.css';
-import store from '../store';
 
 const useStyles = makeStyles({
   right: {

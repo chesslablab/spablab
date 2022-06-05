@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+import store from '../app/store';
 import modeNames from '../constants/modeNames';
 import {
   infoAlertClose,
@@ -67,8 +69,6 @@ import {
   modePlayRematchDecline,
   modePlayLeaveAccept
 } from '../features/boardSlice';
-import jwt_decode from "jwt-decode";
-import store from '../store';
 import Opening from '../utils/Opening.js';
 import Pgn from '../utils/Pgn';
 import WsAction from '../ws/WsAction';
