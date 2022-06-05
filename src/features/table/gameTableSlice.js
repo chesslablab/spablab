@@ -9,12 +9,10 @@ const gameTableSlice = createSlice({
   name: 'gameTable',
   initialState,
   reducers: {
+    gameTableClose: () => initialState,
     gameTableDisplay(state, action) {
       state.open = true,
       state.rows = action.payload.game;
-    },
-    gameTableClose(state) {
-      state = initialState;
     }
   }
 });
