@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { openingSearchEcoDialogClose } from './openingSearchEcoDialogSlice';
+import Opening from '../../common/Opening.js';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import Opening from '../../utils/Opening.js';
+import { openingSearchEcoDialogClose } from './openingSearchEcoDialogSlice';
 
 const useStyles = makeStyles({
   form: {

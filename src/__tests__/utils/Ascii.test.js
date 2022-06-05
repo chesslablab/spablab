@@ -1,5 +1,5 @@
-import Ascii from 'utils/Ascii.js';
-import Pgn from 'utils/Pgn.js';
+import Ascii from 'common/Ascii.js';
+import Pgn from 'common/Pgn.js';
 
 describe('toFen()', () => {
   it('is a starting position', () => {

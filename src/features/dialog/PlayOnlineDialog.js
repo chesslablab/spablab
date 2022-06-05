@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Pgn from '../../common/Pgn';
 import {
   Button,
   Dialog,
@@ -16,7 +17,6 @@ import {
 import PlayOnlineTable from '../../features/table/PlayOnlineTable';
 import { playOnlineDialogClose } from '../../features/dialog/playOnlineDialogSlice';
 import { modeSetAnalysis } from '../../features/modeSlice';
-import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineDialog = () => {

@@ -1,5 +1,5 @@
-import Piece from 'utils/Piece.js';
-import Pgn from 'utils/Pgn.js';
+import Piece from 'common/Piece.js';
+import Pgn from 'common/Pgn.js';
 
 describe('color()', () => {
   it('r is b', () => {

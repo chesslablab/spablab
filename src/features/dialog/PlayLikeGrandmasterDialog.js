@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import Pgn from '../../common/Pgn';
 import { playLikeGrandmasterDialogClose } from '../../features/dialog/playLikeGrandmasterDialogSlice';
-import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({

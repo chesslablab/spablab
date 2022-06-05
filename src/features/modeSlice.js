@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import Pgn from '../common/Pgn';
+import Wording from '../common/Wording.js';
 import modeNames from '../constants/modeNames';
-import Wording from '../utils/Wording.js';
-import Pgn from '../utils/Pgn';
 
 const initialState = {
   current: modeNames.ANALYSIS,

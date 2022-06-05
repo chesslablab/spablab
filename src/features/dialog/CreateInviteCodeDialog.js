@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Pgn from '../../common/Pgn';
 import {
   Button,
   Dialog,
@@ -12,7 +13,6 @@ import {
   Typography
 } from '@mui/material';
 import { createInviteCodeDialogClose } from '../../features/dialog/createInviteCodeDialogSlice';
-import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 
 const CreateInviteCodeDialog = () => {

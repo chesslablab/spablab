@@ -1,4 +1,4 @@
-import Movetext from 'utils/Movetext.js';
+import Movetext from 'common/Movetext.js';
 
 describe('toRows()', () => {
   it('is 1.e4', () => {

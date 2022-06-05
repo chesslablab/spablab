@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import Wording from '../../common/Wording.js';
 import { drawAcceptDialogClose } from '../../features/dialog/drawAcceptDialogSlice';
-import Wording from '../../utils/Wording.js';
 import WsAction from '../../ws/WsAction';
 
 const DrawAcceptDialog = () => {

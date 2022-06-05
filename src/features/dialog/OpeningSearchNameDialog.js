@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { openingSearchNameDialogClose } from './openingSearchNameDialogSlice';
+import Opening from '../../common/Opening.js';
 import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import Opening from '../../utils/Opening.js';
+import { openingSearchNameDialogClose } from './openingSearchNameDialogSlice';
 
 const useStyles = makeStyles({
   form: {

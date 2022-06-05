@@ -1,8 +1,8 @@
 import store from '../app/store';
+import Wording from '../common/Wording.js';
 import modeNames from '../constants/modeNames';
 import { infoAlertDisplay } from '../features/alert/infoAlertSlice';
 import { boardPlayMove } from '../features/boardSlice';
-import Wording from '../utils/Wording.js';
 import WsAction from '../ws/WsAction';
 import WsEvent from '../ws/WsEvent';
 

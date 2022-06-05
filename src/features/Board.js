@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Ascii from '../common/Ascii';
+import Pgn from '../common/Pgn';
+import Piece from '../common/Piece';
 import modeNames from '../constants/modeNames';
 import {
   boardPickPiece,
   boardLeavePiece
 } from '../features/boardSlice';
-import Ascii from '../utils/Ascii';
-import Pgn from '../utils/Pgn';
-import Piece from '../utils/Piece';
 import WsAction from '../ws/WsAction';
 
 const Board = ({props}) => {

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Slide, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { makeStyles } from '@mui/styles';
+import Movetext from '../../common/Movetext.js';
 import { historyGoTo } from '../../features/historySlice';
-import Movetext from '../../utils/Movetext.js';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
