@@ -9,12 +9,10 @@ const playOnlineDialogSlice = createSlice({
   name: 'playOnlineDialog',
   initialState: initialState,
   reducers: {
+    playOnlineDialogClose: () => initialState,
     playOnlineDialogOpen(state, action) {
       state.open = true,
       state.rows = action.payload;
-    },
-    playOnlineDialogClose(state) {
-      state = initialState;
     }
   }
 });
