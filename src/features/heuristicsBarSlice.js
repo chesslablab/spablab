@@ -8,9 +8,7 @@ const heuristicsBarSlice = createSlice({
   name: 'heuristicsBar',
   initialState: initialState,
   reducers: {
-    heuristicsBarReset(state) {
-      state = initialState;
-    },
+    heuristicsBarReset: () => initialState,
     heuristicsBarUpdate(state, action) {
       state.heuristics = action.payload;
     }
