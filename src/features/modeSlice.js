@@ -34,7 +34,7 @@ const modeSlice = createSlice({
     modeSetAnalysis(state) {
       state = initialState;
     },
-    modeSetGrandmaster(state) {
+    modeSetGrandmaster(state, action) {
       state.current = modeName.GRANDMASTER;
       state.grandmaster.color = action.payload.color;
     },
