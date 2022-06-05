@@ -8,7 +8,7 @@ import { mount } from 'enzyme';
 import { createInviteCodeDialogOpen } from 'features/dialog/createInviteCodeDialogSlice';
 import { loadFenDialogOpen } from 'features/dialog/loadFenDialogSlice';
 import { boardFlip } from 'features/boardSlice';
-import store from 'store';
+import store from 'app/store';
 
 const SyncDispatcher = (action) => {
   const state = useSelector(state => state);
