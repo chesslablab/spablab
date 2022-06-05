@@ -18,9 +18,7 @@ const boardSlice = createSlice({
   name: 'board',
   initialState: initialState,
   reducers: {
-    boardStart(state) {
-      state = initialState;
-    },
+    boardStart: () => initialState,
     boardStartFen(state, action) {
       const fenSplit = action.payload.fen.split(' ');
       state.fen = action.payload.fen;
