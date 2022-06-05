@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import modeActionTypes from "../../constants/modeActionTypes";
 import { resignAcceptDialogClose } from '../../features/dialog/resignAcceptDialogSlice';
+import { modePlayResignAccept } from '../features/modeSlice';
 import Wording from "../../utils/Wording.js";
 import WsAction from '../../ws/WsAction';
 
@@ -13,7 +13,7 @@ const ResignAcceptDialog = () => {
   const handleResignAccept = (event) => {
     event.preventDefault();
     WsAction.resign(state, Wording.verb.ACCEPT.toLowerCase()).then((data) => {
-      dispatch({ type: modeActionTypes.PLAY_RESIGN_ACCEPT });
+      dispatch(modePlayResignAccept());
       dispatch(resignAcceptDialogClose());
     });
   };

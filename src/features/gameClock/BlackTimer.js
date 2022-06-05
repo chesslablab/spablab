@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
 import { Box } from '@mui/material';
-import modeActionTypes from '../../constants/modeActionTypes';
 import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
+import { modePlayTimerOver } from '../features/modeSlice';
 import Pgn from '../../utils/Pgn';
 
 const BlackTimer = () => {
@@ -13,12 +13,7 @@ const BlackTimer = () => {
   const timer = useTimer({
     expiryTimestamp,
     onExpire: () => {
-      dispatch({
-        type: modeActionTypes.PLAY_TIMER_OVER,
-        payload: {
-          color: Pgn.symbol.BLACK
-        }
-      });
+      dispatch(modePlayTimerOver({ color: Pgn.symbol.BLACK }));
       dispatch(infoAlertDisplay({ info: 'White wins.' }));
     }
   });

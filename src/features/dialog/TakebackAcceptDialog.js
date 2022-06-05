@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import modeActionTypes from '../../constants/modeActionTypes';
 import { takebackAcceptDialogClose } from '../../features/dialog/takebackAcceptDialogSlice';
 import Wording from '../../utils/Wording.js';
 import WsAction from '../../ws/WsAction';

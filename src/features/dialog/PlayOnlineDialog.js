@@ -14,8 +14,8 @@ import {
   Typography
 } from '@mui/material';
 import PlayOnlineTable from '../../features/table/PlayOnlineTable';
-import modeActionTypes from '../../constants/modeActionTypes';
 import { playOnlineDialogClose } from '../../features/dialog/playOnlineDialogSlice';
+import { modeSetAnalysis } from '../features/modeSlice';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 
@@ -34,7 +34,7 @@ const PlayOnlineDialog = () => {
       submode: 'online'
     };
     WsAction.quit(state).then(() => {
-      dispatch({ type: modeActionTypes.SET_ANALYSIS });
+      dispatch(modeSetAnalysis());
       WsAction.startPlay(state, settings).then(() => {
         dispatch(playOnlineDialogClose());
       });

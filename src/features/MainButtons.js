@@ -17,7 +17,7 @@ import { openingSearchNameDialogOpen } from '../features/dialog/openingSearchNam
 import { playLikeGrandmasterDialogOpen } from '../features/dialog/playLikeGrandmasterDialogSlice';
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
-import modeActionTypes from '../constants/modeActionTypes';
+import { modeSetAnalysis } from '../features/modeSlice';
 import modeNames from '../constants/modeNames';
 import WsAction from '../ws/WsAction';
 
@@ -103,7 +103,7 @@ const MainButtons = () => {
       >
         <MenuItem onClick={() => {
           dispatch(createInviteCodeDialogOpen());
-          dispatch({ type: modeActionTypes.SET_ANALYSIS });
+          dispatch(modeSetAnalysis());
           handleClosePlayFriend();
         }}>Create Invite Code</MenuItem>
         <MenuItem onClick={() => {
