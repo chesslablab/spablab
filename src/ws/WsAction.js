@@ -2,7 +2,7 @@ import {
   wsConnectionEstablished,
   wsConnectionError
 } from '../features/wsSlice';
-import WsEventListener from '../ws/WsEventListener';
+import WsEventListener from './WsEventListener';
 
 export default class WsAction {
   static connect = (state, props) => dispatch => {

@@ -69,9 +69,9 @@ import {
   modePlayRematchAccept,
   modePlayRematchDecline,
   modePlayLeaveAccept
-} from '../features/boardSlice';
+} from '../features/modeSlice';
 import { modeName } from '../features/modeConstant';
-import WsAction from '../ws/WsAction';
+import WsAction from './WsAction';
 
 const reset = (dispatch) => {
   dispatch(heuristicsBarReset());

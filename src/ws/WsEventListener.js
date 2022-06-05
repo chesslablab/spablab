@@ -3,8 +3,8 @@ import Wording from '../common/Wording.js';
 import { infoAlertDisplay } from '../features/alert/infoAlertSlice';
 import { boardPlayMove } from '../features/boardSlice';
 import { modeName } from '../features/modeConstant';
-import WsAction from '../ws/WsAction';
-import WsEvent from '../ws/WsEvent';
+import WsAction from './WsAction';
+import WsEvent from './WsEvent';
 
 export default class WsEventListener {
   static listen = (props, data) => dispatch => {
