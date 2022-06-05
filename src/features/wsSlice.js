@@ -8,17 +8,15 @@ const wsSlice = createSlice({
   name: 'ws',
   initialState,
   reducers: {
+    wsConnectionError: () => initialState,
     wsConnectionEstablished(state, action) {
       state.ws = action.payload.ws;
-    },
-    wsConnectionError(state) {
-      state = initialState;
     }
   }
 });
 
 export const {
-  wsConnectionEstablished,
-  wsConnectionError
+  wsConnectionError,
+  wsConnectionEstablished
 } = wsSlice.actions;
 export default wsSlice.reducer;
