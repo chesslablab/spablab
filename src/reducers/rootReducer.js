@@ -1,4 +1,3 @@
-import modeReducer from './modeReducer';
 import serverReducer from './serverReducer';
 import infoAlertReducer from '../features/alert/infoAlertSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
@@ -25,6 +24,7 @@ import openingAnalysisTableReducer from '../features/table/openingAnalysisTableS
 import boardReducer from '../features/boardSlice';
 import heuristicsBarReducer from '../features/heuristicsBarSlice';
 import historyReducer from '../features/historySlice';
+import modeReducer from '../features/modeSlice';
 
 const rootReducer = {
   board: boardReducer,

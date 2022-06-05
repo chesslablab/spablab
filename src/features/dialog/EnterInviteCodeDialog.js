@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, TextField } from '@mui/material';
 import { enterInviteCodeDialogClose } from '../../features/dialog/enterInviteCodeDialogSlice';
-import { modeSetAnalysis } from '../features/modeSlice';
+import { modeSetAnalysis } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const EnterInviteCodeDialog = () => {

@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import PlayOnlineTable from '../../features/table/PlayOnlineTable';
 import { playOnlineDialogClose } from '../../features/dialog/playOnlineDialogSlice';
-import { modeSetAnalysis } from '../features/modeSlice';
+import { modeSetAnalysis } from '../../features/modeSlice';
 import Pgn from '../../utils/Pgn';
 import WsAction from '../../ws/WsAction';
 

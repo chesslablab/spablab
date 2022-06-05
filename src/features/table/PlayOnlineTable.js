@@ -12,7 +12,7 @@ import {
   TableBody
 } from '@mui/material';
 import { playOnlineDialogClose } from '../../features/dialog/playOnlineDialogSlice';
-import { modeSetAnalysis } from '../features/modeSlice';
+import { modeSetAnalysis } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineTable = () => {

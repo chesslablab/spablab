@@ -1,4 +1,3 @@
-import modeActionTypes from '../constants/modeActionTypes';
 import modeNames from '../constants/modeNames';
 import {
   infoAlertClose,
@@ -51,6 +50,23 @@ import {
 import {
   historyGoTo
 } from '../features/historySlice';
+import {
+  modeSetAnalysis,
+  modeSetGrandmaster,
+  modeSetLoadFen,
+  modeSetLoadPgn,
+  modeSetPlay,
+  modeGrandmasterMovetext,
+  modePlayAccept,
+  modePlayTakebackAccept,
+  modePlayDrawAccept,
+  modePlayDrawDecline,
+  modePlayTakebackDecline,
+  modePlayResignAccept,
+  modePlayRematchAccept,
+  modePlayRematchDecline,
+  modePlayLeaveAccept
+} from '../features/boardSlice';
 import jwt_decode from "jwt-decode";
 import store from '../store';
 import Opening from '../utils/Opening.js';
@@ -71,17 +87,12 @@ const reset = (dispatch) => {
 export default class WsEvent {
   static onStartAnalysis = (data) => dispatch => {
     reset(dispatch);
-    dispatch({ type: modeActionTypes.SET_ANALYSIS });
+    dispatch(modeSetAnalysis());
   }
 
   static onStartGrandmaster = (data) => dispatch => {
     reset(dispatch);
-    dispatch({
-      type: modeActionTypes.SET_GRANDMASTER,
-      payload: {
-        color: data['/start'].color
-      }
-    });
+    dispatch(modeSetGrandmaster({ color: data['/start'].color }));
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(boardFlip());
     }
@@ -90,7 +101,7 @@ export default class WsEvent {
   static onStartLoadfen = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].fen) {
-      dispatch({ type: modeActionTypes.SET_LOADFEN });
+      dispatch(modeSetLoadFen());
       dispatch(boardStartFen({ fen: data['/start'].fen }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
@@ -101,7 +112,7 @@ export default class WsEvent {
   static onStartLoadpgn = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].movetext) {
-      dispatch({ type: modeActionTypes.SET_LOADPGN });
+      dispatch(modeSetLoadPgn());
       dispatch(boardStartPgn({
         turn: data['/start'].turn,
         movetext: data['/start'].movetext,
@@ -117,18 +128,15 @@ export default class WsEvent {
   static onStartPlay = (data) => dispatch => {
     reset(dispatch);
     const jwtDecoded = jwt_decode(data['/start'].jwt);
-    dispatch({
-      type: modeActionTypes.SET_PLAY,
-      payload: {
-        current: modeNames.PLAY,
-        play: {
-          jwt: data['/start'].jwt,
-          jwt_decoded: jwtDecoded,
-          hash: data['/start'].hash,
-          color: jwtDecoded.color
-        }
+    dispatch(modeSetPlay({
+      current: modeNames.PLAY,
+      play: {
+        jwt: data['/start'].jwt,
+        jwt_decoded: jwtDecoded,
+        hash: data['/start'].hash,
+        color: jwtDecoded.color
       }
-    });
+    }));
     if (jwtDecoded.color === Pgn.symbol.BLACK) {
       dispatch(boardFlip());
     }
@@ -142,23 +150,20 @@ export default class WsEvent {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
       const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       dispatch(boardStart());
-      dispatch({
-        type: modeActionTypes.SET_PLAY,
-        payload: {
-          current: modeNames.PLAY,
-          play: {
-            jwt: data['/accept'].jwt,
-            jwt_decoded: jwt_decode(data['/accept'].jwt),
-            hash: data['/accept'].hash,
-            color: color
-          }
+      dispatch(modeSetPlay({
+        current: modeNames.PLAY,
+        play: {
+          jwt: data['/accept'].jwt,
+          jwt_decoded: jwt_decode(data['/accept'].jwt),
+          hash: data['/accept'].hash,
+          color: color
         }
-      });
+      }));
     }
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
       dispatch(boardFlip());
     }
-    dispatch({ type: modeActionTypes.PLAY_ACCEPT });
+    dispatch(modePlayAccept());
     dispatch(playOnlineDialogClose());
   }
 
@@ -236,7 +241,7 @@ export default class WsEvent {
   }
 
   static onTakebackAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.PLAY_TAKEBACK_ACCEPT });
+    dispatch(modePlayTakebackAccept());
   }
 
   static onDrawPropose = () => dispatch => {
@@ -246,12 +251,12 @@ export default class WsEvent {
   }
 
   static onDrawAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.PLAY_DRAW_ACCEPT });
+    dispatch(modePlayDrawAccept());
     dispatch(infoAlertDisplay({ info: 'Draw offer accepted.' }));
   }
 
   static onDrawDecline = () => dispatch => {
-    dispatch({ type: modeActionTypes.PLAY_DRAW_DECLINE });
+    dispatch(modePlayDrawDecline());
     dispatch(infoAlertDisplay({ info: 'Draw offer declined.' }));
   }
 
@@ -262,12 +267,12 @@ export default class WsEvent {
       WsAction.grandmaster(store.getState());
       WsAction.grandmaster(store.getState());
     } else if (data['/undo'].mode === modeNames.PLAY) {
-      dispatch({ type: modeActionTypes.PLAY_TAKEBACK_DECLINE });
+      dispatch(modePlayTakebackDecline());
     }
   }
 
   static onResignAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.PLAY_RESIGN_ACCEPT });
+    dispatch(modePlayResignAccept());
     dispatch(infoAlertDisplay({ info: 'Chess game resigned.' }));
   }
 
@@ -278,17 +283,17 @@ export default class WsEvent {
   }
 
   static onRematchAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.PLAY_REMATCH_ACCEPT });
+    dispatch(modePlayRematchAccept());
     dispatch(infoAlertDisplay({ info: 'Rematch accepted.' }));
   }
 
   static onRematchDecline = () => dispatch => {
-    dispatch({ type: modeActionTypes.PLAY_REMATCH_DECLINE });
+    dispatch(modePlayRematchDecline());
     dispatch(infoAlertDisplay({ info: 'Rematch declined.' }));
   }
 
   static onLeaveAccept = () => dispatch => {
-    dispatch({ type: modeActionTypes.PLAY_LEAVE_ACCEPT });
+    dispatch(modePlayLeaveAccept());
     dispatch(infoAlertDisplay({ info: 'Your opponent left the game.' }));
   }
 
@@ -296,26 +301,23 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
-    dispatch({
-      type: modeActionTypes.SET_PLAY,
-      payload: {
-        current: modeNames.PLAY,
-        play: {
-          jwt: data['/restart'].jwt,
-          jwt_decoded: jwtDecoded,
-          hash: data['/restart'].hash,
-          color: store.getState().mode.play.color,
-          takeback: null,
-          draw: null,
-          resign: null,
-          rematch: null,
-          timer: {
-            expiry_timestamp: expiryTimestamp,
-            over: null
-          }
+    dispatch(modeSetPlay({
+      current: modeNames.PLAY,
+      play: {
+        jwt: data['/restart'].jwt,
+        jwt_decoded: jwtDecoded,
+        hash: data['/restart'].hash,
+        color: store.getState().mode.play.color,
+        takeback: null,
+        draw: null,
+        resign: null,
+        rematch: null,
+        timer: {
+          expiry_timestamp: expiryTimestamp,
+          over: null
         }
       }
-    });
+    }));
     dispatch(boardStart());
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
       dispatch(boardFlip());
@@ -333,22 +335,14 @@ export default class WsEvent {
         movetext: data['/grandmaster'].state.movetext,
         fen: data['/grandmaster'].state.fen
       }));
-      dispatch({
-        type: modeActionTypes.GRANDMASTER_MOVETEXT,
-        payload: {
-          movetext: data['/grandmaster'].state.movetext
-        }
-      });
+      dispatch(modeGrandmasterMovetext({
+        movetext: data['/grandmaster'].state.movetext
+      }));
       dispatch(infoAlertClose());
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(gameTableClose());
-      dispatch({
-        type: modeActionTypes.GRANDMASTER_MOVETEXT,
-        payload: {
-          movetext: null
-        }
-      });
+      dispatch(modeGrandmasterMovetext({ movetext: null }));
       dispatch(infoAlertDisplay({ info: 'This move was not found in the database.' }));
     }
   }
@@ -356,7 +350,7 @@ export default class WsEvent {
   static onRandomGame = (data) => dispatch => {
     reset(dispatch);
     if (data['/random_game'].movetext) {
-      dispatch({ type: modeActionTypes.SET_LOADPGN });
+      dispatch(modeSetLoadPgn());
       dispatch(boardStartPgn({
         turn: data['/random_game'].turn,
         movetext: data['/random_game'].movetext,

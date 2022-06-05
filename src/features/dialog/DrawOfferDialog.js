@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { drawOfferDialogClose } from '../../features/dialog/drawOfferDialogSlice';
-import { modePlayDrawPropose } from '../features/modeSlice';
+import { modePlayDrawPropose } from '../../features/modeSlice';
 import Wording from '../../utils/Wording.js';
 import WsAction from '../../ws/WsAction';
 

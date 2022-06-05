@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { resignAcceptDialogClose } from '../../features/dialog/resignAcceptDialogSlice';
-import { modePlayResignAccept } from '../features/modeSlice';
+import { modePlayResignAccept } from '../../features/modeSlice';
 import Wording from "../../utils/Wording.js";
 import WsAction from '../../ws/WsAction';
 
