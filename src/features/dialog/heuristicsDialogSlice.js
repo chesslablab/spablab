@@ -9,12 +9,10 @@ const heuristicsDialogSlice = createSlice({
   name: 'heuristicsDialog',
   initialState: initialState,
   reducers: {
+    heuristicsDialogClose: () => initialState,
     heuristicsDialogOpen(state, action) {
       state.open = true,
       state.heuristics = action.payload;
-    },
-    heuristicsDialogClose(state) {
-      state = initialState;
     }
   }
 });
