@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Pgn from '../common/Pgn';
 import Wording from '../common/Wording.js';
-import modeNames from '../constants/modeNames';
+import { modeName } from './modeConstant';
 
 const initialState = {
-  current: modeNames.ANALYSIS,
+  current: modeName.ANALYSIS,
   grandmaster: {
     color: null,
     movetext: null
@@ -35,14 +35,14 @@ const modeSlice = createSlice({
       state = initialState;
     },
     modeSetGrandmaster(state) {
-      state.current = modeNames.GRANDMASTER;
+      state.current = modeName.GRANDMASTER;
       state.grandmaster.color = action.payload.color;
     },
     modeSetLoadFen(state) {
-      state.current = modeNames.LOADFEN;
+      state.current = modeName.LOADFEN;
     },
     modeSetLoadPgn(state) {
-      state.current = modeNames.LOADPGN;
+      state.current = modeName.LOADPGN;
     },
     modeSetPlay(state, action) {
       state.current = action.payload.current;

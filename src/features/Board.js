@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
 import Piece from '../common/Piece';
-import modeNames from '../constants/modeNames';
 import {
   boardPickPiece,
   boardLeavePiece
 } from '../features/boardSlice';
+import { modeName } from '../features/modeConstant';
 import WsAction from '../ws/WsAction';
 
 const Board = ({props}) => {
@@ -20,16 +20,16 @@ const Board = ({props}) => {
 
   const pickPiece = (payload) => {
     if (
-      modeNames.ANALYSIS === state.mode.current ||
-      modeNames.GRANDMASTER === state.mode.current ||
-      modeNames.LOADFEN === state.mode.current ||
-      modeNames.LOADPGN === state.mode.current
+      modeName.ANALYSIS === state.mode.current ||
+      modeName.GRANDMASTER === state.mode.current ||
+      modeName.LOADFEN === state.mode.current ||
+      modeName.LOADPGN === state.mode.current
     ) {
       if (state.board.turn === Piece.color(payload.piece)) {
         dispatch(boardPickPiece(payload));
         WsAction.legalSqs(state, payload.sq);
       }
-    } else if (modeNames.PLAY === state.mode.current) {
+    } else if (modeName.PLAY === state.mode.current) {
       if (state.mode.play.accepted) {
         if (state.mode.play.color === state.board.turn) {
           if (state.board.turn === Piece.color(payload.piece)) {

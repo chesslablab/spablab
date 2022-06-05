@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
-import modeNames from '../../constants/modeNames';
+import { modeName } from '../modeConstant';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -16,7 +16,7 @@ const StartedButtonsGrandmasterMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.current === modeNames.GRANDMASTER) {
+  if (state.mode.current === modeName.GRANDMASTER) {
     if (state.board.movetext && !state.mode.grandmaster.movetext) {
       return (
         <ButtonGroup

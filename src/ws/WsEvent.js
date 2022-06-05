@@ -2,7 +2,6 @@ import jwt_decode from "jwt-decode";
 import store from '../app/store';
 import Opening from '../common/Opening.js';
 import Pgn from '../common/Pgn';
-import modeNames from '../constants/modeNames';
 import {
   infoAlertClose,
   infoAlertDisplay
@@ -71,6 +70,7 @@ import {
   modePlayRematchDecline,
   modePlayLeaveAccept
 } from '../features/boardSlice';
+import { modeName } from '../features/modeConstant';
 import WsAction from '../ws/WsAction';
 
 const reset = (dispatch) => {
@@ -129,7 +129,7 @@ export default class WsEvent {
     reset(dispatch);
     const jwtDecoded = jwt_decode(data['/start'].jwt);
     dispatch(modeSetPlay({
-      current: modeNames.PLAY,
+      current: modeName.PLAY,
       play: {
         jwt: data['/start'].jwt,
         jwt_decoded: jwtDecoded,
@@ -151,7 +151,7 @@ export default class WsEvent {
       const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       dispatch(boardStart());
       dispatch(modeSetPlay({
-        current: modeNames.PLAY,
+        current: modeName.PLAY,
         play: {
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
@@ -196,7 +196,7 @@ export default class WsEvent {
       } else {
         dispatch(boardValidMove(payload));
       }
-      if (store.getState().mode.current === modeNames.ANALYSIS) {
+      if (store.getState().mode.current === modeName.ANALYSIS) {
         dispatch(openingAnalysisTableClose());
         let rows = Opening.analysis(payload.movetext);
         if (rows) {
@@ -204,15 +204,15 @@ export default class WsEvent {
         } else {
           dispatch(openingAnalysisTableClose());
         }
-      } else if (store.getState().mode.current === modeNames.GRANDMASTER) {
+      } else if (store.getState().mode.current === modeName.GRANDMASTER) {
         dispatch(progressDialogOpen());
         WsAction.grandmaster(store.getState());
       }
       if (
-        store.getState().mode.current === modeNames.ANALYSIS ||
-        store.getState().mode.current === modeNames.LOADPGN ||
-        store.getState().mode.current === modeNames.LOADFEN ||
-        store.getState().mode.current === modeNames.GRANDMASTER
+        store.getState().mode.current === modeName.ANALYSIS ||
+        store.getState().mode.current === modeName.LOADPGN ||
+        store.getState().mode.current === modeName.LOADFEN ||
+        store.getState().mode.current === modeName.GRANDMASTER
       ) {
         WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
@@ -262,11 +262,11 @@ export default class WsEvent {
 
   static onUndo = (data) => dispatch => {
     dispatch(boardUndo(data['/undo']));
-    if (data['/undo'].mode === modeNames.GRANDMASTER) {
+    if (data['/undo'].mode === modeName.GRANDMASTER) {
       dispatch(progressDialogOpen());
       WsAction.grandmaster(store.getState());
       WsAction.grandmaster(store.getState());
-    } else if (data['/undo'].mode === modeNames.PLAY) {
+    } else if (data['/undo'].mode === modeName.PLAY) {
       dispatch(modePlayTakebackDecline());
     }
   }
@@ -302,7 +302,7 @@ export default class WsEvent {
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
     dispatch(modeSetPlay({
-      current: modeNames.PLAY,
+      current: modeName.PLAY,
       play: {
         jwt: data['/restart'].jwt,
         jwt_decoded: jwtDecoded,
