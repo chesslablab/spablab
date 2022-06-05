@@ -6,7 +6,7 @@ const initialState = {
 
 const wsSlice = createSlice({
   name: 'ws',
-  initialState: initialState,
+  initialState,
   reducers: {
     wsConnectionEstablished(state, action) {
       state.ws = action.payload.ws;

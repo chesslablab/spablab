@@ -16,7 +16,7 @@ const initialState = {
 
 const boardSlice = createSlice({
   name: 'board',
-  initialState: initialState,
+  initialState,
   reducers: {
     boardStart: () => initialState,
     boardStartFen(state, action) {

@@ -7,7 +7,7 @@ const initialState = {
 
 const infoAlertSlice = createSlice({
   name: 'infoAlert',
-  initialState: initialState,
+  initialState,
   reducers: {
     infoAlertDisplay(state, action) {
       state.open = true,

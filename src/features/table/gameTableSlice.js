@@ -7,7 +7,7 @@ const initialState = {
 
 const gameTableSlice = createSlice({
   name: 'gameTable',
-  initialState: initialState,
+  initialState,
   reducers: {
     gameTableDisplay(state, action) {
       state.open = true,

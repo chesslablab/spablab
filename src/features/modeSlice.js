@@ -29,7 +29,7 @@ const initialState = {
 
 const modeSlice = createSlice({
   name: 'mode',
-  initialState: initialState,
+  initialState,
   reducers: {
     modeSetAnalysis(state) {
       state = initialState;

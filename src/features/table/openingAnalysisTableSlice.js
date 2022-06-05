@@ -7,7 +7,7 @@ const initialState = {
 
 const openingAnalysisTableSlice = createSlice({
   name: 'openingAnalysisTable',
-  initialState: initialState,
+  initialState,
   reducers: {
     openingAnalysisTableDisplay(state, action) {
       state.open = true,

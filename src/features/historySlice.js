@@ -6,7 +6,7 @@ const initialState = {
 
 const historySlice = createSlice({
   name: 'history',
-  initialState: initialState,
+  initialState,
   reducers: {
     historyGoTo(state, action) {
       state.back = 0 - action.payload.back;
