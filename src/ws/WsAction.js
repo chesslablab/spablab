@@ -1,5 +1,8 @@
-import wsActionTypes from '../constants/wsActionTypes';
-import WsEventListener from '../ws/WsEventListener';
+import {
+  wsConnectionEstablished,
+  wsConnectionError
+} from '../features/wsSlice';
+import WsEventListener from './WsEventListener';
 
 export default class WsAction {
   static connect = (state, props) => dispatch => {
@@ -10,11 +13,11 @@ export default class WsAction {
         resolve(res.data);
       };
       ws.onerror = (err) => {
-        dispatch({ type: wsActionTypes.CONNECTION_ERROR });
+        dispatch(wsConnectionError());
         reject(err);
       };
       ws.onopen = () => {
-        dispatch({ type: wsActionTypes.CONNECTION_ESTABLISHED, payload: { ws: ws } });
+        dispatch(wsConnectionEstablished({ ws: ws }));
         resolve(ws);
       };
     });

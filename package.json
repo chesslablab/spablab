@@ -46,6 +46,7 @@
     "@mui/icons-material": "^5.4.1",
     "@mui/material": "^5.4.1",
     "@mui/styles": "^5.4.1",
+    "@reduxjs/toolkit": "^1.8.2",
     "html2canvas": "^1.4.1",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
@@ -53,10 +54,7 @@
     "react-redux": "^7.2.6",
     "react-scripts": "^5.0.0",
     "react-timer-hook": "^3.0.5",
-    "recharts": "^2.1.9",
-    "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.1"
+    "recharts": "^2.1.9"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",

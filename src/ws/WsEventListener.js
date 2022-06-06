@@ -1,10 +1,10 @@
-import infoAlertActionTypes from '../constants/alert/infoAlertActionTypes';
-import boardActionTypes from '../constants/boardActionTypes';
-import modeNames from '../constants/modeNames';
-import store from '../store';
-import Wording from '../utils/Wording.js';
-import WsAction from '../ws/WsAction';
-import WsEvent from '../ws/WsEvent';
+import store from '../app/store';
+import Wording from '../common/Wording.js';
+import { infoAlertDisplay } from '../features/alert/infoAlertSlice';
+import { boardPlayMove } from '../features/boardSlice';
+import { modeName } from '../features/modeConstant';
+import WsAction from './WsAction';
+import WsEvent from './WsEvent';
 
 export default class WsEventListener {
   static listen = (props, data) => dispatch => {
@@ -32,15 +32,15 @@ export default class WsEventListener {
         }
         break;
       case '/start' === cmd:
-        if (data['/start'].mode === modeNames.ANALYSIS) {
+        if (data['/start'].mode === modeName.ANALYSIS) {
           dispatch(WsEvent.onStartAnalysis(data));
-        } else if (data['/start'].mode === modeNames.GRANDMASTER) {
+        } else if (data['/start'].mode === modeName.GRANDMASTER) {
           dispatch(WsEvent.onStartGrandmaster(data));
-        } else if (data['/start'].mode === modeNames.LOADFEN) {
+        } else if (data['/start'].mode === modeName.LOADFEN) {
           dispatch(WsEvent.onStartLoadfen(data));
-        } else if (data['/start'].mode === modeNames.LOADPGN) {
+        } else if (data['/start'].mode === modeName.LOADPGN) {
           dispatch(WsEvent.onStartLoadpgn(data));
-        } else if (data['/start'].mode === modeNames.PLAY) {
+        } else if (data['/start'].mode === modeName.PLAY) {
           dispatch(WsEvent.onStartPlay(data));
         }
         break;
@@ -48,26 +48,16 @@ export default class WsEventListener {
         if (data['/accept'].jwt) {
           dispatch(WsEvent.onAccept(data));
         } else {
-          dispatch({
-            type: infoAlertActionTypes.DISPLAY,
-            payload: {
-              info: 'Invalid invite code.'
-            }
-          });
+          dispatch(infoAlertDisplay({ info: 'Invalid invite code.' }));
         }
         break;
       case '/online_games' === cmd:
         dispatch(WsEvent.onOnlineGames(data));
         break;
       case '/play_fen' === cmd:
-        if (store.getState().mode.current === modeNames.PLAY) {
+        if (store.getState().mode.current === modeName.PLAY) {
           if (store.getState().mode.play.color !== data['/play_fen'].turn) {
-            dispatch({
-              type: boardActionTypes.PLAY_MOVE,
-              payload: {
-                fen: data['/play_fen'].fen
-              }
-            });
+            dispatch(boardPlayMove({ fen: data['/play_fen'].fen }));
           }
         }
         dispatch(WsEvent.onPlayfen(props, data));
@@ -107,7 +97,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onGrandmaster(data));
         break;
       case '/random_game' === cmd:
-        if (data['/random_game'].mode === modeNames.LOADPGN) {
+        if (data['/random_game'].mode === modeName.LOADPGN) {
           dispatch(WsEvent.onRandomGame(data));
         }
         break;

@@ -1,4 +1,4 @@
-import Opening from 'utils/Opening.js';
+import Opening from 'common/Opening.js';
 
 describe('byEco()', () => {
   it('is 720 starting with A', () => {
