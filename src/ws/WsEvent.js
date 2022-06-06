@@ -304,6 +304,13 @@ export default class WsEvent {
     dispatch(modeSetPlay({
       current: modeName.PLAY,
       play: {
+        color: store.getState().mode.play.color,
+        accepted: false
+      }
+    }));
+    dispatch(modeSetPlay({
+      current: modeName.PLAY,
+      play: {
         jwt: data['/restart'].jwt,
         jwt_decoded: jwtDecoded,
         hash: data['/restart'].hash,
@@ -312,6 +319,7 @@ export default class WsEvent {
         draw: null,
         resign: null,
         rematch: null,
+        accepted: true,
         timer: {
           expiry_timestamp: expiryTimestamp,
           over: null
