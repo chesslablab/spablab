@@ -3,28 +3,32 @@ import Pgn from '../common/Pgn';
 import Wording from '../common/Wording.js';
 import { modeName } from './modeConstant';
 
+const initialGrandmaster = {
+  color: null,
+  movetext: null
+};
+
+const initialPlay = {
+  jwt: null,
+  jwt_decoded: null,
+  hash: null,
+  color: null,
+  takeback: null,
+  draw: null,
+  resign: null,
+  rematch: null,
+  leave: null,
+  accepted: false,
+  timer: {
+    expiry_timestamp: null,
+    over: null
+  }
+};
+
 const initialState = {
   current: modeName.ANALYSIS,
-  grandmaster: {
-    color: null,
-    movetext: null
-  },
-  play: {
-    jwt: null,
-    jwt_decoded: null,
-    hash: null,
-    color: null,
-    takeback: null,
-    draw: null,
-    resign: null,
-    rematch: null,
-    leave: null,
-    accepted: false,
-    timer: {
-      expiry_timestamp: null,
-      over: null
-    }
-  }
+  grandmaster: initialGrandmaster,
+  play: initialPlay
 };
 
 const modeSlice = createSlice({
@@ -34,16 +38,23 @@ const modeSlice = createSlice({
     modeSetAnalysis: () => initialState,
     modeSetGrandmaster(state, action) {
       state.current = modeName.GRANDMASTER;
+      state.grandmaster = initialGrandmaster;
       state.grandmaster.color = action.payload.color;
+      state.play = initialPlay;
     },
     modeSetLoadFen(state) {
       state.current = modeName.LOADFEN;
+      state.grandmaster = initialGrandmaster;
+      state.play = initialPlay;
     },
     modeSetLoadPgn(state) {
       state.current = modeName.LOADPGN;
+      state.grandmaster = initialGrandmaster;
+      state.play = initialPlay;
     },
     modeSetPlay(state, action) {
       state.current = action.payload.current;
+      state.grandmaster = initialGrandmaster;
       state.play = action.payload.play;
     },
     modeGrandmasterMovetext(state, action) {
