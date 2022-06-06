@@ -23,7 +23,15 @@ const WhiteTimer = () => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-      if (state.board.turn === Pgn.symbol.WHITE) {
+      if (
+        state.board.isMate ||
+        state.mode.play.draw ||
+        state.mode.play.resign ||
+        state.mode.play.leave ||
+        state.mode.play.timer.over
+      ) {
+        timer.pause();
+      } else if (state.board.turn === Pgn.symbol.WHITE) {
         timer.resume();
       } else {
         let now = new Date();
@@ -37,7 +45,14 @@ const WhiteTimer = () => {
         timer.pause();
       }
     }
-  }, [state.board.turn]);
+  }, [
+    state.board.turn,
+    state.board.isMate,
+    state.mode.play.draw,
+    state.mode.play.resign,
+    state.mode.play.leave,
+    state.mode.play.timer.over
+  ]);
 
   return (
     <Box component="span" style={{ marginRight: 10 }}>

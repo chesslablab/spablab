@@ -24,7 +24,15 @@ const BlackTimer = () => {
       timer.pause();
       isInitialMount.current = false;
     } else {
-      if (state.board.turn === Pgn.symbol.BLACK) {
+      if (
+        state.board.isMate ||
+        state.mode.play.draw ||
+        state.mode.play.resign ||
+        state.mode.play.leave ||
+        state.mode.play.timer.over
+      ) {
+        timer.pause();
+      } else if (state.board.turn === Pgn.symbol.BLACK) {
         timer.resume();
       } else {
         let now = new Date();
@@ -38,7 +46,14 @@ const BlackTimer = () => {
         timer.pause();
       }
     }
-  }, [state.board.turn]);
+  }, [
+    state.board.turn,
+    state.board.isMate,
+    state.mode.play.draw,
+    state.mode.play.resign,
+    state.mode.play.leave,
+    state.mode.play.timer.over
+  ]);
 
   return (
     <Box component="span">
