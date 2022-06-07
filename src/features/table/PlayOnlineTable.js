@@ -58,7 +58,11 @@ const PlayOnlineTable = () => {
                 <TableCell align="center">Anonymous</TableCell>
                 <TableCell align="right">
                   <Button
-                    disabled={state.mode.play.hash === row.hash ? true : false}
+                    disabled={
+                      state.mode.play && state.mode.play.hash === row.hash
+                        ? true
+                        : false
+                      }
                     variant="outlined"
                     startIcon={<PlayArrowIcon />}
                     onClick={() => handlePlay(row.hash)}
