@@ -21,7 +21,7 @@ const CreateInviteCodeDialog = () => {
   return (
     <Dialog open={state.createInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Create invite code</DialogTitle>
-        {!state.mode.play.hash ? <CreateCode /> : <CopyCode />}
+        {state.mode.play && state.mode.play.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }

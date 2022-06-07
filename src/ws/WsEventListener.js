@@ -55,7 +55,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onOnlineGames(data));
         break;
       case '/play_fen' === cmd:
-        if (store.getState().mode.current === modeName.PLAY) {
+        if (store.getState().mode.name === modeName.PLAY) {
           if (store.getState().mode.play.color !== data['/play_fen'].turn) {
             dispatch(boardPlayMove({ fen: data['/play_fen'].fen }));
           }

@@ -20,9 +20,9 @@ const BlackTimer = () => {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
-    if (isInitialMount.current) {
+    if (isInitialMount.name) {
       timer.pause();
-      isInitialMount.current = false;
+      isInitialMount.name = false;
     } else {
       if (
         state.board.isMate ||

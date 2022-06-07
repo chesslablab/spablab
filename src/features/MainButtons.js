@@ -18,7 +18,7 @@ import { playLikeGrandmasterDialogOpen } from '../features/dialog/playLikeGrandm
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
 import { modeName } from '../features/modeConstant';
-import { modeSetAnalysis } from '../features/modeSlice';
+import { modeStartAnalysis } from '../features/modeSlice';
 import WsAction from '../ws/WsAction';
 
 const MainButtons = () => {
@@ -71,7 +71,7 @@ const MainButtons = () => {
       variant="text"
       aria-label="Main Menu"
       fullWidth={matches ? false : true}
-      disabled={state.mode.current === modeName.PLAY &&
+      disabled={state.mode.name === modeName.PLAY &&
         state.mode.play.accepted &&
         !state.mode.play.draw &&
         !state.mode.play.resign &&
@@ -103,7 +103,7 @@ const MainButtons = () => {
       >
         <MenuItem onClick={() => {
           dispatch(createInviteCodeDialogOpen());
-          dispatch(modeSetAnalysis());
+          dispatch(modeStartAnalysis());
           handleClosePlayFriend();
         }}>Create Invite Code</MenuItem>
         <MenuItem onClick={() => {

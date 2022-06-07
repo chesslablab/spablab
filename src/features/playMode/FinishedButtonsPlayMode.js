@@ -17,7 +17,7 @@ const FinishedButtonsPlayMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.current === modeName.PLAY) {
+  if (state.mode.name === modeName.PLAY) {
     if (state.mode.play.accepted) {
       if (
         state.board.isMate ||

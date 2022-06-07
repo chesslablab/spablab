@@ -1,61 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Pgn from '../common/Pgn';
 import Wording from '../common/Wording.js';
 import { modeName } from './modeConstant';
 
-const initialGrandmaster = {
-  color: null,
-  movetext: null
-};
-
-const initialPlay = {
-  jwt: null,
-  jwt_decoded: null,
-  hash: null,
-  color: null,
-  takeback: null,
-  draw: null,
-  resign: null,
-  rematch: null,
-  leave: null,
-  accepted: false,
-  timer: {
-    expiry_timestamp: null,
-    over: null
-  }
-};
-
-const initialState = {
-  current: modeName.ANALYSIS,
-  grandmaster: initialGrandmaster,
-  play: initialPlay
+const initialAnalysis = {
+  name: modeName.ANALYSIS
 };
 
 const modeSlice = createSlice({
   name: 'mode',
-  initialState,
+  initialState: initialAnalysis,
   reducers: {
-    modeSetAnalysis: () => initialState,
+    modeStartAnalysis: () => initialAnalysis,
+    modeStartLoadFen: () => { name: modeName.LOADFEN },
+    modeStartLoadPgn: () => { name: modeName.LOADPGN },
     modeSetGrandmaster(state, action) {
-      state.current = modeName.GRANDMASTER;
-      state.grandmaster = initialGrandmaster;
-      state.grandmaster.color = action.payload.color;
-      state.play = initialPlay;
-    },
-    modeSetLoadFen(state) {
-      state.current = modeName.LOADFEN;
-      state.grandmaster = initialGrandmaster;
-      state.play = initialPlay;
-    },
-    modeSetLoadPgn(state) {
-      state.current = modeName.LOADPGN;
-      state.grandmaster = initialGrandmaster;
-      state.play = initialPlay;
+      state.name = modeName.GRANDMASTER;
+      state.grandmaster = action.payload;
     },
     modeSetPlay(state, action) {
-      state.current = action.payload.current;
-      state.grandmaster = initialGrandmaster;
-      state.play = action.payload.play;
+      state.name = modeName.PLAY;
+      state.play = action.payload;
     },
     modeGrandmasterMovetext(state, action) {
       state.grandmaster.movetext = action.payload.movetext;
@@ -111,10 +75,10 @@ const modeSlice = createSlice({
 });
 
 export const {
-  modeSetAnalysis,
+  modeStartAnalysis,
   modeSetGrandmaster,
-  modeSetLoadFen,
-  modeSetLoadPgn,
+  modeStartLoadFen,
+  modeStartLoadPgn,
   modeSetPlay,
   modeGrandmasterMovetext,
   modePlayAccept,

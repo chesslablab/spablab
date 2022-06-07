@@ -20,8 +20,8 @@ const WhiteTimer = () => {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
+    if (isInitialMount.name) {
+      isInitialMount.name = false;
     } else {
       if (
         state.board.isMate ||

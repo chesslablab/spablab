@@ -17,7 +17,7 @@ const GameClock = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
-  if (state.mode.current === modeName.PLAY) {
+  if (state.mode.name === modeName.PLAY) {
     if (state.mode.play.accepted) {
       return (
         <div className={classes.timers}>

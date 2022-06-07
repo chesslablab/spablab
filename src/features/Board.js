@@ -20,16 +20,16 @@ const Board = ({props}) => {
 
   const pickPiece = (payload) => {
     if (
-      modeName.ANALYSIS === state.mode.current ||
-      modeName.GRANDMASTER === state.mode.current ||
-      modeName.LOADFEN === state.mode.current ||
-      modeName.LOADPGN === state.mode.current
+      modeName.ANALYSIS === state.mode.name ||
+      modeName.GRANDMASTER === state.mode.name ||
+      modeName.LOADFEN === state.mode.name ||
+      modeName.LOADPGN === state.mode.name
     ) {
       if (state.board.turn === Piece.color(payload.piece)) {
         dispatch(boardPickPiece(payload));
         WsAction.legalSqs(state, payload.sq);
       }
-    } else if (modeName.PLAY === state.mode.current) {
+    } else if (modeName.PLAY === state.mode.name) {
       if (state.mode.play.accepted) {
         if (state.mode.play.color === state.board.turn) {
           if (state.board.turn === Piece.color(payload.piece)) {
@@ -42,18 +42,34 @@ const Board = ({props}) => {
   };
 
   const handleMove = (payload) => {
-    if (!state.board.isMate &&
-      !state.mode.play.draw &&
-      !state.mode.play.resign &&
-      !state.mode.play.leave &&
-      !state.mode.play.timer.over &&
-      state.history.back === 0
+    if (
+      state.mode.name === modeName.ANALYSIS ||
+      state.mode.name === modeName.GRANDMASTER ||
+      state.mode.name === modeName.LOADFEN ||
+      state.mode.name === modeName.LOADPGN
     ) {
-      if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-        dispatch(boardLeavePiece(payload));
-      } else {
-        pickPiece(payload);
+      if (!state.board.isMate && state.history.back === 0) {
+        move(payload);
       }
+    } else if (state.mode.name === modeName.PLAY) {
+      if (
+        !state.board.isMate &&
+        !state.mode.play.draw &&
+        !state.mode.play.resign &&
+        !state.mode.play.leave &&
+        !state.mode.play.timer.over &&
+        state.history.back === 0
+      ) {
+        move(payload);
+      }
+    }
+  };
+
+  const move = (payload) => {
+    if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
+      dispatch(boardLeavePiece(payload));
+    } else {
+      pickPiece(payload);
     }
   };
 
