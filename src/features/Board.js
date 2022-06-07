@@ -20,10 +20,10 @@ const Board = ({props}) => {
 
   const pickPiece = (payload) => {
     if (
-      modeName.ANALYSIS === state.mode.name ||
-      modeName.GRANDMASTER === state.mode.name ||
-      modeName.LOADFEN === state.mode.name ||
-      modeName.LOADPGN === state.mode.name
+      state.mode.name === modeName.ANALYSIS ||
+      state.mode.name === modeName.GRANDMASTER ||
+      state.mode.name === modeName.LOADFEN ||
+      state.mode.name === modeName.LOADPGN
     ) {
       if (state.board.turn === Piece.color(payload.piece)) {
         dispatch(boardPickPiece(payload));
