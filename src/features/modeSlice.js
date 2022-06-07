@@ -2,15 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import Wording from '../common/Wording.js';
 import { modeName } from './modeConstant';
 
-const initialAnalysis = {
+const initialState = {
   name: modeName.ANALYSIS
 };
 
 const modeSlice = createSlice({
   name: 'mode',
-  initialState: initialAnalysis,
+  initialState,
   reducers: {
-    modeStartAnalysis: () => initialAnalysis,
+    modeStartAnalysis: () => initialState,
     modeStartLoadFen: () => { name: modeName.LOADFEN },
     modeStartLoadPgn: () => { name: modeName.LOADPGN },
     modeSetGrandmaster(state, action) {
