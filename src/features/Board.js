@@ -18,29 +18,6 @@ const Board = ({props}) => {
     dispatch(WsAction.connect(state, props)).then(ws => WsAction.startAnalysis(ws));
   }, [dispatch]);
 
-  const pickPiece = (payload) => {
-    if (
-      state.mode.name === modeName.ANALYSIS ||
-      state.mode.name === modeName.GRANDMASTER ||
-      state.mode.name === modeName.LOADFEN ||
-      state.mode.name === modeName.LOADPGN
-    ) {
-      if (state.board.turn === Piece.color(payload.piece)) {
-        dispatch(boardPickPiece(payload));
-        WsAction.legalSqs(state, payload.sq);
-      }
-    } else if (modeName.PLAY === state.mode.name) {
-      if (state.mode.play.accepted) {
-        if (state.mode.play.color === state.board.turn) {
-          if (state.board.turn === Piece.color(payload.piece)) {
-            dispatch(boardPickPiece(payload));
-            WsAction.legalSqs(state, payload.sq);
-          }
-        }
-      }
-    }
-  };
-
   const handleMove = (payload) => {
     if (
       state.mode.name === modeName.ANALYSIS ||
@@ -48,8 +25,16 @@ const Board = ({props}) => {
       state.mode.name === modeName.LOADFEN ||
       state.mode.name === modeName.LOADPGN
     ) {
-      if (!state.board.isMate && state.history.back === 0) {
-        move(payload);
+      if (
+        !state.board.isMate &&
+        state.history.back === 0
+      ) {
+        if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
+          dispatch(boardLeavePiece(payload));
+        } else if (state.board.turn === Piece.color(payload.piece)) {
+          dispatch(boardPickPiece(payload));
+          WsAction.legalSqs(state, payload.sq);
+        }
       }
     } else if (state.mode.name === modeName.PLAY) {
       if (
@@ -60,16 +45,17 @@ const Board = ({props}) => {
         !state.mode.play.timer.over &&
         state.history.back === 0
       ) {
-        move(payload);
+        if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
+          dispatch(boardLeavePiece(payload));
+        } else if (state.mode.play.accepted) {
+          if (state.mode.play.color === state.board.turn) {
+            if (state.board.turn === Piece.color(payload.piece)) {
+              dispatch(boardPickPiece(payload));
+              WsAction.legalSqs(state, payload.sq);
+            }
+          }
+        }
       }
-    }
-  };
-
-  const move = (payload) => {
-    if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-      dispatch(boardLeavePiece(payload));
-    } else {
-      pickPiece(payload);
     }
   };
 
