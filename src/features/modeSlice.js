@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Wording from '../common/Wording.js';
-import { modeName } from './modeConstant';
+import {
+  MODE_ANALYSIS,
+  MODE_GRANDMASTER,
+  MODE_LOADFEN,
+  MODE_LOADPGN,
+  MODE_PLAY
+} from './modeConstants';
 
 const initialState = {
-  name: modeName.ANALYSIS
+  name: MODE_ANALYSIS
 };
 
 const modeSlice = createSlice({
@@ -11,14 +17,14 @@ const modeSlice = createSlice({
   initialState,
   reducers: {
     modeStartAnalysis: () => initialState,
-    modeStartLoadFen: () => { name: modeName.LOADFEN },
-    modeStartLoadPgn: () => { name: modeName.LOADPGN },
+    modeStartLoadFen: () => { name: MODE_LOADFEN },
+    modeStartLoadPgn: () => { name: MODE_LOADPGN },
     modeSetGrandmaster(state, action) {
-      state.name = modeName.GRANDMASTER;
+      state.name = MODE_GRANDMASTER;
       state.grandmaster = action.payload;
     },
     modeSetPlay(state, action) {
-      state.name = modeName.PLAY;
+      state.name = MODE_PLAY;
       state.play = action.payload;
     },
     modeGrandmasterMovetext(state, action) {

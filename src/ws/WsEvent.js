@@ -70,7 +70,13 @@ import {
   modePlayRematchDecline,
   modePlayLeaveAccept
 } from '../features/modeSlice';
-import { modeName } from '../features/modeConstant';
+import {
+  MODE_ANALYSIS,
+  MODE_GRANDMASTER,
+  MODE_LOADFEN,
+  MODE_LOADPGN,
+  MODE_PLAY
+} from '../features/modeConstants';
 import WsAction from './WsAction';
 
 const reset = (dispatch) => {
@@ -223,7 +229,7 @@ export default class WsEvent {
       } else {
         dispatch(boardValidMove(payload));
       }
-      if (store.getState().mode.name === modeName.ANALYSIS) {
+      if (store.getState().mode.name === MODE_ANALYSIS) {
         dispatch(openingAnalysisTableClose());
         let rows = Opening.analysis(payload.movetext);
         if (rows) {
@@ -231,15 +237,15 @@ export default class WsEvent {
         } else {
           dispatch(openingAnalysisTableClose());
         }
-      } else if (store.getState().mode.name === modeName.GRANDMASTER) {
+      } else if (store.getState().mode.name === MODE_GRANDMASTER) {
         dispatch(progressDialogOpen());
         WsAction.grandmaster(store.getState());
       }
       if (
-        store.getState().mode.name === modeName.ANALYSIS ||
-        store.getState().mode.name === modeName.LOADPGN ||
-        store.getState().mode.name === modeName.LOADFEN ||
-        store.getState().mode.name === modeName.GRANDMASTER
+        store.getState().mode.name === MODE_ANALYSIS ||
+        store.getState().mode.name === MODE_LOADPGN ||
+        store.getState().mode.name === MODE_LOADFEN ||
+        store.getState().mode.name === MODE_GRANDMASTER
       ) {
         WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
@@ -289,11 +295,11 @@ export default class WsEvent {
 
   static onUndo = (data) => dispatch => {
     dispatch(boardUndo(data['/undo']));
-    if (data['/undo'].mode === modeName.GRANDMASTER) {
+    if (data['/undo'].mode === MODE_GRANDMASTER) {
       dispatch(progressDialogOpen());
       WsAction.grandmaster(store.getState());
       WsAction.grandmaster(store.getState());
-    } else if (data['/undo'].mode === modeName.PLAY) {
+    } else if (data['/undo'].mode === MODE_PLAY) {
       dispatch(modePlayTakebackDecline());
     }
   }

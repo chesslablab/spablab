@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import BlackTimer from './BlackTimer';
 import WhiteTimer from './WhiteTimer';
-import { modeName } from '../modeConstant';
+import { MODE_PLAY } from '../modeConstants';
 
 const useStyles = makeStyles({
   timers: {
@@ -17,7 +17,7 @@ const GameClock = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
-  if (state.mode.name === modeName.PLAY) {
+  if (state.mode.name === MODE_PLAY) {
     if (state.mode.play.accepted) {
       return (
         <div className={classes.timers}>

@@ -17,7 +17,7 @@ import { openingSearchNameDialogOpen } from '../features/dialog/openingSearchNam
 import { playLikeGrandmasterDialogOpen } from '../features/dialog/playLikeGrandmasterDialogSlice';
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
-import { modeName } from '../features/modeConstant';
+import { MODE_PLAY } from '../features/modeConstants';
 import { modeStartAnalysis } from '../features/modeSlice';
 import WsAction from '../ws/WsAction';
 
@@ -71,7 +71,7 @@ const MainButtons = () => {
       variant="text"
       aria-label="Main Menu"
       fullWidth={matches ? false : true}
-      disabled={state.mode.name === modeName.PLAY &&
+      disabled={state.mode.name === MODE_PLAY &&
         state.mode.play.accepted &&
         !state.mode.play.draw &&
         !state.mode.play.resign &&

@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 import { drawOfferDialogOpen } from '../../features/dialog/drawOfferDialogSlice';
 import { resignAcceptDialogOpen } from '../../features/dialog/resignAcceptDialogSlice';
 import { takebackOfferDialogOpen } from '../../features/dialog/takebackOfferDialogSlice';
-import { modeName } from '../../features/modeConstant';
+import { MODE_PLAY } from '../../features/modeConstants';
 
 const useStyles = makeStyles({
   buttonGroup: {
@@ -18,7 +18,7 @@ const StartedButtonsPlayMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.name === modeName.PLAY) {
+  if (state.mode.name === MODE_PLAY) {
     if (state.mode.play.accepted) {
       if (
         !state.board.isMate &&

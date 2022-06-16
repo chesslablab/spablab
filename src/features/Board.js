@@ -7,7 +7,13 @@ import {
   boardPickPiece,
   boardLeavePiece
 } from '../features/boardSlice';
-import { modeName } from '../features/modeConstant';
+import {
+  MODE_ANALYSIS,
+  MODE_GRANDMASTER,
+  MODE_LOADFEN,
+  MODE_LOADPGN,
+  MODE_PLAY
+} from '../features/modeConstants';
 import WsAction from '../ws/WsAction';
 
 const Board = ({props}) => {
@@ -20,10 +26,10 @@ const Board = ({props}) => {
 
   const handleMove = (payload) => {
     if (
-      state.mode.name === modeName.ANALYSIS ||
-      state.mode.name === modeName.GRANDMASTER ||
-      state.mode.name === modeName.LOADFEN ||
-      state.mode.name === modeName.LOADPGN
+      state.mode.name === MODE_ANALYSIS ||
+      state.mode.name === MODE_GRANDMASTER ||
+      state.mode.name === MODE_LOADFEN ||
+      state.mode.name === MODE_LOADPGN
     ) {
       if (
         !state.board.isMate &&
@@ -36,7 +42,7 @@ const Board = ({props}) => {
           WsAction.legalSqs(state, payload.sq);
         }
       }
-    } else if (state.mode.name === modeName.PLAY) {
+    } else if (state.mode.name === MODE_PLAY) {
       if (
         !state.board.isMate &&
         !state.mode.play.draw &&

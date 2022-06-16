@@ -4,7 +4,7 @@ import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 import Wording from "../../common/Wording.js";
 import { rematchOfferDialogOpen } from '../../features/dialog/rematchOfferDialogSlice';
-import { modeName } from '../../features/modeConstant';
+import { MODE_PLAY } from '../../features/modeConstants';
 
 const useStyles = makeStyles({
   buttonGroup: {
@@ -17,7 +17,7 @@ const FinishedButtonsPlayMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.name === modeName.PLAY) {
+  if (state.mode.name === MODE_PLAY) {
     if (state.mode.play.accepted) {
       if (
         state.board.isMate ||
