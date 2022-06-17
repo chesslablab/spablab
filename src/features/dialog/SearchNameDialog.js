@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 import Opening from '../../common/Opening.js';
 import { showInfoAlert } from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import { closeOpeningSearchMovetextDialog } from './openingSearchMovetextDialogSlice';
+import { closeSearchNameDialog } from './searchNameDialogSlice';
 
 const useStyles = makeStyles({
   form: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-const OpeningSearchMovetextDialog = ({ props }) => {
+const SearchNameDialog = ({ props }) => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -21,25 +21,25 @@ const OpeningSearchMovetextDialog = ({ props }) => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    const openings = Opening.byMovetext(event.target.elements.movetext.value);
+    const openings = Opening.byName(event.target.elements.name.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch(closeOpeningSearchMovetextDialog());
+      dispatch(closeSearchNameDialog());
       dispatch(showInfoAlert({ info: 'No results were found. Please try again.' }));
     }
   }
 
   return (
-    <Dialog open={state.openingSearchMovetextDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Movetext</DialogTitle>
+    <Dialog open={state.searchNameDialog.open} maxWidth="sm" fullWidth={true}>
+      <DialogTitle>Name</DialogTitle>
       <DialogContent>
         <form className={classes.form} onSubmit={handleSearch}>
-          <TextField fullWidth required name="movetext" label="Movetext" />
+          <TextField fullWidth required name="name" label="Name" />
           <DialogActions>
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch(closeOpeningSearchMovetextDialog());
+              dispatch(closeSearchNameDialog());
             }}>
               Cancel
             </Button>
@@ -51,4 +51,4 @@ const OpeningSearchMovetextDialog = ({ props }) => {
   );
 }
 
-export default OpeningSearchMovetextDialog;
+export default SearchNameDialog;

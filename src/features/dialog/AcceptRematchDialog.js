@@ -2,10 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
-import { closeRematchAcceptDialog } from '../../features/dialog/rematchAcceptDialogSlice';
+import { closeRematchAcceptDialog } from '../../features/dialog/acceptRematchDialogSlice';
 import WsAction from '../../ws/WsAction';
 
-const RematchAcceptDialog = () => {
+const AcceptRematchDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const RematchAcceptDialog = () => {
   };
 
   return (
-    <Dialog open={state.rematchAcceptDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.acceptRematchDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>A rematch is being offered</DialogTitle>
       <DialogContent>
         <form onSubmit={handleRematchAccept}>
@@ -39,4 +39,4 @@ const RematchAcceptDialog = () => {
   );
 };
 
-export default RematchAcceptDialog;
+export default AcceptRematchDialog;

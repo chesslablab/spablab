@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const takebackOfferDialogSlice = createSlice({
-  name: 'takebackOfferDialog',
+const offerTakebackDialogSlice = createSlice({
+  name: 'offerTakebackDialog',
   initialState: {
     open: false
   },
@@ -18,5 +18,5 @@ const takebackOfferDialogSlice = createSlice({
 export const {
   openTakebackOfferDialog,
   closeTakebackOfferDialog
-} = takebackOfferDialogSlice.actions;
-export default takebackOfferDialogSlice.reducer;
+} = offerTakebackDialogSlice.actions;
+export default offerTakebackDialogSlice.reducer;

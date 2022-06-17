@@ -11,10 +11,10 @@ import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeD
 import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
 import { openLoadFenDialog } from '../features/dialog/loadFenDialogSlice';
 import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
-import { openOpeningSearchEcoDialog } from '../features/dialog/openingSearchEcoDialogSlice';
-import { openOpeningSearchMovetextDialog } from '../features/dialog/openingSearchMovetextDialogSlice';
-import { openOpeningSearchNameDialog } from '../features/dialog/openingSearchNameDialogSlice';
-import { openPlayLikeGrandmasterDialog } from '../features/dialog/playLikeGrandmasterDialogSlice';
+import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
+import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
+import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
+import { openPlayGrandmasterDialog } from '../features/dialog/playGrandmasterDialogSlice';
 import { openProgressDialog } from '../features/dialog/progressDialogSlice';
 import { openWatchDialog } from '../features/dialog/watchDialogSlice';
 import { MODE_PLAY } from '../features/modeConstants';
@@ -155,7 +155,7 @@ const MainButtons = () => {
         onClose={handleCloseTraining}
       >
         <MenuItem onClick={() => {
-          dispatch(openPlayLikeGrandmasterDialog());
+          dispatch(openPlayGrandmasterDialog());
           handleCloseTraining();
         }}>
           Guess the Move
@@ -181,19 +181,19 @@ const MainButtons = () => {
         onClose={handleCloseOpeningSearch}
       >
         <MenuItem onClick={() => {
-          dispatch(openOpeningSearchEcoDialog());
+          dispatch(openSearchEcoDialog());
           handleCloseOpeningSearch();
         }}>
           ECO Code
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openOpeningSearchNameDialog());
+          dispatch(openSearchNameDialog());
           handleCloseOpeningSearch();
         }}>
           Name
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openOpeningSearchMovetextDialog());
+          dispatch(openSearchMovetextDialog());
           handleCloseOpeningSearch();
         }}>
           Movetext

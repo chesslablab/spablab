@@ -2,11 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from '../../common/Wording.js';
-import { closeResignAcceptDialog } from '../../features/dialog/resignAcceptDialogSlice';
+import { closeResignAcceptDialog } from '../../features/dialog/acceptResignDialogSlice';
 import { acceptResign } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
-const ResignAcceptDialog = () => {
+const AcceptResignDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ const ResignAcceptDialog = () => {
   };
 
   return (
-    <Dialog open={state.resignAcceptDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.acceptResignDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Resign</DialogTitle>
       <DialogContent>
         <form onSubmit={handleResignAccept}>
@@ -35,4 +35,4 @@ const ResignAcceptDialog = () => {
   );
 };
 
-export default ResignAcceptDialog;
+export default AcceptResignDialog;

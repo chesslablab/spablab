@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const drawOfferDialogSlice = createSlice({
-  name: 'drawOfferDialog',
+const offerDrawDialogSlice = createSlice({
+  name: 'offerDrawDialog',
   initialState: {
     open: false
   },
@@ -18,5 +18,5 @@ const drawOfferDialogSlice = createSlice({
 export const {
   openDrawOfferDialog,
   closeDrawOfferDialog
-} = drawOfferDialogSlice.actions;
-export default drawOfferDialogSlice.reducer;
+} = offerDrawDialogSlice.actions;
+export default offerDrawDialogSlice.reducer;

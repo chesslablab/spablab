@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const resignAcceptDialogSlice = createSlice({
-  name: 'resignAcceptDialog',
+const acceptResignDialogSlice = createSlice({
+  name: 'acceptResignDialog',
   initialState: {
     open: false
   },
@@ -18,5 +18,5 @@ const resignAcceptDialogSlice = createSlice({
 export const {
   openResignAcceptDialog,
   closeResignAcceptDialog
-} = resignAcceptDialogSlice.actions;
-export default resignAcceptDialogSlice.reducer;
+} = acceptResignDialogSlice.actions;
+export default acceptResignDialogSlice.reducer;

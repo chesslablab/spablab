@@ -7,12 +7,12 @@ import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';
-import OpeningSearchEcoDialog from './dialog/OpeningSearchEcoDialog';
-import OpeningSearchMovetextDialog from './dialog/OpeningSearchMovetextDialog';
-import OpeningSearchNameDialog from './dialog/OpeningSearchNameDialog';
+import SearchEcoDialog from './dialog/SearchEcoDialog';
+import SearchMovetextDialog from './dialog/SearchMovetextDialog';
+import SearchNameDialog from './dialog/SearchNameDialog';
 import LoadFenDialog from './dialog/LoadFenDialog';
 import LoadPgnDialog from './dialog/LoadPgnDialog';
-import PlayLikeGrandmasterDialog from './dialog/PlayLikeGrandmasterDialog';
+import PlayGrandmasterDialog from './dialog/PlayGrandmasterDialog';
 import PlayOnlineDialog from './dialog/PlayOnlineDialog';
 import ProgressDialog from './dialog/ProgressDialog';
 import WatchDialog from './dialog/WatchDialog';
@@ -54,15 +54,15 @@ const Chess = ({ props }) => {
           <SupportButtons />
         </Grid>
       </Grid>
-      <OpeningSearchEcoDialog props={props} />
-      <OpeningSearchMovetextDialog props={props} />
-      <OpeningSearchNameDialog props={props} />
+      <SearchEcoDialog props={props} />
+      <SearchMovetextDialog props={props} />
+      <SearchNameDialog props={props} />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
       <ProgressDialog />
       <LoadFenDialog />
       <LoadPgnDialog />
-      <PlayLikeGrandmasterDialog />
+      <PlayGrandmasterDialog />
       <PlayOnlineDialog />
       <WatchDialog />
     </Provider>

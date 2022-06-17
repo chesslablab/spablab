@@ -7,8 +7,8 @@ import {
   showInfoAlert
 } from '../features/alert/infoAlertSlice';
 import {
-  openDrawAcceptDialog
-} from '../features/dialog/drawAcceptDialogSlice';
+  openAcceptDrawDialog
+} from '../features/dialog/acceptDrawDialogSlice';
 import {
   openHeuristicsDialog
 } from '../features/dialog/heuristicsDialogSlice';
@@ -22,10 +22,10 @@ import {
 } from '../features/dialog/progressDialogSlice';
 import {
   openRematchAcceptDialog
-} from '../features/dialog/rematchAcceptDialogSlice';
+} from '../features/dialog/acceptRematchDialogSlice';
 import {
-  openTakebackAcceptDialog
-} from '../features/dialog/takebackAcceptDialogSlice';
+  openAcceptTakebackDialog
+} from '../features/dialog/acceptTakebackDialogSlice';
 import {
   closeGameTable,
   showGameTable
@@ -259,7 +259,7 @@ export default class WsEvent {
 
   static onTakebackPropose = () => dispatch => {
     if (!store.getState().mode.play.takeback) {
-      dispatch(openTakebackAcceptDialog());
+      dispatch(openAcceptTakebackDialog());
     }
   }
 
@@ -269,7 +269,7 @@ export default class WsEvent {
 
   static onDrawPropose = () => dispatch => {
     if (!store.getState().mode.play.draw) {
-      dispatch(openDrawAcceptDialog());
+      dispatch(openAcceptDrawDialog());
     }
   }
 

@@ -4,7 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Te
 import { makeStyles } from '@mui/styles';
 import Opening from '../../common/Opening.js';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import { closeOpeningSearchEcoDialog } from './openingSearchEcoDialogSlice';
+import { closeSearchEcoDialog } from './searchEcoDialogSlice';
 
 const useStyles = makeStyles({
   form: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const OpeningSearchEcoDialog = ({ props }) => {
+const SearchEcoDialog = ({ props }) => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
@@ -25,7 +25,7 @@ const OpeningSearchEcoDialog = ({ props }) => {
   }
 
   return (
-    <Dialog open={state.openingSearchEcoDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.searchEcoDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>ECO Code</DialogTitle>
       <DialogContent>
         <form className={classes.form}>
@@ -60,7 +60,7 @@ const OpeningSearchEcoDialog = ({ props }) => {
           <DialogActions>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch(closeOpeningSearchEcoDialog());
+              dispatch(closeSearchEcoDialog());
             }}>
               Cancel
             </Button>
@@ -72,4 +72,4 @@ const OpeningSearchEcoDialog = ({ props }) => {
   );
 }
 
-export default OpeningSearchEcoDialog;
+export default SearchEcoDialog;

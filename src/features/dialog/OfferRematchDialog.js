@@ -2,11 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from "../../common/Wording.js";
-import { closeRematchOfferDialog } from '../../features/dialog/rematchOfferDialogSlice';
+import { closeOfferRematchDialog } from '../../features/dialog/offerRematchDialogSlice';
 import { proposeRematch } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
-const RematchOfferDialog = () => {
+const OfferRematchDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -14,18 +14,18 @@ const RematchOfferDialog = () => {
     event.preventDefault();
     WsAction.rematch(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch(proposeRematch());
-      dispatch(closeRematchOfferDialog());
+      dispatch(closeOfferRematchDialog());
     });
   };
 
   return (
-    <Dialog open={state.rematchOfferDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.offerRematchDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Offer rematch</DialogTitle>
       <DialogContent>
         <form onSubmit={handleRematchOffer}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(closeRematchOfferDialog())}>
+            <Button onClick={() => dispatch(closeOfferRematchDialog())}>
               Cancel
             </Button>
           </DialogActions>
@@ -35,4 +35,4 @@ const RematchOfferDialog = () => {
   );
 };
 
-export default RematchOfferDialog;
+export default OfferRematchDialog;

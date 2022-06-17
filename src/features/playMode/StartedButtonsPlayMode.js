@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
-import { openDrawOfferDialog } from '../../features/dialog/drawOfferDialogSlice';
-import { openResignAcceptDialog } from '../../features/dialog/resignAcceptDialogSlice';
-import { openTakebackOfferDialog } from '../../features/dialog/takebackOfferDialogSlice';
+import { openDrawOfferDialog } from '../../features/dialog/offerDrawDialogSlice';
+import { openResignAcceptDialog } from '../../features/dialog/acceptResignDialogSlice';
+import { openTakebackOfferDialog } from '../../features/dialog/offerTakebackDialogSlice';
 import { MODE_PLAY } from '../../features/modeConstants';
 
 const useStyles = makeStyles({

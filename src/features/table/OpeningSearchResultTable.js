@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { closeOpeningSearchEcoDialog } from '../../features/dialog/openingSearchEcoDialogSlice';
-import { closeOpeningSearchMovetextDialog } from '../../features/dialog/openingSearchMovetextDialogSlice';
-import { closeOpeningSearchNameDialog } from '../../features/dialog/openingSearchNameDialogSlice';
+import { closeSearchEcoDialog } from '../../features/dialog/searchEcoDialogSlice';
+import { closeSearchMovetextDialog } from '../../features/dialog/searchMovetextDialogSlice';
+import { closeSearchNameDialog } from '../../features/dialog/searchNameDialogSlice';
 import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -13,9 +13,9 @@ const OpeningSearchResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {
-    dispatch(closeOpeningSearchEcoDialog());
-    dispatch(closeOpeningSearchMovetextDialog());
-    dispatch(closeOpeningSearchNameDialog());
+    dispatch(closeSearchEcoDialog());
+    dispatch(closeSearchMovetextDialog());
+    dispatch(closeSearchNameDialog());
     dispatch(openProgressDialog());
     WsAction.quit(state).then(() => WsAction.startLoadpgn(state, movetext));
   };

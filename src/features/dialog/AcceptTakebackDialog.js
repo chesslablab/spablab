@@ -2,10 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
-import { closeTakebackAcceptDialog } from '../../features/dialog/takebackAcceptDialogSlice';
+import { closeAcceptTakebackDialog } from '../../features/dialog/acceptTakebackDialogSlice';
 import WsAction from '../../ws/WsAction';
 
-const TakebackAcceptDialog = () => {
+const AcceptTakebackDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ const TakebackAcceptDialog = () => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
       WsAction.undo(state).then(() => {
-        dispatch(closeTakebackAcceptDialog());
+        dispatch(closeAcceptTakebackDialog());
       });
     });
   };
@@ -21,13 +21,13 @@ const TakebackAcceptDialog = () => {
   const handleTakebackDecline = (event) => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
-      dispatch(closeTakebackAcceptDialog());
+      dispatch(closeAcceptTakebackDialog());
     });
   };
 
   return (
     <Dialog
-      open={state.takebackAcceptDialog.open}
+      open={state.acceptTakebackDialog.open}
       maxWidth="sm"
       fullWidth={true}
     >
@@ -36,7 +36,7 @@ const TakebackAcceptDialog = () => {
         <form onSubmit={handleTakebackAccept}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(closeTakebackAcceptDialog())}>
+            <Button onClick={() => dispatch(closeAcceptTakebackDialog())}>
               Decline
             </Button>
           </DialogActions>
@@ -46,4 +46,4 @@ const TakebackAcceptDialog = () => {
   );
 };
 
-export default TakebackAcceptDialog;
+export default AcceptTakebackDialog;

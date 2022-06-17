@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const rematchAcceptDialogSlice = createSlice({
-  name: 'rematchAcceptDialog',
+const acceptRematchDialogSlice = createSlice({
+  name: 'acceptRematchDialog',
   initialState: {
     open: false
   },
@@ -18,5 +18,5 @@ const rematchAcceptDialogSlice = createSlice({
 export const {
   openRematchAcceptDialog,
   closeRematchAcceptDialog
-} = rematchAcceptDialogSlice.actions;
-export default rematchAcceptDialogSlice.reducer;
+} = acceptRematchDialogSlice.actions;
+export default acceptRematchDialogSlice.reducer;

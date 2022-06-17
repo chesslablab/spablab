@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Pgn from '../../common/Pgn';
-import { closePlayLikeGrandmasterDialog } from '../../features/dialog/playLikeGrandmasterDialogSlice';
+import { closePlayGrandmasterDialog } from '../../features/dialog/playGrandmasterDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PlayLikeGrandmasterDialog = () => {
+const PlayGrandmasterDialog = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const PlayLikeGrandmasterDialog = () => {
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
-    dispatch(closePlayLikeGrandmasterDialog());
+    dispatch(closePlayGrandmasterDialog());
     if (Pgn.symbol.WHITE === color) {
       WsAction.quit(state).then(() => WsAction.startGrandmaster(state, color));
     } else {
@@ -34,7 +34,7 @@ const PlayLikeGrandmasterDialog = () => {
   }
 
   return (
-    <Dialog open={state.playLikeGrandmasterDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.playGrandmasterDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Guess the move</DialogTitle>
       <DialogContent>
         <form className={classes.form} onSubmit={handlePlay}>
@@ -57,7 +57,7 @@ const PlayLikeGrandmasterDialog = () => {
           </TextField>
           <DialogActions>
             <Button type="submit">Play</Button>
-            <Button onClick={() => dispatch(closePlayLikeGrandmasterDialog())}>
+            <Button onClick={() => dispatch(closePlayGrandmasterDialog())}>
               Cancel
             </Button>
           </DialogActions>
@@ -67,4 +67,4 @@ const PlayLikeGrandmasterDialog = () => {
   );
 }
 
-export default PlayLikeGrandmasterDialog;
+export default PlayGrandmasterDialog;

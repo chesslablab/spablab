@@ -1,12 +1,12 @@
 import React from 'react';
-import RematchAcceptDialog from '../../features/dialog/RematchAcceptDialog';
-import RematchOfferDialog from '../../features/dialog/RematchOfferDialog';
+import AcceptRematchDialog from '../../features/dialog/AcceptRematchDialog';
+import OfferRematchDialog from '../../features/dialog/OfferRematchDialog';
 
 const FinishedDialogsPlayMode = () => {
   return (
     <div>
-      <RematchAcceptDialog />
-      <RematchOfferDialog />
+      <AcceptRematchDialog />
+      <OfferRematchDialog />
     </div>
   );
 }

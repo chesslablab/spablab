@@ -1,18 +1,18 @@
 import React from 'react';
-import DrawAcceptDialog from '../../features/dialog/DrawAcceptDialog';
-import DrawOfferDialog from '../../features/dialog/DrawOfferDialog';
-import ResignAcceptDialog from '../../features/dialog/ResignAcceptDialog';
-import TakebackAcceptDialog from '../../features/dialog/TakebackAcceptDialog';
-import TakebackOfferDialog from '../../features/dialog/TakebackOfferDialog';
+import AcceptDrawDialog from '../../features/dialog/AcceptDrawDialog';
+import OfferDrawDialog from '../../features/dialog/OfferDrawDialog';
+import AcceptResignDialog from '../../features/dialog/AcceptResignDialog';
+import AcceptTakebackDialog from '../../features/dialog/AcceptTakebackDialog';
+import OfferTakebackDialog from '../../features/dialog/OfferTakebackDialog';
 
 const StartedDialogsPlayMode = () => {
   return (
     <div>
-      <DrawAcceptDialog />
-      <DrawOfferDialog />
-      <ResignAcceptDialog />
-      <TakebackAcceptDialog />
-      <TakebackOfferDialog />
+      <AcceptDrawDialog />
+      <OfferDrawDialog />
+      <AcceptResignDialog />
+      <AcceptTakebackDialog />
+      <OfferTakebackDialog />
     </div>
   );
 }
