@@ -7,16 +7,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import { createInviteCodeDialogOpen } from '../features/dialog/createInviteCodeDialogSlice';
-import { enterInviteCodeDialogOpen } from '../features/dialog/enterInviteCodeDialogSlice';
-import { loadFenDialogOpen } from '../features/dialog/loadFenDialogSlice';
-import { loadPgnDialogOpen } from '../features/dialog/loadPgnDialogSlice';
-import { openingSearchEcoDialogOpen } from '../features/dialog/openingSearchEcoDialogSlice';
-import { openingSearchMovetextDialogOpen } from '../features/dialog/openingSearchMovetextDialogSlice';
-import { openingSearchNameDialogOpen } from '../features/dialog/openingSearchNameDialogSlice';
-import { playLikeGrandmasterDialogOpen } from '../features/dialog/playLikeGrandmasterDialogSlice';
-import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
-import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
+import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
+import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
+import { openLoadFenDialog } from '../features/dialog/loadFenDialogSlice';
+import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
+import { openOpeningSearchEcoDialog } from '../features/dialog/openingSearchEcoDialogSlice';
+import { openOpeningSearchMovetextDialog } from '../features/dialog/openingSearchMovetextDialogSlice';
+import { openOpeningSearchNameDialog } from '../features/dialog/openingSearchNameDialogSlice';
+import { openPlayLikeGrandmasterDialog } from '../features/dialog/playLikeGrandmasterDialogSlice';
+import { openProgressDialog } from '../features/dialog/progressDialogSlice';
+import { openWatchDialog } from '../features/dialog/watchDialogSlice';
 import { MODE_PLAY } from '../features/modeConstants';
 import { startAnalysis } from '../features/modeSlice';
 import WsAction from '../ws/WsAction';
@@ -83,7 +83,7 @@ const MainButtons = () => {
       <Button
         startIcon={<LanguageIcon />}
         onClick={() => {
-          dispatch(progressDialogOpen());
+          dispatch(openProgressDialog());
           WsAction.onlineGames(state);
         }}
       >
@@ -102,12 +102,12 @@ const MainButtons = () => {
         onClose={handleClosePlayFriend}
       >
         <MenuItem onClick={() => {
-          dispatch(createInviteCodeDialogOpen());
+          dispatch(openCreateInviteCodeDialog());
           dispatch(startAnalysis());
           handleClosePlayFriend();
         }}>Create Invite Code</MenuItem>
         <MenuItem onClick={() => {
-          dispatch(enterInviteCodeDialogOpen());
+          dispatch(openEnterInviteCodeDialog());
           handleClosePlayFriend();
         }}>Enter Invite Code</MenuItem>
       </Menu>
@@ -130,13 +130,13 @@ const MainButtons = () => {
           Start Position
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(loadFenDialogOpen());
+          dispatch(openLoadFenDialog());
           handleCloseAnalysis();
         }}>
           FEN String
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(loadPgnDialogOpen());
+          dispatch(openLoadPgnDialog());
           handleCloseAnalysis();
         }}>
           PGN Movetext
@@ -155,13 +155,13 @@ const MainButtons = () => {
         onClose={handleCloseTraining}
       >
         <MenuItem onClick={() => {
-          dispatch(playLikeGrandmasterDialogOpen());
+          dispatch(openPlayLikeGrandmasterDialog());
           handleCloseTraining();
         }}>
           Guess the Move
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(progressDialogOpen());
+          dispatch(openProgressDialog());
           WsAction.quit(state).then(() => WsAction.randomGame(state));
           handleCloseTraining();
         }}>
@@ -181,19 +181,19 @@ const MainButtons = () => {
         onClose={handleCloseOpeningSearch}
       >
         <MenuItem onClick={() => {
-          dispatch(openingSearchEcoDialogOpen());
+          dispatch(openOpeningSearchEcoDialog());
           handleCloseOpeningSearch();
         }}>
           ECO Code
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openingSearchNameDialogOpen());
+          dispatch(openOpeningSearchNameDialog());
           handleCloseOpeningSearch();
         }}>
           Name
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openingSearchMovetextDialogOpen());
+          dispatch(openOpeningSearchMovetextDialog());
           handleCloseOpeningSearch();
         }}>
           Movetext
@@ -201,7 +201,7 @@ const MainButtons = () => {
       </Menu>
       <Button
         startIcon={<OndemandVideoIcon />}
-        onClick={() => dispatch(watchDialogOpen())}
+        onClick={() => dispatch(openWatchDialog())}
       >
         Watch
       </Button>

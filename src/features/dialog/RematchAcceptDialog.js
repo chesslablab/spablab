@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
-import { rematchAcceptDialogClose } from '../../features/dialog/rematchAcceptDialogSlice';
+import { closeRematchAcceptDialog } from '../../features/dialog/rematchAcceptDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const RematchAcceptDialog = () => {
@@ -12,7 +12,7 @@ const RematchAcceptDialog = () => {
   const handleRematchAccept = (event) => {
     event.preventDefault();
     WsAction.rematch(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
-      dispatch(rematchAcceptDialogClose());
+      dispatch(closeRematchAcceptDialog());
       WsAction.restart(state);
     });
   };
@@ -20,7 +20,7 @@ const RematchAcceptDialog = () => {
   const handleRematchDecline = (event) => {
     event.preventDefault();
     WsAction.rematch(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
-      dispatch(rematchAcceptDialogClose());
+      dispatch(closeRematchAcceptDialog());
     });
   };
 

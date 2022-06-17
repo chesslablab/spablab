@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from "react-redux";
-import { watchDialogClose } from '../../features/dialog/watchDialogSlice';
+import { closeWatchDialog } from '../../features/dialog/watchDialogSlice';
 
 const data = [
   {
@@ -173,7 +173,7 @@ const WatchDialog = () => {
     <Dialog
       fullScreen
       open={state.watchDialog.open}
-      onClose={() => dispatch(watchDialogClose())}
+      onClose={() => dispatch(closeWatchDialog())}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -181,7 +181,7 @@ const WatchDialog = () => {
           <IconButton
             edge="start"
             color="inherit"
-            onClick={() => dispatch(watchDialogClose())}
+            onClick={() => dispatch(closeWatchDialog())}
             aria-label="close"
           >
             <CloseIcon />
@@ -189,7 +189,7 @@ const WatchDialog = () => {
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             Watch
           </Typography>
-          <Button autoFocus color="inherit" onClick={() => dispatch(watchDialogClose())}>
+          <Button autoFocus color="inherit" onClick={() => dispatch(closeWatchDialog())}>
             Close
           </Button>
         </Toolbar>

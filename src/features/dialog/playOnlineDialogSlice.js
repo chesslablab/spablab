@@ -9,8 +9,8 @@ const playOnlineDialogSlice = createSlice({
   name: 'playOnlineDialog',
   initialState: initialState,
   reducers: {
-    playOnlineDialogClose: () => initialState,
-    playOnlineDialogOpen(state, action) {
+    closePlayOnlineDialog: () => initialState,
+    openPlayOnlineDialog(state, action) {
       state.open = true,
       state.rows = action.payload;
     }
@@ -18,7 +18,7 @@ const playOnlineDialogSlice = createSlice({
 });
 
 export const {
-  playOnlineDialogClose,
-  playOnlineDialogOpen
+  closePlayOnlineDialog,
+  openPlayOnlineDialog
 } = playOnlineDialogSlice.actions;
 export default playOnlineDialogSlice.reducer;

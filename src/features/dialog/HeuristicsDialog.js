@@ -14,7 +14,7 @@ import {
 } from '@mui/material/';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from "react-redux";
-import { heuristicsDialogClose } from '../../features/dialog/heuristicsDialogSlice';
+import { closeHeuristicsDialog } from '../../features/dialog/heuristicsDialogSlice';
 
 const handleDownloadImage = async () => {
   const heuristics = document.getElementsByClassName('heuristic-picture')[0];
@@ -85,7 +85,7 @@ const HeuristicsDialog = () => {
     <Dialog
       fullScreen
       open={state.heuristicsDialog.open}
-      onClose={() => dispatch(heuristicsDialogClose())}
+      onClose={() => dispatch(closeHeuristicsDialog())}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -93,7 +93,7 @@ const HeuristicsDialog = () => {
          <IconButton
            edge="start"
            color="inherit"
-           onClick={() => dispatch(heuristicsDialogClose())}
+           onClick={() => dispatch(closeHeuristicsDialog())}
            aria-label="close"
          >
            <CloseIcon />
@@ -104,7 +104,7 @@ const HeuristicsDialog = () => {
          <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
          </Button>
-         <Button autoFocus color="inherit" onClick={() => dispatch(heuristicsDialogClose())}>
+         <Button autoFocus color="inherit" onClick={() => dispatch(closeHeuristicsDialog())}>
            Close
          </Button>
        </Toolbar>

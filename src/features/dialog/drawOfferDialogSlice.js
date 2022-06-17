@@ -6,17 +6,17 @@ const drawOfferDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    drawOfferDialogOpen(state) {
+    openDrawOfferDialog(state) {
       state.open = true;
     },
-    drawOfferDialogClose(state) {
+    closeDrawOfferDialog(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  drawOfferDialogOpen,
-  drawOfferDialogClose
+  openDrawOfferDialog,
+  closeDrawOfferDialog
 } = drawOfferDialogSlice.actions;
 export default drawOfferDialogSlice.reducer;

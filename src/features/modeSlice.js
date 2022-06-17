@@ -65,7 +65,7 @@ const modeSlice = createSlice({
     timeOver(state, action) {
       state.play.timer.over = action.payload.color;
     },
-    rematchAccept(state) {
+    acceptRematch(state) {
       state.play.rematch = Wording.verb.ACCEPT.toLowerCase();
     },
     declineRematch(state) {
@@ -96,7 +96,7 @@ export const {
   proposeDraw,
   acceptResign,
   timeOver,
-  rematchAccept,
+  acceptRematch,
   declineRematch,
   proposeRematch,
   acceptLeave

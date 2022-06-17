@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from "../../common/Wording.js";
-import { rematchOfferDialogClose } from '../../features/dialog/rematchOfferDialogSlice';
+import { closeRematchOfferDialog } from '../../features/dialog/rematchOfferDialogSlice';
 import { proposeRematch } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -14,7 +14,7 @@ const RematchOfferDialog = () => {
     event.preventDefault();
     WsAction.rematch(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch(proposeRematch());
-      dispatch(rematchOfferDialogClose());
+      dispatch(closeRematchOfferDialog());
     });
   };
 
@@ -25,7 +25,7 @@ const RematchOfferDialog = () => {
         <form onSubmit={handleRematchOffer}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(rematchOfferDialogClose())}>
+            <Button onClick={() => dispatch(closeRematchOfferDialog())}>
               Cancel
             </Button>
           </DialogActions>

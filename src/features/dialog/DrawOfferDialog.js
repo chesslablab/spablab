@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
-import { drawOfferDialogClose } from '../../features/dialog/drawOfferDialogSlice';
+import { closeDrawOfferDialog } from '../../features/dialog/drawOfferDialogSlice';
 import { proposeDraw } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -14,7 +14,7 @@ const DrawOfferDialog = () => {
     event.preventDefault();
     WsAction.draw(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch(proposeDraw());
-      dispatch(drawOfferDialogClose());
+      dispatch(closeDrawOfferDialog());
     });
   };
 
@@ -27,7 +27,7 @@ const DrawOfferDialog = () => {
             <Button type="submit">Accept</Button>
             <Button
               onClick={() =>
-                dispatch(drawOfferDialogClose())
+                dispatch(closeDrawOfferDialog())
               }
             >
               Cancel

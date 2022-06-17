@@ -6,17 +6,17 @@ const openingSearchNameDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openingSearchNameDialogOpen(state) {
+    openOpeningSearchNameDialog(state) {
       state.open = true;
     },
-    openingSearchNameDialogClose(state) {
+    closeOpeningSearchNameDialog(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openingSearchNameDialogOpen,
-  openingSearchNameDialogClose
+  openOpeningSearchNameDialog,
+  closeOpeningSearchNameDialog
 } = openingSearchNameDialogSlice.actions;
 export default openingSearchNameDialogSlice.reducer;

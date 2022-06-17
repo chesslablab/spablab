@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Opening from '../../common/Opening.js';
-import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
+import { showInfoAlert } from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import { openingSearchNameDialogClose } from './openingSearchNameDialogSlice';
+import { closeOpeningSearchNameDialog } from './openingSearchNameDialogSlice';
 
 const useStyles = makeStyles({
   form: {
@@ -24,8 +24,8 @@ const ChessOpeningSearchNameDialog = ({ props }) => {
     const openings = Opening.byName(event.target.elements.name.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch(openingSearchNameDialogClose());
-      dispatch(infoAlertDisplay({ info: 'No results were found. Please try again.' }));
+      dispatch(closeOpeningSearchNameDialog());
+      dispatch(showInfoAlert({ info: 'No results were found. Please try again.' }));
     }
   }
 
@@ -39,7 +39,7 @@ const ChessOpeningSearchNameDialog = ({ props }) => {
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch(openingSearchNameDialogClose());
+              dispatch(closeOpeningSearchNameDialog());
             }}>
               Cancel
             </Button>

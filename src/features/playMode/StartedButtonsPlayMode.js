@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
-import { drawOfferDialogOpen } from '../../features/dialog/drawOfferDialogSlice';
-import { resignAcceptDialogOpen } from '../../features/dialog/resignAcceptDialogSlice';
-import { takebackOfferDialogOpen } from '../../features/dialog/takebackOfferDialogSlice';
+import { openDrawOfferDialog } from '../../features/dialog/drawOfferDialogSlice';
+import { openResignAcceptDialog } from '../../features/dialog/resignAcceptDialogSlice';
+import { openTakebackOfferDialog } from '../../features/dialog/takebackOfferDialogSlice';
 import { MODE_PLAY } from '../../features/modeConstants';
 
 const useStyles = makeStyles({
@@ -35,13 +35,13 @@ const StartedButtonsPlayMode = () => {
             orientation="vertical"
             fullWidth={true}
           >
-            <Button onClick={() => dispatch(takebackOfferDialogOpen())}>
+            <Button onClick={() => dispatch(openTakebackOfferDialog())}>
               Propose a takeback
             </Button>
-            <Button onClick={() => dispatch(drawOfferDialogOpen())}>
+            <Button onClick={() => dispatch(openDrawOfferDialog())}>
               Offer draw
             </Button>
-            <Button onClick={() => dispatch(resignAcceptDialogOpen())}>
+            <Button onClick={() => dispatch(openResignAcceptDialog())}>
               Resign
             </Button>
           </ButtonGroup>

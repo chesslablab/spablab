@@ -8,15 +8,15 @@ const wsSlice = createSlice({
   name: 'ws',
   initialState,
   reducers: {
-    wsConnError: () => initialState,
-    wsConnEstablished(state, action) {
+    connError: () => initialState,
+    connEstablished(state, action) {
       state.ws = action.payload.ws;
     }
   }
 });
 
 export const {
-  wsConnError,
-  wsConnEstablished
+  connError,
+  connEstablished
 } = wsSlice.actions;
 export default wsSlice.reducer;

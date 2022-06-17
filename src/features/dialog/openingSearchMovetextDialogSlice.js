@@ -6,17 +6,17 @@ const openingSearchMovetextDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openingSearchMovetextDialogOpen(state) {
+    openOpeningSearchMovetextDialog(state) {
       state.open = true;
     },
-    openingSearchMovetextDialogClose(state) {
+    closeOpeningSearchMovetextDialog(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openingSearchMovetextDialogOpen,
-  openingSearchMovetextDialogClose
+  openOpeningSearchMovetextDialog,
+  closeOpeningSearchMovetextDialog
 } = openingSearchMovetextDialogSlice.actions;
 export default openingSearchMovetextDialogSlice.reducer;

@@ -4,7 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Te
 import { makeStyles } from '@mui/styles';
 import Opening from '../../common/Opening.js';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import { openingSearchEcoDialogClose } from './openingSearchEcoDialogSlice';
+import { closeOpeningSearchEcoDialog } from './openingSearchEcoDialogSlice';
 
 const useStyles = makeStyles({
   form: {
@@ -60,7 +60,7 @@ const OpeningSearchEcoDialog = ({ props }) => {
           <DialogActions>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch(openingSearchEcoDialogClose());
+              dispatch(closeOpeningSearchEcoDialog());
             }}>
               Cancel
             </Button>

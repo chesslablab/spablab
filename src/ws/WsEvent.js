@@ -3,36 +3,36 @@ import store from '../app/store';
 import Opening from '../common/Opening.js';
 import Pgn from '../common/Pgn';
 import {
-  infoAlertClose,
-  infoAlertDisplay
+  closeInfoAlert,
+  showInfoAlert
 } from '../features/alert/infoAlertSlice';
 import {
-  drawAcceptDialogOpen
+  openDrawAcceptDialog
 } from '../features/dialog/drawAcceptDialogSlice';
 import {
-  heuristicsDialogOpen
+  openHeuristicsDialog
 } from '../features/dialog/heuristicsDialogSlice';
 import {
-  playOnlineDialogClose,
-  playOnlineDialogOpen
+  closePlayOnlineDialog,
+  openPlayOnlineDialog
 } from '../features/dialog/playOnlineDialogSlice';
 import {
-  progressDialogClose,
-  progressDialogOpen
+  closeProgressDialog,
+  openProgressDialog
 } from '../features/dialog/progressDialogSlice';
 import {
-  rematchAcceptDialogOpen
+  openRematchAcceptDialog
 } from '../features/dialog/rematchAcceptDialogSlice';
 import {
-  takebackAcceptDialogOpen
+  openTakebackAcceptDialog
 } from '../features/dialog/takebackAcceptDialogSlice';
 import {
-  gameTableClose,
-  gameTableDisplay
+  closeGameTable,
+  showGameTable
 } from '../features/table/gameTableSlice';
 import {
-  openingAnalysisTableClose,
-  openingAnalysisTableDisplay
+  closeOpeningAnalysisTable,
+  showOpeningAnalysisTable
 } from '../features/table/openingAnalysisTableSlice';
 import {
   start,
@@ -66,7 +66,7 @@ import {
   declineDraw,
   declineTakeback,
   acceptResign,
-  rematchAccept,
+  acceptRematch,
   declineRematch,
   acceptLeave
 } from '../features/modeSlice';
@@ -81,12 +81,12 @@ import WsAction from './WsAction';
 
 const reset = (dispatch) => {
   dispatch(resetBar());
-  dispatch(openingAnalysisTableClose());
-  dispatch(gameTableClose());
-  dispatch(infoAlertClose());
+  dispatch(closeOpeningAnalysisTable());
+  dispatch(closeGameTable());
+  dispatch(closeInfoAlert());
   dispatch(goTo({ back: 0 }));
   dispatch(start());
-  dispatch(progressDialogClose());
+  dispatch(closeProgressDialog());
 };
 
 
@@ -114,7 +114,7 @@ export default class WsEvent {
       dispatch(startFen({ fen: data['/start'].fen }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch(infoAlertDisplay({ info: 'Invalid FEN.' }));
+      dispatch(showInfoAlert({ info: 'Invalid FEN.' }));
     }
   }
 
@@ -130,23 +130,13 @@ export default class WsEvent {
       }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch(infoAlertDisplay({ info: 'Invalid PGN movetext.' }));
+      dispatch(showInfoAlert({ info: 'Invalid PGN movetext.' }));
     }
   }
 
   static onStartPlay = (data) => dispatch => {
     reset(dispatch);
     const jwtDecoded = jwt_decode(data['/start'].jwt);
-    /*
-    dispatch(setPlay({
-      play: {
-        jwt: data['/start'].jwt,
-        jwt_decoded: jwtDecoded,
-        hash: data['/start'].hash,
-        color: jwtDecoded.color
-      }
-    }));
-    */
     dispatch(setPlay({
       jwt: data['/start'].jwt,
       jwt_decoded: jwtDecoded,
@@ -166,7 +156,7 @@ export default class WsEvent {
     if (jwtDecoded.color === Pgn.symbol.BLACK) {
       dispatch(flip());
     }
-    dispatch(infoAlertDisplay({ info: 'Waiting for player to join...' }));
+    dispatch(showInfoAlert({ info: 'Waiting for player to join...' }));
     dispatch(start());
   }
 
@@ -197,12 +187,12 @@ export default class WsEvent {
       dispatch(flip());
     }
     dispatch(acceptPlay());
-    dispatch(playOnlineDialogClose());
+    dispatch(closePlayOnlineDialog());
   }
 
   static onOnlineGames = (data) => dispatch => {
-    dispatch(progressDialogClose());
-    dispatch(playOnlineDialogOpen(data['/online_games']));
+    dispatch(closeProgressDialog());
+    dispatch(openPlayOnlineDialog(data['/online_games']));
   }
 
   static onLegalSqs = (data) => dispatch => {
@@ -230,15 +220,15 @@ export default class WsEvent {
         dispatch(validMove(payload));
       }
       if (store.getState().mode.name === MODE_ANALYSIS) {
-        dispatch(openingAnalysisTableClose());
+        dispatch(closeOpeningAnalysisTable());
         let rows = Opening.analysis(payload.movetext);
         if (rows) {
-          dispatch(openingAnalysisTableDisplay({ rows: rows }));
+          dispatch(showOpeningAnalysisTable({ rows: rows }));
         } else {
-          dispatch(openingAnalysisTableClose());
+          dispatch(closeOpeningAnalysisTable());
         }
       } else if (store.getState().mode.name === MODE_GRANDMASTER) {
-        dispatch(progressDialogOpen());
+        dispatch(openProgressDialog());
         WsAction.grandmaster(store.getState());
       }
       if (
@@ -253,8 +243,8 @@ export default class WsEvent {
   }
 
   static onHeuristics = (data) => dispatch => {
-    dispatch(progressDialogClose());
-    dispatch(heuristicsDialogOpen({
+    dispatch(closeProgressDialog());
+    dispatch(openHeuristicsDialog({
       dimensions: data['/heuristics'].dimensions,
       balance: data['/heuristics'].balance
     }));
@@ -269,7 +259,7 @@ export default class WsEvent {
 
   static onTakebackPropose = () => dispatch => {
     if (!store.getState().mode.play.takeback) {
-      dispatch(takebackAcceptDialogOpen());
+      dispatch(openTakebackAcceptDialog());
     }
   }
 
@@ -279,24 +269,24 @@ export default class WsEvent {
 
   static onDrawPropose = () => dispatch => {
     if (!store.getState().mode.play.draw) {
-      dispatch(drawAcceptDialogOpen());
+      dispatch(openDrawAcceptDialog());
     }
   }
 
   static onDrawAccept = () => dispatch => {
     dispatch(acceptDraw());
-    dispatch(infoAlertDisplay({ info: 'Draw offer accepted.' }));
+    dispatch(showInfoAlert({ info: 'Draw offer accepted.' }));
   }
 
   static onDrawDecline = () => dispatch => {
     dispatch(declineDraw());
-    dispatch(infoAlertDisplay({ info: 'Draw offer declined.' }));
+    dispatch(showInfoAlert({ info: 'Draw offer declined.' }));
   }
 
   static onUndo = (data) => dispatch => {
     dispatch(undo(data['/undo']));
     if (data['/undo'].mode === MODE_GRANDMASTER) {
-      dispatch(progressDialogOpen());
+      dispatch(openProgressDialog());
       WsAction.grandmaster(store.getState());
       WsAction.grandmaster(store.getState());
     } else if (data['/undo'].mode === MODE_PLAY) {
@@ -306,28 +296,28 @@ export default class WsEvent {
 
   static onResignAccept = () => dispatch => {
     dispatch(acceptResign());
-    dispatch(infoAlertDisplay({ info: 'Chess game resigned.' }));
+    dispatch(showInfoAlert({ info: 'Chess game resigned.' }));
   }
 
   static onRematchPropose = () => dispatch => {
     if (!store.getState().mode.play.rematch) {
-      dispatch(rematchAcceptDialogOpen());
+      dispatch(openRematchAcceptDialog());
     }
   }
 
   static onRematchAccept = () => dispatch => {
-    dispatch(rematchAccept());
-    dispatch(infoAlertDisplay({ info: 'Rematch accepted.' }));
+    dispatch(acceptRematch());
+    dispatch(showInfoAlert({ info: 'Rematch accepted.' }));
   }
 
   static onRematchDecline = () => dispatch => {
     dispatch(declineRematch());
-    dispatch(infoAlertDisplay({ info: 'Rematch declined.' }));
+    dispatch(showInfoAlert({ info: 'Rematch declined.' }));
   }
 
   static onLeaveAccept = () => dispatch => {
     dispatch(acceptLeave());
-    dispatch(infoAlertDisplay({ info: 'Your opponent left the game.' }));
+    dispatch(showInfoAlert({ info: 'Your opponent left the game.' }));
   }
 
   static onRestart = (data) => dispatch => {
@@ -360,9 +350,9 @@ export default class WsEvent {
   }
 
   static onGrandmaster = (data) => dispatch => {
-    dispatch(progressDialogClose());
+    dispatch(closeProgressDialog());
     if (data['/grandmaster']) {
-      dispatch(gameTableDisplay({ game: data['/grandmaster'].game }));
+      dispatch(showGameTable({ game: data['/grandmaster'].game }));
       dispatch(grandmaster({
         turn: data['/grandmaster'].state.turn,
         isCheck: data['/grandmaster'].state.isCheck,
@@ -373,12 +363,12 @@ export default class WsEvent {
       dispatch(grandmasterMovetext({
         movetext: data['/grandmaster'].state.movetext
       }));
-      dispatch(infoAlertClose());
+      dispatch(closeInfoAlert());
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch(gameTableClose());
+      dispatch(closeGameTable());
       dispatch(grandmasterMovetext({ movetext: null }));
-      dispatch(infoAlertDisplay({ info: 'This move was not found in the database.' }));
+      dispatch(showInfoAlert({ info: 'This move was not found in the database.' }));
     }
   }
 
@@ -392,10 +382,10 @@ export default class WsEvent {
         fen: data['/random_game'].fen,
         history: data['/random_game'].history
       }));
-      dispatch(gameTableDisplay({ game: data['/random_game'].game }));
+      dispatch(showGameTable({ game: data['/random_game'].game }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch(infoAlertDisplay({ info: 'A random game could not be loaded.' }));
+      dispatch(showInfoAlert({ info: 'A random game could not be loaded.' }));
     }
   }
 }

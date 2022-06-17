@@ -6,17 +6,17 @@ const playLikeGrandmasterDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    playLikeGrandmasterDialogOpen(state) {
+    openPlayLikeGrandmasterDialog(state) {
       state.open = true;
     },
-    playLikeGrandmasterDialogClose(state) {
+    closePlayLikeGrandmasterDialog(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  playLikeGrandmasterDialogOpen,
-  playLikeGrandmasterDialogClose
+  openPlayLikeGrandmasterDialog,
+  closePlayLikeGrandmasterDialog
 } = playLikeGrandmasterDialogSlice.actions;
 export default playLikeGrandmasterDialogSlice.reducer;

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from '../../common/Wording.js';
-import { resignAcceptDialogClose } from '../../features/dialog/resignAcceptDialogSlice';
+import { closeResignAcceptDialog } from '../../features/dialog/resignAcceptDialogSlice';
 import { acceptResign } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -14,7 +14,7 @@ const ResignAcceptDialog = () => {
     event.preventDefault();
     WsAction.resign(state, Wording.verb.ACCEPT.toLowerCase()).then((data) => {
       dispatch(acceptResign());
-      dispatch(resignAcceptDialogClose());
+      dispatch(closeResignAcceptDialog());
     });
   };
 
@@ -25,7 +25,7 @@ const ResignAcceptDialog = () => {
         <form onSubmit={handleResignAccept}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(resignAcceptDialogClose())}>
+            <Button onClick={() => dispatch(closeResignAcceptDialog())}>
               Cancel
             </Button>
           </DialogActions>

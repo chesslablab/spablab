@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, TextField } from '@mui/material';
-import { enterInviteCodeDialogClose } from '../../features/dialog/enterInviteCodeDialogSlice';
+import { closeEnterInviteCodeDialog } from '../../features/dialog/enterInviteCodeDialogSlice';
 import { startAnalysis } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -14,7 +14,7 @@ const EnterInviteCodeDialog = () => {
     WsAction.quit(state).then(() => {
       WsAction.accept(state, event.target.elements.hash.value).then(() => {
         dispatch(startAnalysis());
-        dispatch(enterInviteCodeDialogClose());
+        dispatch(closeEnterInviteCodeDialog());
       });
     });
   };
@@ -26,7 +26,7 @@ const EnterInviteCodeDialog = () => {
           <TextField fullWidth required name="hash" label="Invite code" />
           <DialogActions>
             <Button type="submit">Play</Button>
-            <Button onClick={() => dispatch(enterInviteCodeDialogClose())}>
+            <Button onClick={() => dispatch(closeEnterInviteCodeDialog())}>
               Cancel
             </Button>
           </DialogActions>

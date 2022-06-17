@@ -1,6 +1,6 @@
 import {
-  wsConnEstablished,
-  wsConnError
+  connEstablished,
+  connError
 } from '../features/wsSlice';
 import WsEventListener from './WsEventListener';
 
@@ -13,11 +13,11 @@ export default class WsAction {
         resolve(res.data);
       };
       ws.onerror = (err) => {
-        dispatch(wsConnError());
+        dispatch(connError());
         reject(err);
       };
       ws.onopen = () => {
-        dispatch(wsConnEstablished({ ws: ws }));
+        dispatch(connEstablished({ ws: ws }));
         resolve(ws);
       };
     });

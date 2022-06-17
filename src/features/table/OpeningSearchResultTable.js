@@ -2,10 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { openingSearchEcoDialogClose } from '../../features/dialog/openingSearchEcoDialogSlice';
-import { openingSearchMovetextDialogClose } from '../../features/dialog/openingSearchMovetextDialogSlice';
-import { openingSearchNameDialogClose } from '../../features/dialog/openingSearchNameDialogSlice';
-import { progressDialogOpen } from '../../features/dialog/progressDialogSlice';
+import { closeOpeningSearchEcoDialog } from '../../features/dialog/openingSearchEcoDialogSlice';
+import { closeOpeningSearchMovetextDialog } from '../../features/dialog/openingSearchMovetextDialogSlice';
+import { closeOpeningSearchNameDialog } from '../../features/dialog/openingSearchNameDialogSlice';
+import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const OpeningSearchResultTable = ({props}) => {
@@ -13,10 +13,10 @@ const OpeningSearchResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {
-    dispatch(openingSearchEcoDialogClose());
-    dispatch(openingSearchMovetextDialogClose());
-    dispatch(openingSearchNameDialogClose());
-    dispatch(progressDialogOpen());
+    dispatch(closeOpeningSearchEcoDialog());
+    dispatch(closeOpeningSearchMovetextDialog());
+    dispatch(closeOpeningSearchNameDialog());
+    dispatch(openProgressDialog());
     WsAction.quit(state).then(() => WsAction.startLoadpgn(state, movetext));
   };
 

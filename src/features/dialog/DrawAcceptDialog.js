@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
-import { drawAcceptDialogClose } from '../../features/dialog/drawAcceptDialogSlice';
+import { closeDrawAcceptDialog } from '../../features/dialog/drawAcceptDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const DrawAcceptDialog = () => {
@@ -12,14 +12,14 @@ const DrawAcceptDialog = () => {
   const handleDrawAccept = (event) => {
     event.preventDefault();
     WsAction.draw(state, Wording.verb.ACCEPT.toLowerCase()).then((data) => {
-      dispatch(drawAcceptDialogClose());
+      dispatch(closeDrawAcceptDialog());
     });
   };
 
   const handleDrawDecline = (event) => {
     event.preventDefault();
     WsAction.draw(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
-      dispatch(drawAcceptDialogClose());
+      dispatch(closeDrawAcceptDialog());
     });
   };
 

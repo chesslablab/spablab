@@ -6,17 +6,17 @@ const openingSearchEcoDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openingSearchEcoDialogOpen(state) {
+    openOpeningSearchEcoDialog(state) {
       state.open = true;
     },
-    openingSearchEcoDialogClose(state) {
+    closeOpeningSearchEcoDialog(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openingSearchEcoDialogOpen,
-  openingSearchEcoDialogClose
+  openOpeningSearchEcoDialog,
+  closeOpeningSearchEcoDialog
 } = openingSearchEcoDialogSlice.actions;
 export default openingSearchEcoDialogSlice.reducer;

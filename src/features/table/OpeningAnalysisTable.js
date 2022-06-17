@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { progressDialogOpen } from '../../features/dialog/progressDialogSlice';
-import { openingAnalysisTableClose } from '../../features/table/openingAnalysisTableSlice';
+import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
+import { closeOpeningAnalysisTable } from '../../features/table/openingAnalysisTableSlice';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -21,8 +21,8 @@ const OpeningAnalysisTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {
-    dispatch(openingAnalysisTableClose());
-    dispatch(progressDialogOpen());
+    dispatch(closeOpeningAnalysisTable());
+    dispatch(openProgressDialog());
     WsAction.quit(state).then(() => WsAction.startLoadpgn(state, movetext));
   };
 

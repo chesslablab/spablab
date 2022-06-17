@@ -9,8 +9,8 @@ const gameTableSlice = createSlice({
   name: 'gameTable',
   initialState,
   reducers: {
-    gameTableClose: () => initialState,
-    gameTableDisplay(state, action) {
+    closeGameTable: () => initialState,
+    showGameTable(state, action) {
       state.open = true,
       state.game = action.payload.game;
     }
@@ -18,7 +18,7 @@ const gameTableSlice = createSlice({
 });
 
 export const {
-  gameTableClose,
-  gameTableDisplay
+  closeGameTable,
+  showGameTable
 } = gameTableSlice.actions;
 export default gameTableSlice.reducer;

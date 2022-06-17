@@ -12,7 +12,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { createInviteCodeDialogClose } from '../../features/dialog/createInviteCodeDialogSlice';
+import { closeCreateInviteCodeDialog } from '../../features/dialog/createInviteCodeDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const CreateInviteCodeDialog = () => {
@@ -92,7 +92,7 @@ const CreateCode = () => {
           <Button type="submit">
             Create Code
           </Button>
-          <Button onClick={() => dispatch(createInviteCodeDialogClose())}>
+          <Button onClick={() => dispatch(closeCreateInviteCodeDialog())}>
             Cancel
           </Button>
         </DialogActions>
@@ -118,7 +118,7 @@ const CopyCode = () => {
       <DialogActions>
         <Button onClick={() => {
           navigator.clipboard.writeText(state.mode.play.hash);
-          dispatch(createInviteCodeDialogClose());
+          dispatch(closeCreateInviteCodeDialog());
         }}>
           Copy and Play
         </Button>

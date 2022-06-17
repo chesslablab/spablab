@@ -6,14 +6,14 @@ const progressDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    progressDialogOpen(state) {
+    openProgressDialog(state) {
       state.open = true;
     },
-    progressDialogClose(state) {
+    closeProgressDialog(state) {
       state.open = false;
     }
   }
 });
 
-export const { progressDialogOpen, progressDialogClose } = progressDialogSlice.actions;
+export const { openProgressDialog, closeProgressDialog } = progressDialogSlice.actions;
 export default progressDialogSlice.reducer;

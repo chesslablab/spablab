@@ -6,14 +6,14 @@ const loadPgnDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    loadPgnDialogOpen(state) {
+    openLoadPgnDialog(state) {
       state.open = true;
     },
-    loadPgnDialogClose(state) {
+    closeLoadPgnDialog(state) {
       state.open = false;
     }
   }
 });
 
-export const { loadPgnDialogOpen, loadPgnDialogClose } = loadPgnDialogSlice.actions;
+export const { openLoadPgnDialog, closeLoadPgnDialog } = loadPgnDialogSlice.actions;
 export default loadPgnDialogSlice.reducer;

@@ -5,8 +5,8 @@ import { act } from 'react-dom/test-utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
-import { createInviteCodeDialogOpen } from 'features/dialog/createInviteCodeDialogSlice';
-import { loadFenDialogOpen } from 'features/dialog/loadFenDialogSlice';
+import { openCreateInviteCodeDialog } from 'features/dialog/createInviteCodeDialogSlice';
+import { openLoadFenDialog } from 'features/dialog/loadFenDialogSlice';
 import { flip } from 'features/boardSlice';
 import store from 'app/store';
 
@@ -53,11 +53,11 @@ describe("Chess", () => {
     expect(text).toEqual('♖');
   });
   it("opens the 'Play a Friend' > 'Create Invite Code' dialog", () => {
-    const { result } = renderHook(() => SyncDispatcher(createInviteCodeDialogOpen()), { wrapper });
+    const { result } = renderHook(() => SyncDispatcher(openCreateInviteCodeDialog()), { wrapper });
     expect(result.current.state.createInviteCodeDialog.open).toBe(true);
   });
   it("opens the 'Analysis Board' > 'FEN String' dialog", () => {
-    const { result } = renderHook(() => SyncDispatcher(loadFenDialogOpen()), { wrapper });
+    const { result } = renderHook(() => SyncDispatcher(openLoadFenDialog()), { wrapper });
     expect(result.current.state.loadFenDialog.open).toBe(true);
   });
 });

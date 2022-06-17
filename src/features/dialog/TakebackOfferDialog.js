@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
-import { takebackOfferDialogClose } from '../../features/dialog/takebackOfferDialogSlice';
+import { closeTakebackOfferDialog } from '../../features/dialog/takebackOfferDialogSlice';
 import { proposeTakeback } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -14,7 +14,7 @@ const TakebackOfferDialog = () => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
       dispatch(proposeTakeback());
-      dispatch(takebackOfferDialogClose());
+      dispatch(closeTakebackOfferDialog());
     });
   };
 
@@ -29,7 +29,7 @@ const TakebackOfferDialog = () => {
         <form onSubmit={handleTakebackOffer}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(takebackOfferDialogClose())}>
+            <Button onClick={() => dispatch(closeTakebackOfferDialog())}>
               Cancel
             </Button>
           </DialogActions>

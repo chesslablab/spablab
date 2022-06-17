@@ -9,8 +9,8 @@ const heuristicsDialogSlice = createSlice({
   name: 'heuristicsDialog',
   initialState: initialState,
   reducers: {
-    heuristicsDialogClose: () => initialState,
-    heuristicsDialogOpen(state, action) {
+    closeHeuristicsDialog: () => initialState,
+    openHeuristicsDialog(state, action) {
       state.open = true,
       state.heuristics = action.payload;
     }
@@ -18,7 +18,7 @@ const heuristicsDialogSlice = createSlice({
 });
 
 export const {
-  heuristicsDialogClose,
-  heuristicsDialogOpen
+  closeHeuristicsDialog,
+  openHeuristicsDialog
 } = heuristicsDialogSlice.actions;
 export default heuristicsDialogSlice.reducer;

@@ -9,8 +9,8 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
 import { flip } from '../features/boardSlice';
 import {
-  progressDialogClose,
-  progressDialogOpen
+  closeProgressDialog,
+  openProgressDialog
 } from '../features/dialog/progressDialogSlice';
 import WsAction from '../ws/WsAction';
 
@@ -37,7 +37,7 @@ const SecondaryButtons = ({props}) => {
   }
 
   const handleDownloadMp4 = async () => {
-    dispatch(progressDialogOpen());
+    dispatch(openProgressDialog());
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
       method: 'POST',
       body: JSON.stringify({ movetext: state.board.movetext })
@@ -52,7 +52,7 @@ const SecondaryButtons = ({props}) => {
       a.click();
       a.remove();
     })
-    .finally(() => dispatch(progressDialogClose()));
+    .finally(() => dispatch(closeProgressDialog()));
   }
 
   return (
@@ -81,7 +81,7 @@ const SecondaryButtons = ({props}) => {
         title="Heuristics"
         aria-label="heuristics"
         onClick={() => {
-          dispatch(progressDialogOpen());
+          dispatch(openProgressDialog());
           WsAction.heuristics(state);
         }}
       >

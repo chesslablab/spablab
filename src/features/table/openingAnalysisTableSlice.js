@@ -9,8 +9,8 @@ const openingAnalysisTableSlice = createSlice({
   name: 'openingAnalysisTable',
   initialState,
   reducers: {
-    openingAnalysisTableClose: () => initialState,
-    openingAnalysisTableDisplay(state, action) {
+    closeOpeningAnalysisTable: () => initialState,
+    showOpeningAnalysisTable(state, action) {
       state.open = true,
       state.rows = action.payload.rows;
     }
@@ -18,7 +18,7 @@ const openingAnalysisTableSlice = createSlice({
 });
 
 export const {
-  openingAnalysisTableClose,
-  openingAnalysisTableDisplay
+  closeOpeningAnalysisTable,
+  showOpeningAnalysisTable
 } = openingAnalysisTableSlice.actions;
 export default openingAnalysisTableSlice.reducer;

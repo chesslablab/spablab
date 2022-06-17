@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Opening from '../../common/Opening.js';
-import { infoAlertDisplay } from '../../features/alert/infoAlertSlice';
+import { showInfoAlert } from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import { openingSearchMovetextDialogClose } from './openingSearchMovetextDialogSlice';
+import { closeOpeningSearchMovetextDialog } from './openingSearchMovetextDialogSlice';
 
 const useStyles = makeStyles({
   form: {
@@ -24,8 +24,8 @@ const OpeningSearchMovetextDialog = ({ props }) => {
     const openings = Opening.byMovetext(event.target.elements.movetext.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch(openingSearchMovetextDialogClose());
-      dispatch(infoAlertDisplay({ info: 'No results were found. Please try again.' }));
+      dispatch(closeOpeningSearchMovetextDialog());
+      dispatch(showInfoAlert({ info: 'No results were found. Please try again.' }));
     }
   }
 
@@ -39,7 +39,7 @@ const OpeningSearchMovetextDialog = ({ props }) => {
             <Button type="submit">Search</Button>
             <Button onClick={() => {
               setOpenings([]);
-              dispatch(openingSearchMovetextDialogClose());
+              dispatch(closeOpeningSearchMovetextDialog());
             }}>
               Cancel
             </Button>

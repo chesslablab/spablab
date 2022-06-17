@@ -6,17 +6,17 @@ const takebackAcceptDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    takebackAcceptDialogOpen(state) {
+    openTakebackAcceptDialog(state) {
       state.open = true;
     },
-    takebackAcceptDialogClose(state) {
+    closeTakebackAcceptDialog(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  takebackAcceptDialogOpen,
-  takebackAcceptDialogClose
+  openTakebackAcceptDialog,
+  closeTakebackAcceptDialog
 } = takebackAcceptDialogSlice.actions;
 export default takebackAcceptDialogSlice.reducer;
