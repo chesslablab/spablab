@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const playGrandmasterDialogSlice = createSlice({
-  name: 'playGrandmasterDialog',
+const playGmDialogSlice = createSlice({
+  name: 'playGmDialog',
   initialState: {
     open: false
   },
@@ -18,5 +18,5 @@ const playGrandmasterDialogSlice = createSlice({
 export const {
   openPlayGrandmasterDialog,
   closePlayGrandmasterDialog
-} = playGrandmasterDialogSlice.actions;
-export default playGrandmasterDialogSlice.reducer;
+} = playGmDialogSlice.actions;
+export default playGmDialogSlice.reducer;

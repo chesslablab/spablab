@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Pgn from '../../common/Pgn';
-import { closePlayGrandmasterDialog } from '../../features/dialog/playGrandmasterDialogSlice';
+import { closePlayGrandmasterDialog } from '../../features/dialog/playGmDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PlayGrandmasterDialog = () => {
+const PlayGmDialog = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const PlayGrandmasterDialog = () => {
   }
 
   return (
-    <Dialog open={state.playGrandmasterDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.playGmDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Guess the move</DialogTitle>
       <DialogContent>
         <form className={classes.form} onSubmit={handlePlay}>
@@ -67,4 +67,4 @@ const PlayGrandmasterDialog = () => {
   );
 }
 
-export default PlayGrandmasterDialog;
+export default PlayGmDialog;

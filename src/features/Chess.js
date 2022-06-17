@@ -12,7 +12,7 @@ import SearchMovetextDialog from './dialog/SearchMovetextDialog';
 import SearchNameDialog from './dialog/SearchNameDialog';
 import LoadFenDialog from './dialog/LoadFenDialog';
 import LoadPgnDialog from './dialog/LoadPgnDialog';
-import PlayGrandmasterDialog from './dialog/PlayGrandmasterDialog';
+import PlayGmDialog from './dialog/PlayGmDialog';
 import PlayOnlineDialog from './dialog/PlayOnlineDialog';
 import ProgressDialog from './dialog/ProgressDialog';
 import WatchDialog from './dialog/WatchDialog';
@@ -62,7 +62,7 @@ const Chess = ({ props }) => {
       <ProgressDialog />
       <LoadFenDialog />
       <LoadPgnDialog />
-      <PlayGrandmasterDialog />
+      <PlayGmDialog />
       <PlayOnlineDialog />
       <WatchDialog />
     </Provider>

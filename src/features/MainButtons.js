@@ -14,7 +14,7 @@ import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
 import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
 import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
 import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
-import { openPlayGrandmasterDialog } from '../features/dialog/playGrandmasterDialogSlice';
+import { openPlayGrandmasterDialog } from '../features/dialog/playGmDialogSlice';
 import { openProgressDialog } from '../features/dialog/progressDialogSlice';
 import { openWatchDialog } from '../features/dialog/watchDialogSlice';
 import { MODE_PLAY } from '../features/modeConstants';

@@ -11,7 +11,7 @@ import loadPgnDialogReducer from '../features/dialog/loadPgnDialogSlice';
 import offerDrawDialogReducer from '../features/dialog/offerDrawDialogSlice';
 import offerRematchDialogReducer from '../features/dialog/offerRematchDialogSlice';
 import offerTakebackDialogReducer from '../features/dialog/offerTakebackDialogSlice';
-import playGrandmasterDialogReducer from '../features/dialog/playGrandmasterDialogSlice';
+import playGmDialogReducer from '../features/dialog/playGmDialogSlice';
 import playOnlineDialogReducer from '../features/dialog/playOnlineDialogSlice';
 import progressDialogReducer from '../features/dialog/progressDialogSlice';
 import searchEcoDialogReducer from '../features/dialog/searchEcoDialogSlice';
@@ -40,7 +40,7 @@ const rootReducer = {
   offerDrawDialog: offerDrawDialogReducer,
   offerRematchDialog: offerRematchDialogReducer,
   offerTakebackDialog: offerTakebackDialogReducer,
-  playGrandmasterDialog: playGrandmasterDialogReducer,
+  playGmDialog: playGmDialogReducer,
   playOnlineDialog: playOnlineDialogReducer,
   progressDialog: progressDialogReducer,
   searchEcoDialog: searchEcoDialogReducer,
