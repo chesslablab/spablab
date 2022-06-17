@@ -4,7 +4,7 @@ import { showInfoAlert } from '../features/alert/infoAlertSlice';
 import { playMove } from '../features/boardSlice';
 import {
   MODE_ANALYSIS,
-  MODE_GRANDMASTER,
+  MODE_GM,
   MODE_LOADFEN,
   MODE_LOADPGN,
   MODE_PLAY
@@ -40,7 +40,7 @@ export default class WsEventListener {
       case '/start' === cmd:
         if (data['/start'].mode === MODE_ANALYSIS) {
           dispatch(WsEvent.onStartAnalysis(data));
-        } else if (data['/start'].mode === MODE_GRANDMASTER) {
+        } else if (data['/start'].mode === MODE_GM) {
           dispatch(WsEvent.onStartGrandmaster(data));
         } else if (data['/start'].mode === MODE_LOADFEN) {
           dispatch(WsEvent.onStartLoadfen(data));

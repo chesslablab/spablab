@@ -9,7 +9,7 @@ import {
 } from '../features/boardSlice';
 import {
   MODE_ANALYSIS,
-  MODE_GRANDMASTER,
+  MODE_GM,
   MODE_LOADFEN,
   MODE_LOADPGN,
   MODE_PLAY
@@ -27,7 +27,7 @@ const Board = ({props}) => {
   const handleMove = (payload) => {
     if (
       state.mode.name === MODE_ANALYSIS ||
-      state.mode.name === MODE_GRANDMASTER ||
+      state.mode.name === MODE_GM ||
       state.mode.name === MODE_LOADFEN ||
       state.mode.name === MODE_LOADPGN
     ) {

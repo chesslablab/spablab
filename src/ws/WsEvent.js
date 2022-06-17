@@ -72,7 +72,7 @@ import {
 } from '../features/modeSlice';
 import {
   MODE_ANALYSIS,
-  MODE_GRANDMASTER,
+  MODE_GM,
   MODE_LOADFEN,
   MODE_LOADPGN,
   MODE_PLAY
@@ -227,7 +227,7 @@ export default class WsEvent {
         } else {
           dispatch(closeOpeningAnalysisTable());
         }
-      } else if (store.getState().mode.name === MODE_GRANDMASTER) {
+      } else if (store.getState().mode.name === MODE_GM) {
         dispatch(openProgressDialog());
         WsAction.grandmaster(store.getState());
       }
@@ -235,7 +235,7 @@ export default class WsEvent {
         store.getState().mode.name === MODE_ANALYSIS ||
         store.getState().mode.name === MODE_LOADPGN ||
         store.getState().mode.name === MODE_LOADFEN ||
-        store.getState().mode.name === MODE_GRANDMASTER
+        store.getState().mode.name === MODE_GM
       ) {
         WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
       }
@@ -285,7 +285,7 @@ export default class WsEvent {
 
   static onUndo = (data) => dispatch => {
     dispatch(undo(data['/undo']));
-    if (data['/undo'].mode === MODE_GRANDMASTER) {
+    if (data['/undo'].mode === MODE_GM) {
       dispatch(openProgressDialog());
       WsAction.grandmaster(store.getState());
       WsAction.grandmaster(store.getState());

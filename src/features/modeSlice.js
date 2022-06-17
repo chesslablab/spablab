@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import Wording from '../common/Wording.js';
 import {
   MODE_ANALYSIS,
-  MODE_GRANDMASTER,
+  MODE_GM,
   MODE_LOADFEN,
   MODE_LOADPGN,
   MODE_PLAY
@@ -20,7 +20,7 @@ const modeSlice = createSlice({
     startLoadFen: () => { name: MODE_LOADFEN },
     startLoadPgn: () => { name: MODE_LOADPGN },
     setGrandmaster(state, action) {
-      state.name = MODE_GRANDMASTER;
+      state.name = MODE_GM;
       state.grandmaster = action.payload;
     },
     setPlay(state, action) {
