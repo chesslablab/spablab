@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-const StartedButtonsGrandmasterMode = () => {
+const StartedButtonsGmMode = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -39,4 +39,4 @@ const StartedButtonsGrandmasterMode = () => {
   return null;
 }
 
-export default StartedButtonsGrandmasterMode;
+export default StartedButtonsGmMode;
