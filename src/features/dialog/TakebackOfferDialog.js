@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
 import { takebackOfferDialogClose } from '../../features/dialog/takebackOfferDialogSlice';
-import { modePlayTakebackPropose } from '../../features/modeSlice';
+import { proposeTakeback } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const TakebackOfferDialog = () => {
@@ -13,7 +13,7 @@ const TakebackOfferDialog = () => {
   const handleTakebackOffer = (event) => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
-      dispatch(modePlayTakebackPropose());
+      dispatch(proposeTakeback());
       dispatch(takebackOfferDialogClose());
     });
   };

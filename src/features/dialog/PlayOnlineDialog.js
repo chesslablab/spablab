@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import PlayOnlineTable from '../../features/table/PlayOnlineTable';
 import { playOnlineDialogClose } from '../../features/dialog/playOnlineDialogSlice';
-import { modeStartAnalysis } from '../../features/modeSlice';
+import { startAnalysis } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineDialog = () => {
@@ -34,7 +34,7 @@ const PlayOnlineDialog = () => {
       submode: 'online'
     };
     WsAction.quit(state).then(() => {
-      dispatch(modeStartAnalysis());
+      dispatch(startAnalysis());
       WsAction.startPlay(state, settings).then(() => {
         dispatch(playOnlineDialogClose());
       });

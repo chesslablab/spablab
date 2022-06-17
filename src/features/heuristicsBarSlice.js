@@ -8,15 +8,15 @@ const heuristicsBarSlice = createSlice({
   name: 'heuristicsBar',
   initialState,
   reducers: {
-    heuristicsBarReset: () => initialState,
-    heuristicsBarUpdate(state, action) {
+    resetBar: () => initialState,
+    updateBar(state, action) {
       state.heuristics = action.payload;
     }
   }
 });
 
 export const {
-  heuristicsBarReset,
-  heuristicsBarUpdate
+  resetBar,
+  updateBar
 } = heuristicsBarSlice.actions;
 export default heuristicsBarSlice.reducer;

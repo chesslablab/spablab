@@ -1,7 +1,7 @@
 import store from '../app/store';
 import Wording from '../common/Wording.js';
 import { infoAlertDisplay } from '../features/alert/infoAlertSlice';
-import { boardPlayMove } from '../features/boardSlice';
+import { playMove } from '../features/boardSlice';
 import {
   MODE_ANALYSIS,
   MODE_GRANDMASTER,
@@ -63,7 +63,7 @@ export default class WsEventListener {
       case '/play_fen' === cmd:
         if (store.getState().mode.name === MODE_PLAY) {
           if (store.getState().mode.play.color !== data['/play_fen'].turn) {
-            dispatch(boardPlayMove({ fen: data['/play_fen'].fen }));
+            dispatch(playMove({ fen: data['/play_fen'].fen }));
           }
         }
         dispatch(WsEvent.onPlayfen(props, data));

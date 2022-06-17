@@ -7,7 +7,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import { createInviteCodeDialogOpen } from 'features/dialog/createInviteCodeDialogSlice';
 import { loadFenDialogOpen } from 'features/dialog/loadFenDialogSlice';
-import { boardFlip } from 'features/boardSlice';
+import { flip } from 'features/boardSlice';
 import store from 'app/store';
 
 const SyncDispatcher = (action) => {
@@ -46,7 +46,7 @@ describe("Chess", () => {
     expect(text).toEqual('♜');
   });
   it("the first chess board square is a white rook after flipping the chess board", () => {
-    const { result } = renderHook(() => SyncDispatcher(boardFlip()), { wrapper });
+    const { result } = renderHook(() => SyncDispatcher(flip()), { wrapper });
     const chess = mount(<Chess props={props} />);
     const text = chess.find('.board-row').at(0).find('.square').at(0).find('span').text();
     expect(result.current.state.board.flip).toBe('b');

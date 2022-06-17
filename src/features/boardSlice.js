@@ -18,20 +18,20 @@ const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    boardStart: () => initialState,
-    boardStartFen(state, action) {
+    start: () => initialState,
+    startFen(state, action) {
       const fenSplit = action.payload.fen.split(' ');
       state.fen = action.payload.fen;
       state.turn = fenSplit[1];
       state.history = [Ascii.toAscii(fenSplit[0])];
     },
-    boardStartPgn(state, action) {
+    startPgn(state, action) {
       state.fen = action.payload.fen;
       state.turn = action.payload.turn;
       state.history = action.payload.history;
       state.movetext = action.payload.movetext;
     },
-    boardPickPiece(state, action) {
+    pickPiece(state, action) {
       state.picked = {
         i: action.payload.i,
         j: action.payload.j,
@@ -39,7 +39,7 @@ const boardSlice = createSlice({
         piece: state.history[state.history.length - 1][action.payload.i][action.payload.j]
       };
     },
-    boardLeavePiece(state, action) {
+    leavePiece(state, action) {
       const newTurn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       const newAscii = JSON.parse(JSON.stringify(state.history[state.history.length - 1]));
       const newHistory = JSON.parse(JSON.stringify(state.history));
@@ -63,11 +63,11 @@ const boardSlice = createSlice({
         state.history = newHistory;
       }
     },
-    boardBrowseHistory(state) {
+    browseHistory(state) {
       state.picked = null;
       state.short_fen = null;
     },
-    boardCastledShort(state, action) {
+    castleShort(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       state.short_fen = null;
@@ -78,7 +78,7 @@ const boardSlice = createSlice({
       state.history = newHistory;
       state.movetext = action.payload.movetext;
     },
-    boardCastledLong(state, action) {
+    castleLong(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       state.short_fen = null;
@@ -89,14 +89,14 @@ const boardSlice = createSlice({
       state.history = newHistory;
       state.movetext = action.payload.movetext;
     },
-    boardFlip(state) {
+    flip(state) {
       state.flip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     },
-    boardLegalSqs(state, action) {
+    legalSqs(state, action) {
       state.picked.legal_sqs = action.payload.sqs;
       state.picked.en_passant = action.payload.en_passant;
     },
-    boardUndo(state, action) {
+    undo(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.splice(-1);
       state.short_fen = null;
@@ -108,7 +108,7 @@ const boardSlice = createSlice({
       state.history = newHistory;
       state.movetext = action.payload.movetext;
     },
-    boardValidMove(state, action) {
+    validMove(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
       state.short_fen = null;
@@ -119,13 +119,13 @@ const boardSlice = createSlice({
       state.history = newHistory;
       state.movetext = action.payload.movetext;
     },
-    boardPlayMove(state, action) {
+    playMove(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
       state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       state.history = newHistory;
     },
-    boardGrandmaster(state, action) {
+    grandmaster(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
       state.short_fen = null;
@@ -141,19 +141,19 @@ const boardSlice = createSlice({
 });
 
 export const {
-  boardStart,
-  boardStartFen,
-  boardStartPgn,
-  boardPickPiece,
-  boardLeavePiece,
-  boardBrowseHistory,
-  boardCastledShort,
-  boardCastledLong,
-  boardFlip,
-  boardLegalSqs,
-  boardUndo,
-  boardValidMove,
-  boardPlayMove,
-  boardGrandmaster
+  start,
+  startFen,
+  startPgn,
+  pickPiece,
+  leavePiece,
+  browseHistory,
+  castleShort,
+  castleLong,
+  flip,
+  legalSqs,
+  undo,
+  validMove,
+  playMove,
+  grandmaster
 } = boardSlice.actions;
 export default boardSlice.reducer;

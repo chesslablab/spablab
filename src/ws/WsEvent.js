@@ -35,40 +35,40 @@ import {
   openingAnalysisTableDisplay
 } from '../features/table/openingAnalysisTableSlice';
 import {
-  boardStart,
-  boardStartFen,
-  boardStartPgn,
-  boardFlip,
-  boardLegalSqs,
-  boardCastledLong,
-  boardCastledShort,
-  boardValidMove,
-  boardUndo,
-  boardGrandmaster
+  start,
+  startFen,
+  startPgn,
+  flip,
+  legalSqs,
+  castleLong,
+  castleShort,
+  validMove,
+  undo,
+  grandmaster
 } from '../features/boardSlice';
 import {
-  heuristicsBarReset,
-  heuristicsBarUpdate
+  resetBar,
+  updateBar
 } from '../features/heuristicsBarSlice';
 import {
-  historyGoTo
+  goTo
 } from '../features/historySlice';
 import {
-  modeStartAnalysis,
-  modeSetGrandmaster,
-  modeStartLoadFen,
-  modeStartLoadPgn,
-  modeSetPlay,
-  modeGrandmasterMovetext,
-  modePlayAccept,
-  modePlayTakebackAccept,
-  modePlayDrawAccept,
-  modePlayDrawDecline,
-  modePlayTakebackDecline,
-  modePlayResignAccept,
-  modePlayRematchAccept,
-  modePlayRematchDecline,
-  modePlayLeaveAccept
+  startAnalysis,
+  setGrandmaster,
+  startLoadFen,
+  startLoadPgn,
+  setPlay,
+  grandmasterMovetext,
+  acceptPlay,
+  acceptTakeback,
+  acceptDraw,
+  declineDraw,
+  declineTakeback,
+  acceptResign,
+  rematchAccept,
+  declineRematch,
+  acceptLeave
 } from '../features/modeSlice';
 import {
   MODE_ANALYSIS,
@@ -80,12 +80,12 @@ import {
 import WsAction from './WsAction';
 
 const reset = (dispatch) => {
-  dispatch(heuristicsBarReset());
+  dispatch(resetBar());
   dispatch(openingAnalysisTableClose());
   dispatch(gameTableClose());
   dispatch(infoAlertClose());
-  dispatch(historyGoTo({ back: 0 }));
-  dispatch(boardStart());
+  dispatch(goTo({ back: 0 }));
+  dispatch(start());
   dispatch(progressDialogClose());
 };
 
@@ -93,25 +93,25 @@ const reset = (dispatch) => {
 export default class WsEvent {
   static onStartAnalysis = (data) => dispatch => {
     reset(dispatch);
-    dispatch(modeStartAnalysis({}));
+    dispatch(startAnalysis({}));
   }
 
   static onStartGrandmaster = (data) => dispatch => {
     reset(dispatch);
-    dispatch(modeSetGrandmaster({
+    dispatch(setGrandmaster({
       color: data['/start'].color,
       movetext: null
     }));
     if (data['/start'].color === Pgn.symbol.BLACK) {
-      dispatch(boardFlip());
+      dispatch(flip());
     }
   }
 
   static onStartLoadfen = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].fen) {
-      dispatch(modeStartLoadFen());
-      dispatch(boardStartFen({ fen: data['/start'].fen }));
+      dispatch(startLoadFen());
+      dispatch(startFen({ fen: data['/start'].fen }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(infoAlertDisplay({ info: 'Invalid FEN.' }));
@@ -121,8 +121,8 @@ export default class WsEvent {
   static onStartLoadpgn = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].movetext) {
-      dispatch(modeStartLoadPgn());
-      dispatch(boardStartPgn({
+      dispatch(startLoadPgn());
+      dispatch(startPgn({
         turn: data['/start'].turn,
         movetext: data['/start'].movetext,
         fen: data['/start'].fen,
@@ -138,7 +138,7 @@ export default class WsEvent {
     reset(dispatch);
     const jwtDecoded = jwt_decode(data['/start'].jwt);
     /*
-    dispatch(modeSetPlay({
+    dispatch(setPlay({
       play: {
         jwt: data['/start'].jwt,
         jwt_decoded: jwtDecoded,
@@ -147,7 +147,7 @@ export default class WsEvent {
       }
     }));
     */
-    dispatch(modeSetPlay({
+    dispatch(setPlay({
       jwt: data['/start'].jwt,
       jwt_decoded: jwtDecoded,
       hash: data['/start'].hash,
@@ -164,10 +164,10 @@ export default class WsEvent {
       }
     }));
     if (jwtDecoded.color === Pgn.symbol.BLACK) {
-      dispatch(boardFlip());
+      dispatch(flip());
     }
     dispatch(infoAlertDisplay({ info: 'Waiting for player to join...' }));
-    dispatch(boardStart());
+    dispatch(start());
   }
 
   static onAccept = (data) => dispatch => {
@@ -175,8 +175,8 @@ export default class WsEvent {
     if (!store.getState().mode.play) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
       const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      dispatch(boardStart());
-      dispatch(modeSetPlay({
+      dispatch(start());
+      dispatch(setPlay({
         jwt: data['/accept'].jwt,
         jwt_decoded: jwt_decode(data['/accept'].jwt),
         hash: data['/accept'].hash,
@@ -194,9 +194,9 @@ export default class WsEvent {
       }));
     }
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
-      dispatch(boardFlip());
+      dispatch(flip());
     }
-    dispatch(modePlayAccept());
+    dispatch(acceptPlay());
     dispatch(playOnlineDialogClose());
   }
 
@@ -206,7 +206,7 @@ export default class WsEvent {
   }
 
   static onLegalSqs = (data) => dispatch => {
-    dispatch(boardLegalSqs({
+    dispatch(legalSqs({
       piece: data['/legal_sqs'].identity,
       position: data['/legal_sqs'].position,
       sqs: data['/legal_sqs'].sqs,
@@ -223,11 +223,11 @@ export default class WsEvent {
     };
     if (data['/play_fen'].isLegal) {
       if (data['/play_fen'].pgn === Pgn.symbol.CASTLING_LONG) {
-        dispatch(boardCastledLong(payload));
+        dispatch(castleLong(payload));
       } else if (data['/play_fen'].pgn === Pgn.symbol.CASTLING_SHORT) {
-        dispatch(boardCastledShort(payload));
+        dispatch(castleShort(payload));
       } else {
-        dispatch(boardValidMove(payload));
+        dispatch(validMove(payload));
       }
       if (store.getState().mode.name === MODE_ANALYSIS) {
         dispatch(openingAnalysisTableClose());
@@ -261,7 +261,7 @@ export default class WsEvent {
   }
 
   static onHeuristicsBar = (data) => dispatch => {
-    dispatch(heuristicsBarUpdate({
+    dispatch(updateBar({
       dimensions: data['/heuristics_bar'].dimensions,
       balance: data['/heuristics_bar'].balance
     }));
@@ -274,7 +274,7 @@ export default class WsEvent {
   }
 
   static onTakebackAccept = () => dispatch => {
-    dispatch(modePlayTakebackAccept());
+    dispatch(acceptTakeback());
   }
 
   static onDrawPropose = () => dispatch => {
@@ -284,28 +284,28 @@ export default class WsEvent {
   }
 
   static onDrawAccept = () => dispatch => {
-    dispatch(modePlayDrawAccept());
+    dispatch(acceptDraw());
     dispatch(infoAlertDisplay({ info: 'Draw offer accepted.' }));
   }
 
   static onDrawDecline = () => dispatch => {
-    dispatch(modePlayDrawDecline());
+    dispatch(declineDraw());
     dispatch(infoAlertDisplay({ info: 'Draw offer declined.' }));
   }
 
   static onUndo = (data) => dispatch => {
-    dispatch(boardUndo(data['/undo']));
+    dispatch(undo(data['/undo']));
     if (data['/undo'].mode === MODE_GRANDMASTER) {
       dispatch(progressDialogOpen());
       WsAction.grandmaster(store.getState());
       WsAction.grandmaster(store.getState());
     } else if (data['/undo'].mode === MODE_PLAY) {
-      dispatch(modePlayTakebackDecline());
+      dispatch(declineTakeback());
     }
   }
 
   static onResignAccept = () => dispatch => {
-    dispatch(modePlayResignAccept());
+    dispatch(acceptResign());
     dispatch(infoAlertDisplay({ info: 'Chess game resigned.' }));
   }
 
@@ -316,17 +316,17 @@ export default class WsEvent {
   }
 
   static onRematchAccept = () => dispatch => {
-    dispatch(modePlayRematchAccept());
+    dispatch(rematchAccept());
     dispatch(infoAlertDisplay({ info: 'Rematch accepted.' }));
   }
 
   static onRematchDecline = () => dispatch => {
-    dispatch(modePlayRematchDecline());
+    dispatch(declineRematch());
     dispatch(infoAlertDisplay({ info: 'Rematch declined.' }));
   }
 
   static onLeaveAccept = () => dispatch => {
-    dispatch(modePlayLeaveAccept());
+    dispatch(acceptLeave());
     dispatch(infoAlertDisplay({ info: 'Your opponent left the game.' }));
   }
 
@@ -334,11 +334,11 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
-    dispatch(modeSetPlay({
+    dispatch(setPlay({
       color: store.getState().mode.play.color,
       accepted: false
     }));
-    dispatch(modeSetPlay({
+    dispatch(setPlay({
       jwt: data['/restart'].jwt,
       jwt_decoded: jwtDecoded,
       hash: data['/restart'].hash,
@@ -353,9 +353,9 @@ export default class WsEvent {
         over: null
       }
     }));
-    dispatch(boardStart());
+    dispatch(start());
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
-      dispatch(boardFlip());
+      dispatch(flip());
     }
   }
 
@@ -363,21 +363,21 @@ export default class WsEvent {
     dispatch(progressDialogClose());
     if (data['/grandmaster']) {
       dispatch(gameTableDisplay({ game: data['/grandmaster'].game }));
-      dispatch(boardGrandmaster({
+      dispatch(grandmaster({
         turn: data['/grandmaster'].state.turn,
         isCheck: data['/grandmaster'].state.isCheck,
         isMate: data['/grandmaster'].state.isMate,
         movetext: data['/grandmaster'].state.movetext,
         fen: data['/grandmaster'].state.fen
       }));
-      dispatch(modeGrandmasterMovetext({
+      dispatch(grandmasterMovetext({
         movetext: data['/grandmaster'].state.movetext
       }));
       dispatch(infoAlertClose());
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(gameTableClose());
-      dispatch(modeGrandmasterMovetext({ movetext: null }));
+      dispatch(grandmasterMovetext({ movetext: null }));
       dispatch(infoAlertDisplay({ info: 'This move was not found in the database.' }));
     }
   }
@@ -385,8 +385,8 @@ export default class WsEvent {
   static onRandomGame = (data) => dispatch => {
     reset(dispatch);
     if (data['/random_game'].movetext) {
-      dispatch(modeStartLoadPgn());
-      dispatch(boardStartPgn({
+      dispatch(startLoadPgn());
+      dispatch(startPgn({
         turn: data['/random_game'].turn,
         movetext: data['/random_game'].movetext,
         fen: data['/random_game'].fen,

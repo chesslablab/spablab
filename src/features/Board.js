@@ -4,8 +4,8 @@ import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
 import Piece from '../common/Piece';
 import {
-  boardPickPiece,
-  boardLeavePiece
+  pickPiece,
+  leavePiece
 } from '../features/boardSlice';
 import {
   MODE_ANALYSIS,
@@ -36,9 +36,9 @@ const Board = ({props}) => {
         state.history.back === 0
       ) {
         if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-          dispatch(boardLeavePiece(payload));
+          dispatch(leavePiece(payload));
         } else if (state.board.turn === Piece.color(payload.piece)) {
-          dispatch(boardPickPiece(payload));
+          dispatch(pickPiece(payload));
           WsAction.legalSqs(state, payload.sq);
         }
       }
@@ -52,11 +52,11 @@ const Board = ({props}) => {
         state.history.back === 0
       ) {
         if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-          dispatch(boardLeavePiece(payload));
+          dispatch(leavePiece(payload));
         } else if (state.mode.play.accepted) {
           if (state.mode.play.color === state.board.turn) {
             if (state.board.turn === Piece.color(payload.piece)) {
-              dispatch(boardPickPiece(payload));
+              dispatch(pickPiece(payload));
               WsAction.legalSqs(state, payload.sq);
             }
           }

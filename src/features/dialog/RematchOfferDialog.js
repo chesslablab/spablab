@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from "../../common/Wording.js";
 import { rematchOfferDialogClose } from '../../features/dialog/rematchOfferDialogSlice';
-import { modePlayRematchPropose } from '../../features/modeSlice';
+import { proposeRematch } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const RematchOfferDialog = () => {
@@ -13,7 +13,7 @@ const RematchOfferDialog = () => {
   const handleRematchOffer = (event) => {
     event.preventDefault();
     WsAction.rematch(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
-      dispatch(modePlayRematchPropose());
+      dispatch(proposeRematch());
       dispatch(rematchOfferDialogClose());
     });
   };

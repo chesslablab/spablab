@@ -12,7 +12,7 @@ import {
   TableBody
 } from '@mui/material';
 import { playOnlineDialogClose } from '../../features/dialog/playOnlineDialogSlice';
-import { modeStartAnalysis } from '../../features/modeSlice';
+import { startAnalysis } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineTable = () => {
@@ -29,7 +29,7 @@ const PlayOnlineTable = () => {
 
   const handlePlay = (hash) => {
     WsAction.quit(state).then(() => {
-      dispatch(modeStartAnalysis());
+      dispatch(startAnalysis());
       WsAction.accept(state, hash).then(() => {
         dispatch(playOnlineDialogClose());
       });

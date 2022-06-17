@@ -18,7 +18,7 @@ import { playLikeGrandmasterDialogOpen } from '../features/dialog/playLikeGrandm
 import { progressDialogOpen } from '../features/dialog/progressDialogSlice';
 import { watchDialogOpen } from '../features/dialog/watchDialogSlice';
 import { MODE_PLAY } from '../features/modeConstants';
-import { modeStartAnalysis } from '../features/modeSlice';
+import { startAnalysis } from '../features/modeSlice';
 import WsAction from '../ws/WsAction';
 
 const MainButtons = () => {
@@ -103,7 +103,7 @@ const MainButtons = () => {
       >
         <MenuItem onClick={() => {
           dispatch(createInviteCodeDialogOpen());
-          dispatch(modeStartAnalysis());
+          dispatch(startAnalysis());
           handleClosePlayFriend();
         }}>Create Invite Code</MenuItem>
         <MenuItem onClick={() => {

@@ -16,21 +16,21 @@ const modeSlice = createSlice({
   name: 'mode',
   initialState,
   reducers: {
-    modeStartAnalysis: () => initialState,
-    modeStartLoadFen: () => { name: MODE_LOADFEN },
-    modeStartLoadPgn: () => { name: MODE_LOADPGN },
-    modeSetGrandmaster(state, action) {
+    startAnalysis: () => initialState,
+    startLoadFen: () => { name: MODE_LOADFEN },
+    startLoadPgn: () => { name: MODE_LOADPGN },
+    setGrandmaster(state, action) {
       state.name = MODE_GRANDMASTER;
       state.grandmaster = action.payload;
     },
-    modeSetPlay(state, action) {
+    setPlay(state, action) {
       state.name = MODE_PLAY;
       state.play = action.payload;
     },
-    modeGrandmasterMovetext(state, action) {
+    grandmasterMovetext(state, action) {
       state.grandmaster.movetext = action.payload.movetext;
     },
-    modePlayAccept(state) {
+    acceptPlay(state) {
       const expiryTimestamp = new Date();
       expiryTimestamp.setSeconds(
         expiryTimestamp.getSeconds() + parseInt(state.play.jwt_decoded.min) * 60
@@ -41,64 +41,64 @@ const modeSlice = createSlice({
         over: null
       };
     },
-    modePlayTakebackAccept(state) {
+    acceptTakeback(state) {
       state.play.takeback = Wording.verb.ACCEPT.toLowerCase();
     },
-    modePlayTakebackDecline(state) {
+    declineTakeback(state) {
       state.play.takeback = null;
     },
-    modePlayTakebackPropose(state) {
+    proposeTakeback(state) {
       state.play.takeback = Wording.verb.PROPOSE.toLowerCase();
     },
-    modePlayDrawAccept(state) {
+    acceptDraw(state) {
       state.play.draw = Wording.verb.ACCEPT.toLowerCase();
     },
-    modePlayDrawDecline(state) {
+    declineDraw(state) {
       state.play.draw = null;
     },
-    modePlayDrawPropose(state) {
+    proposeDraw(state) {
       state.play.draw = Wording.verb.PROPOSE.toLowerCase();
     },
-    modePlayResignAccept(state) {
+    acceptResign(state) {
       state.play.resign = Wording.verb.ACCEPT.toLowerCase();
     },
-    modePlayTimeOver(state, action) {
+    timeOver(state, action) {
       state.play.timer.over = action.payload.color;
     },
-    modePlayRematchAccept(state) {
+    rematchAccept(state) {
       state.play.rematch = Wording.verb.ACCEPT.toLowerCase();
     },
-    modePlayRematchDecline(state) {
+    declineRematch(state) {
       state.play.rematch = null;
     },
-    modePlayRematchPropose(state) {
+    proposeRematch(state) {
       state.play.rematch = Wording.verb.PROPOSE.toLowerCase();
     },
-    modePlayLeaveAccept(state) {
+    acceptLeave(state) {
       state.play.leave = Wording.verb.ACCEPT.toLowerCase();
     }
   }
 });
 
 export const {
-  modeStartAnalysis,
-  modeSetGrandmaster,
-  modeStartLoadFen,
-  modeStartLoadPgn,
-  modeSetPlay,
-  modeGrandmasterMovetext,
-  modePlayAccept,
-  modePlayTakebackAccept,
-  modePlayTakebackDecline,
-  modePlayTakebackPropose,
-  modePlayDrawAccept,
-  modePlayDrawDecline,
-  modePlayDrawPropose,
-  modePlayResignAccept,
-  modePlayTimeOver,
-  modePlayRematchAccept,
-  modePlayRematchDecline,
-  modePlayRematchPropose,
-  modePlayLeaveAccept
+  startAnalysis,
+  setGrandmaster,
+  startLoadFen,
+  startLoadPgn,
+  setPlay,
+  grandmasterMovetext,
+  acceptPlay,
+  acceptTakeback,
+  declineTakeback,
+  proposeTakeback,
+  acceptDraw,
+  declineDraw,
+  proposeDraw,
+  acceptResign,
+  timeOver,
+  rematchAccept,
+  declineRematch,
+  proposeRematch,
+  acceptLeave
 } = modeSlice.actions;
 export default modeSlice.reducer;

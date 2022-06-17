@@ -7,7 +7,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
-import { boardFlip } from '../features/boardSlice';
+import { flip } from '../features/boardSlice';
 import {
   progressDialogClose,
   progressDialogOpen
@@ -92,7 +92,7 @@ const SecondaryButtons = ({props}) => {
         size={matches ? 'small' : 'large'}
         title="Flip Board"
         aria-label="flip"
-        onClick={() => dispatch(boardFlip())}
+        onClick={() => dispatch(flip())}
       >
         <CachedIcon fontSize="inherit" />
       </IconButton>

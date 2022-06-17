@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
 import { drawOfferDialogClose } from '../../features/dialog/drawOfferDialogSlice';
-import { modePlayDrawPropose } from '../../features/modeSlice';
+import { proposeDraw } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const DrawOfferDialog = () => {
@@ -13,7 +13,7 @@ const DrawOfferDialog = () => {
   const handleDrawOffer = (event) => {
     event.preventDefault();
     WsAction.draw(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
-      dispatch(modePlayDrawPropose());
+      dispatch(proposeDraw());
       dispatch(drawOfferDialogClose());
     });
   };

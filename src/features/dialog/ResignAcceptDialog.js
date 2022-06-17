@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from '../../common/Wording.js';
 import { resignAcceptDialogClose } from '../../features/dialog/resignAcceptDialogSlice';
-import { modePlayResignAccept } from '../../features/modeSlice';
+import { acceptResign } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const ResignAcceptDialog = () => {
@@ -13,7 +13,7 @@ const ResignAcceptDialog = () => {
   const handleResignAccept = (event) => {
     event.preventDefault();
     WsAction.resign(state, Wording.verb.ACCEPT.toLowerCase()).then((data) => {
-      dispatch(modePlayResignAccept());
+      dispatch(acceptResign());
       dispatch(resignAcceptDialogClose());
     });
   };

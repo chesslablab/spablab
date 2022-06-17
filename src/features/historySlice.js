@@ -8,25 +8,25 @@ const historySlice = createSlice({
   name: 'history',
   initialState,
   reducers: {
-    historyGoTo(state, action) {
+    goTo(state, action) {
       state.back = 0 - action.payload.back;
     },
-    historyGoBack(state) {
+    goBack(state) {
       state.back = state.back - 1;
     },
-    historyGoForward(state) {
+    goForward(state) {
       state.back = state.back + 1;
     },
-    historyGoToEnd(state) {
+    goToEnd(state) {
       state.back = 0;
     }
   }
 });
 
 export const {
-  historyGoTo,
-  historyGoBack,
-  historyGoForward,
-  historyGoToEnd
+  goTo,
+  goBack,
+  goForward,
+  goToEnd
 } = historySlice.actions;
 export default historySlice.reducer;
