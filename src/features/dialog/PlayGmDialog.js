@@ -29,7 +29,7 @@ const PlayGmDialog = () => {
     } else {
       WsAction.quit(state).then(() =>
         WsAction.startGrandmaster(state, color).then(() =>
-          WsAction.grandmaster(state)));
+          WsAction.gm(state)));
     }
   }
 

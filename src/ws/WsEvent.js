@@ -44,7 +44,7 @@ import {
   castleShort,
   validMove,
   undo,
-  grandmaster
+  gm
 } from '../features/boardSlice';
 import {
   resetBar,
@@ -59,7 +59,7 @@ import {
   startLoadFen,
   startLoadPgn,
   setPlay,
-  grandmasterMovetext,
+  gmMovetext,
   acceptPlay,
   acceptTakeback,
   acceptDraw,
@@ -73,8 +73,8 @@ import {
 import {
   MODE_ANALYSIS,
   MODE_GM,
-  MODE_LOADFEN,
-  MODE_LOADPGN,
+  MODE_FEN,
+  MODE_PGN,
   MODE_PLAY
 } from '../features/modeConstants';
 import WsAction from './WsAction';
@@ -229,12 +229,12 @@ export default class WsEvent {
         }
       } else if (store.getState().mode.name === MODE_GM) {
         dispatch(openProgressDialog());
-        WsAction.grandmaster(store.getState());
+        WsAction.gm(store.getState());
       }
       if (
         store.getState().mode.name === MODE_ANALYSIS ||
-        store.getState().mode.name === MODE_LOADPGN ||
-        store.getState().mode.name === MODE_LOADFEN ||
+        store.getState().mode.name === MODE_PGN ||
+        store.getState().mode.name === MODE_FEN ||
         store.getState().mode.name === MODE_GM
       ) {
         WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
@@ -287,8 +287,8 @@ export default class WsEvent {
     dispatch(undo(data['/undo']));
     if (data['/undo'].mode === MODE_GM) {
       dispatch(openProgressDialog());
-      WsAction.grandmaster(store.getState());
-      WsAction.grandmaster(store.getState());
+      WsAction.gm(store.getState());
+      WsAction.gm(store.getState());
     } else if (data['/undo'].mode === MODE_PLAY) {
       dispatch(declineTakeback());
     }
@@ -351,23 +351,23 @@ export default class WsEvent {
 
   static onGrandmaster = (data) => dispatch => {
     dispatch(closeProgressDialog());
-    if (data['/grandmaster']) {
-      dispatch(showGameTable({ game: data['/grandmaster'].game }));
-      dispatch(grandmaster({
-        turn: data['/grandmaster'].state.turn,
-        isCheck: data['/grandmaster'].state.isCheck,
-        isMate: data['/grandmaster'].state.isMate,
-        movetext: data['/grandmaster'].state.movetext,
-        fen: data['/grandmaster'].state.fen
+    if (data['/gm']) {
+      dispatch(showGameTable({ game: data['/gm'].game }));
+      dispatch(gm({
+        turn: data['/gm'].state.turn,
+        isCheck: data['/gm'].state.isCheck,
+        isMate: data['/gm'].state.isMate,
+        movetext: data['/gm'].state.movetext,
+        fen: data['/gm'].state.fen
       }));
-      dispatch(grandmasterMovetext({
-        movetext: data['/grandmaster'].state.movetext
+      dispatch(gmMovetext({
+        movetext: data['/gm'].state.movetext
       }));
       dispatch(closeInfoAlert());
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(closeGameTable());
-      dispatch(grandmasterMovetext({ movetext: null }));
+      dispatch(gmMovetext({ movetext: null }));
       dispatch(showInfoAlert({ info: 'This move was not found in the database.' }));
     }
   }

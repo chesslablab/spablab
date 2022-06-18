@@ -3,8 +3,8 @@ import Wording from '../common/Wording.js';
 import {
   MODE_ANALYSIS,
   MODE_GM,
-  MODE_LOADFEN,
-  MODE_LOADPGN,
+  MODE_FEN,
+  MODE_PGN,
   MODE_PLAY
 } from './modeConstants';
 
@@ -17,18 +17,18 @@ const modeSlice = createSlice({
   initialState,
   reducers: {
     startAnalysis: () => initialState,
-    startLoadFen: () => { name: MODE_LOADFEN },
-    startLoadPgn: () => { name: MODE_LOADPGN },
+    startLoadFen: () => { name: MODE_FEN },
+    startLoadPgn: () => { name: MODE_PGN },
     setGrandmaster(state, action) {
       state.name = MODE_GM;
-      state.grandmaster = action.payload;
+      state.gm = action.payload;
     },
     setPlay(state, action) {
       state.name = MODE_PLAY;
       state.play = action.payload;
     },
-    grandmasterMovetext(state, action) {
-      state.grandmaster.movetext = action.payload.movetext;
+    gmMovetext(state, action) {
+      state.gm.movetext = action.payload.movetext;
     },
     acceptPlay(state) {
       const expiryTimestamp = new Date();
@@ -86,7 +86,7 @@ export const {
   startLoadFen,
   startLoadPgn,
   setPlay,
-  grandmasterMovetext,
+  gmMovetext,
   acceptPlay,
   acceptTakeback,
   declineTakeback,

@@ -10,8 +10,8 @@ import {
 import {
   MODE_ANALYSIS,
   MODE_GM,
-  MODE_LOADFEN,
-  MODE_LOADPGN,
+  MODE_FEN,
+  MODE_PGN,
   MODE_PLAY
 } from '../features/modeConstants';
 import WsAction from '../ws/WsAction';
@@ -28,8 +28,8 @@ const Board = ({props}) => {
     if (
       state.mode.name === MODE_ANALYSIS ||
       state.mode.name === MODE_GM ||
-      state.mode.name === MODE_LOADFEN ||
-      state.mode.name === MODE_LOADPGN
+      state.mode.name === MODE_FEN ||
+      state.mode.name === MODE_PGN
     ) {
       if (
         !state.board.isMate &&

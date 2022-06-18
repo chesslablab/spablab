@@ -28,15 +28,15 @@ export default class WsAction {
   }
 
   static startGrandmaster = async (state, color) => {
-    return await state.server.ws.send(`/start grandmaster ${color}`);
+    return await state.server.ws.send(`/start gm ${color}`);
   }
 
   static startLoadfen = async (state, string) => {
-    return await state.server.ws.send(`/start loadfen "${string}"`);
+    return await state.server.ws.send(`/start fen "${string}"`);
   }
 
   static startLoadpgn = async (state, movetext) => {
-    return await state.server.ws.send(`/start loadpgn "${movetext}"`);
+    return await state.server.ws.send(`/start pgn "${movetext}"`);
   }
 
   static startPlay = async (state, settings) => {
@@ -95,8 +95,8 @@ export default class WsAction {
     return await state.server.ws.send(`/restart ${state.mode.play.hash}`);
   }
 
-  static grandmaster = async (state) => {
-    return await state.server.ws.send(`/grandmaster`);
+  static gm = async (state) => {
+    return await state.server.ws.send(`/gm`);
   }
 
   static randomGame = async (state) => {

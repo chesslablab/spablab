@@ -125,7 +125,7 @@ const boardSlice = createSlice({
       state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       state.history = newHistory;
     },
-    grandmaster(state, action) {
+    gm(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
       state.short_fen = null;
@@ -154,6 +154,6 @@ export const {
   undo,
   validMove,
   playMove,
-  grandmaster
+  gm
 } = boardSlice.actions;
 export default boardSlice.reducer;

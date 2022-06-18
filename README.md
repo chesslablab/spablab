@@ -112,9 +112,9 @@ Commands available:
 /random_game Starts a random game.
 /rematch {"action":["accept","decline","propose"]} Allows to offer a rematch.
 /resign {"action":["accept"]} Allows to resign a game.
-/grandmaster Returns a computer generated response to the current position.
+/gm Returns a computer generated response to the current position.
 /restart {"hash":"string"} Restarts a game.
-/start {"mode":["analysis","grandmaster","loadfen","loadpgn","play"],"fen":"string","movetext":"string","color":["w","b"],"settings":"string"} Starts a new game.
+/start {"mode":["analysis","gm","fen","pgn","play"],"fen":"string","movetext":"string","color":["w","b"],"settings":"string"} Starts a new game.
 /takeback {"action":["accept","decline","propose"]} Allows to manage a takeback.
 /undo Undoes the last move.
 

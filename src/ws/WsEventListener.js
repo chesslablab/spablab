@@ -5,8 +5,8 @@ import { playMove } from '../features/boardSlice';
 import {
   MODE_ANALYSIS,
   MODE_GM,
-  MODE_LOADFEN,
-  MODE_LOADPGN,
+  MODE_FEN,
+  MODE_PGN,
   MODE_PLAY
 } from '../features/modeConstants';
 import WsAction from './WsAction';
@@ -42,9 +42,9 @@ export default class WsEventListener {
           dispatch(WsEvent.onStartAnalysis(data));
         } else if (data['/start'].mode === MODE_GM) {
           dispatch(WsEvent.onStartGrandmaster(data));
-        } else if (data['/start'].mode === MODE_LOADFEN) {
+        } else if (data['/start'].mode === MODE_FEN) {
           dispatch(WsEvent.onStartLoadfen(data));
-        } else if (data['/start'].mode === MODE_LOADPGN) {
+        } else if (data['/start'].mode === MODE_PGN) {
           dispatch(WsEvent.onStartLoadpgn(data));
         } else if (data['/start'].mode === MODE_PLAY) {
           dispatch(WsEvent.onStartPlay(data));
@@ -99,11 +99,11 @@ export default class WsEventListener {
       case '/restart' === cmd:
         dispatch(WsEvent.onRestart(data));
         break;
-      case '/grandmaster' === cmd:
+      case '/gm' === cmd:
         dispatch(WsEvent.onGrandmaster(data));
         break;
       case '/random_game' === cmd:
-        if (data['/random_game'].mode === MODE_LOADPGN) {
+        if (data['/random_game'].mode === MODE_PGN) {
           dispatch(WsEvent.onRandomGame(data));
         }
         break;
