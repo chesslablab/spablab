@@ -14,7 +14,7 @@ import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
 import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
 import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
 import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
-import { openPlayGrandmasterDialog } from '../features/dialog/playGmDialogSlice';
+import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
 import { openProgressDialog } from '../features/dialog/progressDialogSlice';
 import { openWatchDialog } from '../features/dialog/watchDialogSlice';
 import { MODE_PLAY } from '../features/modeConstants';
@@ -155,7 +155,7 @@ const MainButtons = () => {
         onClose={handleCloseTraining}
       >
         <MenuItem onClick={() => {
-          dispatch(openPlayGrandmasterDialog());
+          dispatch(openPlayGmDialog());
           handleCloseTraining();
         }}>
           Guess the Move
