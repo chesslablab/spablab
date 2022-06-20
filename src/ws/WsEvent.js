@@ -375,7 +375,7 @@ export default class WsEvent {
   static onRandomGame = (data) => dispatch => {
     reset(dispatch);
     if (data['/random_game'].movetext) {
-      dispatch(startPgn());
+      dispatch(startPgnMode());
       dispatch(startPgn({
         turn: data['/random_game'].turn,
         movetext: data['/random_game'].movetext,
