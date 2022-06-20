@@ -349,7 +349,7 @@ export default class WsEvent {
     }
   }
 
-  static onGrandmaster = (data) => dispatch => {
+  static onGm = (data) => dispatch => {
     dispatch(closeProgressDialog());
     if (data['/gm']) {
       dispatch(showGameTable({ game: data['/gm'].game }));

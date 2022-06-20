@@ -100,7 +100,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onRestart(data));
         break;
       case '/gm' === cmd:
-        dispatch(WsEvent.onGrandmaster(data));
+        dispatch(WsEvent.onGm(data));
         break;
       case '/random_game' === cmd:
         if (data['/random_game'].mode === MODE_PGN) {
