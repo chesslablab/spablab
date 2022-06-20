@@ -55,7 +55,7 @@ import {
 } from '../features/historySlice';
 import {
   startAnalysis,
-  setGrandmaster,
+  setGm,
   startFen as startFenMode,
   startPgn as startPgnMode,
   setPlay,
@@ -98,7 +98,7 @@ export default class WsEvent {
 
   static onStartGrandmaster = (data) => dispatch => {
     reset(dispatch);
-    dispatch(setGrandmaster({
+    dispatch(setGm({
       color: data['/start'].color,
       movetext: null
     }));

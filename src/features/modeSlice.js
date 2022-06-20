@@ -19,7 +19,7 @@ const modeSlice = createSlice({
     startAnalysis: () => initialState,
     startFen: () => { name: MODE_FEN },
     startPgn: () => { name: MODE_PGN },
-    setGrandmaster(state, action) {
+    setGm(state, action) {
       state.name = MODE_GM;
       state.gm = action.payload;
     },
@@ -82,7 +82,7 @@ const modeSlice = createSlice({
 
 export const {
   startAnalysis,
-  setGrandmaster,
+  setGm,
   startFen,
   startPgn,
   setPlay,
