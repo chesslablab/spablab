@@ -3,7 +3,7 @@ import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
 
 const initialState = {
-  short_fen: null,
+  shortFen: null,
   fen: null,
   turn: Pgn.symbol.WHITE,
   isCheck: false,
@@ -55,7 +55,7 @@ const boardSlice = createSlice({
           }
         }
         newHistory.push(newAscii);
-        state.short_fen = Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`;
+        state.shortFen = Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`;
         state.turn = newTurn;
         state.isCheck = false;
         state.isMate = false;
@@ -65,12 +65,12 @@ const boardSlice = createSlice({
     },
     browseHistory(state) {
       state.picked = null;
-      state.short_fen = null;
+      state.shortFen = null;
     },
     castleShort(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
-      state.short_fen = null;
+      state.shortFen = null;
       state.fen = action.payload.fen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
@@ -81,7 +81,7 @@ const boardSlice = createSlice({
     castleLong(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
-      state.short_fen = null;
+      state.shortFen = null;
       state.fen = action.payload.fen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
@@ -99,7 +99,7 @@ const boardSlice = createSlice({
     undo(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.splice(-1);
-      state.short_fen = null;
+      state.shortFen = null;
       state.fen = action.payload.fen;
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
@@ -111,7 +111,7 @@ const boardSlice = createSlice({
     validMove(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
-      state.short_fen = null;
+      state.shortFen = null;
       state.fen = action.payload.fen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
@@ -128,7 +128,7 @@ const boardSlice = createSlice({
     gm(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
-      state.short_fen = null;
+      state.shortFen = null;
       state.fen = action.payload.fen;
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;

@@ -48,7 +48,7 @@ export default class WsAction {
   }
 
   static playFen = async (state) => {
-    return await state.server.ws.send(`/play_fen "${state.board.short_fen}"`);
+    return await state.server.ws.send(`/play_fen "${state.board.shortFen}"`);
   }
 
   static quit = async (state) => {
