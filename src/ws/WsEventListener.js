@@ -45,7 +45,7 @@ export default class WsEventListener {
         } else if (data['/start'].mode === MODE_FEN) {
           dispatch(WsEvent.onStartFen(data));
         } else if (data['/start'].mode === MODE_PGN) {
-          dispatch(WsEvent.onStartLoadpgn(data));
+          dispatch(WsEvent.onStartPgn(data));
         } else if (data['/start'].mode === MODE_PLAY) {
           dispatch(WsEvent.onStartPlay(data));
         }

@@ -118,7 +118,7 @@ export default class WsEvent {
     }
   }
 
-  static onStartLoadpgn = (data) => dispatch => {
+  static onStartPgn = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].movetext) {
       dispatch(startPgn());
