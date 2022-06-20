@@ -27,7 +27,7 @@ export default class WsAction {
     return await ws.send('/start analysis');
   }
 
-  static startGrandmaster = async (state, color) => {
+  static startGm = async (state, color) => {
     return await state.server.ws.send(`/start gm ${color}`);
   }
 

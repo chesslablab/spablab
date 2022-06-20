@@ -25,10 +25,10 @@ const PlayGmDialog = () => {
       : color = event.target.elements.color.value;
     dispatch(closePlayGrandmasterDialog());
     if (Pgn.symbol.WHITE === color) {
-      WsAction.quit(state).then(() => WsAction.startGrandmaster(state, color));
+      WsAction.quit(state).then(() => WsAction.startGm(state, color));
     } else {
       WsAction.quit(state).then(() =>
-        WsAction.startGrandmaster(state, color).then(() =>
+        WsAction.startGm(state, color).then(() =>
           WsAction.gm(state)));
     }
   }
