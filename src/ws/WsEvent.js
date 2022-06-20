@@ -56,8 +56,8 @@ import {
 import {
   startAnalysis,
   setGrandmaster,
-  startFen,
-  startPgn,
+  startFen as startFenMode,
+  startPgn as startPgnMode,
   setPlay,
   gmMovetext,
   acceptPlay,
@@ -110,7 +110,7 @@ export default class WsEvent {
   static onStartFen = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].fen) {
-      dispatch(startFen());
+      dispatch(startFenMode());
       dispatch(startFen({ fen: data['/start'].fen }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
@@ -121,7 +121,7 @@ export default class WsEvent {
   static onStartPgn = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].movetext) {
-      dispatch(startPgn());
+      dispatch(startPgnMode());
       dispatch(startPgn({
         turn: data['/start'].turn,
         movetext: data['/start'].movetext,
