@@ -13,7 +13,7 @@ const LoadPgnDialog = () => {
     event.preventDefault();
     dispatch(closeLoadPgnDialog());
     dispatch(openProgressDialog());
-    WsAction.quit(state).then(() => WsAction.startLoadpgn(state, event.target.elements.pgn.value));
+    WsAction.quit(state).then(() => WsAction.startPgn(state, event.target.elements.pgn.value));
   };
 
   return (

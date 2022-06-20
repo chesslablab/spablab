@@ -17,7 +17,7 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(closeSearchMovetextDialog());
     dispatch(closeSearchNameDialog());
     dispatch(openProgressDialog());
-    WsAction.quit(state).then(() => WsAction.startLoadpgn(state, movetext));
+    WsAction.quit(state).then(() => WsAction.startPgn(state, movetext));
   };
 
   return (

@@ -35,7 +35,7 @@ export default class WsAction {
     return await state.server.ws.send(`/start fen "${string}"`);
   }
 
-  static startLoadpgn = async (state, movetext) => {
+  static startPgn = async (state, movetext) => {
     return await state.server.ws.send(`/start pgn "${movetext}"`);
   }
 
