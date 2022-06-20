@@ -96,7 +96,7 @@ export default class WsEvent {
     dispatch(startAnalysis({}));
   }
 
-  static onStartGrandmaster = (data) => dispatch => {
+  static onStartGm = (data) => dispatch => {
     reset(dispatch);
     dispatch(setGm({
       color: data['/start'].color,
