@@ -57,7 +57,7 @@ import {
   startAnalysis,
   setGrandmaster,
   startFen,
-  startLoadPgn,
+  startPgn,
   setPlay,
   gmMovetext,
   acceptPlay,
@@ -121,7 +121,7 @@ export default class WsEvent {
   static onStartLoadpgn = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].movetext) {
-      dispatch(startLoadPgn());
+      dispatch(startPgn());
       dispatch(startPgn({
         turn: data['/start'].turn,
         movetext: data['/start'].movetext,
@@ -375,7 +375,7 @@ export default class WsEvent {
   static onRandomGame = (data) => dispatch => {
     reset(dispatch);
     if (data['/random_game'].movetext) {
-      dispatch(startLoadPgn());
+      dispatch(startPgn());
       dispatch(startPgn({
         turn: data['/random_game'].turn,
         movetext: data['/random_game'].movetext,

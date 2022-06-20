@@ -18,7 +18,7 @@ const modeSlice = createSlice({
   reducers: {
     startAnalysis: () => initialState,
     startFen: () => { name: MODE_FEN },
-    startLoadPgn: () => { name: MODE_PGN },
+    startPgn: () => { name: MODE_PGN },
     setGrandmaster(state, action) {
       state.name = MODE_GM;
       state.gm = action.payload;
@@ -84,7 +84,7 @@ export const {
   startAnalysis,
   setGrandmaster,
   startFen,
-  startLoadPgn,
+  startPgn,
   setPlay,
   gmMovetext,
   acceptPlay,
