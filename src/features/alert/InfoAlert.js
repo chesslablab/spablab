@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   },
 });
 
-const InfoAlert = ({props}) => {
+const InfoAlert = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
