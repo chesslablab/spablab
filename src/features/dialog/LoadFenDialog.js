@@ -13,7 +13,7 @@ const LoadFenDialog = () => {
     event.preventDefault();
     dispatch(closeLoadFenDialog());
     dispatch(openProgressDialog());
-    WsAction.quit(state).then(() => WsAction.startLoadfen(state, event.target.elements.fen.value));
+    WsAction.quit(state).then(() => WsAction.startFen(state, event.target.elements.fen.value));
   };
 
   return (

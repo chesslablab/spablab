@@ -31,7 +31,7 @@ export default class WsAction {
     return await state.server.ws.send(`/start gm ${color}`);
   }
 
-  static startLoadfen = async (state, string) => {
+  static startFen = async (state, string) => {
     return await state.server.ws.send(`/start fen "${string}"`);
   }
 
