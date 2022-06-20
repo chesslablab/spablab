@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Pgn from '../../common/Pgn';
-import { closePlayGrandmasterDialog } from '../../features/dialog/playGmDialogSlice';
+import { closePlayGmDialog } from '../../features/dialog/playGmDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -23,7 +23,7 @@ const PlayGmDialog = () => {
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
-    dispatch(closePlayGrandmasterDialog());
+    dispatch(closePlayGmDialog());
     if (Pgn.symbol.WHITE === color) {
       WsAction.quit(state).then(() => WsAction.startGm(state, color));
     } else {
@@ -57,7 +57,7 @@ const PlayGmDialog = () => {
           </TextField>
           <DialogActions>
             <Button type="submit">Play</Button>
-            <Button onClick={() => dispatch(closePlayGrandmasterDialog())}>
+            <Button onClick={() => dispatch(closePlayGmDialog())}>
               Cancel
             </Button>
           </DialogActions>

@@ -9,7 +9,7 @@ const playGmDialogSlice = createSlice({
     openPlayGrandmasterDialog(state) {
       state.open = true;
     },
-    closePlayGrandmasterDialog(state) {
+    closePlayGmDialog(state) {
       state.open = false;
     }
   }
@@ -17,6 +17,6 @@ const playGmDialogSlice = createSlice({
 
 export const {
   openPlayGrandmasterDialog,
-  closePlayGrandmasterDialog
+  closePlayGmDialog
 } = playGmDialogSlice.actions;
 export default playGmDialogSlice.reducer;
