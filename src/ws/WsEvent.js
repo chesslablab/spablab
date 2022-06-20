@@ -107,7 +107,7 @@ export default class WsEvent {
     }
   }
 
-  static onStartLoadfen = (data) => dispatch => {
+  static onStartFen = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].fen) {
       dispatch(startFen());
