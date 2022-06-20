@@ -56,7 +56,7 @@ import {
 import {
   startAnalysis,
   setGrandmaster,
-  startLoadFen,
+  startFen,
   startLoadPgn,
   setPlay,
   gmMovetext,
@@ -110,7 +110,7 @@ export default class WsEvent {
   static onStartLoadfen = (data) => dispatch => {
     reset(dispatch);
     if (data['/start'].fen) {
-      dispatch(startLoadFen());
+      dispatch(startFen());
       dispatch(startFen({ fen: data['/start'].fen }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
