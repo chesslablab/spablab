@@ -7,7 +7,8 @@ import {
   MODE_GM,
   MODE_FEN,
   MODE_PGN,
-  MODE_PLAY
+  MODE_PLAY,
+  MODE_STOCKFISH
 } from '../features/modeConstants';
 import WsAction from './WsAction';
 import WsEvent from './WsEvent';
@@ -48,6 +49,8 @@ export default class WsEventListener {
           dispatch(WsEvent.onStartPgn(data));
         } else if (data['/start'].mode === MODE_PLAY) {
           dispatch(WsEvent.onStartPlay(data));
+        } else if (data['/start'].mode === MODE_STOCKFISH) {
+          dispatch(WsEvent.onStartStockfish(data));
         }
         break;
       case '/accept' === cmd:
@@ -106,6 +109,9 @@ export default class WsEventListener {
         if (data['/random_game'].mode === MODE_PGN) {
           dispatch(WsEvent.onRandomGame(data));
         }
+        break;
+      case '/stockfish' === cmd:
+        dispatch(WsEvent.onStockfish(data));
         break;
       default:
         break;

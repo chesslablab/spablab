@@ -6,6 +6,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
 import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
@@ -15,6 +16,7 @@ import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
 import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
 import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
 import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
+import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
 import { openProgressDialog } from '../features/dialog/progressDialogSlice';
 import { openWatchDialog } from '../features/dialog/watchDialogSlice';
 import { MODE_PLAY } from '../features/modeConstants';
@@ -26,6 +28,7 @@ const MainButtons = () => {
   const dispatch = useDispatch();
 
   const [anchorElPlayFriend, setAnchorElPlayFriend] = useState(null);
+  const [anchorElPlayComputer, setAnchorElPlayComputer] = useState(null);
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
@@ -34,6 +37,10 @@ const MainButtons = () => {
 
   const handleClosePlayFriend = () => {
     setAnchorElPlayFriend(null);
+  };
+
+  const handleClosePlayComputer = () => {
+    setAnchorElPlayComputer(null);
   };
 
   const handleCloseAnalysis = () => {
@@ -111,6 +118,15 @@ const MainButtons = () => {
           handleClosePlayFriend();
         }}>Enter Invite Code</MenuItem>
       </Menu>
+      <Button
+        startIcon={<SmartToyIcon />}
+        onClick={() => {
+          dispatch(openPlayComputerDialog());
+          handleClosePlayComputer();
+        }}
+      >
+        Play Computer
+      </Button>
       <Button
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}

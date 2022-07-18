@@ -12,7 +12,8 @@ import {
   MODE_GM,
   MODE_FEN,
   MODE_PGN,
-  MODE_PLAY
+  MODE_PLAY,
+  MODE_STOCKFISH
 } from '../features/modeConstants';
 import WsAction from '../ws/WsAction';
 
@@ -29,7 +30,8 @@ const Board = ({props}) => {
       state.mode.name === MODE_ANALYSIS ||
       state.mode.name === MODE_GM ||
       state.mode.name === MODE_FEN ||
-      state.mode.name === MODE_PGN
+      state.mode.name === MODE_PGN ||
+      state.mode.name === MODE_STOCKFISH
     ) {
       if (
         !state.board.isMate &&

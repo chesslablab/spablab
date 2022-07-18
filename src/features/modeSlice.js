@@ -5,7 +5,8 @@ import {
   MODE_GM,
   MODE_FEN,
   MODE_PGN,
-  MODE_PLAY
+  MODE_PLAY,
+  MODE_STOCKFISH
 } from './modeConstants';
 
 const initialState = {
@@ -26,6 +27,10 @@ const modeSlice = createSlice({
     setPlay(state, action) {
       state.name = MODE_PLAY;
       state.play = action.payload;
+    },
+    setStockfish(state, action) {
+      state.name = MODE_STOCKFISH;
+      state.computer = action.payload;
     },
     gmMovetext(state, action) {
       state.gm.movetext = action.payload.movetext;
@@ -82,10 +87,11 @@ const modeSlice = createSlice({
 
 export const {
   startAnalysis,
-  setGm,
   startFen,
   startPgn,
+  setGm,
   setPlay,
+  setStockfish,
   gmMovetext,
   acceptPlay,
   acceptTakeback,

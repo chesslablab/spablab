@@ -43,6 +43,10 @@ export default class WsAction {
     return await state.server.ws.send(`/start play ${JSON.stringify(settings)}`);
   }
 
+  static startStockfish = async (state, color) => {
+    return await state.server.ws.send(`/start stockfish ${color}`);
+  }
+
   static onlineGames = async (state) => {
     return await state.server.ws.send('/online_games');
   }
@@ -101,5 +105,9 @@ export default class WsAction {
 
   static randomGame = async (state) => {
     return await state.server.ws.send(`/random_game`);
+  }
+
+  static stockfish = async (state) => {
+    return await state.server.ws.send(`/stockfish`);
   }
 }

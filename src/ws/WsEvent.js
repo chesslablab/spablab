@@ -55,10 +55,11 @@ import {
 } from '../features/historySlice';
 import {
   startAnalysis,
-  setGm,
   startFen as startFenMode,
   startPgn as startPgnMode,
+  setGm,
   setPlay,
+  setStockfish,
   gmMovetext,
   acceptPlay,
   acceptTakeback,
@@ -75,7 +76,8 @@ import {
   MODE_GM,
   MODE_FEN,
   MODE_PGN,
-  MODE_PLAY
+  MODE_PLAY,
+  MODE_STOCKFISH
 } from '../features/modeConstants';
 import WsAction from './WsAction';
 
@@ -160,6 +162,17 @@ export default class WsEvent {
     dispatch(start());
   }
 
+  static onStartStockfish = (data) => dispatch => {
+    reset(dispatch);
+    dispatch(setStockfish({
+      color: data['/start'].color,
+      movetext: null
+    }));
+    if (data['/start'].color === Pgn.symbol.BLACK) {
+      dispatch(flip());
+    }
+  }
+
   static onAccept = (data) => dispatch => {
     reset(dispatch);
     if (!store.getState().mode.play) {
@@ -230,6 +243,9 @@ export default class WsEvent {
       } else if (store.getState().mode.name === MODE_GM) {
         dispatch(openProgressDialog());
         WsAction.gm(store.getState());
+      } else if (store.getState().mode.name === MODE_STOCKFISH) {
+        dispatch(openProgressDialog());
+        WsAction.stockfish(store.getState());
       }
       if (
         store.getState().mode.name === MODE_ANALYSIS ||
@@ -386,6 +402,19 @@ export default class WsEvent {
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(showInfoAlert({ info: 'A random game could not be loaded.' }));
+    }
+  }
+
+  static onStockfish = (data) => dispatch => {
+    dispatch(closeProgressDialog());
+    if (data['/stockfish']) {
+      dispatch(gm({
+        turn: data['/stockfish'].state.turn,
+        isCheck: data['/stockfish'].state.isCheck,
+        isMate: data['/stockfish'].state.isMate,
+        movetext: data['/stockfish'].state.movetext,
+        fen: data['/stockfish'].state.fen
+      }));
     }
   }
 }
