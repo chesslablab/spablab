@@ -166,7 +166,8 @@ export default class WsEvent {
     reset(dispatch);
     dispatch(setStockfish({
       color: data['/start'].color,
-      movetext: null
+      skillLevel: store.getState().mode.computer.skillLevel,
+      depth: store.getState().mode.computer.depth
     }));
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(flip());

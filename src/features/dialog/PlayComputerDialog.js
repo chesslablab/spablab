@@ -1,21 +1,33 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import Pgn from '../../common/Pgn';
 import { closePlayComputerDialog } from '../../features/dialog/playComputerDialogSlice';
+import { setStockfish } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
-const useStyles = makeStyles({
-  form: {
-    marginTop: 10,
-  },
-});
-
 const PlayComputerDialog = () => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+
+  const configure = (level) => {
+    let settings = {
+      skillLevel: 11,
+      depth: 4
+    };
+    if (level === 0) {
+      settings.skillLevel = 6;
+      settings.depth = 2;
+    } else if (level === 2) {
+      settings.skillLevel = 17;
+      settings.depth = 8;
+    } else if (level === 3) {
+      settings.skillLevel = 20;
+      settings.depth = 12;
+    }
+
+    return settings;
+  }
 
   const handlePlay = (event) => {
     event.preventDefault();
@@ -23,6 +35,7 @@ const PlayComputerDialog = () => {
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
+    dispatch(setStockfish(configure(event.target.elements.level.value)));
     dispatch(closePlayComputerDialog());
     if (Pgn.symbol.WHITE === color) {
       WsAction.quit(state).then(() => WsAction.startStockfish(state, color));
@@ -37,22 +50,44 @@ const PlayComputerDialog = () => {
     <Dialog open={state.playComputerDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Play computer</DialogTitle>
       <DialogContent>
-        <form className={classes.form} onSubmit={handlePlay}>
+        <form onSubmit={handlePlay}>
           <TextField
             select
             fullWidth
             name="color"
             label="Color"
             defaultValue="rand"
+            margin="normal"
           >
-            <MenuItem key={0} value="rand">
+            <MenuItem key="rand" value="rand">
               Random
             </MenuItem>
-            <MenuItem key={1} value={Pgn.symbol.WHITE}>
+            <MenuItem key="w" value={Pgn.symbol.WHITE}>
               White
             </MenuItem>
-            <MenuItem key={2} value={Pgn.symbol.BLACK}>
+            <MenuItem key="b" value={Pgn.symbol.BLACK}>
               Black
+            </MenuItem>
+          </TextField>
+          <TextField
+            select
+            fullWidth
+            name="level"
+            label="Level"
+            defaultValue="1"
+            margin="normal"
+          >
+            <MenuItem key="beginner" value="0">
+              Beginner
+            </MenuItem>
+            <MenuItem key="intermediate" value="1">
+              Intermediate
+            </MenuItem>
+            <MenuItem key="advanced" value="2">
+              Advanced
+            </MenuItem>
+            <MenuItem key="expert" value="3">
+              Expert
             </MenuItem>
           </TextField>
           <DialogActions>
