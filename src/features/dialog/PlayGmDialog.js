@@ -1,19 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import Pgn from '../../common/Pgn';
 import { closePlayGmDialog } from '../../features/dialog/playGmDialogSlice';
 import WsAction from '../../ws/WsAction';
 
-const useStyles = makeStyles({
-  form: {
-    marginTop: 10,
-  },
-});
-
 const PlayGmDialog = () => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -37,13 +29,14 @@ const PlayGmDialog = () => {
     <Dialog open={state.playGmDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>Guess the move</DialogTitle>
       <DialogContent>
-        <form className={classes.form} onSubmit={handlePlay}>
+        <form onSubmit={handlePlay}>
           <TextField
             select
             fullWidth
             name="color"
             label="Color"
             defaultValue="rand"
+            margin="normal"
           >
             <MenuItem key={0} value="rand">
               Random
