@@ -12,18 +12,22 @@ const PlayComputerDialog = () => {
 
   const configure = (level) => {
     let settings = {
-      skillLevel: 11,
-      depth: 4
+      options: {
+        "Skill Level": 11
+      },
+      params: {
+        "depth": 4
+      }
     };
-    if (level === 0) {
-      settings.skillLevel = 6;
-      settings.depth = 2;
-    } else if (level === 2) {
-      settings.skillLevel = 17;
-      settings.depth = 8;
-    } else if (level === 3) {
-      settings.skillLevel = 20;
-      settings.depth = 12;
+    if (level === "0") {
+      settings.options["Skill Level"] = 6;
+      settings.params["depth"] = 2;
+    } else if (level === "2") {
+      settings.options["Skill Level"] = 17;
+      settings.params["depth"] = 8;
+    } else if (level === "3") {
+      settings.options["Skill Level"] = 20;
+      settings.params["depth"] = 12;
     }
 
     return settings;
@@ -35,7 +39,8 @@ const PlayComputerDialog = () => {
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
-    dispatch(setStockfish(configure(event.target.elements.level.value)));
+    const payload = configure(event.target.elements.level.value);
+    dispatch(setStockfish(payload));
     dispatch(closePlayComputerDialog());
     if (Pgn.symbol.WHITE === color) {
       WsAction.quit(state).then(() => WsAction.startStockfish(state, color));
