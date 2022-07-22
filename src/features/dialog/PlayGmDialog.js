@@ -16,13 +16,7 @@ const PlayGmDialog = () => {
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
     dispatch(closePlayGmDialog());
-    if (Pgn.symbol.WHITE === color) {
-      WsAction.quit(state).then(() => WsAction.startGm(state, color));
-    } else {
-      WsAction.quit(state).then(() =>
-        WsAction.startGm(state, color).then(() =>
-          WsAction.gm(state)));
-    }
+    WsAction.quit(state).then(() => WsAction.startGm(state, color));
   }
 
   return (

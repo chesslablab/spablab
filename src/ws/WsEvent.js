@@ -106,6 +106,7 @@ export default class WsEvent {
     }));
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(flip());
+      WsAction.gm(store.getState());
     }
   }
 
@@ -171,6 +172,7 @@ export default class WsEvent {
     }));
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(flip());
+      WsAction.stockfish(store.getState());
     }
   }
 

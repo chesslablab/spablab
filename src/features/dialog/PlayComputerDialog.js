@@ -42,13 +42,7 @@ const PlayComputerDialog = () => {
     const payload = configure(event.target.elements.level.value);
     dispatch(setStockfish(payload));
     dispatch(closePlayComputerDialog());
-    if (Pgn.symbol.WHITE === color) {
-      WsAction.quit(state).then(() => WsAction.startStockfish(state, color));
-    } else {
-      WsAction.quit(state).then(() =>
-        WsAction.startStockfish(state, color).then(() =>
-          WsAction.stockfish(state)));
-    }
+    WsAction.quit(state).then(() => WsAction.startStockfish(state, color));
   }
 
   return (
