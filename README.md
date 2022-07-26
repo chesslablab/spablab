@@ -112,6 +112,7 @@ Commands available:
 /online_games Returns the online games waiting to be accepted.
 /play_fen {"fen":"<string>"} Plays a chess move in shortened FEN format.
 /quit Quits a game.
+/random_checkmate {"turn":"<string>","items":"<string>"} Starts a random checkmate position.
 /random_game Starts a random game.
 /rematch {"action":["accept","decline","propose"]} Allows to offer a rematch.
 /resign {"action":["accept"]} Allows to resign a game.
