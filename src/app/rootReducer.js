@@ -5,6 +5,7 @@ import acceptResignDialogReducer from '../features/dialog/acceptResignDialogSlic
 import acceptTakebackDialogReducer from '../features/dialog/acceptTakebackDialogSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
 import enterInviteCodeDialogReducer from '../features/dialog/enterInviteCodeDialogSlice';
+import giveCheckmateDialogReducer from '../features/dialog/giveCheckmateDialogSlice';
 import heuristicsDialogReducer from '../features/dialog/heuristicsDialogSlice';
 import loadFenDialogReducer from '../features/dialog/loadFenDialogSlice';
 import loadPgnDialogReducer from '../features/dialog/loadPgnDialogSlice';
@@ -35,6 +36,7 @@ const rootReducer = {
   acceptTakebackDialog: acceptTakebackDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,
   enterInviteCodeDialog: enterInviteCodeDialogReducer,
+  giveCheckmateDialog: giveCheckmateDialogReducer,
   heuristicsDialog: heuristicsDialogReducer,
   loadFenDialog: loadFenDialogReducer,
   loadPgnDialog: loadPgnDialogReducer,

@@ -15,6 +15,7 @@ import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
 import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
 import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
 import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
+import { openGiveCheckmateDialog } from '../features/dialog/giveCheckmateDialogSlice';
 import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
 import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
 import { openProgressDialog } from '../features/dialog/progressDialogSlice';
@@ -170,6 +171,12 @@ const MainButtons = () => {
         open={Boolean(anchorElTraining)}
         onClose={handleCloseTraining}
       >
+        <MenuItem onClick={() => {
+          dispatch(openGiveCheckmateDialog());
+          handleCloseTraining();
+        }}>
+          Give a Checkmate
+        </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openPlayGmDialog());
           handleCloseTraining();
