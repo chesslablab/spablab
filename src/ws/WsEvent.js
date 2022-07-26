@@ -250,14 +250,7 @@ export default class WsEvent {
         dispatch(openProgressDialog());
         WsAction.stockfish(store.getState());
       }
-      if (
-        store.getState().mode.name === MODE_ANALYSIS ||
-        store.getState().mode.name === MODE_PGN ||
-        store.getState().mode.name === MODE_FEN ||
-        store.getState().mode.name === MODE_GM
-      ) {
-        WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
-      }
+      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     }
   }
 
