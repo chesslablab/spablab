@@ -391,6 +391,24 @@ export default class WsEvent {
     }
   }
 
+  static onRandomCheckmate = (data) => dispatch => {
+    reset(dispatch);
+    if (data['/random_checkmate'].fen) {
+      dispatch(setStockfish({
+        color: data['/random_checkmate'].turn,
+        options: {
+          "Skill Level": 20
+        },
+        params: {
+          "depth": 12
+        }
+      }));
+      WsAction.startFen(store.getState(), data['/random_checkmate'].fen);
+    } else {
+      dispatch(showInfoAlert({ info: 'A random checkmate could not be loaded.' }));
+    }
+  }
+
   static onRandomGame = (data) => dispatch => {
     reset(dispatch);
     if (data['/random_game'].movetext) {
