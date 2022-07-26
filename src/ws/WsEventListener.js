@@ -72,9 +72,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onPlayfen(props, data));
         break;
       case '/legal_sqs' === cmd:
-        if (data['/legal_sqs']) {
-          dispatch(WsEvent.onLegalSqs(data));
-        }
+        dispatch(WsEvent.onLegalSqs(data));
         break;
       case '/heuristics' === cmd:
         dispatch(WsEvent.onHeuristics(data));
@@ -109,9 +107,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onRandomCheckmate(data));
         break;
       case '/random_game' === cmd:
-        if (data['/random_game'].mode === MODE_PGN) {
-          dispatch(WsEvent.onRandomGame(data));
-        }
+        dispatch(WsEvent.onRandomGame(data));
         break;
       case '/stockfish' === cmd:
         dispatch(WsEvent.onStockfish(data));
