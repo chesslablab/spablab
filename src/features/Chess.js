@@ -5,9 +5,9 @@ import { makeStyles } from '@mui/styles';
 import '../index.css';
 import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
+import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';
-import GiveCheckmateDialog from './dialog/GiveCheckmateDialog';
 import SearchEcoDialog from './dialog/SearchEcoDialog';
 import SearchMovetextDialog from './dialog/SearchMovetextDialog';
 import SearchNameDialog from './dialog/SearchNameDialog';
@@ -61,7 +61,7 @@ const Chess = ({ props }) => {
       <SearchNameDialog props={props} />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
-      <GiveCheckmateDialog />
+      <CheckmateSkillsDialog />
       <ProgressDialog />
       <LoadFenDialog />
       <LoadPgnDialog />

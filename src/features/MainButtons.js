@@ -15,7 +15,7 @@ import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
 import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
 import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
 import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
-import { openGiveCheckmateDialog } from '../features/dialog/giveCheckmateDialogSlice';
+import { openCheckmateSkillsDialog } from '../features/dialog/checkmateSkillsDialogSlice';
 import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
 import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
 import { openProgressDialog } from '../features/dialog/progressDialogSlice';
@@ -172,10 +172,10 @@ const MainButtons = () => {
         onClose={handleCloseTraining}
       >
         <MenuItem onClick={() => {
-          dispatch(openGiveCheckmateDialog());
+          dispatch(openCheckmateSkillsDialog());
           handleCloseTraining();
         }}>
-          Give a Checkmate
+          Checkmate Skills
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openPlayGmDialog());

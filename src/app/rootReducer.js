@@ -3,9 +3,9 @@ import acceptDrawDialogReducer from '../features/dialog/acceptDrawDialogSlice';
 import acceptRematchDialogReducer from '../features/dialog/acceptRematchDialogSlice';
 import acceptResignDialogReducer from '../features/dialog/acceptResignDialogSlice';
 import acceptTakebackDialogReducer from '../features/dialog/acceptTakebackDialogSlice';
+import checkmateSkillsDialogReducer from '../features/dialog/checkmateSkillsDialogSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
 import enterInviteCodeDialogReducer from '../features/dialog/enterInviteCodeDialogSlice';
-import giveCheckmateDialogReducer from '../features/dialog/giveCheckmateDialogSlice';
 import heuristicsDialogReducer from '../features/dialog/heuristicsDialogSlice';
 import loadFenDialogReducer from '../features/dialog/loadFenDialogSlice';
 import loadPgnDialogReducer from '../features/dialog/loadPgnDialogSlice';
@@ -34,9 +34,9 @@ const rootReducer = {
   acceptRematchDialog: acceptRematchDialogReducer,
   acceptResignDialog: acceptResignDialogReducer,
   acceptTakebackDialog: acceptTakebackDialogReducer,
+  checkmateSkillsDialog: checkmateSkillsDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,
   enterInviteCodeDialog: enterInviteCodeDialogReducer,
-  giveCheckmateDialog: giveCheckmateDialogReducer,
   heuristicsDialog: heuristicsDialogReducer,
   loadFenDialog: loadFenDialogReducer,
   loadPgnDialog: loadPgnDialogReducer,
