@@ -54,13 +54,16 @@ const CheckmateSkillsDialog = () => {
             <MenuItem value="" disabled>
               Select an option
             </MenuItem>
-            <MenuItem key={0} value="R">
+            <MenuItem key={0} value="Q">
+              King and queen vs. king
+            </MenuItem>
+            <MenuItem key={1} value="R">
               King and rook vs. king
             </MenuItem>
-            <MenuItem key={1} value="BB">
+            <MenuItem key={2} value="BB">
               King and two bishops vs. king
             </MenuItem>
-            <MenuItem key={2} value="BN">
+            <MenuItem key={3} value="BN">
               King and bishop and knight vs. king
             </MenuItem>
           </TextField>
