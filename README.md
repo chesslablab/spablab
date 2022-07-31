@@ -12,8 +12,6 @@ $ npm i @chesslablab/redux-chess
 
 Check out [this demo](https://www.chesslablab.com/).
 
-> Please note the sandbox server may not be up and running all the time.
-
 ![Figure 1](/src/assets/img/docs/figure-01.png)
 Figure 1. Play Online
 
