@@ -35,7 +35,10 @@ const StartedButtonsPlayMode = () => {
             orientation="vertical"
             fullWidth={true}
           >
-            <Button onClick={() => dispatch(openTakebackOfferDialog())}>
+            <Button
+                disabled={!state.board.movetext}
+                onClick={() => dispatch(openTakebackOfferDialog())}
+            >
               Propose a takeback
             </Button>
             <Button onClick={() => dispatch(openDrawOfferDialog())}>
