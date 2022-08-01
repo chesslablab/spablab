@@ -11,17 +11,15 @@ const AcceptRematchDialog = () => {
 
   const handleRematchAccept = (event) => {
     event.preventDefault();
-    WsAction.rematch(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
-      dispatch(closeRematchAcceptDialog());
-      WsAction.restart(state);
-    });
+    WsAction.rematch(state, Wording.verb.ACCEPT.toLowerCase());
+    dispatch(closeRematchAcceptDialog());
+    WsAction.restart(state);
   };
 
   const handleRematchDecline = (event) => {
     event.preventDefault();
-    WsAction.rematch(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
-      dispatch(closeRematchAcceptDialog());
-    });
+    WsAction.rematch(state, Wording.verb.DECLINE.toLowerCase());
+    dispatch(closeRematchAcceptDialog());
   };
 
   return (

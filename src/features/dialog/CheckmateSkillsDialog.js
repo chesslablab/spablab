@@ -18,7 +18,8 @@ const CheckmateSkillsDialog = () => {
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
-    WsAction.quit(state).then(() => WsAction.randomCheckmate(state, color, event.target.elements.type.value));
+    WsAction.quit(state);
+    WsAction.randomCheckmate(state, color, event.target.elements.type.value);
   }
 
   return (

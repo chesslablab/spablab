@@ -28,12 +28,10 @@ const PlayOnlineTable = () => {
   }, []);
 
   const handlePlay = (hash) => {
-    WsAction.quit(state).then(() => {
-      WsAction.accept(state, hash).then(() => {
-        dispatch(closePlayOnlineDialog());
-        dispatch(setPlayOnline());
-      });
-    });
+    WsAction.quit(state);
+    WsAction.accept(state, hash);
+    dispatch(closePlayOnlineDialog());
+    dispatch(setPlayOnline());
   };
 
   if (state.playOnlineDialog.rows.length > 0) {

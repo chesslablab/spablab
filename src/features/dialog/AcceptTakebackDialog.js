@@ -11,18 +11,15 @@ const AcceptTakebackDialog = () => {
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    WsAction.takeback(state, Wording.verb.ACCEPT.toLowerCase()).then(() => {
-      WsAction.undo(state).then(() => {
-        dispatch(closeAcceptTakebackDialog());
-      });
-    });
+    WsAction.takeback(state, Wording.verb.ACCEPT.toLowerCase());
+    WsAction.undo(state);
+    dispatch(closeAcceptTakebackDialog());
   };
 
   const handleTakebackDecline = (event) => {
     event.preventDefault();
-    WsAction.takeback(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
-      dispatch(closeAcceptTakebackDialog());
-    });
+    WsAction.takeback(state, Wording.verb.DECLINE.toLowerCase());
+    dispatch(closeAcceptTakebackDialog());
   };
 
   return (

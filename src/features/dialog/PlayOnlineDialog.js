@@ -33,12 +33,10 @@ const PlayOnlineDialog = () => {
       increment: event.target.elements.increment.value,
       submode: 'online'
     };
-    WsAction.quit(state).then(() => {
-      WsAction.startPlay(state, settings).then(() => {
-        dispatch(closePlayOnlineDialog());
-        dispatch(setPlayOnline());
-      });
-    });
+    WsAction.quit(state);
+    WsAction.startPlay(state, settings);
+    dispatch(closePlayOnlineDialog());
+    dispatch(setPlayOnline());
   }
 
   return (

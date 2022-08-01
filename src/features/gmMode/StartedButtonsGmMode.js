@@ -26,9 +26,7 @@ const StartedButtonsGmMode = () => {
           orientation="vertical"
           fullWidth={true}
         >
-          <Button onClick={() => {
-            WsAction.undo(state);
-          }}>
+          <Button onClick={() => WsAction.undo(state)}>
             Undo move
           </Button>
         </ButtonGroup>

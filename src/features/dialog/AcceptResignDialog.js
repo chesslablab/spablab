@@ -12,10 +12,9 @@ const AcceptResignDialog = () => {
 
   const handleResignAccept = (event) => {
     event.preventDefault();
-    WsAction.resign(state, Wording.verb.ACCEPT.toLowerCase()).then((data) => {
-      dispatch(acceptResign());
-      dispatch(closeResignAcceptDialog());
-    });
+    WsAction.resign(state, Wording.verb.ACCEPT.toLowerCase());
+    dispatch(acceptResign());
+    dispatch(closeResignAcceptDialog());
   };
 
   return (

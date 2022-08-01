@@ -42,7 +42,8 @@ const CreateCode = () => {
       increment: event.target.elements.increment.value,
       submode: 'friend'
     };
-    WsAction.quit(state).then(() => WsAction.startPlay(state, settings));
+    WsAction.quit(state);
+    WsAction.startPlay(state, settings);
   }
 
   return (

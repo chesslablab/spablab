@@ -157,22 +157,21 @@ const MainButtons = () => {
         onClose={handleCloseAnalysis}
       >
         <MenuItem onClick={() => {
-          WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
           dispatch(setAnalysis());
           handleCloseAnalysis();
+          WsAction.quit(state);
+          WsAction.startAnalysis(state.server.ws);
         }}>
           Start Position
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openLoadFenDialog());
-          dispatch(setAnalysis());
           handleCloseAnalysis();
         }}>
           FEN String
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openLoadPgnDialog());
-          dispatch(setAnalysis());
           handleCloseAnalysis();
         }}>
           PGN Movetext
@@ -204,10 +203,11 @@ const MainButtons = () => {
           Guess the Move
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openProgressDialog());
-          WsAction.quit(state).then(() => WsAction.randomGame(state));
           dispatch(setTraining());
+          dispatch(openProgressDialog());
           handleCloseTraining();
+          WsAction.quit(state);
+          WsAction.randomGame(state);
         }}>
           Random Tournament Game
         </MenuItem>

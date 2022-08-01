@@ -12,10 +12,9 @@ const OfferTakebackDialog = () => {
 
   const handleTakebackOffer = (event) => {
     event.preventDefault();
-    WsAction.takeback(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
-      dispatch(proposeTakeback());
-      dispatch(closeTakebackOfferDialog());
-    });
+    WsAction.takeback(state, Wording.verb.PROPOSE.toLowerCase());
+    dispatch(proposeTakeback());
+    dispatch(closeTakebackOfferDialog());
   };
 
   return (

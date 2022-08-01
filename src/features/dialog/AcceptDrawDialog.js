@@ -11,16 +11,14 @@ const AcceptDrawDialog = () => {
 
   const handleDrawAccept = (event) => {
     event.preventDefault();
-    WsAction.draw(state, Wording.verb.ACCEPT.toLowerCase()).then((data) => {
-      dispatch(closeAcceptDrawDialog());
-    });
+    WsAction.draw(state, Wording.verb.ACCEPT.toLowerCase());
+    dispatch(closeAcceptDrawDialog());
   };
 
   const handleDrawDecline = (event) => {
     event.preventDefault();
-    WsAction.draw(state, Wording.verb.DECLINE.toLowerCase()).then(() => {
-      dispatch(closeAcceptDrawDialog());
-    });
+    WsAction.draw(state, Wording.verb.DECLINE.toLowerCase());
+    dispatch(closeAcceptDrawDialog());
   };
 
   return (

@@ -12,10 +12,9 @@ const OfferDrawDialog = () => {
 
   const handleDrawOffer = (event) => {
     event.preventDefault();
-    WsAction.draw(state, Wording.verb.PROPOSE.toLowerCase()).then((data) => {
-      dispatch(proposeDraw());
-      dispatch(closeDrawOfferDialog());
-    });
+    WsAction.draw(state, Wording.verb.PROPOSE.toLowerCase());
+    dispatch(proposeDraw());
+    dispatch(closeDrawOfferDialog());
   };
 
   return (
