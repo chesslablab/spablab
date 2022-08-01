@@ -9,6 +9,11 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
 import { flip } from '../features/boardSlice';
 import {
+  MODE_FEN,
+  MODE_PGN,
+  MODE_UNDEFINED
+} from '../features/modeConstants';
+import {
   closeProgressDialog,
   openProgressDialog
 } from '../features/dialog/progressDialogSlice';
@@ -55,9 +60,12 @@ const SecondaryButtons = ({props}) => {
     .finally(() => dispatch(closeProgressDialog()));
   }
 
+  const disabled = !(state.mode.name === MODE_FEN || state.mode.name === MODE_PGN) && !state.board.movetext;
+
   return (
     <Stack direction="row" spacing={1}>
       <IconButton
+        disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'large'}
         title="Copy PGN"
@@ -67,6 +75,7 @@ const SecondaryButtons = ({props}) => {
         <ContentCopyIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'large'}
         title="Copy FEN"
@@ -76,6 +85,7 @@ const SecondaryButtons = ({props}) => {
         <WidgetsIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'large'}
         title="Heuristics"
@@ -88,6 +98,7 @@ const SecondaryButtons = ({props}) => {
         <BarChartIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'large'}
         title="Flip Board"
@@ -97,6 +108,7 @@ const SecondaryButtons = ({props}) => {
         <CachedIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'large'}
         title="Download Image"
@@ -106,6 +118,7 @@ const SecondaryButtons = ({props}) => {
         <InsertPhotoIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'large'}
         title="Download Video"
