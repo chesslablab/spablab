@@ -117,7 +117,7 @@ export default class WsEvent {
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(startUndefinedMode());
-      dispatch(showInfoAlert({ info: 'Invalid FEN.' }));
+      dispatch(showInfoAlert({ info: 'Invalid FEN, please try again with different data.' }));
     }
   }
 
@@ -134,7 +134,7 @@ export default class WsEvent {
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(startUndefinedMode());
-      dispatch(showInfoAlert({ info: 'Invalid PGN movetext.' }));
+      dispatch(showInfoAlert({ info: 'Invalid PGN movetext, please try again with different data.' }));
     }
   }
 

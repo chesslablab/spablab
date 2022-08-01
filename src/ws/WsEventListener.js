@@ -56,7 +56,7 @@ export default class WsEventListener {
         if (data['/accept'].jwt) {
           dispatch(WsEvent.onAccept(data));
         } else {
-          dispatch(showInfoAlert({ info: 'Invalid invite code.' }));
+          dispatch(showInfoAlert({ info: 'Invalid invite code, please try again with different data.' }));
         }
         break;
       case '/online_games' === cmd:
