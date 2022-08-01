@@ -399,7 +399,8 @@ export default class WsEvent {
       }));
       WsAction.startFen(store.getState(), data['/random_checkmate'].fen);
     } else {
-      dispatch(showInfoAlert({ info: 'A random checkmate could not be loaded.' }));
+      dispatch(startUndefinedMode());
+      dispatch(showInfoAlert({ info: 'Whoops! A random checkmate could not be loaded.' }));
     }
   }
 
@@ -416,7 +417,8 @@ export default class WsEvent {
       dispatch(showGameTable({ game: data['/random_game'].game }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch(showInfoAlert({ info: 'A random game could not be loaded.' }));
+      dispatch(startUndefinedMode());
+      dispatch(showInfoAlert({ info: 'Whoops! A random game could not be loaded.' }));
     }
   }
 
