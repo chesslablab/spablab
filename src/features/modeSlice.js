@@ -6,7 +6,8 @@ import {
   MODE_FEN,
   MODE_PGN,
   MODE_PLAY,
-  MODE_STOCKFISH
+  MODE_STOCKFISH,
+  MODE_UNDEFINED
 } from './modeConstants';
 
 const initialState = {
@@ -18,8 +19,15 @@ const modeSlice = createSlice({
   initialState,
   reducers: {
     startAnalysis: () => initialState,
-    startFen: () => { name: MODE_FEN },
-    startPgn: () => { name: MODE_PGN },
+    startFen: (state) => {
+      state.name = MODE_FEN;
+    },
+    startPgn: (state) => {
+      state.name = MODE_PGN;
+    },
+    startUndefined: (state) => {
+      state.name = MODE_UNDEFINED;
+    },
     setGm(state, action) {
       state.name = MODE_GM;
       state.gm = action.payload;
@@ -89,6 +97,7 @@ export const {
   startAnalysis,
   startFen,
   startPgn,
+  startUndefined,
   setGm,
   setPlay,
   setStockfish,
