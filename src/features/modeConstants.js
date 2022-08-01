@@ -4,6 +4,7 @@ const MODE_FEN = 'fen';
 const MODE_PGN = 'pgn';
 const MODE_PLAY = 'play';
 const MODE_STOCKFISH = 'stockfish';
+const MODE_UNDEFINED = 'undefined';
 
 export {
   MODE_ANALYSIS,
@@ -11,5 +12,6 @@ export {
   MODE_FEN,
   MODE_PGN,
   MODE_PLAY,
-  MODE_STOCKFISH
+  MODE_STOCKFISH,
+  MODE_UNDEFINED
 };

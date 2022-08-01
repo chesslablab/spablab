@@ -10,7 +10,6 @@ import {
   MODE_PLAY,
   MODE_STOCKFISH
 } from '../features/modeConstants';
-import WsAction from './WsAction';
 import WsEvent from './WsEvent';
 
 export default class WsEventListener {
@@ -111,6 +110,9 @@ export default class WsEventListener {
         break;
       case '/stockfish' === cmd:
         dispatch(WsEvent.onStockfish(data));
+        break;
+      case 'validate' === cmd:
+        dispatch(WsEvent.onValidate(data));
         break;
       default:
         break;

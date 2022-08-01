@@ -57,6 +57,7 @@ import {
   startAnalysis,
   startFen as startFenMode,
   startPgn as startPgnMode,
+  startUndefined as startUndefinedMode,
   setGm,
   setPlay,
   setStockfish,
@@ -74,8 +75,6 @@ import {
 import {
   MODE_ANALYSIS,
   MODE_GM,
-  MODE_FEN,
-  MODE_PGN,
   MODE_PLAY,
   MODE_STOCKFISH
 } from '../features/modeConstants';
@@ -93,7 +92,7 @@ const reset = (dispatch) => {
 
 
 export default class WsEvent {
-  static onStartAnalysis = (data) => dispatch => {
+  static onStartAnalysis = () => dispatch => {
     reset(dispatch);
     dispatch(startAnalysis({}));
   }
@@ -117,6 +116,7 @@ export default class WsEvent {
       dispatch(startFen({ fen: data['/start'].fen }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
+      dispatch(startUndefinedMode());
       dispatch(showInfoAlert({ info: 'Invalid FEN.' }));
     }
   }
@@ -133,6 +133,7 @@ export default class WsEvent {
       }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
+      dispatch(startUndefinedMode());
       dispatch(showInfoAlert({ info: 'Invalid PGN movetext.' }));
     }
   }
@@ -398,7 +399,8 @@ export default class WsEvent {
       }));
       WsAction.startFen(store.getState(), data['/random_checkmate'].fen);
     } else {
-      dispatch(showInfoAlert({ info: 'A random checkmate could not be loaded.' }));
+      dispatch(startUndefinedMode());
+      dispatch(showInfoAlert({ info: 'Whoops! A random checkmate could not be loaded.' }));
     }
   }
 
@@ -415,7 +417,8 @@ export default class WsEvent {
       dispatch(showGameTable({ game: data['/random_game'].game }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
-      dispatch(showInfoAlert({ info: 'A random game could not be loaded.' }));
+      dispatch(startUndefinedMode());
+      dispatch(showInfoAlert({ info: 'Whoops! A random game could not be loaded.' }));
     }
   }
 
@@ -428,6 +431,16 @@ export default class WsEvent {
         isMate: data['/stockfish'].state.isMate,
         movetext: data['/stockfish'].state.movetext,
         fen: data['/stockfish'].state.fen
+      }));
+    }
+  }
+
+  static onValidate = (data) => dispatch => {
+    reset(dispatch);
+    if (data['validate']) {
+      dispatch(startUndefinedMode());
+      dispatch(showInfoAlert({
+        info: 'Whoops! Something went wrong, please try again with different data.'
       }));
     }
   }

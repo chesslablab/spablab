@@ -8,12 +8,8 @@ import {
   leavePiece
 } from '../features/boardSlice';
 import {
-  MODE_ANALYSIS,
-  MODE_GM,
-  MODE_FEN,
-  MODE_PGN,
   MODE_PLAY,
-  MODE_STOCKFISH
+  MODE_UNDEFINED
 } from '../features/modeConstants';
 import WsAction from '../ws/WsAction';
 
@@ -26,25 +22,7 @@ const Board = ({props}) => {
   }, [dispatch]);
 
   const handleMove = (payload) => {
-    if (
-      state.mode.name === MODE_ANALYSIS ||
-      state.mode.name === MODE_GM ||
-      state.mode.name === MODE_FEN ||
-      state.mode.name === MODE_PGN ||
-      state.mode.name === MODE_STOCKFISH
-    ) {
-      if (
-        !state.board.isMate &&
-        state.history.back === 0
-      ) {
-        if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-          dispatch(leavePiece(payload));
-        } else if (state.board.turn === Piece.color(payload.piece)) {
-          dispatch(pickPiece(payload));
-          WsAction.legalSqs(state, payload.sq);
-        }
-      }
-    } else if (state.mode.name === MODE_PLAY) {
+    if (state.mode.name === MODE_PLAY) {
       if (
         !state.board.isMate &&
         !state.mode.play.draw &&
@@ -62,6 +40,18 @@ const Board = ({props}) => {
               WsAction.legalSqs(state, payload.sq);
             }
           }
+        }
+      }
+    } else if (state.mode.name !== MODE_UNDEFINED) {
+      if (
+        !state.board.isMate &&
+        state.history.back === 0
+      ) {
+        if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
+          dispatch(leavePiece(payload));
+        } else if (state.board.turn === Piece.color(payload.piece)) {
+          dispatch(pickPiece(payload));
+          WsAction.legalSqs(state, payload.sq);
         }
       }
     }
@@ -106,9 +96,7 @@ const Board = ({props}) => {
           if (Piece.unicode[piece].char) {
             img = <img src={Piece.unicode[piece].char}
               draggable="true"
-              onDragStart={(ev) => {
-                handleMove(payload);
-              }}
+              onDragStart={() => handleMove(payload)}
             />;
           }
           squares.push(<div
