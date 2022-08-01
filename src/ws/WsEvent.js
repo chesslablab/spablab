@@ -179,32 +179,37 @@ export default class WsEvent {
 
   static onAccept = (data) => dispatch => {
     reset(dispatch);
-    if (!store.getState().mode.play) {
-      const jwtDecoded = jwt_decode(data['/accept'].jwt);
-      const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      dispatch(start());
-      dispatch(setPlay({
-        jwt: data['/accept'].jwt,
-        jwt_decoded: jwt_decode(data['/accept'].jwt),
-        hash: data['/accept'].hash,
-        color: color,
-        takeback: null,
-        draw: null,
-        resign: null,
-        rematch: null,
-        leave: null,
-        accepted: false,
-        timer: {
-          expiry_timestamp: null,
-          over: null
-        }
-      }));
+    if (data['/accept'].jwt) {
+      if (!store.getState().mode.play) {
+        const jwtDecoded = jwt_decode(data['/accept'].jwt);
+        const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+        dispatch(start());
+        dispatch(setPlay({
+          jwt: data['/accept'].jwt,
+          jwt_decoded: jwt_decode(data['/accept'].jwt),
+          hash: data['/accept'].hash,
+          color: color,
+          takeback: null,
+          draw: null,
+          resign: null,
+          rematch: null,
+          leave: null,
+          accepted: false,
+          timer: {
+            expiry_timestamp: null,
+            over: null
+          }
+        }));
+      }
+      if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
+        dispatch(flip());
+      }
+      dispatch(acceptPlay());
+      dispatch(closePlayOnlineDialog());
+    } else {
+      dispatch(startUndefinedMode());
+      dispatch(showInfoAlert({ info: 'Invalid invite code, please try again with different data.' }));
     }
-    if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
-      dispatch(flip());
-    }
-    dispatch(acceptPlay());
-    dispatch(closePlayOnlineDialog());
   }
 
   static onOnlineGames = (data) => dispatch => {

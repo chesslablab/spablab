@@ -1,6 +1,5 @@
 import store from '../app/store';
 import Wording from '../common/Wording.js';
-import { showInfoAlert } from '../features/alert/infoAlertSlice';
 import { playMove } from '../features/boardSlice';
 import {
   MODE_ANALYSIS,
@@ -53,11 +52,7 @@ export default class WsEventListener {
         }
         break;
       case '/accept' === cmd:
-        if (data['/accept'].jwt) {
-          dispatch(WsEvent.onAccept(data));
-        } else {
-          dispatch(showInfoAlert({ info: 'Invalid invite code, please try again with different data.' }));
-        }
+        dispatch(WsEvent.onAccept(data));
         break;
       case '/online_games' === cmd:
         dispatch(WsEvent.onOnlineGames(data));
