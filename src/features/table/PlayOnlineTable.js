@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { closePlayOnlineDialog } from '../../features/dialog/playOnlineDialogSlice';
 import { setPlayOnline } from '../../features/mainButtonsSlice';
+import { startAnalysis } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineTable = () => {
@@ -28,10 +29,11 @@ const PlayOnlineTable = () => {
   }, []);
 
   const handlePlay = (hash) => {
+    dispatch(setPlayOnline());
     WsAction.quit(state);
     WsAction.accept(state, hash);
+    dispatch(startAnalysis());
     dispatch(closePlayOnlineDialog());
-    dispatch(setPlayOnline());
   };
 
   if (state.playOnlineDialog.rows.length > 0) {

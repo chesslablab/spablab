@@ -12,10 +12,11 @@ const EnterInviteCodeDialog = () => {
 
   const handlePlay = (event) => {
     event.preventDefault();
+    dispatch(setPlayAFriend());
     WsAction.quit(state);
     WsAction.accept(state, event.target.elements.hash.value);
+    dispatch(startAnalysis());
     dispatch(closeEnterInviteCodeDialog());
-    dispatch(setPlayAFriend());
   };
 
   return (
