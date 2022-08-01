@@ -20,7 +20,18 @@ import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
 import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
 import { openProgressDialog } from '../features/dialog/progressDialogSlice';
 import { openWatchDialog } from '../features/dialog/watchDialogSlice';
-import { MODE_PLAY } from '../features/modeConstants';
+import {
+  MAIN_BUTTON_ANALYSIS,
+  MAIN_BUTTON_PLAY_ONLINE,
+  MAIN_BUTTON_PLAY_A_FRIEND,
+  MAIN_BUTTON_PLAY_COMPUTER,
+  MAIN_BUTTON_TRAINING,
+  MAIN_BUTTON_OPENING_SEARCH
+} from '../features/mainButtonsConstants';
+import {
+  MODE_PLAY,
+} from '../features/modeConstants';
+import { setAnalysis, setTraining } from '../features/mainButtonsSlice';
 import { startAnalysis } from '../features/modeSlice';
 import WsAction from '../ws/WsAction';
 
@@ -89,6 +100,15 @@ const MainButtons = () => {
         !state.board.isMate
       }>
       <Button
+        sx={{ borderRadius: 0 }}
+        variant={state.mainButtons.name === MAIN_BUTTON_ANALYSIS ? "contained" : "text"}
+        startIcon={<TuneIcon />}
+        onClick={handleClickAnalysis}
+      >
+        Analysis Board
+      </Button>
+      <Button
+        variant={state.mainButtons.name === MAIN_BUTTON_PLAY_ONLINE ? "contained" : "text"}
         startIcon={<LanguageIcon />}
         onClick={() => {
           dispatch(openProgressDialog());
@@ -98,6 +118,7 @@ const MainButtons = () => {
         Play Online
       </Button>
       <Button
+        variant={state.mainButtons.name === MAIN_BUTTON_PLAY_A_FRIEND ? "contained" : "text"}
         startIcon={<GroupAddIcon />}
         onClick={handleClickPlayFriend}
       >
@@ -120,6 +141,7 @@ const MainButtons = () => {
         }}>Enter Invite Code</MenuItem>
       </Menu>
       <Button
+        variant={state.mainButtons.name === MAIN_BUTTON_PLAY_COMPUTER ? "contained" : "text"}
         startIcon={<SmartToyIcon />}
         onClick={() => {
           dispatch(openPlayComputerDialog());
@@ -127,12 +149,6 @@ const MainButtons = () => {
         }}
       >
         Play Computer
-      </Button>
-      <Button
-        startIcon={<TuneIcon />}
-        onClick={handleClickAnalysis}
-      >
-        Analysis Board
       </Button>
       <Menu
         anchorEl={anchorElAnalysis}
@@ -142,24 +158,28 @@ const MainButtons = () => {
       >
         <MenuItem onClick={() => {
           WsAction.quit(state).then(() => WsAction.startAnalysis(state.server.ws));
+          dispatch(setAnalysis());
           handleCloseAnalysis();
         }}>
           Start Position
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openLoadFenDialog());
+          dispatch(setAnalysis());
           handleCloseAnalysis();
         }}>
           FEN String
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openLoadPgnDialog());
+          dispatch(setAnalysis());
           handleCloseAnalysis();
         }}>
           PGN Movetext
         </MenuItem>
       </Menu>
       <Button
+        variant={state.mainButtons.name === MAIN_BUTTON_TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
       >
@@ -186,12 +206,14 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(openProgressDialog());
           WsAction.quit(state).then(() => WsAction.randomGame(state));
+          dispatch(setTraining());
           handleCloseTraining();
         }}>
           Random Tournament Game
         </MenuItem>
       </Menu>
       <Button
+        variant={state.mainButtons.name === MAIN_BUTTON_OPENING_SEARCH ? "contained" : "text"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >
@@ -223,6 +245,7 @@ const MainButtons = () => {
         </MenuItem>
       </Menu>
       <Button
+        sx={{ borderRadius: 0 }}
         startIcon={<OndemandVideoIcon />}
         onClick={() => dispatch(openWatchDialog())}
       >

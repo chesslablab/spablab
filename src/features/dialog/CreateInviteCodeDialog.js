@@ -13,6 +13,7 @@ import {
   Typography
 } from '@mui/material';
 import { closeCreateInviteCodeDialog } from '../../features/dialog/createInviteCodeDialogSlice';
+import { setPlayAFriend } from '../../features/mainButtonsSlice';
 import WsAction from '../../ws/WsAction';
 
 const CreateInviteCodeDialog = () => {
@@ -32,6 +33,7 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
+    dispatch(setPlayAFriend());
     const settings = {
       color: event.target.elements.color.value === 'rand'
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK

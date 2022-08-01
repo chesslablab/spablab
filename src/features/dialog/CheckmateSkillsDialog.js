@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import Pgn from '../../common/Pgn';
 import { closeCheckmateSkillsDialog } from '../../features/dialog/checkmateSkillsDialogSlice';
+import { setTraining } from '../../features/mainButtonsSlice';
 import WsAction from '../../ws/WsAction';
 
 const CheckmateSkillsDialog = () => {
@@ -11,11 +12,12 @@ const CheckmateSkillsDialog = () => {
 
   const handlePlay = (event) => {
     event.preventDefault();
+    dispatch(setTraining());
+    dispatch(closeCheckmateSkillsDialog());
     let color;
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
-    dispatch(closeCheckmateSkillsDialog());
     WsAction.quit(state).then(() => WsAction.randomCheckmate(state, color, event.target.elements.type.value));
   }
 

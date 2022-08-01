@@ -6,6 +6,7 @@ import { closeSearchEcoDialog } from '../../features/dialog/searchEcoDialogSlice
 import { closeSearchMovetextDialog } from '../../features/dialog/searchMovetextDialogSlice';
 import { closeSearchNameDialog } from '../../features/dialog/searchNameDialogSlice';
 import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
+import { setOpeningSearch } from '../../features/mainButtonsSlice';
 import WsAction from '../../ws/WsAction';
 
 const OpeningSearchResultTable = ({props}) => {
@@ -17,6 +18,7 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(closeSearchMovetextDialog());
     dispatch(closeSearchNameDialog());
     dispatch(openProgressDialog());
+    dispatch(setOpeningSearch());
     WsAction.quit(state).then(() => WsAction.startPgn(state, movetext));
   };
 

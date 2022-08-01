@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import Pgn from '../../common/Pgn';
 import { closePlayGmDialog } from '../../features/dialog/playGmDialogSlice';
+import { setTraining } from '../../features/mainButtonsSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayGmDialog = () => {
@@ -15,8 +16,9 @@ const PlayGmDialog = () => {
     event.target.elements.color.value === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
-    dispatch(closePlayGmDialog());
     WsAction.quit(state).then(() => WsAction.startGm(state, color));
+    dispatch(setTraining());
+    dispatch(closePlayGmDialog());
   }
 
   return (

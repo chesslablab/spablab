@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 import Pgn from '../../common/Pgn';
 import { closePlayComputerDialog } from '../../features/dialog/playComputerDialogSlice';
+import { setPlayComputer } from '../../features/mainButtonsSlice';
 import { setStockfish } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -40,9 +41,10 @@ const PlayComputerDialog = () => {
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
     const payload = configure(event.target.elements.level.value);
-    dispatch(setStockfish(payload));
-    dispatch(closePlayComputerDialog());
     WsAction.quit(state).then(() => WsAction.startStockfish(state, color));
+    dispatch(setStockfish(payload));
+    dispatch(setPlayComputer());
+    dispatch(closePlayComputerDialog());
   }
 
   return (

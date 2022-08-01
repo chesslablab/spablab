@@ -25,6 +25,7 @@ import openingAnalysisTableReducer from '../features/table/openingAnalysisTableS
 import boardReducer from '../features/boardSlice';
 import heuristicsBarReducer from '../features/heuristicsBarSlice';
 import historyReducer from '../features/historySlice';
+import mainButtonsReducer from '../features/mainButtonsSlice';
 import modeReducer from '../features/modeSlice';
 import serverReducer from '../features/wsSlice';
 
@@ -56,6 +57,7 @@ const rootReducer = {
   board: boardReducer,
   heuristicsBar: heuristicsBarReducer,
   history: historyReducer,
+  mainButtons: mainButtonsReducer,
   mode: modeReducer,
   server: serverReducer
 };
