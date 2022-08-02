@@ -23,7 +23,6 @@ const OpeningAnalysisTable = ({props}) => {
   const handleLoad = (movetext) => {
     dispatch(closeOpeningAnalysisTable());
     dispatch(openProgressDialog());
-    WsAction.quit(state);
     WsAction.startPgn(state, movetext);
   };
 

@@ -19,7 +19,6 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(closeSearchNameDialog());
     dispatch(openProgressDialog());
     dispatch(setOpeningSearch());
-    WsAction.quit(state);
     WsAction.startPgn(state, movetext);
   };
 

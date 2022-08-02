@@ -30,7 +30,6 @@ const PlayOnlineTable = () => {
 
   const handlePlay = (hash) => {
     dispatch(setPlayOnline());
-    WsAction.quit(state);
     WsAction.accept(state, hash);
     dispatch(startAnalysis());
     dispatch(closePlayOnlineDialog());

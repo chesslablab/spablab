@@ -15,7 +15,6 @@ const LoadPgnDialog = () => {
     dispatch(setAnalysis());
     dispatch(closeLoadPgnDialog());
     dispatch(openProgressDialog());
-    WsAction.quit(state);
     WsAction.startPgn(state, event.target.elements.pgn.value);
   };
 

@@ -41,7 +41,6 @@ const PlayComputerDialog = () => {
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = event.target.elements.color.value;
     const payload = configure(event.target.elements.level.value);
-    WsAction.quit(state);
     WsAction.startStockfishByColor(state, color);
     dispatch(setStockfish(payload));
     dispatch(setPlayComputer());

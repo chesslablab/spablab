@@ -59,10 +59,6 @@ export default class WsAction {
     return await state.server.ws.send(`/play_fen "${state.board.shortFen}"`);
   }
 
-  static quit = async (state) => {
-    return await state.server.ws.send('/quit');
-  }
-
   static accept = async (state, hash) => {
     return await state.server.ws.send(`/accept ${hash}`);
   }

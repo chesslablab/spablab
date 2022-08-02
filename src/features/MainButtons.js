@@ -159,7 +159,6 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(setAnalysis());
           handleCloseAnalysis();
-          WsAction.quit(state);
           WsAction.startAnalysis(state.server.ws);
         }}>
           Start Position
@@ -206,7 +205,6 @@ const MainButtons = () => {
           dispatch(setTraining());
           dispatch(openProgressDialog());
           handleCloseTraining();
-          WsAction.quit(state);
           WsAction.randomGame(state);
         }}>
           Random Tournament Game

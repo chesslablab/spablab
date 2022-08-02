@@ -15,7 +15,6 @@ const LoadFenDialog = () => {
     dispatch(setAnalysis());
     dispatch(closeLoadFenDialog());
     dispatch(openProgressDialog());
-    WsAction.quit(state);
     WsAction.startFen(state, event.target.elements.fen.value);
   };
 
