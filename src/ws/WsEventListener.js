@@ -48,7 +48,11 @@ export default class WsEventListener {
         } else if (data['/start'].mode === MODE_PLAY) {
           dispatch(WsEvent.onStartPlay(data));
         } else if (data['/start'].mode === MODE_STOCKFISH) {
-          dispatch(WsEvent.onStartStockfish(data));
+          if (data['/start'].fen) {
+            dispatch(WsEvent.onStartStockfishByFen(data));
+          } else {
+            dispatch(WsEvent.onStartStockfishByColor(data));
+          }
         }
         break;
       case '/accept' === cmd:

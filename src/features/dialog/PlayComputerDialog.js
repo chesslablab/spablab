@@ -42,7 +42,7 @@ const PlayComputerDialog = () => {
       : color = event.target.elements.color.value;
     const payload = configure(event.target.elements.level.value);
     WsAction.quit(state);
-    WsAction.startStockfish(state, color);
+    WsAction.startStockfishByColor(state, color);
     dispatch(setStockfish(payload));
     dispatch(setPlayComputer());
     dispatch(closePlayComputerDialog());

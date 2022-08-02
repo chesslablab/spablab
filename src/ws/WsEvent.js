@@ -90,7 +90,6 @@ const reset = (dispatch) => {
   dispatch(closeProgressDialog());
 };
 
-
 export default class WsEvent {
   static onStartAnalysis = () => dispatch => {
     reset(dispatch);
@@ -164,17 +163,21 @@ export default class WsEvent {
     dispatch(start());
   }
 
-  static onStartStockfish = (data) => dispatch => {
+  static onStartStockfishByColor = (data) => dispatch => {
     reset(dispatch);
-    dispatch(setStockfish({
-      color: data['/start'].color,
-      options: store.getState().mode.computer.options,
-      params: store.getState().mode.computer.params
-    }));
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(flip());
       WsAction.stockfish(store.getState());
     }
+  }
+
+  static onStartStockfishByFen = (data) => dispatch => {
+    reset(dispatch);
+    dispatch(startFen({ fen: data['/start'].fen }));
+    if (data['/start'].color === Pgn.symbol.BLACK) {
+      dispatch(flip());
+    }
+    WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
   }
 
   static onAccept = (data) => dispatch => {
@@ -402,7 +405,7 @@ export default class WsEvent {
           "depth": 12
         }
       }));
-      WsAction.startFen(store.getState(), data['/random_checkmate'].fen);
+      WsAction.startStockfishByFen(store.getState(), data['/random_checkmate'].fen);
     } else {
       dispatch(startUndefinedMode());
       dispatch(showInfoAlert({ info: 'Whoops! A random checkmate could not be loaded.' }));
