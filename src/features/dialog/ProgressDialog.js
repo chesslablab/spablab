@@ -6,7 +6,7 @@ const ProgressDialog = ({ props }) => {
   const state = useSelector(state => state);
 
   return (
-    <Dialog open={state.progressDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.progressDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogContent>
         <Box sx={{ width: '100%' }}>
           <LinearProgress />
