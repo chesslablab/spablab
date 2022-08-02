@@ -13,16 +13,16 @@ $ npm i @chesslablab/redux-chess
 Check out [this demo](https://www.chesslablab.com/).
 
 ![Figure 1](/src/assets/img/docs/figure-01.png)
-Figure 1. Play Online
+Figure 1. Analysis Board
 
 ![Figure 2](/src/assets/img/docs/figure-02.png)
-Figure 2. Play a Friend > Create Invite Code
+Figure 2. Play Online
 
 ![Figure 3](/src/assets/img/docs/figure-03.png)
-Figure 3. Play Computer
+Figure 3. Play a Friend > Create Invite Code
 
 ![Figure 4](/src/assets/img/docs/figure-04.png)
-Figure 4. Analysis Board
+Figure 4. Play Computer
 
 ![Figure 5](/src/assets/img/docs/figure-05.png)
 Figure 5. Training > Random Tournament Game
@@ -109,7 +109,6 @@ Commands available:
 /legal_sqs {"position":"<string>"} Returns the legal squares of a piece.
 /online_games Returns the online games waiting to be accepted.
 /play_fen {"fen":"<string>"} Plays a chess move in shortened FEN format.
-/quit Quits a game.
 /random_checkmate {"turn":"<string>","items":"<string>"} Starts a random checkmate position.
 /random_game Starts a random game.
 /rematch {"action":["accept","decline","propose"]} Allows to offer a rematch.
