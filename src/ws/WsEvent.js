@@ -14,7 +14,7 @@ import {
 } from '../features/dialog/heuristicsDialogSlice';
 import {
   closePlayOnlineDialog,
-  openPlayOnlineDialog
+  refreshPlayOnlineDialog
 } from '../features/dialog/playOnlineDialogSlice';
 import {
   closeProgressDialog,
@@ -216,8 +216,7 @@ export default class WsEvent {
   }
 
   static onOnlineGames = (data) => dispatch => {
-    dispatch(closeProgressDialog());
-    dispatch(openPlayOnlineDialog(data['/online_games']));
+    dispatch(refreshPlayOnlineDialog(data['/online_games']));
   }
 
   static onLegalSqs = (data) => dispatch => {

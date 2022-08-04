@@ -16,8 +16,9 @@ import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
 import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
 import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
 import { openCheckmateSkillsDialog } from '../features/dialog/checkmateSkillsDialogSlice';
-import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
 import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
+import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
+import { openPlayOnlineDialog } from '../features/dialog/playOnlineDialogSlice';
 import { openProgressDialog } from '../features/dialog/progressDialogSlice';
 import { openWatchDialog } from '../features/dialog/watchDialogSlice';
 import {
@@ -111,7 +112,7 @@ const MainButtons = () => {
         variant={state.mainButtons.name === MAIN_BUTTON_PLAY_ONLINE ? "contained" : "text"}
         startIcon={<LanguageIcon />}
         onClick={() => {
-          dispatch(openProgressDialog());
+          dispatch(openPlayOnlineDialog());
           WsAction.onlineGames(state);
         }}
       >
