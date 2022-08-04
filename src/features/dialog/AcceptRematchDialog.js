@@ -23,7 +23,7 @@ const AcceptRematchDialog = () => {
   };
 
   return (
-    <Dialog open={state.acceptRematchDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.acceptRematchDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>A rematch is being offered</DialogTitle>
       <DialogContent>
         <form onSubmit={handleRematchAccept}>

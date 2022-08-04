@@ -19,7 +19,7 @@ const LoadFenDialog = () => {
   };
 
   return (
-    <Dialog open={state.loadFenDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.loadFenDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Load FEN</DialogTitle>
       <DialogContent>
         <form onSubmit={handleLoad}>

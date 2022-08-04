@@ -18,7 +18,7 @@ const OfferRematchDialog = () => {
   };
 
   return (
-    <Dialog open={state.offerRematchDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.offerRematchDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Offer rematch</DialogTitle>
       <DialogContent>
         <form onSubmit={handleRematchOffer}>

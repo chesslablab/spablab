@@ -48,7 +48,7 @@ const PlayComputerDialog = () => {
   }
 
   return (
-    <Dialog open={state.playComputerDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.playComputerDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Play computer</DialogTitle>
       <DialogContent>
         <form onSubmit={handlePlay}>

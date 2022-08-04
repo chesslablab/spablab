@@ -22,7 +22,7 @@ const CheckmateSkillsDialog = () => {
   }
 
   return (
-    <Dialog open={state.checkmateSkillsDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.checkmateSkillsDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Checkmate skills</DialogTitle>
       <DialogContent>
         <form onSubmit={handlePlay}>

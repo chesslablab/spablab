@@ -22,7 +22,7 @@ const PlayGmDialog = () => {
   }
 
   return (
-    <Dialog open={state.playGmDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.playGmDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Guess the move</DialogTitle>
       <DialogContent>
         <form onSubmit={handlePlay}>

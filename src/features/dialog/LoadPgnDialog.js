@@ -19,7 +19,7 @@ const LoadPgnDialog = () => {
   };
 
   return (
-    <Dialog open={state.loadPgnDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.loadPgnDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Load PGN</DialogTitle>
       <DialogContent>
         <form onSubmit={handleLoad}>

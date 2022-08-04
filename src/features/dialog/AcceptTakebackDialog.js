@@ -25,7 +25,7 @@ const AcceptTakebackDialog = () => {
   return (
     <Dialog
       open={state.acceptTakebackDialog.open}
-      maxWidth="sm"
+      maxWidth="xs"
       fullWidth={true}
     >
       <DialogTitle>A takeback is being proposed</DialogTitle>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Dialog, DialogActions, DialogContent, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { closeEnterInviteCodeDialog } from '../../features/dialog/enterInviteCodeDialogSlice';
 import { setPlayAFriend } from '../../features/mainButtonsSlice';
 import { startAnalysis } from '../../features/modeSlice';
@@ -20,6 +20,7 @@ const EnterInviteCodeDialog = () => {
 
   return (
     <Dialog open={state.enterInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
+      <DialogTitle>Enter invite code</DialogTitle>
       <DialogContent>
         <form onSubmit={handlePlay}>
           <TextField fullWidth required name="hash" label="Invite code" />

@@ -18,7 +18,7 @@ const AcceptResignDialog = () => {
   };
 
   return (
-    <Dialog open={state.acceptResignDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.acceptResignDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Resign</DialogTitle>
       <DialogContent>
         <form onSubmit={handleResignAccept}>
