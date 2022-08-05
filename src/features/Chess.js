@@ -24,7 +24,6 @@ import Board from './Board.js';
 import Game from './Game.js';
 import HeuristicsBar from './HeuristicsBar.js';
 import MainButtons from './MainButtons.js';
-import SupportButtons from './SupportButtons.js';
 
 const useStyles = makeStyles({
   right: {
@@ -53,7 +52,6 @@ const Chess = ({ props }) => {
           <OpeningAnalysisTable />
           <GameTable />
           <InfoAlert />
-          <SupportButtons />
         </Grid>
       </Grid>
       <SearchEcoDialog props={props} />
