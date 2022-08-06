@@ -24,7 +24,7 @@ const HeuristicsBar = () => {
       state.heuristicsBar.heuristics.balance
     );
     return (
-      <ResponsiveContainer height="25%" width="100%">
+      <ResponsiveContainer height="20%" width="100%">
         <BarChart
           data={data}
           margin={{
