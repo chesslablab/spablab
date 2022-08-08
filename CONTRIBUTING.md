@@ -22,7 +22,11 @@ For example, if the title of the issue is [Update to MUI 5 #236](https://github.
 $ git checkout -b issue/236-update-to-MUI-5
 ```
 
-That's it! For further information please visit:
+That's it!
+
+### How to run Redux Chess
+
+If you want to contribute to this repo please make sure to read:
 
 - [Redux Chess Testing Application](https://github.com/chesslablab/testing-redux-chess)
 - [PHP Chess Server](https://github.com/chesslablab/chess-server)
@@ -31,7 +35,7 @@ That's it! For further information please visit:
 
 ### But hang on a minute
 
-It may not be as easy as it sounds, especially at the beginning of your career path to becoming a full-stack developer. So I thought that it'd be helpful to share some of my favorite episodes on creating a startupish product, from tesing and DevOps to data science, among others.
+It may be quite challenging, especially at the beginning of your career path to becoming a full-stack developer. We've all been there! Thus, I thought I'd share some of my favorite episodes on creating chess web apps. I hope this will be helpful. Keep it up, and happy learning and coding.
 
 #### React
 
@@ -62,5 +66,3 @@ It may not be as easy as it sounds, especially at the beginning of your career p
 - [**How to Take Normalized Heuristic Pictures** Think of a chess game in terms of snapshots describing what’s going on on the board](https://medium.com/geekculture/how-to-take-normalized-heuristic-pictures-79ca0df4cdec)
 - [**Visualizing Chess Openings Before MLP Classification** Chess positions are encoded as a combination of numbers between -1 and 1](https://medium.com/geekculture/visualizing-chess-openings-before-mlp-classification-fd2a3e8c266)
 - [**Using Restricted Permutations to Classify Chess Positions for Further Supervised Learning** Let the grandmasters label thousands of chess positions](https://medium.com/geekculture/using-restricted-permutations-to-classify-chess-positions-for-further-supervised-learning-27eeb3f71d82)
-
-If you're looking forward to working on a startupish product —  or want to transfer your skills to a different stack —  but it still feels a little over your head, you may want to work together with a mentor solving ChesslabLab issues on GitHub.
