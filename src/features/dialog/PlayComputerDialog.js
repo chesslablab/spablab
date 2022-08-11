@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
-  Avatar,
-  ButtonGroup,
+  Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
@@ -12,11 +12,9 @@ import {
   Slider,
   Typography
 } from '@mui/material';
-import wKing from '../../assets/img/pieces/png/150/wKing.png';
-import wbKing from '../../assets/img/pieces/png/150/wbKing.png';
-import bKing from '../../assets/img/pieces/png/150/bKing.png';
 import Pgn from '../../common/Pgn';
 import { closePlayComputerDialog } from '../../features/dialog/playComputerDialogSlice';
+import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import { setPlayComputer } from '../../features/mainButtonsSlice';
 import { setStockfish } from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
@@ -25,13 +23,31 @@ const PlayComputerDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [level, setLevel] = React.useState(1);
+  const [dialogData, setDialogData] = React.useState({
+    level: 1,
+    color: 'rand'
+  });
 
-  const handleLevelChange = (event: Event, level: number) => {
-    setLevel(level);
+  const handleCreateGame = () => {
+    let color;
+    dialogData.color === 'rand'
+      ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+      : color = dialogData.color;
+    const payload = configure();
+    dispatch(setStockfish(payload));
+    dispatch(setPlayComputer());
+    dispatch(closePlayComputerDialog());
+    WsAction.startStockfishByColor(state, color);
   };
 
-  const configure = (level) => {
+  const handleLevelChange = (event: Event, level: number) => {
+    setDialogData({
+      level: level,
+      color: dialogData.color
+    });
+  };
+
+  const configure = () => {
     let settings = {
       options: {
         "Skill Level": 11
@@ -40,29 +56,18 @@ const PlayComputerDialog = () => {
         "depth": 4
       }
     };
-    if (level === 0) {
+    if (dialogData.level === 0) {
       settings.options["Skill Level"] = 6;
       settings.params["depth"] = 2;
-    } else if (level === 2) {
+    } else if (dialogData.level === 2) {
       settings.options["Skill Level"] = 17;
       settings.params["depth"] = 8;
-    } else if (level === 3) {
+    } else if (dialogData.level === 3) {
       settings.options["Skill Level"] = 20;
       settings.params["depth"] = 12;
     }
 
     return settings;
-  }
-
-  const handlePlay = (color) => {
-    if (color === 'rand') {
-      color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-    }
-    const payload = configure(level);
-    dispatch(setStockfish(payload));
-    dispatch(setPlayComputer());
-    dispatch(closePlayComputerDialog());
-    WsAction.startStockfishByColor(state, color);
   }
 
   return (
@@ -99,40 +104,18 @@ const PlayComputerDialog = () => {
           onChange={handleLevelChange}
         />
         <Grid container justifyContent="center">
-          <ButtonGroup>
-            <IconButton
-              aria-label="white"
-              title="White"
-              onClick={() => handlePlay(Pgn.symbol.WHITE)}
-            >
-              <Avatar
-                src={wKing}
-                sx={{ width: 55, height: 55 }}
-              />
-            </IconButton>
-            <IconButton
-              aria-label="random"
-              title="Random"
-              onClick={() => handlePlay('rand')}
-            >
-              <Avatar
-                src={wbKing}
-                sx={{ width: 55, height: 55 }}
-              />
-            </IconButton>
-            <IconButton
-              aria-label="black"
-              title="Black"
-              onClick={() => handlePlay(Pgn.symbol.BLACK)}
-            >
-              <Avatar
-                src={bKing}
-                sx={{ width: 55, height: 55 }}
-              />
-            </IconButton>
-          </ButtonGroup>
+          <SelectColorButtons props={dialogData} />
         </Grid>
       </DialogContent>
+      <DialogActions>
+        <Button
+          fullWidth
+          variant="outlined"
+          onClick={() => handleCreateGame()}
+        >
+          Create Game
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 }
