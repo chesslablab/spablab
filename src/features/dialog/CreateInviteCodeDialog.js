@@ -83,7 +83,7 @@ const CreateCode = () => {
 
   return (
     <div>
-      <DialogContent>
+      <DialogContent style={{ paddingTop: 0 }}>
         <Typography id="input-minutes" gutterBottom>
           Minutes per side
         </Typography>
@@ -136,7 +136,6 @@ const CopyCode = () => {
       <DialogContent>
         <TextField
           fullWidth
-          margin="dense"
           type="text"
           name="sharecode"
           label="Share this code with a friend"
