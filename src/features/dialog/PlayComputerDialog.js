@@ -13,10 +13,10 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
-import { closePlayComputerDialog } from '../../features/dialog/playComputerDialogSlice';
-import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import { setPlayComputer } from '../../features/mainButtonsSlice';
 import { setStockfish } from '../../features/modeSlice';
+import { closePlayComputerDialog } from '../../features/dialog/playComputerDialogSlice';
+import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import WsAction from '../../ws/WsAction';
 
 const PlayComputerDialog = () => {

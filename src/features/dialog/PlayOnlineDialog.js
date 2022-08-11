@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
-  Avatar,
-  ButtonGroup,
+  Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
@@ -12,35 +12,43 @@ import {
   Slider,
   Typography
 } from '@mui/material';
-import wKing from '../../assets/img/pieces/png/150/wKing.png';
-import wbKing from '../../assets/img/pieces/png/150/wbKing.png';
-import bKing from '../../assets/img/pieces/png/150/bKing.png';
 import Pgn from '../../common/Pgn';
-import PlayOnlineTable from '../../features/table/PlayOnlineTable';
-import { closePlayOnlineDialog } from '../../features/dialog/playOnlineDialogSlice';
 import { setPlayOnline } from '../../features/mainButtonsSlice';
+import { closePlayOnlineDialog } from '../../features/dialog/playOnlineDialogSlice';
+import SelectColorButtons from '../../features/dialog/SelectColorButtons';
+import PlayOnlineTable from '../../features/table/PlayOnlineTable';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [minutes, setMinutes] = React.useState(5);
-  const [increment, setIncrement] = React.useState(3);
+  const [dialogData, setDialogData] = React.useState({
+    minutes: 5,
+    increment: 3
+  });
 
   const handleMinutesChange = (event: Event, minutes: number) => {
-    setMinutes(minutes);
+    setDialogData({
+      minutes: minutes,
+      increment: dialogData.increment
+    });
   };
 
   const handleIncrementChange = (event: Event, increment: number) => {
-    setIncrement(increment);
+    setDialogData({
+      minutes: dialogData.minutes,
+      increment: increment
+    });
   };
 
-  const handlePlay = (color) => {
+  const handleCreateGame = () => {
     const settings = {
-      color: color === 'rand' ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK : color,
-      min: minutes,
-      increment: increment,
+      color: dialogData.color === 'rand'
+        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+        : dialogData.color,
+      min: dialogData.minutes,
+      increment: dialogData.increment,
       submode: 'online'
     };
     dispatch(closePlayOnlineDialog());
@@ -90,41 +98,19 @@ const PlayOnlineDialog = () => {
           onChange={handleIncrementChange}
         />
         <Grid container justifyContent="center">
-          <ButtonGroup>
-            <IconButton
-              aria-label="white"
-              title="White"
-              onClick={() => handlePlay(Pgn.symbol.WHITE)}
-            >
-              <Avatar
-                src={wKing}
-                sx={{ width: 55, height: 55 }}
-              />
-            </IconButton>
-            <IconButton
-              aria-label="random"
-              title="Random"
-              onClick={() => handlePlay('rand')}
-            >
-              <Avatar
-                src={wbKing}
-                sx={{ width: 55, height: 55 }}
-              />
-            </IconButton>
-            <IconButton
-              aria-label="black"
-              title="Black"
-              onClick={() => handlePlay(Pgn.symbol.BLACK)}
-            >
-              <Avatar
-                src={bKing}
-                sx={{ width: 55, height: 55 }}
-              />
-            </IconButton>
-          </ButtonGroup>
+          <SelectColorButtons props={dialogData} />
         </Grid>
         <PlayOnlineTable />
       </DialogContent>
+      <DialogActions>
+        <Button
+          fullWidth
+          variant="outlined"
+          onClick={() => handleCreateGame()}
+        >
+          Create Game
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 };
