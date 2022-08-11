@@ -100,7 +100,7 @@ const CheckmateSkillsDialog = () => {
           variant="outlined"
           onClick={() => handleCreateGame()}
         >
-          Play
+          Create Game
         </Button>
       </DialogActions>
     </Dialog>
