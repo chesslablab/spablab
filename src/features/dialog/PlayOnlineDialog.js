@@ -25,30 +25,33 @@ const PlayOnlineDialog = () => {
 
   const [dialogData, setDialogData] = React.useState({
     minutes: 5,
-    increment: 3
+    increment: 3,
+    color: 'rand'
   });
 
-  const handleMinutesChange = (event: Event, minutes: number) => {
+  const handleMinutesChange = (event: Event) => {
     setDialogData({
-      minutes: minutes,
-      increment: dialogData.increment
+      minutes: event.target.value,
+      increment: dialogData.increment,
+      color: dialogData.color
     });
   };
 
-  const handleIncrementChange = (event: Event, increment: number) => {
+  const handleIncrementChange = (event: Event) => {
     setDialogData({
       minutes: dialogData.minutes,
-      increment: increment
+      increment: event.target.value,
+      color: dialogData.color
     });
   };
 
   const handleCreateGame = () => {
     const settings = {
+      min: dialogData.minutes,
+      increment: dialogData.increment,
       color: dialogData.color === 'rand'
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
         : dialogData.color,
-      min: dialogData.minutes,
-      increment: dialogData.increment,
       submode: 'online'
     };
     dispatch(closePlayOnlineDialog());

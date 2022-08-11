@@ -1,27 +1,42 @@
-import React from 'react';
+import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Pgn from '../../common/Pgn';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  MenuItem,
+  Grid,
+  IconButton,
   Slider,
   TextField,
   Typography
 } from '@mui/material';
-import { closeCreateInviteCodeDialog } from '../../features/dialog/createInviteCodeDialogSlice';
+import Pgn from '../../common/Pgn';
 import { setPlayAFriend } from '../../features/mainButtonsSlice';
+import { closeCreateInviteCodeDialog } from '../../features/dialog/createInviteCodeDialogSlice';
+import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import WsAction from '../../ws/WsAction';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
 
   return (
     <Dialog open={state.createInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
-      <DialogTitle>Create invite code</DialogTitle>
+      <DialogTitle>
+        <Grid container>
+          <Grid item xs={11}>
+            Play a friend
+          </Grid>
+          <Grid item xs={1}>
+            <IconButton onClick={() => dispatch(closeCreateInviteCodeDialog())}>
+              <CloseIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </DialogTitle>
       {state.mode.play && state.mode.play.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
@@ -31,23 +46,44 @@ const CreateCode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const handleCreateCode = (event) => {
-    event.preventDefault();
-    dispatch(setPlayAFriend());
+  const [dialogData, setDialogData] = React.useState({
+    minutes: 5,
+    increment: 3,
+    color: 'rand'
+  });
+
+  const handleMinutesChange = (event: Event) => {
+    setDialogData({
+      minutes: event.target.value,
+      increment: dialogData.increment,
+      color: dialogData.color
+    });
+  };
+
+  const handleIncrementChange = (event: Event) => {
+    setDialogData({
+      minutes: dialogData.minutes,
+      increment: event.target.value,
+      color: dialogData.color
+    });
+  };
+
+  const handleCreateCode = () => {
     const settings = {
-      color: event.target.elements.color.value === 'rand'
+      min: dialogData.minutes,
+      increment: dialogData.increment,
+      color: dialogData.color === 'rand'
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-        : event.target.elements.color.value,
-      min: event.target.elements.min.value,
-      increment: event.target.elements.increment.value,
+        : dialogData.color,
       submode: 'friend'
     };
+    dispatch(setPlayAFriend());
     WsAction.startPlay(state, settings);
   }
 
   return (
-    <DialogContent>
-      <form onSubmit={handleCreateCode}>
+    <div>
+      <DialogContent style={{ paddingTop: 0 }}>
         <Typography id="input-minutes" gutterBottom>
           Minutes per side
         </Typography>
@@ -59,6 +95,7 @@ const CreateCode = () => {
           step={1}
           min={1}
           max={60}
+          onChange={handleMinutesChange}
         />
         <Typography id="input-increment" gutterBottom>
           Increment in seconds
@@ -71,35 +108,22 @@ const CreateCode = () => {
           step={1}
           min={0}
           max={60}
+          onChange={handleIncrementChange}
         />
-        <TextField
-          select
+        <Grid container justifyContent="center">
+          <SelectColorButtons props={dialogData} />
+        </Grid>
+      </DialogContent>
+      <DialogActions>
+        <Button
           fullWidth
-          margin="dense"
-          name="color"
-          label="Color"
-          defaultValue="rand"
+          variant="outlined"
+          onClick={() => handleCreateCode()}
         >
-          <MenuItem key={0} value="rand">
-            Random
-          </MenuItem>
-          <MenuItem key={1} value={Pgn.symbol.WHITE}>
-            White
-          </MenuItem>
-          <MenuItem key={2} value={Pgn.symbol.BLACK}>
-            Black
-          </MenuItem>
-        </TextField>
-        <DialogActions>
-          <Button type="submit">
-            Create Code
-          </Button>
-          <Button onClick={() => dispatch(closeCreateInviteCodeDialog())}>
-            Cancel
-          </Button>
-        </DialogActions>
-      </form>
-    </DialogContent>
+          Create Code
+        </Button>
+      </DialogActions>
+    </div>
   );
 }
 
@@ -108,24 +132,28 @@ const CopyCode = () => {
   const dispatch = useDispatch();
 
   return (
-    <DialogContent>
-      <TextField
-        fullWidth
-        margin="dense"
-        type="text"
-        name="sharecode"
-        label="Share this code with a friend"
-        value={state.mode.play.hash}
-      />
+    <div>
+      <DialogContent>
+        <TextField
+          fullWidth
+          type="text"
+          name="sharecode"
+          label="Share this code with a friend"
+          value={state.mode.play.hash}
+        />
+      </DialogContent>
       <DialogActions>
-        <Button onClick={() => {
-          navigator.clipboard.writeText(state.mode.play.hash);
-          dispatch(closeCreateInviteCodeDialog());
+        <Button
+          fullWidth
+          variant="outlined"
+          onClick={() => {
+            navigator.clipboard.writeText(state.mode.play.hash);
+            dispatch(closeCreateInviteCodeDialog());
         }}>
           Copy and Play
         </Button>
       </DialogActions>
-    </DialogContent>
+    </div>
   );
 }
 

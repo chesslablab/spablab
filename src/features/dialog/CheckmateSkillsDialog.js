@@ -43,9 +43,9 @@ const CheckmateSkillsDialog = () => {
     WsAction.randomCheckmate(state, color, checkmateType);
   }
 
-  const handleTypeChange = (event: Event, type) => {
+  const handleTypeChange = (event: Event) => {
     setDialogData({
-      type: type.props.value,
+      type: event.target.value,
       color: dialogData.color
     });
   };

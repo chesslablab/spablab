@@ -40,9 +40,9 @@ const PlayComputerDialog = () => {
     WsAction.startStockfishByColor(state, color);
   };
 
-  const handleLevelChange = (event: Event, level: number) => {
+  const handleLevelChange = (event: Event) => {
     setDialogData({
-      level: level,
+      level: event.target.value,
       color: dialogData.color
     });
   };
