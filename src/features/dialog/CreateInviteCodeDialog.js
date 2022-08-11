@@ -52,18 +52,18 @@ const CreateCode = () => {
     color: 'rand'
   });
 
-  const handleMinutesChange = (event: Event, minutes: number) => {
+  const handleMinutesChange = (event: Event) => {
     setDialogData({
-      minutes: minutes,
+      minutes: event.target.value,
       increment: dialogData.increment,
       color: dialogData.color
     });
   };
 
-  const handleIncrementChange = (event: Event, increment: number) => {
+  const handleIncrementChange = (event: Event) => {
     setDialogData({
       minutes: dialogData.minutes,
-      increment: increment,
+      increment: event.target.value,
       color: dialogData.color
     });
   };
