@@ -10,7 +10,6 @@ import {
   Grid,
   IconButton,
   Slider,
-  TextField,
   Typography
 } from '@mui/material';
 import wKing from '../../assets/img/pieces/png/150/wKing.png';
@@ -24,8 +23,13 @@ import WsAction from '../../ws/WsAction';
 
 const PlayComputerDialog = () => {
   const state = useSelector(state => state);
-  const [level, setLevel] = React.useState(1);
   const dispatch = useDispatch();
+
+  const [level, setLevel] = React.useState(1);
+
+  const handleLevelChange = (event: Event, level: number) => {
+    setLevel(level);
+  };
 
   const configure = (level) => {
     let settings = {
@@ -55,15 +59,11 @@ const PlayComputerDialog = () => {
       color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
     }
     const payload = configure(level);
-    WsAction.startStockfishByColor(state, color);
     dispatch(setStockfish(payload));
     dispatch(setPlayComputer());
     dispatch(closePlayComputerDialog());
+    WsAction.startStockfishByColor(state, color);
   }
-
-  const handleLevelChange = (event: Event, level: number) => {
-    setLevel(level);
-  };
 
   return (
     <Dialog open={state.playComputerDialog.open} maxWidth="xs" fullWidth={true}>
