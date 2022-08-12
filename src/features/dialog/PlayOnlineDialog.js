@@ -73,7 +73,11 @@ const PlayOnlineDialog = () => {
         </Grid>
       </DialogTitle>
       <DialogContent>
-        <Typography id="input-minutes" gutterBottom>
+        <Typography
+          id="input-minutes"
+          align="center"
+          gutterBottom
+        >
           Minutes per side
         </Typography>
         <Slider
@@ -86,7 +90,11 @@ const PlayOnlineDialog = () => {
           max={60}
           onChange={handleMinutesChange}
         />
-        <Typography id="input-increment" gutterBottom>
+        <Typography
+          id="input-increment"
+          align="center"
+          gutterBottom
+        >
           Increment in seconds
         </Typography>
         <Slider
@@ -102,7 +110,6 @@ const PlayOnlineDialog = () => {
         <Grid container justifyContent="center">
           <SelectColorButtons props={dialogData} />
         </Grid>
-        <PlayOnlineTable />
         <Button
           fullWidth
           variant="outlined"
@@ -110,6 +117,7 @@ const PlayOnlineDialog = () => {
         >
           Create Game
         </Button>
+        <PlayOnlineTable />
       </DialogContent>
     </Dialog>
   );

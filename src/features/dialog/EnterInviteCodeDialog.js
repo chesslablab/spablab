@@ -56,6 +56,7 @@ const EnterInviteCodeDialog = () => {
           required
           name="hash"
           label="Invite code"
+          margin="normal"
           onChange={handleHashChange}
         />
         <Button

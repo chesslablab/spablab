@@ -36,7 +36,7 @@ const PlayOnlineTable = () => {
 
   if (state.playOnlineDialog.rows.length > 0) {
     return (
-      <TableContainer component={Paper} style={{marginTop: 15}}>
+      <TableContainer component={Paper} style={{ marginTop: 10, marginBottom: 5 }}>
         <Table aria-label="simple table">
           <TableBody>
             {state.playOnlineDialog.rows.map((row, i) => (

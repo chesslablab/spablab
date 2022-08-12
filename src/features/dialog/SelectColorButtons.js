@@ -7,6 +7,9 @@ import bKing from '../../assets/img/pieces/png/150/bKing.png';
 import Pgn from '../../common/Pgn';
 
 const useStyles = makeStyles({
+  buttonGroup: {
+    marginBottom: 10,
+  },
   selected: {
     backgroundColor: '#d8d8d8',
   },
@@ -25,7 +28,7 @@ const SelectColorButtons = ({ props }) => {
   }, [color]);
 
   return (
-    <ButtonGroup>
+    <ButtonGroup className={classes.buttonGroup}>
       <IconButton
         aria-label="white"
         title="White"
