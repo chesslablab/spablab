@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  TextField
+} from '@mui/material';
+import { closeSearchNameDialog } from './searchNameDialogSlice';
 import Opening from '../../common/Opening.js';
 import { showInfoAlert } from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import { closeSearchNameDialog } from './searchNameDialogSlice';
-
-const useStyles = makeStyles({
-  form: {
-    marginTop: 10,
-  },
-});
 
 const SearchNameDialog = ({ props }) => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
@@ -31,18 +33,32 @@ const SearchNameDialog = ({ props }) => {
 
   return (
     <Dialog open={state.searchNameDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Name</DialogTitle>
-      <DialogContent>
-        <form className={classes.form} onSubmit={handleSearch}>
-          <TextField fullWidth required name="name" label="Name" />
-          <DialogActions>
-            <Button type="submit">Search</Button>
-            <Button onClick={() => {
+      <DialogTitle>
+        <Grid container>
+          <Grid item xs={11}>
+            Name
+          </Grid>
+          <Grid item xs={1}>
+            <IconButton onClick={() => {
               setOpenings([]);
               dispatch(closeSearchNameDialog());
             }}>
-              Cancel
-            </Button>
+              <CloseIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </DialogTitle>
+      <DialogContent>
+        <form onSubmit={handleSearch}>
+          <TextField
+            fullWidth
+            required
+            name="name"
+            label="Name"
+            margin="normal"
+          />
+          <DialogActions>
+            <Button type="submit">Search</Button>
           </DialogActions>
         </form>
         <OpeningSearchResultTable props={{ openings: openings }} />

@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  TextField
+} from '@mui/material';
+import { closeSearchMovetextDialog } from './searchMovetextDialogSlice';
 import Opening from '../../common/Opening.js';
 import { showInfoAlert } from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
-import { closeSearchMovetextDialog } from './searchMovetextDialogSlice';
-
-const useStyles = makeStyles({
-  form: {
-    marginTop: 10,
-  },
-});
 
 const SearchMovetextDialog = ({ props }) => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
@@ -31,18 +33,32 @@ const SearchMovetextDialog = ({ props }) => {
 
   return (
     <Dialog open={state.searchMovetextDialog.open} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Movetext</DialogTitle>
-      <DialogContent>
-        <form className={classes.form} onSubmit={handleSearch}>
-          <TextField fullWidth required name="movetext" label="Movetext" />
-          <DialogActions>
-            <Button type="submit">Search</Button>
-            <Button onClick={() => {
+      <DialogTitle>
+        <Grid container>
+          <Grid item xs={11}>
+            Movetext
+          </Grid>
+          <Grid item xs={1}>
+            <IconButton onClick={() => {
               setOpenings([]);
               dispatch(closeSearchMovetextDialog());
             }}>
-              Cancel
-            </Button>
+              <CloseIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </DialogTitle>
+      <DialogContent>
+        <form onSubmit={handleSearch}>
+          <TextField
+            fullWidth
+            required
+            name="movetext"
+            label="Movetext"
+            margin="normal"
+          />
+          <DialogActions>
+            <Button type="submit">Search</Button>
           </DialogActions>
         </form>
         <OpeningSearchResultTable props={{ openings: openings }} />
