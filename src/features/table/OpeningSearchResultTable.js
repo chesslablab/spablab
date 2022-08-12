@@ -23,7 +23,7 @@ const OpeningSearchResultTable = ({props}) => {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer style={{ marginTop: 10 }} component={Paper}>
       <Table stickyHeader aria-label="simple table">
         <TableBody>
           {

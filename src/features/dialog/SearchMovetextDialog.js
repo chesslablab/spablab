@@ -4,7 +4,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
@@ -57,9 +56,13 @@ const SearchMovetextDialog = ({ props }) => {
             label="Movetext"
             margin="normal"
           />
-          <DialogActions>
-            <Button type="submit">Search</Button>
-          </DialogActions>
+          <Button
+            fullWidth
+            type="submit"
+            variant="outlined"
+          >
+            Search
+          </Button>
         </form>
         <OpeningSearchResultTable props={{ openings: openings }} />
       </DialogContent>
