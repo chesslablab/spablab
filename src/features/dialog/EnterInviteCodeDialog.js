@@ -4,7 +4,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
@@ -59,8 +58,6 @@ const EnterInviteCodeDialog = () => {
           label="Invite code"
           onChange={handleHashChange}
         />
-      </DialogContent>
-      <DialogActions>
         <Button
           fullWidth
           variant="outlined"
@@ -68,7 +65,7 @@ const EnterInviteCodeDialog = () => {
         >
           Play
         </Button>
-      </DialogActions>
+      </DialogContent>
     </Dialog>
   );
 };

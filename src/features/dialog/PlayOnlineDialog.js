@@ -4,7 +4,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   Grid,
@@ -104,8 +103,6 @@ const PlayOnlineDialog = () => {
           <SelectColorButtons props={dialogData} />
         </Grid>
         <PlayOnlineTable />
-      </DialogContent>
-      <DialogActions>
         <Button
           fullWidth
           variant="outlined"
@@ -113,7 +110,7 @@ const PlayOnlineDialog = () => {
         >
           Create Game
         </Button>
-      </DialogActions>
+      </DialogContent>
     </Dialog>
   );
 };
