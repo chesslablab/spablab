@@ -439,6 +439,7 @@ export default class WsEvent {
         movetext: data['/stockfish'].state.movetext,
         fen: data['/stockfish'].state.fen
       }));
+      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     }
   }
 
