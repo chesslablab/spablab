@@ -37,11 +37,9 @@ const Chess = ({ props }) => {
   return (
     <Provider store={store}>
       <CssBaseline />
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={12} md={2} className={classes.right}>
-          <Grid item xs={12}>
-            <MainButtons />
-          </Grid>
+          <MainButtons />
         </Grid>
         <Grid item xs={12} md={4}>
           <Board props={props} />
