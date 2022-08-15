@@ -11,7 +11,7 @@
 
 .square {
   text-align: center;
-  cursor: pointer;
+  cursor: default;
   transition-property: box-shadow;
   transition-duration: 0.1s;
   transition-timing-function: ease-out;
@@ -19,6 +19,15 @@
 
 .square img {
   width: 100%;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.square:active img {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
 }
 
 .square.isSelected {
