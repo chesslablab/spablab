@@ -7,8 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
-import { Avatar, Button, ButtonGroup, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import logo from '../assets/img/logo.png';
+import { Avatar, Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
 import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
 import { openLoadFenDialog } from '../features/dialog/loadFenDialogSlice';
@@ -101,14 +100,6 @@ const MainButtons = () => {
         !state.mode.play.timer.over &&
         !state.board.isMate
       }>
-      <IconButton
-        aria-label="logo"
-        title="Logo"
-        href="/"
-        style={{ backgroundColor: 'transparent' }}
-      >
-        <img src={logo} />
-      </IconButton>
       <Button
         sx={{ borderRadius: 0 }}
         variant={state.mainButtons.name === MAIN_BUTTON_ANALYSIS ? "contained" : "text"}
