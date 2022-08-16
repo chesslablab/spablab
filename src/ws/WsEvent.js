@@ -90,6 +90,24 @@ const reset = (dispatch) => {
   dispatch(closeProgressDialog());
 };
 
+const openingByMovetext = (dispatch, movetext) => {
+  let rows = Opening.byMovetext(movetext);
+  if (rows) {
+    dispatch(showOpeningAnalysisTable({ rows: rows }));
+  } else {
+    dispatch(closeOpeningAnalysisTable());
+  }
+};
+
+const openingBySameMovetext = (dispatch, movetext) => {
+  let rows = Opening.bySameMovetext(movetext);
+  if (rows) {
+    dispatch(showOpeningAnalysisTable({ rows: rows }));
+  } else {
+    dispatch(closeOpeningAnalysisTable());
+  }
+};
+
 export default class WsEvent {
   static onStartAnalysis = () => dispatch => {
     reset(dispatch);
@@ -130,6 +148,7 @@ export default class WsEvent {
         fen: data['/start'].fen,
         history: data['/start'].history
       }));
+      openingBySameMovetext(dispatch, data['/start'].movetext);
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(startUndefinedMode());
@@ -244,12 +263,7 @@ export default class WsEvent {
         dispatch(validMove(payload));
       }
       if (store.getState().mode.name === MODE_ANALYSIS) {
-        let rows = Opening.byMovetext(payload.movetext);
-        if (rows) {
-          dispatch(showOpeningAnalysisTable({ rows: rows }));
-        } else {
-          dispatch(closeOpeningAnalysisTable());
-        }
+        openingByMovetext(dispatch, payload.movetext);
       } else if (store.getState().mode.name === MODE_GM) {
         dispatch(openProgressDialog());
         WsAction.gm(store.getState());
@@ -311,12 +325,7 @@ export default class WsEvent {
     } else if (data['/undo'].mode === MODE_PLAY) {
       dispatch(declineTakeback());
     } else if (data['/undo'].mode === MODE_ANALYSIS) {
-      let rows = Opening.byMovetext(data['/undo'].movetext);
-      if (rows) {
-        dispatch(showOpeningAnalysisTable({ rows: rows }));
-      } else {
-        dispatch(closeOpeningAnalysisTable());
-      }
+      openingByMovetext(dispatch, data['/undo'].movetext);
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     }
   }
@@ -447,12 +456,7 @@ export default class WsEvent {
         fen: data['/stockfish'].state.fen
       }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
-      let rows = Opening.byMovetext(data['/stockfish'].state.movetext);
-      if (rows) {
-        dispatch(showOpeningAnalysisTable({ rows: rows }));
-      } else {
-        dispatch(closeOpeningAnalysisTable());
-      }
+      openingByMovetext(dispatch, data['/stockfish'].state.movetext);
     }
   }
 
