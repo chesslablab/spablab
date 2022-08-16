@@ -19,15 +19,24 @@
 
 .square img {
   width: 100%;
+}
+
+.square img[draggable=true] {
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
 }
 
-.square:active img {
+.square img[draggable=false] {
+  cursor: default;
+}
+
+.square img[draggable=true]:active {
   cursor: grabbing;
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;
+  padding-right: 0.25em;
+  width: 110%;
 }
 
 .square.isSelected {

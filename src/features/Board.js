@@ -95,7 +95,7 @@ const Board = ({props}) => {
           }
           if (Piece.unicode[piece].char) {
             img = <img src={Piece.unicode[piece].char}
-              draggable="true"
+              draggable={Piece.color(piece) === state.board.turn ? true : false}
               onDragStart={() => handleMove(payload)}
             />;
           }
