@@ -8,7 +8,7 @@ import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
   table: {
-    maxHeight: 170,
+    maxHeight: 190,
     display: 'flex',
     flexDirection: 'column-reverse'
   },

@@ -67,7 +67,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'large'}
+        size={matches ? 'small' : 'medium'}
         title="Copy PGN"
         aria-label="copy"
         onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
@@ -77,7 +77,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'large'}
+        size={matches ? 'small' : 'medium'}
         title="Copy FEN"
         aria-label="fen"
         onClick={() => state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null}
@@ -87,7 +87,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'large'}
+        size={matches ? 'small' : 'medium'}
         title="Heuristics"
         aria-label="heuristics"
         onClick={() => {
@@ -100,7 +100,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'large'}
+        size={matches ? 'small' : 'medium'}
         title="Flip Board"
         aria-label="flip"
         onClick={() => dispatch(flip())}
@@ -110,7 +110,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'large'}
+        size={matches ? 'small' : 'medium'}
         title="Download Image"
         aria-label="flip"
         onClick={() => handleDownloadImage()}
@@ -120,7 +120,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'large'}
+        size={matches ? 'small' : 'medium'}
         title="Download Video"
         aria-label="flip"
         onClick={() => handleDownloadMp4()}
