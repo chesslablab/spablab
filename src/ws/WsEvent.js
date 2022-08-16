@@ -447,6 +447,12 @@ export default class WsEvent {
         fen: data['/stockfish'].state.fen
       }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
+      let rows = Opening.byMovetext(data['/stockfish'].state.movetext);
+      if (rows) {
+        dispatch(showOpeningAnalysisTable({ rows: rows }));
+      } else {
+        dispatch(closeOpeningAnalysisTable());
+      }
     }
   }
 
