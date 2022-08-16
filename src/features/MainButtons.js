@@ -7,7 +7,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import LanguageIcon from '@mui/icons-material/Language';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
-import { Avatar, Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import { Avatar, Button, ButtonGroup, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import logo from '../assets/img/logo.png';
 import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
 import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
 import { openLoadFenDialog } from '../features/dialog/loadFenDialogSlice';
@@ -36,7 +38,20 @@ import { setAnalysis, setTraining } from '../features/mainButtonsSlice';
 import { startAnalysis } from '../features/modeSlice';
 import WsAction from '../ws/WsAction';
 
+const useStyles = makeStyles({
+  iconButton: {
+    '&:hover': {
+      backgroundColor: "#fff !important",
+    },
+  },
+  logo: {
+    width: '110px',
+    margin: 'auto',
+  },
+});
+
 const MainButtons = () => {
+  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -100,6 +115,9 @@ const MainButtons = () => {
         !state.mode.play.timer.over &&
         !state.board.isMate
       }>
+      <IconButton className={classes.iconButton} href="/">
+        <img className={classes.logo} src={logo} />
+      </IconButton>
       <Button
         sx={{ borderRadius: 0 }}
         variant={state.mainButtons.name === MAIN_BUTTON_ANALYSIS ? "contained" : "text"}
