@@ -317,6 +317,7 @@ export default class WsEvent {
       } else {
         dispatch(closeOpeningAnalysisTable());
       }
+      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     }
   }
 
