@@ -244,8 +244,7 @@ export default class WsEvent {
         dispatch(validMove(payload));
       }
       if (store.getState().mode.name === MODE_ANALYSIS) {
-        dispatch(closeOpeningAnalysisTable());
-        let rows = Opening.analysis(payload.movetext);
+        let rows = Opening.byMovetext(payload.movetext);
         if (rows) {
           dispatch(showOpeningAnalysisTable({ rows: rows }));
         } else {
@@ -311,6 +310,13 @@ export default class WsEvent {
       WsAction.gm(store.getState());
     } else if (data['/undo'].mode === MODE_PLAY) {
       dispatch(declineTakeback());
+    } else if (data['/undo'].mode === MODE_ANALYSIS) {
+      let rows = Opening.byMovetext(data['/undo'].movetext);
+      if (rows) {
+        dispatch(showOpeningAnalysisTable({ rows: rows }));
+      } else {
+        dispatch(closeOpeningAnalysisTable());
+      }
     }
   }
 
