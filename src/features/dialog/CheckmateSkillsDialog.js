@@ -21,31 +21,40 @@ const CheckmateSkillsDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const checkmateTypes = ['Q', 'R', 'BB', 'BN'];
+  const checkmateTypes = ['QR,R', 'Q', 'R', 'BB', 'BN'];
 
   const [dialogData, setDialogData] = React.useState({
-    type: 'rand',
-    color: 'rand'
+    color: 'rand',
+    items: 'rand'
   });
 
   const handleCreateGame = () => {
-    let checkmateType;
     let color;
-    dialogData.type === 'rand'
-      ? checkmateType = checkmateTypes[Math.floor(Math.random() * checkmateTypes.length)]
-      : checkmateType = dialogData.type;
+    let items;
     dialogData.color === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = dialogData.color;
+    dialogData.items === 'rand'
+      ? items = checkmateTypes[Math.floor(Math.random() * checkmateTypes.length)]
+      : items = dialogData.items;
+    let split = items.split(',');
+    split.length === 2
+      ? items = {
+        [color]: split[0],
+        [color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE]: split[1]
+      }
+      : items = {
+        [color]: split[0]
+      };
     dispatch(setTraining());
     dispatch(closeCheckmateSkillsDialog());
-    WsAction.randomCheckmate(state, color, checkmateType);
-  }
+    WsAction.randomCheckmate(state, color, items);
+  };
 
   const handleTypeChange = (event: Event) => {
     setDialogData({
-      type: event.target.value,
-      color: dialogData.color
+      color: dialogData.color,
+      items: event.target.value
     });
   };
 
@@ -67,7 +76,7 @@ const CheckmateSkillsDialog = () => {
         <TextField
           select
           fullWidth
-          name="type"
+          name="items"
           label="Select an endgame"
           defaultValue="rand"
           margin="normal"
@@ -76,16 +85,19 @@ const CheckmateSkillsDialog = () => {
           <MenuItem key={0} value="rand">
             Random
           </MenuItem>
-          <MenuItem key={1} value="Q">
+          <MenuItem key={1} value="QR,R">
+            King and queen and rook vs. king and rook
+          </MenuItem>
+          <MenuItem key={2} value="Q">
             King and queen vs. king
           </MenuItem>
-          <MenuItem key={2} value="R">
+          <MenuItem key={3} value="R">
             King and rook vs. king
           </MenuItem>
-          <MenuItem key={3} value="BB">
+          <MenuItem key={4} value="BB">
             King and two bishops vs. king
           </MenuItem>
-          <MenuItem key={4} value="BN">
+          <MenuItem key={5} value="BN">
             King and bishop and knight vs. king
           </MenuItem>
         </TextField>
