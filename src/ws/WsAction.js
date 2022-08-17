@@ -103,8 +103,8 @@ export default class WsAction {
     return await state.server.ws.send(`/gm`);
   }
 
-  static randomCheckmate = async (state, color, type) => {
-    let items = `{\\"${color}\\": \\"${type}\\"}`;
+  static randomCheckmate = async (state, color, items) => {
+    items = JSON.stringify(items).replace(/"/g, '\\"');
     return await state.server.ws.send(`/random_checkmate ${color} "${items}"`);
   }
 
