@@ -13,25 +13,25 @@ $ npm i @chesslablab/redux-chess
 Check out [this demo](https://www.chesslablab.com/).
 
 ![Figure 1](/src/assets/img/docs/figure-01.png)
-Figure 1. Analysis Board
+Figure 1. Analysis Board > Start Position
 
 ![Figure 2](/src/assets/img/docs/figure-02.png)
-Figure 2. Play Online
+Figure 2. Opening Search > ECO Code
 
 ![Figure 3](/src/assets/img/docs/figure-03.png)
-Figure 3. Play a Friend > Create Invite Code
+Figure 3. Training > Random Tournament Game
 
 ![Figure 4](/src/assets/img/docs/figure-04.png)
-Figure 4. Play Computer
+Figure 4. Heuristics of a game
 
 ![Figure 5](/src/assets/img/docs/figure-05.png)
-Figure 5. Training > Random Tournament Game
+Figure 5. Play > Online
 
 ![Figure 6](/src/assets/img/docs/figure-06.png)
-Figure 6. Heuristics of a game
+Figure 6. Play > Computer
 
 ![Figure 7](/src/assets/img/docs/figure-07.png)
-Figure 7. Opening Search > ECO Code
+Figure 7. Play > A friend > Create invite code
 
 ### Examples
 
