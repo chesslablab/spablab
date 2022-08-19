@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CachedIcon from '@mui/icons-material/Cached';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
@@ -68,17 +68,17 @@ const SecondaryButtons = ({props}) => {
         disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'medium'}
-        title="Copy PGN"
+        title="Copy PGN movetext"
         aria-label="copy"
         onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
       >
-        <ContentCopyIcon fontSize="inherit" />
+        <MoveDownIcon fontSize="inherit" />
       </IconButton>
       <IconButton
         disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'medium'}
-        title="Copy FEN"
+        title="Copy FEN string"
         aria-label="fen"
         onClick={() => state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null}
       >

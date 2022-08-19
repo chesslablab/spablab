@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import BookIcon from '@mui/icons-material/Book';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import KeyboardIcon from '@mui/icons-material/Keyboard';
+import LanguageIcon from '@mui/icons-material/Language';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-import SearchIcon from '@mui/icons-material/Search';
-import TuneIcon from '@mui/icons-material/Tune';
-import LanguageIcon from '@mui/icons-material/Language';
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import QuizIcon from '@mui/icons-material/Quiz';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import SearchIcon from '@mui/icons-material/Search';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import KeyboardIcon from '@mui/icons-material/Keyboard';
+import TuneIcon from '@mui/icons-material/Tune';
+import MoveDownIcon from '@mui/icons-material/MoveDown';
+import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Chip, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
@@ -133,19 +141,19 @@ const MainButtons = () => {
           handleCloseAnalysis();
           WsAction.startAnalysis(state.server.ws);
         }}>
-          Start Position
-        </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(openLoadFenDialog());
-          handleCloseAnalysis();
-        }}>
-          FEN String
+          <RestartAltIcon size="small" />&nbsp;Start Position
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openLoadPgnDialog());
           handleCloseAnalysis();
         }}>
-          PGN Movetext
+          <MoveDownIcon size="small" />&nbsp;PGN Movetext
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(openLoadFenDialog());
+          handleCloseAnalysis();
+        }}>
+          <WidgetsIcon size="small" />&nbsp;FEN String
         </MenuItem>
       </Menu>
       <Button
@@ -171,13 +179,13 @@ const MainButtons = () => {
           dispatch(openCheckmateSkillsDialog());
           handleCloseTraining();
         }}>
-          Checkmate Skills
+          <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openPlayGmDialog());
           handleCloseTraining();
         }}>
-          Guess the Move
+          <QuizIcon size="small" />&nbsp;Guess the Move
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(setTraining());
@@ -185,7 +193,7 @@ const MainButtons = () => {
           handleCloseTraining();
           WsAction.randomGame(state);
         }}>
-          Random Tournament Game
+          <EmojiEventsIcon size="small" />&nbsp;Random Tournament Game
         </MenuItem>
       </Menu>
       <Menu
@@ -197,19 +205,19 @@ const MainButtons = () => {
           dispatch(openSearchEcoDialog());
           handleCloseOpeningSearch();
         }}>
-          ECO Code
-        </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(openSearchNameDialog());
-          handleCloseOpeningSearch();
-        }}>
-          Name
+          <BookIcon size="small" />&nbsp;ECO Code
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(openSearchMovetextDialog());
           handleCloseOpeningSearch();
         }}>
-          Movetext
+          <MoveDownIcon size="small" />&nbsp;PGN Movetext
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(openSearchNameDialog());
+          handleCloseOpeningSearch();
+        }}>
+          <SpellcheckIcon size="small" />&nbsp;Name
         </MenuItem>
       </Menu>
       <Button
