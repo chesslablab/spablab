@@ -68,6 +68,15 @@
   opacity: 0.85;
 }
 
+.noTextSelection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 @media (max-width: 900px) {
   .board {
     grid-template-columns: repeat(8, [col] 10vw);

@@ -78,7 +78,9 @@ const MoveValidatorTable = ({props}) => {
 
   return (
     <Slide direction="down" in={state.board.movetext ? true : false} mountOnEnter unmountOnExit>
-      <TableContainer className={classes.table}>
+      <TableContainer
+        className={['noTextSelection', classes.table].join(' ')}
+      >
         <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
             {tableRows()}

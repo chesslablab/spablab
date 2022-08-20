@@ -94,14 +94,26 @@ const Board = ({props}) => {
             }
           }
           if (Piece.unicode[piece].char) {
-            img = <img src={Piece.unicode[piece].char}
+            img = <img
+              className="noTextSelection"
+              src={Piece.unicode[piece].char}
               draggable={Piece.color(piece) === state.board.turn ? true : false}
               onDragStart={() => handleMove(payload)}
             />;
           }
           squares.push(<div
               key={k}
-              className={['square', color, payload.sq, isLegal, isSelected, isCheck].join(' ')}
+              className={
+                [
+                  'noTextSelection',
+                  'square',
+                  color,
+                  payload.sq,
+                  isLegal,
+                  isSelected,
+                  isCheck
+                ].join(' ')
+              }
               onClick={() => {
                 handleMove(payload);
               }}
@@ -123,7 +135,13 @@ const Board = ({props}) => {
   }
 
   return (
-    <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+    <div className={
+      [
+        'noTextSelection',
+        'board',
+        state.history.back !== 0 ? 'past' : 'present'
+      ].join(' ')
+    }>
       {board()}
     </div>
   );
