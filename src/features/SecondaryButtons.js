@@ -68,6 +68,16 @@ const SecondaryButtons = ({props}) => {
         disabled={disabled}
         color="primary"
         size={matches ? 'small' : 'medium'}
+        title="Flip Board"
+        aria-label="flip"
+        onClick={() => dispatch(flip())}
+      >
+        <CachedIcon fontSize="inherit" />
+      </IconButton>
+      <IconButton
+        disabled={disabled}
+        color="primary"
+        size={matches ? 'small' : 'medium'}
         title="Copy PGN movetext"
         aria-label="copy"
         onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
@@ -96,16 +106,6 @@ const SecondaryButtons = ({props}) => {
         }}
       >
         <BarChartIcon fontSize="inherit" />
-      </IconButton>
-      <IconButton
-        disabled={disabled}
-        color="primary"
-        size={matches ? 'small' : 'medium'}
-        title="Flip Board"
-        aria-label="flip"
-        onClick={() => dispatch(flip())}
-      >
-        <CachedIcon fontSize="inherit" />
       </IconButton>
       <IconButton
         disabled={disabled}
