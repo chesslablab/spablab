@@ -17,7 +17,7 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { Button, ButtonGroup, Chip, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
 import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
@@ -248,6 +248,9 @@ const MainButtons = () => {
         open={Boolean(anchorElPlay)}
         onClose={handleClosePlay}
       >
+        <MenuItem style={{ pointerEvents: 'none', justifyContent: 'center' }}>
+          Online
+        </MenuItem>
         <MenuItem
           onClick={() => {
             dispatch(openPlayOnlineDialog());
@@ -255,19 +258,11 @@ const MainButtons = () => {
             WsAction.onlineGames(state);
           }}
         >
-          <LanguageIcon size="small" />&nbsp;Online
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            dispatch(openPlayComputerDialog());
-            handleClosePlay();
-          }}
-        >
-          <SmartToyIcon size="small" />&nbsp;Computer
+          <LanguageIcon size="small" />&nbsp;Create game
         </MenuItem>
         <Divider />
         <MenuItem style={{ pointerEvents: 'none', justifyContent: 'center' }}>
-          <Chip label="A friend" />
+          A friend
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -285,6 +280,18 @@ const MainButtons = () => {
           }}
         >
           <KeyboardIcon />&nbsp;Enter Invite Code
+        </MenuItem>
+        <Divider />
+        <MenuItem style={{ pointerEvents: 'none', justifyContent: 'center' }}>
+          Computer
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch(openPlayComputerDialog());
+            handleClosePlay();
+          }}
+        >
+          <SmartToyIcon size="small" />&nbsp;Create game
         </MenuItem>
       </Menu>
     </ButtonGroup>
