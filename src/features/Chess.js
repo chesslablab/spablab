@@ -7,6 +7,7 @@ import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
+import DatabaseDialog from './dialog/DatabaseDialog';
 import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';
 import SearchEcoDialog from './dialog/SearchEcoDialog';
 import SearchMovetextDialog from './dialog/SearchMovetextDialog';
@@ -65,6 +66,7 @@ const Chess = ({ props }) => {
       <PlayGmDialog />
       <PlayOnlineDialog />
       <WatchDialog />
+      <DatabaseDialog />
     </Provider>
   );
 };

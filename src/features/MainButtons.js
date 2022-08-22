@@ -14,6 +14,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import StorageIcon from '@mui/icons-material/Storage';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
@@ -21,6 +22,7 @@ import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
 import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
+import { openDatabaseDialog } from '../features/dialog/databaseDialogSlice';
 import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
 import { openLoadFenDialog } from '../features/dialog/loadFenDialogSlice';
 import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
@@ -39,7 +41,8 @@ import {
   MAIN_BUTTON_PLAY_A_FRIEND,
   MAIN_BUTTON_PLAY_COMPUTER,
   MAIN_BUTTON_TRAINING,
-  MAIN_BUTTON_OPENING_SEARCH
+  MAIN_BUTTON_OPENING_SEARCH,
+  MAIN_BUTTON_OPENING_DATABASE
 } from '../features/mainButtonsConstants';
 import {
   MODE_PLAY,
@@ -162,6 +165,13 @@ const MainButtons = () => {
         onClick={handleClickOpeningSearch}
       >
         Opening Search
+      </Button>
+      <Button
+        variant={state.mainButtons.name === MAIN_BUTTON_OPENING_DATABASE ? "contained" : "text"}
+        startIcon={<StorageIcon />}
+        onClick={() => dispatch(openDatabaseDialog())}
+      >
+        Database
       </Button>
       <Button
         variant={state.mainButtons.name === MAIN_BUTTON_TRAINING ? "contained" : "text"}

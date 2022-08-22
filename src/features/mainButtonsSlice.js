@@ -5,7 +5,8 @@ import {
   MAIN_BUTTON_PLAY_A_FRIEND,
   MAIN_BUTTON_PLAY_COMPUTER,
   MAIN_BUTTON_TRAINING,
-  MAIN_BUTTON_OPENING_SEARCH
+  MAIN_BUTTON_OPENING_SEARCH,
+  MAIN_BUTTON_DATABASE
 } from './mainButtonsConstants';
 
 const initialState = {
@@ -31,6 +32,9 @@ const mainButtonsSlice = createSlice({
     },
     setOpeningSearch: (state) => {
       state.name = MAIN_BUTTON_OPENING_SEARCH;
+    },
+    setDatabase: (state) => {
+      state.name = MAIN_BUTTON_DATABASE;
     }
   }
 });
@@ -41,6 +45,7 @@ export const {
   setPlayAFriend,
   setPlayComputer,
   setTraining,
-  setOpeningSearch
+  setOpeningSearch,
+  setDatabase
 } = mainButtonsSlice.actions;
 export default mainButtonsSlice.reducer;
