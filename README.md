@@ -33,9 +33,11 @@ Figure 6. Play > Computer
 ![Figure 7](/src/assets/img/docs/figure-07.png)
 Figure 7. Play > A friend > Create invite code
 
-### Examples
+### Learn More
 
-Initialization with the sandbox environment:
+Thank you for your interest in this exciting project! Redux Chess is "just a chessboard" as lightweight as it can possibly be. It requires this [chess server](https://github.com/chesslablab/chess-server) up and running as well as this [chess API](https://github.com/chesslablab/chess-api).
+
+Here is how to set up a local environment:
 
 ```js
 import React from 'react';
@@ -59,46 +61,12 @@ ReactDOM.render(
   <Chess props={props} />,
   document.getElementById('redux-chess')
 );
-
 ```
 
-Initialization with a local environment consisting of a [Chess API](https://github.com/chesslablab/chess-api) and a [Chess Server](https://github.com/chesslablab/chess-server):
-
-```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Chess } from '@chesslablab/redux-chess';
-
-const props = {
-  api: {
-    prot: 'https',
-    host: 'api.local',
-    port: '443'
-  },
-  server: {
-    prot: 'ws',
-    host: '127.0.0.1',
-    port: '8080'
-  }
-};
-
-ReactDOM.render(
-  <Chess props={props} />,
-  document.getElementById('redux-chess')
-);
+Redux Chess sends messages to a WebSocket server. Make sure the WebSocket server is running on localhost as described next.
 
 ```
-
-### Learn More
-
-Thank you for your interest in this exciting project!
-
-It may appear as if being quite challenging provided it requires this [chess server](https://github.com/chesslablab/chess-server) up and running. `@chesslablab/redux-chess` is "just a chessboard" as lightweight as it can possibly be.
-
-The chessboard just sends messages to a WebSocket server so make sure the chess server is running on localhost:
-
-```
-$ php cli/ws-server.php
+$ php cli/wss-server.php
 Welcome to PHP Chess Server
 Commands available:
 /accept {"jwt":"<string>"} Accepts a request to play a game.
@@ -122,6 +90,8 @@ Commands available:
 
 Listening to commands...
 ```
+
+Also, it sends HTTP requests to a REST API that needs to be setup along with a database as it is described in the README.md file.
 
 ### License
 
