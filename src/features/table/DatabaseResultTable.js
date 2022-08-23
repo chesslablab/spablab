@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import {
+  Alert,
   IconButton,
   Paper,
   Table,
@@ -28,6 +29,13 @@ const DatabaseResultTable = ({props}) => {
 
   return (
     <TableContainer style={{ marginTop: 10 }} component={Paper}>
+      <Alert
+        className="info-alert"
+        severity="info"
+        style={{ margin: 15 }}
+      >
+        Are you feeling lucky? Every time the <b>Search</b> button is clicked up to 25 random records are shown matching the criteria.
+      </Alert>
       <Table stickyHeader aria-label="simple table">
         <TableBody>
           {
