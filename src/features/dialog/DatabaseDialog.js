@@ -33,7 +33,8 @@ const DatabaseDialog = ({props}) => {
         [event.target.elements.ECO.name]: event.target.elements.ECO.value,
         [event.target.elements.White.name]: event.target.elements.White.value,
         [event.target.elements.Black.name]: event.target.elements.Black.value,
-        [event.target.elements.Result.name]: event.target.elements.Result.value
+        [event.target.elements.Result.name]: event.target.elements.Result.value,
+        [event.target.elements.movetext.name]: event.target.elements.movetext.value
       })
     }).then(res => {
       dispatch(closeProgressDialog());
@@ -67,6 +68,16 @@ const DatabaseDialog = ({props}) => {
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleSearch}>
+          <Grid container spacing={2}>
+            <Grid item md={12}>
+              <TextField
+                fullWidth
+                name="movetext"
+                label="PGN movetext"
+                margin="normal"
+              />
+            </Grid>
+          </Grid>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
               <TextField
