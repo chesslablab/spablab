@@ -141,7 +141,8 @@ export default class WsEvent {
   }
 
   static onStartPgn = (data) => dispatch => {
-    reset(dispatch);
+    // reset(dispatch);
+    dispatch(closeProgressDialog());
     if (data['/start'].movetext) {
       dispatch(startPgnMode());
       dispatch(startPgn({
