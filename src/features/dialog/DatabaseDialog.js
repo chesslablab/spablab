@@ -15,10 +15,12 @@ import { setDatabase } from '../../features/mainButtonsSlice';
 import { showInfoAlert } from '../../features/alert/infoAlertSlice';
 import { closeDatabaseDialog } from '../../features/dialog/databaseDialogSlice';
 import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
+import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
 
 const DatabaseDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [result, setResult] = React.useState([]);
 
   const handleSearch = async (event) => {
     event.preventDefault();
@@ -32,8 +34,7 @@ const DatabaseDialog = ({props}) => {
     }).then(res => {
       if (res.status === 200) {
         res.json().then(data => {
-          // TODO
-          console.log(data);
+          setResult(data);
         });
       } else if (res.status === 204) {
         dispatch(closeDatabaseDialog())
@@ -46,7 +47,7 @@ const DatabaseDialog = ({props}) => {
   };
 
   return (
-    <Dialog open={state.databaseDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.databaseDialog.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
@@ -141,6 +142,7 @@ const DatabaseDialog = ({props}) => {
             Search
           </Button>
         </form>
+        <DatabaseResultTable props={{ result: result }} />
       </DialogContent>
     </Dialog>
   );
