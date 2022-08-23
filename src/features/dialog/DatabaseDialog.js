@@ -16,24 +16,33 @@ import { showInfoAlert } from '../../features/alert/infoAlertSlice';
 import { closeDatabaseDialog } from '../../features/dialog/databaseDialogSlice';
 import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
 
-const DatabaseDialog = () => {
+const DatabaseDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const handleSearch = (event) => {
+  const handleSearch = async (event) => {
     event.preventDefault();
-
-    // TODO: Query the API
-    // console.log(event.target.elements.event.value);
-    // console.log(event.target.elements.year.value);
-    // console.log(event.target.elements.white.value);
-    // console.log(event.target.elements.black.value);
-    // console.log(event.target.elements.eco.value);
-    // console.log(event.target.elements.result.value);
-
-    // dispatch(setDatabase());
-    dispatch(closeDatabaseDialog());
-    dispatch(showInfoAlert({ info: 'Sorry, the database feature will soon be available. Stay tuned!' }));
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search`, {
+      method: 'POST',
+      body: JSON.stringify({
+        [event.target.elements.Event.name]: event.target.elements.Event.value,
+        [event.target.elements.White.name]: event.target.elements.White.value,
+        [event.target.elements.Black.name]: event.target.elements.Black.value
+      })
+    }).then(res => {
+      if (res.status === 200) {
+        res.json().then(data => {
+          // TODO
+          console.log(data);
+        });
+      } else if (res.status === 204) {
+        dispatch(closeDatabaseDialog())
+        dispatch(showInfoAlert({ info: 'No results were found, please try again.' }));
+      } else {
+        dispatch(closeDatabaseDialog())
+        dispatch(showInfoAlert({ info: 'Whoops! Something went wrong, please try again.' }));
+      }
+    });
   };
 
   return (
@@ -56,7 +65,7 @@ const DatabaseDialog = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                name="event"
+                name="Event"
                 label="Event"
                 margin="normal"
               />
@@ -64,7 +73,7 @@ const DatabaseDialog = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                name="year"
+                name="Year"
                 label="Year"
                 type="number"
                 margin="normal"
@@ -77,7 +86,7 @@ const DatabaseDialog = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                name="white"
+                name="White"
                 label="White"
                 margin="normal"
               />
@@ -85,7 +94,7 @@ const DatabaseDialog = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                name="black"
+                name="Black"
                 label="Black"
                 margin="normal"
               />
@@ -95,7 +104,7 @@ const DatabaseDialog = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                name="eco"
+                name="ECO"
                 label="ECO Code"
                 margin="normal"
               />
@@ -104,7 +113,7 @@ const DatabaseDialog = () => {
               <TextField
                 fullWidth
                 select
-                name="result"
+                name="Result"
                 label="Result"
                 defaultValue=""
                 margin="normal"

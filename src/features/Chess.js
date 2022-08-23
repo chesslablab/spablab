@@ -53,6 +53,7 @@ const Chess = ({ props }) => {
           <InfoAlert />
         </Grid>
       </Grid>
+      <DatabaseDialog props={props} />
       <SearchEcoDialog props={props} />
       <SearchMovetextDialog props={props} />
       <SearchNameDialog props={props} />
@@ -66,7 +67,6 @@ const Chess = ({ props }) => {
       <PlayGmDialog />
       <PlayOnlineDialog />
       <WatchDialog />
-      <DatabaseDialog />
     </Provider>
   );
 };
