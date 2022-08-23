@@ -129,7 +129,8 @@ export default class WsEvent {
   }
 
   static onStartFen = (data) => dispatch => {
-    reset(dispatch);
+    // reset(dispatch);
+    dispatch(closeProgressDialog());
     if (data['/start'].fen) {
       dispatch(startFenMode());
       dispatch(startFen({ fen: data['/start'].fen }));
