@@ -28,8 +28,11 @@ const DatabaseDialog = ({props}) => {
       method: 'POST',
       body: JSON.stringify({
         [event.target.elements.Event.name]: event.target.elements.Event.value,
+        [event.target.elements.Date.name]: event.target.elements.Date.value,
+        [event.target.elements.ECO.name]: event.target.elements.ECO.value,
         [event.target.elements.White.name]: event.target.elements.White.value,
-        [event.target.elements.Black.name]: event.target.elements.Black.value
+        [event.target.elements.Black.name]: event.target.elements.Black.value,
+        [event.target.elements.Result.name]: event.target.elements.Result.value
       })
     }).then(res => {
       if (res.status === 200) {
@@ -63,7 +66,7 @@ const DatabaseDialog = ({props}) => {
       <DialogContent>
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
                 name="Event"
@@ -71,38 +74,17 @@ const DatabaseDialog = ({props}) => {
                 margin="normal"
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
-                name="Year"
+                name="Date"
                 label="Year"
                 type="number"
                 margin="normal"
-                defaultValue="2021"
                 inputProps={{ min: "1750", max: "2021", step: "1" }}
               />
             </Grid>
-          </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                name="White"
-                label="White"
-                margin="normal"
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                name="Black"
-                label="Black"
-                margin="normal"
-              />
-            </Grid>
-          </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
                 name="ECO"
@@ -110,7 +92,25 @@ const DatabaseDialog = ({props}) => {
                 margin="normal"
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+          </Grid>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={4}>
+              <TextField
+                fullWidth
+                name="White"
+                label="White"
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <TextField
+                fullWidth
+                name="Black"
+                label="Black"
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
                 select
