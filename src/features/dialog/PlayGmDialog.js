@@ -10,6 +10,7 @@ import {
   IconButton
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
+import SyncAction from '../../common/SyncAction';
 import { setTraining } from '../../features/mainButtonsSlice';
 import { closePlayGmDialog } from '../../features/dialog/playGmDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
@@ -30,6 +31,7 @@ const PlayGmDialog = () => {
       : color = dialogData.color;
     dispatch(setTraining());
     dispatch(closePlayGmDialog());
+    SyncAction.reset(dispatch);
     WsAction.startGm(state, color);
   }
 

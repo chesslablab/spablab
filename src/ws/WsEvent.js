@@ -117,7 +117,8 @@ export default class WsEvent {
   }
 
   static onStartGm = (data) => dispatch => {
-    reset(dispatch);
+    // reset(dispatch);
+    dispatch(closeProgressDialog());
     dispatch(setGm({
       color: data['/start'].color,
       movetext: null
