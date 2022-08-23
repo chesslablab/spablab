@@ -21,20 +21,7 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
-import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
-import { openDatabaseDialog } from '../features/dialog/databaseDialogSlice';
-import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
-import { openLoadFenDialog } from '../features/dialog/loadFenDialogSlice';
-import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
-import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
-import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
-import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
-import { openCheckmateSkillsDialog } from '../features/dialog/checkmateSkillsDialogSlice';
-import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
-import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
-import { openPlayOnlineDialog } from '../features/dialog/playOnlineDialogSlice';
-import { openProgressDialog } from '../features/dialog/progressDialogSlice';
-import { openWatchDialog } from '../features/dialog/watchDialogSlice';
+import SyncAction from '../common/SyncAction';
 import {
   MAIN_BUTTON_ANALYSIS,
   MAIN_BUTTON_PLAY_ONLINE,
@@ -49,6 +36,20 @@ import {
 } from '../features/modeConstants';
 import { setAnalysis, setTraining } from '../features/mainButtonsSlice';
 import { startAnalysis } from '../features/modeSlice';
+import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
+import { openDatabaseDialog } from '../features/dialog/databaseDialogSlice';
+import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
+import { openLoadFenDialog } from '../features/dialog/loadFenDialogSlice';
+import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
+import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
+import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
+import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
+import { openCheckmateSkillsDialog } from '../features/dialog/checkmateSkillsDialogSlice';
+import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
+import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
+import { openPlayOnlineDialog } from '../features/dialog/playOnlineDialogSlice';
+import { openProgressDialog } from '../features/dialog/progressDialogSlice';
+import { openWatchDialog } from '../features/dialog/watchDialogSlice';
 import WsAction from '../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -142,6 +143,7 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(setAnalysis());
           handleCloseAnalysis();
+          SyncAction.reset(dispatch);
           WsAction.startAnalysis(state.server.ws);
         }}>
           <RestartAltIcon size="small" />&nbsp;Start Position

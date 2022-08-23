@@ -2,6 +2,7 @@ import jwt_decode from "jwt-decode";
 import store from '../app/store';
 import Opening from '../common/Opening.js';
 import Pgn from '../common/Pgn';
+import SyncAction from '../common/SyncAction';
 import {
   closeInfoAlert,
   showInfoAlert
@@ -110,7 +111,8 @@ const openingBySameMovetext = (dispatch, movetext) => {
 
 export default class WsEvent {
   static onStartAnalysis = () => dispatch => {
-    reset(dispatch);
+    // reset(dispatch);
+    dispatch(closeProgressDialog());
     dispatch(startAnalysis({}));
   }
 
