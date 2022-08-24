@@ -15,5 +15,8 @@ const playGmDialogSlice = createSlice({
   }
 });
 
-export const { open, close } = playGmDialogSlice.actions;
+export const {
+  open,
+  close
+} = playGmDialogSlice.actions;
 export default playGmDialogSlice.reducer;

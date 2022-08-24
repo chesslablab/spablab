@@ -15,5 +15,8 @@ const watchDialogSlice = createSlice({
   }
 });
 
-export const { open, close } = watchDialogSlice.actions;
+export const {
+  open,
+  close
+} = watchDialogSlice.actions;
 export default watchDialogSlice.reducer;

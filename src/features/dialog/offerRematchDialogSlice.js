@@ -6,17 +6,17 @@ const offerRematchDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openOfferRematchDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeOfferRematchDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openOfferRematchDialog,
-  closeOfferRematchDialog
+  open,
+  close
 } = offerRematchDialogSlice.actions;
 export default offerRematchDialogSlice.reducer;

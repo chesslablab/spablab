@@ -15,5 +15,8 @@ const playComputerDialogSlice = createSlice({
   }
 });
 
-export const { open, close } = playComputerDialogSlice.actions;
+export const {
+  open,
+  close
+} = playComputerDialogSlice.actions;
 export default playComputerDialogSlice.reducer;

@@ -15,5 +15,8 @@ const checkmateSkillsDialogSlice = createSlice({
   }
 });
 
-export const { open, close } = checkmateSkillsDialogSlice.actions;
+export const {
+  open,
+  close
+} = checkmateSkillsDialogSlice.actions;
 export default checkmateSkillsDialogSlice.reducer;

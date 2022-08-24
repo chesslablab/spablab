@@ -15,5 +15,8 @@ const databaseDialogSlice = createSlice({
   }
 });
 
-export const { open, close } = databaseDialogSlice.actions;
+export const {
+  open,
+  close
+} = databaseDialogSlice.actions;
 export default databaseDialogSlice.reducer;

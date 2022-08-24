@@ -15,5 +15,8 @@ const loadPgnDialogSlice = createSlice({
   }
 });
 
-export const { open, close } = loadPgnDialogSlice.actions;
+export const {
+  open,
+  close
+} = loadPgnDialogSlice.actions;
 export default loadPgnDialogSlice.reducer;

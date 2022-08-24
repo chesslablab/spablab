@@ -6,17 +6,17 @@ const acceptResignDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openResignAcceptDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeResignAcceptDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openResignAcceptDialog,
-  closeResignAcceptDialog
+  open,
+  close
 } = acceptResignDialogSlice.actions;
 export default acceptResignDialogSlice.reducer;

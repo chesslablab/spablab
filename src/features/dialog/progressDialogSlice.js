@@ -15,5 +15,8 @@ const progressDialogSlice = createSlice({
   }
 });
 
-export const { open, close } = progressDialogSlice.actions;
+export const {
+  open,
+  close
+} = progressDialogSlice.actions;
 export default progressDialogSlice.reducer;
