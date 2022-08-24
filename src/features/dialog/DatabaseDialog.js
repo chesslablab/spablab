@@ -70,7 +70,7 @@ const DatabaseDialog = ({props}) => {
           className="info-alert"
           severity="info"
         >
-          Are you feeling lucky? Every time the Search button is clicked, up to 25 random records are shown matching the criteria.
+          Are you feeling lucky? Click on the Search button and fetch up to 25 random games matching the criteria.
         </Alert>
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
