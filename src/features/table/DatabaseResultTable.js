@@ -11,20 +11,34 @@ import {
   TableContainer,
   TableRow
 } from '@mui/material';
+import SyncAction from '../../common/SyncAction';
 import { setDatabase } from '../../features/mainButtonsSlice';
 import { closeDatabaseDialog } from '../../features/dialog/databaseDialogSlice';
 import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
+import { showGameTable } from '../../features/table/gameTableSlice';
 import WsAction from '../../ws/WsAction';
 
 const DatabaseResultTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const handleLoad = (movetext) => {
+  const handleLoad = (item) => {
     dispatch(closeDatabaseDialog());
     dispatch(openProgressDialog());
     dispatch(setDatabase());
-    WsAction.startPgn(state, movetext);
+    SyncAction.reset(dispatch);
+    WsAction.startPgn(state, item.movetext);
+    dispatch(showGameTable({
+      game: {
+        Event: item.Event,
+        Site: item.Site,
+        Date: item.Date,
+        White: item.White,
+        Black: item.Black,
+        Result: item.Result,
+        ECO: item.ECO
+      }
+    }));
   };
 
   return (
@@ -34,7 +48,7 @@ const DatabaseResultTable = ({props}) => {
         severity="info"
         style={{ margin: 15 }}
       >
-        Are you feeling lucky? Every time the <b>Search</b> button is clicked up to 25 random records are shown matching the criteria.
+        Are you feeling lucky? Every time the <b>Search</b> button is clicked, up to 25 random records are shown matching the criteria.
       </Alert>
       <Table stickyHeader aria-label="simple table">
         <TableBody>
@@ -51,7 +65,7 @@ const DatabaseResultTable = ({props}) => {
                   <IconButton
                     aria-label="load"
                     color="primary"
-                    onClick={() => handleLoad(item.movetext)}
+                    onClick={() => handleLoad(item)}
                   >
                     <PublishIcon />
                   </IconButton>
