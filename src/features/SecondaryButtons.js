@@ -9,7 +9,7 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
 import * as modeConst from '../common/constants/mode';
 import { flip } from '../features/boardSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
+import * as progressDialog from '../features/dialog/progressDialogSlice';
 import WsAction from '../ws/WsAction';
 
 const SecondaryButtons = ({props}) => {
