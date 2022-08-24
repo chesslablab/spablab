@@ -9,6 +9,7 @@ import {
   MODE_PLAY,
   MODE_STOCKFISH
 } from '../features/modeConstants';
+import { closeProgressDialog } from '../features/dialog/progressDialogSlice';
 import WsEvent from './WsEvent';
 
 export default class WsEventListener {
@@ -37,6 +38,7 @@ export default class WsEventListener {
         }
         break;
       case '/start' === cmd:
+        dispatch(closeProgressDialog());
         if (data['/start'].mode === MODE_ANALYSIS) {
           dispatch(WsEvent.onStartAnalysis(data));
         } else if (data['/start'].mode === MODE_GM) {
@@ -73,6 +75,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onLegalSqs(data));
         break;
       case '/heuristics' === cmd:
+        dispatch(closeProgressDialog());
         dispatch(WsEvent.onHeuristics(data));
         break;
       case '/heuristics_bar' === cmd:
@@ -99,18 +102,23 @@ export default class WsEventListener {
         dispatch(WsEvent.onRestart(data));
         break;
       case '/gm' === cmd:
+        dispatch(closeProgressDialog());
         dispatch(WsEvent.onGm(data));
         break;
       case '/random_checkmate' === cmd:
+        dispatch(closeProgressDialog());
         dispatch(WsEvent.onRandomCheckmate(data));
         break;
       case '/random_game' === cmd:
+        dispatch(closeProgressDialog());
         dispatch(WsEvent.onRandomGame(data));
         break;
       case '/stockfish' === cmd:
+        dispatch(closeProgressDialog());
         dispatch(WsEvent.onStockfish(data));
         break;
       case 'validate' === cmd:
+        dispatch(closeProgressDialog());
         dispatch(WsEvent.onValidate(data));
         break;
       default:

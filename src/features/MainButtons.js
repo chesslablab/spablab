@@ -203,6 +203,7 @@ const MainButtons = () => {
           dispatch(setTraining());
           dispatch(openProgressDialog());
           handleCloseTraining();
+          SyncAction.reset(dispatch);
           WsAction.randomGame(state);
         }}>
           <EmojiEventsIcon size="small" />&nbsp;Random Tournament Game

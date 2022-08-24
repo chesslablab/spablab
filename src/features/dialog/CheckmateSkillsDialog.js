@@ -12,6 +12,7 @@ import {
   TextField
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
+import SyncAction from '../../common/SyncAction';
 import { setTraining } from '../../features/mainButtonsSlice';
 import { closeCheckmateSkillsDialog } from '../../features/dialog/checkmateSkillsDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
@@ -48,6 +49,7 @@ const CheckmateSkillsDialog = () => {
       };
     dispatch(setTraining());
     dispatch(closeCheckmateSkillsDialog());
+    SyncAction.reset(dispatch);
     WsAction.randomCheckmate(state, color, items);
   };
 

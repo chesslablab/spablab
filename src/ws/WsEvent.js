@@ -18,7 +18,6 @@ import {
   refreshPlayOnlineDialog
 } from '../features/dialog/playOnlineDialogSlice';
 import {
-  closeProgressDialog,
   openProgressDialog
 } from '../features/dialog/progressDialogSlice';
 import {
@@ -48,13 +47,6 @@ import {
   gm
 } from '../features/boardSlice';
 import {
-  resetBar,
-  updateBar
-} from '../features/heuristicsBarSlice';
-import {
-  goTo
-} from '../features/historySlice';
-import {
   startAnalysis,
   startFen as startFenMode,
   startPgn as startPgnMode,
@@ -81,16 +73,6 @@ import {
 } from '../features/modeConstants';
 import WsAction from './WsAction';
 
-const reset = (dispatch) => {
-  dispatch(resetBar());
-  dispatch(closeOpeningAnalysisTable());
-  dispatch(closeGameTable());
-  dispatch(closeInfoAlert());
-  dispatch(goTo({ back: 0 }));
-  dispatch(start());
-  dispatch(closeProgressDialog());
-};
-
 const openingByMovetext = (dispatch, movetext) => {
   let rows = Opening.byMovetext(movetext);
   if (rows) {
@@ -111,14 +93,10 @@ const openingBySameMovetext = (dispatch, movetext) => {
 
 export default class WsEvent {
   static onStartAnalysis = () => dispatch => {
-    // reset(dispatch);
-    dispatch(closeProgressDialog());
     dispatch(startAnalysis({}));
   }
 
   static onStartGm = (data) => dispatch => {
-    // reset(dispatch);
-    dispatch(closeProgressDialog());
     dispatch(setGm({
       color: data['/start'].color,
       movetext: null
@@ -130,8 +108,6 @@ export default class WsEvent {
   }
 
   static onStartFen = (data) => dispatch => {
-    // reset(dispatch);
-    dispatch(closeProgressDialog());
     if (data['/start'].fen) {
       dispatch(startFenMode());
       dispatch(startFen({ fen: data['/start'].fen }));
@@ -143,8 +119,6 @@ export default class WsEvent {
   }
 
   static onStartPgn = (data) => dispatch => {
-    // reset(dispatch);
-    dispatch(closeProgressDialog());
     if (data['/start'].movetext) {
       dispatch(startPgnMode());
       dispatch(startPgn({
@@ -162,7 +136,7 @@ export default class WsEvent {
   }
 
   static onStartPlay = (data) => dispatch => {
-    reset(dispatch);
+    SyncAction.reset(dispatch);
     const jwtDecoded = jwt_decode(data['/start'].jwt);
     dispatch(setPlay({
       jwt: data['/start'].jwt,
@@ -188,7 +162,6 @@ export default class WsEvent {
   }
 
   static onStartStockfishByColor = (data) => dispatch => {
-    reset(dispatch);
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(flip());
       WsAction.stockfish(store.getState());
@@ -196,7 +169,6 @@ export default class WsEvent {
   }
 
   static onStartStockfishByFen = (data) => dispatch => {
-    reset(dispatch);
     dispatch(startFen({ fen: data['/start'].fen }));
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(flip());
@@ -205,7 +177,7 @@ export default class WsEvent {
   }
 
   static onAccept = (data) => dispatch => {
-    reset(dispatch);
+    SyncAction.reset(dispatch);
     if (data['/accept'].jwt) {
       if (!store.getState().mode.play) {
         const jwtDecoded = jwt_decode(data['/accept'].jwt);
@@ -281,7 +253,6 @@ export default class WsEvent {
   }
 
   static onHeuristics = (data) => dispatch => {
-    dispatch(closeProgressDialog());
     dispatch(openHeuristicsDialog({
       dimensions: data['/heuristics'].dimensions,
       balance: data['/heuristics'].balance
@@ -391,7 +362,6 @@ export default class WsEvent {
   }
 
   static onGm = (data) => dispatch => {
-    dispatch(closeProgressDialog());
     if (data['/gm']) {
       dispatch(showGameTable({ game: data['/gm'].game }));
       dispatch(gm({
@@ -414,7 +384,6 @@ export default class WsEvent {
   }
 
   static onRandomCheckmate = (data) => dispatch => {
-    reset(dispatch);
     if (data['/random_checkmate'].fen) {
       dispatch(setStockfish({
         color: data['/random_checkmate'].turn,
@@ -433,7 +402,6 @@ export default class WsEvent {
   }
 
   static onRandomGame = (data) => dispatch => {
-    reset(dispatch);
     if (data['/random_game'].movetext) {
       dispatch(startPgnMode());
       dispatch(startPgn({
@@ -451,7 +419,6 @@ export default class WsEvent {
   }
 
   static onStockfish = (data) => dispatch => {
-    dispatch(closeProgressDialog());
     if (data['/stockfish']) {
       dispatch(gm({
         turn: data['/stockfish'].state.turn,
@@ -466,7 +433,7 @@ export default class WsEvent {
   }
 
   static onValidate = (data) => dispatch => {
-    reset(dispatch);
+    SyncAction.reset(dispatch);
     if (data['validate']) {
       dispatch(startUndefinedMode());
       dispatch(showInfoAlert({
