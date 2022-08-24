@@ -14,7 +14,7 @@ import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as databaseDialog from '../../features/dialog/databaseDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
-import * from '../../features/table/gameTableSlice';
+import * as gameTable from '../../features/table/gameTableSlice';
 import WsAction from '../../ws/WsAction';
 
 const DatabaseResultTable = ({props}) => {
