@@ -69,7 +69,6 @@ const DatabaseDialog = ({props}) => {
         <Alert
           className="info-alert"
           severity="info"
-          style={{ margin: 15 }}
         >
           Are you feeling lucky? Every time the Search button is clicked, up to 25 random records are shown matching the criteria.
         </Alert>
