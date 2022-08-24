@@ -1,5 +1,5 @@
-import html2canvas from 'html2canvas';
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Legend, LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 import {
   Alert,
@@ -12,9 +12,9 @@ import {
   Typography,
   Slide
 } from '@mui/material/';
+import html2canvas from 'html2canvas';
 import CloseIcon from '@mui/icons-material/Close';
-import { useDispatch, useSelector } from "react-redux";
-import { closeHeuristicsDialog } from '../../features/dialog/heuristicsDialogSlice';
+import * as heuristicsDialog from '../../features/dialog/heuristicsDialogSlice';
 
 const handleDownloadImage = async () => {
   const heuristics = document.getElementsByClassName('heuristic-picture')[0];
@@ -85,7 +85,7 @@ const HeuristicsDialog = () => {
     <Dialog
       fullScreen
       open={state.heuristicsDialog.open}
-      onClose={() => dispatch(closeHeuristicsDialog())}
+      onClose={() => dispatch(heuristicsDialog.close())}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -93,7 +93,7 @@ const HeuristicsDialog = () => {
          <IconButton
            edge="start"
            color="inherit"
-           onClick={() => dispatch(closeHeuristicsDialog())}
+           onClick={() => dispatch(heuristicsDialog.close())}
            aria-label="close"
          >
            <CloseIcon />
@@ -104,7 +104,7 @@ const HeuristicsDialog = () => {
          <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
          </Button>
-         <Button autoFocus color="inherit" onClick={() => dispatch(closeHeuristicsDialog())}>
+         <Button autoFocus color="inherit" onClick={() => dispatch(heuristicsDialog.close())}>
            Close
          </Button>
        </Toolbar>

@@ -12,8 +12,9 @@ import {
   TextField
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
-import { setTraining } from '../../features/mainButtonsSlice';
-import { closeCheckmateSkillsDialog } from '../../features/dialog/checkmateSkillsDialogSlice';
+import Dispatcher from '../../common/Dispatcher';
+import * as mainButtons from '../../features/mainButtonsSlice';
+import * as checkmateSkillsDialog from '../../features/dialog/checkmateSkillsDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import WsAction from '../../ws/WsAction';
 
@@ -46,8 +47,9 @@ const CheckmateSkillsDialog = () => {
       : items = {
         [color]: split[0]
       };
-    dispatch(setTraining());
-    dispatch(closeCheckmateSkillsDialog());
+    dispatch(mainButtons.setTraining());
+    dispatch(checkmateSkillsDialog.close());
+    Dispatcher.initGui(dispatch);
     WsAction.randomCheckmate(state, color, items);
   };
 
@@ -66,7 +68,7 @@ const CheckmateSkillsDialog = () => {
             Checkmate skills
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(closeCheckmateSkillsDialog())}>
+            <IconButton onClick={() => dispatch(checkmateSkillsDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>

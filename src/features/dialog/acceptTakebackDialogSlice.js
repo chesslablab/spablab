@@ -6,17 +6,17 @@ const acceptTakebackDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openAcceptTakebackDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeAcceptTakebackDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openAcceptTakebackDialog,
-  closeAcceptTakebackDialog
+  open,
+  close
 } = acceptTakebackDialogSlice.actions;
 export default acceptTakebackDialogSlice.reducer;

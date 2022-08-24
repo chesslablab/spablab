@@ -7,11 +7,9 @@ const ProgressDialog = ({ props }) => {
 
   return (
     <Dialog open={state.progressDialog.open} maxWidth="xs" fullWidth={true}>
-      <DialogContent>
-        <Box sx={{ width: '100%' }}>
-          <LinearProgress />
-        </Box>
-      </DialogContent>
+      <Box sx={{ width: '100%' }}>
+        <LinearProgress />
+      </Box>
     </Dialog>
   );
 }

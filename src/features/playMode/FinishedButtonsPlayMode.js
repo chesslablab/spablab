@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
+import * as modeConst from '../../common/constants/mode';
 import Wording from "../../common/Wording.js";
-import { openOfferRematchDialog } from '../../features/dialog/offerRematchDialogSlice';
-import { MODE_PLAY } from '../../features/modeConstants';
+import * as offerRematchDialog from '../../features/dialog/offerRematchDialogSlice';
 
 const useStyles = makeStyles({
   buttonGroup: {
@@ -17,7 +17,7 @@ const FinishedButtonsPlayMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.name === MODE_PLAY) {
+  if (state.mode.name === modeConst.PLAY) {
     if (state.mode.play.accepted) {
       if (
         state.board.isMate ||
@@ -33,7 +33,7 @@ const FinishedButtonsPlayMode = () => {
             aria-label="Game Over"
             fullWidth={true}
           >
-            <Button onClick={() => dispatch(openOfferRematchDialog())}>
+            <Button onClick={() => dispatch(offerRematchDialog.open())}>
               Offer Rematch
             </Button>
           </ButtonGroup>

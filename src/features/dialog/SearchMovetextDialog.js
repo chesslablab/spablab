@@ -10,9 +10,9 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import { closeSearchMovetextDialog } from './searchMovetextDialogSlice';
+import * as searchMovetextDialog from './searchMovetextDialogSlice';
 import Opening from '../../common/Opening.js';
-import { showInfoAlert } from '../../features/alert/infoAlertSlice';
+import * as infoAlert from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
 
 const SearchMovetextDialog = ({ props }) => {
@@ -25,8 +25,8 @@ const SearchMovetextDialog = ({ props }) => {
     const openings = Opening.byMovetext(event.target.elements.movetext.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch(closeSearchMovetextDialog());
-      dispatch(showInfoAlert({ info: 'No results were found. Please try again.' }));
+      dispatch(searchMovetextDialog.close());
+      dispatch(infoAlert.show({ info: 'No results were found. Please try again.' }));
     }
   }
 
@@ -40,7 +40,7 @@ const SearchMovetextDialog = ({ props }) => {
           <Grid item xs={1}>
             <IconButton onClick={() => {
               setOpenings([]);
-              dispatch(closeSearchMovetextDialog());
+              dispatch(searchMovetextDialog.close());
             }}>
               <CloseIcon />
             </IconButton>

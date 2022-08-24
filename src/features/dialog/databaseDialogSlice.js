@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const loadFenDialogSlice = createSlice({
-  name: 'loadFenDialog',
+const databaseDialogSlice = createSlice({
+  name: 'databaseDialog',
   initialState: {
     open: false
   },
@@ -18,5 +18,5 @@ const loadFenDialogSlice = createSlice({
 export const {
   open,
   close
-} = loadFenDialogSlice.actions;
-export default loadFenDialogSlice.reducer;
+} = databaseDialogSlice.actions;
+export default databaseDialogSlice.reducer;

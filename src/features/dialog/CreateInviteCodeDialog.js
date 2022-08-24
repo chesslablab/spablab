@@ -13,8 +13,8 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
-import { setPlayAFriend } from '../../features/mainButtonsSlice';
-import { closeCreateInviteCodeDialog } from '../../features/dialog/createInviteCodeDialogSlice';
+import * as mainButtons from '../../features/mainButtonsSlice';
+import * as createInviteCodeDialog from '../../features/dialog/createInviteCodeDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import WsAction from '../../ws/WsAction';
 
@@ -30,7 +30,7 @@ const CreateInviteCodeDialog = () => {
             Play a friend
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(closeCreateInviteCodeDialog())}>
+            <IconButton onClick={() => dispatch(createInviteCodeDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>
@@ -76,7 +76,7 @@ const CreateCode = () => {
         : dialogData.color,
       submode: 'friend'
     };
-    dispatch(setPlayAFriend());
+    dispatch(mainButtons.setPlayAFriend());
     WsAction.startPlay(state, settings);
   }
 
@@ -149,7 +149,7 @@ const CopyCode = () => {
         variant="outlined"
         onClick={() => {
           navigator.clipboard.writeText(state.mode.play.hash);
-          dispatch(closeCreateInviteCodeDialog());
+          dispatch(createInviteCodeDialog.close());
       }}>
         Copy and Play
       </Button>

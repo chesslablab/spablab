@@ -12,8 +12,8 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
-import { setPlayOnline } from '../../features/mainButtonsSlice';
-import { closePlayOnlineDialog } from '../../features/dialog/playOnlineDialogSlice';
+import * as mainButtons from '../../features/mainButtonsSlice';
+import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import PlayOnlineTable from '../../features/table/PlayOnlineTable';
 import WsAction from '../../ws/WsAction';
@@ -53,8 +53,8 @@ const PlayOnlineDialog = () => {
         : dialogData.color,
       submode: 'online'
     };
-    dispatch(closePlayOnlineDialog());
-    dispatch(setPlayOnline());
+    dispatch(playOnlineDialog.close());
+    dispatch(mainButtons.setPlayOnline());
     WsAction.startPlay(state, settings);
   }
 
@@ -66,7 +66,7 @@ const PlayOnlineDialog = () => {
             Play online
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(closePlayOnlineDialog())}>
+            <IconButton onClick={() => dispatch(playOnlineDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>

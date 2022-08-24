@@ -1,15 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  MAIN_BUTTON_ANALYSIS,
-  MAIN_BUTTON_PLAY_ONLINE,
-  MAIN_BUTTON_PLAY_A_FRIEND,
-  MAIN_BUTTON_PLAY_COMPUTER,
-  MAIN_BUTTON_TRAINING,
-  MAIN_BUTTON_OPENING_SEARCH
-} from './mainButtonsConstants';
+import * as mainButtonConst from '../common/constants/mainButton';
 
 const initialState = {
-  name: MAIN_BUTTON_ANALYSIS,
+  name: mainButtonConst.ANALYSIS,
 };
 
 const mainButtonsSlice = createSlice({
@@ -18,19 +11,22 @@ const mainButtonsSlice = createSlice({
   reducers: {
     setAnalysis: () => initialState,
     setPlayOnline: (state) => {
-      state.name = MAIN_BUTTON_PLAY_ONLINE;
+      state.name = mainButtonConst.PLAY_ONLINE;
     },
     setPlayAFriend: (state) => {
-      state.name = MAIN_BUTTON_PLAY_A_FRIEND;
+      state.name = mainButtonConst.PLAY_A_FRIEND;
     },
     setPlayComputer: (state) => {
-      state.name = MAIN_BUTTON_PLAY_COMPUTER;
+      state.name = mainButtonConst.PLAY_COMPUTER;
     },
     setTraining: (state) => {
-      state.name = MAIN_BUTTON_TRAINING;
+      state.name = mainButtonConst.TRAINING;
     },
     setOpeningSearch: (state) => {
-      state.name = MAIN_BUTTON_OPENING_SEARCH;
+      state.name = mainButtonConst.OPENING_SEARCH;
+    },
+    setDatabase: (state) => {
+      state.name = mainButtonConst.MAIN_BUTTON_DATABASE;
     }
   }
 });
@@ -41,6 +37,7 @@ export const {
   setPlayAFriend,
   setPlayComputer,
   setTraining,
-  setOpeningSearch
+  setOpeningSearch,
+  setDatabase
 } = mainButtonsSlice.actions;
 export default mainButtonsSlice.reducer;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
-import { MODE_ANALYSIS } from '../modeConstants';
+import * as modeConst from '../../common/constants/mode';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -16,7 +16,7 @@ const StartedButtonsAnalysisMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.name === MODE_ANALYSIS) {
+  if (state.mode.name === modeConst.ANALYSIS) {
     if (state.board.movetext) {
       return (
         <ButtonGroup

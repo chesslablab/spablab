@@ -6,14 +6,17 @@ const checkmateSkillsDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openCheckmateSkillsDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeCheckmateSkillsDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
-export const { openCheckmateSkillsDialog, closeCheckmateSkillsDialog } = checkmateSkillsDialogSlice.actions;
+export const {
+  open,
+  close
+} = checkmateSkillsDialogSlice.actions;
 export default checkmateSkillsDialogSlice.reducer;

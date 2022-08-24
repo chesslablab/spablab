@@ -1,16 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as modeConst from '../common/constants/mode';
 import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
 import Piece from '../common/Piece';
-import {
-  pickPiece,
-  leavePiece
-} from '../features/boardSlice';
-import {
-  MODE_PLAY,
-  MODE_UNDEFINED
-} from '../features/modeConstants';
+import * as boardSlice from '../features/boardSlice';
 import WsAction from '../ws/WsAction';
 
 const Board = ({props}) => {
@@ -22,7 +16,7 @@ const Board = ({props}) => {
   }, [dispatch]);
 
   const handleMove = (payload) => {
-    if (state.mode.name === MODE_PLAY) {
+    if (state.mode.name === modeConst.PLAY) {
       if (
         !state.board.isMate &&
         !state.mode.play.draw &&
@@ -32,25 +26,25 @@ const Board = ({props}) => {
         state.history.back === 0
       ) {
         if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-          dispatch(leavePiece(payload));
+          dispatch(boardSlice.leavePiece(payload));
         } else if (state.mode.play.accepted) {
           if (state.mode.play.color === state.board.turn) {
             if (state.board.turn === Piece.color(payload.piece)) {
-              dispatch(pickPiece(payload));
+              dispatch(boardSlice.pickPiece(payload));
               WsAction.legalSqs(state, payload.sq);
             }
           }
         }
       }
-    } else if (state.mode.name !== MODE_UNDEFINED) {
+    } else if (state.mode.name !== modeConst.UNDEFINED) {
       if (
         !state.board.isMate &&
         state.history.back === 0
       ) {
         if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-          dispatch(leavePiece(payload));
+          dispatch(boardSlice.leavePiece(payload));
         } else if (state.board.turn === Piece.color(payload.piece)) {
-          dispatch(pickPiece(payload));
+          dispatch(boardSlice.pickPiece(payload));
           WsAction.legalSqs(state, payload.sq);
         }
       }

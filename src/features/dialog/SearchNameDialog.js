@@ -10,10 +10,10 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import { closeSearchNameDialog } from './searchNameDialogSlice';
 import Opening from '../../common/Opening.js';
-import { showInfoAlert } from '../../features/alert/infoAlertSlice';
+import * as infoAlert from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
+import * as searchNameDialog from './searchNameDialogSlice';
 
 const SearchNameDialog = ({ props }) => {
   const state = useSelector(state => state);
@@ -25,8 +25,8 @@ const SearchNameDialog = ({ props }) => {
     const openings = Opening.byName(event.target.elements.name.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch(closeSearchNameDialog());
-      dispatch(showInfoAlert({ info: 'No results were found. Please try again.' }));
+      dispatch(searchNameDialog.close());
+      dispatch(infoAlert.show({ info: 'No results were found. Please try again.' }));
     }
   }
 
@@ -40,7 +40,7 @@ const SearchNameDialog = ({ props }) => {
           <Grid item xs={1}>
             <IconButton onClick={() => {
               setOpenings([]);
-              dispatch(closeSearchNameDialog());
+              dispatch(searchNameDialog.close());
             }}>
               <CloseIcon />
             </IconButton>

@@ -6,14 +6,17 @@ const watchDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openWatchDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeWatchDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
-export const { openWatchDialog, closeWatchDialog } = watchDialogSlice.actions;
+export const {
+  open,
+  close
+} = watchDialogSlice.actions;
 export default watchDialogSlice.reducer;

@@ -6,17 +6,17 @@ const offerTakebackDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openTakebackOfferDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeTakebackOfferDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openTakebackOfferDialog,
-  closeTakebackOfferDialog
+  open,
+  close
 } = offerTakebackDialogSlice.actions;
 export default offerTakebackDialogSlice.reducer;

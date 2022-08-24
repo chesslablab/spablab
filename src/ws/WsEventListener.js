@@ -1,14 +1,8 @@
 import store from '../app/store';
+import * as modeConst from '../common/constants/mode';
 import Wording from '../common/Wording.js';
 import { playMove } from '../features/boardSlice';
-import {
-  MODE_ANALYSIS,
-  MODE_GM,
-  MODE_FEN,
-  MODE_PGN,
-  MODE_PLAY,
-  MODE_STOCKFISH
-} from '../features/modeConstants';
+import * as progressDialog from '../features/dialog/progressDialogSlice';
 import WsEvent from './WsEvent';
 
 export default class WsEventListener {
@@ -37,17 +31,18 @@ export default class WsEventListener {
         }
         break;
       case '/start' === cmd:
-        if (data['/start'].mode === MODE_ANALYSIS) {
+        dispatch(progressDialog.close());
+        if (data['/start'].mode === modeConst.ANALYSIS) {
           dispatch(WsEvent.onStartAnalysis(data));
-        } else if (data['/start'].mode === MODE_GM) {
+        } else if (data['/start'].mode === modeConst.GM) {
           dispatch(WsEvent.onStartGm(data));
-        } else if (data['/start'].mode === MODE_FEN) {
+        } else if (data['/start'].mode === modeConst.FEN) {
           dispatch(WsEvent.onStartFen(data));
-        } else if (data['/start'].mode === MODE_PGN) {
+        } else if (data['/start'].mode === modeConst.PGN) {
           dispatch(WsEvent.onStartPgn(data));
-        } else if (data['/start'].mode === MODE_PLAY) {
+        } else if (data['/start'].mode === modeConst.PLAY) {
           dispatch(WsEvent.onStartPlay(data));
-        } else if (data['/start'].mode === MODE_STOCKFISH) {
+        } else if (data['/start'].mode === modeConst.STOCKFISH) {
           if (data['/start'].fen) {
             dispatch(WsEvent.onStartStockfishByFen(data));
           } else {
@@ -62,7 +57,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onOnlineGames(data));
         break;
       case '/play_fen' === cmd:
-        if (store.getState().mode.name === MODE_PLAY) {
+        if (store.getState().mode.name === modeConst.PLAY) {
           if (store.getState().mode.play.color !== data['/play_fen'].turn) {
             dispatch(playMove({ fen: data['/play_fen'].fen }));
           }
@@ -73,6 +68,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onLegalSqs(data));
         break;
       case '/heuristics' === cmd:
+        dispatch(progressDialog.close());
         dispatch(WsEvent.onHeuristics(data));
         break;
       case '/heuristics_bar' === cmd:
@@ -99,18 +95,23 @@ export default class WsEventListener {
         dispatch(WsEvent.onRestart(data));
         break;
       case '/gm' === cmd:
+        dispatch(progressDialog.close());
         dispatch(WsEvent.onGm(data));
         break;
       case '/random_checkmate' === cmd:
+        dispatch(progressDialog.close());
         dispatch(WsEvent.onRandomCheckmate(data));
         break;
       case '/random_game' === cmd:
+        dispatch(progressDialog.close());
         dispatch(WsEvent.onRandomGame(data));
         break;
       case '/stockfish' === cmd:
+        dispatch(progressDialog.close());
         dispatch(WsEvent.onStockfish(data));
         break;
       case 'validate' === cmd:
+        dispatch(progressDialog.close());
         dispatch(WsEvent.onValidate(data));
         break;
       default:

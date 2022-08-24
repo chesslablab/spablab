@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Slide, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import Movetext from '../../common/Movetext.js';
-import { goTo } from '../../features/historySlice';
+import * as history from '../../features/historySlice';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -53,7 +53,7 @@ const MoveValidatorTable = ({props}) => {
           <TableCell
             align="left"
             className={[classes.move, highlight(((i + 1) * 2) - 1)].join(' ')}
-            onClick={() => dispatch(goTo({
+            onClick={() => dispatch(history.goTo({
               back: state.board.history.length - 1 - (((i + 1) * 2) - 1) }
             ))}
           >
@@ -65,7 +65,7 @@ const MoveValidatorTable = ({props}) => {
             onClick={() => {
               const back = state.board.history.length - 1 - ((i + 1) * 2);
               if (back >= 0) {
-                dispatch(goTo({ back: back }));
+                dispatch(history.goTo({ back: back }));
               }
             }}
           >

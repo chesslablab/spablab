@@ -9,19 +9,19 @@ const playOnlineDialogSlice = createSlice({
   name: 'playOnlineDialog',
   initialState: initialState,
   reducers: {
-    closePlayOnlineDialog: () => initialState,
-    openPlayOnlineDialog(state) {
+    close: () => initialState,
+    open(state) {
       state.open = true;
     },
-    refreshPlayOnlineDialog(state, action) {
+    refresh(state, action) {
       state.rows = action.payload;
     }
   }
 });
 
 export const {
-  closePlayOnlineDialog,
-  openPlayOnlineDialog,
-  refreshPlayOnlineDialog
+  close,
+  open,
+  refresh
 } = playOnlineDialogSlice.actions;
 export default playOnlineDialogSlice.reducer;

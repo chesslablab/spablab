@@ -7,16 +7,9 @@ import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
+import * as modeConst from '../common/constants/mode';
 import { flip } from '../features/boardSlice';
-import {
-  MODE_FEN,
-  MODE_PGN,
-  MODE_UNDEFINED
-} from '../features/modeConstants';
-import {
-  closeProgressDialog,
-  openProgressDialog
-} from '../features/dialog/progressDialogSlice';
+import * as progressDialog from '../features/dialog/progressDialogSlice';
 import WsAction from '../ws/WsAction';
 
 const SecondaryButtons = ({props}) => {
@@ -42,7 +35,7 @@ const SecondaryButtons = ({props}) => {
   }
 
   const handleDownloadMp4 = async () => {
-    dispatch(openProgressDialog());
+    dispatch(progressDialog.open());
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
       method: 'POST',
       body: JSON.stringify({ movetext: state.board.movetext })
@@ -57,10 +50,13 @@ const SecondaryButtons = ({props}) => {
       a.click();
       a.remove();
     })
-    .finally(() => dispatch(closeProgressDialog()));
+    .finally(() => dispatch(progressDialog.close()));
   }
 
-  const disabled = !(state.mode.name === MODE_FEN || state.mode.name === MODE_PGN) && !state.board.movetext;
+  const disabled = !(
+      state.mode.name === modeConst.FEN ||
+      state.mode.name === modeConst.PGN
+    ) && !state.board.movetext;
 
   return (
     <Stack direction="row" spacing={1}>
@@ -101,7 +97,7 @@ const SecondaryButtons = ({props}) => {
         title="Heuristics"
         aria-label="heuristics"
         onClick={() => {
-          dispatch(openProgressDialog());
+          dispatch(progressDialog.open());
           WsAction.heuristics(state);
         }}
       >
