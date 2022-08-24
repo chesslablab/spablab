@@ -5,8 +5,8 @@ import { closeInfoAlert } from '../features/alert/infoAlertSlice';
 import { goTo } from '../features/historySlice';
 import { start } from '../features/boardSlice';
 
-export default class SyncAction {
-  static reset = (dispatch) => {
+export default class Dispatcher {
+  static initGui = (dispatch) => {
     dispatch(resetBar());
     dispatch(closeOpeningAnalysisTable());
     dispatch(closeGameTable());

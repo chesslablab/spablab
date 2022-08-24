@@ -12,7 +12,7 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
-import SyncAction from '../../common/SyncAction';
+import Dispatcher from '../../common/Dispatcher';
 import { setPlayComputer } from '../../features/mainButtonsSlice';
 import { setStockfish } from '../../features/modeSlice';
 import { closePlayComputerDialog } from '../../features/dialog/playComputerDialogSlice';
@@ -37,7 +37,7 @@ const PlayComputerDialog = () => {
     dispatch(setStockfish(payload));
     dispatch(setPlayComputer());
     dispatch(closePlayComputerDialog());
-    SyncAction.reset(dispatch);
+    Dispatcher.initGui(dispatch);
     WsAction.startStockfishByColor(state, color);
   };
 

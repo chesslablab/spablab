@@ -33,7 +33,7 @@ const EnterInviteCodeDialog = () => {
     dispatch(setPlayAFriend());
     dispatch(startAnalysis());
     dispatch(closeEnterInviteCodeDialog());
-    // SyncAction.reset(dispatch);
+    // Dispatcher.initGui(dispatch);
     WsAction.accept(state, dialogData.hash);
   };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import SyncAction from '../../common/SyncAction';
+import Dispatcher from '../../common/Dispatcher';
 import { closeLoadPgnDialog } from '../../features/dialog/loadPgnDialogSlice';
 import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
 import { setAnalysis } from '../../features/mainButtonsSlice';
@@ -16,7 +16,7 @@ const LoadPgnDialog = () => {
     dispatch(setAnalysis());
     dispatch(closeLoadPgnDialog());
     dispatch(openProgressDialog());
-    SyncAction.reset(dispatch);
+    Dispatcher.initGui(dispatch);
     WsAction.startPgn(state, event.target.elements.pgn.value);
   };
 

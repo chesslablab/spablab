@@ -21,7 +21,7 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
-import SyncAction from '../common/SyncAction';
+import Dispatcher from '../common/Dispatcher';
 import {
   MAIN_BUTTON_ANALYSIS,
   MAIN_BUTTON_PLAY_ONLINE,
@@ -143,7 +143,7 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(setAnalysis());
           handleCloseAnalysis();
-          SyncAction.reset(dispatch);
+          Dispatcher.initGui(dispatch);
           WsAction.startAnalysis(state.server.ws);
         }}>
           <RestartAltIcon size="small" />&nbsp;Start Position
@@ -203,7 +203,7 @@ const MainButtons = () => {
           dispatch(setTraining());
           dispatch(openProgressDialog());
           handleCloseTraining();
-          SyncAction.reset(dispatch);
+          Dispatcher.initGui(dispatch);
           WsAction.randomGame(state);
         }}>
           <EmojiEventsIcon size="small" />&nbsp;Random Tournament Game

@@ -11,7 +11,7 @@ import {
   TableContainer,
   TableRow
 } from '@mui/material';
-import SyncAction from '../../common/SyncAction';
+import Dispatcher from '../../common/Dispatcher';
 import { setDatabase } from '../../features/mainButtonsSlice';
 import { closeDatabaseDialog } from '../../features/dialog/databaseDialogSlice';
 import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
@@ -26,7 +26,7 @@ const DatabaseResultTable = ({props}) => {
     dispatch(closeDatabaseDialog());
     dispatch(openProgressDialog());
     dispatch(setDatabase());
-    SyncAction.reset(dispatch);
+    Dispatcher.initGui(dispatch);
     WsAction.startPgn(state, item.movetext);
     dispatch(showGameTable({
       game: {

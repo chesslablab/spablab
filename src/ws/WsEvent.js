@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 import store from '../app/store';
 import Opening from '../common/Opening.js';
 import Pgn from '../common/Pgn';
-import SyncAction from '../common/SyncAction';
+import Dispatcher from '../common/Dispatcher';
 import {
   closeInfoAlert,
   showInfoAlert
@@ -136,7 +136,7 @@ export default class WsEvent {
   }
 
   static onStartPlay = (data) => dispatch => {
-    SyncAction.reset(dispatch);
+    Dispatcher.initGui(dispatch);
     const jwtDecoded = jwt_decode(data['/start'].jwt);
     dispatch(setPlay({
       jwt: data['/start'].jwt,
@@ -177,7 +177,7 @@ export default class WsEvent {
   }
 
   static onAccept = (data) => dispatch => {
-    SyncAction.reset(dispatch);
+    Dispatcher.initGui(dispatch);
     if (data['/accept'].jwt) {
       if (!store.getState().mode.play) {
         const jwtDecoded = jwt_decode(data['/accept'].jwt);
@@ -433,7 +433,7 @@ export default class WsEvent {
   }
 
   static onValidate = (data) => dispatch => {
-    SyncAction.reset(dispatch);
+    Dispatcher.initGui(dispatch);
     if (data['validate']) {
       dispatch(startUndefinedMode());
       dispatch(showInfoAlert({
