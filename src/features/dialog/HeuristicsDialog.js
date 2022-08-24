@@ -1,5 +1,5 @@
-import html2canvas from 'html2canvas';
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Legend, LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 import {
   Alert,
@@ -12,8 +12,8 @@ import {
   Typography,
   Slide
 } from '@mui/material/';
+import html2canvas from 'html2canvas';
 import CloseIcon from '@mui/icons-material/Close';
-import { useDispatch, useSelector } from "react-redux";
 import * as heuristicsDialog from '../../features/dialog/heuristicsDialogSlice';
 
 const handleDownloadImage = async () => {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   AppBar,
   Button,
@@ -15,7 +16,6 @@ import {
   Slide
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { useDispatch, useSelector } from "react-redux";
 import * as watchDialog from '../../features/dialog/watchDialogSlice';
 
 const data = [

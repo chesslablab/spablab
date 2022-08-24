@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from '../../common/Wording.js';
-import { closeResignAcceptDialog } from '../../features/dialog/acceptResignDialogSlice';
-import { acceptResign } from '../../features/modeSlice';
+import * as acceptResignDialog from '../../features/dialog/acceptResignDialogSlice';
+import * as mode from '../../features/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const AcceptResignDialog = () => {
@@ -13,8 +13,8 @@ const AcceptResignDialog = () => {
   const handleResignAccept = (event) => {
     event.preventDefault();
     WsAction.resign(state, Wording.verb.ACCEPT.toLowerCase());
-    dispatch(acceptResign());
-    dispatch(closeResignAcceptDialog());
+    dispatch(mode.acceptResign());
+    dispatch(acceptResignDialog.close());
   };
 
   return (
@@ -24,7 +24,7 @@ const AcceptResignDialog = () => {
         <form onSubmit={handleResignAccept}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(closeResignAcceptDialog())}>
+            <Button onClick={() => dispatch(acceptResignDialog.close())}>
               Cancel
             </Button>
           </DialogActions>
