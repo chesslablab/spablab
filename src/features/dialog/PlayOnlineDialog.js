@@ -12,7 +12,7 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
-import { setPlayOnline } from '../../features/mainButtonsSlice';
+import * as mainButtons from '../../features/mainButtonsSlice';
 import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import PlayOnlineTable from '../../features/table/PlayOnlineTable';
@@ -54,7 +54,7 @@ const PlayOnlineDialog = () => {
       submode: 'online'
     };
     dispatch(playOnlineDialog.close());
-    dispatch(setPlayOnline());
+    dispatch(mainButtons.setPlayOnline());
     WsAction.startPlay(state, settings);
   }
 

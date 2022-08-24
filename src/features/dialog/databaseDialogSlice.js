@@ -6,14 +6,14 @@ const databaseDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openDatabaseDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeDatabaseDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
-export const { openDatabaseDialog, closeDatabaseDialog } = databaseDialogSlice.actions;
+export const { open, close } = databaseDialogSlice.actions;
 export default databaseDialogSlice.reducer;

@@ -6,17 +6,17 @@ const createInviteCodeDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openCreateInviteCodeDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeCreateInviteCodeDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openCreateInviteCodeDialog,
-  closeCreateInviteCodeDialog
+  open,
+  close
 } = createInviteCodeDialogSlice.actions;
 export default createInviteCodeDialogSlice.reducer;

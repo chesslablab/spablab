@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
 import Dispatcher from '../../common/Dispatcher';
-import { setTraining } from '../../features/mainButtonsSlice';
-import { closePlayGmDialog } from '../../features/dialog/playGmDialogSlice';
+import * as mainButtons from '../../features/mainButtonsSlice';
+import * as playGmDialog from '../../features/dialog/playGmDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import WsAction from '../../ws/WsAction';
 
@@ -29,8 +29,8 @@ const PlayGmDialog = () => {
     dialogData.color === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = dialogData.color;
-    dispatch(setTraining());
-    dispatch(closePlayGmDialog());
+    dispatch(mainButtons.setTraining());
+    dispatch(playGmDialog.close());
     Dispatcher.initGui(dispatch);
     WsAction.startGm(state, color);
   }
@@ -43,7 +43,7 @@ const PlayGmDialog = () => {
             Guess the move
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(closePlayGmDialog())}>
+            <IconButton onClick={() => dispatch(playGmDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>

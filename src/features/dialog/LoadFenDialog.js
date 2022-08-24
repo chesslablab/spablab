@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
-import { closeLoadFenDialog } from '../../features/dialog/loadFenDialogSlice';
+import * as mainButtons from '../../features/mainButtonsSlice';
+import * as loadFenDialog from '../../features/dialog/loadFenDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
-import { setAnalysis } from '../../features/mainButtonsSlice';
 import WsAction from '../../ws/WsAction';
 
 const LoadFenDialog = () => {
@@ -13,8 +13,8 @@ const LoadFenDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    dispatch(setAnalysis());
-    dispatch(closeLoadFenDialog());
+    dispatch(mainButtons.setAnalysis());
+    dispatch(loadFenDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
     WsAction.startFen(state, event.target.elements.fen.value);
@@ -28,7 +28,7 @@ const LoadFenDialog = () => {
           <TextField fullWidth required name="fen" label="FEN string" />
           <DialogActions>
             <Button type="submit">Load</Button>
-            <Button onClick={() => dispatch(closeLoadFenDialog())}>
+            <Button onClick={() => dispatch(loadFenDialog.close())}>
               Cancel
             </Button>
           </DialogActions>

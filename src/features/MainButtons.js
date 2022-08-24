@@ -21,25 +21,25 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
+import Dispatcher from '../common/Dispatcher';
 import * as mainButtonConst from '../common/constants/mainButton';
 import * as modeConst from '../common/constants/mode';
-import Dispatcher from '../common/Dispatcher';
-import { setAnalysis, setTraining } from '../features/mainButtonsSlice';
-import { startAnalysis } from '../features/modeSlice';
-import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
-import { openDatabaseDialog } from '../features/dialog/databaseDialogSlice';
-import { openEnterInviteCodeDialog } from '../features/dialog/enterInviteCodeDialogSlice';
-import { openLoadFenDialog } from '../features/dialog/loadFenDialogSlice';
-import { openLoadPgnDialog } from '../features/dialog/loadPgnDialogSlice';
-import { openSearchEcoDialog } from '../features/dialog/searchEcoDialogSlice';
-import { openSearchMovetextDialog } from '../features/dialog/searchMovetextDialogSlice';
-import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
-import { openCheckmateSkillsDialog } from '../features/dialog/checkmateSkillsDialogSlice';
-import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
-import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
+import * as mainButtons from '../features/mainButtonsSlice';
+import * as mode from '../features/modeSlice';
+import * as createInviteCodeDialog from '../features/dialog/createInviteCodeDialogSlice';
+import * as databaseDialog from '../features/dialog/databaseDialogSlice';
+import * as enterInviteCodeDialog from '../features/dialog/enterInviteCodeDialogSlice';
+import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
+import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
+import * as searchEcoDialog from '../features/dialog/searchEcoDialogSlice';
+import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSlice';
+import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
+import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
+import * as playComputerDialog from '../features/dialog/playComputerDialogSlice';
+import * as playGmDialog from '../features/dialog/playGmDialogSlice';
 import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
-import { openWatchDialog } from '../features/dialog/watchDialogSlice';
+import * as progressDialog from '../features/dialog/progressDialogSlice';
+import * as watchDialog from '../features/dialog/watchDialogSlice';
 import WsAction from '../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -131,7 +131,7 @@ const MainButtons = () => {
         onClose={handleCloseAnalysis}
       >
         <MenuItem onClick={() => {
-          dispatch(setAnalysis());
+          dispatch(mainButtons.setAnalysis());
           handleCloseAnalysis();
           Dispatcher.initGui(dispatch);
           WsAction.startAnalysis(state.server.ws);
@@ -139,13 +139,13 @@ const MainButtons = () => {
           <RestartAltIcon size="small" />&nbsp;Start Position
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openLoadPgnDialog());
+          dispatch(loadPgnDialog.open());
           handleCloseAnalysis();
         }}>
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openLoadFenDialog());
+          dispatch(loadFenDialog.open());
           handleCloseAnalysis();
         }}>
           <WidgetsIcon size="small" />&nbsp;FEN String
@@ -161,7 +161,7 @@ const MainButtons = () => {
       <Button
         variant={state.mainButtons.name === mainButtonConst.MAIN_BUTTON_OPENING_DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
-        onClick={() => dispatch(openDatabaseDialog())}
+        onClick={() => dispatch(databaseDialog.open())}
       >
         Database
       </Button>
@@ -178,19 +178,19 @@ const MainButtons = () => {
         onClose={handleCloseTraining}
       >
         <MenuItem onClick={() => {
-          dispatch(openCheckmateSkillsDialog());
+          dispatch(checkmateSkillsDialog.open());
           handleCloseTraining();
         }}>
           <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openPlayGmDialog());
+          dispatch(playGmDialog.open());
           handleCloseTraining();
         }}>
           <QuizIcon size="small" />&nbsp;Guess the Move
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(setTraining());
+          dispatch(mainButtons.setTraining());
           dispatch(progressDialog.open());
           handleCloseTraining();
           Dispatcher.initGui(dispatch);
@@ -205,19 +205,19 @@ const MainButtons = () => {
         onClose={handleCloseOpeningSearch}
       >
         <MenuItem onClick={() => {
-          dispatch(openSearchEcoDialog());
+          dispatch(searchEcoDialog.open());
           handleCloseOpeningSearch();
         }}>
           <BookIcon size="small" />&nbsp;ECO Code
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openSearchMovetextDialog());
+          dispatch(searchMovetextDialog.open());
           handleCloseOpeningSearch();
         }}>
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(openSearchNameDialog());
+          dispatch(searchNameDialog.open());
           handleCloseOpeningSearch();
         }}>
           <SpellcheckIcon size="small" />&nbsp;Name
@@ -226,7 +226,7 @@ const MainButtons = () => {
       <Button
         sx={{ borderRadius: 0 }}
         startIcon={<OndemandVideoIcon />}
-        onClick={() => dispatch(openWatchDialog())}
+        onClick={() => dispatch(watchDialog.open())}
       >
         Watch
       </Button>
@@ -269,8 +269,8 @@ const MainButtons = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            dispatch(openCreateInviteCodeDialog());
-            dispatch(startAnalysis());
+            dispatch(createInviteCodeDialog.open());
+            dispatch(mode.startAnalysis());
             handleClosePlay();
           }}
         >
@@ -278,7 +278,7 @@ const MainButtons = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            dispatch(openEnterInviteCodeDialog());
+            dispatch(enterInviteCodeDialog.open());
             handleClosePlay();
           }}
         >
@@ -290,7 +290,7 @@ const MainButtons = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            dispatch(openPlayComputerDialog());
+            dispatch(playComputerDialog.open());
             handleClosePlay();
           }}
         >

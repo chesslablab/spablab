@@ -10,9 +10,9 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import { closeEnterInviteCodeDialog } from '../../features/dialog/enterInviteCodeDialogSlice';
-import { setPlayAFriend } from '../../features/mainButtonsSlice';
-import { startAnalysis } from '../../features/modeSlice';
+import * as mainButtons from '../../features/mainButtonsSlice';
+import * as mode from '../../features/modeSlice';
+import * as enterInviteCodeDialog from '../../features/dialog/enterInviteCodeDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const EnterInviteCodeDialog = () => {
@@ -30,10 +30,9 @@ const EnterInviteCodeDialog = () => {
   };
 
   const handlePlay = () => {
-    dispatch(setPlayAFriend());
-    dispatch(startAnalysis());
-    dispatch(closeEnterInviteCodeDialog());
-    // Dispatcher.initGui(dispatch);
+    dispatch(mainButtons.setPlayAFriend());
+    dispatch(mode.startAnalysis());
+    dispatch(enterInviteCodeDialog.close());
     WsAction.accept(state, dialogData.hash);
   };
 
@@ -45,7 +44,7 @@ const EnterInviteCodeDialog = () => {
             Play a friend
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(closeEnterInviteCodeDialog())}>
+            <IconButton onClick={() => dispatch(enterInviteCodeDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>

@@ -6,14 +6,14 @@ const playComputerDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openPlayComputerDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closePlayComputerDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
-export const { openPlayComputerDialog, closePlayComputerDialog } = playComputerDialogSlice.actions;
+export const { open, close } = playComputerDialogSlice.actions;
 export default playComputerDialogSlice.reducer;

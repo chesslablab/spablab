@@ -11,8 +11,8 @@ import {
   TableRow
 } from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
-import { setDatabase } from '../../features/mainButtonsSlice';
-import { closeDatabaseDialog } from '../../features/dialog/databaseDialogSlice';
+import * as mainButtons from '../../features/mainButtonsSlice';
+import * as databaseDialog from '../../features/dialog/databaseDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import * from '../../features/table/gameTableSlice';
 import WsAction from '../../ws/WsAction';
@@ -22,9 +22,9 @@ const DatabaseResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {
-    dispatch(closeDatabaseDialog());
+    dispatch(databaseDialog.close());
     dispatch(progressDialog.open());
-    dispatch(setDatabase());
+    dispatch(mainButtons.setDatabase());
     Dispatcher.initGui(dispatch);
     WsAction.startPgn(state, item.movetext);
     dispatch(gameTable.show({

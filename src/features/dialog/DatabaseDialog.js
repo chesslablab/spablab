@@ -12,9 +12,8 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import { setDatabase } from '../../features/mainButtonsSlice';
 import * as infoAlert from '../../features/alert/infoAlertSlice';
-import { closeDatabaseDialog } from '../../features/dialog/databaseDialogSlice';
+import * as databaseDialog from '../../features/dialog/databaseDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
 
@@ -43,10 +42,10 @@ const DatabaseDialog = ({props}) => {
           setResult(data);
         });
       } else if (res.status === 204) {
-        dispatch(closeDatabaseDialog());
+        dispatch(databaseDialog.close());
         dispatch(infoAlert.show({ info: 'No results were found, please try again.' }));
       } else {
-        dispatch(closeDatabaseDialog());
+        dispatch(databaseDialog.close());
         dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
       }
     });
@@ -60,7 +59,7 @@ const DatabaseDialog = ({props}) => {
             Database
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(closeDatabaseDialog())}>
+            <IconButton onClick={() => dispatch(databaseDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>

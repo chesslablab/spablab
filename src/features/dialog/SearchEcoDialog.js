@@ -11,7 +11,7 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import { closeSearchEcoDialog } from './searchEcoDialogSlice';
+import * as searchEcoDialog from './searchEcoDialogSlice';
 import Opening from '../../common/Opening.js';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
 
@@ -36,7 +36,7 @@ const SearchEcoDialog = ({ props }) => {
           <Grid item xs={1}>
             <IconButton onClick={() => {
               setOpenings([]);
-              dispatch(closeSearchEcoDialog());
+              dispatch(searchEcoDialog.close());
             }}>
               <CloseIcon />
             </IconButton>

@@ -13,9 +13,9 @@ import {
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
 import Dispatcher from '../../common/Dispatcher';
-import { setPlayComputer } from '../../features/mainButtonsSlice';
-import { setStockfish } from '../../features/modeSlice';
-import { closePlayComputerDialog } from '../../features/dialog/playComputerDialogSlice';
+import * as mainButtons from '../../features/mainButtonsSlice';
+import * as mode from '../../features/modeSlice';
+import * as playComputerDialog from '../../features/dialog/playComputerDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import WsAction from '../../ws/WsAction';
 
@@ -34,9 +34,9 @@ const PlayComputerDialog = () => {
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = dialogData.color;
     const payload = configure();
-    dispatch(setStockfish(payload));
-    dispatch(setPlayComputer());
-    dispatch(closePlayComputerDialog());
+    dispatch(mode.setStockfish(payload));
+    dispatch(mainButtons.setPlayComputer());
+    dispatch(playComputerDialog.close());
     Dispatcher.initGui(dispatch);
     WsAction.startStockfishByColor(state, color);
   };
@@ -79,7 +79,7 @@ const PlayComputerDialog = () => {
             Play computer
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(closePlayComputerDialog())}>
+            <IconButton onClick={() => dispatch(playComputerDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>

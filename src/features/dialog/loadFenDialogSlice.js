@@ -6,14 +6,14 @@ const loadFenDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openLoadFenDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeLoadFenDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
-export const { openLoadFenDialog, closeLoadFenDialog } = loadFenDialogSlice.actions;
+export const { open, close } = loadFenDialogSlice.actions;
 export default loadFenDialogSlice.reducer;
