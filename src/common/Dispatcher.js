@@ -1,39 +1,36 @@
 import Opening from '../common/Opening.js';
-import { resetBar } from '../features/heuristicsBarSlice';
+import * as board from '../features/boardSlice';
+import * as heuristicsBar from '../features/heuristicsBarSlice';
+import * as history from '../features/historySlice';
 import * as infoAlert from '../features/alert/infoAlertSlice';
 import * as gameTable from '../features/table/gameTableSlice';
-import {
-  closeOpeningAnalysisTable,
-  showOpeningAnalysisTable
-} from '../features/table/openingAnalysisTableSlice';
-import { goTo } from '../features/historySlice';
-import { start } from '../features/boardSlice';
+import * as openingAnalysisTable from '../features/table/openingAnalysisTableSlice';
 
 export default class Dispatcher {
   static initGui = (dispatch) => {
-    dispatch(resetBar());
-    dispatch(closeOpeningAnalysisTable());
+    dispatch(heuristicsBar.resetBar());
+    dispatch(openingAnalysisTable.close());
     dispatch(gameTable.close());
     dispatch(infoAlert.close());
-    dispatch(goTo({ back: 0 }));
-    dispatch(start());
+    dispatch(history.goTo({ back: 0 }));
+    dispatch(board.start());
   };
 
   static openingAnalysisByMovetext = (dispatch, movetext) => {
     let rows = Opening.byMovetext(movetext);
     if (rows) {
-      dispatch(showOpeningAnalysisTable({ rows: rows }));
+      dispatch(openingAnalysisTable.show({ rows: rows }));
     } else {
-      dispatch(closeOpeningAnalysisTable());
+      dispatch(openingAnalysisTable.close());
     }
   };
 
   static openingAnalysisBySameMovetext = (dispatch, movetext) => {
     let rows = Opening.bySameMovetext(movetext);
     if (rows) {
-      dispatch(showOpeningAnalysisTable({ rows: rows }));
+      dispatch(openingAnalysisTable.show({ rows: rows }));
     } else {
-      dispatch(closeOpeningAnalysisTable());
+      dispatch(openingAnalysisTable.close());
     }
   };
 }
