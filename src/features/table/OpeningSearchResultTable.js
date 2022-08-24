@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublishIcon from '@mui/icons-material/Publish';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import Dispatcher from '../../common/Dispatcher';
 import { closeSearchEcoDialog } from '../../features/dialog/searchEcoDialogSlice';
 import { closeSearchMovetextDialog } from '../../features/dialog/searchMovetextDialogSlice';
 import { closeSearchNameDialog } from '../../features/dialog/searchNameDialogSlice';
@@ -19,6 +20,7 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(closeSearchNameDialog());
     dispatch(openProgressDialog());
     dispatch(setOpeningSearch());
+    Dispatcher.initGui(dispatch);
     WsAction.startPgn(state, movetext);
   };
 

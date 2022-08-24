@@ -48,7 +48,7 @@ const DatabaseResultTable = ({props}) => {
         severity="info"
         style={{ margin: 15 }}
       >
-        Are you feeling lucky? Every time the <b>Search</b> button is clicked, up to 25 random records are shown matching the criteria.
+        Are you feeling lucky? Every time the Search button is clicked, up to 25 random records are shown matching the criteria.
       </Alert>
       <Table stickyHeader aria-label="simple table">
         <TableBody>
