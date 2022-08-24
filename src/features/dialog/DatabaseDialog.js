@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
+  Alert,
   Button,
   Dialog,
   DialogContent,
@@ -66,6 +67,13 @@ const DatabaseDialog = ({props}) => {
         </Grid>
       </DialogTitle>
       <DialogContent>
+        <Alert
+          className="info-alert"
+          severity="info"
+          style={{ margin: 15 }}
+        >
+          Are you feeling lucky? Every time the Search button is clicked, up to 25 random records are shown matching the criteria.
+        </Alert>
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
