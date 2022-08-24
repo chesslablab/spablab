@@ -1,6 +1,5 @@
 import jwt_decode from "jwt-decode";
 import store from '../app/store';
-import Opening from '../common/Opening.js';
 import Pgn from '../common/Pgn';
 import Dispatcher from '../common/Dispatcher';
 import {
@@ -30,10 +29,6 @@ import {
   closeGameTable,
   showGameTable
 } from '../features/table/gameTableSlice';
-import {
-  closeOpeningAnalysisTable,
-  showOpeningAnalysisTable
-} from '../features/table/openingAnalysisTableSlice';
 import {
   start,
   startFen,
@@ -73,24 +68,6 @@ import {
 } from '../features/modeConstants';
 import WsAction from './WsAction';
 
-const openingByMovetext = (dispatch, movetext) => {
-  let rows = Opening.byMovetext(movetext);
-  if (rows) {
-    dispatch(showOpeningAnalysisTable({ rows: rows }));
-  } else {
-    dispatch(closeOpeningAnalysisTable());
-  }
-};
-
-const openingBySameMovetext = (dispatch, movetext) => {
-  let rows = Opening.bySameMovetext(movetext);
-  if (rows) {
-    dispatch(showOpeningAnalysisTable({ rows: rows }));
-  } else {
-    dispatch(closeOpeningAnalysisTable());
-  }
-};
-
 export default class WsEvent {
   static onStartAnalysis = () => dispatch => {
     dispatch(startAnalysis({}));
@@ -127,7 +104,7 @@ export default class WsEvent {
         fen: data['/start'].fen,
         history: data['/start'].history
       }));
-      openingBySameMovetext(dispatch, data['/start'].movetext);
+      Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(startUndefinedMode());
@@ -240,7 +217,7 @@ export default class WsEvent {
         dispatch(validMove(payload));
       }
       if (store.getState().mode.name === MODE_ANALYSIS) {
-        openingByMovetext(dispatch, payload.movetext);
+        Dispatcher.openingAnalysisByMovetext(dispatch, payload.movetext);
       } else if (store.getState().mode.name === MODE_GM) {
         dispatch(openProgressDialog());
         WsAction.gm(store.getState());
@@ -301,7 +278,7 @@ export default class WsEvent {
     } else if (data['/undo'].mode === MODE_PLAY) {
       dispatch(declineTakeback());
     } else if (data['/undo'].mode === MODE_ANALYSIS) {
-      openingByMovetext(dispatch, data['/undo'].movetext);
+      Dispatcher.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     }
   }
@@ -428,7 +405,7 @@ export default class WsEvent {
         fen: data['/stockfish'].state.fen
       }));
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
-      openingByMovetext(dispatch, data['/stockfish'].state.movetext);
+      Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].state.movetext);
     }
   }
 

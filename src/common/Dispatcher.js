@@ -1,7 +1,11 @@
+import Opening from '../common/Opening.js';
 import { resetBar } from '../features/heuristicsBarSlice';
-import { closeOpeningAnalysisTable } from '../features/table/openingAnalysisTableSlice';
-import { closeGameTable } from '../features/table/gameTableSlice';
 import { closeInfoAlert } from '../features/alert/infoAlertSlice';
+import { closeGameTable } from '../features/table/gameTableSlice';
+import {
+  closeOpeningAnalysisTable,
+  showOpeningAnalysisTable
+} from '../features/table/openingAnalysisTableSlice';
 import { goTo } from '../features/historySlice';
 import { start } from '../features/boardSlice';
 
@@ -13,5 +17,23 @@ export default class Dispatcher {
     dispatch(closeInfoAlert());
     dispatch(goTo({ back: 0 }));
     dispatch(start());
+  };
+
+  static openingAnalysisByMovetext = (dispatch, movetext) => {
+    let rows = Opening.byMovetext(movetext);
+    if (rows) {
+      dispatch(showOpeningAnalysisTable({ rows: rows }));
+    } else {
+      dispatch(closeOpeningAnalysisTable());
+    }
+  };
+
+  static openingAnalysisBySameMovetext = (dispatch, movetext) => {
+    let rows = Opening.bySameMovetext(movetext);
+    if (rows) {
+      dispatch(showOpeningAnalysisTable({ rows: rows }));
+    } else {
+      dispatch(closeOpeningAnalysisTable());
+    }
   };
 }
