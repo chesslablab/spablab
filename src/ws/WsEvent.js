@@ -4,6 +4,7 @@ import * as modeConst from '../common/constants/mode';
 import Pgn from '../common/Pgn';
 import Dispatcher from '../common/Dispatcher';
 import * as board from '../features/boardSlice';
+import * as heuristicsBar from '../features/heuristicsBarSlice';
 import * as mode from '../features/modeSlice';
 import * as infoAlert from '../features/alert/infoAlertSlice';
 import * as acceptDrawDialog from '../features/dialog/acceptDrawDialogSlice';
@@ -184,7 +185,7 @@ export default class WsEvent {
   }
 
   static onHeuristicsBar = (data) => dispatch => {
-    dispatch(updateBar({
+    dispatch(heuristicsBar.updateBar({
       dimensions: data['/heuristics_bar'].dimensions,
       balance: data['/heuristics_bar'].balance
     }));
