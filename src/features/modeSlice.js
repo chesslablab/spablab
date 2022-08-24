@@ -1,17 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import * as modeConst from '../common/constants/mode';
 import Wording from '../common/Wording.js';
-import {
-  MODE_ANALYSIS,
-  MODE_GM,
-  MODE_FEN,
-  MODE_PGN,
-  MODE_PLAY,
-  MODE_STOCKFISH,
-  MODE_UNDEFINED
-} from './modeConstants';
 
 const initialState = {
-  name: MODE_ANALYSIS
+  name: modeConst.ANALYSIS
 };
 
 const modeSlice = createSlice({
@@ -20,24 +12,24 @@ const modeSlice = createSlice({
   reducers: {
     startAnalysis: () => initialState,
     startFen: (state) => {
-      state.name = MODE_FEN;
+      state.name = modeConst.FEN;
     },
     startPgn: (state) => {
-      state.name = MODE_PGN;
+      state.name = modeConst.PGN;
     },
     startUndefined: (state) => {
-      state.name = MODE_UNDEFINED;
+      state.name = modeConst.UNDEFINED;
     },
     setGm(state, action) {
-      state.name = MODE_GM;
+      state.name = modeConst.GM;
       state.gm = action.payload;
     },
     setPlay(state, action) {
-      state.name = MODE_PLAY;
+      state.name = modeConst.PLAY;
       state.play = action.payload;
     },
     setStockfish(state, action) {
-      state.name = MODE_STOCKFISH;
+      state.name = modeConst.STOCKFISH;
       state.computer = action.payload;
     },
     gmMovetext(state, action) {

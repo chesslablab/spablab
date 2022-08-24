@@ -21,19 +21,9 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
+import * as mainButtonConst from '../common/constants/mainButton';
+import * as modeConst from '../common/constants/mode';
 import Dispatcher from '../common/Dispatcher';
-import {
-  MAIN_BUTTON_ANALYSIS,
-  MAIN_BUTTON_PLAY_ONLINE,
-  MAIN_BUTTON_PLAY_A_FRIEND,
-  MAIN_BUTTON_PLAY_COMPUTER,
-  MAIN_BUTTON_TRAINING,
-  MAIN_BUTTON_OPENING_SEARCH,
-  MAIN_BUTTON_OPENING_DATABASE
-} from '../features/mainButtonsConstants';
-import {
-  MODE_PLAY,
-} from '../features/modeConstants';
 import { setAnalysis, setTraining } from '../features/mainButtonsSlice';
 import { startAnalysis } from '../features/modeSlice';
 import { openCreateInviteCodeDialog } from '../features/dialog/createInviteCodeDialogSlice';
@@ -47,8 +37,8 @@ import { openSearchNameDialog } from '../features/dialog/searchNameDialogSlice';
 import { openCheckmateSkillsDialog } from '../features/dialog/checkmateSkillsDialogSlice';
 import { openPlayComputerDialog } from '../features/dialog/playComputerDialogSlice';
 import { openPlayGmDialog } from '../features/dialog/playGmDialogSlice';
-import { openPlayOnlineDialog } from '../features/dialog/playOnlineDialogSlice';
-import { openProgressDialog } from '../features/dialog/progressDialogSlice';
+import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
+import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import { openWatchDialog } from '../features/dialog/watchDialogSlice';
 import WsAction from '../ws/WsAction';
 
@@ -115,7 +105,7 @@ const MainButtons = () => {
       variant="text"
       aria-label="Main Menu"
       fullWidth={matches ? false : true}
-      disabled={state.mode.name === MODE_PLAY &&
+      disabled={state.mode.name === modeConst.PLAY &&
         state.mode.play.accepted &&
         !state.mode.play.draw &&
         !state.mode.play.resign &&
@@ -129,7 +119,7 @@ const MainButtons = () => {
       </IconButton>
       <Button
         sx={{ borderRadius: 0 }}
-        variant={state.mainButtons.name === MAIN_BUTTON_ANALYSIS ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
       >
@@ -162,21 +152,21 @@ const MainButtons = () => {
         </MenuItem>
       </Menu>
       <Button
-        variant={state.mainButtons.name === MAIN_BUTTON_OPENING_SEARCH ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonConst.OPENING_SEARCH ? "contained" : "text"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >
         Opening Search
       </Button>
       <Button
-        variant={state.mainButtons.name === MAIN_BUTTON_OPENING_DATABASE ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonConst.MAIN_BUTTON_OPENING_DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
         onClick={() => dispatch(openDatabaseDialog())}
       >
         Database
       </Button>
       <Button
-        variant={state.mainButtons.name === MAIN_BUTTON_TRAINING ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonConst.TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
       >
@@ -201,7 +191,7 @@ const MainButtons = () => {
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(setTraining());
-          dispatch(openProgressDialog());
+          dispatch(progressDialog.open());
           handleCloseTraining();
           Dispatcher.initGui(dispatch);
           WsAction.randomGame(state);
@@ -244,9 +234,9 @@ const MainButtons = () => {
         aria-controls={Boolean(anchorElPlay) ? 'demo-customized-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={Boolean(anchorElPlay) ? 'true' : undefined}
-        variant={state.mainButtons.name === MAIN_BUTTON_PLAY_ONLINE ||
-          state.mainButtons.name === MAIN_BUTTON_PLAY_A_FRIEND ||
-          state.mainButtons.name === MAIN_BUTTON_PLAY_COMPUTER
+        variant={state.mainButtons.name === mainButtonConst.PLAY_ONLINE ||
+          state.mainButtons.name === mainButtonConst.PLAY_A_FRIEND ||
+          state.mainButtons.name === mainButtonConst.PLAY_COMPUTER
             ? "contained"
             : "text"
         }
@@ -266,7 +256,7 @@ const MainButtons = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            dispatch(openPlayOnlineDialog());
+            dispatch(playOnlineDialog.open());
             handleClosePlay();
             WsAction.onlineGames(state);
           }}

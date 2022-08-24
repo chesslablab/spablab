@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { closeSearchNameDialog } from './searchNameDialogSlice';
 import Opening from '../../common/Opening.js';
-import { showInfoAlert } from '../../features/alert/infoAlertSlice';
+import * as infoAlert from '../../features/alert/infoAlertSlice';
 import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
 
 const SearchNameDialog = ({ props }) => {
@@ -26,7 +26,7 @@ const SearchNameDialog = ({ props }) => {
     setOpenings(openings);
     if (openings.length === 0) {
       dispatch(closeSearchNameDialog());
-      dispatch(showInfoAlert({ info: 'No results were found. Please try again.' }));
+      dispatch(infoAlert.show({ info: 'No results were found. Please try again.' }));
     }
   }
 

@@ -9,13 +9,13 @@ const infoAlertSlice = createSlice({
   name: 'infoAlert',
   initialState,
   reducers: {
-    closeInfoAlert: () => initialState,
-    showInfoAlert(state, action) {
+    close: () => initialState,
+    show(state, action) {
       state.open = true;
       state.info = action.payload.info;
     }
   }
 });
 
-export const { closeInfoAlert, showInfoAlert } = infoAlertSlice.actions;
+export const { close, show } = infoAlertSlice.actions;
 export default infoAlertSlice.reducer;

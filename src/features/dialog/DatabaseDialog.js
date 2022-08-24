@@ -13,9 +13,9 @@ import {
   TextField
 } from '@mui/material';
 import { setDatabase } from '../../features/mainButtonsSlice';
-import { showInfoAlert } from '../../features/alert/infoAlertSlice';
+import * as infoAlert from '../../features/alert/infoAlertSlice';
 import { closeDatabaseDialog } from '../../features/dialog/databaseDialogSlice';
-import { closeProgressDialog, openProgressDialog } from '../../features/dialog/progressDialogSlice';
+import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
 
 const DatabaseDialog = ({props}) => {
@@ -25,7 +25,7 @@ const DatabaseDialog = ({props}) => {
 
   const handleSearch = async (event) => {
     event.preventDefault();
-    dispatch(openProgressDialog());
+    dispatch(progressDialog.open());
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search`, {
       method: 'POST',
       body: JSON.stringify({
@@ -37,17 +37,17 @@ const DatabaseDialog = ({props}) => {
         [event.target.elements.Result.name]: event.target.elements.Result.value
       })
     }).then(res => {
-      dispatch(closeProgressDialog());
+      dispatch(progressDialog.close());
       if (res.status === 200) {
         res.json().then(data => {
           setResult(data);
         });
       } else if (res.status === 204) {
         dispatch(closeDatabaseDialog());
-        dispatch(showInfoAlert({ info: 'No results were found, please try again.' }));
+        dispatch(infoAlert.show({ info: 'No results were found, please try again.' }));
       } else {
         dispatch(closeDatabaseDialog());
-        dispatch(showInfoAlert({ info: 'Whoops! Something went wrong, please try again.' }));
+        dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
       }
     });
   };

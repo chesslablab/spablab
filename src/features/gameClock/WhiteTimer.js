@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
 import { Box } from '@mui/material';
 import Pgn from '../../common/Pgn';
-import { showInfoAlert } from '../../features/alert/infoAlertSlice';
+import * as infoAlert from '../../features/alert/infoAlertSlice';
 import { timeOver } from '../../features/modeSlice';
 
 const WhiteTimer = () => {
@@ -14,7 +14,7 @@ const WhiteTimer = () => {
     expiryTimestamp,
     onExpire: () => {
       dispatch(timeOver({ color: Pgn.symbol.WHITE }));
-      dispatch(showInfoAlert({ info: 'Black wins.' }));
+      dispatch(infoAlert.show({ info: 'Black wins.' }));
     }
   });
   const isInitialMount = useRef(true);

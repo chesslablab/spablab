@@ -1,7 +1,7 @@
 import Opening from '../common/Opening.js';
 import { resetBar } from '../features/heuristicsBarSlice';
-import { closeInfoAlert } from '../features/alert/infoAlertSlice';
-import { closeGameTable } from '../features/table/gameTableSlice';
+import * as infoAlert from '../features/alert/infoAlertSlice';
+import * as gameTable from '../features/table/gameTableSlice';
 import {
   closeOpeningAnalysisTable,
   showOpeningAnalysisTable
@@ -13,8 +13,8 @@ export default class Dispatcher {
   static initGui = (dispatch) => {
     dispatch(resetBar());
     dispatch(closeOpeningAnalysisTable());
-    dispatch(closeGameTable());
-    dispatch(closeInfoAlert());
+    dispatch(gameTable.close());
+    dispatch(infoAlert.close());
     dispatch(goTo({ back: 0 }));
     dispatch(start());
   };

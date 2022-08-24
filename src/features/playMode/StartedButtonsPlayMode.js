@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
+import * as modeConst from '../../common/constants/mode';
 import { openDrawOfferDialog } from '../../features/dialog/offerDrawDialogSlice';
 import { openResignAcceptDialog } from '../../features/dialog/acceptResignDialogSlice';
 import { openTakebackOfferDialog } from '../../features/dialog/offerTakebackDialogSlice';
-import { MODE_PLAY } from '../../features/modeConstants';
 
 const useStyles = makeStyles({
   buttonGroup: {
@@ -18,7 +18,7 @@ const StartedButtonsPlayMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.name === MODE_PLAY) {
+  if (state.mode.name === modeConst.PLAY) {
     if (state.mode.play.accepted) {
       if (
         !state.board.isMate &&

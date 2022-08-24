@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
-import { closeAcceptTakebackDialog } from '../../features/dialog/acceptTakebackDialogSlice';
+import * as acceptTakebackDialog from '../../features/dialog/acceptTakebackDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const AcceptTakebackDialog = () => {
@@ -13,13 +13,13 @@ const AcceptTakebackDialog = () => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.ACCEPT.toLowerCase());
     WsAction.undo(state);
-    dispatch(closeAcceptTakebackDialog());
+    dispatch(acceptTakebackDialog.close());
   };
 
   const handleTakebackDecline = (event) => {
     event.preventDefault();
     WsAction.takeback(state, Wording.verb.DECLINE.toLowerCase());
-    dispatch(closeAcceptTakebackDialog());
+    dispatch(acceptTakebackDialog.close());
   };
 
   return (
@@ -33,7 +33,7 @@ const AcceptTakebackDialog = () => {
         <form onSubmit={handleTakebackAccept}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(closeAcceptTakebackDialog())}>
+            <Button onClick={() => dispatch(acceptTakebackDialog.close())}>
               Decline
             </Button>
           </DialogActions>

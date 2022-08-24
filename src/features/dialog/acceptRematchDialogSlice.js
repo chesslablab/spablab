@@ -6,17 +6,17 @@ const acceptRematchDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openRematchAcceptDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeRematchAcceptDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openRematchAcceptDialog,
-  closeRematchAcceptDialog
+  open,
+  close
 } = acceptRematchDialogSlice.actions;
 export default acceptRematchDialogSlice.reducer;

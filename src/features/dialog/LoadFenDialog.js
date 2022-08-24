@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
 import { closeLoadFenDialog } from '../../features/dialog/loadFenDialogSlice';
-import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
+import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import { setAnalysis } from '../../features/mainButtonsSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -15,7 +15,7 @@ const LoadFenDialog = () => {
     event.preventDefault();
     dispatch(setAnalysis());
     dispatch(closeLoadFenDialog());
-    dispatch(openProgressDialog());
+    dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
     WsAction.startFen(state, event.target.elements.fen.value);
   };

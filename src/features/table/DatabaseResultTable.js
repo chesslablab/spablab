@@ -13,8 +13,8 @@ import {
 import Dispatcher from '../../common/Dispatcher';
 import { setDatabase } from '../../features/mainButtonsSlice';
 import { closeDatabaseDialog } from '../../features/dialog/databaseDialogSlice';
-import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
-import { showGameTable } from '../../features/table/gameTableSlice';
+import * as progressDialog from '../../features/dialog/progressDialogSlice';
+import * from '../../features/table/gameTableSlice';
 import WsAction from '../../ws/WsAction';
 
 const DatabaseResultTable = ({props}) => {
@@ -23,11 +23,11 @@ const DatabaseResultTable = ({props}) => {
 
   const handleLoad = (item) => {
     dispatch(closeDatabaseDialog());
-    dispatch(openProgressDialog());
+    dispatch(progressDialog.open());
     dispatch(setDatabase());
     Dispatcher.initGui(dispatch);
     WsAction.startPgn(state, item.movetext);
-    dispatch(showGameTable({
+    dispatch(gameTable.show({
       game: {
         Event: item.Event,
         Site: item.Site,

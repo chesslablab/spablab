@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as modeConst from '../common/constants/mode';
 import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
 import Piece from '../common/Piece';
@@ -7,10 +8,6 @@ import {
   pickPiece,
   leavePiece
 } from '../features/boardSlice';
-import {
-  MODE_PLAY,
-  MODE_UNDEFINED
-} from '../features/modeConstants';
 import WsAction from '../ws/WsAction';
 
 const Board = ({props}) => {
@@ -22,7 +19,7 @@ const Board = ({props}) => {
   }, [dispatch]);
 
   const handleMove = (payload) => {
-    if (state.mode.name === MODE_PLAY) {
+    if (state.mode.name === modeConst.PLAY) {
       if (
         !state.board.isMate &&
         !state.mode.play.draw &&
@@ -42,7 +39,7 @@ const Board = ({props}) => {
           }
         }
       }
-    } else if (state.mode.name !== MODE_UNDEFINED) {
+    } else if (state.mode.name !== modeConst.UNDEFINED) {
       if (
         !state.board.isMate &&
         state.history.back === 0

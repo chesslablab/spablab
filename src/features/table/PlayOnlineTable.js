@@ -10,9 +10,9 @@ import {
   TableCell,
   TableBody
 } from '@mui/material';
-import { closePlayOnlineDialog } from '../../features/dialog/playOnlineDialogSlice';
 import { setPlayOnline } from '../../features/mainButtonsSlice';
 import { startAnalysis } from '../../features/modeSlice';
+import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineTable = () => {
@@ -31,7 +31,7 @@ const PlayOnlineTable = () => {
     dispatch(setPlayOnline());
     WsAction.accept(state, hash);
     dispatch(startAnalysis());
-    dispatch(closePlayOnlineDialog());
+    dispatch(playOnlineDialog.close());
   };
 
   if (state.playOnlineDialog.rows.length > 0) {

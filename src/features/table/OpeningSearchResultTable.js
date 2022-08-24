@@ -6,7 +6,7 @@ import Dispatcher from '../../common/Dispatcher';
 import { closeSearchEcoDialog } from '../../features/dialog/searchEcoDialogSlice';
 import { closeSearchMovetextDialog } from '../../features/dialog/searchMovetextDialogSlice';
 import { closeSearchNameDialog } from '../../features/dialog/searchNameDialogSlice';
-import { openProgressDialog } from '../../features/dialog/progressDialogSlice';
+import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import { setOpeningSearch } from '../../features/mainButtonsSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -18,7 +18,7 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(closeSearchEcoDialog());
     dispatch(closeSearchMovetextDialog());
     dispatch(closeSearchNameDialog());
-    dispatch(openProgressDialog());
+    dispatch(progressDialog.open());
     dispatch(setOpeningSearch());
     Dispatcher.initGui(dispatch);
     WsAction.startPgn(state, movetext);

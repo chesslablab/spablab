@@ -6,17 +6,17 @@ const acceptDrawDialogSlice = createSlice({
     open: false
   },
   reducers: {
-    openAcceptDrawDialog(state) {
+    open(state) {
       state.open = true;
     },
-    closeAcceptDrawDialog(state) {
+    close(state) {
       state.open = false;
     }
   }
 });
 
 export const {
-  openAcceptDrawDialog,
-  closeAcceptDrawDialog
+  open,
+  close
 } = acceptDrawDialogSlice.actions;
 export default acceptDrawDialogSlice.reducer;
