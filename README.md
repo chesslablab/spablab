@@ -19,21 +19,24 @@ Figure 1. Analysis Board > Start Position
 Figure 2. Opening Search > ECO Code
 
 ![Figure 3](/src/assets/img/docs/figure-03.png)
-Figure 3. Training > Random Tournament Game
+Figure 3. Database > Search
 
 ![Figure 4](/src/assets/img/docs/figure-04.png)
-Figure 4. Heuristics of a game
+Figure 4. Training > Random Tournament Game
 
 ![Figure 5](/src/assets/img/docs/figure-05.png)
-Figure 5. Play > Online
+Figure 5. Heuristics of a game
 
 ![Figure 6](/src/assets/img/docs/figure-06.png)
-Figure 6. Play > Computer
+Figure 6. Play > Online > Create Game
 
 ![Figure 7](/src/assets/img/docs/figure-07.png)
 Figure 7. Play > A friend > Create invite code
 
-### Learn More
+![Figure 8](/src/assets/img/docs/figure-08.png)
+Figure 8. Play > Computer > Create Game
+
+### Setup
 
 Thank you for your interest in this exciting project! Redux Chess is "just a chessboard" as lightweight as it can possibly be. It requires this [chess server](https://github.com/chesslablab/chess-server) up and running as well as this [chess API](https://github.com/chesslablab/chess-api).
 
@@ -91,7 +94,7 @@ Commands available:
 Listening to commands...
 ```
 
-Also, it sends HTTP requests to a REST API that needs to be setup along with a database as it is described in the README.md file.
+Also, it sends HTTP requests to a REST API that needs to be setup along with a database as it is described in the [README.md](https://github.com/chesslablab/chess-api) file.
 
 ### License
 

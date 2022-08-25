@@ -116,8 +116,7 @@ const HeuristicsDialog = () => {
      >
        A chess game can be plotted in terms of balance. +1 is the best
        possible evaluation for White and -1 the best possible evaluation for
-       Black. Both forces being set to 0 means they're actually offset and,
-       therefore, balanced.
+       Black. Both forces being set to 0 means they're balanced.
      </Alert>
      <Heuristics />
     </Dialog>
