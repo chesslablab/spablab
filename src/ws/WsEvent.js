@@ -165,7 +165,7 @@ export default class WsEvent {
       } else if (store.getState().mode.name === modeConst.GM) {
         dispatch(infoAlert.close());
         dispatch(progressDialog.open());
-        fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search`, {
+        fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/grandmaster`, {
           method: 'POST',
           body: JSON.stringify({
             movetext: data['/play_fen'].movetext
