@@ -1,7 +1,7 @@
 import store from '../app/store';
 import * as modeConst from '../common/constants/mode';
 import Wording from '../common/Wording.js';
-import { playMove } from '../features/boardSlice';
+import * as board from '../features/boardSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
 import WsEvent from './WsEvent';
 
@@ -59,7 +59,7 @@ export default class WsEventListener {
       case '/play_fen' === cmd:
         if (store.getState().mode.name === modeConst.PLAY) {
           if (store.getState().mode.play.color !== data['/play_fen'].turn) {
-            dispatch(playMove({ fen: data['/play_fen'].fen }));
+            dispatch(board.playMove({ fen: data['/play_fen'].fen }));
           }
         }
         dispatch(WsEvent.onPlayfen(props, data));
