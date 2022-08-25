@@ -26,10 +26,6 @@ export default class WsEvent {
       color: data['/start'].color,
       movetext: null
     }));
-    if (data['/start'].color === Pgn.symbol.BLACK) {
-      dispatch(board.flip());
-      WsAction.gm(store.getState());
-    }
   }
 
   static onStartFen = (data) => dispatch => {
@@ -167,8 +163,40 @@ export default class WsEvent {
       if (store.getState().mode.name === modeConst.ANALYSIS) {
         Dispatcher.openingAnalysisByMovetext(dispatch, payload.movetext);
       } else if (store.getState().mode.name === modeConst.GM) {
+        dispatch(infoAlert.close());
         dispatch(progressDialog.open());
-        WsAction.gm(store.getState());
+        fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search`, {
+          method: 'POST',
+          body: JSON.stringify({
+            movetext: data['/play_fen'].movetext
+          })
+        }).then(res => {
+          if (res.status === 200) {
+            res.json().then(data => {
+              const game = data[0];
+              dispatch(gameTable.show({
+                game: {
+                  Event: game.Event,
+                  Site: game.Site,
+                  Date: game.Date,
+                  White: game.White,
+                  Black: game.Black,
+                  Result: game.Result,
+                  ECO: game.ECO
+                }
+              }));
+            });
+          } else if (res.status === 204) {
+            dispatch(gameTable.close());
+            dispatch(infoAlert.show({ info: 'This game was not found in the database, please try again.' }));
+          }
+        })
+        .catch(error => {
+          dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+        })
+        .finally(() => {
+          dispatch(progressDialog.close());
+        });
       } else if (store.getState().mode.name === modeConst.STOCKFISH) {
         dispatch(progressDialog.open());
         WsAction.stockfish(store.getState());
@@ -219,11 +247,7 @@ export default class WsEvent {
 
   static onUndo = (data) => dispatch => {
     dispatch(board.undo(data['/undo']));
-    if (data['/undo'].mode === modeConst.GM) {
-      dispatch(progressDialog.open());
-      WsAction.gm(store.getState());
-      WsAction.gm(store.getState());
-    } else if (data['/undo'].mode === modeConst.PLAY) {
+    if (data['/undo'].mode === modeConst.PLAY) {
       dispatch(mode.declineTakeback());
     } else if (data['/undo'].mode === modeConst.ANALYSIS) {
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
@@ -283,28 +307,6 @@ export default class WsEvent {
     dispatch(board.start());
     if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
       dispatch(board.flip());
-    }
-  }
-
-  static onGm = (data) => dispatch => {
-    if (data['/gm']) {
-      dispatch(gameTable.show({ game: data['/gm'].game }));
-      dispatch(board.gm({
-        turn: data['/gm'].state.turn,
-        isCheck: data['/gm'].state.isCheck,
-        isMate: data['/gm'].state.isMate,
-        movetext: data['/gm'].state.movetext,
-        fen: data['/gm'].state.fen
-      }));
-      dispatch(mode.gmMovetext({
-        movetext: data['/gm'].state.movetext
-      }));
-      dispatch(infoAlert.close());
-      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
-    } else {
-      dispatch(gameTable.close());
-      dispatch(mode.gmMovetext({ movetext: null }));
-      dispatch(infoAlert.show({ info: 'This move was not found in the database.' }));
     }
   }
 

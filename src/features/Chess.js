@@ -15,7 +15,6 @@ import SearchNameDialog from './dialog/SearchNameDialog';
 import LoadFenDialog from './dialog/LoadFenDialog';
 import LoadPgnDialog from './dialog/LoadPgnDialog';
 import PlayComputerDialog from './dialog/PlayComputerDialog';
-import PlayGmDialog from './dialog/PlayGmDialog';
 import PlayOnlineDialog from './dialog/PlayOnlineDialog';
 import ProgressDialog from './dialog/ProgressDialog';
 import WatchDialog from './dialog/WatchDialog';
@@ -64,7 +63,6 @@ const Chess = ({ props }) => {
       <LoadFenDialog />
       <LoadPgnDialog />
       <PlayComputerDialog />
-      <PlayGmDialog />
       <PlayOnlineDialog />
       <WatchDialog />
     </Provider>

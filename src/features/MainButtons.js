@@ -22,6 +22,7 @@ import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
 import Dispatcher from '../common/Dispatcher';
+import Pgn from '../common/Pgn';
 import * as mainButtonConst from '../common/constants/mainButton';
 import * as modeConst from '../common/constants/mode';
 import * as mainButtons from '../features/mainButtonsSlice';
@@ -36,7 +37,6 @@ import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSl
 import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
 import * as playComputerDialog from '../features/dialog/playComputerDialogSlice';
-import * as playGmDialog from '../features/dialog/playGmDialogSlice';
 import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
 import * as watchDialog from '../features/dialog/watchDialogSlice';
@@ -132,9 +132,9 @@ const MainButtons = () => {
       >
         <MenuItem onClick={() => {
           dispatch(mainButtons.setAnalysis());
-          handleCloseAnalysis();
           Dispatcher.initGui(dispatch);
           WsAction.startAnalysis(state.server.ws);
+          handleCloseAnalysis();
         }}>
           <RestartAltIcon size="small" />&nbsp;Start Position
         </MenuItem>
@@ -184,7 +184,9 @@ const MainButtons = () => {
           <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(playGmDialog.open());
+          dispatch(mainButtons.setTraining());
+          Dispatcher.initGui(dispatch);
+          WsAction.startGm(state, Pgn.symbol.WHITE);
           handleCloseTraining();
         }}>
           <QuizIcon size="small" />&nbsp;Guess the Move
@@ -192,9 +194,9 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setTraining());
           dispatch(progressDialog.open());
-          handleCloseTraining();
           Dispatcher.initGui(dispatch);
           WsAction.randomGame(state);
+          handleCloseTraining();
         }}>
           <EmojiEventsIcon size="small" />&nbsp;Random Tournament Game
         </MenuItem>
@@ -257,8 +259,8 @@ const MainButtons = () => {
         <MenuItem
           onClick={() => {
             dispatch(playOnlineDialog.open());
-            handleClosePlay();
             WsAction.onlineGames(state);
+            handleClosePlay();
           }}
         >
           <LanguageIcon size="small" />&nbsp;Create game

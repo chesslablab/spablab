@@ -94,10 +94,6 @@ export default class WsEventListener {
       case '/restart' === cmd:
         dispatch(WsEvent.onRestart(data));
         break;
-      case '/gm' === cmd:
-        dispatch(progressDialog.close());
-        dispatch(WsEvent.onGm(data));
-        break;
       case '/random_checkmate' === cmd:
         dispatch(progressDialog.close());
         dispatch(WsEvent.onRandomCheckmate(data));

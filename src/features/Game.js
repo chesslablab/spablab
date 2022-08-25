@@ -3,7 +3,6 @@ import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import StartedButtonsAnalysisMode from './analysisMode/StartedButtonsAnalysisMode';
 import GameClock from './gameClock/GameClock';
-import StartedButtonsGmMode from './gmMode/StartedButtonsGmMode';
 import FinishedButtonsPlayMode from './playMode/FinishedButtonsPlayMode';
 import FinishedDialogsPlayMode from './playMode/FinishedDialogsPlayMode';
 import StartedButtonsPlayMode from './playMode/StartedButtonsPlayMode';
@@ -49,7 +48,6 @@ const Game = ({ props }) => {
       </Grid>
       <Grid item xs={12}>
         <StartedButtonsAnalysisMode />
-        <StartedButtonsGmMode />
         <StartedButtonsPlayMode />
         <FinishedButtonsPlayMode />
       </Grid>
