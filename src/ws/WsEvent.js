@@ -35,7 +35,9 @@ export default class WsEvent {
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(mode.startUndefined());
-      dispatch(infoAlert.show({ info: 'Invalid FEN, please try again with different data.' }));
+      dispatch(infoAlert.show({
+        info: 'Invalid FEN, please try with a different one.'
+      }));
     }
   }
 
@@ -52,7 +54,9 @@ export default class WsEvent {
       WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
     } else {
       dispatch(mode.startUndefined());
-      dispatch(infoAlert.show({ info: 'Invalid PGN movetext, please try again with different data.' }));
+      dispatch(infoAlert.show({
+        info: 'Invalid PGN movetext, please try with a different one.'
+      }));
     }
   }
 
@@ -128,7 +132,9 @@ export default class WsEvent {
       dispatch(playOnlineDialog.close());
     } else {
       dispatch(mode.startUndefined());
-      dispatch(infoAlert.show({ info: 'Invalid invite code, please try again with different data.' }));
+      dispatch(infoAlert.show({
+        info: 'Invalid invite code, please try with a different one.'
+      }));
     }
   }
 
@@ -188,7 +194,9 @@ export default class WsEvent {
             });
           } else if (res.status === 204) {
             dispatch(gameTable.close());
-            dispatch(infoAlert.show({ info: 'This game was not found in the database, please try again.' }));
+            dispatch(infoAlert.show({
+              info: 'This game was not found in the database, please try with a different one.'
+            }));
           }
         })
         .catch(error => {
