@@ -1,6 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  TextField
+} from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as loadFenDialog from '../../features/dialog/loadFenDialogSlice';
@@ -22,16 +31,34 @@ const LoadFenDialog = () => {
 
   return (
     <Dialog open={state.loadFenDialog.open} maxWidth="xs" fullWidth={true}>
-      <DialogTitle>Load FEN</DialogTitle>
+      <DialogTitle>
+        <Grid container>
+          <Grid item xs={11}>
+            Load FEN
+          </Grid>
+          <Grid item xs={1}>
+            <IconButton onClick={() => dispatch(loadFenDialog.close())}>
+              <CloseIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </DialogTitle>
       <DialogContent>
         <form onSubmit={handleLoad}>
-          <TextField fullWidth required name="fen" label="FEN string" />
-          <DialogActions>
-            <Button type="submit">Load</Button>
-            <Button onClick={() => dispatch(loadFenDialog.close())}>
-              Cancel
-            </Button>
-          </DialogActions>
+          <TextField
+            fullWidth
+            required
+            name="fen"
+            label="FEN string"
+            margin="normal" 
+          />
+          <Button
+            fullWidth
+            type="submit"
+            variant="outlined"
+          >
+            Load
+          </Button>
         </form>
       </DialogContent>
     </Dialog>
