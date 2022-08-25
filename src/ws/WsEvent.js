@@ -36,7 +36,7 @@ export default class WsEvent {
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({
-        info: 'Invalid FEN, please try with a different one.'
+        info: 'Invalid FEN, please try again with a different one.'
       }));
     }
   }
@@ -55,7 +55,7 @@ export default class WsEvent {
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({
-        info: 'Invalid PGN movetext, please try with a different one.'
+        info: 'Invalid PGN movetext, please try again with a different one.'
       }));
     }
   }
@@ -133,7 +133,7 @@ export default class WsEvent {
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({
-        info: 'Invalid invite code, please try with a different one.'
+        info: 'Invalid invite code, please try again with a different one.'
       }));
     }
   }
@@ -195,7 +195,7 @@ export default class WsEvent {
           } else if (res.status === 204) {
             dispatch(gameTable.close());
             dispatch(infoAlert.show({
-              info: 'This game was not found in the database, please try with a different one.'
+              info: 'This game was not found in the database, please try again with a different one.'
             }));
           }
         })
