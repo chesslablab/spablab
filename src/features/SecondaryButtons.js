@@ -56,11 +56,7 @@ const SecondaryButtons = ({props}) => {
     ) && !state.board.movetext;
 
   return (
-    <Stack
-      direction="row"
-      spacing={1}
-      style={{ paddingTop: 5, paddingBottom: 5 }}
-    >
+    <Stack direction="row" spacing={1}>
       <IconButton
         disabled={disabled}
         color="primary"

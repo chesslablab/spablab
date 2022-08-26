@@ -19,7 +19,14 @@ const useStyles = makeStyles({
   pgn: {
     height: 225,
   },
-  centered: {
+  buttons: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: 2,
+    paddingBottom: 2,
+    background: '#f0f0f0'
+  },
+  clock: {
     display: 'flex',
     justifyContent: 'center',
   },
@@ -32,18 +39,18 @@ const Game = ({ props }) => {
     <Grid container>
       <Grid item xs={12} className={classes.gameBox}>
         <Grid item xs={12} className={classes.pgn}>
-          <Grid item xs={12} className={classes.centered}>
+          <Grid item xs={12} className={classes.buttons}>
             <History />
           </Grid>
           <Grid item xs={12}>
             <MoveValidatorTable />
           </Grid>
         </Grid>
-        <Grid item xs={12} className={classes.centered}>
+        <Grid item xs={12} className={classes.buttons}>
           <SecondaryButtons props={props} />
         </Grid>
       </Grid>
-      <Grid item xs={12} className={classes.centered}>
+      <Grid item xs={12} className={classes.clock}>
         <GameClock />
       </Grid>
       <Grid item xs={12}>
