@@ -180,6 +180,10 @@ export default class WsEvent {
           if (res.status === 200) {
             res.json().then(data => {
               const game = data[0];
+              dispatch(mode.setGm({
+                color: Pgn.symbol.WHITE,
+                movetext: game.movetext
+              }));
               dispatch(gameTable.show({
                 game: {
                   Event: game.Event,

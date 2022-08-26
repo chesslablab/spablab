@@ -18,6 +18,7 @@ import PlayComputerDialog from './dialog/PlayComputerDialog';
 import PlayOnlineDialog from './dialog/PlayOnlineDialog';
 import ProgressDialog from './dialog/ProgressDialog';
 import WatchDialog from './dialog/WatchDialog';
+import StartedButtonsGmMode from './gmMode/StartedButtonsGmMode';
 import OpeningAnalysisTable from './table/OpeningAnalysisTable.js';
 import GameTable from './table/GameTable.js';
 import Board from './Board.js';
@@ -49,6 +50,7 @@ const Chess = ({ props }) => {
           <Game props={props} />
           <GameTable />
           <OpeningAnalysisTable />
+          <StartedButtonsGmMode />
           <InfoAlert />
         </Grid>
       </Grid>
