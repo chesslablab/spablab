@@ -101,10 +101,6 @@ export default class WsAction {
     return await state.server.ws.send(`/random_checkmate ${color} "${items}"`);
   }
 
-  static randomGame = async (state) => {
-    return await state.server.ws.send(`/random_game`);
-  }
-
   static stockfish = async (state) => {
     const options = JSON.stringify(state.mode.computer.options).replace(/"/g, '\\"');
     const params = JSON.stringify(state.mode.computer.params).replace(/"/g, '\\"');

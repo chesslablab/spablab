@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import LanguageIcon from '@mui/icons-material/Language';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
@@ -190,15 +189,6 @@ const MainButtons = () => {
           handleCloseTraining();
         }}>
           <QuizIcon size="small" />&nbsp;Guess the Move
-        </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(mainButtons.setTraining());
-          dispatch(progressDialog.open());
-          Dispatcher.initGui(dispatch);
-          WsAction.randomGame(state);
-          handleCloseTraining();
-        }}>
-          <EmojiEventsIcon size="small" />&nbsp;Random Tournament Game
         </MenuItem>
       </Menu>
       <Menu

@@ -338,23 +338,6 @@ export default class WsEvent {
     }
   }
 
-  static onRandomGame = (data) => dispatch => {
-    if (data['/random_game'].movetext) {
-      dispatch(mode.startPgn());
-      dispatch(board.startPgn({
-        turn: data['/random_game'].turn,
-        movetext: data['/random_game'].movetext,
-        fen: data['/random_game'].fen,
-        history: data['/random_game'].history
-      }));
-      dispatch(gameTable.show({ game: data['/random_game'].game }));
-      WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
-    } else {
-      dispatch(mode.startUndefined());
-      dispatch(infoAlert.show({ info: 'Whoops! A random game could not be loaded.' }));
-    }
-  }
-
   static onStockfish = (data) => dispatch => {
     if (data['/stockfish']) {
       dispatch(board.gm({

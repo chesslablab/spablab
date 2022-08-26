@@ -98,10 +98,6 @@ export default class WsEventListener {
         dispatch(progressDialog.close());
         dispatch(WsEvent.onRandomCheckmate(data));
         break;
-      case '/random_game' === cmd:
-        dispatch(progressDialog.close());
-        dispatch(WsEvent.onRandomGame(data));
-        break;
       case '/stockfish' === cmd:
         dispatch(progressDialog.close());
         dispatch(WsEvent.onStockfish(data));
