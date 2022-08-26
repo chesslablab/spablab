@@ -34,6 +34,8 @@ const DatabaseResultTable = ({props}) => {
         Date: item.Date,
         White: item.White,
         Black: item.Black,
+        'White ELO': item.WhiteElo,
+        'Black ELO': item.BlackElo,
         Result: item.Result,
         ECO: item.ECO
       }

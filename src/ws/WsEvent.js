@@ -187,6 +187,8 @@ export default class WsEvent {
                   Date: game.Date,
                   White: game.White,
                   Black: game.Black,
+                  'White ELO': game.WhiteElo,
+                  'Black ELO': game.BlackElo,
                   Result: game.Result,
                   ECO: game.ECO
                 }
