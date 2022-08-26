@@ -21,8 +21,6 @@ const useStyles = makeStyles({
   buttons: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: 2,
-    paddingBottom: 2,
     background: '#f0f0f0'
   },
   clock: {
