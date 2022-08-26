@@ -177,18 +177,18 @@ const MainButtons = () => {
         onClose={handleCloseTraining}
       >
         <MenuItem onClick={() => {
-          dispatch(checkmateSkillsDialog.open());
-          handleCloseTraining();
-        }}>
-          <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
-        </MenuItem>
-        <MenuItem onClick={() => {
           dispatch(mainButtons.setTraining());
           Dispatcher.initGui(dispatch);
           WsAction.startGm(state, Pgn.symbol.WHITE);
           handleCloseTraining();
         }}>
           <QuizIcon size="small" />&nbsp;Guess the Move
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(checkmateSkillsDialog.open());
+          handleCloseTraining();
+        }}>
+          <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
         </MenuItem>
       </Menu>
       <Menu
