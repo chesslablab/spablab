@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import CachedIcon from '@mui/icons-material/Cached';
 import FastForwardIcon from '@mui/icons-material/FastForward';
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
@@ -13,7 +14,11 @@ const History = () => {
   const dispatch = useDispatch();
 
   return (
-    <ButtonGroup variant="text" aria-label="History" size="small">
+    <ButtonGroup variant="text" aria-label="History" size="medium">
+      <Button
+        startIcon={<CachedIcon />}
+        onClick={() => dispatch(board.flip())}
+      />
       <Button
         startIcon={<FastRewindIcon />}
         disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}

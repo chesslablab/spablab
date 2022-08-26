@@ -6,17 +6,14 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { IconButton, Stack, useMediaQuery } from "@mui/material";
+import { IconButton, Stack } from "@mui/material";
 import * as modeConst from '../common/constants/mode';
-import { flip } from '../features/boardSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
 import WsAction from '../ws/WsAction';
 
 const SecondaryButtons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-
-  const matches = useMediaQuery("(min-width:900px)");
 
   const handleDownloadImage = async () => {
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_image`, {
@@ -59,21 +56,15 @@ const SecondaryButtons = ({props}) => {
     ) && !state.board.movetext;
 
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack
+      direction="row"
+      spacing={1}
+      style={{ paddingTop: 5, paddingBottom: 5 }}
+    >
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'medium'}
-        title="Flip Board"
-        aria-label="flip"
-        onClick={() => dispatch(flip())}
-      >
-        <CachedIcon fontSize="inherit" />
-      </IconButton>
-      <IconButton
-        disabled={disabled}
-        color="primary"
-        size={matches ? 'small' : 'medium'}
+        size="medium"
         title="Copy PGN movetext"
         aria-label="copy"
         onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
@@ -83,7 +74,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'medium'}
+        size="medium"
         title="Copy FEN string"
         aria-label="fen"
         onClick={() => state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null}
@@ -93,7 +84,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'medium'}
+        size="medium"
         title="Heuristics"
         aria-label="heuristics"
         onClick={() => {
@@ -106,7 +97,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'medium'}
+        size="medium"
         title="Download Image"
         aria-label="flip"
         onClick={() => handleDownloadImage()}
@@ -116,7 +107,7 @@ const SecondaryButtons = ({props}) => {
       <IconButton
         disabled={disabled}
         color="primary"
-        size={matches ? 'small' : 'medium'}
+        size="medium"
         title="Download Video"
         aria-label="flip"
         onClick={() => handleDownloadMp4()}
