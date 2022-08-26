@@ -5,6 +5,7 @@ import { makeStyles } from '@mui/styles';
 import '../index.css';
 import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
+import StartedButtonsAnalysisMode from './analysisMode/StartedButtonsAnalysisMode';
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import DatabaseDialog from './dialog/DatabaseDialog';
@@ -50,6 +51,7 @@ const Chess = ({ props }) => {
           <Game props={props} />
           <GameTable />
           <OpeningAnalysisTable />
+          <StartedButtonsAnalysisMode />
           <StartedButtonsGmMode />
           <InfoAlert />
         </Grid>
