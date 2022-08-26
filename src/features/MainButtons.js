@@ -243,9 +243,6 @@ const MainButtons = () => {
         open={Boolean(anchorElPlay)}
         onClose={handleClosePlay}
       >
-        <MenuItem style={{ pointerEvents: 'none', justifyContent: 'center' }}>
-          Online
-        </MenuItem>
         <MenuItem
           onClick={() => {
             dispatch(playOnlineDialog.open());
@@ -253,12 +250,9 @@ const MainButtons = () => {
             handleClosePlay();
           }}
         >
-          <LanguageIcon size="small" />&nbsp;Create game
+          <LanguageIcon size="small" />&nbsp;Play Online
         </MenuItem>
         <Divider />
-        <MenuItem style={{ pointerEvents: 'none', justifyContent: 'center' }}>
-          A friend
-        </MenuItem>
         <MenuItem
           onClick={() => {
             dispatch(createInviteCodeDialog.open());
@@ -277,16 +271,13 @@ const MainButtons = () => {
           <KeyboardIcon />&nbsp;Enter Invite Code
         </MenuItem>
         <Divider />
-        <MenuItem style={{ pointerEvents: 'none', justifyContent: 'center' }}>
-          Computer
-        </MenuItem>
         <MenuItem
           onClick={() => {
             dispatch(playComputerDialog.open());
             handleClosePlay();
           }}
         >
-          <SmartToyIcon size="small" />&nbsp;Create game
+          <SmartToyIcon size="small" />&nbsp;Play Computer
         </MenuItem>
       </Menu>
     </ButtonGroup>
