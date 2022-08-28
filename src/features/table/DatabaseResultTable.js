@@ -8,6 +8,7 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  TableHead,
   TableRow
 } from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
@@ -45,6 +46,23 @@ const DatabaseResultTable = ({props}) => {
   return (
     <TableContainer style={{ marginTop: 10 }} component={Paper}>
       <Table stickyHeader aria-label="simple table">
+        {
+          props.result.length > 0
+            ? <TableHead>
+                <TableRow>
+                  <TableCell align="left">Event</TableCell>
+                  <TableCell align="left">White</TableCell>
+                  <TableCell align="left">Black</TableCell>
+                  <TableCell align="left">White ELO</TableCell>
+                  <TableCell align="left">Black ELO</TableCell>
+                  <TableCell align="left">Date</TableCell>
+                  <TableCell align="left">ECO</TableCell>
+                  <TableCell align="left">Result</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+            : null
+        }
         <TableBody>
           {
             props.result.map((item, i) => (
@@ -52,10 +70,12 @@ const DatabaseResultTable = ({props}) => {
                 <TableCell align="left">{item.Event}</TableCell>
                 <TableCell align="left">{item.White}</TableCell>
                 <TableCell align="left">{item.Black}</TableCell>
+                <TableCell align="left">{item.WhiteElo}</TableCell>
+                <TableCell align="left">{item.BlackElo}</TableCell>
                 <TableCell align="left">{item.Date}</TableCell>
                 <TableCell align="left">{item.ECO}</TableCell>
                 <TableCell align="left">{item.Result}</TableCell>
-                <TableCell align="right">
+                <TableCell>
                   <IconButton
                     aria-label="load"
                     color="primary"

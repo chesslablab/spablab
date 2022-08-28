@@ -70,7 +70,7 @@ const DatabaseDialog = ({props}) => {
           className="info-alert"
           severity="info"
         >
-          Click on the Search button and fetch up to 25 random games matching the criteria.
+          Click on the Search button and find up to 25 random games matching the criteria on a database of thousands of games.
         </Alert>
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
