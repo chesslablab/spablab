@@ -17,6 +17,7 @@ import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
 import Dispatcher from '../common/Dispatcher';
 import Pgn from '../common/Pgn';
+import Wording from '../common/Wording';
 import * as mainButtonConst from '../common/constants/mainButton';
 import * as modeConst from '../common/constants/mode';
 import * as mainButtons from '../features/mainButtonsSlice';
@@ -80,7 +81,7 @@ const MainButtons = () => {
 
   const disabled = state.mode.name === modeConst.PLAY &&
     state.mode.play.accepted &&
-    !state.mode.play.draw &&
+    (!state.mode.play.draw || state.mode.play.draw === Wording.verb.PROPOSE.toLowerCase()) &&
     !state.mode.play.resign &&
     !state.mode.play.resign &&
     !state.mode.play.leave &&

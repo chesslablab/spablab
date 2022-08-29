@@ -7,6 +7,7 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Button, ButtonGroup, Grid, Stack } from '@mui/material';
 import * as mainButtonConst from '../common/constants/mainButton';
 import * as modeConst from '../common/constants/mode';
+import Wording from '../common/Wording';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';
 import PlayComputerDialog from './dialog/PlayComputerDialog';
@@ -24,7 +25,7 @@ const PlayButtons = () => {
 
   const disabled = state.mode.name === modeConst.PLAY &&
     state.mode.play.accepted &&
-    !state.mode.play.draw &&
+    (!state.mode.play.draw || state.mode.play.draw === Wording.verb.PROPOSE.toLowerCase()) &&
     !state.mode.play.resign &&
     !state.mode.play.resign &&
     !state.mode.play.leave &&
