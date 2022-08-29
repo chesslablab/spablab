@@ -16,11 +16,11 @@ import LoadPgnDialog from './dialog/LoadPgnDialog';
 import ProgressDialog from './dialog/ProgressDialog';
 import WatchDialog from './dialog/WatchDialog';
 import StartedButtonsGmMode from './gmMode/StartedButtonsGmMode';
-import OpeningAnalysisTable from './table/OpeningAnalysisTable.js';
-import GameTable from './table/GameTable.js';
-import Board from './Board.js';
-import Game from './Game.js';
-import HeuristicsBar from './HeuristicsBar.js';
+import OpeningAnalysisTable from './table/OpeningAnalysisTable';
+import GameTable from './table/GameTable';
+import Board from './Board';
+import Game from './Game';
+import HeuristicsBar from './HeuristicsBar';
 import MainButtons from './MainButtons';
 import PlayButtons from './PlayButtons';
 
