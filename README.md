@@ -25,13 +25,13 @@ Figure 3. Database > Search
 Figure 4. Heuristics of a game
 
 ![Figure 5](/src/assets/img/docs/figure-05.png)
-Figure 5. Play > Play Online
+Figure 5. Play Online
 
 ![Figure 6](/src/assets/img/docs/figure-06.png)
-Figure 6. Play > Create invite code
+Figure 6. Play a Friend
 
 ![Figure 7](/src/assets/img/docs/figure-07.png)
-Figure 7. Play > Play Computer
+Figure 7. Play Computer
 
 ### Setup
 
