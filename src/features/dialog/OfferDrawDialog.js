@@ -24,11 +24,7 @@ const OfferDrawDialog = () => {
         <form onSubmit={handleDrawOffer}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button
-              onClick={() =>
-                dispatch(offerDrawDialog.close())
-              }
-            >
+            <Button onClick={() => dispatch(offerDrawDialog.close())}>
               Cancel
             </Button>
           </DialogActions>

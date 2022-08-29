@@ -124,7 +124,7 @@ const CreateCode = () => {
         variant="outlined"
         onClick={() => handleCreateCode()}
       >
-        Create Code
+        Create Invite Code
       </Button>
     </DialogContent>
   );

@@ -7,16 +7,12 @@ import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
 import StartedButtonsAnalysisMode from './analysisMode/StartedButtonsAnalysisMode';
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
-import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import DatabaseDialog from './dialog/DatabaseDialog';
-import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';
 import SearchEcoDialog from './dialog/SearchEcoDialog';
 import SearchMovetextDialog from './dialog/SearchMovetextDialog';
 import SearchNameDialog from './dialog/SearchNameDialog';
 import LoadFenDialog from './dialog/LoadFenDialog';
 import LoadPgnDialog from './dialog/LoadPgnDialog';
-import PlayComputerDialog from './dialog/PlayComputerDialog';
-import PlayOnlineDialog from './dialog/PlayOnlineDialog';
 import ProgressDialog from './dialog/ProgressDialog';
 import WatchDialog from './dialog/WatchDialog';
 import StartedButtonsGmMode from './gmMode/StartedButtonsGmMode';
@@ -25,7 +21,8 @@ import GameTable from './table/GameTable.js';
 import Board from './Board.js';
 import Game from './Game.js';
 import HeuristicsBar from './HeuristicsBar.js';
-import MainButtons from './MainButtons.js';
+import MainButtons from './MainButtons';
+import PlayButtons from './PlayButtons';
 
 const useStyles = makeStyles({
   right: {
@@ -55,20 +52,19 @@ const Chess = ({ props }) => {
           <StartedButtonsGmMode />
           <InfoAlert />
         </Grid>
+        <Grid item xs={12} md={2}>
+          <PlayButtons />
+        </Grid>
       </Grid>
       <DatabaseDialog props={props} />
       <SearchEcoDialog props={props} />
       <SearchMovetextDialog props={props} />
       <SearchNameDialog props={props} />
-      <CreateInviteCodeDialog />
-      <EnterInviteCodeDialog />
       <CheckmateSkillsDialog />
-      <ProgressDialog />
       <LoadFenDialog />
       <LoadPgnDialog />
-      <PlayComputerDialog />
-      <PlayOnlineDialog />
       <WatchDialog />
+      <ProgressDialog />
     </Provider>
   );
 };

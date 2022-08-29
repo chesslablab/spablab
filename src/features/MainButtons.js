@@ -2,22 +2,17 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import KeyboardIcon from '@mui/icons-material/Keyboard';
-import LanguageIcon from '@mui/icons-material/Language';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-import QrCodeIcon from '@mui/icons-material/QrCode';
 import QuizIcon from '@mui/icons-material/Quiz';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import StorageIcon from '@mui/icons-material/Storage';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import { Button, ButtonGroup, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
 import Dispatcher from '../common/Dispatcher';
@@ -26,18 +21,13 @@ import * as mainButtonConst from '../common/constants/mainButton';
 import * as modeConst from '../common/constants/mode';
 import * as mainButtons from '../features/mainButtonsSlice';
 import * as mode from '../features/modeSlice';
-import * as createInviteCodeDialog from '../features/dialog/createInviteCodeDialogSlice';
 import * as databaseDialog from '../features/dialog/databaseDialogSlice';
-import * as enterInviteCodeDialog from '../features/dialog/enterInviteCodeDialogSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
 import * as searchEcoDialog from '../features/dialog/searchEcoDialogSlice';
 import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSlice';
 import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
-import * as playComputerDialog from '../features/dialog/playComputerDialogSlice';
-import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
-import * as progressDialog from '../features/dialog/progressDialogSlice';
 import * as watchDialog from '../features/dialog/watchDialogSlice';
 import WsAction from '../ws/WsAction';
 
@@ -61,7 +51,6 @@ const MainButtons = () => {
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
-  const [anchorElPlay, setAnchorElPlay] = useState(null);
 
   const matches = useMediaQuery("(min-width:900px)");
 
@@ -77,10 +66,6 @@ const MainButtons = () => {
     setAnchorElOpeningSearch(null);
   };
 
-  const handleClosePlay = () => {
-    setAnchorElPlay(null);
-  };
-
   const handleClickAnalysis = (event) => {
     setAnchorElAnalysis(event.currentTarget);
   };
@@ -93,9 +78,14 @@ const MainButtons = () => {
     setAnchorElOpeningSearch(event.currentTarget);
   };
 
-  const handleClickPlay = (event) => {
-    setAnchorElPlay(event.currentTarget);
-  };
+  const disabled = state.mode.name === modeConst.PLAY &&
+    state.mode.play.accepted &&
+    !state.mode.play.draw &&
+    !state.mode.play.resign &&
+    !state.mode.play.resign &&
+    !state.mode.play.leave &&
+    !state.mode.play.timer.over &&
+    !state.board.isMate;
 
   return (
     <ButtonGroup
@@ -104,15 +94,8 @@ const MainButtons = () => {
       variant="text"
       aria-label="Main Menu"
       fullWidth={matches ? false : true}
-      disabled={state.mode.name === modeConst.PLAY &&
-        state.mode.play.accepted &&
-        !state.mode.play.draw &&
-        !state.mode.play.resign &&
-        !state.mode.play.resign &&
-        !state.mode.play.leave &&
-        !state.mode.play.timer.over &&
-        !state.board.isMate
-      }>
+      disabled={disabled}
+    >
       <IconButton className={classes.iconButton} href="/">
         <img className={classes.logo} src={logo} />
       </IconButton>
@@ -222,64 +205,6 @@ const MainButtons = () => {
       >
         Watch
       </Button>
-      <Button
-        aria-controls={Boolean(anchorElPlay) ? 'demo-customized-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={Boolean(anchorElPlay) ? 'true' : undefined}
-        variant={state.mainButtons.name === mainButtonConst.PLAY_ONLINE ||
-          state.mainButtons.name === mainButtonConst.PLAY_A_FRIEND ||
-          state.mainButtons.name === mainButtonConst.PLAY_COMPUTER
-            ? "contained"
-            : "text"
-        }
-        disableElevation
-        onClick={handleClickPlay}
-        startIcon={<SportsEsportsIcon />}
-      >
-        Play
-      </Button>
-      <Menu
-        anchorEl={anchorElPlay}
-        open={Boolean(anchorElPlay)}
-        onClose={handleClosePlay}
-      >
-        <MenuItem
-          onClick={() => {
-            dispatch(playOnlineDialog.open());
-            WsAction.onlineGames(state);
-            handleClosePlay();
-          }}
-        >
-          <LanguageIcon size="small" />&nbsp;Play Online
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          onClick={() => {
-            dispatch(createInviteCodeDialog.open());
-            dispatch(mode.startAnalysis());
-            handleClosePlay();
-          }}
-        >
-          <QrCodeIcon />&nbsp;Create Invite Code
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            dispatch(enterInviteCodeDialog.open());
-            handleClosePlay();
-          }}
-        >
-          <KeyboardIcon />&nbsp;Enter Invite Code
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          onClick={() => {
-            dispatch(playComputerDialog.open());
-            handleClosePlay();
-          }}
-        >
-          <SmartToyIcon size="small" />&nbsp;Play Computer
-        </MenuItem>
-      </Menu>
     </ButtonGroup>
   );
 }

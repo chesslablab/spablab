@@ -41,7 +41,7 @@ const EnterInviteCodeDialog = () => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Play a friend
+            Enter invite code
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(enterInviteCodeDialog.close())}>
@@ -64,7 +64,7 @@ const EnterInviteCodeDialog = () => {
           variant="outlined"
           onClick={() => handlePlay()}
         >
-          Play
+          Play friend
         </Button>
       </DialogContent>
     </Dialog>
