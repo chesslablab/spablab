@@ -151,7 +151,7 @@ export default class WsEvent {
     }));
   }
 
-  static onPlayfen = (props, data) => dispatch => {
+  static onPlayFen = (props, data) => dispatch => {
     const payload = {
       isCheck: data['/play_fen'].isCheck,
       isMate: data['/play_fen'].isMate,
