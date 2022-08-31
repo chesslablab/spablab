@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import * as modeConst from '../common/constants/mode';
+import Animation from '../common/Animation';
 import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
 import Piece from '../common/Piece';
@@ -12,50 +13,10 @@ const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const isInitialMount = useRef(true);
-  const maxWidth900 = useMediaQuery("(max-width:900px)");
-  const maxWidth600 = useMediaQuery("(max-width:600px)");
-
-  let sqSize = maxWidth600 ? 12 : maxWidth900 ? 10 : 4.1;
-
-  let r = document.querySelector(':root');
-  r.style.setProperty('--sqSize', `${sqSize}vw`);
-
-  const animation = (color, flip) => {
-    const lan = Ascii.longAlgebraicNotation(
-      state.board.history[state.board.history.length - 2 + state.history.back],
-      state.board.history[state.board.history.length - 1 + state.history.back]
-    );
-    const sqDiff = Ascii.sqDiff(lan[0], lan[1]);
-    const xAxis = Ascii.xAxisSign(lan[0], lan[1], color, flip) * (sqSize * sqDiff.files);
-    const yAxis = Ascii.yAxisSign(lan[0], lan[1], color, flip) * (sqSize * sqDiff.ranks);
-
-    r.style.setProperty('--xAxis', `${xAxis}vw`);
-    r.style.setProperty('--yAxis', `${yAxis}vw`);
-
-    const hiddenImg = document.querySelector(`.${lan[1]}`).querySelector('img');
-    hiddenImg.classList.add('hidden');
-
-    const unicode = hiddenImg.getAttribute('data-unicode');
-
-    const animatedImg = document.createElement('img');
-    animatedImg.setAttribute('src', Piece.unicode[unicode].char);
-    animatedImg.addEventListener('transitionend', () => {
-      clearAnimation();
-    });
-
-    const sq = document.querySelector(`.${lan[0]}`);
-    sq.appendChild(animatedImg);
-
-    getComputedStyle(document.documentElement).getPropertyValue('--xAxis');
-    getComputedStyle(document.documentElement).getPropertyValue('--yAxis');
-
-    animatedImg.classList.add('moved');
+  const maxWidth = {
+    '600': useMediaQuery("(max-width:600px)"),
+    '900': useMediaQuery("(max-width:900px)")
   };
-
-  const clearAnimation = () => {
-    document.querySelectorAll('.hidden').forEach((el) => el.classList.remove('hidden'));
-    document.querySelectorAll('.moved').forEach((el) => el.remove());
-  }
 
   useEffect(() => {
     dispatch(WsAction.connect(state, props)).then(ws => WsAction.startAnalysis(ws));
@@ -68,11 +29,11 @@ const Board = ({props}) => {
       if (state.board.movetext) {
         if (state.mode.name === modeConst.STOCKFISH) {
           if (state.mode.computer.color === state.board.turn) {
-            animation(state.mode.computer.color, state.board.flip);
+            new Animation(maxWidth).pieces();
           }
         } else if (state.mode.name === modeConst.PLAY) {
           if (state.mode.play.color === state.board.turn) {
-            animation(state.mode.play.color, state.board.flip);
+            new Animation(maxWidth).pieces();
           }
         }
       }
