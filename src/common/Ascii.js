@@ -95,4 +95,78 @@ export default class Ascii {
 
     return ascii;
   }
+
+  static asciiDiff = (a, b) => {
+    let sqs = [];
+    a.forEach((rank, i) => {
+      rank.forEach((file, j) => {
+        if (a[i][j] !== b[i][j]) {
+          sqs.push({
+            from: a[i][j],
+            to: b[i][j],
+            sq: Ascii.fromIndexToAlgebraic(i, j)
+          });
+        }
+      });
+    });
+
+    return sqs;
+  }
+
+  static sqDiff = (a, b) => {
+    let diff = {
+      files: Math.abs(a.charCodeAt(0) - b.charCodeAt(0)),
+      ranks: Math.abs(a.charCodeAt(1) - b.charCodeAt(1))
+    };
+
+    return diff;
+  }
+
+  static xAxisSign = (a, b, color, flip) => {
+    const sign =  Math.sign(a.charCodeAt(0) - b.charCodeAt(0));
+    if (color === Pgn.symbol.WHITE) {
+      if (flip === Pgn.symbol.WHITE) {
+        return -sign;
+      } else {
+        return sign;
+      }
+    } else {
+      if (flip === Pgn.symbol.WHITE) {
+        return -sign;
+      } else {
+        return sign;
+      }
+    }
+  }
+
+  static yAxisSign = (a, b, color, flip) => {
+    const sign =  Math.sign(a.charCodeAt(1) - b.charCodeAt(1));
+    if (color === Pgn.symbol.WHITE) {
+      if (flip === Pgn.symbol.WHITE) {
+        return sign;
+      } else {
+        return -sign;
+      }
+    } else {
+      if (flip === Pgn.symbol.WHITE) {
+        return sign;
+      } else {
+        return -sign;
+      }
+    }
+  }
+
+  static longAlgebraicNotation = (a, b) => {
+    const diff = Ascii.asciiDiff(a, b);
+    let sorted = [];
+    if (diff[0].to === ' . ') {
+      sorted.push(diff[0].sq);
+      sorted.push(diff[1].sq);
+    } else {
+      sorted.push(diff[1].sq);
+      sorted.push(diff[0].sq);
+    }
+
+    return sorted;
+  }
 }

@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from '@mui/material';
 import * as modeConst from '../common/constants/mode';
 import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
@@ -10,10 +11,84 @@ import WsAction from '../ws/WsAction';
 const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+  const isInitialMount = useRef(true);
+
+  const maxWidth900 = useMediaQuery("(max-width:900px)");
+  const maxWidth600 = useMediaQuery("(max-width:600px)");
+
+  let sqSize;
+  if (maxWidth600) {
+    sqSize = 12;
+  } else if (maxWidth900) {
+    sqSize = 10;
+  } else {
+    sqSize = 4.1;
+  }
+
+  let r = document.querySelector(':root');
+  r.style.setProperty('--sqSize', `${sqSize}vw`);
+
+  getComputedStyle(document.documentElement).getPropertyValue('--sqSize');
+
+  const animation = (color, flip) => {
+    const lan = Ascii.longAlgebraicNotation(
+      state.board.history[state.board.history.length - 2 + state.history.back],
+      state.board.history[state.board.history.length - 1 + state.history.back]
+    );
+
+    const sqDiff = Ascii.sqDiff(lan[0], lan[1]);
+    const xAxis = Ascii.xAxisSign(lan[0], lan[1], color, flip) * (sqSize * sqDiff.files);
+    const yAxis = Ascii.yAxisSign(lan[0], lan[1], color, flip) * (sqSize * sqDiff.ranks);
+
+    r.style.setProperty('--xAxis', `${xAxis}vw`);
+    r.style.setProperty('--yAxis', `${yAxis}vw`);
+
+    const hiddenImg = document.querySelector(`.${lan[1]}`).querySelector('img');
+    hiddenImg.classList.add('hidden');
+
+    const unicode = hiddenImg.getAttribute('data-unicode');
+
+    const animatedImg = document.createElement('img');
+    animatedImg.setAttribute('src', Piece.unicode[unicode].char);
+    animatedImg.addEventListener('transitionend', () => {
+      clearAnimation();
+    });
+
+    const sq = document.querySelector(`.${lan[0]}`);
+    sq.appendChild(animatedImg);
+
+    getComputedStyle(document.documentElement).getPropertyValue('--xAxis');
+    getComputedStyle(document.documentElement).getPropertyValue('--yAxis');
+
+    animatedImg.classList.add('moved');
+  }
+
+  const clearAnimation = () => {
+    Array.from(document.getElementsByClassName('hidden')).forEach((el) => el.classList.remove('hidden'));
+    Array.from(document.getElementsByClassName('moved')).forEach((el) => el.remove());
+  }
 
   useEffect(() => {
     dispatch(WsAction.connect(state, props)).then(ws => WsAction.startAnalysis(ws));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isInitialMount.name) {
+      isInitialMount.name = false;
+    } else {
+      if (state.board.movetext) {
+        if (state.mode.name === modeConst.STOCKFISH) {
+          if (state.mode.computer.color === state.board.turn) {
+            animation(state.mode.computer.color, state.board.flip);
+          }
+        } else if (state.mode.name === modeConst.PLAY) {
+          if (state.mode.play.color === state.board.turn) {
+            animation(state.mode.play.color, state.board.flip);
+          }
+        }
+      }
+    }
+  }, [state.board.history.length]);
 
   const handleMove = (payload) => {
     if (state.mode.name === modeConst.PLAY) {
@@ -89,7 +164,7 @@ const Board = ({props}) => {
           }
           if (Piece.unicode[piece].char) {
             img = <img
-              className="noTextSelection"
+              data-unicode={piece}
               src={Piece.unicode[piece].char}
               draggable={Piece.color(piece) === state.board.turn ? true : false}
               onDragStart={() => handleMove(payload)}
@@ -99,7 +174,6 @@ const Board = ({props}) => {
               key={k}
               className={
                 [
-                  'noTextSelection',
                   'square',
                   color,
                   payload.sq,
@@ -129,13 +203,7 @@ const Board = ({props}) => {
   }
 
   return (
-    <div className={
-      [
-        'noTextSelection',
-        'board',
-        state.history.back !== 0 ? 'past' : 'present'
-      ].join(' ')
-    }>
+    <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
       {board()}
     </div>
   );
