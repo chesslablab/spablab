@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   tableContainer: {
     marginTop: 15,
+    background: '#f6f6f6',
   },
 });
 
@@ -15,7 +16,7 @@ const OpeningAnalysisTable = ({props}) => {
 
   if (state.openingAnalysisTable.open) {
     return (
-      <TableContainer component={Paper} className={classes.tableContainer}>
+      <TableContainer className={classes.tableContainer}>
         <Table stickyHeader size="small" aria-label="Chess Openings">
           <TableBody>
             {

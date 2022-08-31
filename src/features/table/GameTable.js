@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Fade, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import { Fade, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   tableContainer: {
     marginTop: 15,
+    background: '#f6f6f6',
   },
 });
 
@@ -16,7 +17,7 @@ const GameTable = ({props}) => {
   if (state.gameTable.open) {
     return (
       <Fade in={state.gameTable.open}>
-        <TableContainer component={Paper} className={classes.tableContainer}>
+        <TableContainer className={classes.tableContainer}>
           <Table stickyHeader size="small" aria-label="Chess Openings">
             <TableBody>
               {
