@@ -40,8 +40,9 @@ export default class Animation {
 
     const animatedImg = document.createElement('img');
     animatedImg.setAttribute('src', Piece.unicode[unicode].char);
-    animatedImg.addEventListener('transitionend', () => {
-      this.clearPieces();
+    animatedImg.addEventListener('transitionend', function() {
+      this.remove();
+      hiddenImg.classList.remove('hidden');
     });
 
     const sq = document.querySelector(`.${lan[0]}`);
@@ -51,10 +52,5 @@ export default class Animation {
     getComputedStyle(document.documentElement).getPropertyValue('--yAxis');
 
     animatedImg.classList.add('moved');
-  }
-
-  clearPieces() {
-    document.querySelectorAll('.hidden').forEach((el) => el.classList.remove('hidden'));
-    document.querySelectorAll('.moved').forEach((el) => el.remove());
   }
 }
