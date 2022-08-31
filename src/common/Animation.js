@@ -3,16 +3,15 @@ import Ascii from '../common/Ascii';
 import Piece from '../common/Piece';
 
 export default class Animation {
-  constructor (maxWidth) {
-    this.sqSize = maxWidth['600'] ? 12 : maxWidth['900'] ? 10 : 4.1;
+  constructor (sqSize) {
+    this.sqSize = sqSize;
     this.r = document.querySelector(':root');
-    this.r.style.setProperty('--sqSize', `${this.sqSize}vw`);
   }
 
   pieces() {
     const lan = Ascii.longAlgebraicNotation(
-      store.getState().board.history[store.getState().board.history.length - 2 + store.getState().history.back],
-      store.getState().board.history[store.getState().board.history.length - 1 + store.getState().history.back]
+      store.getState().board.history[store.getState().board.history.length - 2],
+      store.getState().board.history[store.getState().board.history.length - 1]
     );
 
     const sqDiff = Ascii.sqDiff(lan[0], lan[1]);

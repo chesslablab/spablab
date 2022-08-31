@@ -17,6 +17,10 @@ const Board = ({props}) => {
     '600': useMediaQuery("(max-width:600px)"),
     '900': useMediaQuery("(max-width:900px)")
   };
+  const sqSize = maxWidth['600'] ? 12 : maxWidth['900'] ? 10 : 4.1;
+
+  let r = document.querySelector(':root');
+  r.style.setProperty('--sqSize', `${sqSize}vw`);
 
   useEffect(() => {
     dispatch(WsAction.connect(state, props)).then(ws => WsAction.startAnalysis(ws));
@@ -29,11 +33,11 @@ const Board = ({props}) => {
       if (state.board.movetext) {
         if (state.mode.name === modeConst.STOCKFISH) {
           if (state.mode.computer.color === state.board.turn) {
-            new Animation(maxWidth).pieces();
+            new Animation(sqSize).pieces();
           }
         } else if (state.mode.name === modeConst.PLAY) {
           if (state.mode.play.color === state.board.turn) {
-            new Animation(maxWidth).pieces();
+            new Animation(sqSize).pieces();
           }
         }
       }
