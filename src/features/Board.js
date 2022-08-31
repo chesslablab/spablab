@@ -82,7 +82,6 @@ const Board = ({props}) => {
 
   const board = () => {
     let divs = [];
-    let color;
     Ascii.flip(
       state.board.flip,
       state.board.history[state.board.history.length - 1 + state.history.back]
@@ -90,7 +89,7 @@ const Board = ({props}) => {
       rank.forEach((piece, j) => {
           let payload = { piece: piece };
           let isLegal, isSelected, isCheck = '';
-          (i + j) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
+          let color = (i + j) % 2 !== 0 ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
           state.board.flip === Pgn.symbol.WHITE
             ? payload = {...payload, i: i, j: j, sq: Ascii.fromIndexToAlgebraic(i, j)}
             : payload = {...payload, i: 7 - i, j: 7 - j, sq: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
