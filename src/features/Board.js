@@ -81,76 +81,72 @@ const Board = ({props}) => {
   };
 
   const board = () => {
-    let divs = [];
-    Ascii.flip(
+    return Ascii.flip(
       state.board.flip,
       state.board.history[state.board.history.length - 1 + state.history.back]
-    ).forEach((rank, i) => {
-      rank.forEach((piece, j) => {
-          let payload = { piece: piece };
-          let isLegal, isSelected, isCheck = '';
-          let color = (i + j) % 2 !== 0 ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-          state.board.flip === Pgn.symbol.WHITE
-            ? payload = {...payload, i: i, j: j, sq: Ascii.fromIndexToAlgebraic(i, j)}
-            : payload = {...payload, i: 7 - i, j: 7 - j, sq: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
-          if (state.board.picked) {
-            if (state.board.picked.sq === payload.sq) {
-              isSelected = 'isSelected';
-            }
-            if (state.board.picked.legal_sqs) {
-              if (state.board.picked.legal_sqs.includes(payload.sq)) {
-                isLegal = 'isLegal';
-              }
-            }
-          } else if (state.board.isCheck) {
-            if (state.board.turn === Pgn.symbol.WHITE) {
-              if (piece === ' K ') {
-                isCheck = 'isCheck';
-              }
-            } else if (state.board.turn === Pgn.symbol.BLACK) {
-              if (piece === ' k ') {
-                isCheck = 'isCheck';
-              }
+    ).map((rank, i) => {
+      return rank.map((piece, j) => {
+        let payload = { piece: piece };
+        let isLegal, isSelected, isCheck = '';
+        let color = (i + j) % 2 !== 0 ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+        state.board.flip === Pgn.symbol.WHITE
+          ? payload = {...payload, i: i, j: j, sq: Ascii.fromIndexToAlgebraic(i, j)}
+          : payload = {...payload, i: 7 - i, j: 7 - j, sq: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
+        if (state.board.picked) {
+          if (state.board.picked.sq === payload.sq) {
+            isSelected = 'isSelected';
+          }
+          if (state.board.picked.legal_sqs) {
+            if (state.board.picked.legal_sqs.includes(payload.sq)) {
+              isLegal = 'isLegal';
             }
           }
-          divs.push(
-            <div
-              key={'' + i + j}
-              className={[
-                  'sq',
-                  color,
-                  payload.sq,
-                  isLegal,
-                  isSelected,
-                  isCheck
-                ].join(' ')
-              }
-              onClick={() => {
-                handleMove(payload);
-              }}
-              onDrop={(ev) => {
-                ev.preventDefault();
-                handleMove(payload);
-              }}
-              onDragOver={(ev) => {
-                ev.preventDefault();
-              }}>
-                {
-                  Piece.unicode[piece].char
-                    ? <img
-                        data-unicode={piece}
-                        src={Piece.unicode[piece].char}
-                        draggable={Piece.color(piece) === state.board.turn ? true : false}
-                        onDragStart={() => handleMove(payload)}
-                      />
-                    : null
-                }
-            </div>
-          );
+        } else if (state.board.isCheck) {
+          if (state.board.turn === Pgn.symbol.WHITE) {
+            if (piece === ' K ') {
+              isCheck = 'isCheck';
+            }
+          } else if (state.board.turn === Pgn.symbol.BLACK) {
+            if (piece === ' k ') {
+              isCheck = 'isCheck';
+            }
+          }
+        }
+        
+        return <div
+          key={'' + i + j}
+          className={[
+              'sq',
+              color,
+              payload.sq,
+              isLegal,
+              isSelected,
+              isCheck
+            ].join(' ')
+          }
+          onClick={() => {
+            handleMove(payload);
+          }}
+          onDrop={(ev) => {
+            ev.preventDefault();
+            handleMove(payload);
+          }}
+          onDragOver={(ev) => {
+            ev.preventDefault();
+          }}>
+            {
+              Piece.unicode[piece].char
+                ? <img
+                    data-unicode={piece}
+                    src={Piece.unicode[piece].char}
+                    draggable={Piece.color(piece) === state.board.turn ? true : false}
+                    onDragStart={() => handleMove(payload)}
+                  />
+                : null
+            }
+        </div>
       });
     });
-
-    return divs;
   }
 
   return (
