@@ -12,30 +12,19 @@ const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const isInitialMount = useRef(true);
-
   const maxWidth900 = useMediaQuery("(max-width:900px)");
   const maxWidth600 = useMediaQuery("(max-width:600px)");
 
-  let sqSize;
-  if (maxWidth600) {
-    sqSize = 12;
-  } else if (maxWidth900) {
-    sqSize = 10;
-  } else {
-    sqSize = 4.1;
-  }
+  let sqSize = maxWidth600 ? 12 : maxWidth900 ? 10 : 4.1;
 
   let r = document.querySelector(':root');
   r.style.setProperty('--sqSize', `${sqSize}vw`);
-
-  getComputedStyle(document.documentElement).getPropertyValue('--sqSize');
 
   const animation = (color, flip) => {
     const lan = Ascii.longAlgebraicNotation(
       state.board.history[state.board.history.length - 2 + state.history.back],
       state.board.history[state.board.history.length - 1 + state.history.back]
     );
-
     const sqDiff = Ascii.sqDiff(lan[0], lan[1]);
     const xAxis = Ascii.xAxisSign(lan[0], lan[1], color, flip) * (sqSize * sqDiff.files);
     const yAxis = Ascii.yAxisSign(lan[0], lan[1], color, flip) * (sqSize * sqDiff.ranks);
@@ -61,11 +50,11 @@ const Board = ({props}) => {
     getComputedStyle(document.documentElement).getPropertyValue('--yAxis');
 
     animatedImg.classList.add('moved');
-  }
+  };
 
   const clearAnimation = () => {
-    Array.from(document.getElementsByClassName('hidden')).forEach((el) => el.classList.remove('hidden'));
-    Array.from(document.getElementsByClassName('moved')).forEach((el) => el.remove());
+    document.querySelectorAll('.hidden').forEach((el) => el.classList.remove('hidden'));
+    document.querySelectorAll('.moved').forEach((el) => el.remove());
   }
 
   useEffect(() => {
@@ -127,15 +116,13 @@ const Board = ({props}) => {
   };
 
   const board = () => {
-    let squares = [];
+    let divs = [];
     let color;
-    let k = 0;
     Ascii.flip(
       state.board.flip,
       state.board.history[state.board.history.length - 1 + state.history.back]
     ).forEach((rank, i) => {
       rank.forEach((piece, j) => {
-          let img;
           let payload = { piece: piece };
           let isLegal, isSelected, isCheck = '';
           (i + j) % 2 !== 0 ? color = Pgn.symbol.BLACK : color = Pgn.symbol.WHITE;
@@ -162,19 +149,11 @@ const Board = ({props}) => {
               }
             }
           }
-          if (Piece.unicode[piece].char) {
-            img = <img
-              data-unicode={piece}
-              src={Piece.unicode[piece].char}
-              draggable={Piece.color(piece) === state.board.turn ? true : false}
-              onDragStart={() => handleMove(payload)}
-            />;
-          }
-          squares.push(<div
-              key={k}
-              className={
-                [
-                  'square',
+          divs.push(
+            <div
+              key={'' + i + j}
+              className={[
+                  'sq',
                   color,
                   payload.sq,
                   isLegal,
@@ -192,14 +171,22 @@ const Board = ({props}) => {
               onDragOver={(ev) => {
                 ev.preventDefault();
               }}>
-              {img}
+                {
+                  Piece.unicode[piece].char
+                    ? <img
+                        data-unicode={piece}
+                        src={Piece.unicode[piece].char}
+                        draggable={Piece.color(piece) === state.board.turn ? true : false}
+                        onDragStart={() => handleMove(payload)}
+                      />
+                    : null
+                }
             </div>
           );
-          k++;
       });
     });
 
-    return squares;
+    return divs;
   }
 
   return (
