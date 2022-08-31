@@ -1,15 +1,21 @@
+:root {
+  --xAxis: 0vw;
+  --yAxis: 0vw;
+  --sqSize: 4.1vw;
+}
+
 .board {
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
   grid-gap: 0;
-  grid-template-columns: repeat(8, [col] 4.1vw);
-  grid-template-rows: repeat(8, [row] 4.1vw);
+  grid-template-columns: repeat(8, [col] var(--sqSize));
+  grid-template-rows: repeat(8, [row] var(--sqSize));
   justify-content: center;
   align-content: center;
   margin: 0 auto;
 }
 
-.square {
+.sq {
   text-align: center;
   cursor: default;
   transition-property: box-shadow;
@@ -17,21 +23,21 @@
   transition-timing-function: ease-out;
 }
 
-.square img {
+.sq img {
   width: 100%;
 }
 
-.square img[draggable=true] {
+.sq img[draggable=true] {
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
 }
 
-.square img[draggable=false] {
+.sq img[draggable=false] {
   cursor: default;
 }
 
-.square img[draggable=true]:active {
+.sq img[draggable=true]:active {
   cursor: grabbing;
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;
@@ -39,28 +45,28 @@
   width: 110%;
 }
 
-.square.isSelected {
+.sq.isSelected {
   background-color: #ffdd43 !important;
   opacity: 0.75;
   box-shadow: inset -4px 0 0 yellow, inset 0 -4px 0 yellow,
     inset 4px 0 0 yellow, inset 0 4px 0 yellow;
 }
 
-.square.isLegal {
+.sq.isLegal {
   box-shadow: inset -4px 0 0 #ffdd43, inset 0 -4px 0 #ffdd43,
     inset 4px 0 0 #ffeb8e, inset 0 4px 0 #ffeb8e;
 }
 
-.square.isCheck {
+.sq.isCheck {
   box-shadow: inset -5px 0 0 #fdd57d, inset 0 -5px 0 #fdd57d,
     inset 5px 0 0 #fdd57d, inset 0 5px 0 #fdd57d;
 }
 
-.square.w {
+.sq.w {
   background-color: #ffce9e;
 }
 
-.square.b {
+.sq.b {
   background-color: #d18b47;
 }
 
@@ -68,7 +74,9 @@
   opacity: 0.85;
 }
 
-.noTextSelection {
+img,
+.noTextSelection,
+.board {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -79,14 +87,23 @@
 
 @media (max-width: 900px) {
   .board {
-    grid-template-columns: repeat(8, [col] 10vw);
-    grid-template-rows: repeat(8, [row] 10vw);
+    grid-template-columns: repeat(8, [col] var(--sqSize));
+    grid-template-rows: repeat(8, [row] var(--sqSize));
   }
 }
 
 @media (max-width: 600px) {
   .board {
-    grid-template-columns: repeat(8, [col] 12vw);
-    grid-template-rows: repeat(8, [row] 12vw);
+    grid-template-columns: repeat(8, [col] var(--sqSize));
+    grid-template-rows: repeat(8, [row] var(--sqSize));
   }
+}
+
+.moved {
+  transform: translate(var(--xAxis), var(--yAxis));
+  transition-duration: 0.3s;
+}
+
+.hidden {
+  display: none;
 }

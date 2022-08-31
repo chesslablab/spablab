@@ -33,7 +33,7 @@ const PlayComputerDialog = () => {
     dialogData.color === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : color = dialogData.color;
-    const payload = configure();
+    const payload = configure(color);
     dispatch(mode.setStockfish(payload));
     dispatch(mainButtons.setPlayComputer());
     dispatch(playComputerDialog.close());
@@ -48,8 +48,9 @@ const PlayComputerDialog = () => {
     });
   };
 
-  const configure = () => {
+  const configure = (color) => {
     let settings = {
+      color: color,
       options: {
         "Skill Level": 11
       },
