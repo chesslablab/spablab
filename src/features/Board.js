@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import * as modeConst from '../common/constants/mode';
-import Animation from '../common/Animation';
 import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
 import Piece from '../common/Piece';
@@ -12,7 +11,6 @@ import WsAction from '../ws/WsAction';
 const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const isInitialMount = useRef(true);
   const maxWidth = {
     '600': useMediaQuery("(max-width:600px)"),
     '900': useMediaQuery("(max-width:900px)")
@@ -25,24 +23,6 @@ const Board = ({props}) => {
   useEffect(() => {
     dispatch(WsAction.connect(state, props)).then(ws => WsAction.startAnalysis(ws));
   }, [dispatch]);
-
-  useEffect(() => {
-    if (isInitialMount.name) {
-      isInitialMount.name = false;
-    } else {
-      if (state.board.movetext) {
-        if (state.mode.name === modeConst.STOCKFISH) {
-          if (state.mode.computer.color === state.board.turn) {
-            new Animation(sqSize).pieces();
-          }
-        } else if (state.mode.name === modeConst.PLAY) {
-          if (state.mode.play.color === state.board.turn) {
-            new Animation(sqSize).pieces();
-          }
-        }
-      }
-    }
-  }, [state.board.history.length]);
 
   const handleMove = (payload) => {
     if (state.mode.name === modeConst.PLAY) {
@@ -112,7 +92,7 @@ const Board = ({props}) => {
             }
           }
         }
-        
+
         return <div
           key={'' + i + j}
           className={[
