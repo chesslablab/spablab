@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import * as modeConst from '../common/constants/mode';
+import Animation from '../common/Animation';
 import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';
 import Piece from '../common/Piece';
@@ -11,18 +12,36 @@ import WsAction from '../ws/WsAction';
 const Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+  const isInitialMount = useRef(true);
   const maxWidth = {
     '600': useMediaQuery("(max-width:600px)"),
     '900': useMediaQuery("(max-width:900px)")
   };
   const sqSize = maxWidth['600'] ? 12 : maxWidth['900'] ? 10 : 4.1;
-
-  let r = document.querySelector(':root');
-  r.style.setProperty('--sqSize', `${sqSize}vw`);
+  const sqsRef = useRef([]);
+  const imgsRef = useRef([]);
 
   useEffect(() => {
     dispatch(WsAction.connect(state, props)).then(ws => WsAction.startAnalysis(ws));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isInitialMount.name) {
+      isInitialMount.name = false;
+    } else {
+      if (state.board.movetext) {
+        if (state.mode.name === modeConst.STOCKFISH) {
+          if (state.mode.computer.color === state.board.turn) {
+            new Animation(sqSize, imgsRef, sqsRef).pieces();
+          }
+        } else if (state.mode.name === modeConst.PLAY) {
+          if (state.mode.play.color === state.board.turn) {
+            new Animation(sqSize, imgsRef, sqsRef).pieces();
+          }
+        }
+      }
+    }
+  }, [state.board.history.length]);
 
   const handleMove = (payload) => {
     if (state.mode.name === modeConst.PLAY) {
@@ -94,7 +113,8 @@ const Board = ({props}) => {
         }
 
         return <div
-          key={'' + i + j}
+          key={payload.sq}
+          ref={el => sqsRef.current[payload.sq] = el}
           className={[
               'sq',
               color,
@@ -117,7 +137,7 @@ const Board = ({props}) => {
             {
               Piece.unicode[piece].char
                 ? <img
-                    data-unicode={piece}
+                    ref={el => imgsRef.current[payload.sq] = el}
                     src={Piece.unicode[piece].char}
                     draggable={Piece.color(piece) === state.board.turn ? true : false}
                     onDragStart={() => handleMove(payload)}

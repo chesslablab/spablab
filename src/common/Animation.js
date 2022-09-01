@@ -1,11 +1,11 @@
 import store from '../app/store';
 import Ascii from '../common/Ascii';
-import Piece from '../common/Piece';
 
 export default class Animation {
-  constructor (sqSize) {
+  constructor (sqSize, imgsRef, sqsRef) {
     this.sqSize = sqSize;
-    this.r = document.querySelector(':root');
+    this.imgsRef = imgsRef;
+    this.sqsRef = sqsRef;
   }
 
   pieces() {
@@ -30,27 +30,25 @@ export default class Animation {
       store.getState().board.flip
     ) * this.sqSize * sqDiff.ranks;
 
-    this.r.style.setProperty('--xAxis', `${xAxis}vw`);
-    this.r.style.setProperty('--yAxis', `${yAxis}vw`);
+    const sqFrom = this.sqsRef.current[lan[0]];
+    const sqTo = this.sqsRef.current[lan[1]];
+    const img = this.imgsRef.current[lan[1]];
 
-    const hiddenImg = document.querySelector(`.${lan[1]}`).querySelector('img');
-    hiddenImg.classList.add('hidden');
+    sqFrom.appendChild(img);
 
-    const unicode = hiddenImg.getAttribute('data-unicode');
+    img.animate(
+      {
+        transform: `translate(${xAxis}vw, ${yAxis}vw)`
+      },
+      {
+        duration: 250
+      }
+    );
 
-    const animatedImg = document.createElement('img');
-    animatedImg.setAttribute('src', Piece.unicode[unicode].char);
-    animatedImg.addEventListener('transitionend', function() {
-      this.remove();
-      hiddenImg.classList.remove('hidden');
+    Promise.all(
+      img.getAnimations().map((animation) => animation.finished),
+    ).then(() => {
+      sqTo.appendChild(img);
     });
-
-    const sq = document.querySelector(`.${lan[0]}`);
-    sq.appendChild(animatedImg);
-
-    getComputedStyle(document.documentElement).getPropertyValue('--xAxis');
-    getComputedStyle(document.documentElement).getPropertyValue('--yAxis');
-
-    animatedImg.classList.add('moved');
   }
 }
