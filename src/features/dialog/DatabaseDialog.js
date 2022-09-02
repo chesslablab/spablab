@@ -89,7 +89,7 @@ const DatabaseDialog = ({props}) => {
                 label="Year"
                 type="number"
                 margin="normal"
-                inputProps={{ min: "1750", max: "2021", step: "1" }}
+                inputProps={{ min: "1750", max: "2022", step: "1"}}
               />
             </Grid>
             <Grid item xs={12} md={4}>
