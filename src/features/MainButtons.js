@@ -83,7 +83,6 @@ const MainButtons = () => {
     state.mode.play.accepted &&
     (!state.mode.play.draw || state.mode.play.draw === Wording.verb.PROPOSE.toLowerCase()) &&
     !state.mode.play.resign &&
-    !state.mode.play.resign &&
     !state.mode.play.leave &&
     !state.mode.play.timer.over &&
     !state.board.isMate;
