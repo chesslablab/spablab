@@ -24,9 +24,10 @@ import * as mainButtonConst from '../common/constants/mainButton';
 import * as modeConst from '../common/constants/mode';
 import * as mainButtons from '../features/mainButtonsSlice';
 import * as mode from '../features/modeSlice';
-import * as searchGamesDialog from '../features/dialog/searchGamesDialogSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
+import * as queryStatsDialog from '../features/dialog/queryStatsDialogSlice';
+import * as searchGamesDialog from '../features/dialog/searchGamesDialogSlice';
 import * as searchEcoDialog from '../features/dialog/searchEcoDialogSlice';
 import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSlice';
 import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
@@ -170,8 +171,7 @@ const MainButtons = () => {
           <TravelExploreIcon size="small" />&nbsp;Search Games
         </MenuItem>
         <MenuItem onClick={() => {
-          // dispatch(queryStatsDialog.open());
-          // TODO
+          dispatch(queryStatsDialog.open());
           handleCloseDatabase();
         }}>
           <QueryStatsIcon size="small" />&nbsp;Query Stats

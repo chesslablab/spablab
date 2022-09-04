@@ -5,7 +5,6 @@ import acceptResignDialogReducer from '../features/dialog/acceptResignDialogSlic
 import acceptTakebackDialogReducer from '../features/dialog/acceptTakebackDialogSlice';
 import checkmateSkillsDialogReducer from '../features/dialog/checkmateSkillsDialogSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
-import searchGamesDialogReducer from '../features/dialog/searchGamesDialogSlice';
 import enterInviteCodeDialogReducer from '../features/dialog/enterInviteCodeDialogSlice';
 import heuristicsDialogReducer from '../features/dialog/heuristicsDialogSlice';
 import loadFenDialogReducer from '../features/dialog/loadFenDialogSlice';
@@ -16,7 +15,9 @@ import offerTakebackDialogReducer from '../features/dialog/offerTakebackDialogSl
 import playComputerDialogReducer from '../features/dialog/playComputerDialogSlice';
 import playOnlineDialogReducer from '../features/dialog/playOnlineDialogSlice';
 import progressDialogReducer from '../features/dialog/progressDialogSlice';
+import queryStatsDialogReducer from '../features/dialog/queryStatsDialogSlice';
 import searchEcoDialogReducer from '../features/dialog/searchEcoDialogSlice';
+import searchGamesDialogReducer from '../features/dialog/searchGamesDialogSlice';
 import searchMovetextDialogReducer from '../features/dialog/searchMovetextDialogSlice';
 import searchNameDialogReducer from '../features/dialog/searchNameDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
@@ -37,7 +38,6 @@ const rootReducer = {
   acceptTakebackDialog: acceptTakebackDialogReducer,
   checkmateSkillsDialog: checkmateSkillsDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,
-  searchGamesDialog: searchGamesDialogReducer,
   enterInviteCodeDialog: enterInviteCodeDialogReducer,
   heuristicsDialog: heuristicsDialogReducer,
   loadFenDialog: loadFenDialogReducer,
@@ -48,7 +48,9 @@ const rootReducer = {
   playComputerDialog: playComputerDialogReducer,
   playOnlineDialog: playOnlineDialogReducer,
   progressDialog: progressDialogReducer,
+  queryStatsDialog: queryStatsDialogReducer,
   searchEcoDialog: searchEcoDialogReducer,
+  searchGamesDialog: searchGamesDialogReducer,
   searchMovetextDialog: searchMovetextDialogReducer,
   searchNameDialog: searchNameDialogReducer,
   watchDialog: watchDialogReducer,

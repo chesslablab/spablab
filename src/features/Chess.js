@@ -7,12 +7,13 @@ import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
 import StartedButtonsAnalysisMode from './analysisMode/StartedButtonsAnalysisMode';
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
+import LoadFenDialog from './dialog/LoadFenDialog';
+import LoadPgnDialog from './dialog/LoadPgnDialog';
+import QueryStatsDialog from './dialog/QueryStatsDialog';
 import SearchGamesDialog from './dialog/SearchGamesDialog';
 import SearchEcoDialog from './dialog/SearchEcoDialog';
 import SearchMovetextDialog from './dialog/SearchMovetextDialog';
 import SearchNameDialog from './dialog/SearchNameDialog';
-import LoadFenDialog from './dialog/LoadFenDialog';
-import LoadPgnDialog from './dialog/LoadPgnDialog';
 import ProgressDialog from './dialog/ProgressDialog';
 import WatchDialog from './dialog/WatchDialog';
 import StartedButtonsGmMode from './gmMode/StartedButtonsGmMode';
@@ -56,13 +57,13 @@ const Chess = ({ props }) => {
           <PlayButtons />
         </Grid>
       </Grid>
+      <CheckmateSkillsDialog />
+      <LoadFenDialog />
+      <QueryStatsDialog />
       <SearchGamesDialog props={props} />
       <SearchEcoDialog props={props} />
       <SearchMovetextDialog props={props} />
       <SearchNameDialog props={props} />
-      <CheckmateSkillsDialog />
-      <LoadFenDialog />
-      <LoadPgnDialog />
       <WatchDialog />
       <ProgressDialog />
     </Provider>
