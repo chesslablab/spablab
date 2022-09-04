@@ -9,6 +9,7 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
@@ -50,6 +51,7 @@ const MainButtons = () => {
   const dispatch = useDispatch();
 
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
+  const [anchorElDatabase, setAnchorElDatabase] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
 
@@ -57,6 +59,10 @@ const MainButtons = () => {
 
   const handleCloseAnalysis = () => {
     setAnchorElAnalysis(null);
+  };
+
+  const handleCloseDatabase = () => {
+    setAnchorElDatabase(null);
   };
 
   const handleCloseTraining = () => {
@@ -69,6 +75,10 @@ const MainButtons = () => {
 
   const handleClickAnalysis = (event) => {
     setAnchorElAnalysis(event.currentTarget);
+  };
+
+  const handleClickDatabase = (event) => {
+    setAnchorElDatabase(event.currentTarget);
   };
 
   const handleClickTraining = (event) => {
@@ -143,10 +153,22 @@ const MainButtons = () => {
       <Button
         variant={state.mainButtons.name === mainButtonConst.MAIN_BUTTON_OPENING_DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
-        onClick={() => dispatch(databaseDialog.open())}
+        onClick={handleClickDatabase}
       >
         Database
       </Button>
+      <Menu
+        anchorEl={anchorElDatabase}
+        open={Boolean(anchorElDatabase)}
+        onClose={handleCloseDatabase}
+      >
+        <MenuItem onClick={() => {
+          dispatch(databaseDialog.open());
+          handleCloseDatabase();
+        }}>
+          <TravelExploreIcon size="small" />&nbsp;Search Games
+        </MenuItem>
+      </Menu>
       <Button
         variant={state.mainButtons.name === mainButtonConst.TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
