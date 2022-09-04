@@ -4,6 +4,7 @@ import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PsychologyIcon from '@mui/icons-material/Psychology';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import QuizIcon from '@mui/icons-material/Quiz';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
@@ -167,6 +168,13 @@ const MainButtons = () => {
           handleCloseDatabase();
         }}>
           <TravelExploreIcon size="small" />&nbsp;Search Games
+        </MenuItem>
+        <MenuItem onClick={() => {
+          // dispatch(queryStatsDialog.open());
+          // TODO
+          handleCloseDatabase();
+        }}>
+          <QueryStatsIcon size="small" />&nbsp;Query Stats
         </MenuItem>
       </Menu>
       <Button
