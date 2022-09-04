@@ -63,7 +63,7 @@ const PlayOnlineDialog = () => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Play online
+            Play Online
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(playOnlineDialog.close())}>

@@ -34,7 +34,7 @@ const LoadPgnDialog = () => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Load PGN
+            PGN Movetext
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(loadPgnDialog.close())}>

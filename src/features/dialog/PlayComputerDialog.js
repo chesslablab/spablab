@@ -77,7 +77,7 @@ const PlayComputerDialog = () => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Play computer
+            Play Computer
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(playComputerDialog.close())}>

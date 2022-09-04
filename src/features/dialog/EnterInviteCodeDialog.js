@@ -41,7 +41,7 @@ const EnterInviteCodeDialog = () => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Enter invite code
+            Enter Invite Code
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(enterInviteCodeDialog.close())}>

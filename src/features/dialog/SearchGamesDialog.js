@@ -56,7 +56,7 @@ const SearchGamesDialog = ({props}) => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Database
+            Search Games
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(searchGamesDialog.close())}>
@@ -70,7 +70,7 @@ const SearchGamesDialog = ({props}) => {
           className="info-alert"
           severity="info"
         >
-          Click on the <b>Search Games</b> button, and find up to 25 random games matching the criteria.
+          Click on the <b>Search</b> button, and find up to 25 random games matching the criteria on a database of thousands of games.
         </Alert>
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
@@ -147,7 +147,7 @@ const SearchGamesDialog = ({props}) => {
             variant="outlined"
             type="submit"
           >
-            Search Games
+            Search
           </Button>
         </form>
         <DatabaseResultTable props={{ result: result }} />

@@ -34,7 +34,7 @@ const LoadFenDialog = () => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Load FEN
+            FEN String
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(loadFenDialog.close())}>
@@ -50,7 +50,7 @@ const LoadFenDialog = () => {
             required
             name="fen"
             label="FEN string"
-            margin="normal" 
+            margin="normal"
           />
           <Button
             fullWidth

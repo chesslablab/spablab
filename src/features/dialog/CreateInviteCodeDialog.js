@@ -27,7 +27,7 @@ const CreateInviteCodeDialog = () => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Play a friend
+            Play a Friend
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(createInviteCodeDialog.close())}>

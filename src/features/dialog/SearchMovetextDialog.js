@@ -35,7 +35,7 @@ const SearchMovetextDialog = ({ props }) => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Movetext
+            PGN Movetext
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => {
