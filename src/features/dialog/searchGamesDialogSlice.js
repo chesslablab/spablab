@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const databaseDialogSlice = createSlice({
-  name: 'databaseDialog',
+const searchGamesDialogSlice = createSlice({
+  name: 'searchGamesDialog',
   initialState: {
     open: false
   },
@@ -18,5 +18,5 @@ const databaseDialogSlice = createSlice({
 export const {
   open,
   close
-} = databaseDialogSlice.actions;
-export default databaseDialogSlice.reducer;
+} = searchGamesDialogSlice.actions;
+export default searchGamesDialogSlice.reducer;

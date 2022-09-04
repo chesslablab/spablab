@@ -7,7 +7,7 @@ import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
 import StartedButtonsAnalysisMode from './analysisMode/StartedButtonsAnalysisMode';
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
-import DatabaseDialog from './dialog/DatabaseDialog';
+import SearchGamesDialog from './dialog/SearchGamesDialog';
 import SearchEcoDialog from './dialog/SearchEcoDialog';
 import SearchMovetextDialog from './dialog/SearchMovetextDialog';
 import SearchNameDialog from './dialog/SearchNameDialog';
@@ -56,7 +56,7 @@ const Chess = ({ props }) => {
           <PlayButtons />
         </Grid>
       </Grid>
-      <DatabaseDialog props={props} />
+      <SearchGamesDialog props={props} />
       <SearchEcoDialog props={props} />
       <SearchMovetextDialog props={props} />
       <SearchNameDialog props={props} />

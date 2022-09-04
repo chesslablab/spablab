@@ -13,11 +13,11 @@ import {
   TextField
 } from '@mui/material';
 import * as infoAlert from '../../features/alert/infoAlertSlice';
-import * as databaseDialog from '../../features/dialog/databaseDialogSlice';
+import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
 
-const DatabaseDialog = ({props}) => {
+const SearchGamesDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const [result, setResult] = React.useState([]);
@@ -42,24 +42,24 @@ const DatabaseDialog = ({props}) => {
           setResult(data);
         });
       } else if (res.status === 204) {
-        dispatch(databaseDialog.close());
+        dispatch(searchGamesDialog.close());
         dispatch(infoAlert.show({ info: 'No results were found, please try again.' }));
       } else {
-        dispatch(databaseDialog.close());
+        dispatch(searchGamesDialog.close());
         dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
       }
     });
   };
 
   return (
-    <Dialog open={state.databaseDialog.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.searchGamesDialog.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
             Database
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(databaseDialog.close())}>
+            <IconButton onClick={() => dispatch(searchGamesDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>
@@ -70,7 +70,7 @@ const DatabaseDialog = ({props}) => {
           className="info-alert"
           severity="info"
         >
-          Click on the Search button and find up to 25 random games matching the criteria on a database of thousands of games.
+          Click on the <b>Search Games</b> button, and find up to 25 random games matching the criteria.
         </Alert>
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
@@ -147,7 +147,7 @@ const DatabaseDialog = ({props}) => {
             variant="outlined"
             type="submit"
           >
-            Search
+            Search Games
           </Button>
         </form>
         <DatabaseResultTable props={{ result: result }} />
@@ -156,4 +156,4 @@ const DatabaseDialog = ({props}) => {
   );
 };
 
-export default DatabaseDialog;
+export default SearchGamesDialog;

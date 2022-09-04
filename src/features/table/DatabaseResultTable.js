@@ -14,7 +14,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
-import * as databaseDialog from '../../features/dialog/databaseDialogSlice';
+import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import * as gameTable from '../../features/table/gameTableSlice';
 import WsAction from '../../ws/WsAction';
@@ -63,7 +63,7 @@ const DatabaseResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {
-    dispatch(databaseDialog.close());
+    dispatch(searchGamesDialog.close());
     dispatch(progressDialog.open());
     dispatch(mainButtons.setDatabase());
     Dispatcher.initGui(dispatch);

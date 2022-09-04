@@ -24,7 +24,7 @@ import * as mainButtonConst from '../common/constants/mainButton';
 import * as modeConst from '../common/constants/mode';
 import * as mainButtons from '../features/mainButtonsSlice';
 import * as mode from '../features/modeSlice';
-import * as databaseDialog from '../features/dialog/databaseDialogSlice';
+import * as searchGamesDialog from '../features/dialog/searchGamesDialogSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
 import * as searchEcoDialog from '../features/dialog/searchEcoDialogSlice';
@@ -164,7 +164,7 @@ const MainButtons = () => {
         onClose={handleCloseDatabase}
       >
         <MenuItem onClick={() => {
-          dispatch(databaseDialog.open());
+          dispatch(searchGamesDialog.open());
           handleCloseDatabase();
         }}>
           <TravelExploreIcon size="small" />&nbsp;Search Games
