@@ -60,6 +60,7 @@ const Chess = ({ props }) => {
       </Grid>
       <CheckmateSkillsDialog />
       <LoadFenDialog />
+      <LoadPgnDialog />
       <OpeningsStatsDialog />
       <PlayersStatsDialog props={props} />
       <SearchGamesDialog props={props} />
