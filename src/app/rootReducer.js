@@ -15,7 +15,7 @@ import offerTakebackDialogReducer from '../features/dialog/offerTakebackDialogSl
 import playComputerDialogReducer from '../features/dialog/playComputerDialogSlice';
 import playOnlineDialogReducer from '../features/dialog/playOnlineDialogSlice';
 import progressDialogReducer from '../features/dialog/progressDialogSlice';
-import queryStatsDialogReducer from '../features/dialog/queryStatsDialogSlice';
+import openingsStatsDialogReducer from '../features/dialog/openingsStatsDialogSlice';
 import searchEcoDialogReducer from '../features/dialog/searchEcoDialogSlice';
 import searchGamesDialogReducer from '../features/dialog/searchGamesDialogSlice';
 import searchMovetextDialogReducer from '../features/dialog/searchMovetextDialogSlice';
@@ -48,7 +48,7 @@ const rootReducer = {
   playComputerDialog: playComputerDialogReducer,
   playOnlineDialog: playOnlineDialogReducer,
   progressDialog: progressDialogReducer,
-  queryStatsDialog: queryStatsDialogReducer,
+  openingsStatsDialog: openingsStatsDialogReducer,
   searchEcoDialog: searchEcoDialogReducer,
   searchGamesDialog: searchGamesDialogReducer,
   searchMovetextDialog: searchMovetextDialogReducer,

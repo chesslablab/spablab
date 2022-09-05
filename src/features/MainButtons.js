@@ -26,7 +26,7 @@ import * as mainButtons from '../features/mainButtonsSlice';
 import * as mode from '../features/modeSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
-import * as queryStatsDialog from '../features/dialog/queryStatsDialogSlice';
+import * as openingsStatsDialog from '../features/dialog/openingsStatsDialogSlice';
 import * as searchGamesDialog from '../features/dialog/searchGamesDialogSlice';
 import * as searchEcoDialog from '../features/dialog/searchEcoDialogSlice';
 import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSlice';
@@ -172,7 +172,7 @@ const MainButtons = () => {
         </MenuItem>
         <Divider />
         <MenuItem onClick={() => {
-          dispatch(queryStatsDialog.open());
+          dispatch(openingsStatsDialog.open());
           handleCloseDatabase();
         }}>
           <QueryStatsIcon size="small" />&nbsp;Openings

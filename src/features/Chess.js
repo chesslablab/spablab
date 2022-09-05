@@ -9,7 +9,7 @@ import StartedButtonsAnalysisMode from './analysisMode/StartedButtonsAnalysisMod
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
 import LoadFenDialog from './dialog/LoadFenDialog';
 import LoadPgnDialog from './dialog/LoadPgnDialog';
-import QueryStatsDialog from './dialog/QueryStatsDialog';
+import OpeningsStatsDialog from './dialog/OpeningsStatsDialog';
 import SearchGamesDialog from './dialog/SearchGamesDialog';
 import SearchEcoDialog from './dialog/SearchEcoDialog';
 import SearchMovetextDialog from './dialog/SearchMovetextDialog';
@@ -59,7 +59,7 @@ const Chess = ({ props }) => {
       </Grid>
       <CheckmateSkillsDialog />
       <LoadFenDialog />
-      <QueryStatsDialog />
+      <OpeningsStatsDialog />
       <SearchGamesDialog props={props} />
       <SearchEcoDialog props={props} />
       <SearchMovetextDialog props={props} />

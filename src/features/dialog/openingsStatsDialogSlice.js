@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const queryStatsDialogSlice = createSlice({
-  name: 'queryStatsDialog',
+const openingsStatsDialogSlice = createSlice({
+  name: 'openingsStatsDialog',
   initialState: {
     open: false
   },
@@ -18,5 +18,5 @@ const queryStatsDialogSlice = createSlice({
 export const {
   open,
   close
-} = queryStatsDialogSlice.actions;
-export default queryStatsDialogSlice.reducer;
+} = openingsStatsDialogSlice.actions;
+export default openingsStatsDialogSlice.reducer;
