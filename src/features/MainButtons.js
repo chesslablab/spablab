@@ -14,7 +14,7 @@ import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { Button, ButtonGroup, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import logo from '../assets/img/logo.png';
 import Dispatcher from '../common/Dispatcher';
@@ -170,11 +170,12 @@ const MainButtons = () => {
         }}>
           <TravelExploreIcon size="small" />&nbsp;Search Games
         </MenuItem>
+        <Divider />
         <MenuItem onClick={() => {
           dispatch(queryStatsDialog.open());
           handleCloseDatabase();
         }}>
-          <QueryStatsIcon size="small" />&nbsp;Query Stats
+          <QueryStatsIcon size="small" />&nbsp;Openings
         </MenuItem>
       </Menu>
       <Button
