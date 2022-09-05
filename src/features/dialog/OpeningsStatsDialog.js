@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import CloseIcon from '@mui/icons-material/Close';
 import {
   Dialog,
@@ -8,6 +8,7 @@ import {
   DialogTitle,
   Grid,
   IconButton,
+  Typography
 } from '@mui/material';
 import * as infoAlert from '../../features/alert/infoAlertSlice';
 import * as openingsStatsDialog from '../../features/dialog/openingsStatsDialogSlice';
@@ -42,10 +43,8 @@ const OpeningsStatsDialog = ({props}) => {
             height={300}
             data={winRateForWhite}
             margin={{
-              top: 5,
               right: 30,
               left: 20,
-              bottom: 5,
             }}
           >
             <CartesianGrid fill="#c0c0c0" strokeDasharray="3 3" />
@@ -55,16 +54,21 @@ const OpeningsStatsDialog = ({props}) => {
             <Bar dataKey="total" fill="#f0f0f0" />
           </BarChart>
         </ResponsiveContainer>
+        <Typography
+          gutterBottom
+          align="center"
+        >
+          Win Rate for White
+        </Typography>
         <ResponsiveContainer width="100%" aspect={4.0/2.0}>
           <BarChart
             width={500}
             height={300}
             data={winRateForBlack}
             margin={{
-              top: 5,
+              top: 30,
               right: 30,
               left: 20,
-              bottom: 5,
             }}
           >
             <CartesianGrid fill="#c0c0c0" strokeDasharray="3 3" />
@@ -74,16 +78,21 @@ const OpeningsStatsDialog = ({props}) => {
             <Bar dataKey="total" fill="#181818" />
           </BarChart>
         </ResponsiveContainer>
+        <Typography
+          gutterBottom
+          align="center"
+        >
+          Win Rate for Black
+        </Typography>
         <ResponsiveContainer width="100%" aspect={4.0/2.0}>
           <BarChart
             width={500}
             height={300}
             data={drawRate}
             margin={{
-              top: 5,
+              top: 30,
               right: 30,
               left: 20,
-              bottom: 5,
             }}
           >
             <CartesianGrid fill="#c0c0c0" strokeDasharray="3 3" />
@@ -93,6 +102,12 @@ const OpeningsStatsDialog = ({props}) => {
             <Bar dataKey="total" fill="#808080" />
           </BarChart>
         </ResponsiveContainer>
+        <Typography
+          gutterBottom
+          align="center"
+        >
+          Draw Rate
+        </Typography>
       </DialogContent>
     </Dialog>
   );
