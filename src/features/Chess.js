@@ -10,6 +10,7 @@ import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
 import LoadFenDialog from './dialog/LoadFenDialog';
 import LoadPgnDialog from './dialog/LoadPgnDialog';
 import OpeningsStatsDialog from './dialog/OpeningsStatsDialog';
+import PlayersStatsDialog from './dialog/PlayersStatsDialog';
 import SearchGamesDialog from './dialog/SearchGamesDialog';
 import SearchEcoDialog from './dialog/SearchEcoDialog';
 import SearchMovetextDialog from './dialog/SearchMovetextDialog';
@@ -60,6 +61,7 @@ const Chess = ({ props }) => {
       <CheckmateSkillsDialog />
       <LoadFenDialog />
       <OpeningsStatsDialog />
+      <PlayersStatsDialog props={props} />
       <SearchGamesDialog props={props} />
       <SearchEcoDialog props={props} />
       <SearchMovetextDialog props={props} />

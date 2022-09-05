@@ -27,7 +27,7 @@ const OpeningsStatsDialog = ({props}) => {
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Openings Stats
+            Top 50 Openings
           </Grid>
           <Grid item xs={1}>
             <IconButton onClick={() => dispatch(openingsStatsDialog.close())}>
@@ -47,11 +47,11 @@ const OpeningsStatsDialog = ({props}) => {
               left: 20,
             }}
           >
-            <CartesianGrid fill="#c0c0c0" strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="ECO" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="total" fill="#f0f0f0" />
+            <Bar dataKey="total" fill="#6082b6" />
           </BarChart>
         </ResponsiveContainer>
         <Typography
@@ -71,11 +71,11 @@ const OpeningsStatsDialog = ({props}) => {
               left: 20,
             }}
           >
-            <CartesianGrid fill="#c0c0c0" strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="ECO" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="total" fill="#181818" />
+            <Bar dataKey="total" fill="#6082b6" />
           </BarChart>
         </ResponsiveContainer>
         <Typography
@@ -95,11 +95,11 @@ const OpeningsStatsDialog = ({props}) => {
               left: 20,
             }}
           >
-            <CartesianGrid fill="#c0c0c0" strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="ECO" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="total" fill="#808080" />
+            <Bar dataKey="total" fill="#6082b6" />
           </BarChart>
         </ResponsiveContainer>
         <Typography

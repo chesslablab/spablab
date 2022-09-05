@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
@@ -27,6 +28,7 @@ import * as mode from '../features/modeSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
 import * as openingsStatsDialog from '../features/dialog/openingsStatsDialogSlice';
+import * as playersStatsDialog from '../features/dialog/playersStatsDialogSlice';
 import * as searchGamesDialog from '../features/dialog/searchGamesDialogSlice';
 import * as searchEcoDialog from '../features/dialog/searchEcoDialogSlice';
 import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSlice';
@@ -175,7 +177,13 @@ const MainButtons = () => {
           dispatch(openingsStatsDialog.open());
           handleCloseDatabase();
         }}>
-          <QueryStatsIcon size="small" />&nbsp;Openings
+          <AutoGraphIcon size="small" />&nbsp;Top 50 Openings
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(playersStatsDialog.open());
+          handleCloseDatabase();
+        }}>
+          <QueryStatsIcon size="small" />&nbsp;Players
         </MenuItem>
       </Menu>
       <Button

@@ -16,6 +16,7 @@ import playComputerDialogReducer from '../features/dialog/playComputerDialogSlic
 import playOnlineDialogReducer from '../features/dialog/playOnlineDialogSlice';
 import progressDialogReducer from '../features/dialog/progressDialogSlice';
 import openingsStatsDialogReducer from '../features/dialog/openingsStatsDialogSlice';
+import playersStatsDialogReducer from '../features/dialog/playersStatsDialogSlice';
 import searchEcoDialogReducer from '../features/dialog/searchEcoDialogSlice';
 import searchGamesDialogReducer from '../features/dialog/searchGamesDialogSlice';
 import searchMovetextDialogReducer from '../features/dialog/searchMovetextDialogSlice';
@@ -49,6 +50,7 @@ const rootReducer = {
   playOnlineDialog: playOnlineDialogReducer,
   progressDialog: progressDialogReducer,
   openingsStatsDialog: openingsStatsDialogReducer,
+  playersStatsDialog: playersStatsDialogReducer,
   searchEcoDialog: searchEcoDialogReducer,
   searchGamesDialog: searchGamesDialogReducer,
   searchMovetextDialog: searchMovetextDialogReducer,
