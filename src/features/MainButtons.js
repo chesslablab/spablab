@@ -183,7 +183,7 @@ const MainButtons = () => {
           dispatch(playersStatsDialog.open());
           handleCloseDatabase();
         }}>
-          <QueryStatsIcon size="small" />&nbsp;Players
+          <QueryStatsIcon size="small" />&nbsp;Players Stats
         </MenuItem>
       </Menu>
       <Button
