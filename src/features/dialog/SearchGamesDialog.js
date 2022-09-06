@@ -12,10 +12,18 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from '../../features/alert/infoAlertSlice';
 import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
+
+const autocompletePlayers = require('../../assets/json/autocomplete-players.json');
+
+const filterOptions = createFilterOptions({
+  matchFrom: 'any',
+  limit: 100,
+});
 
 const SearchGamesDialog = ({props}) => {
   const state = useSelector((state) => state);
@@ -67,6 +75,7 @@ const SearchGamesDialog = ({props}) => {
       </DialogTitle>
       <DialogContent>
         <Alert
+          style={{ marginBottom: 15 }}
           className="info-alert"
           severity="info"
         >
@@ -79,7 +88,6 @@ const SearchGamesDialog = ({props}) => {
                 fullWidth
                 name="Event"
                 label="Event"
-                margin="normal"
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -88,7 +96,6 @@ const SearchGamesDialog = ({props}) => {
                 name="Date"
                 label="Year"
                 type="number"
-                margin="normal"
                 inputProps={{ min: "1750", max: "2022", step: "1"}}
               />
             </Grid>
@@ -97,25 +104,22 @@ const SearchGamesDialog = ({props}) => {
                 fullWidth
                 name="ECO"
                 label="ECO Code"
-                margin="normal"
-              />
-            </Grid>
-          </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
-              <TextField
-                fullWidth
-                name="White"
-                label="White"
-                margin="normal"
               />
             </Grid>
             <Grid item xs={12} md={4}>
-              <TextField
-                fullWidth
-                name="Black"
-                label="Black"
-                margin="normal"
+              <Autocomplete
+                id="White"
+                options={autocompletePlayers.map((option) => option.name)}
+                filterOptions={filterOptions}
+                renderInput={(params) => <TextField {...params} label="White" name="White" />}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Autocomplete
+                id="Black"
+                options={autocompletePlayers.map((option) => option.name)}
+                filterOptions={filterOptions}
+                renderInput={(params) => <TextField {...params} label="Black" name="Black" />}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -125,7 +129,6 @@ const SearchGamesDialog = ({props}) => {
                 name="Result"
                 label="Result"
                 defaultValue=""
-                margin="normal"
               >
                 <MenuItem value="" disabled>
                   Select an option
@@ -146,6 +149,7 @@ const SearchGamesDialog = ({props}) => {
             fullWidth
             variant="outlined"
             type="submit"
+            style={{ marginTop: 15 }}
           >
             Search
           </Button>

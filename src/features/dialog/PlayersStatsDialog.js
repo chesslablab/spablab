@@ -12,9 +12,17 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from '../../features/alert/infoAlertSlice';
 import * as playersStatsDialog from '../../features/dialog/playersStatsDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
+
+const autocompletePlayers = require('../../assets/json/autocomplete-players.json');
+
+const filterOptions = createFilterOptions({
+  matchFrom: 'any',
+  limit: 100,
+});
 
 const PlayersStatsDialog = ({props}) => {
   const state = useSelector((state) => state);
@@ -50,7 +58,7 @@ const PlayersStatsDialog = ({props}) => {
   return (
     <Dialog open={state.playersStatsDialog.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item xs={11}>
             Players Stats
           </Grid>
@@ -68,19 +76,19 @@ const PlayersStatsDialog = ({props}) => {
         <form onSubmit={handleViewStats}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <TextField
-                fullWidth
-                name="White"
-                label="White"
-                margin="normal"
+              <Autocomplete
+                id="White"
+                options={autocompletePlayers.map((option) => option.name)}
+                filterOptions={filterOptions}
+                renderInput={(params) => <TextField {...params} label="White" name="White" />}
               />
             </Grid>
             <Grid item xs={12} md={4}>
-              <TextField
-                fullWidth
-                name="Black"
-                label="Black"
-                margin="normal"
+              <Autocomplete
+                id="Black"
+                options={autocompletePlayers.map((option) => option.name)}
+                filterOptions={filterOptions}
+                renderInput={(params) => <TextField {...params} label="Black" name="Black" />}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -91,7 +99,6 @@ const PlayersStatsDialog = ({props}) => {
                 name="Result"
                 label="Result"
                 defaultValue=""
-                margin="normal"
               >
                 <MenuItem value="" disabled>
                   Select an option
@@ -112,6 +119,7 @@ const PlayersStatsDialog = ({props}) => {
             fullWidth
             variant="outlined"
             type="submit"
+            style={{ marginTop: 15 }}
           >
             View Stats
           </Button>
