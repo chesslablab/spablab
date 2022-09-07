@@ -12,6 +12,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
+import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
@@ -27,6 +28,7 @@ import * as mainButtons from '../features/mainButtonsSlice';
 import * as mode from '../features/modeSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
+import * as eventsStatsDialog from '../features/dialog/eventsStatsDialogSlice';
 import * as openingsStatsDialog from '../features/dialog/openingsStatsDialogSlice';
 import * as playersStatsDialog from '../features/dialog/playersStatsDialogSlice';
 import * as searchGamesDialog from '../features/dialog/searchGamesDialogSlice';
@@ -184,6 +186,12 @@ const MainButtons = () => {
           handleCloseDatabase();
         }}>
           <QueryStatsIcon size="small" />&nbsp;Players Stats
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(eventsStatsDialog.open());
+          handleCloseDatabase();
+        }}>
+          <TroubleshootIcon size="small" />&nbsp;Events Stats
         </MenuItem>
       </Menu>
       <Button

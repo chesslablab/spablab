@@ -7,6 +7,7 @@ import store from '../app/store';
 import InfoAlert from './alert/InfoAlert.js';
 import StartedButtonsAnalysisMode from './analysisMode/StartedButtonsAnalysisMode';
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
+import EventsStatsDialog from './dialog/EventsStatsDialog';
 import LoadFenDialog from './dialog/LoadFenDialog';
 import LoadPgnDialog from './dialog/LoadPgnDialog';
 import OpeningsStatsDialog from './dialog/OpeningsStatsDialog';
@@ -63,6 +64,7 @@ const Chess = ({ props }) => {
       <LoadPgnDialog />
       <OpeningsStatsDialog />
       <PlayersStatsDialog props={props} />
+      <EventsStatsDialog props={props} />
       <SearchGamesDialog props={props} />
       <SearchEcoDialog props={props} />
       <SearchMovetextDialog props={props} />

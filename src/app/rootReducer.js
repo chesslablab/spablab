@@ -6,6 +6,7 @@ import acceptTakebackDialogReducer from '../features/dialog/acceptTakebackDialog
 import checkmateSkillsDialogReducer from '../features/dialog/checkmateSkillsDialogSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
 import enterInviteCodeDialogReducer from '../features/dialog/enterInviteCodeDialogSlice';
+import eventsStatsDialogReducer from '../features/dialog/eventsStatsDialogSlice';
 import heuristicsDialogReducer from '../features/dialog/heuristicsDialogSlice';
 import loadFenDialogReducer from '../features/dialog/loadFenDialogSlice';
 import loadPgnDialogReducer from '../features/dialog/loadPgnDialogSlice';
@@ -40,6 +41,7 @@ const rootReducer = {
   checkmateSkillsDialog: checkmateSkillsDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,
   enterInviteCodeDialog: enterInviteCodeDialogReducer,
+  eventsStatsDialog: eventsStatsDialogReducer,
   heuristicsDialog: heuristicsDialogReducer,
   loadFenDialog: loadFenDialogReducer,
   loadPgnDialog: loadPgnDialogReducer,
