@@ -18,6 +18,7 @@ import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
 
+const autocompleteEvents = require('../../assets/json/autocomplete-events.json');
 const autocompletePlayers = require('../../assets/json/autocomplete-players.json');
 
 const filterOptions = createFilterOptions({
@@ -84,11 +85,12 @@ const SearchGamesDialog = ({props}) => {
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <TextField
-                fullWidth
-                name="Event"
-                label="Event"
-              />
+                <Autocomplete
+                  id="Event"
+                  options={autocompleteEvents.map((option) => option.Event)}
+                  filterOptions={filterOptions}
+                  renderInput={(params) => <TextField {...params} label="Event" name="Event" />}
+                />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
