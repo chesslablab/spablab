@@ -22,7 +22,7 @@ const autocompletePlayers = require('../../assets/json/autocomplete-players.json
 
 const filterOptions = createFilterOptions({
   matchFrom: 'any',
-  limit: 100,
+  limit: 25,
 });
 
 const SearchGamesDialog = ({props}) => {
