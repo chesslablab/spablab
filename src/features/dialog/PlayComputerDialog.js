@@ -23,16 +23,16 @@ const PlayComputerDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [dialogData, setDialogData] = React.useState({
+  const [fields, setFields] = React.useState({
     level: 1,
     color: 'rand'
   });
 
   const handleCreateGame = () => {
     let color;
-    dialogData.color === 'rand'
+    fields.color === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-      : color = dialogData.color;
+      : color = fields.color;
     const payload = configure(color);
     dispatch(mode.setStockfish(payload));
     dispatch(mainButtons.setPlayComputer());
@@ -42,9 +42,9 @@ const PlayComputerDialog = () => {
   };
 
   const handleLevelChange = (event: Event) => {
-    setDialogData({
+    setFields({
       level: event.target.value,
-      color: dialogData.color
+      color: fields.color
     });
   };
 
@@ -58,13 +58,13 @@ const PlayComputerDialog = () => {
         "depth": 4
       }
     };
-    if (dialogData.level === 0) {
+    if (fields.level === 0) {
       settings.options["Skill Level"] = 6;
       settings.params["depth"] = 2;
-    } else if (dialogData.level === 2) {
+    } else if (fields.level === 2) {
       settings.options["Skill Level"] = 17;
       settings.params["depth"] = 8;
-    } else if (dialogData.level === 3) {
+    } else if (fields.level === 3) {
       settings.options["Skill Level"] = 20;
       settings.params["depth"] = 12;
     }
@@ -106,7 +106,7 @@ const PlayComputerDialog = () => {
           onChange={handleLevelChange}
         />
         <Grid container justifyContent="center">
-          <SelectColorButtons props={dialogData} />
+          <SelectColorButtons props={fields} />
         </Grid>
         <Button
           fullWidth

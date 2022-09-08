@@ -19,12 +19,12 @@ const EnterInviteCodeDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [dialogData, setDialogData] = React.useState({
+  const [fields, setFields] = React.useState({
     hash: ''
   });
 
   const handleHashChange = (event: Event) => {
-    setDialogData({
+    setFields({
       hash: event.target.value
     });
   };
@@ -33,7 +33,7 @@ const EnterInviteCodeDialog = () => {
     dispatch(mainButtons.setPlayAFriend());
     dispatch(mode.startAnalysis());
     dispatch(enterInviteCodeDialog.close());
-    WsAction.accept(state, dialogData.hash);
+    WsAction.accept(state, fields.hash);
   };
 
   return (

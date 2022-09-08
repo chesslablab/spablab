@@ -22,35 +22,35 @@ const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [dialogData, setDialogData] = React.useState({
+  const [fields, setFields] = React.useState({
     minutes: 5,
     increment: 3,
     color: 'rand'
   });
 
   const handleMinutesChange = (event: Event) => {
-    setDialogData({
+    setFields({
       minutes: event.target.value,
-      increment: dialogData.increment,
-      color: dialogData.color
+      increment: fields.increment,
+      color: fields.color
     });
   };
 
   const handleIncrementChange = (event: Event) => {
-    setDialogData({
-      minutes: dialogData.minutes,
+    setFields({
+      minutes: fields.minutes,
       increment: event.target.value,
-      color: dialogData.color
+      color: fields.color
     });
   };
 
   const handleCreateGame = () => {
     const settings = {
-      min: dialogData.minutes,
-      increment: dialogData.increment,
-      color: dialogData.color === 'rand'
+      min: fields.minutes,
+      increment: fields.increment,
+      color: fields.color === 'rand'
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-        : dialogData.color,
+        : fields.color,
       submode: 'online'
     };
     dispatch(playOnlineDialog.close());
@@ -108,7 +108,7 @@ const PlayOnlineDialog = () => {
           onChange={handleIncrementChange}
         />
         <Grid container justifyContent="center">
-          <SelectColorButtons props={dialogData} />
+          <SelectColorButtons props={fields} />
         </Grid>
         <Button
           fullWidth

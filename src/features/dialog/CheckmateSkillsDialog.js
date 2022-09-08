@@ -24,7 +24,7 @@ const CheckmateSkillsDialog = () => {
 
   const checkmateTypes = ['QR,R', 'Q', 'R', 'BB', 'BN'];
 
-  const [dialogData, setDialogData] = React.useState({
+  const [fields, setFields] = React.useState({
     color: 'rand',
     items: 'rand'
   });
@@ -32,12 +32,12 @@ const CheckmateSkillsDialog = () => {
   const handleCreateGame = () => {
     let color;
     let items;
-    dialogData.color === 'rand'
+    fields.color === 'rand'
       ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-      : color = dialogData.color;
-    dialogData.items === 'rand'
+      : color = fields.color;
+    fields.items === 'rand'
       ? items = checkmateTypes[Math.floor(Math.random() * checkmateTypes.length)]
-      : items = dialogData.items;
+      : items = fields.items;
     let split = items.split(',');
     split.length === 2
       ? items = {
@@ -54,8 +54,8 @@ const CheckmateSkillsDialog = () => {
   };
 
   const handleTypeChange = (event: Event) => {
-    setDialogData({
-      color: dialogData.color,
+    setFields({
+      color: fields.color,
       items: event.target.value
     });
   };
@@ -104,7 +104,7 @@ const CheckmateSkillsDialog = () => {
           </MenuItem>
         </TextField>
         <Grid container justifyContent="center">
-          <SelectColorButtons props={dialogData} />
+          <SelectColorButtons props={fields} />
         </Grid>
         <Button
           fullWidth
