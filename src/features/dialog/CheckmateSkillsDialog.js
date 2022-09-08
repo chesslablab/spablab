@@ -30,14 +30,12 @@ const CheckmateSkillsDialog = () => {
   });
 
   const handleCreateGame = () => {
-    let color;
-    let items;
-    fields.color === 'rand'
-      ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-      : color = fields.color;
-    fields.items === 'rand'
-      ? items = checkmateTypes[Math.floor(Math.random() * checkmateTypes.length)]
-      : items = fields.items;
+    let color = fields.color === 'rand'
+      ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+      : fields.color;
+    let items = fields.items === 'rand'
+      ? checkmateTypes[Math.floor(Math.random() * checkmateTypes.length)]
+      : fields.items;
     let split = items.split(',');
     split.length === 2
       ? items = {

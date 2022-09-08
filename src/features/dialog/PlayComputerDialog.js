@@ -29,10 +29,9 @@ const PlayComputerDialog = () => {
   });
 
   const handleCreateGame = () => {
-    let color;
-    fields.color === 'rand'
-      ? color = Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-      : color = fields.color;
+    let color = fields.color === 'rand' 
+      ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+      : fields.color;
     const payload = configure(color);
     dispatch(mode.setStockfish(payload));
     dispatch(mainButtons.setPlayComputer());
