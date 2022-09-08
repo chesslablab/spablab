@@ -30,17 +30,15 @@ const PlayOnlineDialog = () => {
 
   const handleMinutesChange = (event: Event) => {
     setFields({
-      minutes: event.target.value,
-      increment: fields.increment,
-      color: fields.color
+      ...fields,
+      minutes: event.target.value
     });
   };
 
   const handleIncrementChange = (event: Event) => {
     setFields({
-      minutes: fields.minutes,
-      increment: event.target.value,
-      color: fields.color
+      ...fields,
+      increment: event.target.value
     });
   };
 

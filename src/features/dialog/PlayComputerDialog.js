@@ -29,7 +29,7 @@ const PlayComputerDialog = () => {
   });
 
   const handleCreateGame = () => {
-    let color = fields.color === 'rand' 
+    let color = fields.color === 'rand'
       ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : fields.color;
     const payload = configure(color);
@@ -42,8 +42,8 @@ const PlayComputerDialog = () => {
 
   const handleLevelChange = (event: Event) => {
     setFields({
-      level: event.target.value,
-      color: fields.color
+      ...fields,
+      level: event.target.value
     });
   };
 
