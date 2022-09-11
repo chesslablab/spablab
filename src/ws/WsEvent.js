@@ -5,7 +5,6 @@ import Pgn from '../common/Pgn';
 import Dispatcher from '../common/Dispatcher';
 import * as board from '../features/boardSlice';
 import * as heuristicsBar from '../features/heuristicsBarSlice';
-import * as mode from '../features/modeSlice';
 import * as infoAlert from '../features/alert/infoAlertSlice';
 import * as acceptDrawDialog from '../features/dialog/acceptDrawDialogSlice';
 import * as acceptRematchDialog from '../features/dialog/acceptRematchDialogSlice';
@@ -13,6 +12,7 @@ import * as acceptTakebackDialog from '../features/dialog/acceptTakebackDialogSl
 import * as heuristicsDialog from '../features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
+import * as mode from '../features/mode/modeSlice';
 import * as gameTable from '../features/table/gameTableSlice';
 import WsAction from './WsAction';
 

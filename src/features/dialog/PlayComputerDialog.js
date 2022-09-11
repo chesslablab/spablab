@@ -14,9 +14,9 @@ import {
 import Pgn from '../../common/Pgn';
 import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
-import * as mode from '../../features/modeSlice';
 import * as playComputerDialog from '../../features/dialog/playComputerDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
+import * as mode from '../../features/mode/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayComputerDialog = () => {

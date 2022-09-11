@@ -11,8 +11,8 @@ import {
   TableBody
 } from '@mui/material';
 import * as mainButtons from '../../features/mainButtonsSlice';
-import * as mode from '../../features/modeSlice';
 import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
+import * as mode from '../../features/mode/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const PlayOnlineTable = () => {

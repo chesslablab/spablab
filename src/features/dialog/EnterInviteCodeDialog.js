@@ -11,8 +11,8 @@ import {
   TextField
 } from '@mui/material';
 import * as mainButtons from '../../features/mainButtonsSlice';
-import * as mode from '../../features/modeSlice';
 import * as enterInviteCodeDialog from '../../features/dialog/enterInviteCodeDialogSlice';
+import * as mode from '../../features/mode/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const EnterInviteCodeDialog = () => {

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as modeConst from '../common/constants/mode';
-import Wording from '../common/Wording.js';
+import * as modeConst from '../../common/constants/mode';
+import Wording from '../../common/Wording.js';
 
 const initialState = {
   name: modeConst.ANALYSIS

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from "../../common/Wording.js";
 import * as offerRematchDialog from '../../features/dialog/offerRematchDialogSlice';
-import * as mode from '../../features/modeSlice';
+import * as mode from '../../features/mode/modeSlice';
 import WsAction from '../../ws/WsAction';
 
 const OfferRematchDialog = () => {

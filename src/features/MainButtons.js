@@ -26,7 +26,6 @@ import Wording from '../common/Wording';
 import * as mainButtonConst from '../common/constants/mainButton';
 import * as modeConst from '../common/constants/mode';
 import * as mainButtons from '../features/mainButtonsSlice';
-import * as mode from '../features/modeSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
 import * as eventsStatsDialog from '../features/dialog/eventsStatsDialogSlice';
@@ -39,6 +38,7 @@ import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
 import * as endgameSkillsDialog from '../features/dialog/endgameSkillsDialogSlice';
 import * as watchDialog from '../features/dialog/watchDialogSlice';
+import * as mode from '../features/mode/modeSlice';
 import WsAction from '../ws/WsAction';
 
 const useStyles = makeStyles({

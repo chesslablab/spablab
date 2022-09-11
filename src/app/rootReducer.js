@@ -24,13 +24,13 @@ import searchGamesDialogReducer from '../features/dialog/searchGamesDialogSlice'
 import searchMovetextDialogReducer from '../features/dialog/searchMovetextDialogSlice';
 import searchNameDialogReducer from '../features/dialog/searchNameDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
+import modeReducer from '../features/mode/modeSlice';
 import gameTableReducer from '../features/table/gameTableSlice';
 import openingAnalysisTableReducer from '../features/table/openingAnalysisTableSlice';
 import boardReducer from '../features/boardSlice';
 import heuristicsBarReducer from '../features/heuristicsBarSlice';
 import historyReducer from '../features/historySlice';
 import mainButtonsReducer from '../features/mainButtonsSlice';
-import modeReducer from '../features/modeSlice';
 import serverReducer from '../features/wsSlice';
 
 const rootReducer = {

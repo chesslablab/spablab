@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 import { Box } from '@mui/material';
 import Pgn from '../../common/Pgn';
 import * as infoAlert from '../../features/alert/infoAlertSlice';
-import * as mode from '../../features/modeSlice';
+import * as mode from '../../features/mode/modeSlice';
 
 const WhiteTimer = () => {
   const state = useSelector(state => state);

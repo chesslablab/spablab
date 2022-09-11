@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
-import * as modeConst from '../../common/constants/mode';
-import * as offerDrawDialog from '../../features/dialog/offerDrawDialogSlice';
-import * as acceptResignDialog from '../../features/dialog/acceptResignDialogSlice';
-import * as offerTakebackDialog from '../../features/dialog/offerTakebackDialogSlice';
+import * as modeConst from '../../../common/constants/mode';
+import * as offerDrawDialog from '../../../features/dialog/offerDrawDialogSlice';
+import * as acceptResignDialog from '../../../features/dialog/acceptResignDialogSlice';
+import * as offerTakebackDialog from '../../../features/dialog/offerTakebackDialogSlice';
 
 const useStyles = makeStyles({
   buttonGroup: {

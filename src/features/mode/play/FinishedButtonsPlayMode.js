@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
-import * as modeConst from '../../common/constants/mode';
-import Wording from "../../common/Wording.js";
-import * as offerRematchDialog from '../../features/dialog/offerRematchDialogSlice';
+import * as modeConst from '../../../common/constants/mode';
+import Wording from "../../../common/Wording.js";
+import * as offerRematchDialog from '../../../features/dialog/offerRematchDialogSlice';
 
 const useStyles = makeStyles({
   buttonGroup: {

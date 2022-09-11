@@ -16,7 +16,7 @@ import * as createInviteCodeDialog from '../features/dialog/createInviteCodeDial
 import * as enterInviteCodeDialog from '../features/dialog/enterInviteCodeDialogSlice';
 import * as playComputerDialog from '../features/dialog/playComputerDialogSlice';
 import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
-import * as mode from '../features/modeSlice';
+import * as mode from '../features/mode/modeSlice';
 import WsAction from '../ws/WsAction';
 
 const PlayButtons = () => {
