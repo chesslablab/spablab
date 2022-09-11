@@ -325,9 +325,9 @@ export default class WsEvent {
   }
 
   static onRandomCheckmate = (data) => dispatch => {
-    if (data['/random_checkmate'].fen) {
+    if (data['/randomizer'].fen) {
       dispatch(mode.setStockfish({
-        color: data['/random_checkmate'].turn,
+        color: data['/randomizer'].turn,
         options: {
           "Skill Level": 20
         },
@@ -335,7 +335,7 @@ export default class WsEvent {
           "depth": 12
         }
       }));
-      WsAction.startStockfishByFen(store.getState(), data['/random_checkmate'].fen);
+      WsAction.startStockfishByFen(store.getState(), data['/randomizer'].fen);
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));

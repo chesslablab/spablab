@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import ExtensionIcon from '@mui/icons-material/Extension';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
@@ -36,6 +37,7 @@ import * as searchEcoDialog from '../features/dialog/searchEcoDialogSlice';
 import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSlice';
 import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
+import * as endgameSkillsDialog from '../features/dialog/endgameSkillsDialogSlice';
 import * as watchDialog from '../features/dialog/watchDialogSlice';
 import WsAction from '../ws/WsAction';
 
@@ -213,6 +215,12 @@ const MainButtons = () => {
           handleCloseTraining();
         }}>
           <QuizIcon size="small" />&nbsp;Guess the Move
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(endgameSkillsDialog.open());
+          handleCloseTraining();
+        }}>
+          <ExtensionIcon size="small" />&nbsp;Endgame Skills
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(checkmateSkillsDialog.open());

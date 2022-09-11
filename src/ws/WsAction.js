@@ -96,9 +96,9 @@ export default class WsAction {
     return await state.server.ws.send(`/restart ${state.mode.play.hash}`);
   }
 
-  static randomCheckmate = async (state, color, items) => {
+  static randomizer = async (state, color, items) => {
     items = JSON.stringify(items).replace(/"/g, '\\"');
-    return await state.server.ws.send(`/random_checkmate ${color} "${items}"`);
+    return await state.server.ws.send(`/randomizer ${color} "${items}"`);
   }
 
   static stockfish = async (state) => {

@@ -14,15 +14,15 @@ import {
 import Pgn from '../../common/Pgn';
 import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
-import * as checkmateSkillsDialog from '../../features/dialog/checkmateSkillsDialogSlice';
+import * as endgameSkillsDialog from '../../features/dialog/endgameSkillsDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import WsAction from '../../ws/WsAction';
 
-const CheckmateSkillsDialog = () => {
+const EndgameSkillsDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const checkmateTypes = ['QR,R', 'Q', 'R', 'BB', 'BN'];
+  const endgameTypes = ['P'];
 
   const [fields, setFields] = React.useState({
     color: 'rand',
@@ -34,7 +34,7 @@ const CheckmateSkillsDialog = () => {
       ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
       : fields.color;
     let items = fields.items === 'rand'
-      ? checkmateTypes[Math.floor(Math.random() * checkmateTypes.length)]
+      ? endgameTypes[Math.floor(Math.random() * endgameTypes.length)]
       : fields.items;
     let split = items.split(',');
     split.length === 2
@@ -46,7 +46,7 @@ const CheckmateSkillsDialog = () => {
         [color]: split[0]
       };
     dispatch(mainButtons.setTraining());
-    dispatch(checkmateSkillsDialog.close());
+    dispatch(endgameSkillsDialog.close());
     Dispatcher.initGui(dispatch);
     WsAction.randomizer(state, color, items);
   };
@@ -59,14 +59,14 @@ const CheckmateSkillsDialog = () => {
   };
 
   return (
-    <Dialog open={state.checkmateSkillsDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.endgameSkillsDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
-            Checkmate skills
+            Endgame skills
           </Grid>
           <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(checkmateSkillsDialog.close())}>
+            <IconButton onClick={() => dispatch(endgameSkillsDialog.close())}>
               <CloseIcon />
             </IconButton>
           </Grid>
@@ -85,20 +85,8 @@ const CheckmateSkillsDialog = () => {
           <MenuItem key={0} value="rand">
             Random
           </MenuItem>
-          <MenuItem key={1} value="QR,R">
-            King and queen and rook vs. king and rook
-          </MenuItem>
-          <MenuItem key={2} value="Q">
-            King and queen vs. king
-          </MenuItem>
-          <MenuItem key={3} value="R">
-            King and rook vs. king
-          </MenuItem>
-          <MenuItem key={4} value="BB">
-            King and two bishops vs. king
-          </MenuItem>
-          <MenuItem key={5} value="BN">
-            King and bishop and knight vs. king
+          <MenuItem key={1} value="P">
+            Pawn endgame
           </MenuItem>
         </TextField>
         <Grid container justifyContent="center">
@@ -116,4 +104,4 @@ const CheckmateSkillsDialog = () => {
   );
 }
 
-export default CheckmateSkillsDialog;
+export default EndgameSkillsDialog;

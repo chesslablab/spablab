@@ -5,6 +5,7 @@ import acceptResignDialogReducer from '../features/dialog/acceptResignDialogSlic
 import acceptTakebackDialogReducer from '../features/dialog/acceptTakebackDialogSlice';
 import checkmateSkillsDialogReducer from '../features/dialog/checkmateSkillsDialogSlice';
 import createInviteCodeDialogReducer from '../features/dialog/createInviteCodeDialogSlice';
+import endgameSkillsDialogReducer from '../features/dialog/endgameSkillsDialogSlice';
 import enterInviteCodeDialogReducer from '../features/dialog/enterInviteCodeDialogSlice';
 import eventsStatsDialogReducer from '../features/dialog/eventsStatsDialogSlice';
 import heuristicsDialogReducer from '../features/dialog/heuristicsDialogSlice';
@@ -39,6 +40,7 @@ const rootReducer = {
   acceptResignDialog: acceptResignDialogReducer,
   acceptTakebackDialog: acceptTakebackDialogReducer,
   checkmateSkillsDialog: checkmateSkillsDialogReducer,
+  endgameSkillsDialog: endgameSkillsDialogReducer,
   createInviteCodeDialog: createInviteCodeDialogReducer,
   enterInviteCodeDialog: enterInviteCodeDialogReducer,
   eventsStatsDialog: eventsStatsDialogReducer,

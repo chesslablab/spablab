@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import * as mainButtons from '../../common/constants/mainButton';
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -14,7 +15,7 @@ const OpeningAnalysisTable = ({props}) => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
-  if (state.openingAnalysisTable.open) {
+  if (state.openingAnalysisTable.open && state.mainButtons.name !== mainButtons.TRAINING) {
     return (
       <TableContainer className={classes.tableContainer}>
         <Table stickyHeader size="small" aria-label="Chess Openings">
