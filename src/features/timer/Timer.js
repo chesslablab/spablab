@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GameClock = () => {
+const Timer = () => {
   const classes = useStyles();
   const state = useSelector(state => state);
 
@@ -30,4 +30,4 @@ const GameClock = () => {
   return null;
 }
 
-export default GameClock;
+export default Timer;

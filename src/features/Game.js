@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import GameClock from './gameClock/GameClock';
+import Timer from './timer/Timer';
 import FinishedButtonsPlayMode from './mode/play/FinishedButtonsPlayMode';
 import FinishedDialogsPlayMode from './mode/play/FinishedDialogsPlayMode';
 import StartedButtonsPlayMode from './mode/play/StartedButtonsPlayMode';
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     background: '#f0f0f0'
   },
-  clock: {
+  timer: {
     display: 'flex',
     justifyContent: 'center',
   },
@@ -47,8 +47,8 @@ const Game = ({ props }) => {
           <SecondaryButtons props={props} />
         </Grid>
       </Grid>
-      <Grid item xs={12} className={classes.clock}>
-        <GameClock />
+      <Grid item xs={12} className={classes.timer}>
+        <Timer />
       </Grid>
       <Grid item xs={12}>
         <StartedButtonsPlayMode />
