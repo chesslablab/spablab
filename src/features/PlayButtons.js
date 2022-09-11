@@ -5,8 +5,8 @@ import LanguageIcon from '@mui/icons-material/Language';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Button, ButtonGroup, Grid, Stack } from '@mui/material';
-import * as mainButtonConst from '../common/constants/mainButton';
-import * as modeConst from '../common/constants/mode';
+import * as mainButtonsConst from '../features/mainButtonsConst';
+import * as modeConst from '../features/mode/modeConst';
 import Wording from '../common/Wording';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';
@@ -44,7 +44,7 @@ const PlayButtons = () => {
         >
           <Button
             startIcon={<LanguageIcon />}
-            variant={state.mainButtons.name === mainButtonConst.PLAY_ONLINE ? "contained" : "outlined"}
+            variant={state.mainButtons.name === mainButtonsConst.PLAY_ONLINE ? "contained" : "outlined"}
             onClick={() => {
               dispatch(playOnlineDialog.open());
               WsAction.onlineGames(state);
@@ -62,7 +62,7 @@ const PlayButtons = () => {
         >
           <Button
             startIcon={<QrCodeIcon />}
-            variant={state.mainButtons.name === mainButtonConst.PLAY_A_FRIEND ? "contained" : "outlined"}
+            variant={state.mainButtons.name === mainButtonsConst.PLAY_A_FRIEND ? "contained" : "outlined"}
             onClick={() => {
               dispatch(createInviteCodeDialog.open());
               dispatch(mode.startAnalysis());
@@ -86,7 +86,7 @@ const PlayButtons = () => {
         >
           <Button
             startIcon={<SmartToyIcon />}
-            variant={state.mainButtons.name === mainButtonConst.PLAY_COMPUTER ? "contained" : "outlined"}
+            variant={state.mainButtons.name === mainButtonsConst.PLAY_COMPUTER ? "contained" : "outlined"}
             onClick={() => dispatch(playComputerDialog.open())}
           >
             Play Computer

@@ -1,5 +1,5 @@
 import store from '../app/store';
-import * as modeConst from '../common/constants/mode';
+import * as modeConst from '../features/mode/modeConst';
 import Wording from '../common/Wording.js';
 import * as board from '../features/boardSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';

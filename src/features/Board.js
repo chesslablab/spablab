@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
-import * as modeConst from '../common/constants/mode';
+import * as modeConst from '../features/mode/modeConst';
 import Animation from '../common/Animation';
 import Ascii from '../common/Ascii';
 import Pgn from '../common/Pgn';

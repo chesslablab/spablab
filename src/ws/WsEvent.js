@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 import store from '../app/store';
-import * as modeConst from '../common/constants/mode';
+import * as modeConst from '../features/mode/modeConst';
 import Pgn from '../common/Pgn';
 import Dispatcher from '../common/Dispatcher';
 import * as board from '../features/boardSlice';

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as mainButtonConst from '../common/constants/mainButton';
+import * as mainButtonsConst from '../features/mainButtonsConst';
 
 const initialState = {
-  name: mainButtonConst.ANALYSIS,
+  name: mainButtonsConst.ANALYSIS,
 };
 
 const mainButtonsSlice = createSlice({
@@ -11,22 +11,22 @@ const mainButtonsSlice = createSlice({
   reducers: {
     setAnalysis: () => initialState,
     setPlayOnline: (state) => {
-      state.name = mainButtonConst.PLAY_ONLINE;
+      state.name = mainButtonsConst.PLAY_ONLINE;
     },
     setPlayAFriend: (state) => {
-      state.name = mainButtonConst.PLAY_A_FRIEND;
+      state.name = mainButtonsConst.PLAY_A_FRIEND;
     },
     setPlayComputer: (state) => {
-      state.name = mainButtonConst.PLAY_COMPUTER;
+      state.name = mainButtonsConst.PLAY_COMPUTER;
     },
     setTraining: (state) => {
-      state.name = mainButtonConst.TRAINING;
+      state.name = mainButtonsConst.TRAINING;
     },
     setOpeningSearch: (state) => {
-      state.name = mainButtonConst.OPENING_SEARCH;
+      state.name = mainButtonsConst.OPENING_SEARCH;
     },
     setDatabase: (state) => {
-      state.name = mainButtonConst.MAIN_BUTTON_DATABASE;
+      state.name = mainButtonsConst.MAIN_BUTTON_DATABASE;
     }
   }
 });

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as modeConst from '../../common/constants/mode';
+import * as modeConst from '../../features/mode/modeConst';
 import Wording from '../../common/Wording.js';
 
 const initialState = {

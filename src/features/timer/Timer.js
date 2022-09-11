@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import BlackTimer from './BlackTimer';
 import WhiteTimer from './WhiteTimer';
-import * as modeConst from '../../common/constants/mode';
+import * as modeConst from '../../features/mode/modeConst';
 
 const useStyles = makeStyles({
   timers: {

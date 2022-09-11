@@ -23,8 +23,8 @@ import logo from '../assets/img/logo.png';
 import Dispatcher from '../common/Dispatcher';
 import Pgn from '../common/Pgn';
 import Wording from '../common/Wording';
-import * as mainButtonConst from '../common/constants/mainButton';
-import * as modeConst from '../common/constants/mode';
+import * as mainButtonsConst from '../features/mainButtonsConst';
+import * as modeConst from '../features/mode/modeConst';
 import * as mainButtons from '../features/mainButtonsSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
@@ -119,7 +119,7 @@ const MainButtons = () => {
       </IconButton>
       <Button
         sx={{ borderRadius: 0 }}
-        variant={state.mainButtons.name === mainButtonConst.ANALYSIS ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
       >
@@ -152,14 +152,14 @@ const MainButtons = () => {
         </MenuItem>
       </Menu>
       <Button
-        variant={state.mainButtons.name === mainButtonConst.OPENING_SEARCH ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.OPENING_SEARCH ? "contained" : "text"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >
         Opening Search
       </Button>
       <Button
-        variant={state.mainButtons.name === mainButtonConst.MAIN_BUTTON_OPENING_DATABASE ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.MAIN_BUTTON_OPENING_DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
         onClick={handleClickDatabase}
       >
@@ -197,7 +197,7 @@ const MainButtons = () => {
         </MenuItem>
       </Menu>
       <Button
-        variant={state.mainButtons.name === mainButtonConst.TRAINING ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
       >

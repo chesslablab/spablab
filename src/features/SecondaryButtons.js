@@ -7,7 +7,7 @@ import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
-import * as modeConst from '../common/constants/mode';
+import * as modeConst from '../features/mode/modeConst';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
 import WsAction from '../ws/WsAction';
 
