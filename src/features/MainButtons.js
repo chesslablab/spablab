@@ -134,7 +134,7 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setAnalysis());
           Dispatcher.initGui(dispatch);
-          WsAction.startAnalysis(state.server.ws);
+          WsAction.start(state, variantConst.CLASSICAL, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
           <RestartAltIcon size="small" />&nbsp;Start Position

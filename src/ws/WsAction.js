@@ -21,7 +21,7 @@ export default class WsAction {
     });
   }
 
-  static startAnalysis = async (ws) => {
+  static startOff = async (ws) => {
     return await ws.send('/start classical analysis');
   }
 

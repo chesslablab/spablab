@@ -22,7 +22,7 @@ const Board = ({props}) => {
   const imgsRef = useRef([]);
 
   useEffect(() => {
-    dispatch(WsAction.connect(state, props)).then(ws => WsAction.startAnalysis(ws));
+    dispatch(WsAction.connect(state, props)).then(ws => WsAction.startOff(ws));
   }, [dispatch]);
 
   useEffect(() => {
