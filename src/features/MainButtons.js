@@ -137,8 +137,17 @@ const MainButtons = () => {
           WsAction.start(state, variantConst.CLASSICAL, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
-          <RestartAltIcon size="small" />&nbsp;Start Position
+          <RestartAltIcon size="small" />&nbsp;Start Classical
         </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(mainButtons.setAnalysis());
+          Dispatcher.initGui(dispatch);
+          WsAction.start(state, variantConst.CHESS_960, modeConst.ANALYSIS);
+          handleCloseAnalysis();
+        }}>
+          <RestartAltIcon size="small" />&nbsp;Start 960
+        </MenuItem>
+        <Divider />
         <MenuItem onClick={() => {
           dispatch(loadPgnDialog.open());
           handleCloseAnalysis();
