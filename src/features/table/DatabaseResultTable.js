@@ -16,6 +16,7 @@ import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
+import * as modeConst from '../../features/mode/modeConst';
 import * as gameTable from '../../features/table/gameTableSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -67,7 +68,13 @@ const DatabaseResultTable = ({props}) => {
     dispatch(progressDialog.open());
     dispatch(mainButtons.setDatabase());
     Dispatcher.initGui(dispatch);
-    WsAction.startPgn(state, item.movetext);
+    WsAction.start(state, {
+      variant: 'classical',
+      mode: modeConst.PGN,
+      params: {
+        movetext: item.movetext
+      }
+    });
     dispatch(gameTable.show({
       game: {
         Event: item.Event,

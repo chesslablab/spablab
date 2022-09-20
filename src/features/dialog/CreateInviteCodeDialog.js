@@ -16,6 +16,7 @@ import Pgn from '../../common/Pgn';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as createInviteCodeDialog from '../../features/dialog/createInviteCodeDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
+import * as modeConst from '../../features/mode/modeConst';
 import WsAction from '../../ws/WsAction';
 
 const CreateInviteCodeDialog = () => {
@@ -66,16 +67,17 @@ const CreateCode = () => {
   };
 
   const handleCreateCode = () => {
-    const settings = {
-      min: fields.minutes,
-      increment: fields.increment,
-      color: fields.color === 'rand'
-        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-        : fields.color,
-      submode: 'friend'
-    };
     dispatch(mainButtons.setPlayAFriend());
-    WsAction.startPlay(state, settings);
+    WsAction.start(state, 'classical', modeConst.PLAY, {
+      settings: {
+        min: fields.minutes,
+        increment: fields.increment,
+        color: fields.color === 'rand'
+          ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+          : fields.color,
+        submode: 'friend'
+      }
+    });
   }
 
   return (

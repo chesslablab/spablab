@@ -211,7 +211,13 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setTraining());
           Dispatcher.initGui(dispatch);
-          WsAction.startGm(state, Pgn.symbol.WHITE);
+          WsAction.start(state, {
+            variant: 'classical',
+            mode: modeConst.GM,
+            params: {
+              color: Pgn.symbol.WHITE
+            }
+          });
           handleCloseTraining();
         }}>
           <QuizIcon size="small" />&nbsp;Guess the Move

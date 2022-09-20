@@ -16,6 +16,7 @@ import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as playComputerDialog from '../../features/dialog/playComputerDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
+import * as modeConst from '../../features/mode/modeConst';
 import * as mode from '../../features/mode/modeSlice';
 import WsAction from '../../ws/WsAction';
 
@@ -37,7 +38,7 @@ const PlayComputerDialog = () => {
     dispatch(mainButtons.setPlayComputer());
     dispatch(playComputerDialog.close());
     Dispatcher.initGui(dispatch);
-    WsAction.startStockfishByColor(state, color);
+    WsAction.start(state, 'classical', modeConst.STOCKFISH, { color: color });
   };
 
   const handleLevelChange = (event: Event) => {

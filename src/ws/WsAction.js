@@ -1,3 +1,4 @@
+import * as modeConst from '../features/mode/modeConst';
 import * as wsSlice from '../features/wsSlice';
 import WsEventListener from './WsEventListener';
 
@@ -21,31 +22,30 @@ export default class WsAction {
   }
 
   static startAnalysis = async (ws) => {
-    return await ws.send('/start analysis');
+    return await ws.send('/start classical analysis');
   }
 
-  static startGm = async (state, color) => {
-    return await state.server.ws.send(`/start gm ${color}`);
-  }
+  static start = async (state, variant, mode, params = {}) => {
+    let mssg = `/start ${variant} ${mode}`;
+    if (Object.keys(params).length > 0) {
+      if (mode === modeConst.GM) {
+        mssg += ` "${params.color}"`;
+      } else if (mode === modeConst.FEN) {
+        mssg += ` "${params.fen}"`;
+      } else if (mode === modeConst.PGN) {
+        mssg += ` "${params.movetext}"`;
+      } else if (mode === modeConst.PLAY) {
+        mssg += ` ${JSON.stringify(params.settings)}`;
+      } else if (mode === modeConst.STOCKFISH) {
+        if (params.hasOwnProperty('color')) {
+          mssg += ` ${params.color}`;
+        } else if (params.hasOwnProperty('fen')) {
+          mssg += ` "${params.fen}"`;
+        }
+      }
+    }
 
-  static startFen = async (state, string) => {
-    return await state.server.ws.send(`/start fen "${string}"`);
-  }
-
-  static startPgn = async (state, movetext) => {
-    return await state.server.ws.send(`/start pgn "${movetext}"`);
-  }
-
-  static startPlay = async (state, settings) => {
-    return await state.server.ws.send(`/start play ${JSON.stringify(settings)}`);
-  }
-
-  static startStockfishByColor = async (state, color) => {
-    return await state.server.ws.send(`/start stockfish ${color}`);
-  }
-
-  static startStockfishByFen = async (state, fen) => {
-    return await state.server.ws.send(`/start stockfish "${fen}"`);
+    return await state.server.ws.send(mssg);
   }
 
   static onlineGames = async (state) => {

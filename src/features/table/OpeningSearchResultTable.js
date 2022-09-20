@@ -21,7 +21,13 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(progressDialog.open());
     dispatch(mainButtons.setOpeningSearch());
     Dispatcher.initGui(dispatch);
-    WsAction.startPgn(state, movetext);
+    WsAction.start(state, {
+      variant: 'classical',
+      mode: modeConst.PGN,
+      params: {
+        movetext: movetext
+      }
+    });
   };
 
   return (

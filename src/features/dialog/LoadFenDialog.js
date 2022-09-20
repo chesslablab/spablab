@@ -14,6 +14,7 @@ import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as loadFenDialog from '../../features/dialog/loadFenDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
+import * as modeConst from '../../features/mode/modeConst';
 import WsAction from '../../ws/WsAction';
 
 const LoadFenDialog = () => {
@@ -26,7 +27,9 @@ const LoadFenDialog = () => {
     dispatch(loadFenDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
-    WsAction.startFen(state, event.target.elements.fen.value);
+    WsAction.start(state, 'classical', modeConst.FEN, {
+      fen: event.target.elements.fen.value
+    });
   };
 
   return (

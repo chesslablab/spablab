@@ -1,6 +1,5 @@
 import jwt_decode from "jwt-decode";
 import store from '../app/store';
-import * as modeConst from '../features/mode/modeConst';
 import Pgn from '../common/Pgn';
 import Dispatcher from '../common/Dispatcher';
 import * as board from '../features/boardSlice';
@@ -12,6 +11,7 @@ import * as acceptTakebackDialog from '../features/dialog/acceptTakebackDialogSl
 import * as heuristicsDialog from '../features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
+import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
 import * as gameTable from '../features/table/gameTableSlice';
 import WsAction from './WsAction';
@@ -99,6 +99,27 @@ export default class WsEvent {
       dispatch(board.flip());
     }
     WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
+  }
+
+  static onStart = (data) => dispatch => {
+    dispatch(progressDialog.close());
+    if (data['/start'].mode === modeConst.ANALYSIS) {
+      WsEvent.onStartAnalysis(data);
+    } else if (data['/start'].mode === modeConst.GM) {
+      WsEvent.onStartGm(data)
+    } else if (data['/start'].mode === modeConst.FEN) {
+      dispatch(WsEvent.onStartFen(data));
+    } else if (data['/start'].mode === modeConst.PGN) {
+      dispatch(WsEvent.onStartPgn(data));
+    } else if (data['/start'].mode === modeConst.PLAY) {
+      dispatch(WsEvent.onStartPlay(data));
+    } else if (data['/start'].mode === modeConst.STOCKFISH) {
+      if (data['/start'].fen) {
+        dispatch(WsEvent.onStartStockfishByFen(data));
+      } else {
+        dispatch(WsEvent.onStartStockfishByColor(data));
+      }
+    }
   }
 
   static onAccept = (data) => dispatch => {
@@ -335,7 +356,12 @@ export default class WsEvent {
           "depth": 12
         }
       }));
-      WsAction.startStockfishByFen(store.getState(), data['/randomizer'].fen);
+      WsAction.start(
+        store.getState(),
+        'classical',
+        modeConst.STOCKFISH,
+        { fen: data['/randomizer'].fen }
+      );
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));
