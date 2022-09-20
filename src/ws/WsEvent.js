@@ -14,6 +14,7 @@ import * as progressDialog from '../features/dialog/progressDialogSlice';
 import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
 import * as gameTable from '../features/table/gameTableSlice';
+import * as variantConst from '../features/variant/variantConst';
 import WsAction from './WsAction';
 
 export default class WsEvent {
@@ -358,7 +359,7 @@ export default class WsEvent {
       }));
       WsAction.start(
         store.getState(),
-        'classical',
+        variantConst.CLASSICAL,
         modeConst.STOCKFISH,
         { fen: data['/randomizer'].fen }
       );

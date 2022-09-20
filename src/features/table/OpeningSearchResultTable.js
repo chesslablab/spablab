@@ -8,6 +8,7 @@ import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import * as searchEcoDialog from '../../features/dialog/searchEcoDialogSlice';
 import * as searchMovetextDialog from '../../features/dialog/searchMovetextDialogSlice';
 import * as searchNameDialog from '../../features/dialog/searchNameDialogSlice';
+import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
 
 const OpeningSearchResultTable = ({props}) => {
@@ -21,12 +22,8 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(progressDialog.open());
     dispatch(mainButtons.setOpeningSearch());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, {
-      variant: 'classical',
-      mode: modeConst.PGN,
-      params: {
-        movetext: movetext
-      }
+    WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
+      movetext: movetext
     });
   };
 

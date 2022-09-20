@@ -24,7 +24,6 @@ import Dispatcher from '../common/Dispatcher';
 import Pgn from '../common/Pgn';
 import Wording from '../common/Wording';
 import * as mainButtonsConst from '../features/mainButtonsConst';
-import * as modeConst from '../features/mode/modeConst';
 import * as mainButtons from '../features/mainButtonsSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
@@ -38,7 +37,9 @@ import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
 import * as endgameSkillsDialog from '../features/dialog/endgameSkillsDialogSlice';
 import * as watchDialog from '../features/dialog/watchDialogSlice';
+import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
+import * as variantConst from '../features/variant/variantConst';
 import WsAction from '../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -211,12 +212,8 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setTraining());
           Dispatcher.initGui(dispatch);
-          WsAction.start(state, {
-            variant: 'classical',
-            mode: modeConst.GM,
-            params: {
-              color: Pgn.symbol.WHITE
-            }
+          WsAction.start(state, variantConst.CLASSICAL, modeConst.GM, {
+            color: Pgn.symbol.WHITE
           });
           handleCloseTraining();
         }}>
