@@ -1,11 +1,17 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Chess960Board from './Chess960Board';
 import ClassicalBoard from './ClassicalBoard';
 import * as variantConst from '../variant/variantConst';
+import WsAction from '../../ws/WsAction';
 
 const VariantBoard = ({props}) => {
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(WsAction.connect(state, props)).then(ws => WsAction.startOff(ws));
+  }, [dispatch]);
 
   const variantBoard = () => {
     if (state.variant.name === variantConst.CHESS_960) {

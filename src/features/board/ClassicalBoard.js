@@ -21,10 +21,6 @@ const ClassicalBoard = ({props}) => {
   const imgsRef = useRef([]);
 
   useEffect(() => {
-    dispatch(WsAction.connect(state, props)).then(ws => WsAction.startOff(ws));
-  }, [dispatch]);
-
-  useEffect(() => {
     if (isInitialMount.name) {
       isInitialMount.name = false;
     } else {
