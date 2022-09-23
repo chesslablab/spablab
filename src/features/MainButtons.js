@@ -10,6 +10,7 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import QuizIcon from '@mui/icons-material/Quiz';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
@@ -145,7 +146,7 @@ const MainButtons = () => {
           WsAction.start(state, variantConst.CHESS_960, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
-          <RestartAltIcon size="small" />&nbsp;Start 960
+          <ShuffleIcon size="small" />&nbsp;Start 960
         </MenuItem>
         <Divider />
         <MenuItem onClick={() => {
