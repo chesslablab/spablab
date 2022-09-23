@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Chess960Board from './Chess960Board';
 import ClassicalBoard from './ClassicalBoard';
-import * as variantConst from './variant/variantConst';
+import * as variantConst from '../variant/variantConst';
 
 const VariantBoard = ({props}) => {
   const state = useSelector(state => state);

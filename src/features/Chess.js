@@ -4,6 +4,7 @@ import { CssBaseline, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import '../index.css';
 import store from '../app/store';
+import VariantBoard from './board/VariantBoard';
 import InfoAlert from './alert/InfoAlert.js';
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
 import EndgameSkillsDialog from './dialog/EndgameSkillsDialog';
@@ -26,7 +27,6 @@ import Game from './Game';
 import HeuristicsBar from './HeuristicsBar';
 import MainButtons from './MainButtons';
 import PlayButtons from './PlayButtons';
-import VariantBoard from './VariantBoard';
 
 const useStyles = makeStyles({
   right: {

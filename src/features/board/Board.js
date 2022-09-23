@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Ascii from '../common/Ascii';
-import Pgn from '../common/Pgn';
-import Piece from '../common/Piece';
+import Ascii from '../../common/Ascii';
+import Pgn from '../../common/Pgn';
+import Piece from '../../common/Piece';
 
 const Board = ({props}) => {
   const state = useSelector(state => state);

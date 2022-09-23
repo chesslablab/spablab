@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
-import * as modeConst from '../features/mode/modeConst';
-import Piece from '../common/Piece';
-import Board from '../features/Board';
-import * as boardSlice from '../features/boardSlice';
-import WsAction from '../ws/WsAction';
+import * as modeConst from '../../features/mode/modeConst';
+import Piece from '../../common/Piece';
+import Board from '../../features/board/Board';
+import * as boardSlice from '../../features/board/boardSlice';
+import WsAction from '../../ws/WsAction';
 
 const Chess960Board = ({props}) => {
   const state = useSelector(state => state);

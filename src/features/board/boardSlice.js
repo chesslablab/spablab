@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Ascii from '../common/Ascii';
-import Pgn from '../common/Pgn';
+import Ascii from '../../common/Ascii';
+import Pgn from '../../common/Pgn';
 
 const initialState = {
   shortFen: null,
