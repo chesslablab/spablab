@@ -15,12 +15,14 @@ import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
 import * as gameTable from '../features/table/gameTableSlice';
 import * as variantConst from '../features/variant/variantConst';
+import * as variant from '../features/variant/variantSlice';
 import WsAction from './WsAction';
 
 export default class WsEvent {
   static onStartAnalysis = (data) => dispatch => {
     if (data['/start'].variant === variantConst.CHESS_960) {
       dispatch(board.startChess960({ fen: data['/start'].fen }));
+      dispatch(variant.startChess960());
     }
   }
 

@@ -27,6 +27,7 @@ import watchDialogReducer from '../features/dialog/watchDialogSlice';
 import modeReducer from '../features/mode/modeSlice';
 import gameTableReducer from '../features/table/gameTableSlice';
 import openingAnalysisTableReducer from '../features/table/openingAnalysisTableSlice';
+import variantReducer from '../features/variant/variantSlice';
 import boardReducer from '../features/boardSlice';
 import heuristicsBarReducer from '../features/heuristicsBarSlice';
 import historyReducer from '../features/historySlice';
@@ -67,6 +68,7 @@ const rootReducer = {
   history: historyReducer,
   mainButtons: mainButtonsReducer,
   mode: modeReducer,
+  variant: variantReducer,
   server: serverReducer
 };
 
