@@ -22,6 +22,8 @@ import StartedButtonsAnalysisMode from './mode/analysis/StartedButtonsAnalysisMo
 import StartedButtonsGmMode from './mode/gm//StartedButtonsGmMode';
 import GameTable from './table/GameTable';
 import OpeningAnalysisTable from './table/OpeningAnalysisTable';
+import * as variantConst from './variant/variantConst';
+import Chess960Board from './Chess960Board';
 import ClassicalBoard from './ClassicalBoard';
 import Game from './Game';
 import HeuristicsBar from './HeuristicsBar';
@@ -45,7 +47,13 @@ const Chess = ({ props }) => {
           <MainButtons />
         </Grid>
         <Grid item xs={12} md={4}>
-          <ClassicalBoard props={props} />
+          {
+            store.getState().variant.name === variantConst.CLASSICAL
+              ? <ClassicalBoard props={props} />
+              : store.getState().variant.name === variantConst.CHESS_960
+                ? <Chess960Board props={props} />
+                : null
+          }
           <HeuristicsBar />
         </Grid>
         <Grid item xs={12} md={3}>
