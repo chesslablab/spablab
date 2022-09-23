@@ -1,24 +1,29 @@
 import jwt_decode from "jwt-decode";
 import store from '../app/store';
-import * as modeConst from '../features/mode/modeConst';
 import Pgn from '../common/Pgn';
 import Dispatcher from '../common/Dispatcher';
-import * as board from '../features/boardSlice';
 import * as heuristicsBar from '../features/heuristicsBarSlice';
 import * as infoAlert from '../features/alert/infoAlertSlice';
+import * as board from '../features/board/boardSlice';
 import * as acceptDrawDialog from '../features/dialog/acceptDrawDialogSlice';
 import * as acceptRematchDialog from '../features/dialog/acceptRematchDialogSlice';
 import * as acceptTakebackDialog from '../features/dialog/acceptTakebackDialogSlice';
 import * as heuristicsDialog from '../features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
+import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
 import * as gameTable from '../features/table/gameTableSlice';
+import * as variantConst from '../features/variant/variantConst';
+import * as variant from '../features/variant/variantSlice';
 import WsAction from './WsAction';
 
 export default class WsEvent {
-  static onStartAnalysis = () => dispatch => {
-    dispatch(mode.startAnalysis({}));
+  static onStartAnalysis = (data) => dispatch => {
+    if (data['/start'].variant === variantConst.CHESS_960) {
+      dispatch(board.startChess960({ fen: data['/start'].fen }));
+      dispatch(variant.startChess960());
+    }
   }
 
   static onStartGm = (data) => dispatch => {
@@ -99,6 +104,27 @@ export default class WsEvent {
       dispatch(board.flip());
     }
     WsAction.heuristicsBar(store.getState(), store.getState().board.fen);
+  }
+
+  static onStart = (data) => dispatch => {
+    dispatch(progressDialog.close());
+    if (data['/start'].mode === modeConst.ANALYSIS) {
+      dispatch(WsEvent.onStartAnalysis(data));
+    } else if (data['/start'].mode === modeConst.GM) {
+      dispatch(WsEvent.onStartGm(data));
+    } else if (data['/start'].mode === modeConst.FEN) {
+      dispatch(WsEvent.onStartFen(data));
+    } else if (data['/start'].mode === modeConst.PGN) {
+      dispatch(WsEvent.onStartPgn(data));
+    } else if (data['/start'].mode === modeConst.PLAY) {
+      dispatch(WsEvent.onStartPlay(data));
+    } else if (data['/start'].mode === modeConst.STOCKFISH) {
+      if (data['/start'].fen) {
+        dispatch(WsEvent.onStartStockfishByFen(data));
+      } else {
+        dispatch(WsEvent.onStartStockfishByColor(data));
+      }
+    }
   }
 
   static onAccept = (data) => dispatch => {
@@ -335,7 +361,12 @@ export default class WsEvent {
           "depth": 12
         }
       }));
-      WsAction.startStockfishByFen(store.getState(), data['/randomizer'].fen);
+      WsAction.start(
+        store.getState(),
+        variantConst.CLASSICAL,
+        modeConst.STOCKFISH,
+        { fen: data['/randomizer'].fen }
+      );
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));

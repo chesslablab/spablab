@@ -1,4 +1,5 @@
 import infoAlertReducer from '../features/alert/infoAlertSlice';
+import boardReducer from '../features/board/boardSlice';
 import acceptDrawDialogReducer from '../features/dialog/acceptDrawDialogSlice';
 import acceptRematchDialogReducer from '../features/dialog/acceptRematchDialogSlice';
 import acceptResignDialogReducer from '../features/dialog/acceptResignDialogSlice';
@@ -27,7 +28,7 @@ import watchDialogReducer from '../features/dialog/watchDialogSlice';
 import modeReducer from '../features/mode/modeSlice';
 import gameTableReducer from '../features/table/gameTableSlice';
 import openingAnalysisTableReducer from '../features/table/openingAnalysisTableSlice';
-import boardReducer from '../features/boardSlice';
+import variantReducer from '../features/variant/variantSlice';
 import heuristicsBarReducer from '../features/heuristicsBarSlice';
 import historyReducer from '../features/historySlice';
 import mainButtonsReducer from '../features/mainButtonsSlice';
@@ -35,6 +36,7 @@ import serverReducer from '../features/wsSlice';
 
 const rootReducer = {
   infoAlert: infoAlertReducer,
+  board: boardReducer,
   acceptDrawDialog: acceptDrawDialogReducer,
   acceptRematchDialog: acceptRematchDialogReducer,
   acceptResignDialog: acceptResignDialogReducer,
@@ -62,11 +64,11 @@ const rootReducer = {
   watchDialog: watchDialogReducer,
   gameTable: gameTableReducer,
   openingAnalysisTable: openingAnalysisTableReducer,
-  board: boardReducer,
   heuristicsBar: heuristicsBarReducer,
   history: historyReducer,
   mainButtons: mainButtonsReducer,
   mode: modeReducer,
+  variant: variantReducer,
   server: serverReducer
 };
 

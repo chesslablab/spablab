@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Ascii from '../common/Ascii';
-import Pgn from '../common/Pgn';
+import Ascii from '../../common/Ascii';
+import Pgn from '../../common/Pgn';
 
 const initialState = {
   shortFen: null,
@@ -19,6 +19,12 @@ const boardSlice = createSlice({
   initialState,
   reducers: {
     start: () => initialState,
+    startChess960(state, action) {
+      const fenSplit = action.payload.fen.split(' ');
+      state.fen = action.payload.fen;
+      state.turn = fenSplit[1];
+      state.history = [Ascii.toAscii(fenSplit[0])];
+    },
     startFen(state, action) {
       const fenSplit = action.payload.fen.split(' ');
       state.fen = action.payload.fen;
@@ -142,6 +148,7 @@ const boardSlice = createSlice({
 
 export const {
   start,
+  startChess960,
   startFen,
   startPgn,
   pickPiece,

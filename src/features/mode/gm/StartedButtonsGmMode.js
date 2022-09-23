@@ -26,7 +26,13 @@ const StartedButtonsGmMode = () => {
           orientation="vertical"
           fullWidth={true}
         >
-          <Button onClick={() => WsAction.startPgn(state, state.mode.gm.movetext)}>
+          <Button onClick={() => WsAction.start(state, {
+            variant: 'classical',
+            mode: modeConst.PGN,
+            params: {
+              movetext: state.mode.gm.movetext
+            }
+          })}>
             View Game
           </Button>
         </ButtonGroup>

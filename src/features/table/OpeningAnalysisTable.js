@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import * as variantConst from '../../features/variant/variantConst';
 import * as mainButtonsConst from '../../features/mainButtonsConst';
 
 const useStyles = makeStyles({
@@ -16,6 +17,7 @@ const OpeningAnalysisTable = ({props}) => {
   const state = useSelector(state => state);
 
   if (
+    state.variant.name === variantConst.CLASSICAL &&
     state.openingAnalysisTable.open &&
     state.mainButtons.name !== mainButtonsConst.TRAINING
   ) {

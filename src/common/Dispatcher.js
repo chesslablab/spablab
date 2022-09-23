@@ -1,10 +1,11 @@
 import Opening from '../common/Opening.js';
-import * as board from '../features/boardSlice';
 import * as heuristicsBar from '../features/heuristicsBarSlice';
 import * as history from '../features/historySlice';
+import * as board from '../features/board/boardSlice';
 import * as infoAlert from '../features/alert/infoAlertSlice';
 import * as gameTable from '../features/table/gameTableSlice';
 import * as openingAnalysisTable from '../features/table/openingAnalysisTableSlice';
+import * as variant from '../features/variant/variantSlice';
 
 export default class Dispatcher {
   static initGui = (dispatch) => {
@@ -14,6 +15,7 @@ export default class Dispatcher {
     dispatch(infoAlert.close());
     dispatch(history.goTo({ back: 0 }));
     dispatch(board.start());
+    dispatch(variant.startClassical());
   };
 
   static openingAnalysisByMovetext = (dispatch, movetext) => {

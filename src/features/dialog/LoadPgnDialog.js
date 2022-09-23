@@ -14,6 +14,8 @@ import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as loadPgnDialog from '../../features/dialog/loadPgnDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
+import * as modeConst from '../../features/mode/modeConst';
+import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
 
 const LoadPgnDialog = () => {
@@ -26,7 +28,9 @@ const LoadPgnDialog = () => {
     dispatch(loadPgnDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
-    WsAction.startPgn(state, event.target.elements.pgn.value);
+    WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
+      movetext: event.target.elements.pgn.value
+    });
   };
 
   return (

@@ -6,7 +6,7 @@ import FastRewindIcon from '@mui/icons-material/FastRewind';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { Button, ButtonGroup } from '@mui/material';
-import * as board from '../features/boardSlice';
+import * as board from '../features/board/boardSlice';
 import * as history from '../features/historySlice';
 
 const History = () => {

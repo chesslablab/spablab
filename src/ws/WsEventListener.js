@@ -1,8 +1,8 @@
 import store from '../app/store';
-import * as modeConst from '../features/mode/modeConst';
 import Wording from '../common/Wording.js';
-import * as board from '../features/boardSlice';
+import * as board from '../features/board/boardSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
+import * as modeConst from '../features/mode/modeConst';
 import WsEvent from './WsEvent';
 
 export default class WsEventListener {
@@ -31,24 +31,7 @@ export default class WsEventListener {
         }
         break;
       case '/start' === cmd:
-        dispatch(progressDialog.close());
-        if (data['/start'].mode === modeConst.ANALYSIS) {
-          dispatch(WsEvent.onStartAnalysis(data));
-        } else if (data['/start'].mode === modeConst.GM) {
-          dispatch(WsEvent.onStartGm(data));
-        } else if (data['/start'].mode === modeConst.FEN) {
-          dispatch(WsEvent.onStartFen(data));
-        } else if (data['/start'].mode === modeConst.PGN) {
-          dispatch(WsEvent.onStartPgn(data));
-        } else if (data['/start'].mode === modeConst.PLAY) {
-          dispatch(WsEvent.onStartPlay(data));
-        } else if (data['/start'].mode === modeConst.STOCKFISH) {
-          if (data['/start'].fen) {
-            dispatch(WsEvent.onStartStockfishByFen(data));
-          } else {
-            dispatch(WsEvent.onStartStockfishByColor(data));
-          }
-        }
+        dispatch(WsEvent.onStart(data));
         break;
       case '/accept' === cmd:
         dispatch(WsEvent.onAccept(data));

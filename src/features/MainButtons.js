@@ -10,6 +10,7 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import QuizIcon from '@mui/icons-material/Quiz';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
@@ -24,7 +25,6 @@ import Dispatcher from '../common/Dispatcher';
 import Pgn from '../common/Pgn';
 import Wording from '../common/Wording';
 import * as mainButtonsConst from '../features/mainButtonsConst';
-import * as modeConst from '../features/mode/modeConst';
 import * as mainButtons from '../features/mainButtonsSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
@@ -38,7 +38,9 @@ import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
 import * as endgameSkillsDialog from '../features/dialog/endgameSkillsDialogSlice';
 import * as watchDialog from '../features/dialog/watchDialogSlice';
+import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
+import * as variantConst from '../features/variant/variantConst';
 import WsAction from '../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -133,11 +135,20 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setAnalysis());
           Dispatcher.initGui(dispatch);
-          WsAction.startAnalysis(state.server.ws);
+          WsAction.start(state, variantConst.CLASSICAL, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
-          <RestartAltIcon size="small" />&nbsp;Start Position
+          <RestartAltIcon size="small" />&nbsp;Start Classical
         </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(mainButtons.setAnalysis());
+          Dispatcher.initGui(dispatch);
+          WsAction.start(state, variantConst.CHESS_960, modeConst.ANALYSIS);
+          handleCloseAnalysis();
+        }}>
+          <ShuffleIcon size="small" />&nbsp;Start 960
+        </MenuItem>
+        <Divider />
         <MenuItem onClick={() => {
           dispatch(loadPgnDialog.open());
           handleCloseAnalysis();
@@ -211,7 +222,9 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setTraining());
           Dispatcher.initGui(dispatch);
-          WsAction.startGm(state, Pgn.symbol.WHITE);
+          WsAction.start(state, variantConst.CLASSICAL, modeConst.GM, {
+            color: Pgn.symbol.WHITE
+          });
           handleCloseTraining();
         }}>
           <QuizIcon size="small" />&nbsp;Guess the Move

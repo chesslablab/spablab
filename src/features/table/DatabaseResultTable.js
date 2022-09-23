@@ -16,7 +16,9 @@ import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
+import * as modeConst from '../../features/mode/modeConst';
 import * as gameTable from '../../features/table/gameTableSlice';
+import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -67,7 +69,9 @@ const DatabaseResultTable = ({props}) => {
     dispatch(progressDialog.open());
     dispatch(mainButtons.setDatabase());
     Dispatcher.initGui(dispatch);
-    WsAction.startPgn(state, item.movetext);
+    WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
+      movetext: item.movetext
+    });
     dispatch(gameTable.show({
       game: {
         Event: item.Event,
