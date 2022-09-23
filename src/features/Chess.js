@@ -22,7 +22,7 @@ import StartedButtonsAnalysisMode from './mode/analysis/StartedButtonsAnalysisMo
 import StartedButtonsGmMode from './mode/gm//StartedButtonsGmMode';
 import GameTable from './table/GameTable';
 import OpeningAnalysisTable from './table/OpeningAnalysisTable';
-import Board from './Board';
+import ClassicalBoard from './ClassicalBoard';
 import Game from './Game';
 import HeuristicsBar from './HeuristicsBar';
 import MainButtons from './MainButtons';
@@ -45,7 +45,7 @@ const Chess = ({ props }) => {
           <MainButtons />
         </Grid>
         <Grid item xs={12} md={4}>
-          <Board props={props} />
+          <ClassicalBoard props={props} />
           <HeuristicsBar />
         </Grid>
         <Grid item xs={12} md={3}>
