@@ -65,15 +65,12 @@ const Board = ({props}) => {
         }
       }
     } else if (state.mode.name !== modeConst.UNDEFINED) {
-      if (
-        !state.board.isMate &&
-        state.history.back === 0
-      ) {
-        if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-          dispatch(boardSlice.leavePiece(payload));
-        } else if (state.board.turn === Piece.color(payload.piece)) {
+      if (!state.board.isMate && state.history.back === 0) {
+        if (state.board.turn === Piece.color(payload.piece)) {
           dispatch(boardSlice.pickPiece(payload));
           WsAction.legalSqs(state, payload.sq);
+        } else if (state.board.picked) {
+          dispatch(boardSlice.leavePiece(payload));
         }
       }
     }
