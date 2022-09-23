@@ -20,6 +20,7 @@ import WsAction from './WsAction';
 
 export default class WsEvent {
   static onStartAnalysis = (data) => dispatch => {
+    dispatch(mode.startAnalysis());
     if (data['/start'].variant === variantConst.CHESS_960) {
       dispatch(board.startChess960({ fen: data['/start'].fen }));
       dispatch(variant.startChess960());
