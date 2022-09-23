@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
-import * as modeConst from '../../features/mode/modeConst';
 import Piece from '../../common/Piece';
 import * as boardSlice from '../../features/board/boardSlice';
 import Squares from '../../features/board/Squares';
+import * as modeConst from '../../features/mode/modeConst';
 import WsAction from '../../ws/WsAction';
 
 const Chess960Board = ({props}) => {
@@ -22,6 +22,12 @@ const Chess960Board = ({props}) => {
     if (state.mode.name !== modeConst.UNDEFINED) {
       if (!state.board.isMate && state.history.back === 0) {
         if (state.board.turn === Piece.color(payload.piece)) {
+          // allow the king to be dropped into the castling rook
+          if (state.board.picked) {
+            if (state.board.picked.legal_sqs.includes(payload.sq)) {
+              dispatch(boardSlice.leavePiece(payload));
+            }
+          }
           dispatch(boardSlice.pickPiece(payload));
           WsAction.legalSqs(state, payload.sq);
         } else if (state.board.picked) {
