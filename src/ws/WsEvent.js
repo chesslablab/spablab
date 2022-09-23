@@ -18,8 +18,10 @@ import * as variantConst from '../features/variant/variantConst';
 import WsAction from './WsAction';
 
 export default class WsEvent {
-  static onStartAnalysis = () => dispatch => {
-    dispatch(mode.startAnalysis({}));
+  static onStartAnalysis = (data) => dispatch => {
+    if (data['/start'].variant === variantConst.CHESS_960) {
+      dispatch(board.startChess960({ fen: data['/start'].fen }));
+    }
   }
 
   static onStartGm = (data) => dispatch => {
@@ -105,9 +107,9 @@ export default class WsEvent {
   static onStart = (data) => dispatch => {
     dispatch(progressDialog.close());
     if (data['/start'].mode === modeConst.ANALYSIS) {
-      WsEvent.onStartAnalysis(data);
+      dispatch(WsEvent.onStartAnalysis(data));
     } else if (data['/start'].mode === modeConst.GM) {
-      WsEvent.onStartGm(data)
+      dispatch(WsEvent.onStartGm(data));
     } else if (data['/start'].mode === modeConst.FEN) {
       dispatch(WsEvent.onStartFen(data));
     } else if (data['/start'].mode === modeConst.PGN) {
