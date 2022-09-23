@@ -4,11 +4,11 @@ import Ascii from '../../common/Ascii';
 import Pgn from '../../common/Pgn';
 import Piece from '../../common/Piece';
 
-const Board = ({props}) => {
+const Squares = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const board = () => {
+  const sqs = () => {
     return Ascii.flip(
       state.board.flip,
       state.board.history[state.board.history.length - 1 + state.history.back]
@@ -80,9 +80,9 @@ const Board = ({props}) => {
 
   return (
     <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
-      {board()}
+      {sqs()}
     </div>
   );
 }
 
-export default Board;
+export default Squares;

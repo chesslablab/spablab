@@ -4,8 +4,8 @@ import { useMediaQuery } from '@mui/material';
 import * as modeConst from '../../features/mode/modeConst';
 import Animation from '../../common/Animation';
 import Piece from '../../common/Piece';
-import Board from '../../features/board/Board';
 import * as boardSlice from '../../features/board/boardSlice';
+import Squares from '../../features/board/Squares';
 import WsAction from '../../ws/WsAction';
 
 const ClassicalBoard = ({props}) => {
@@ -75,7 +75,7 @@ const ClassicalBoard = ({props}) => {
     }
   };
 
-  return <Board props={{
+  return <Squares props={{
     imgsRef: imgsRef,
     sqsRef: sqsRef,
     handleMove: handleMove

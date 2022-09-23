@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import * as modeConst from '../../features/mode/modeConst';
 import Piece from '../../common/Piece';
-import Board from '../../features/board/Board';
 import * as boardSlice from '../../features/board/boardSlice';
+import Squares from '../../features/board/Squares';
 import WsAction from '../../ws/WsAction';
 
 const Chess960Board = ({props}) => {
@@ -31,7 +31,7 @@ const Chess960Board = ({props}) => {
     }
   };
 
-  return <Board props={{
+  return <Squares props={{
     imgsRef: imgsRef,
     sqsRef: sqsRef,
     handleMove: handleMove
