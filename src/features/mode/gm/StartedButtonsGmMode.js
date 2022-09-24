@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 import * as modeConst from '../../../features/mode/modeConst';
+import * as variantConst from '../../../features/variant/variantConst';
 import WsAction from '../../../ws/WsAction';
 
 const useStyles = makeStyles({
@@ -26,13 +27,10 @@ const StartedButtonsGmMode = () => {
           orientation="vertical"
           fullWidth={true}
         >
-          <Button onClick={() => WsAction.start(state, {
-            variant: 'classical',
-            mode: modeConst.PGN,
-            params: {
+          <Button onClick={() => WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
               movetext: state.mode.gm.movetext
-            }
-          })}>
+            })}
+          >
             View Game
           </Button>
         </ButtonGroup>
