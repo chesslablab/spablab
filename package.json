@@ -54,7 +54,7 @@
     "react-redux": "^7.2.6",
     "react-scripts": "^5.0.0",
     "react-timer-hook": "^3.0.5",
-    "recharts": "^2.1.9"
+    "recharts": "2.1.12"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",
