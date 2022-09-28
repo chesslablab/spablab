@@ -41,16 +41,16 @@ describe("Chess", () => {
   });
   it("the first chess board square is a black rook before flipping the chess board", () => {
     const chess = mount(<Chess props={props} />);
-    const text = chess.find('.board').at(0).find('.square').at(0).find('span').text();
+    const text = chess.find('.board').at(0).find('.sq').at(0).find('img').at(0).prop('src');
     expect(store.getState().board.flip).toBe('w');
-    expect(text).toEqual('♜');
+    expect(text).toEqual('bRook.svg');
   });
   it("the first chess board square is a white rook after flipping the chess board", () => {
     const { result } = renderHook(() => SyncDispatcher(flip()), { wrapper });
     const chess = mount(<Chess props={props} />);
-    const text = chess.find('.board-row').at(0).find('.square').at(0).find('span').text();
+    const text = chess.find('.board').at(0).find('.sq').at(0).find('img').at(0).prop('src');
     expect(result.current.state.board.flip).toBe('b');
-    expect(text).toEqual('♖');
+    expect(text).toEqual('wRook.svg');
   });
   it("opens the 'Play a Friend' > 'Create Invite Code' dialog", () => {
     const { result } = renderHook(() => SyncDispatcher(createInviteCodeDialog.open()), { wrapper });
