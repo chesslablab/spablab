@@ -7,7 +7,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
 import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
-import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice'
+import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
 import { flip } from 'features/board/boardSlice';
 import store from 'app/store';
 
