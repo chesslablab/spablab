@@ -7,6 +7,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { mount } from 'enzyme';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
 import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
+import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
 import { flip } from 'features/board/boardSlice';
 import store from 'app/store';
 
@@ -60,4 +61,8 @@ describe("Chess", () => {
     const { result } = renderHook(() => SyncDispatcher(loadFenDialog.open()), { wrapper });
     expect(result.current.state.loadFenDialog.open).toBe(true);
   });
+  it("opens the 'Analysis Board' > 'PGN Movetext' dialog", () => {
+    const { result } = renderHook(() => SyncDispatcher(loadPgnDialog.open()), { wrapper });
+    expect(result.current.state.loadPgnDialog.open).toBe(true)
+  })
 });
