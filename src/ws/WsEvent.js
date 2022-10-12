@@ -24,6 +24,9 @@ export default class WsEvent {
     if (data['/start'].variant === variantConst.CHESS_960) {
       dispatch(board.startChess960({ fen: data['/start'].fen }));
       dispatch(variant.startChess960());
+    } else if (data['/start'].variant === variantConst.CAPABLANCA_100) {
+      dispatch(board.startCapablanca100({ fen: data['/start'].fen }));
+      dispatch(variant.startCapablanca100());
     }
   }
 

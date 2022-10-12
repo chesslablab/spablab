@@ -19,6 +19,12 @@ const boardSlice = createSlice({
   initialState,
   reducers: {
     start: () => initialState,
+    startCapablanca100(state, action) {
+      const fenSplit = action.payload.fen.split(' ');
+      state.fen = action.payload.fen;
+      state.turn = fenSplit[1];
+      state.history = [Ascii.toAscii(fenSplit[0])];
+    },
     startChess960(state, action) {
       const fenSplit = action.payload.fen.split(' ');
       state.fen = action.payload.fen;
@@ -148,6 +154,7 @@ const boardSlice = createSlice({
 
 export const {
   start,
+  startCapablanca100,
   startChess960,
   startFen,
   startPgn,

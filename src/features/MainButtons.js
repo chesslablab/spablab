@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
+import BlurOnIcon from '@mui/icons-material/BlurOn';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ExtensionIcon from '@mui/icons-material/Extension';
@@ -147,6 +148,14 @@ const MainButtons = () => {
           handleCloseAnalysis();
         }}>
           <ShuffleIcon size="small" />&nbsp;Start 960
+        </MenuItem>
+        <MenuItem onClick={() => {
+          dispatch(mainButtons.setAnalysis());
+          Dispatcher.initGui(dispatch);
+          WsAction.start(state, variantConst.CAPABLANCA_100, modeConst.ANALYSIS);
+          handleCloseAnalysis();
+        }}>
+          <BlurOnIcon size="small" />&nbsp;Start Capablanca100
         </MenuItem>
         <Divider />
         <MenuItem onClick={() => {
