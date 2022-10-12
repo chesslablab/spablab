@@ -7,7 +7,7 @@ import Squares from '../../features/board/Squares';
 import * as modeConst from '../../features/mode/modeConst';
 import WsAction from '../../ws/WsAction';
 
-const Chess960Board = ({props}) => {
+const Capablanca100Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const maxWidth = {
@@ -22,12 +22,6 @@ const Chess960Board = ({props}) => {
     if (state.mode.name !== modeConst.UNDEFINED) {
       if (!state.board.isMate && state.history.back === 0) {
         if (state.board.turn === Piece.color(payload.piece)) {
-          // allow the king to be dropped into the castling rook
-          if (state.board.picked) {
-            if (state.board.picked.legal_sqs.includes(payload.sq)) {
-              dispatch(boardSlice.leavePiece(payload));
-            }
-          }
           dispatch(boardSlice.pickPiece(payload));
           WsAction.legalSqs(state, payload.sq);
         } else if (state.board.picked) {
@@ -38,11 +32,11 @@ const Chess960Board = ({props}) => {
   };
 
   return <Squares props={{
-    className: 'classicalBoard',
+    className: 'capablanca100Board',
     imgsRef: imgsRef,
     sqsRef: sqsRef,
     handleMove: handleMove
   }}/>;
 }
 
-export default Chess960Board;
+export default Capablanca100Board;

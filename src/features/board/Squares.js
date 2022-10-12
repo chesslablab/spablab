@@ -79,7 +79,7 @@ const Squares = ({props}) => {
   }
 
   return (
-    <div className={['board', state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+    <div className={[props.className, state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
       {sqs()}
     </div>
   );
