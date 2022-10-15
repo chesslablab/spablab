@@ -32,12 +32,12 @@ export default class Ascii {
   static flip = (color, ascii) => {
     if (color == Pgn.symbol.BLACK) {
       const flipped = [];
-      for (let i = 0; i < 8; i++) {
-        flipped.push(new Array(8));
+      for (let i = 0; i < ascii.length; i++) {
+        flipped.push(new Array(ascii.length));
       }
       ascii.forEach((rank, i) => {
         rank.forEach((file, j) => {
-          flipped[7-i][7-j] = ascii[i][j];
+          flipped[rank.length -1 - i][rank.length -1 - j] = ascii[i][j];
         });
       });
       return flipped;
