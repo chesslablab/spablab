@@ -87,7 +87,7 @@ export default class Ascii {
     return ascii;
   }
 
-  static asciiDiff = (a, b, size) => {
+  static asciiDiff = (a, b) => {
     let sqs = [];
     a.forEach((rank, i) => {
       rank.forEach((file, j) => {
@@ -95,7 +95,14 @@ export default class Ascii {
           sqs.push({
             from: a[i][j],
             to: b[i][j],
-            sq: Ascii.fromIndexToAlgebraic(i, j, size)
+            sq: Ascii.fromIndexToAlgebraic(
+              i,
+              j,
+              {
+                files: a.length,
+                ranks: rank.length
+              }
+            )
           });
         }
       });
@@ -147,8 +154,8 @@ export default class Ascii {
     }
   }
 
-  static longAlgebraicNotation = (a, b, size) => {
-    const diff = Ascii.asciiDiff(a, b, size);
+  static longAlgebraicNotation = (a, b) => {
+    const diff = Ascii.asciiDiff(a, b);
     let sorted = [];
     if (diff[0].to === ' . ') {
       sorted.push(diff[0].sq);
