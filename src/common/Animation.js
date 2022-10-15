@@ -11,7 +11,8 @@ export default class Animation {
   pieces() {
     const lan = Ascii.longAlgebraicNotation(
       store.getState().board.history[store.getState().board.history.length - 2],
-      store.getState().board.history[store.getState().board.history.length - 1]
+      store.getState().board.history[store.getState().board.history.length - 1],
+      store.getState().board.size
     );
 
     const sqDiff = Ascii.sqDiff(lan[0], lan[1]);

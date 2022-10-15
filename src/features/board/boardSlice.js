@@ -11,7 +11,11 @@ const initialState = {
   picked: null,
   history: [Ascii.toAscii('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')],
   movetext: null,
-  flip: Pgn.symbol.WHITE
+  flip: Pgn.symbol.WHITE,
+  size: {
+    files: 8,
+    ranks: 8
+  }
 };
 
 const boardSlice = createSlice({
@@ -24,6 +28,10 @@ const boardSlice = createSlice({
       state.fen = action.payload.fen;
       state.turn = fenSplit[1];
       state.history = [Ascii.toAscii(fenSplit[0])];
+      state.size = {
+        files: 10,
+        ranks: 10
+      }
     },
     startChess960(state, action) {
       const fenSplit = action.payload.fen.split(' ');
@@ -62,7 +70,7 @@ const boardSlice = createSlice({
         newAscii[action.payload.i][action.payload.j] = state.picked.piece;
         if (state.picked.en_passant) {
           if (action.payload.sq.charAt(0) === state.picked.en_passant.charAt(0)) {
-            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant);
+            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant, state.board.size);
             newAscii[index[0]][index[1]] = ' . ';
           }
         }

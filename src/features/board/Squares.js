@@ -18,8 +18,26 @@ const Squares = ({props}) => {
         let isLegal, isSelected, isCheck = '';
         let color = (i + j) % 2 !== 0 ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
         state.board.flip === Pgn.symbol.WHITE
-          ? payload = {...payload, i: i, j: j, sq: Ascii.fromIndexToAlgebraic(i, j)}
-          : payload = {...payload, i: 7 - i, j: 7 - j, sq: Ascii.fromIndexToAlgebraic(7 - i, 7 - j)};
+          ? payload = {
+              ...payload,
+              i: i,
+              j: j,
+              sq: Ascii.fromIndexToAlgebraic(
+                i,
+                j,
+                state.board.size
+              )
+            }
+          : payload = {
+            ...payload,
+            i: state.board.files - 1 - i,
+            j: state.board.ranks - 1 - j,
+            sq: Ascii.fromIndexToAlgebraic(
+              state.board.ranks - 1 - i,
+              state.board.files - 1 - j,
+              state.board.size
+            )
+          };
         if (state.board.picked) {
           if (state.board.picked.sq === payload.sq) {
             isSelected = 'isSelected';

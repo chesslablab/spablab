@@ -66,16 +66,16 @@ export default class Ascii {
     return arr;
   }
 
-  static fromIndexToAlgebraic = (i, j) => {
+  static fromIndexToAlgebraic = (i, j, size) => {
     const file = String.fromCharCode(97 + j);
-    const rank = 8 - i;
+    const rank = size.ranks - i;
 
     return file + rank;
   }
 
-  static fromAlgebraicToIndex = (square) => {
-    const i = 8 - square.charAt(1);
-    const j = square.charAt(0).charCodeAt(0) - 97;
+  static fromAlgebraicToIndex = (sq, size) => {
+    const i = size.ranks - sq.charAt(1);
+    const j = sq.charAt(0).charCodeAt(0) - 97;
 
     return [i, j];
   }
@@ -87,7 +87,7 @@ export default class Ascii {
     return ascii;
   }
 
-  static asciiDiff = (a, b) => {
+  static asciiDiff = (a, b, size) => {
     let sqs = [];
     a.forEach((rank, i) => {
       rank.forEach((file, j) => {
@@ -95,7 +95,7 @@ export default class Ascii {
           sqs.push({
             from: a[i][j],
             to: b[i][j],
-            sq: Ascii.fromIndexToAlgebraic(i, j)
+            sq: Ascii.fromIndexToAlgebraic(i, j, size)
           });
         }
       });
@@ -147,8 +147,8 @@ export default class Ascii {
     }
   }
 
-  static longAlgebraicNotation = (a, b) => {
-    const diff = Ascii.asciiDiff(a, b);
+  static longAlgebraicNotation = (a, b, size) => {
+    const diff = Ascii.asciiDiff(a, b, size);
     let sorted = [];
     if (diff[0].to === ' . ') {
       sorted.push(diff[0].sq);

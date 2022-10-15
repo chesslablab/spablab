@@ -193,32 +193,40 @@ describe('toAscii()', () => {
 });
 
 describe('fromIndexToAlgebraic()', () => {
+  const size = {
+    files: 8,
+    ranks: 8
+  };
   it('is a8', () => {
-    expect(Ascii.fromIndexToAlgebraic(0, 0)).toEqual('a8');
+    expect(Ascii.fromIndexToAlgebraic(0, 0, size)).toEqual('a8');
   });
   it('is a7', () => {
-    expect(Ascii.fromIndexToAlgebraic(1, 0)).toEqual('a7');
+    expect(Ascii.fromIndexToAlgebraic(1, 0, size)).toEqual('a7');
   });
   it('is h2', () => {
-    expect(Ascii.fromIndexToAlgebraic(6, 7)).toEqual('h2');
+    expect(Ascii.fromIndexToAlgebraic(6, 7, size)).toEqual('h2');
   });
   it('is h1', () => {
-    expect(Ascii.fromIndexToAlgebraic(7, 7)).toEqual('h1');
+    expect(Ascii.fromIndexToAlgebraic(7, 7, size)).toEqual('h1');
   });
 });
 
 describe('fromAlgebraicToIndex()', () => {
+  const size = {
+    files: 8,
+    ranks: 8
+  };
   it('is 0, 0', () => {
-    expect(Ascii.fromAlgebraicToIndex('a8')).toEqual([0, 0]);
+    expect(Ascii.fromAlgebraicToIndex('a8', size)).toEqual([0, 0]);
   });
   it('is 1, 0', () => {
-    expect(Ascii.fromAlgebraicToIndex('a7')).toEqual([1, 0]);
+    expect(Ascii.fromAlgebraicToIndex('a7', size)).toEqual([1, 0]);
   });
   it('is 6, 7', () => {
-    expect(Ascii.fromAlgebraicToIndex('h2')).toEqual([6, 7]);
+    expect(Ascii.fromAlgebraicToIndex('h2', size)).toEqual([6, 7]);
   });
   it('is 7, 7', () => {
-    expect(Ascii.fromAlgebraicToIndex('h1')).toEqual([7, 7]);
+    expect(Ascii.fromAlgebraicToIndex('h1', size)).toEqual([7, 7]);
   });
 });
 
@@ -249,6 +257,10 @@ describe('promote()', () => {
 });
 
 describe('asciiDiff()', () => {
+  const size = {
+    files: 8,
+    ranks: 8
+  };
   it('is e5', () => {
     const a = [
       [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -282,7 +294,7 @@ describe('asciiDiff()', () => {
         sq: 'e5'
       }
     ];
-    expect(Ascii.asciiDiff(a, b)).toEqual(expected);
+    expect(Ascii.asciiDiff(a, b, size)).toEqual(expected);
   });
   it('is Nf3', () => {
     const a = [
@@ -317,7 +329,7 @@ describe('asciiDiff()', () => {
         sq: 'g1'
       }
     ];
-    expect(Ascii.asciiDiff(a, b)).toEqual(expected);
+    expect(Ascii.asciiDiff(a, b, size)).toEqual(expected);
   });
   it('is d5', () => {
     const a = [
@@ -352,7 +364,7 @@ describe('asciiDiff()', () => {
         sq: 'd5'
       }
     ];
-    expect(Ascii.asciiDiff(a, b)).toEqual(expected);
+    expect(Ascii.asciiDiff(a, b, size)).toEqual(expected);
   });
   it('is exd5', () => {
     const a = [
@@ -387,7 +399,7 @@ describe('asciiDiff()', () => {
         sq: 'e4'
       }
     ];
-    expect(Ascii.asciiDiff(a, b)).toEqual(expected);
+    expect(Ascii.asciiDiff(a, b, size)).toEqual(expected);
   });
 });
 
@@ -431,6 +443,10 @@ describe('sqDiff()', () => {
 });
 
 describe('longAlgebraicNotation()', () => {
+  const size = {
+    files: 8,
+    ranks: 8
+  };
   it('is e7e5', () => {
     const a = [
       [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -453,7 +469,7 @@ describe('longAlgebraicNotation()', () => {
       [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ]
     ];
     const expected = ['e7', 'e5'];
-    expect(Ascii.longAlgebraicNotation(a, b)).toEqual(expected);
+    expect(Ascii.longAlgebraicNotation(a, b, size)).toEqual(expected);
   });
   it('is g1f3', () => {
     const a = [
@@ -477,7 +493,7 @@ describe('longAlgebraicNotation()', () => {
       [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' . ', ' R ' ]
     ];
     const expected = ['g1', 'f3'];
-    expect(Ascii.longAlgebraicNotation(a, b)).toEqual(expected);
+    expect(Ascii.longAlgebraicNotation(a, b, size)).toEqual(expected);
   });
   it('is d7d5', () => {
     const a = [
@@ -501,7 +517,7 @@ describe('longAlgebraicNotation()', () => {
       [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' . ', ' R ' ]
     ];
     const expected = ['d7', 'd5'];
-    expect(Ascii.longAlgebraicNotation(a, b)).toEqual(expected);
+    expect(Ascii.longAlgebraicNotation(a, b, size)).toEqual(expected);
   });
   it('is e4d5', () => {
     const a = [
@@ -525,6 +541,6 @@ describe('longAlgebraicNotation()', () => {
       [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' . ', ' R ' ]
     ];
     const expected = ['e4', 'd5'];
-    expect(Ascii.longAlgebraicNotation(a, b)).toEqual(expected);
+    expect(Ascii.longAlgebraicNotation(a, b, size)).toEqual(expected);
   });
 });
