@@ -9,7 +9,7 @@ const initialState = {
   isCheck: false,
   isMate: false,
   picked: null,
-  history: [ Ascii.board ],
+  history: [Ascii.toAscii('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')],
   movetext: null,
   flip: Pgn.symbol.WHITE
 };

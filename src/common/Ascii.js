@@ -1,17 +1,6 @@
 import Pgn from './Pgn.js';
 
 export default class Ascii {
-  static board = [
-    [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
-    [ ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
-    [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-    [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-    [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-    [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-    [ ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ' ],
-    [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ]
-  ];
-
   static toFen = (ascii) => {
     let string = '';
     Ascii.promote(ascii).forEach((item, i) => {
@@ -58,21 +47,23 @@ export default class Ascii {
   }
 
   static toAscii = (fen) => {
-    let ascii = [];
-    fen.split('/').forEach((rank, i) => {
+    let arr = fen.split('/').map(rank => {
       let row = [];
-      rank.split('').forEach((char, i) => {
-        if (isNaN(char)) {
-          row = row.concat(` ${char} `);
-        } else {
-          let empty = ' . ,'.repeat(parseInt(char)).split(',').filter(Boolean);
-          row = row.concat(empty);
-        }
-      });
-      ascii.push(row);
+      let digits = [...rank.matchAll(/[0-9]+/g)].map(item => [item.index, parseInt(item[0])]);
+      let letters = [...rank.matchAll(/[a-zA-Z]{1}/g)].map(item => [item.index, item[0]]);
+      [...digits, ...letters]
+        .sort((a, b) =>  a[0] - b[0])
+        .forEach(item => {
+          let elem;
+          typeof item[1] === 'number'
+            ? elem = Array(item[1]).fill(' . ')
+            : elem = [` ${item[1]} `];
+          row = [...row, ...elem];
+        });
+      return row;
     });
 
-    return ascii;
+    return arr;
   }
 
   static fromIndexToAlgebraic = (i, j) => {
