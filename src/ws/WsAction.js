@@ -68,8 +68,8 @@ export default class WsAction {
     return await state.server.ws.send(`/heuristics`);
   }
 
-  static heuristicsBar = async (state, fen) => {
-    return await state.server.ws.send(`/heuristics_bar "${fen}"`);
+  static heuristicsBar = async (state, fen, variant) => {
+    return await state.server.ws.send(`/heuristics_bar "${fen}" ${variant}`);
   }
 
   static takeback = async (state, action) => {
