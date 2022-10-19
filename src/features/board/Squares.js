@@ -60,7 +60,7 @@ const Squares = ({props}) => {
         }
 
         return <div
-          key={payload.sq}
+          key={`${i}${j}`}
           ref={el => props.sqsRef.current[payload.sq] = el}
           className={[
               'sq',
