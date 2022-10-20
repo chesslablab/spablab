@@ -92,17 +92,23 @@ img,
 }
 
 @media (max-width: 900px) {
-  .classicalBoard,
-  .capablanca100Board {
+  .classicalBoard {
     grid-template-columns: repeat(8, [col] 10vw);
     grid-template-rows: repeat(8, [row] 10vw);
+  }
+  .capablanca100Board {
+    grid-template-columns: repeat(10, [col] 9vw);
+    grid-template-rows: repeat(10, [row] 9vw);
   }
 }
 
 @media (max-width: 600px) {
-  .classicalBoard,
-  .capablanca100Board {
+  .classicalBoard {
     grid-template-columns: repeat(8, [col] 12vw);
     grid-template-rows: repeat(8, [row] 12vw);
+  }
+  .capablanca100Board {
+    grid-template-columns: repeat(10, [col] 9vw);
+    grid-template-rows: repeat(10, [row] 9vw);
   }
 }
