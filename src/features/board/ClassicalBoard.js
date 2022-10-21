@@ -72,6 +72,7 @@ const ClassicalBoard = ({props}) => {
   };
 
   return <Squares props={{
+    className: 'classicalBoard',
     imgsRef: imgsRef,
     sqsRef: sqsRef,
     handleMove: handleMove

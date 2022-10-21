@@ -1,22 +1,11 @@
 import Pgn from './Pgn.js';
 
 export default class Ascii {
-  static board = [
-    [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
-    [ ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
-    [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-    [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-    [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-    [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-    [ ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ' ],
-    [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ]
-  ];
-
   static toFen = (ascii) => {
     let string = '';
-    Ascii.promote(ascii).forEach((item, i) => {
-      string += item.join('').replace(/\s/g, '');
-      if (i !== 7) {
+    Ascii.promote(ascii).forEach((rank, i) => {
+      string += rank.join('').replace(/\s/g, '');
+      if (i < rank.length - 1) {
         string += '/';
       }
     });
@@ -43,12 +32,12 @@ export default class Ascii {
   static flip = (color, ascii) => {
     if (color == Pgn.symbol.BLACK) {
       const flipped = [];
-      for (let i = 0; i < 8; i++) {
-        flipped.push(new Array(8));
+      for (let i = 0; i < ascii.length; i++) {
+        flipped.push(new Array(ascii.length));
       }
       ascii.forEach((rank, i) => {
         rank.forEach((file, j) => {
-          flipped[7-i][7-j] = ascii[i][j];
+          flipped[rank.length -1 - i][rank.length -1 - j] = ascii[i][j];
         });
       });
       return flipped;
@@ -58,40 +47,42 @@ export default class Ascii {
   }
 
   static toAscii = (fen) => {
-    let ascii = [];
-    fen.split('/').forEach((rank, i) => {
+    let arr = fen.split('/').map(rank => {
       let row = [];
-      rank.split('').forEach((char, i) => {
-        if (isNaN(char)) {
-          row = row.concat(` ${char} `);
-        } else {
-          let empty = ' . ,'.repeat(parseInt(char)).split(',').filter(Boolean);
-          row = row.concat(empty);
-        }
-      });
-      ascii.push(row);
+      let digits = [...rank.matchAll(/[0-9]+/g)].map(item => [item.index, parseInt(item[0])]);
+      let letters = [...rank.matchAll(/[a-zA-Z]{1}/g)].map(item => [item.index, item[0]]);
+      [...digits, ...letters]
+        .sort((a, b) =>  a[0] - b[0])
+        .forEach(item => {
+          let elem;
+          typeof item[1] === 'number'
+            ? elem = Array(item[1]).fill(' . ')
+            : elem = [` ${item[1]} `];
+          row = [...row, ...elem];
+        });
+      return row;
     });
 
-    return ascii;
+    return arr;
   }
 
-  static fromIndexToAlgebraic = (i, j) => {
+  static fromIndexToAlgebraic = (i, j, size) => {
     const file = String.fromCharCode(97 + j);
-    const rank = 8 - i;
+    const rank = size.ranks - i;
 
     return file + rank;
   }
 
-  static fromAlgebraicToIndex = (square) => {
-    const i = 8 - square.charAt(1);
-    const j = square.charAt(0).charCodeAt(0) - 97;
+  static fromAlgebraicToIndex = (sq, size) => {
+    const i = size.ranks - sq.charAt(1);
+    const j = sq.charAt(0).charCodeAt(0) - 97;
 
     return [i, j];
   }
 
   static promote = (ascii) => {
     ascii[0] = ascii[0].map(item => item === ' P ' ? ' Q ' : item);
-    ascii[7] = ascii[7].map(item => item === ' p ' ? ' q ' : item);
+    ascii[ascii.length - 1] = ascii[ascii.length - 1].map(item => item === ' p ' ? ' q ' : item);
 
     return ascii;
   }
@@ -104,7 +95,14 @@ export default class Ascii {
           sqs.push({
             from: a[i][j],
             to: b[i][j],
-            sq: Ascii.fromIndexToAlgebraic(i, j)
+            sq: Ascii.fromIndexToAlgebraic(
+              i,
+              j,
+              {
+                files: a.length,
+                ranks: rank.length
+              }
+            )
           });
         }
       });
