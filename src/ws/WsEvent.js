@@ -257,11 +257,13 @@ export default class WsEvent {
         dispatch(progressDialog.open());
         WsAction.stockfish(store.getState());
       }
-      WsAction.heuristicsBar(
-          store.getState(),
-          store.getState().board.fen,
-          store.getState().variant.name
-      );
+      if (store.getState().variant.name !== variantConst.CAPABLANCA_100) {
+        WsAction.heuristicsBar(
+            store.getState(),
+            store.getState().board.fen,
+            store.getState().variant.name
+        );
+      }
     }
   }
 
