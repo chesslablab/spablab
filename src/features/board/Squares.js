@@ -30,11 +30,11 @@ const Squares = ({props}) => {
             }
           : payload = {
             ...payload,
-            i: state.board.files - 1 - i,
-            j: state.board.ranks - 1 - j,
+            i: state.board.size.files - 1 - i,
+            j: state.board.size.ranks - 1 - j,
             sq: Ascii.fromIndexToAlgebraic(
-              state.board.ranks - 1 - i,
-              state.board.files - 1 - j,
+              state.board.size.ranks - 1 - i,
+              state.board.size.files - 1 - j,
               state.board.size
             )
           };
@@ -60,7 +60,7 @@ const Squares = ({props}) => {
         }
 
         return <div
-          key={`${i}${j}`}
+          key={payload.sq}
           ref={el => props.sqsRef.current[payload.sq] = el}
           className={[
               'sq',
