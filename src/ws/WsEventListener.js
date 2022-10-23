@@ -39,10 +39,10 @@ export default class WsEventListener {
       case '/online_games' === cmd:
         dispatch(WsEvent.onOnlineGames(data));
         break;
-      case '/play_fen' === cmd:
+      case '/play_lan' === cmd:
         if (store.getState().mode.name === modeConst.PLAY) {
-          if (store.getState().mode.play.color !== data['/play_fen'].turn) {
-            dispatch(board.playMove({ fen: data['/play_fen'].fen }));
+          if (store.getState().mode.play.color !== data['/play_lan'].turn) {
+            dispatch(board.playMove({ fen: data['/play_lan'].fen }));
           }
         }
         dispatch(WsEvent.onPlayFen(props, data));

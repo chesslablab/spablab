@@ -3,14 +3,14 @@ import Ascii from '../../common/Ascii';
 import Pgn from '../../common/Pgn';
 
 const initialState = {
-  shortFen: null,
-  fen: null,
+  lan: '',
+  fen: '',
   turn: Pgn.symbol.WHITE,
   isCheck: false,
   isMate: false,
   picked: null,
   history: [Ascii.toAscii('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')],
-  movetext: null,
+  movetext: '',
   flip: Pgn.symbol.WHITE,
   size: {
     files: 8,
@@ -52,6 +52,7 @@ const boardSlice = createSlice({
       state.movetext = action.payload.movetext;
     },
     pickPiece(state, action) {
+      state.lan = action.payload.sq;
       state.picked = {
         i: action.payload.i,
         j: action.payload.j,
@@ -70,12 +71,12 @@ const boardSlice = createSlice({
         newAscii[action.payload.i][action.payload.j] = state.picked.piece;
         if (state.picked.en_passant) {
           if (action.payload.sq.charAt(0) === state.picked.en_passant.charAt(0)) {
-            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant, state.board.size);
+            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant, state.board.size.ranks);
             newAscii[index[0]][index[1]] = ' . ';
           }
         }
         newHistory.push(newAscii);
-        state.shortFen = Ascii.toFen(newHistory[newHistory.length - 1]) + ` ${newTurn}`;
+        state.lan += action.payload.sq;
         state.turn = newTurn;
         state.isCheck = false;
         state.isMate = false;
@@ -85,12 +86,12 @@ const boardSlice = createSlice({
     },
     browseHistory(state) {
       state.picked = null;
-      state.shortFen = null;
+      state.lan = '';
     },
     castleShort(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
-      state.shortFen = null;
+      state.lan = '';
       state.fen = action.payload.fen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
@@ -101,7 +102,7 @@ const boardSlice = createSlice({
     castleLong(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
-      state.shortFen = null;
+      state.lan = '';
       state.fen = action.payload.fen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
@@ -119,7 +120,7 @@ const boardSlice = createSlice({
     undo(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.splice(-1);
-      state.shortFen = null;
+      state.lan = '';
       state.fen = action.payload.fen;
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
@@ -131,7 +132,7 @@ const boardSlice = createSlice({
     validMove(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
-      state.shortFen = null;
+      state.lan = '';
       state.fen = action.payload.fen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
@@ -148,7 +149,7 @@ const boardSlice = createSlice({
     gm(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
-      state.shortFen = null;
+      state.lan = '';
       state.fen = action.payload.fen;
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;

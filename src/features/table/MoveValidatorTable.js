@@ -32,10 +32,10 @@ const MoveValidatorTable = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (state.board.shortFen) {
-      WsAction.playFen(state);
+    if (!state.board.picked) {
+      WsAction.playLan(state);
     }
-  }, [state.board.shortFen]);
+  }, [state.board.picked]);
 
   const highlight = (n) => {
     if (n === state.board.history.length + state.history.back - 1) {

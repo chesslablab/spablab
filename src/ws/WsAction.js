@@ -1,3 +1,4 @@
+import Pgn from '../common/Pgn';
 import * as modeConst from '../features/mode/modeConst';
 import * as wsSlice from '../features/wsSlice';
 import WsEventListener from './WsEventListener';
@@ -52,8 +53,9 @@ export default class WsAction {
     return await state.server.ws.send('/online_games');
   }
 
-  static playFen = async (state) => {
-    return await state.server.ws.send(`/play_fen "${state.board.shortFen}"`);
+  static playLan = async (state) => {
+    const color = state.board.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+    return await state.server.ws.send(`/play_lan ${color} ${state.board.lan}`);
   }
 
   static accept = async (state, hash) => {

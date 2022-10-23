@@ -195,15 +195,15 @@ export default class WsEvent {
 
   static onPlayFen = (props, data) => dispatch => {
     const payload = {
-      isCheck: data['/play_fen'].isCheck,
-      isMate: data['/play_fen'].isMate,
-      movetext: data['/play_fen'].movetext,
-      fen: data['/play_fen'].fen
+      isCheck: data['/play_lan'].isCheck,
+      isMate: data['/play_lan'].isMate,
+      movetext: data['/play_lan'].movetext,
+      fen: data['/play_lan'].fen
     };
-    if (data['/play_fen'].isLegal) {
-      if (data['/play_fen'].pgn === Pgn.symbol.CASTLING_LONG) {
+    if (data['/play_lan'].isLegal) {
+      if (data['/play_lan'].pgn === Pgn.symbol.CASTLING_LONG) {
         dispatch(board.castleLong(payload));
-      } else if (data['/play_fen'].pgn === Pgn.symbol.CASTLING_SHORT) {
+      } else if (data['/play_lan'].pgn === Pgn.symbol.CASTLING_SHORT) {
         dispatch(board.castleShort(payload));
       } else {
         dispatch(board.validMove(payload));
@@ -216,7 +216,7 @@ export default class WsEvent {
         fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/grandmaster`, {
           method: 'POST',
           body: JSON.stringify({
-            movetext: data['/play_fen'].movetext
+            movetext: data['/play_lan'].movetext
           })
         }).then(res => {
           if (res.status === 200) {
