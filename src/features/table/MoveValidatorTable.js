@@ -32,7 +32,7 @@ const MoveValidatorTable = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!state.board.picked) {
+    if (state.board.lan && !state.board.picked) {
       WsAction.playLan(state);
     }
   }, [state.board.picked]);
