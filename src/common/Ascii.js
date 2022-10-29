@@ -30,10 +30,7 @@ export default class Ascii {
 
   static flip = (color, ascii) => {
     if (color == Pgn.symbol.BLACK) {
-      const flipped = [];
-      for (let i = 0; i < ascii.length; i++) {
-        flipped.push(new Array(ascii.length));
-      }
+      let flipped = ascii.map(rank => new Array(rank.length));
       ascii.forEach((rank, i) => {
         rank.forEach((file, j) => {
           flipped[rank.length -1 - i][rank.length -1 - j] = ascii[i][j];
