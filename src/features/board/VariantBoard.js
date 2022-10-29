@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Capablanca100Board from './Capablanca100Board';
+import Capablanca80Board from './Capablanca80Board';
 import Chess960Board from './Chess960Board';
 import ClassicalBoard from './ClassicalBoard';
 import * as variantConst from '../variant/variantConst';
@@ -15,8 +15,8 @@ const VariantBoard = ({props}) => {
   }, [dispatch]);
 
   const variantBoard = () => {
-    if (state.variant.name === variantConst.CAPABLANCA_100) {
-      return <Capablanca100Board props={props} />;
+    if (state.variant.name === variantConst.CAPABLANCA_80) {
+      return <Capablanca80Board props={props} />;
     } else if (state.variant.name === variantConst.CHESS_960) {
       return <Chess960Board props={props} />;
     }

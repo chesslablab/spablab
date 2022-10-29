@@ -7,7 +7,7 @@ import Squares from '../../features/board/Squares';
 import * as modeConst from '../../features/mode/modeConst';
 import WsAction from '../../ws/WsAction';
 
-const Capablanca100Board = ({props}) => {
+const Capablanca80Board = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const maxWidth = {
@@ -32,11 +32,11 @@ const Capablanca100Board = ({props}) => {
   };
 
   return <Squares props={{
-    className: 'capablanca100Board',
+    className: 'capablanca80Board',
     imgsRef: imgsRef,
     sqsRef: sqsRef,
     handleMove: handleMove
   }}/>;
 }
 
-export default Capablanca100Board;
+export default Capablanca80Board;

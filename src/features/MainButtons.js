@@ -152,10 +152,10 @@ const MainButtons = () => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setAnalysis());
           Dispatcher.initGui(dispatch);
-          WsAction.start(state, variantConst.CAPABLANCA_100, modeConst.ANALYSIS);
+          WsAction.start(state, variantConst.CAPABLANCA_80, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
-          <BlurOnIcon size="small" />&nbsp;Start Capablanca100
+          <BlurOnIcon size="small" />&nbsp;Start Capablanca
         </MenuItem>
         <Divider />
         <MenuItem onClick={() => {

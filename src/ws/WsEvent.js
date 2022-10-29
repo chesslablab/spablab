@@ -24,9 +24,9 @@ export default class WsEvent {
     if (data['/start'].variant === variantConst.CHESS_960) {
       dispatch(board.startChess960({ fen: data['/start'].fen }));
       dispatch(variant.startChess960());
-    } else if (data['/start'].variant === variantConst.CAPABLANCA_100) {
-      dispatch(board.startCapablanca100({ fen: data['/start'].fen }));
-      dispatch(variant.startCapablanca100());
+    } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
+      dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
+      dispatch(variant.startCapablanca80());
     }
   }
 
@@ -257,7 +257,7 @@ export default class WsEvent {
         dispatch(progressDialog.open());
         WsAction.stockfish(store.getState());
       }
-      if (store.getState().variant.name !== variantConst.CAPABLANCA_100) {
+      if (store.getState().variant.name !== variantConst.CAPABLANCA_80) {
         WsAction.heuristicsBar(
             store.getState(),
             store.getState().board.fen,

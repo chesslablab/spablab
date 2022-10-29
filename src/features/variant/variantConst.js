@@ -1,9 +1,9 @@
-const CAPABLANCA_100 = 'capablanca100';
+const CAPABLANCA_80 = 'capablanca80';
 const CHESS_960 = '960';
 const CLASSICAL = 'classical';
 
 export {
-  CAPABLANCA_100,
+  CAPABLANCA_80,
   CHESS_960,
   CLASSICAL
 };

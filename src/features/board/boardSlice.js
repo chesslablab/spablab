@@ -23,14 +23,14 @@ const boardSlice = createSlice({
   initialState,
   reducers: {
     start: () => initialState,
-    startCapablanca100(state, action) {
+    startCapablanca80(state, action) {
       const fenSplit = action.payload.fen.split(' ');
       state.fen = action.payload.fen;
       state.turn = fenSplit[1];
       state.history = [Ascii.toAscii(fenSplit[0])];
       state.size = {
         files: 10,
-        ranks: 10
+        ranks: 8
       }
     },
     startChess960(state, action) {
@@ -163,7 +163,7 @@ const boardSlice = createSlice({
 
 export const {
   start,
-  startCapablanca100,
+  startCapablanca80,
   startChess960,
   startFen,
   startPgn,

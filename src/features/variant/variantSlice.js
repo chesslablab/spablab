@@ -10,8 +10,8 @@ const variantSlice = createSlice({
   initialState,
   reducers: {
     startClassical: () => initialState,
-    startCapablanca100: (state) => {
-      state.name = variantConst.CAPABLANCA_100;
+    startCapablanca80: (state) => {
+      state.name = variantConst.CAPABLANCA_80;
     },
     startChess960: (state) => {
       state.name = variantConst.CHESS_960;
@@ -21,7 +21,7 @@ const variantSlice = createSlice({
 
 export const {
   startClassical,
-  startCapablanca100,
+  startCapablanca80,
   startChess960
 } = variantSlice.actions;
 export default variantSlice.reducer;
