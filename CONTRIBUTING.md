@@ -1,11 +1,11 @@
-# ChesslabLab
+# ChesslaBlab
 ## Open Source Community
 
-The game of chess involves quite a few different aspects of software development, which makes it a perfect topic for learning full-stack web development as well as for playing around with machine learning libraries. A bunch of public chess repos ranging from React and JavaScript to PHP are available on the ChesslabLab community on GitHub.
+The game of chess involves quite a few different aspects of software development, which makes it a perfect topic for learning full-stack web development as well as for playing around with machine learning libraries. A bunch of public chess repos ranging from React and JavaScript to PHP are available on the ChesslaBlab community on GitHub.
 
 ### Contributing guidelines
 
-- Find a ChesslabLab repo and make sure to read its `CONTRIBUTING.md` file.
+- Find a ChesslaBlab repo and make sure to read its `CONTRIBUTING.md` file.
 - Look at the open issues.
 - Leave the following comment on the issue you want to be assigned to: "Hi there, happy learning and coding!"
 - Be prepared to create a friendly PR once the issue has been assigned to you.
