@@ -21,7 +21,6 @@ import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import logo from '../assets/img/logo.png';
 import Dispatcher from '../common/Dispatcher';
 import Pgn from '../common/Pgn';
 import Wording from '../common/Wording';
@@ -49,10 +48,6 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: "#fff !important",
     },
-  },
-  logo: {
-    width: '110px',
-    margin: 'auto',
   },
 });
 
@@ -117,9 +112,6 @@ const MainButtons = () => {
       fullWidth={matches ? false : true}
       disabled={disabled}
     >
-      <IconButton className={classes.iconButton} href="/">
-        <img className={classes.logo} src={logo} />
-      </IconButton>
       <Button
         sx={{ borderRadius: 0 }}
         variant={state.mainButtons.name === mainButtonsConst.ANALYSIS ? "contained" : "text"}

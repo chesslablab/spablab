@@ -19,19 +19,13 @@ Figure 1. Analysis Board > Start Position
 Figure 2. Opening Search > ECO Code
 
 ![Figure 3](/src/assets/img/docs/figure-03.png)
-Figure 3. Database > Search
+Figure 3. Heuristics of a game
 
 ![Figure 4](/src/assets/img/docs/figure-04.png)
-Figure 4. Heuristics of a game
+Figure 4. Play a Friend
 
 ![Figure 5](/src/assets/img/docs/figure-05.png)
-Figure 5. Play Online
-
-![Figure 6](/src/assets/img/docs/figure-06.png)
-Figure 6. Play a Friend
-
-![Figure 7](/src/assets/img/docs/figure-07.png)
-Figure 7. Play Computer
+Figure 5. Play Computer
 
 ### Setup
 
