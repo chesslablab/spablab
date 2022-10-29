@@ -14,7 +14,7 @@
   display: grid;
   grid-gap: 0;
   grid-template-columns: repeat(10, [col] 3.29vw);
-  grid-template-rows: repeat(10, [row] 3.29vw);
+  grid-template-rows: repeat(8, [row] 3.29vw);
   justify-content: center;
   align-content: center;
   margin: 0 auto;
@@ -98,7 +98,7 @@ img,
   }
   .capablanca80Board {
     grid-template-columns: repeat(10, [col] 9vw);
-    grid-template-rows: repeat(10, [row] 9vw);
+    grid-template-rows: repeat(8, [row] 9vw);
   }
 }
 
@@ -109,6 +109,6 @@ img,
   }
   .capablanca80Board {
     grid-template-columns: repeat(10, [col] 9vw);
-    grid-template-rows: repeat(10, [row] 9vw);
+    grid-template-rows: repeat(8, [row] 9vw);
   }
 }
