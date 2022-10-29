@@ -30,8 +30,8 @@ const Squares = ({props}) => {
             }
           : payload = {
             ...payload,
-            i: state.board.size.files - 1 - i,
-            j: state.board.size.ranks - 1 - j,
+            i: state.board.size.ranks - 1 - i,
+            j: state.board.size.files - 1 - j,
             sq: Ascii.fromIndexToAlgebraic(
               state.board.size.ranks - 1 - i,
               state.board.size.files - 1 - j,
