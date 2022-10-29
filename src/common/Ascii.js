@@ -5,10 +5,9 @@ export default class Ascii {
     let string = '';
     Ascii.promote(ascii).forEach((rank, i) => {
       string += rank.join('').replace(/\s/g, '');
-      if (i < rank.length - 1) {
-        string += '/';
-      }
+      string += '/';
     });
+    string = string.slice(0, -1);
     let filtered = '';
     let strSplit = string.split('');
     let n = 1;
