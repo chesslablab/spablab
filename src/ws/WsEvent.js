@@ -63,7 +63,11 @@ export default class WsEvent {
         fen: data['/start'].fen,
         history: data['/start'].history
       }));
-      Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
+      if (data['/start'].variant === variantConst.CLASSICAL) {
+        dispatch(variant.startClassical());
+      } else if (data['/start'].variant === variantConst.CHESS_960) {
+        dispatch(variant.startChess960());
+      }
       WsAction.heuristicsBar(
           store.getState(),
           store.getState().board.fen,
@@ -208,9 +212,15 @@ export default class WsEvent {
       } else {
         dispatch(board.validMove(payload));
       }
-      if (store.getState().mode.name === modeConst.ANALYSIS) {
+      if (
+        store.getState().variant.name === variantConst.CLASSICAL &&
+        store.getState().mode.name === modeConst.ANALYSIS
+      ) {
         Dispatcher.openingAnalysisByMovetext(dispatch, payload.movetext);
-      } else if (store.getState().mode.name === modeConst.GM) {
+      } else if (
+        store.getState().variant.name === variantConst.CLASSICAL &&
+        store.getState().mode.name === modeConst.GM
+      ) {
         dispatch(infoAlert.close());
         dispatch(progressDialog.open());
         fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/grandmaster`, {
@@ -253,10 +263,15 @@ export default class WsEvent {
         .finally(() => {
           dispatch(progressDialog.close());
         });
-      } else if (store.getState().mode.name === modeConst.STOCKFISH) {
+      } else if (
+        store.getState().variant.name === variantConst.CLASSICAL &&
+        store.getState().mode.name === modeConst.STOCKFISH
+      ) {
         dispatch(progressDialog.open());
         WsAction.stockfish(store.getState());
       }
+      // the following if statement is a temporary workaround to hide the heuristics bar
+      // in Capablanca chess
       if (store.getState().variant.name !== variantConst.CAPABLANCA_80) {
         WsAction.heuristicsBar(
             store.getState(),

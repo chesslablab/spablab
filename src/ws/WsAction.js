@@ -1,5 +1,6 @@
 import Pgn from '../common/Pgn';
 import * as modeConst from '../features/mode/modeConst';
+import * as variantConst from '../features/variant/variantConst';
 import * as wsSlice from '../features/wsSlice';
 import WsEventListener from './WsEventListener';
 
@@ -26,22 +27,24 @@ export default class WsAction {
     return await ws.send('/start classical analysis');
   }
 
-  static start = async (state, variant, mode, params = {}) => {
+  static start = async (state, variant, mode, add = {}) => {
     let mssg = `/start ${variant} ${mode}`;
-    if (Object.keys(params).length > 0) {
+    if (Object.keys(add).length > 0) {
       if (mode === modeConst.GM) {
-        mssg += ` "${params.color}"`;
+        mssg += ` "${add.color}"`;
       } else if (mode === modeConst.FEN) {
-        mssg += ` "${params.fen}"`;
-      } else if (mode === modeConst.PGN) {
-        mssg += ` "${params.movetext}"`;
+        mssg += ` "${add.fen}"`;
+      } else if (mode === modeConst.PGN && variant === variantConst.CLASSICAL) {
+        mssg += ` "${add.movetext}"`;
+      } else if (mode === modeConst.PGN && variant === variantConst.CHESS_960) {
+        mssg += ` "${add.movetext}" ${add.startPos}`;
       } else if (mode === modeConst.PLAY) {
-        mssg += ` ${JSON.stringify(params.settings)}`;
+        mssg += ` ${JSON.stringify(add.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {
-        if (params.hasOwnProperty('color')) {
-          mssg += ` ${params.color}`;
-        } else if (params.hasOwnProperty('fen')) {
-          mssg += ` "${params.fen}"`;
+        if (add.hasOwnProperty('color')) {
+          mssg += ` ${add.color}`;
+        } else if (add.hasOwnProperty('fen')) {
+          mssg += ` "${add.fen}"`;
         }
       }
     }
