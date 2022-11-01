@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -8,6 +8,7 @@ import {
   DialogTitle,
   Grid,
   IconButton,
+  MenuItem,
   TextField
 } from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
@@ -18,9 +19,25 @@ import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
 
+const Chess960 = () => {
+  return <TextField
+    fullWidth
+    required
+    name="startPos"
+    label="Start position"
+    helperText="Examples of starting positions: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+  />;
+}
+
 const LoadPgnDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const [variant, setVariant] = useState(variantConst.CLASSICAL);
+
+  const handleVariantChange = (event: Event) => {
+    setVariant(event.target.value);
+  };
 
   const handleLoad = (event) => {
     event.preventDefault();
@@ -28,9 +45,13 @@ const LoadPgnDialog = () => {
     dispatch(loadPgnDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
+    let add = {
       movetext: event.target.elements.pgn.value
-    });
+    };
+    if (variant === variantConst.CHESS_960) {
+      add.startPos = event.target.elements.startPos.value
+    }
+    WsAction.start(state, event.target.elements.variant.value, modeConst.PGN, add);
   };
 
   return (
@@ -61,6 +82,23 @@ const LoadPgnDialog = () => {
               spellCheck: false
             }}
           />
+          <TextField
+            select
+            fullWidth
+            name="variant"
+            label="Select a variant"
+            defaultValue={variant}
+            margin="normal"
+            onChange={handleVariantChange}
+            >
+            <MenuItem key={0} value="classical">
+              Classical
+            </MenuItem>
+            <MenuItem key={1} value="960">
+              Fischer Random 960
+            </MenuItem>
+          </TextField>
+          {variant === variantConst.CHESS_960 ? <Chess960 /> : null}
           <Button
             fullWidth
             type="submit"
