@@ -8,6 +8,7 @@ import {
   DialogTitle,
   Grid,
   IconButton,
+  MenuItem,
   TextField
 } from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
@@ -28,7 +29,7 @@ const LoadPgnDialog = () => {
     dispatch(loadPgnDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
+    WsAction.start(state, event.target.elements.variant.value, modeConst.PGN, {
       movetext: event.target.elements.pgn.value
     });
   };
@@ -49,6 +50,21 @@ const LoadPgnDialog = () => {
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleLoad}>
+          <TextField
+            select
+            fullWidth
+            name="variant"
+            label="Select a variant"
+            defaultValue="classical"
+            margin="normal"
+            >
+            <MenuItem key={0} value="classical">
+              Classical
+            </MenuItem>
+            <MenuItem key={1} value="chess960">
+              Fischer Random 960
+            </MenuItem>
+          </TextField>
           <TextField
             fullWidth
             required
