@@ -65,6 +65,7 @@ export default class WsEvent {
       }));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(variant.startClassical());
+        Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
       } else if (data['/start'].variant === variantConst.CHESS_960) {
         dispatch(variant.startChess960());
       }
