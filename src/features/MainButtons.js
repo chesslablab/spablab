@@ -139,7 +139,7 @@ const MainButtons = () => {
           WsAction.start(state, variantConst.CHESS_960, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
-          <ShuffleIcon size="small" />&nbsp;Start 960
+          <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(mainButtons.setAnalysis());
