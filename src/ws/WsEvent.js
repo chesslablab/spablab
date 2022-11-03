@@ -68,12 +68,18 @@ export default class WsEvent {
         Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
       } else if (data['/start'].variant === variantConst.CHESS_960) {
         dispatch(variant.startChess960());
+      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
+        dispatch(variant.startCapablanca80());
       }
-      WsAction.heuristicsBar(
-          store.getState(),
-          store.getState().board.fen,
-          store.getState().variant.name
-      );
+      // the following if statement is a temporary workaround to hide the heuristics bar
+      // in Capablanca chess
+      if (data['/start'].variant !== variantConst.CAPABLANCA_80) {
+        WsAction.heuristicsBar(
+            store.getState(),
+            store.getState().board.fen,
+            store.getState().variant.name
+        );
+      }
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({

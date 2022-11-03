@@ -36,6 +36,8 @@ export default class WsAction {
         mssg += ` "${add.fen}"`;
       } else if (mode === modeConst.PGN && variant === variantConst.CLASSICAL) {
         mssg += ` "${add.movetext}"`;
+      } else if (mode === modeConst.PGN && variant === variantConst.CAPABLANCA_80) {
+        mssg += ` "${add.movetext}"`;
       } else if (mode === modeConst.PGN && variant === variantConst.CHESS_960) {
         mssg += ` "${add.movetext}" ${add.startPos}`;
       } else if (mode === modeConst.PLAY) {

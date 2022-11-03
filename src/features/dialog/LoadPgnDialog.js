@@ -87,7 +87,7 @@ const LoadPgnDialog = () => {
             fullWidth
             name="variant"
             label="Select a variant"
-            defaultValue={variant}
+            value={variant}
             margin="normal"
             onChange={handleVariantChange}
             >
@@ -96,6 +96,9 @@ const LoadPgnDialog = () => {
             </MenuItem>
             <MenuItem key={1} value="960">
               Fischer Random 960
+            </MenuItem>
+            <MenuItem key={2} value="capablanca80">
+              Capablanca
             </MenuItem>
           </TextField>
           {variant === variantConst.CHESS_960 ? <Chess960 /> : null}
