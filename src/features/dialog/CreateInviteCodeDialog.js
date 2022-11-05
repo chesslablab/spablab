@@ -8,6 +8,7 @@ import {
   DialogTitle,
   Grid,
   IconButton,
+  MenuItem,
   Slider,
   TextField,
   Typography
@@ -50,7 +51,8 @@ const CreateCode = () => {
   const [fields, setFields] = React.useState({
     minutes: 5,
     increment: 3,
-    color: 'rand'
+    color: 'rand',
+    variant: variantConst.CLASSICAL,
   });
 
   const handleMinutesChange = (event: Event) => {
@@ -67,9 +69,16 @@ const CreateCode = () => {
     });
   };
 
+  const handleVariantChange = (event: Event) => {
+    setFields({
+      ...fields,
+      variant: event.target.value
+    });
+  };
+
   const handleCreateCode = () => {
     dispatch(mainButtons.setPlayAFriend());
-    WsAction.start(state, variantConst.CLASSICAL, modeConst.PLAY, {
+    WsAction.start(state, fields.variant, modeConst.PLAY, {
       settings: {
         min: fields.minutes,
         increment: fields.increment,
@@ -120,6 +129,25 @@ const CreateCode = () => {
       <Grid container justifyContent="center">
         <SelectColorButtons props={fields} />
       </Grid>
+      <TextField
+        select
+        fullWidth
+        name="variant"
+        label="Select a variant"
+        defaultValue={variantConst.CLASSICAL}
+        margin="normal"
+        onChange={handleVariantChange}
+        >
+        <MenuItem key={0} value="classical">
+          Classical
+        </MenuItem>
+        <MenuItem key={1} value="960">
+          Fischer Random 960
+        </MenuItem>
+        <MenuItem key={2} value="capablanca80">
+          Capablanca
+        </MenuItem>
+      </TextField>
       <Button
         fullWidth
         variant="outlined"
