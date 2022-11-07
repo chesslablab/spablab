@@ -91,6 +91,16 @@ export default class WsEvent {
   static onStartPlay = (data) => dispatch => {
     Dispatcher.initGui(dispatch);
     const jwtDecoded = jwt_decode(data['/start'].jwt);
+    if (data['/start'].variant === variantConst.CLASSICAL) {
+      dispatch(variant.startClassical());
+      dispatch(board.start());
+    } else if (data['/start'].variant === variantConst.CHESS_960) {
+      dispatch(variant.startChess960());
+      dispatch(board.startChess960({ fen: data['/start'].fen }));
+    } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
+      dispatch(variant.startCapablanca80());
+      dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
+    }
     dispatch(mode.setPlay({
       jwt: data['/start'].jwt,
       jwt_decoded: jwtDecoded,
@@ -111,7 +121,6 @@ export default class WsEvent {
       dispatch(board.flip());
     }
     dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
-    dispatch(board.start());
   }
 
   static onStartStockfishByColor = (data) => dispatch => {
@@ -157,15 +166,23 @@ export default class WsEvent {
   static onAccept = (data) => dispatch => {
     Dispatcher.initGui(dispatch);
     if (data['/accept'].jwt) {
-      if (!store.getState().mode.play) {
-        const jwtDecoded = jwt_decode(data['/accept'].jwt);
-        const color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+      const jwtDecoded = jwt_decode(data['/accept'].jwt);
+      if (jwtDecoded.variant === variantConst.CLASSICAL) {
+        dispatch(variant.startClassical());
         dispatch(board.start());
+      } else if (jwtDecoded.variant === variantConst.CHESS_960) {
+        dispatch(variant.startChess960());
+        dispatch(board.startChess960({ fen: jwtDecoded.fen }));
+      } else if (jwtDecoded.variant === variantConst.CAPABLANCA_80) {
+        dispatch(variant.startCapablanca80());
+        dispatch(board.startCapablanca80({ fen: jwtDecoded.fen }));
+      }
+      if (!store.getState().mode.play) {
         dispatch(mode.setPlay({
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
           hash: data['/accept'].hash,
-          color: color,
+          color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
           takeback: null,
           draw: null,
           resign: null,
