@@ -8,6 +8,7 @@ import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
 import * as modeConst from '../features/mode/modeConst';
+import * as variantConst from '../features/variant/variantConst';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
 import WsAction from '../ws/WsAction';
 
@@ -33,9 +34,22 @@ const SecondaryButtons = ({props}) => {
 
   const handleDownloadMp4 = async () => {
     dispatch(progressDialog.open());
+    let body;
+    if (state.variant.name === variantConst.CHESS_960) {
+      body = {
+        movetext: state.board.movetext,
+        variant: state.variant.name,
+        startPos: state.variant.startPos
+      }
+    } else {
+      body = {
+        movetext: state.board.movetext,
+        variant: state.variant.name
+      }
+    }
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
       method: 'POST',
-      body: JSON.stringify({ movetext: state.board.movetext })
+      body: JSON.stringify(body)
     })
     .then(res => res.blob())
     .then(blob => {

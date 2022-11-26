@@ -13,8 +13,11 @@ const variantSlice = createSlice({
     startCapablanca80: (state) => {
       state.name = variantConst.CAPABLANCA_80;
     },
-    startChess960: (state) => {
+    startChess960: (state, action) => {
       state.name = variantConst.CHESS_960;
+      let startPos = action.payload.fen.split(' ');
+      startPos = startPos[0].split('/');
+      state.startPos = startPos[0].toUpperCase();
     }
   }
 });
