@@ -17,9 +17,13 @@ const SecondaryButtons = ({props}) => {
   const dispatch = useDispatch();
 
   const handleDownloadImage = async () => {
+    let body = {
+      fen: state.board.fen,
+      variant: state.variant.name
+    }
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_image`, {
       method: 'POST',
-      body: JSON.stringify({ fen: state.board.fen })
+      body: JSON.stringify(body)
     }).then(res => res.blob())
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
