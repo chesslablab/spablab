@@ -65,6 +65,7 @@ Commands available:
 /draw {"action":["accept","decline","propose"]} Allows to offer a draw.
 /heuristics Takes a balanced heuristic picture of the current game.
 /heuristics_bar {"fen":"<string>","variant":"<string>"} Takes an expanded heuristic picture of the current position.
+/gm Returns a computer generated response to the current position.
 /leave {"action":["accept"]} Allows to leave a game.
 /legal_sqs {"position":"<string>"} Returns the legal squares of a piece.
 /online_games Returns the online games waiting to be accepted.
@@ -72,9 +73,8 @@ Commands available:
 /randomizer {"turn":"<string>","items":"<string>"} Starts a random position.
 /rematch {"action":["accept","decline","propose"]} Allows to offer a rematch.
 /resign {"action":["accept"]} Allows to resign a game.
-/gm Returns a computer generated response to the current position.
 /restart {"hash":"<string>"} Restarts a game.
-/start {"variant":["960","capablanca80","capablanca100","classical"],"mode":["analysis","gm","fen","pgn","play","stockfish"],"fen":"<string>","movetext":"<string>","color":["w","b"],"settings":"<string>"} Starts a new game.
+/start {"variant":["960","capablanca80","capablanca100","classical"],"mode":["analysis","gm","fen","pgn","play","stockfish"],"add":{"color":["w","b"],"fen":"<string>","movetext":"<string>","settings":"<string>","startPos":"<string>"}} Starts a new game.
 /stockfish {"options":{"Skill Level":"int"},"params":{"depth":"int"}} Returns Stockfish's response to the current position.
 /takeback {"action":["accept","decline","propose"]} Allows to manage a takeback.
 /undo Undoes the last move.
