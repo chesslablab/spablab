@@ -130,6 +130,27 @@ const data = [
     title: "Svitlana's Smart Moves - Finding pawn weaknesses",
     description: "There are a couple of different pawn weaknesses in chess. Often, spotting those weaknesses is the most common technique, used by professional chess players, to gain an advantage.",
     source: 'YouTube'
+  },
+  {
+    image: 'https://i3.ytimg.com/vi/G3QU9-UOxVo/maxresdefault.jpg',
+    href: 'https://www.youtube.com/watch?v=G3QU9-UOxVo',
+    title: "Pavana alla Venetiana | Joan Ambrosio Dalza fl. 1508",
+    description: "Quiet Reflections - No:2 of Series 2. Pavana alla Venetiana by Joan Ambrosio Dalza fl. 1508. Performed by Elizabeth Pallett. Filmed in Great Malvern Priory.",
+    source: 'YouTube'
+  },
+  {
+    image: 'https://i3.ytimg.com/vi/h0oUO5m3peM/sddefault.jpg',
+    href: 'https://www.youtube.com/watch?v=h0oUO5m3peM',
+    title: "Calata ala Spagnola | Joan Ambrosio Dalza fl. 1508.",
+    description: "Quiet Reflections - No:1 of Series 2. Calata ala Spagnola by Joan Ambrosio Dalza fl. 1508. Performed by Elizabeth Pallett. Filmed in Great Malvern Priory.",
+    source: 'YouTube'
+  },
+  {
+    image: 'https://i3.ytimg.com/vi/4nY-z0hXuq4/maxresdefault.jpg',
+    href: 'https://www.youtube.com/watch?v=4nY-z0hXuq4',
+    title: "Sellinger's Round | Anonymous (c.1620)",
+    description: "Sellinger's Round is a 16th century tune and round dance of unknown authorship, which had immense popularity in the 16th and 17th centuries.",
+    source: 'YouTube'
   }
 ];
 
