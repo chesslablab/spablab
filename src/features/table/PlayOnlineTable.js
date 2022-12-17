@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import BlurOnIcon from '@mui/icons-material/BlurOn';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
 import {
   Avatar,
   Button,
@@ -17,7 +20,20 @@ import Pgn from '../../common/Pgn';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
 import * as mode from '../../features/mode/modeSlice';
+import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
+
+const VariantIcon = ({props}) => {
+  if (props.variant === variantConst.CLASSICAL) {
+    return <RestartAltIcon />;
+  } else if (props.variant === variantConst.CHESS_960) {
+    return <ShuffleIcon />;
+  } else if (props.variant === variantConst.CAPABLANCA_80) {
+    return <BlurOnIcon />;
+  }
+
+  return null;
+}
 
 const PlayOnlineTable = () => {
   const state = useSelector((state) => state);
@@ -46,14 +62,17 @@ const PlayOnlineTable = () => {
             {state.playOnlineDialog.rows.map((row, i) => (
               <TableRow key={i}>
                 <TableCell align="center">Anonymous</TableCell>
-                <TableCell align="right">{row.min}</TableCell>
-                <TableCell align="right">+{row.increment}</TableCell>
+                <TableCell align="center">{row.min}</TableCell>
+                <TableCell align="center">+{row.increment}</TableCell>
                 <TableCell align="center">
                   {
                     row.color === Pgn.symbol.WHITE
-                      ? <Avatar src={wKing} sx={{ width: 25, height: 25 }} />
-                      : <Avatar src={bKing} sx={{ width: 25, height: 25 }} />
+                      ? <Avatar src={wKing} sx={{ mt: -0.85, width: 25, height: 25 }} />
+                      : <Avatar src={bKing} sx={{ mt: -0.85, width: 25, height: 25 }} />
                   }
+                </TableCell>
+                <TableCell align="center">
+                  <VariantIcon props={{ variant: row.variant }} />
                 </TableCell>
                 <TableCell align="right">
                   <Button
