@@ -70,7 +70,7 @@ const PlayOnlineDialog = () => {
   }
 
   return (
-    <Dialog open={state.playOnlineDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.playOnlineDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         <Grid container>
           <Grid item xs={11}>
