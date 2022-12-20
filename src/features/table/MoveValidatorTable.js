@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Slide, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 import Movetext from '../../common/Movetext.js';
 import * as history from '../../features/historySlice';
@@ -77,17 +77,13 @@ const MoveValidatorTable = ({props}) => {
   };
 
   return (
-    <Slide direction="down" in={state.board.movetext ? true : false} mountOnEnter unmountOnExit>
-      <TableContainer
-        className={['noTextSelection', classes.table].join(' ')}
-      >
-        <Table stickyHeader size="small" aria-label="Movetext">
-          <TableBody>
-            {tableRows()}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Slide>
+    <TableContainer className={['noTextSelection', classes.table].join(' ')}>
+      <Table stickyHeader size="small" aria-label="Movetext">
+        <TableBody>
+          {tableRows()}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 
