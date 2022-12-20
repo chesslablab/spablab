@@ -1,8 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PublishIcon from '@mui/icons-material/Publish';
 import {
-  IconButton,
   Paper,
   Table,
   TableBody,
@@ -24,14 +22,6 @@ import WsAction from '../../ws/WsAction';
 const useStyles = makeStyles({
   tableContainer: {
     marginTop: 10,
-  },
-  row: {
-    '& th': {
-      fontSize: '0.87em',
-    },
-    '& td': {
-      fontSize: '0.87em',
-    }
   },
   eventCell: {
     width: '20%',
@@ -56,6 +46,10 @@ const useStyles = makeStyles({
   },
   actionCell: {
     width: '10%',
+  },
+  clickable: {
+    cursor: 'pointer',
+    backgroundColor: '#ececec',
   },
 });
 
@@ -96,7 +90,7 @@ const DatabaseResultTable = ({props}) => {
         {
           props.result.length > 0
             ? <TableHead>
-                <TableRow className={classes.row}>
+                <TableRow>
                   <TableCell className={classes.eventCell} align="left">Event</TableCell>
                   <TableCell className={classes.yearCell} align="left">Year</TableCell>
                   <TableCell className={classes.ecoCell} align="left">ECO</TableCell>
@@ -105,7 +99,6 @@ const DatabaseResultTable = ({props}) => {
                   <TableCell className={classes.blackCell} align="left">Black</TableCell>
                   <TableCell className={classes.eloCell} align="left">ELO</TableCell>
                   <TableCell className={classes.resultCell} align="left">Result</TableCell>
-                  <TableCell className={classes.eventCell}></TableCell>
                 </TableRow>
               </TableHead>
             : null
@@ -113,7 +106,12 @@ const DatabaseResultTable = ({props}) => {
         <TableBody>
           {
             props.result.map((item, i) => (
-              <TableRow key={i} className={classes.row}>
+              <TableRow
+                key={i}
+                hover={true}
+                className={classes.clickable}
+                onClick={() => handleLoad(item)}
+              >
                 <TableCell className={classes.eventCell} align="left">{item.Event}</TableCell>
                 <TableCell className={classes.yearCell} align="left">{parseInt(item.Date)}</TableCell>
                 <TableCell className={classes.ecoCell} align="left">{item.ECO}</TableCell>
@@ -122,15 +120,6 @@ const DatabaseResultTable = ({props}) => {
                 <TableCell className={classes.blackCell} align="left">{item.Black}</TableCell>
                 <TableCell className={classes.eloCell} align="left">{item.BlackElo}</TableCell>
                 <TableCell className={classes.resultCell} align="left">{item.Result}</TableCell>
-                <TableCell className={classes.eventCell}>
-                  <IconButton
-                    aria-label="load"
-                    color="primary"
-                    onClick={() => handleLoad(item)}
-                  >
-                    <PublishIcon />
-                  </IconButton>
-                </TableCell>
               </TableRow>
             ))
           }
