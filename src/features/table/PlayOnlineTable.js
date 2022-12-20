@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import {
   Avatar,
-  Button,
   Paper,
   TableContainer,
   Table,
@@ -14,6 +12,7 @@ import {
   TableCell,
   TableBody
 } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import wKing from '../../assets/img/pieces/png/150/wKing.png';
 import bKing from '../../assets/img/pieces/png/150/bKing.png';
 import Pgn from '../../common/Pgn';
@@ -22,6 +21,23 @@ import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
 import * as mode from '../../features/mode/modeSlice';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
+
+const useStyles = makeStyles({
+  disabled: {
+    cursor: 'default',
+    '& td': {
+      color: '#737373',
+      backgroundColor: '#ececec',
+    },
+    '& img': {
+      opacity: 0.5,
+    },
+  },
+  clickable: {
+    cursor: 'pointer',
+    backgroundColor: '#ececec',
+  },
+});
 
 const VariantIcon = ({props}) => {
   if (props.variant === variantConst.CLASSICAL) {
@@ -36,6 +52,7 @@ const VariantIcon = ({props}) => {
 }
 
 const PlayOnlineTable = () => {
+  const classes = useStyles();
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -56,11 +73,24 @@ const PlayOnlineTable = () => {
 
   if (state.playOnlineDialog.rows.length > 0) {
     return (
-      <TableContainer component={Paper} style={{ marginTop: 10, marginBottom: 5 }}>
+      <TableContainer component={Paper} sx={{ mt: 1, mb: 0.5 }}>
         <Table aria-label="simple table">
           <TableBody>
             {state.playOnlineDialog.rows.map((row, i) => (
-              <TableRow key={i}>
+              <TableRow
+                key={i}
+                selected={true}
+                className={
+                  state.mode.play && state.mode.play.hash === row.hash
+                    ? classes.disabled
+                    : classes.clickable
+                }
+                onClick={() =>
+                  state.mode.play && state.mode.play.hash === row.hash
+                    ? null
+                    : handlePlay(row.hash)
+                }
+              >
                 <TableCell align="center">Anonymous</TableCell>
                 <TableCell align="center">{row.min}</TableCell>
                 <TableCell align="center">+{row.increment}</TableCell>
@@ -73,20 +103,6 @@ const PlayOnlineTable = () => {
                 </TableCell>
                 <TableCell align="center">
                   <VariantIcon props={{ variant: row.variant }} />
-                </TableCell>
-                <TableCell align="right">
-                  <Button
-                    disabled={
-                      state.mode.play && state.mode.play.hash === row.hash
-                        ? true
-                        : false
-                      }
-                    variant="outlined"
-                    startIcon={<PlayArrowIcon />}
-                    onClick={() => handlePlay(row.hash)}
-                  >
-                    Play
-                  </Button>
                 </TableCell>
               </TableRow>
             ))}
