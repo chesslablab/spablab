@@ -19,8 +19,7 @@ import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { Button, ButtonGroup, Divider, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import Dispatcher from '../common/Dispatcher';
 import Pgn from '../common/Pgn';
 import Wording from '../common/Wording';
@@ -43,16 +42,7 @@ import * as mode from '../features/mode/modeSlice';
 import * as variantConst from '../features/variant/variantConst';
 import WsAction from '../ws/WsAction';
 
-const useStyles = makeStyles({
-  iconButton: {
-    '&:hover': {
-      backgroundColor: "#fff !important",
-    },
-  },
-});
-
 const MainButtons = () => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -106,7 +96,6 @@ const MainButtons = () => {
   return (
     <ButtonGroup
       orientation="vertical"
-      size="small"
       variant="text"
       aria-label="Main Menu"
       fullWidth={matches ? false : true}
