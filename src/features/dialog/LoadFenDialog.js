@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Grid,
   IconButton,
   TextField
 } from '@mui/material';
@@ -36,16 +35,10 @@ const LoadFenDialog = () => {
   return (
     <Dialog open={state.loadFenDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            FEN String
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(loadFenDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        FEN String
+        <IconButton onClick={() => dispatch(loadFenDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleLoad}>

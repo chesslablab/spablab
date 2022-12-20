@@ -58,19 +58,13 @@ const PlayersStatsDialog = ({props}) => {
   return (
     <Dialog open={state.playersStatsDialog.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
-        <Grid container spacing={2}>
-          <Grid item xs={11}>
-            Players Stats
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => {
-              setResult([]);
-              dispatch(playersStatsDialog.close());
-            }}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Players Stats
+        <IconButton onClick={() => {
+          setResult([]);
+          dispatch(playersStatsDialog.close());
+        }}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleViewStats}>

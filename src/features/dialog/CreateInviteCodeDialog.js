@@ -28,16 +28,10 @@ const CreateInviteCodeDialog = () => {
   return (
     <Dialog open={state.createInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Play a Friend
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(createInviteCodeDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Play a Friend
+        <IconButton onClick={() => dispatch(createInviteCodeDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       {state.mode.play && state.mode.play.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>

@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Grid,
   IconButton,
   MenuItem,
   TextField
@@ -57,16 +56,10 @@ const LoadPgnDialog = () => {
   return (
     <Dialog open={state.loadPgnDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            PGN Movetext
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(loadPgnDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        PGN Movetext
+        <IconButton onClick={() => dispatch(loadPgnDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleLoad}>

@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Grid,
   IconButton,
   TextField
 } from '@mui/material';
@@ -33,19 +32,13 @@ const SearchMovetextDialog = ({ props }) => {
   return (
     <Dialog open={state.searchMovetextDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            PGN Movetext
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => {
-              setOpenings([]);
-              dispatch(searchMovetextDialog.close());
-            }}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        PGN Movetext
+        <IconButton onClick={() => {
+          setOpenings([]);
+          dispatch(searchMovetextDialog.close());
+        }}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleSearch}>

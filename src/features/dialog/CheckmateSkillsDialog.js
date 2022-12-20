@@ -61,16 +61,10 @@ const CheckmateSkillsDialog = () => {
   return (
     <Dialog open={state.checkmateSkillsDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Checkmate skills
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(checkmateSkillsDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Checkmate skills
+        <IconButton onClick={() => dispatch(checkmateSkillsDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <TextField

@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Grid,
   IconButton,
   TextField
 } from '@mui/material';
@@ -33,19 +32,13 @@ const SearchNameDialog = ({ props }) => {
   return (
     <Dialog open={state.searchNameDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Name
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => {
-              setOpenings([]);
-              dispatch(searchNameDialog.close());
-            }}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Name
+        <IconButton onClick={() => {
+          setOpenings([]);
+          dispatch(searchNameDialog.close());
+        }}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleSearch}>

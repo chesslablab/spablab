@@ -9,6 +9,15 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        },
+      },
+    },
   },
 });
 

@@ -63,16 +63,10 @@ const SearchGamesDialog = ({props}) => {
   return (
     <Dialog open={state.searchGamesDialog.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Search Games
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(searchGamesDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Search Games
+        <IconButton onClick={() => dispatch(searchGamesDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <Alert

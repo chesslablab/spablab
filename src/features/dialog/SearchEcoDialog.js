@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Grid,
   IconButton,
   MenuItem,
   TextField
@@ -29,19 +28,13 @@ const SearchEcoDialog = ({ props }) => {
   return (
     <Dialog open={state.searchEcoDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            ECO Code
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => {
-              setOpenings([]);
-              dispatch(searchEcoDialog.close());
-            }}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        ECO Code
+        <IconButton onClick={() => {
+          setOpenings([]);
+          dispatch(searchEcoDialog.close());
+        }}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <TextField

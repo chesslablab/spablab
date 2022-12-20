@@ -78,16 +78,10 @@ const PlayComputerDialog = () => {
   return (
     <Dialog open={state.playComputerDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Play Computer
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(playComputerDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Play Computer
+        <IconButton onClick={() => dispatch(playComputerDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <Typography

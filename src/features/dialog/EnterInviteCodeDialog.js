@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Grid,
   IconButton,
   TextField
 } from '@mui/material';
@@ -39,16 +38,10 @@ const EnterInviteCodeDialog = () => {
   return (
     <Dialog open={state.enterInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Enter Invite Code
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(enterInviteCodeDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Enter Invite Code
+        <IconButton onClick={() => dispatch(enterInviteCodeDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <TextField

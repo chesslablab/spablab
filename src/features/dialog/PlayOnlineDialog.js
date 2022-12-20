@@ -72,16 +72,10 @@ const PlayOnlineDialog = () => {
   return (
     <Dialog open={state.playOnlineDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Play Online
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(playOnlineDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Play Online
+        <IconButton onClick={() => dispatch(playOnlineDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <Typography

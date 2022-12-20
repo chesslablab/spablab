@@ -61,16 +61,10 @@ const EndgameSkillsDialog = () => {
   return (
     <Dialog open={state.endgameSkillsDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Endgame skills
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(endgameSkillsDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Endgame skills
+        <IconButton onClick={() => dispatch(endgameSkillsDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <TextField

@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Grid,
   IconButton,
   Typography
 } from '@mui/material';
@@ -25,16 +24,10 @@ const OpeningsStatsDialog = ({props}) => {
   return (
     <Dialog open={state.openingsStatsDialog.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
-        <Grid container>
-          <Grid item xs={11}>
-            Top 50 Openings
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton onClick={() => dispatch(openingsStatsDialog.close())}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+        Top 50 Openings
+        <IconButton onClick={() => dispatch(openingsStatsDialog.close())}>
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent>
         <ResponsiveContainer width="100%" aspect={4.0/2.0}>
