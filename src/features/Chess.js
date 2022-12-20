@@ -1,9 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { CssBaseline, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
+import { ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from '@mui/styles';
 import '../index.css';
 import store from '../app/store';
+import theme from '../styles/theme.js';
 import VariantBoard from './board/VariantBoard';
 import InfoAlert from './alert/InfoAlert.js';
 import CheckmateSkillsDialog from './dialog/CheckmateSkillsDialog';
@@ -38,42 +40,43 @@ const Chess = ({ props }) => {
   const classes = useStyles();
 
   return (
-    <Provider store={store}>
-      <CssBaseline />
-      <Grid container spacing={1}>
-        <Grid item xs={12} md={2} className={classes.right}>
-          <MainButtons />
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} md={2} className={classes.right}>
+            <MainButtons />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <VariantBoard props={props} />
+            <HeuristicsBar />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Game props={props} />
+            <GameTable />
+            <OpeningAnalysisTable />
+            <StartedButtonsAnalysisMode />
+            <StartedButtonsGmMode />
+            <InfoAlert />
+          </Grid>
+          <Grid item xs={12} md={2}>
+            <PlayButtons />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <VariantBoard props={props} />
-          <HeuristicsBar />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Game props={props} />
-          <GameTable />
-          <OpeningAnalysisTable />
-          <StartedButtonsAnalysisMode />
-          <StartedButtonsGmMode />
-          <InfoAlert />
-        </Grid>
-        <Grid item xs={12} md={2}>
-          <PlayButtons />
-        </Grid>
-      </Grid>
-      <CheckmateSkillsDialog />
-      <EndgameSkillsDialog />
-      <LoadFenDialog />
-      <LoadPgnDialog />
-      <OpeningsStatsDialog />
-      <PlayersStatsDialog props={props} />
-      <EventsStatsDialog props={props} />
-      <SearchGamesDialog props={props} />
-      <SearchEcoDialog props={props} />
-      <SearchMovetextDialog props={props} />
-      <SearchNameDialog props={props} />
-      <WatchDialog />
-      <ProgressDialog />
-    </Provider>
+        <CheckmateSkillsDialog />
+        <EndgameSkillsDialog />
+        <LoadFenDialog />
+        <LoadPgnDialog />
+        <OpeningsStatsDialog />
+        <PlayersStatsDialog props={props} />
+        <EventsStatsDialog props={props} />
+        <SearchGamesDialog props={props} />
+        <SearchEcoDialog props={props} />
+        <SearchMovetextDialog props={props} />
+        <SearchNameDialog props={props} />
+        <WatchDialog />
+        <ProgressDialog />
+      </Provider>
+    </ThemeProvider>
   );
 };
 
