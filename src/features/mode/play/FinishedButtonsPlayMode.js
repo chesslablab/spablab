@@ -1,19 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
-import { makeStyles } from '@mui/styles';
 import * as modeConst from '../../../features/mode/modeConst';
 import Wording from "../../../common/Wording.js";
 import * as offerRematchDialog from '../../../features/dialog/offerRematchDialogSlice';
 
-const useStyles = makeStyles({
-  buttonGroup: {
-    marginTop: 15,
-  },
-});
-
 const FinishedButtonsPlayMode = () => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -27,7 +19,7 @@ const FinishedButtonsPlayMode = () => {
       ) {
         return (
           <ButtonGroup
-            className={classes.buttonGroup}
+            sx={{ mt: 1.5 }}
             orientation="vertical"
             size="small"
             aria-label="Game Over"

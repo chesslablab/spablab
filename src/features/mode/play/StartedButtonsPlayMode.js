@@ -1,20 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
-import { makeStyles } from '@mui/styles';
 import * as modeConst from '../../../features/mode/modeConst';
 import * as offerDrawDialog from '../../../features/dialog/offerDrawDialogSlice';
 import * as acceptResignDialog from '../../../features/dialog/acceptResignDialogSlice';
 import * as offerTakebackDialog from '../../../features/dialog/offerTakebackDialogSlice';
 
-const useStyles = makeStyles({
-  buttonGroup: {
-    marginTop: 15,
-  },
-});
-
 const StartedButtonsPlayMode = () => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -29,7 +21,7 @@ const StartedButtonsPlayMode = () => {
       ) {
         return (
           <ButtonGroup
-            className={classes.buttonGroup}
+            sx={{ mt: 1.5 }}
             size="small"
             aria-label="Game Buttons"
             orientation="vertical"

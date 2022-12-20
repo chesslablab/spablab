@@ -1,28 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@mui/styles';
+import { Box } from '@mui/material';
 import BlackTimer from './BlackTimer';
 import WhiteTimer from './WhiteTimer';
 import * as modeConst from '../../features/mode/modeConst';
 
-const useStyles = makeStyles({
-  timers: {
-    color:"#707070",
-    fontWeight: "bold",
-    marginTop: "0.25em !important",
-  },
-});
-
 const Timer = () => {
-  const classes = useStyles();
   const state = useSelector(state => state);
 
   if (state.mode.name === modeConst.PLAY) {
     if (state.mode.play.accepted) {
       return (
-        <div className={classes.timers}>
+        <Box sx={{ mt: 1.5 }}>
           <WhiteTimer /><BlackTimer />
-        </div>
+        </Box>
       );
     }
   }

@@ -1,19 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import * as variantConst from '../../features/variant/variantConst';
 import * as mainButtonsConst from '../../features/mainButtonsConst';
 
-const useStyles = makeStyles({
-  tableContainer: {
-    marginTop: 15,
-    background: '#f6f6f6',
-  },
-});
-
 const OpeningAnalysisTable = ({props}) => {
-  const classes = useStyles();
   const state = useSelector(state => state);
 
   if (
@@ -22,7 +13,7 @@ const OpeningAnalysisTable = ({props}) => {
     state.mainButtons.name !== mainButtonsConst.TRAINING
   ) {
     return (
-      <TableContainer className={classes.tableContainer}>
+      <TableContainer sx={{ mt: 1.5 }}>
         <Table stickyHeader size="small" aria-label="Chess Openings">
           <TableBody>
             {
