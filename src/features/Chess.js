@@ -4,6 +4,7 @@ import { Grid } from '@mui/material';
 import { ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from '@mui/styles';
 import '../index.css';
+import '../assets/css/fonts.css';
 import store from '../app/store';
 import theme from '../styles/theme.js';
 import VariantBoard from './board/VariantBoard';
