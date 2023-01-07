@@ -1,22 +1,26 @@
 import * as React from 'react';
 import { Avatar, ButtonGroup, IconButton } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import wKing from '../../assets/img/pieces/png/150/wKing.png';
 import wbKing from '../../assets/img/pieces/png/150/wbKing.png';
 import bKing from '../../assets/img/pieces/png/150/bKing.png';
 import Pgn from '../../common/Pgn';
 
-const useStyles = makeStyles({
+const styles = {
+  avatar: {
+    width: 55,
+    height: 55,
+  },
   buttonGroup: {
     marginBottom: 10,
   },
-  selected: {
+  selectedAvatar: {
+    width: 55,
+    height: 55,
     backgroundColor: '#d8d8d8',
   },
-});
+};
 
 const SelectColorButtons = ({ props }) => {
-  const classes = useStyles();
   const [color, setColor] = React.useState('rand');
 
   const handleSelectColor = (color) => {
@@ -28,7 +32,7 @@ const SelectColorButtons = ({ props }) => {
   }, [color]);
 
   return (
-    <ButtonGroup className={classes.buttonGroup}>
+    <ButtonGroup sx={styles.buttonGroup}>
       <IconButton
         aria-label="white"
         title="White"
@@ -36,8 +40,7 @@ const SelectColorButtons = ({ props }) => {
       >
         <Avatar
           src={wKing}
-          sx={{ width: 55, height: 55 }}
-          className={color === Pgn.symbol.WHITE ? classes.selected : null}
+          sx={color === Pgn.symbol.WHITE ? styles.selectedAvatar : styles.avatar}
         />
       </IconButton>
       <IconButton
@@ -47,8 +50,7 @@ const SelectColorButtons = ({ props }) => {
       >
         <Avatar
           src={wbKing}
-          sx={{ width: 55, height: 55 }}
-          className={color === 'rand' ? classes.selected : null}
+          sx={color === 'rand' ? styles.selectedAvatar : styles.avatar}
         />
       </IconButton>
       <IconButton
@@ -58,8 +60,7 @@ const SelectColorButtons = ({ props }) => {
       >
         <Avatar
           src={bKing}
-          sx={{ width: 55, height: 55 }}
-          className={color === Pgn.symbol.BLACK ? classes.selected : null}
+          sx={color === Pgn.symbol.BLACK ? styles.selectedAvatar : styles.avatar}
         />
       </IconButton>
     </ButtonGroup>

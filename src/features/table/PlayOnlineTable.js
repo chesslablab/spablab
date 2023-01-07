@@ -12,7 +12,6 @@ import {
   TableCell,
   TableBody
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import wKing from '../../assets/img/pieces/png/150/wKing.png';
 import bKing from '../../assets/img/pieces/png/150/bKing.png';
 import Pgn from '../../common/Pgn';
@@ -22,7 +21,7 @@ import * as mode from '../../features/mode/modeSlice';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
 
-const useStyles = makeStyles({
+const styles = {
   disabled: {
     cursor: 'default',
     '& td': {
@@ -37,7 +36,7 @@ const useStyles = makeStyles({
     cursor: 'pointer',
     backgroundColor: '#ececec',
   },
-});
+};
 
 const VariantIcon = ({props}) => {
   if (props.variant === variantConst.CLASSICAL) {
@@ -52,7 +51,6 @@ const VariantIcon = ({props}) => {
 }
 
 const PlayOnlineTable = () => {
-  const classes = useStyles();
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -80,10 +78,10 @@ const PlayOnlineTable = () => {
               <TableRow
                 key={i}
                 selected={true}
-                className={
+                sx={
                   state.mode.play && state.mode.play.hash === row.hash
-                    ? classes.disabled
-                    : classes.clickable
+                    ? styles.disabled
+                    : styles.clickable
                 }
                 onClick={() =>
                   state.mode.play && state.mode.play.hash === row.hash

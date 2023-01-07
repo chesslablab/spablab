@@ -9,7 +9,6 @@ import {
   TableHead,
   TableRow
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
@@ -19,7 +18,7 @@ import * as gameTable from '../../features/table/gameTableSlice';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
 
-const useStyles = makeStyles({
+const styles = {
   tableContainer: {
     marginTop: 10,
   },
@@ -51,10 +50,9 @@ const useStyles = makeStyles({
     cursor: 'pointer',
     backgroundColor: '#ececec',
   },
-});
+};
 
 const DatabaseResultTable = ({props}) => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -83,7 +81,7 @@ const DatabaseResultTable = ({props}) => {
 
   return (
     <TableContainer
-      className={classes.tableContainer}
+      sx={styles.tableContainer}
       component={Paper}
     >
       <Table stickyHeader aria-label="simple table">
@@ -91,14 +89,14 @@ const DatabaseResultTable = ({props}) => {
           props.result.length > 0
             ? <TableHead>
                 <TableRow>
-                  <TableCell className={classes.eventCell} align="left">Event</TableCell>
-                  <TableCell className={classes.yearCell} align="left">Year</TableCell>
-                  <TableCell className={classes.ecoCell} align="left">ECO</TableCell>
-                  <TableCell className={classes.whiteCell} align="left">White</TableCell>
-                  <TableCell className={classes.eloCell} align="left">ELO</TableCell>
-                  <TableCell className={classes.blackCell} align="left">Black</TableCell>
-                  <TableCell className={classes.eloCell} align="left">ELO</TableCell>
-                  <TableCell className={classes.resultCell} align="left">Result</TableCell>
+                  <TableCell sx={styles.eventCell} align="left">Event</TableCell>
+                  <TableCell sx={styles.yearCell} align="left">Year</TableCell>
+                  <TableCell sx={styles.ecoCell} align="left">ECO</TableCell>
+                  <TableCell sx={styles.whiteCell} align="left">White</TableCell>
+                  <TableCell sx={styles.eloCell} align="left">ELO</TableCell>
+                  <TableCell sx={styles.blackCell} align="left">Black</TableCell>
+                  <TableCell sx={styles.eloCell} align="left">ELO</TableCell>
+                  <TableCell sx={styles.resultCell} align="left">Result</TableCell>
                 </TableRow>
               </TableHead>
             : null
@@ -109,17 +107,17 @@ const DatabaseResultTable = ({props}) => {
               <TableRow
                 key={i}
                 hover={true}
-                className={classes.clickable}
+                sx={styles.clickable}
                 onClick={() => handleLoad(item)}
               >
-                <TableCell className={classes.eventCell} align="left">{item.Event}</TableCell>
-                <TableCell className={classes.yearCell} align="left">{parseInt(item.Date)}</TableCell>
-                <TableCell className={classes.ecoCell} align="left">{item.ECO}</TableCell>
-                <TableCell className={classes.whiteCell} align="left">{item.White}</TableCell>
-                <TableCell className={classes.eloCell} align="left">{item.WhiteElo}</TableCell>
-                <TableCell className={classes.blackCell} align="left">{item.Black}</TableCell>
-                <TableCell className={classes.eloCell} align="left">{item.BlackElo}</TableCell>
-                <TableCell className={classes.resultCell} align="left">{item.Result}</TableCell>
+                <TableCell sx={styles.eventCell} align="left">{item.Event}</TableCell>
+                <TableCell sx={styles.yearCell} align="left">{parseInt(item.Date)}</TableCell>
+                <TableCell sx={styles.ecoCell} align="left">{item.ECO}</TableCell>
+                <TableCell sx={styles.whiteCell} align="left">{item.White}</TableCell>
+                <TableCell sx={styles.eloCell} align="left">{item.WhiteElo}</TableCell>
+                <TableCell sx={styles.blackCell} align="left">{item.Black}</TableCell>
+                <TableCell sx={styles.eloCell} align="left">{item.BlackElo}</TableCell>
+                <TableCell sx={styles.resultCell} align="left">{item.Result}</TableCell>
               </TableRow>
             ))
           }

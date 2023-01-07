@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Grid } from '@mui/material';
 import { ThemeProvider } from "@mui/material/styles";
-import { makeStyles } from '@mui/styles';
 import '../index.css';
 import '../assets/css/fonts.css';
 import store from '../app/store';
@@ -31,20 +30,18 @@ import HeuristicsBar from './HeuristicsBar';
 import MainButtons from './MainButtons';
 import PlayButtons from './PlayButtons';
 
-const useStyles = makeStyles({
+const styles = {
   right: {
     textAlign: 'right',
   },
-});
+};
 
 const Chess = ({ props }) => {
-  const classes = useStyles();
-
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Grid container spacing={1}>
-          <Grid item xs={12} md={2} className={classes.right}>
+          <Grid item xs={12} md={2} sx={styles.right}>
             <MainButtons />
           </Grid>
           <Grid item xs={12} md={4}>

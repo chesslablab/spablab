@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
-import { makeStyles } from '@mui/styles';
 import Movetext from '../../common/Movetext.js';
 import * as history from '../../features/historySlice';
 import WsAction from '../../ws/WsAction';
 
-const useStyles = makeStyles({
+const styles = {
   table: {
     maxHeight: 190,
     display: 'flex',
@@ -24,10 +23,9 @@ const useStyles = makeStyles({
     background: "#1976d2 !important",
     fontWeight: 'bold !important'
   }
-});
+};
 
 const MoveValidatorTable = ({props}) => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -39,7 +37,7 @@ const MoveValidatorTable = ({props}) => {
 
   const highlight = (n) => {
     if (n === state.board.history.length + state.history.back - 1) {
-      return classes.currentMove;
+      return styles.currentMove;
     }
 
     return '';
@@ -52,7 +50,7 @@ const MoveValidatorTable = ({props}) => {
           <TableCell align="left">{i + 1}</TableCell>
           <TableCell
             align="left"
-            className={[classes.move, highlight(((i + 1) * 2) - 1)].join(' ')}
+            className={[styles.move, highlight(((i + 1) * 2) - 1)].join(' ')}
             onClick={() => dispatch(history.goTo({
               back: state.board.history.length - 1 - (((i + 1) * 2) - 1) }
             ))}
@@ -61,7 +59,7 @@ const MoveValidatorTable = ({props}) => {
           </TableCell>
           <TableCell
             align="left"
-            className={[classes.move, highlight((i + 1) * 2)].join(' ')}
+            className={[styles.move, highlight((i + 1) * 2)].join(' ')}
             onClick={() => {
               const back = state.board.history.length - 1 - ((i + 1) * 2);
               if (back >= 0) {
@@ -77,7 +75,7 @@ const MoveValidatorTable = ({props}) => {
   };
 
   return (
-    <TableContainer className={['noTextSelection', classes.table].join(' ')}>
+    <TableContainer className={['noTextSelection', styles.table].join(' ')}>
       <Table stickyHeader size="small" aria-label="Movetext">
         <TableBody>
           {tableRows()}

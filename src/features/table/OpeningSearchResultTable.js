@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
@@ -12,15 +11,14 @@ import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
 
-const useStyles = makeStyles({
+const styles = {
   clickable: {
     cursor: 'pointer',
     backgroundColor: '#ececec',
   },
-});
+};
 
 const OpeningSearchResultTable = ({props}) => {
-  const classes = useStyles();
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -45,7 +43,7 @@ const OpeningSearchResultTable = ({props}) => {
               <TableRow
                 key={i}
                 hover={true}
-                className={classes.clickable}
+                sx={styles.clickable}
                 onClick={() => handleLoad(item.movetext)}
               >
                 <TableCell align="right">{item.eco}</TableCell>
