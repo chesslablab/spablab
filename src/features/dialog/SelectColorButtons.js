@@ -11,7 +11,8 @@ const styles = {
     height: 55,
   },
   buttonGroup: {
-    marginBottom: 10,
+    mt: 1,
+    mb: 1,
   },
   selectedAvatar: {
     width: 55,

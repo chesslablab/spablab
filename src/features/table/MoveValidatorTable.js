@@ -40,17 +40,16 @@ const MoveValidatorTable = ({props}) => {
       return styles.currentMove;
     }
 
-    return '';
+    return {};
   };
 
   const tableRows = () => {
     return Movetext.toRows(state.board.movetext)
       .map((row, i) => (
         <TableRow key={i}>
-          <TableCell align="left">{i + 1}</TableCell>
+          <TableCell>{i + 1}</TableCell>
           <TableCell
-            align="left"
-            className={[styles.move, highlight(((i + 1) * 2) - 1)].join(' ')}
+            sx={[styles.move, highlight(((i + 1) * 2) - 1)]}
             onClick={() => dispatch(history.goTo({
               back: state.board.history.length - 1 - (((i + 1) * 2) - 1) }
             ))}
@@ -58,8 +57,7 @@ const MoveValidatorTable = ({props}) => {
             {row.w}
           </TableCell>
           <TableCell
-            align="left"
-            className={[styles.move, highlight((i + 1) * 2)].join(' ')}
+            sx={[styles.move, highlight((i + 1) * 2)]}
             onClick={() => {
               const back = state.board.history.length - 1 - ((i + 1) * 2);
               if (back >= 0) {
@@ -75,7 +73,7 @@ const MoveValidatorTable = ({props}) => {
   };
 
   return (
-    <TableContainer className={['noTextSelection', styles.table].join(' ')}>
+    <TableContainer className="noTextSelection" sx={styles.table}>
       <Table stickyHeader size="small" aria-label="Movetext">
         <TableBody>
           {tableRows()}

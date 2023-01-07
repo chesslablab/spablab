@@ -20,7 +20,7 @@ import WsAction from '../../ws/WsAction';
 
 const styles = {
   tableContainer: {
-    marginTop: 10,
+    mt: 1,
   },
   eventCell: {
     width: '20%',
