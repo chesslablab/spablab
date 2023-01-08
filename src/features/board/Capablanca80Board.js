@@ -4,7 +4,6 @@ import { useMediaQuery } from '@mui/material';
 import Piece from '../../common/Piece';
 import * as boardSlice from '../../features/board/boardSlice';
 import Squares from '../../features/board/Squares';
-import * as modeConst from '../../features/mode/modeConst';
 import WsAction from '../../ws/WsAction';
 
 const Capablanca80Board = ({props}) => {
@@ -19,17 +18,13 @@ const Capablanca80Board = ({props}) => {
   const imgsRef = useRef([]);
 
   const handleMove = (payload) => {
-    if (state.mode.name !== modeConst.UNDEFINED) {
-      if (!state.board.isMate && state.history.back === 0) {
-        if (state.board.turn === Piece.color(payload.piece)) {
-          dispatch(boardSlice.pickPiece(payload));
-          WsAction.legalSqs(state, payload.sq);
-        } else if (state.board.picked) {
-          dispatch(boardSlice.leavePiece(payload));
-        }
-      }
+    if (state.board.turn === Piece.color(payload.piece)) {
+      dispatch(boardSlice.pickPiece(payload));
+      WsAction.legalSqs(state, payload.sq);
+    } else if (state.board.picked) {
+      dispatch(boardSlice.leavePiece(payload));
     }
-  };
+  }
 
   return <Squares props={{
     className: 'capablanca80Board',

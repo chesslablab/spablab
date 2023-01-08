@@ -3,10 +3,41 @@ import { useDispatch, useSelector } from 'react-redux';
 import Ascii from '../../common/Ascii';
 import Pgn from '../../common/Pgn';
 import Piece from '../../common/Piece';
+import * as modeConst from '../../features/mode/modeConst';
 
 const Squares = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+
+  const filterMove = () => {
+    if (state.mode.name === modeConst.PLAY) {
+      if (
+        !state.mode.play.accepted ||
+        state.board.isMate ||
+        state.mode.play.draw ||
+        state.mode.play.resign ||
+        state.mode.play.leave ||
+        state.mode.play.timer.over ||
+        state.history.back !== 0
+      ) {
+        return false;
+      }
+      if (state.mode.play.accepted) {
+        if (state.board.turn !== state.mode.play.color) {
+          return false;
+        }
+      }
+    } else if (state.mode.name !== modeConst.UNDEFINED) {
+      if (
+        state.board.isMate ||
+        state.history.back !== 0
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 
   const sqs = () => {
     return Ascii.flip(
@@ -72,11 +103,11 @@ const Squares = ({props}) => {
             ].join(' ')
           }
           onClick={() => {
-            props.handleMove(payload);
+            filterMove() ? props.handleMove(payload) : null;
           }}
           onDrop={(ev) => {
             ev.preventDefault();
-            props.handleMove(payload);
+            filterMove() ? props.handleMove(payload) : null;
           }}
           onDragOver={(ev) => {
             ev.preventDefault();
@@ -87,7 +118,9 @@ const Squares = ({props}) => {
                     ref={el => props.imgsRef.current[payload.sq] = el}
                     src={Piece.unicode[piece].char}
                     draggable={Piece.color(piece) === state.board.turn ? true : false}
-                    onDragStart={() => props.handleMove(payload)}
+                    onDragStart={() => {
+                      filterMove() ? props.handleMove(payload) : null;
+                    }}
                   />
                 : null
             }
