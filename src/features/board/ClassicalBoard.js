@@ -39,37 +39,13 @@ const ClassicalBoard = ({props}) => {
   }, [state.board.history.length]);
 
   const handleMove = (payload) => {
-    if (state.mode.name === modeConst.PLAY) {
-      if (
-        !state.board.isMate &&
-        !state.mode.play.draw &&
-        !state.mode.play.resign &&
-        !state.mode.play.leave &&
-        !state.mode.play.timer.over &&
-        state.history.back === 0
-      ) {
-        if (state.board.picked && state.board.turn !== Piece.color(payload.piece)) {
-          dispatch(boardSlice.leavePiece(payload));
-        } else if (state.mode.play.accepted) {
-          if (state.mode.play.color === state.board.turn) {
-            if (state.board.turn === Piece.color(payload.piece)) {
-              dispatch(boardSlice.pickPiece(payload));
-              WsAction.legalSqs(state, payload.sq);
-            }
-          }
-        }
-      }
-    } else if (state.mode.name !== modeConst.UNDEFINED) {
-      if (!state.board.isMate && state.history.back === 0) {
-        if (state.board.turn === Piece.color(payload.piece)) {
-          dispatch(boardSlice.pickPiece(payload));
-          WsAction.legalSqs(state, payload.sq);
-        } else if (state.board.picked) {
-          dispatch(boardSlice.leavePiece(payload));
-        }
-      }
+    if (state.board.turn === Piece.color(payload.piece)) {
+      dispatch(boardSlice.pickPiece(payload));
+      WsAction.legalSqs(state, payload.sq);
+    } else if (state.board.picked) {
+      dispatch(boardSlice.leavePiece(payload));
     }
-  };
+  }
 
   return <Squares props={{
     className: 'classicalBoard',

@@ -19,27 +19,23 @@ const Chess960Board = ({props}) => {
   const imgsRef = useRef([]);
 
   const handleMove = (payload) => {
-    if (state.mode.name !== modeConst.UNDEFINED) {
-      if (!state.board.isMate && state.history.back === 0) {
-        if (state.board.turn === Piece.color(payload.piece)) {
-          // allow the king to be dropped into the castling rook
-          if (state.board.picked) {
-            if (state.board.picked.legal_sqs.includes(payload.sq)) {
-              dispatch(boardSlice.leavePiece(payload));
-            } else {
-              dispatch(boardSlice.pickPiece(payload));
-              WsAction.legalSqs(state, payload.sq);
-            }
-          } else {
-            dispatch(boardSlice.pickPiece(payload));
-            WsAction.legalSqs(state, payload.sq);
-          }
-        } else if (state.board.picked) {
+    if (state.board.turn === Piece.color(payload.piece)) {
+      // allow the king to be dropped into the castling rook
+      if (state.board.picked) {
+        if (state.board.picked.legal_sqs.includes(payload.sq)) {
           dispatch(boardSlice.leavePiece(payload));
+        } else {
+          dispatch(boardSlice.pickPiece(payload));
+          WsAction.legalSqs(state, payload.sq);
         }
+      } else {
+        dispatch(boardSlice.pickPiece(payload));
+        WsAction.legalSqs(state, payload.sq);
       }
+    } else if (state.board.picked) {
+      dispatch(boardSlice.leavePiece(payload));
     }
-  };
+  }
 
   return <Squares props={{
     className: 'classicalBoard',
