@@ -71,7 +71,7 @@ const boardSlice = createSlice({
         newAscii[action.payload.i][action.payload.j] = state.picked.piece;
         if (state.picked.en_passant) {
           if (action.payload.sq.charAt(0) === state.picked.en_passant.charAt(0)) {
-            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant, state.board.size.ranks);
+            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant, state.size);
             newAscii[index[0]][index[1]] = ' . ';
           }
         }
