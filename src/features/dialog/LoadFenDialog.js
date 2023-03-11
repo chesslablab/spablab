@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  MenuItem,
   TextField
 } from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
@@ -21,13 +22,19 @@ const LoadFenDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  const [variant, setVariant] = useState(variantConst.CLASSICAL);
+
+  const handleVariantChange = (event: Event) => {
+    setVariant(event.target.value);
+  };
+
   const handleLoad = (event) => {
     event.preventDefault();
     dispatch(mainButtons.setAnalysis());
     dispatch(loadFenDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, variantConst.CLASSICAL, modeConst.FEN, {
+    WsAction.start(state, event.target.elements.variant.value, modeConst.FEN, {
       fen: event.target.elements.fen.value
     });
   };
@@ -49,6 +56,25 @@ const LoadFenDialog = () => {
             label="FEN string"
             margin="normal"
           />
+          <TextField
+            select
+            fullWidth
+            name="variant"
+            label="Select a variant"
+            value={variant}
+            margin="normal"
+            onChange={handleVariantChange}
+          >
+            <MenuItem key={0} value="classical">
+              Classical
+            </MenuItem>
+            <MenuItem key={1} value="960">
+              Fischer Random 960
+            </MenuItem>
+            <MenuItem key={2} value="capablanca80">
+              Capablanca
+            </MenuItem>
+          </TextField>
           <Button
             fullWidth
             type="submit"
