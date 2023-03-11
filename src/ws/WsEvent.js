@@ -39,7 +39,7 @@ export default class WsEvent {
 
   static onStartFen = (data) => dispatch => {
     if (data['/start'].fen) {
-      dispatch(mode.startFen());
+      dispatch(mode.setFen({ fen: data['/start'].fen }));
       dispatch(board.startFen({ fen: data['/start'].fen }));
       WsAction.heuristicsBar(
           store.getState(),

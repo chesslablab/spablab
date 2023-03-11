@@ -41,15 +41,18 @@ const SecondaryButtons = ({props}) => {
     let body;
     if (state.variant.name === variantConst.CHESS_960) {
       body = {
-        movetext: state.board.movetext,
         variant: state.variant.name,
+        movetext: state.board.movetext,
         startPos: state.variant.startPos
       }
     } else {
       body = {
-        movetext: state.board.movetext,
-        variant: state.variant.name
+        variant: state.variant.name,
+        movetext: state.board.movetext
       }
+    }
+    if (state.mode.name === modeConst.FEN) {
+      body.fen = state.mode.fen;
     }
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
       method: 'POST',

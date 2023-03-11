@@ -11,14 +11,15 @@ const modeSlice = createSlice({
   initialState,
   reducers: {
     startAnalysis: () => initialState,
-    startFen: (state) => {
-      state.name = modeConst.FEN;
-    },
     startPgn: (state) => {
       state.name = modeConst.PGN;
     },
     startUndefined: (state) => {
       state.name = modeConst.UNDEFINED;
+    },
+    setFen(state, action) {
+      state.name = modeConst.FEN;
+      state.fen = action.payload.fen;
     },
     setGm(state, action) {
       state.name = modeConst.GM;
@@ -87,9 +88,9 @@ const modeSlice = createSlice({
 
 export const {
   startAnalysis,
-  startFen,
   startPgn,
   startUndefined,
+  setFen,
   setGm,
   setPlay,
   setStockfish,
