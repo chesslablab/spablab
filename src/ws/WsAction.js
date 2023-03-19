@@ -32,8 +32,12 @@ export default class WsAction {
     if (Object.keys(add).length > 0) {
       if (mode === modeConst.GM) {
         mssg += ` "${add.color}"`;
-      } else if (mode === modeConst.FEN) {
+      } else if (mode === modeConst.FEN && variant === variantConst.CLASSICAL) {
         mssg += ` "${add.fen}"`;
+      } else if (mode === modeConst.FEN && variant === variantConst.CAPABLANCA_80) {
+        mssg += ` "${add.fen}"`;
+      } else if (mode === modeConst.FEN && variant === variantConst.CHESS_960) {
+        mssg += ` "${add.fen}" ${add.startPos}`;
       } else if (mode === modeConst.PGN && variant === variantConst.CLASSICAL) {
         mssg += ` "${add.movetext}"`;
       } else if (mode === modeConst.PGN && variant === variantConst.CAPABLANCA_80) {

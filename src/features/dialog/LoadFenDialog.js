@@ -18,6 +18,16 @@ import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../ws/WsAction';
 
+const Chess960 = () => {
+  return <TextField
+    fullWidth
+    required
+    name="startPos"
+    label="Start position"
+    helperText="Examples of starting positions: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+  />;
+}
+
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -34,9 +44,13 @@ const LoadFenDialog = () => {
     dispatch(loadFenDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, event.target.elements.variant.value, modeConst.FEN, {
+    let add = {
       fen: event.target.elements.fen.value
-    });
+    };
+    if (variant === variantConst.CHESS_960) {
+      add.startPos = event.target.elements.startPos.value
+    }
+    WsAction.start(state, event.target.elements.variant.value, modeConst.FEN, add);
   };
 
   return (
@@ -75,6 +89,7 @@ const LoadFenDialog = () => {
               Capablanca
             </MenuItem>
           </TextField>
+          {variant === variantConst.CHESS_960 ? <Chess960 /> : null}
           <Button
             fullWidth
             type="submit"

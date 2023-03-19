@@ -41,6 +41,13 @@ export default class WsEvent {
     if (data['/start'].fen) {
       dispatch(mode.setFen({ fen: data['/start'].fen }));
       dispatch(board.startFen({ fen: data['/start'].fen }));
+      if (data['/start'].variant === variantConst.CLASSICAL) {
+        dispatch(variant.startClassical());
+      } else if (data['/start'].variant === variantConst.CHESS_960) {
+        dispatch(variant.startChess960({ fen: data['/start'].fen }));
+      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
+        dispatch(variant.startCapablanca80());
+      }
       WsAction.heuristicsBar(
           store.getState(),
           store.getState().board.fen,
