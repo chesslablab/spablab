@@ -110,7 +110,10 @@ export default class WsEvent {
       dispatch(variant.startClassical());
       dispatch(board.start());
     } else if (data['/start'].variant === variantConst.CHESS_960) {
-      dispatch(variant.startChess960({ fen: data['/start'].fen }));
+      dispatch(variant.startChess960({
+        fen: data['/start'].fen,
+        startPos: data['/start'].startPos
+      }));
       dispatch(board.startChess960({ fen: data['/start'].fen }));
     } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
       dispatch(variant.startCapablanca80());
@@ -186,7 +189,10 @@ export default class WsEvent {
         dispatch(variant.startClassical());
         dispatch(board.start());
       } else if (jwtDecoded.variant === variantConst.CHESS_960) {
-        dispatch(variant.startChess960({ fen: jwtDecoded.fen }));
+        dispatch(variant.startChess960({
+          fen: jwtDecoded.fen,
+          startPos: jwtDecoded.startPos
+        }));
         dispatch(board.startChess960({ fen: jwtDecoded.fen }));
       } else if (jwtDecoded.variant === variantConst.CAPABLANCA_80) {
         dispatch(variant.startCapablanca80());
