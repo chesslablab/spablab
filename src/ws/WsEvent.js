@@ -23,7 +23,10 @@ export default class WsEvent {
     dispatch(mode.startAnalysis());
     if (data['/start'].variant === variantConst.CHESS_960) {
       dispatch(board.startChess960({ fen: data['/start'].fen }));
-      dispatch(variant.startChess960({ fen: data['/start'].fen }));
+      dispatch(variant.startChess960({
+        fen: data['/start'].fen,
+        startPos: data['/start'].startPos
+      }));
     } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
       dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
       dispatch(variant.startCapablanca80());
@@ -44,7 +47,10 @@ export default class WsEvent {
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(variant.startClassical());
       } else if (data['/start'].variant === variantConst.CHESS_960) {
-        dispatch(variant.startChess960({ fen: data['/start'].fen }));
+        dispatch(variant.startChess960({
+          fen: data['/start'].fen,
+          startPos: data['/start'].startPos
+        }));
       } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
         dispatch(variant.startCapablanca80());
       }
@@ -74,7 +80,9 @@ export default class WsEvent {
         dispatch(variant.startClassical());
         Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
       } else if (data['/start'].variant === variantConst.CHESS_960) {
-        dispatch(variant.startChess960());
+        dispatch(variant.startChess960({
+          startPos: data['/start'].startPos
+        }));
       } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
         dispatch(variant.startCapablanca80());
       }
