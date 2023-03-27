@@ -16,7 +16,7 @@ import * as mode from '../features/mode/modeSlice';
 import * as gameTable from '../features/table/gameTableSlice';
 import * as variantConst from '../features/variant/variantConst';
 import * as variant from '../features/variant/variantSlice';
-import WsAction from './WsAction';
+import WsAction from '../fetaures/ws/WsAction';
 
 export default class WsEvent {
   static onStartAnalysis = (data) => dispatch => {

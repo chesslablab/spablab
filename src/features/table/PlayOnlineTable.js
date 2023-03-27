@@ -19,7 +19,7 @@ import * as mainButtons from '../../features/mainButtonsSlice';
 import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
 import * as mode from '../../features/mode/modeSlice';
 import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const styles = {
   disabled: {

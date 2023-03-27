@@ -10,7 +10,7 @@ import { IconButton, Stack } from "@mui/material";
 import * as modeConst from '../features/mode/modeConst';
 import * as variantConst from '../features/variant/variantConst';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
-import WsAction from '../ws/WsAction';
+import WsAction from '../features/ws/WsAction';
 
 const SecondaryButtons = ({props}) => {
   const state = useSelector(state => state);

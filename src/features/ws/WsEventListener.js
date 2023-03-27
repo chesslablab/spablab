@@ -3,7 +3,7 @@ import Wording from '../common/Wording.js';
 import * as board from '../features/board/boardSlice';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
 import * as modeConst from '../features/mode/modeConst';
-import WsEvent from './WsEvent';
+import WsEvent from '../features/ws/WsEvent';
 
 export default class WsEventListener {
   static listen = (props, data) => dispatch => {

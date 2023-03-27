@@ -2,7 +2,7 @@ import Pgn from '../common/Pgn';
 import * as modeConst from '../features/mode/modeConst';
 import * as variantConst from '../features/variant/variantConst';
 import * as wsSlice from '../features/wsSlice';
-import WsEventListener from './WsEventListener';
+import WsEventListener from '../features/ws/WsEventListener';
 
 export default class WsAction {
   static connect = (state, props) => dispatch => {

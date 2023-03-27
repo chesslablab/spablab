@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import * as modeConst from '../../../features/mode/modeConst';
-import WsAction from '../../../ws/WsAction';
+import WsAction from '../../../features/ws/WsAction';
 
 const StartedButtonsAnalysisMode = () => {
   const state = useSelector(state => state);

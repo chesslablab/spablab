@@ -40,7 +40,7 @@ import * as watchDialog from '../features/dialog/watchDialogSlice';
 import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
 import * as variantConst from '../features/variant/variantConst';
-import WsAction from '../ws/WsAction';
+import WsAction from '../features/ws/WsAction';
 
 const MainButtons = () => {
   const state = useSelector(state => state);

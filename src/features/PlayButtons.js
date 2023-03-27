@@ -17,7 +17,7 @@ import * as enterInviteCodeDialog from '../features/dialog/enterInviteCodeDialog
 import * as playComputerDialog from '../features/dialog/playComputerDialogSlice';
 import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
 import * as mode from '../features/mode/modeSlice';
-import WsAction from '../ws/WsAction';
+import WsAction from '../features/ws/WsAction';
 
 const PlayButtons = () => {
   const state = useSelector(state => state);

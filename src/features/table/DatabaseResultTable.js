@@ -16,7 +16,7 @@ import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import * as modeConst from '../../features/mode/modeConst';
 import * as gameTable from '../../features/table/gameTableSlice';
 import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const styles = {
   tableContainer: {

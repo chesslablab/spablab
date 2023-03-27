@@ -9,7 +9,7 @@ import * as searchMovetextDialog from '../../features/dialog/searchMovetextDialo
 import * as searchNameDialog from '../../features/dialog/searchNameDialogSlice';
 import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const styles = {
   clickable: {
