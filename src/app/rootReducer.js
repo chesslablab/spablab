@@ -29,10 +29,10 @@ import modeReducer from '../features/mode/modeSlice';
 import gameTableReducer from '../features/table/gameTableSlice';
 import openingAnalysisTableReducer from '../features/table/openingAnalysisTableSlice';
 import variantReducer from '../features/variant/variantSlice';
+import serverReducer from '../features/ws/wsSlice';
 import heuristicsBarReducer from '../features/heuristicsBarSlice';
 import historyReducer from '../features/historySlice';
 import mainButtonsReducer from '../features/mainButtonsSlice';
-import serverReducer from '../features/wsSlice';
 
 const rootReducer = {
   infoAlert: infoAlertReducer,
