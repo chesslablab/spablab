@@ -92,7 +92,7 @@ const SearchGamesDialog = ({props}) => {
                 name="Date"
                 label="Year"
                 type="number"
-                inputProps={{ min: "1750", max: "2022", step: "1"}}
+                inputProps={{ min: "1750", max: "2023", step: "1"}}
               />
             </Grid>
             <Grid item xs={12} md={4}>
