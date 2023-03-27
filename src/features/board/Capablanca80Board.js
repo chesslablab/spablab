@@ -4,7 +4,7 @@ import { useMediaQuery } from '@mui/material';
 import Piece from '../../common/Piece';
 import * as boardSlice from '../../features/board/boardSlice';
 import Squares from '../../features/board/Squares';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const Capablanca80Board = ({props}) => {
   const state = useSelector(state => state);

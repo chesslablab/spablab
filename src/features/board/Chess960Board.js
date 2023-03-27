@@ -5,7 +5,7 @@ import Piece from '../../common/Piece';
 import * as boardSlice from '../../features/board/boardSlice';
 import Squares from '../../features/board/Squares';
 import * as modeConst from '../../features/mode/modeConst';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const Chess960Board = ({props}) => {
   const state = useSelector(state => state);

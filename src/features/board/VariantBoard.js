@@ -4,7 +4,7 @@ import Capablanca80Board from './Capablanca80Board';
 import Chess960Board from './Chess960Board';
 import ClassicalBoard from './ClassicalBoard';
 import * as variantConst from '../variant/variantConst';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const VariantBoard = ({props}) => {
   const state = useSelector(state => state);

@@ -6,7 +6,7 @@ import Animation from '../../common/Animation';
 import Piece from '../../common/Piece';
 import * as boardSlice from '../../features/board/boardSlice';
 import Squares from '../../features/board/Squares';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const ClassicalBoard = ({props}) => {
   const state = useSelector(state => state);
