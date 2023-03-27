@@ -19,7 +19,7 @@ import * as createInviteCodeDialog from '../../features/dialog/createInviteCodeD
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);

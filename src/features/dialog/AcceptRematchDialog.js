@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from '../../common/Wording.js';
 import * as acceptRematchDialog from '../../features/dialog/acceptRematchDialogSlice';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const AcceptRematchDialog = () => {
   const state = useSelector((state) => state);

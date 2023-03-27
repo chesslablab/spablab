@@ -16,7 +16,7 @@ import * as loadPgnDialog from '../../features/dialog/loadPgnDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const Chess960 = () => {
   return <TextField

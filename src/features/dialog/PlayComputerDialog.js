@@ -19,7 +19,7 @@ import SelectColorButtons from '../../features/dialog/SelectColorButtons';
 import * as modeConst from '../../features/mode/modeConst';
 import * as mode from '../../features/mode/modeSlice';
 import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const PlayComputerDialog = () => {
   const state = useSelector(state => state);

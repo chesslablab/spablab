@@ -16,7 +16,7 @@ import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as endgameSkillsDialog from '../../features/dialog/endgameSkillsDialogSlice';
 import SelectColorButtons from '../../features/dialog/SelectColorButtons';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const EndgameSkillsDialog = () => {
   const state = useSelector(state => state);

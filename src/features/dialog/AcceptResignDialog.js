@@ -4,7 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/
 import Wording from '../../common/Wording.js';
 import * as acceptResignDialog from '../../features/dialog/acceptResignDialogSlice';
 import * as mode from '../../features/mode/modeSlice';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const AcceptResignDialog = () => {
   const state = useSelector((state) => state);

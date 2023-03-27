@@ -12,7 +12,7 @@ import {
 import * as mainButtons from '../../features/mainButtonsSlice';
 import * as enterInviteCodeDialog from '../../features/dialog/enterInviteCodeDialogSlice';
 import * as mode from '../../features/mode/modeSlice';
-import WsAction from '../../ws/WsAction';
+import WsAction from '../../features/ws/WsAction';
 
 const EnterInviteCodeDialog = () => {
   const state = useSelector((state) => state);
