@@ -11,6 +11,7 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import QuizIcon from '@mui/icons-material/Quiz';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
+import SettingsIcon from '@mui/icons-material/Settings';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -257,11 +258,17 @@ const MainButtons = () => {
         </MenuItem>
       </Menu>
       <Button
-        sx={{ borderRadius: 0 }}
         startIcon={<OndemandVideoIcon />}
         onClick={() => dispatch(watchDialog.open())}
       >
         Watch
+      </Button>
+      <Button
+        sx={{ borderRadius: 0 }}
+        startIcon={<SettingsIcon />}
+        onClick={() => {}}
+      >
+        Settings
       </Button>
     </ButtonGroup>
   );
