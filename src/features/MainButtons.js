@@ -37,6 +37,7 @@ import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSl
 import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
 import * as endgameSkillsDialog from '../features/dialog/endgameSkillsDialogSlice';
+import * as settingsDialog from '../features/dialog/settingsDialogSlice';
 import * as watchDialog from '../features/dialog/watchDialogSlice';
 import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
@@ -266,7 +267,7 @@ const MainButtons = () => {
       <Button
         sx={{ borderRadius: 0 }}
         startIcon={<SettingsIcon />}
-        onClick={() => {}}
+        onClick={() => dispatch(settingsDialog.open())}
       >
         Settings
       </Button>
