@@ -24,6 +24,7 @@ import searchEcoDialogReducer from '../features/dialog/searchEcoDialogSlice';
 import searchGamesDialogReducer from '../features/dialog/searchGamesDialogSlice';
 import searchMovetextDialogReducer from '../features/dialog/searchMovetextDialogSlice';
 import searchNameDialogReducer from '../features/dialog/searchNameDialogSlice';
+import settingsDialogReducer from '../features/dialog/settingsDialogSlice';
 import watchDialogReducer from '../features/dialog/watchDialogSlice';
 import modeReducer from '../features/mode/modeSlice';
 import gameTableReducer from '../features/table/gameTableSlice';
@@ -61,6 +62,7 @@ const rootReducer = {
   searchGamesDialog: searchGamesDialogReducer,
   searchMovetextDialog: searchMovetextDialogReducer,
   searchNameDialog: searchNameDialogReducer,
+  settingsDialog: settingsDialogReducer,
   watchDialog: watchDialogReducer,
   gameTable: gameTableReducer,
   openingAnalysisTable: openingAnalysisTableReducer,

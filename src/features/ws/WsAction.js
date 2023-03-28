@@ -80,7 +80,9 @@ export default class WsAction {
   }
 
   static heuristicsBar = async (state, fen, variant) => {
-    return await state.server.ws.send(`/heuristics_bar "${fen}" ${variant}`);
+    if (state.settingsDialog.fields.heuristics === 'on') {
+      return await state.server.ws.send(`/heuristics_bar "${fen}" ${variant}`);
+    }
   }
 
   static takeback = async (state, action) => {

@@ -86,15 +86,11 @@ export default class WsEvent {
       } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
         dispatch(variant.startCapablanca80());
       }
-      // the following if statement is a temporary workaround to hide the heuristics bar
-      // in Capablanca chess
-      if (data['/start'].variant !== variantConst.CAPABLANCA_80) {
-        WsAction.heuristicsBar(
-            store.getState(),
-            store.getState().board.fen,
-            store.getState().variant.name
-        );
-      }
+      WsAction.heuristicsBar(
+          store.getState(),
+          store.getState().board.fen,
+          store.getState().variant.name
+      );
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({
@@ -315,15 +311,11 @@ export default class WsEvent {
         dispatch(progressDialog.open());
         WsAction.stockfish(store.getState());
       }
-      // the following if statement is a temporary workaround to hide the heuristics bar
-      // in Capablanca chess
-      if (store.getState().variant.name !== variantConst.CAPABLANCA_80) {
-        WsAction.heuristicsBar(
-            store.getState(),
-            store.getState().board.fen,
-            store.getState().variant.name
-        );
-      }
+      WsAction.heuristicsBar(
+          store.getState(),
+          store.getState().board.fen,
+          store.getState().variant.name
+      );
     }
   }
 

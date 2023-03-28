@@ -20,7 +20,10 @@ const initData = (dim, balance) => {
 
 const HeuristicsBar = () => {
   const state = useSelector(state => state);
-  if (state.heuristicsBar.heuristics) {
+  if (
+    state.settingsDialog.fields.heuristics === 'on' && 
+    state.heuristicsBar.heuristics
+  ) {
     const data = initData(
       state.heuristicsBar.heuristics.dimensions,
       state.heuristicsBar.heuristics.balance

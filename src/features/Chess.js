@@ -20,6 +20,7 @@ import SearchEcoDialog from './dialog/SearchEcoDialog';
 import SearchMovetextDialog from './dialog/SearchMovetextDialog';
 import SearchNameDialog from './dialog/SearchNameDialog';
 import ProgressDialog from './dialog/ProgressDialog';
+import SettingsDialog from './dialog/SettingsDialog';
 import WatchDialog from './dialog/WatchDialog';
 import StartedButtonsAnalysisMode from './mode/analysis/StartedButtonsAnalysisMode';
 import StartedButtonsGmMode from './mode/gm//StartedButtonsGmMode';
@@ -72,6 +73,7 @@ const Chess = ({ props }) => {
         <SearchMovetextDialog props={props} />
         <SearchNameDialog props={props} />
         <WatchDialog />
+        <SettingsDialog />
         <ProgressDialog />
       </Provider>
     </ThemeProvider>

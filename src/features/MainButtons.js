@@ -11,6 +11,7 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import QuizIcon from '@mui/icons-material/Quiz';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
+import SettingsIcon from '@mui/icons-material/Settings';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -36,6 +37,7 @@ import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSl
 import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
 import * as endgameSkillsDialog from '../features/dialog/endgameSkillsDialogSlice';
+import * as settingsDialog from '../features/dialog/settingsDialogSlice';
 import * as watchDialog from '../features/dialog/watchDialogSlice';
 import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
@@ -257,11 +259,17 @@ const MainButtons = () => {
         </MenuItem>
       </Menu>
       <Button
-        sx={{ borderRadius: 0 }}
         startIcon={<OndemandVideoIcon />}
         onClick={() => dispatch(watchDialog.open())}
       >
         Watch
+      </Button>
+      <Button
+        sx={{ borderRadius: 0 }}
+        startIcon={<SettingsIcon />}
+        onClick={() => dispatch(settingsDialog.open())}
+      >
+        Settings
       </Button>
     </ButtonGroup>
   );
