@@ -19,8 +19,9 @@ const SecondaryButtons = ({props}) => {
   const handleDownloadImage = async () => {
     let body = {
       fen: state.board.fen,
-      variant: state.variant.name
-    }
+      variant: state.variant.name,
+      flip: state.board.flip
+    };
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_image`, {
       method: 'POST',
       body: JSON.stringify(body)
@@ -38,18 +39,13 @@ const SecondaryButtons = ({props}) => {
 
   const handleDownloadMp4 = async () => {
     dispatch(progressDialog.open());
-    let body;
+    let body = {
+      variant: state.variant.name,
+      movetext: state.board.movetext,
+      flip: state.board.flip
+    };
     if (state.variant.name === variantConst.CHESS_960) {
-      body = {
-        variant: state.variant.name,
-        movetext: state.board.movetext,
-        startPos: state.variant.startPos
-      }
-    } else {
-      body = {
-        variant: state.variant.name,
-        movetext: state.board.movetext
-      }
+      body.startPos = state.variant.startPos;
     }
     if (state.mode.name === modeConst.FEN) {
       body.fen = state.mode.fen;
