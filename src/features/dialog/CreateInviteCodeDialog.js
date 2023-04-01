@@ -21,16 +21,6 @@ import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../features/ws/WsAction';
 
-const Chess960 = () => {
-  return <TextField
-    fullWidth
-    required
-    name="startPos"
-    label="Start position"
-    helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-  />;
-}
-
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -58,6 +48,7 @@ const CreateCode = () => {
     color: 'rand',
     variant: variantConst.CLASSICAL,
     fen: '',
+    startPos: '',
   });
 
   const handleMinutesChange = (event: Event) => {
@@ -88,7 +79,15 @@ const CreateCode = () => {
     });
   };
 
-  const handleCreateCode = () => {
+  const handleStartPosChange = (event: Event) => {
+    setFields({
+      ...fields,
+      startPos: event.target.value
+    });
+  };
+
+  const handleCreateCode = (event) => {
+    event.preventDefault();
     dispatch(mainButtons.setPlayAFriend());
     let settings = {
       min: fields.minutes,
@@ -99,82 +98,96 @@ const CreateCode = () => {
       submode: 'friend'
     };
     fields.fen ? settings.fen = fields.fen : null;
+    fields.startPos ? settings.startPos = fields.startPos : null;
     WsAction.start(state, fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
   }
 
   return (
     <DialogContent>
-      <Typography
-        id="input-minutes"
-        align="center"
-        gutterBottom
-      >
-        Minutes per side
-      </Typography>
-      <Slider
-        name="min"
-        aria-label="Minutes"
-        defaultValue={5}
-        valueLabelDisplay="auto"
-        step={1}
-        min={1}
-        max={60}
-        onChange={handleMinutesChange}
-      />
-      <Typography
-        id="input-increment"
-        align="center"
-        gutterBottom
-      >
-        Increment in seconds
-      </Typography>
-      <Slider
-        name="increment"
-        aria-label="Increment"
-        defaultValue={3}
-        valueLabelDisplay="auto"
-        step={1}
-        min={0}
-        max={60}
-        onChange={handleIncrementChange}
-      />
-      <Grid container justifyContent="center">
-        <SelectColorButtons props={fields} />
-      </Grid>
-      <TextField
-        fullWidth
-        name="fen"
-        label="FEN string"
-        margin="normal"
-        onChange={handleFenChange}
-      />
-      <TextField
-        select
-        fullWidth
-        name="variant"
-        label="Select a variant"
-        defaultValue={variantConst.CLASSICAL}
-        margin="normal"
-        onChange={handleVariantChange}
+      <form onSubmit={handleCreateCode}>
+        <Typography
+          id="input-minutes"
+          align="center"
+          gutterBottom
         >
-        <MenuItem key={0} value="classical">
-          Classical
-        </MenuItem>
-        <MenuItem key={1} value="960">
-          Fischer Random 960
-        </MenuItem>
-        <MenuItem key={2} value="capablanca80">
-          Capablanca
-        </MenuItem>
-      </TextField>
-      {fields.variant === variantConst.CHESS_960 ? <Chess960 /> : null}
-      <Button
-        fullWidth
-        variant="outlined"
-        onClick={() => handleCreateCode()}
-      >
-        Create Invite Code
-      </Button>
+          Minutes per side
+        </Typography>
+        <Slider
+          name="min"
+          aria-label="Minutes"
+          defaultValue={5}
+          valueLabelDisplay="auto"
+          step={1}
+          min={1}
+          max={60}
+          onChange={handleMinutesChange}
+        />
+        <Typography
+          id="input-increment"
+          align="center"
+          gutterBottom
+        >
+          Increment in seconds
+        </Typography>
+        <Slider
+          name="increment"
+          aria-label="Increment"
+          defaultValue={3}
+          valueLabelDisplay="auto"
+          step={1}
+          min={0}
+          max={60}
+          onChange={handleIncrementChange}
+        />
+        <Grid container justifyContent="center">
+          <SelectColorButtons props={fields} />
+        </Grid>
+        <TextField
+          fullWidth
+          name="fen"
+          label="FEN string"
+          margin="normal"
+          onChange={handleFenChange}
+        />
+        <TextField
+          select
+          fullWidth
+          name="variant"
+          label="Select a variant"
+          defaultValue={variantConst.CLASSICAL}
+          margin="normal"
+          onChange={handleVariantChange}
+          >
+          <MenuItem key={0} value="classical">
+            Classical
+          </MenuItem>
+          <MenuItem key={1} value="960">
+            Fischer Random 960
+          </MenuItem>
+          <MenuItem key={2} value="capablanca80">
+            Capablanca
+          </MenuItem>
+        </TextField>
+        {
+          fields.variant === variantConst.CHESS_960
+            ? <TextField
+              fullWidth
+              required
+              name="startPos"
+              label="Start position"
+              helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+              onChange={handleStartPosChange}
+            />
+            : null
+        }
+        <Button
+          fullWidth
+          type="submit"
+          variant="outlined"
+        >
+          Create Invite Code
+        </Button>
+      </form>
     </DialogContent>
   );
 }
