@@ -18,16 +18,6 @@ import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../features/ws/WsAction';
 
-const Chess960 = () => {
-  return <TextField
-    fullWidth
-    required
-    name="startPos"
-    label="Start position"
-    helperText="Examples of starting positions: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-  />;
-}
-
 const LoadPgnDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -94,7 +84,17 @@ const LoadPgnDialog = () => {
               Capablanca
             </MenuItem>
           </TextField>
-          {variant === variantConst.CHESS_960 ? <Chess960 /> : null}
+          {
+            variant === variantConst.CHESS_960
+              ? <TextField
+                fullWidth
+                required
+                name="startPos"
+                label="Start position"
+                helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+              />
+              : null
+          }
           <Button
             fullWidth
             type="submit"
