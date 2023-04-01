@@ -21,6 +21,16 @@ import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
 import WsAction from '../../features/ws/WsAction';
 
+const Chess960 = () => {
+  return <TextField
+    fullWidth
+    required
+    name="startPos"
+    label="Start position"
+    helperText="Examples of starting positions: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+  />;
+}
+
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -132,6 +142,13 @@ const CreateCode = () => {
         <SelectColorButtons props={fields} />
       </Grid>
       <TextField
+        fullWidth
+        name="fen"
+        label="FEN string"
+        margin="normal"
+        onChange={handleFenChange}
+      />
+      <TextField
         select
         fullWidth
         name="variant"
@@ -150,13 +167,7 @@ const CreateCode = () => {
           Capablanca
         </MenuItem>
       </TextField>
-      <TextField
-        fullWidth
-        name="fen"
-        label="FEN string"
-        margin="normal"
-        onChange={handleFenChange}
-      />
+      {fields.variant === variantConst.CHESS_960 ? <Chess960 /> : null}
       <Button
         fullWidth
         variant="outlined"
