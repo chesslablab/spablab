@@ -104,7 +104,7 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/start'].jwt);
     if (data['/start'].variant === variantConst.CLASSICAL) {
       dispatch(variant.startClassical());
-      dispatch(board.start());
+      dispatch(board.startFen({ fen: data['/start'].fen }));
     } else if (data['/start'].variant === variantConst.CHESS_960) {
       dispatch(variant.startChess960({
         fen: data['/start'].fen,
@@ -183,7 +183,7 @@ export default class WsEvent {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
       if (jwtDecoded.variant === variantConst.CLASSICAL) {
         dispatch(variant.startClassical());
-        dispatch(board.start());
+        dispatch(board.startFen({ fen: jwtDecoded.fen }));
       } else if (jwtDecoded.variant === variantConst.CHESS_960) {
         dispatch(variant.startChess960({
           fen: jwtDecoded.fen,
