@@ -1,7 +1,7 @@
 {
   "name": "@chesslablab/redux-chess",
   "description": "React chessboard connected to a chess server.",
-  "version": "1.1.94",
+  "version": "1.1.95",
   "private": false,
   "author": "Jordi Bassagañas <info@programarivm.com>",
   "license": "MIT",
