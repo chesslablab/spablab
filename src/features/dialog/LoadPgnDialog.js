@@ -24,7 +24,7 @@ const Chess960 = () => {
     required
     name="startPos"
     label="Start position"
-    helperText="Examples of starting positions: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+    helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
   />;
 }
 
