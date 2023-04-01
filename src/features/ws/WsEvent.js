@@ -8,6 +8,7 @@ import * as board from '../../features/board/boardSlice';
 import * as acceptDrawDialog from '../../features/dialog/acceptDrawDialogSlice';
 import * as acceptRematchDialog from '../../features/dialog/acceptRematchDialogSlice';
 import * as acceptTakebackDialog from '../../features/dialog/acceptTakebackDialogSlice';
+import * as createInviteCodeDialog from '../../features/dialog/createInviteCodeDialogSlice';
 import * as heuristicsDialog from '../../features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
@@ -101,40 +102,48 @@ export default class WsEvent {
 
   static onStartPlay = (data) => dispatch => {
     Dispatcher.initGui(dispatch);
-    const jwtDecoded = jwt_decode(data['/start'].jwt);
-    if (data['/start'].variant === variantConst.CLASSICAL) {
-      dispatch(variant.startClassical());
-      dispatch(board.startFen({ fen: data['/start'].fen }));
-    } else if (data['/start'].variant === variantConst.CHESS_960) {
-      dispatch(variant.startChess960({
-        fen: data['/start'].fen,
-        startPos: data['/start'].startPos
-      }));
-      dispatch(board.startChess960({ fen: data['/start'].fen }));
-    } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
-      dispatch(variant.startCapablanca80());
-      dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
-    }
-    dispatch(mode.setPlay({
-      jwt: data['/start'].jwt,
-      jwt_decoded: jwtDecoded,
-      hash: data['/start'].hash,
-      color: jwtDecoded.color,
-      takeback: null,
-      draw: null,
-      resign: null,
-      rematch: null,
-      leave: null,
-      accepted: false,
-      timer: {
-        expiry_timestamp: null,
-        over: null
+    if (data['/start'].jwt) {
+      const jwtDecoded = jwt_decode(data['/start'].jwt);
+      if (data['/start'].variant === variantConst.CLASSICAL) {
+        dispatch(variant.startClassical());
+        dispatch(board.startFen({ fen: data['/start'].fen }));
+      } else if (data['/start'].variant === variantConst.CHESS_960) {
+        dispatch(variant.startChess960({
+          fen: data['/start'].fen,
+          startPos: data['/start'].startPos
+        }));
+        dispatch(board.startChess960({ fen: data['/start'].fen }));
+      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
+        dispatch(variant.startCapablanca80());
+        dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
       }
-    }));
-    if (jwtDecoded.color === Pgn.symbol.BLACK) {
-      dispatch(board.flip());
+      dispatch(mode.setPlay({
+        jwt: data['/start'].jwt,
+        jwt_decoded: jwtDecoded,
+        hash: data['/start'].hash,
+        color: jwtDecoded.color,
+        takeback: null,
+        draw: null,
+        resign: null,
+        rematch: null,
+        leave: null,
+        accepted: false,
+        timer: {
+          expiry_timestamp: null,
+          over: null
+        }
+      }));
+      if (jwtDecoded.color === Pgn.symbol.BLACK) {
+        dispatch(board.flip());
+      }
+      dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
+    } else {
+      dispatch(createInviteCodeDialog.close());
+      dispatch(mode.startUndefined());
+      dispatch(infoAlert.show({
+        info: 'Invalid FEN, please try again with a different one.'
+      }));
     }
-    dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
   }
 
   static onStartStockfishByColor = (data) => dispatch => {
