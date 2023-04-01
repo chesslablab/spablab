@@ -47,6 +47,7 @@ const CreateCode = () => {
     increment: 3,
     color: 'rand',
     variant: variantConst.CLASSICAL,
+    fen: '',
   });
 
   const handleMinutesChange = (event: Event) => {
@@ -70,18 +71,25 @@ const CreateCode = () => {
     });
   };
 
+  const handleFenChange = (event: Event) => {
+    setFields({
+      ...fields,
+      fen: event.target.value
+    });
+  };
+
   const handleCreateCode = () => {
     dispatch(mainButtons.setPlayAFriend());
-    WsAction.start(state, fields.variant, modeConst.PLAY, {
-      settings: {
-        min: fields.minutes,
-        increment: fields.increment,
-        color: fields.color === 'rand'
-          ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-          : fields.color,
-        submode: 'friend'
-      }
-    });
+    let settings = {
+      min: fields.minutes,
+      increment: fields.increment,
+      color: fields.color === 'rand'
+        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+        : fields.color,
+      submode: 'friend'
+    };
+    fields.fen ? settings.fen = fields.fen : null;
+    WsAction.start(state, fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
   }
 
   return (
@@ -142,6 +150,13 @@ const CreateCode = () => {
           Capablanca
         </MenuItem>
       </TextField>
+      <TextField
+        fullWidth
+        name="fen"
+        label="FEN string"
+        margin="normal"
+        onChange={handleFenChange}
+      />
       <Button
         fullWidth
         variant="outlined"
