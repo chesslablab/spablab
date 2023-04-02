@@ -69,9 +69,11 @@ const EndgameSkillsDialog = () => {
       <DialogContent>
         <TextField
           select
+          required
           fullWidth
           name="items"
-          label="Select an endgame"
+          label="Endgame"
+          variant="filled"
           defaultValue="rand"
           margin="normal"
           onChange={handleTypeChange}

@@ -47,6 +47,7 @@ const SearchMovetextDialog = ({ props }) => {
             required
             name="movetext"
             label="Movetext"
+            variant="filled"
             margin="normal"
           />
           <Button

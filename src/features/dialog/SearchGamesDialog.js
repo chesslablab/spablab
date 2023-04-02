@@ -83,7 +83,7 @@ const SearchGamesDialog = ({props}) => {
                   id="Event"
                   options={autocompleteEvents.map((option) => option.Event)}
                   filterOptions={filterOptions}
-                  renderInput={(params) => <TextField {...params} label="Event" name="Event" />}
+                  renderInput={(params) => <TextField {...params} label="Event" variant="filled" name="Event" />}
                 />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -91,6 +91,7 @@ const SearchGamesDialog = ({props}) => {
                 fullWidth
                 name="Date"
                 label="Year"
+                variant="filled"
                 type="number"
                 inputProps={{ min: "1750", max: "2023", step: "1"}}
               />
@@ -100,6 +101,7 @@ const SearchGamesDialog = ({props}) => {
                 fullWidth
                 name="ECO"
                 label="ECO Code"
+                variant="filled"
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -107,7 +109,7 @@ const SearchGamesDialog = ({props}) => {
                 id="White"
                 options={autocompletePlayers.map((option) => option.name)}
                 filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="White" name="White" />}
+                renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -115,7 +117,7 @@ const SearchGamesDialog = ({props}) => {
                 id="Black"
                 options={autocompletePlayers.map((option) => option.name)}
                 filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="Black" name="Black" />}
+                renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -124,6 +126,7 @@ const SearchGamesDialog = ({props}) => {
                 select
                 name="Result"
                 label="Result"
+                variant="filled"
                 defaultValue=""
               >
                 <MenuItem value="" disabled>

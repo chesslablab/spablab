@@ -47,6 +47,7 @@ const SearchNameDialog = ({ props }) => {
             required
             name="name"
             label="Name"
+            variant="filled"
             margin="normal"
           />
           <Button

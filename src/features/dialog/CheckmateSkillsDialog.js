@@ -69,9 +69,11 @@ const CheckmateSkillsDialog = () => {
       <DialogContent>
         <TextField
           select
+          required
           fullWidth
           name="items"
-          label="Select an endgame"
+          label="Checkmate"
+          variant="filled"
           defaultValue="rand"
           margin="normal"
           onChange={handleTypeChange}

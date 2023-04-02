@@ -55,9 +55,10 @@ const LoadFenDialog = () => {
         <form onSubmit={handleLoad}>
           <TextField
             select
+            required
             fullWidth
             name="variant"
-            label="Select a variant"
+            label="Variant"
             variant="filled"
             value={variant}
             margin="normal"
