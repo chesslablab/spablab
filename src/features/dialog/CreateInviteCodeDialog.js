@@ -143,17 +143,12 @@ const CreateCode = () => {
           <SelectColorButtons props={fields} />
         </Grid>
         <TextField
-          fullWidth
-          name="fen"
-          label="FEN string"
-          margin="normal"
-          onChange={handleFenChange}
-        />
-        <TextField
           select
+          required
           fullWidth
           name="variant"
-          label="Select a variant"
+          label="Variant"
+          variant="filled"
           defaultValue={variantConst.CLASSICAL}
           margin="normal"
           onChange={handleVariantChange}
@@ -175,11 +170,20 @@ const CreateCode = () => {
               required
               name="startPos"
               label="Start position"
+              variant="filled"
               helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
               onChange={handleStartPosChange}
             />
             : null
         }
+        <TextField
+          fullWidth
+          name="fen"
+          label="From FEN position"
+          variant="filled"
+          margin="normal"
+          onChange={handleFenChange}
+        />
         <Button
           fullWidth
           type="submit"

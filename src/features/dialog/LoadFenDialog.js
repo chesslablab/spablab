@@ -54,17 +54,11 @@ const LoadFenDialog = () => {
       <DialogContent>
         <form onSubmit={handleLoad}>
           <TextField
-            fullWidth
-            required
-            name="fen"
-            label="FEN string"
-            margin="normal"
-          />
-          <TextField
             select
             fullWidth
             name="variant"
             label="Select a variant"
+            variant="filled"
             value={variant}
             margin="normal"
             onChange={handleVariantChange}
@@ -86,10 +80,19 @@ const LoadFenDialog = () => {
                 required
                 name="startPos"
                 label="Start position"
+                variant="filled"
                 helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
               />
               : null
           }
+          <TextField
+            fullWidth
+            required
+            name="fen"
+            label="From FEN position"
+            variant="filled"
+            margin="normal"
+          />
           <Button
             fullWidth
             type="submit"

@@ -54,22 +54,11 @@ const LoadPgnDialog = () => {
       <DialogContent>
         <form onSubmit={handleLoad}>
           <TextField
-            fullWidth
-            required
-            multiline
-            rows={4}
-            name="pgn"
-            label="Movetext"
-            margin="normal"
-            inputProps={{
-              spellCheck: false
-            }}
-          />
-          <TextField
             select
             fullWidth
             name="variant"
             label="Select a variant"
+            variant="filled"
             value={variant}
             margin="normal"
             onChange={handleVariantChange}
@@ -91,10 +80,24 @@ const LoadPgnDialog = () => {
                 required
                 name="startPos"
                 label="Start position"
+                variant="filled"
                 helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
               />
               : null
           }
+          <TextField
+            fullWidth
+            required
+            multiline
+            rows={4}
+            name="pgn"
+            label="Movetext"
+            variant="filled"
+            margin="normal"
+            inputProps={{
+              spellCheck: false
+            }}
+          />
           <Button
             fullWidth
             type="submit"

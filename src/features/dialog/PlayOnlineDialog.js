@@ -117,9 +117,11 @@ const PlayOnlineDialog = () => {
         </Grid>
         <TextField
           select
+          required
           fullWidth
           name="variant"
-          label="Select a variant"
+          label="Variant"
+          variant="filled"
           defaultValue={variantConst.CLASSICAL}
           margin="normal"
           onChange={handleVariantChange}

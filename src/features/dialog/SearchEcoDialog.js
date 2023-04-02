@@ -43,6 +43,7 @@ const SearchEcoDialog = ({ props }) => {
           required
           name="code"
           label="Select an option"
+          variant="filled"
           defaultValue=""
           margin="normal"
           onChange={handleChange}
