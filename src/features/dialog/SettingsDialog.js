@@ -49,6 +49,7 @@ const SettingsDialog = () => {
           type="submit"
           variant="outlined"
           onClick={() => dispatch(settingsDialog.close())}
+          sx={{ mt: 2 }}
         >
           Accept
         </Button>

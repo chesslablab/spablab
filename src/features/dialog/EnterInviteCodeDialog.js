@@ -57,6 +57,7 @@ const EnterInviteCodeDialog = () => {
           fullWidth
           variant="outlined"
           onClick={() => handlePlay()}
+          sx={{ mt: 2 }}
         >
           Play friend
         </Button>

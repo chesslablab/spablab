@@ -109,6 +109,7 @@ const PlayComputerDialog = () => {
           fullWidth
           variant="outlined"
           onClick={() => handleCreateGame()}
+          sx={{ mt: 2 }}
         >
           Create Game
         </Button>

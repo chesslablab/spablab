@@ -54,6 +54,7 @@ const SearchNameDialog = ({ props }) => {
             fullWidth
             type="submit"
             variant="outlined"
+            sx={{ mt: 2 }}
           >
             Search
           </Button>

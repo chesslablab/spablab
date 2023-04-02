@@ -148,7 +148,7 @@ const SearchGamesDialog = ({props}) => {
             fullWidth
             variant="outlined"
             type="submit"
-            style={{ marginTop: 15 }}
+            sx={{ mt: 2 }}
           >
             Search
           </Button>

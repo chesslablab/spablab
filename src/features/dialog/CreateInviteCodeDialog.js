@@ -188,6 +188,7 @@ const CreateCode = () => {
           fullWidth
           type="submit"
           variant="outlined"
+          sx={{ mt: 2 }}
         >
           Create Invite Code
         </Button>

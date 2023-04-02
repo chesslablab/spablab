@@ -73,7 +73,7 @@ const EventsStatsDialog = ({props}) => {
                 id="Event"
                 options={autocompleteEvents.map((option) => option.Event)}
                 filterOptions={filterOptions}
-                renderInput={(params) => <TextField required {...params} label="Event" name="Event" />}
+                renderInput={(params) => <TextField required {...params} label="Event" variant="filled" name="Event" />}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -82,6 +82,7 @@ const EventsStatsDialog = ({props}) => {
                 select
                 name="Result"
                 label="Result"
+                variant="filled"
                 defaultValue=""
               >
                 <MenuItem value="" disabled>
@@ -103,7 +104,7 @@ const EventsStatsDialog = ({props}) => {
             fullWidth
             variant="outlined"
             type="submit"
-            style={{ marginTop: 15 }}
+            sx={{ mt: 2 }}
           >
             View Stats
           </Button>

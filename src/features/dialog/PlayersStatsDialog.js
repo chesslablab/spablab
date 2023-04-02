@@ -74,7 +74,7 @@ const PlayersStatsDialog = ({props}) => {
                 id="White"
                 options={autocompletePlayers.map((option) => option.name)}
                 filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="White" name="White" />}
+                renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -82,7 +82,7 @@ const PlayersStatsDialog = ({props}) => {
                 id="Black"
                 options={autocompletePlayers.map((option) => option.name)}
                 filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="Black" name="Black" />}
+                renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -92,6 +92,7 @@ const PlayersStatsDialog = ({props}) => {
                 required
                 name="Result"
                 label="Result"
+                variant="filled"
                 defaultValue=""
               >
                 <MenuItem value="" disabled>
@@ -113,7 +114,7 @@ const PlayersStatsDialog = ({props}) => {
             fullWidth
             variant="outlined"
             type="submit"
-            style={{ marginTop: 15 }}
+            sx={{ mt: 2 }}
           >
             View Stats
           </Button>

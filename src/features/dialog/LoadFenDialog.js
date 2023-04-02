@@ -98,6 +98,7 @@ const LoadFenDialog = () => {
             fullWidth
             type="submit"
             variant="outlined"
+            sx={{ mt: 2 }}
           >
             Load
           </Button>
