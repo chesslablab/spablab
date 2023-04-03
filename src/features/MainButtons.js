@@ -33,6 +33,7 @@ import * as openingsStatsDialog from '../features/dialog/openingsStatsDialogSlic
 import * as playersStatsDialog from '../features/dialog/playersStatsDialogSlice';
 import * as searchGamesDialog from '../features/dialog/searchGamesDialogSlice';
 import * as searchEcoDialog from '../features/dialog/searchEcoDialogSlice';
+import * as progressDialog from '../features/dialog/progressDialogSlice';
 import * as searchMovetextDialog from '../features/dialog/searchMovetextDialogSlice';
 import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
@@ -44,7 +45,7 @@ import * as mode from '../features/mode/modeSlice';
 import * as variantConst from '../features/variant/variantConst';
 import WsAction from '../features/ws/WsAction';
 
-const MainButtons = () => {
+const MainButtons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -174,8 +175,22 @@ const MainButtons = () => {
         onClose={handleCloseDatabase}
       >
         <MenuItem onClick={() => {
-          dispatch(searchGamesDialog.open());
-          handleCloseDatabase();
+          dispatch(progressDialog.open());
+          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search/autocomplete`)
+            .then(res => {
+              if (res.status === 200) {
+                res.json().then(data => {
+                  dispatch(searchGamesDialog.setAutocomplete(data));
+                });
+              } else {
+                dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+              }
+            })
+            .finally(() => {
+              dispatch(progressDialog.close());
+              dispatch(searchGamesDialog.open());
+              handleCloseDatabase();
+            });
         }}>
           <TravelExploreIcon size="small" />&nbsp;Search Games
         </MenuItem>
@@ -187,14 +202,42 @@ const MainButtons = () => {
           <AutoGraphIcon size="small" />&nbsp;Top 50 Openings
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(playersStatsDialog.open());
-          handleCloseDatabase();
+          dispatch(progressDialog.open());
+          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search/autocomplete`)
+            .then(res => {
+              if (res.status === 200) {
+                res.json().then(data => {
+                  dispatch(playersStatsDialog.setAutocomplete(data));
+                });
+              } else {
+                dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+              }
+            })
+            .finally(() => {
+              dispatch(progressDialog.close());
+              dispatch(playersStatsDialog.open());
+              handleCloseDatabase();
+            });
         }}>
           <QueryStatsIcon size="small" />&nbsp;Players Stats
         </MenuItem>
         <MenuItem onClick={() => {
-          dispatch(eventsStatsDialog.open());
-          handleCloseDatabase();
+          dispatch(progressDialog.open());
+          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search/autocomplete`)
+            .then(res => {
+              if (res.status === 200) {
+                res.json().then(data => {
+                  dispatch(eventsStatsDialog.setAutocomplete(data));
+                });
+              } else {
+                dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+              }
+            })
+            .finally(() => {
+              dispatch(progressDialog.close());
+              dispatch(eventsStatsDialog.open());
+              handleCloseDatabase();
+            });
         }}>
           <TroubleshootIcon size="small" />&nbsp;Events Stats
         </MenuItem>

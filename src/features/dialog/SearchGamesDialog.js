@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -18,9 +18,6 @@ import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
 
-let autocompleteEvents = [];
-const autocompletePlayers = require('../../assets/json/autocomplete-players.json');
-
 const filterOptions = createFilterOptions({
   matchFrom: 'any',
   limit: 25,
@@ -29,27 +26,7 @@ const filterOptions = createFilterOptions({
 const SearchGamesDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [autocompleteEvents, setAutocompleteEvents] = React.useState([]);
   const [result, setResult] = React.useState([]);
-
-  const handleOpenEvents = async (event) => {
-    event.preventDefault();
-    dispatch(progressDialog.open());
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete/events`)
-      .then(res => {
-        if (res.status === 200) {
-          res.json().then(data => {
-            console.log(data);
-            setAutocompleteEvents(data);
-          });
-        } else {
-          dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
-        }
-      })
-      .finally(() => {
-        dispatch(progressDialog.close());
-      });
-  };
 
   const handleSearch = async (event) => {
     event.preventDefault();
@@ -101,10 +78,9 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
                 <Autocomplete
                   id="Event"
-                  options={autocompleteEvents.map((option) => option.Event)}
+                  options={state.searchGamesDialog.autocomplete.events.map((option) => option.Event)}
                   filterOptions={filterOptions}
                   renderInput={(params) => <TextField {...params} label="Event" variant="filled" name="Event" />}
-                  onOpen={handleOpenEvents}
                 />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -128,7 +104,7 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="White"
-                options={autocompletePlayers.map((option) => option.name)}
+                options={state.searchGamesDialog.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
               />
@@ -136,7 +112,7 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="Black"
-                options={autocompletePlayers.map((option) => option.name)}
+                options={state.searchGamesDialog.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
               />

@@ -17,8 +17,6 @@ import * as infoAlert from '../../features/alert/infoAlertSlice';
 import * as eventsStatsDialog from '../../features/dialog/eventsStatsDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 
-const autocompleteEvents = require('../../assets/json/autocomplete-events.json');
-
 const filterOptions = createFilterOptions({
   matchFrom: 'any',
   limit: 25,
@@ -71,7 +69,7 @@ const EventsStatsDialog = ({props}) => {
             <Grid item xs={12} md={8}>
               <Autocomplete
                 id="Event"
-                options={autocompleteEvents.map((option) => option.Event)}
+                options={state.eventsStatsDialog.autocomplete.events.map((option) => option.Event)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField required {...params} label="Event" variant="filled" name="Event" />}
               />
