@@ -30,7 +30,7 @@ const EventsStatsDialog = ({props}) => {
   const handleViewStats = async (event) => {
     event.preventDefault();
     dispatch(progressDialog.open());
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/event_stats`, {
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/stats/event`, {
       method: 'POST',
       body: JSON.stringify({
         [event.target.elements.Event.name]: event.target.elements.Event.value,
