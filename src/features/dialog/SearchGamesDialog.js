@@ -18,7 +18,7 @@ import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
 
-const autocompleteEvents = require('../../assets/json/autocomplete-events.json');
+let autocompleteEvents = [];
 const autocompletePlayers = require('../../assets/json/autocomplete-players.json');
 
 const filterOptions = createFilterOptions({
@@ -29,7 +29,27 @@ const filterOptions = createFilterOptions({
 const SearchGamesDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [autocompleteEvents, setAutocompleteEvents] = React.useState([]);
   const [result, setResult] = React.useState([]);
+
+  const handleOpenEvents = async (event) => {
+    event.preventDefault();
+    dispatch(progressDialog.open());
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete/events`)
+      .then(res => {
+        if (res.status === 200) {
+          res.json().then(data => {
+            console.log(data);
+            setAutocompleteEvents(data);
+          });
+        } else {
+          dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+        }
+      })
+      .finally(() => {
+        dispatch(progressDialog.close());
+      });
+  };
 
   const handleSearch = async (event) => {
     event.preventDefault();
@@ -84,6 +104,7 @@ const SearchGamesDialog = ({props}) => {
                   options={autocompleteEvents.map((option) => option.Event)}
                   filterOptions={filterOptions}
                   renderInput={(params) => <TextField {...params} label="Event" variant="filled" name="Event" />}
+                  onOpen={handleOpenEvents}
                 />
             </Grid>
             <Grid item xs={12} md={4}>
