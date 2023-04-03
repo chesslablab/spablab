@@ -176,7 +176,7 @@ const MainButtons = ({props}) => {
       >
         <MenuItem onClick={() => {
           dispatch(progressDialog.open());
-          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search/autocomplete`)
+          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
             .then(res => {
               if (res.status === 200) {
                 res.json().then(data => {
@@ -203,7 +203,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(progressDialog.open());
-          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search/autocomplete`)
+          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
             .then(res => {
               if (res.status === 200) {
                 res.json().then(data => {
@@ -223,7 +223,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <MenuItem onClick={() => {
           dispatch(progressDialog.open());
-          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search/autocomplete`)
+          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
             .then(res => {
               if (res.status === 200) {
                 res.json().then(data => {
