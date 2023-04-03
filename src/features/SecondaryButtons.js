@@ -22,7 +22,7 @@ const SecondaryButtons = ({props}) => {
       variant: state.variant.name,
       flip: state.board.flip
     };
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_image`, {
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/image`, {
       method: 'POST',
       body: JSON.stringify(body)
     }).then(res => res.blob())
@@ -50,7 +50,7 @@ const SecondaryButtons = ({props}) => {
     if (state.mode.name === modeConst.FEN) {
       body.fen = state.mode.fen;
     }
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download_mp4`, {
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/mp4`, {
       method: 'POST',
       body: JSON.stringify(body)
     })
