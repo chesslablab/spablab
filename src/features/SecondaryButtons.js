@@ -18,7 +18,7 @@ const SecondaryButtons = ({props}) => {
 
   const handleDownloadImage = async () => {
     let body = {
-      fen: state.board.fen[state.board.fen.length - 1],
+      fen: state.board.fen[state.board.fen.length - 1 + state.history.back],
       variant: state.variant.name,
       flip: state.board.flip
     };
