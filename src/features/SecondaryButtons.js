@@ -90,7 +90,7 @@ const SecondaryButtons = ({props}) => {
         size="medium"
         title="Copy FEN string"
         aria-label="fen"
-        onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1])}
+        onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.history.back])}
       >
         <WidgetsIcon fontSize="inherit" />
       </IconButton>
