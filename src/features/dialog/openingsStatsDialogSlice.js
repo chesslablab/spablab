@@ -3,7 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const openingsStatsDialogSlice = createSlice({
   name: 'openingsStatsDialog',
   initialState: {
-    open: false
+    open: false,
+    stats: {
+      drawRate: [],
+      winRateForWhite: [],
+      winRateForBlack: []
+    }
   },
   reducers: {
     open(state) {
@@ -11,12 +16,16 @@ const openingsStatsDialogSlice = createSlice({
     },
     close(state) {
       state.open = false;
+    },
+    setStats(state, action) {
+      state.stats = action.payload;
     }
   }
 });
 
 export const {
   open,
-  close
+  close,
+  setStats
 } = openingsStatsDialogSlice.actions;
 export default openingsStatsDialogSlice.reducer;

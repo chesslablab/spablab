@@ -17,8 +17,6 @@ import * as infoAlert from '../../features/alert/infoAlertSlice';
 import * as playersStatsDialog from '../../features/dialog/playersStatsDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 
-const autocompletePlayers = require('../../assets/json/autocomplete-players.json');
-
 const filterOptions = createFilterOptions({
   matchFrom: 'any',
   limit: 25,
@@ -72,7 +70,7 @@ const PlayersStatsDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="White"
-                options={autocompletePlayers.map((option) => option.name)}
+                options={state.playersStatsDialog.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
               />
@@ -80,7 +78,7 @@ const PlayersStatsDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="Black"
-                options={autocompletePlayers.map((option) => option.name)}
+                options={state.playersStatsDialog.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
               />

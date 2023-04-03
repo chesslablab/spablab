@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -17,9 +17,6 @@ import * as infoAlert from '../../features/alert/infoAlertSlice';
 import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
-
-const autocompleteEvents = require('../../assets/json/autocomplete-events.json');
-const autocompletePlayers = require('../../assets/json/autocomplete-players.json');
 
 const filterOptions = createFilterOptions({
   matchFrom: 'any',
@@ -81,7 +78,7 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
                 <Autocomplete
                   id="Event"
-                  options={autocompleteEvents.map((option) => option.Event)}
+                  options={state.searchGamesDialog.autocomplete.events.map((option) => option.Event)}
                   filterOptions={filterOptions}
                   renderInput={(params) => <TextField {...params} label="Event" variant="filled" name="Event" />}
                 />
@@ -107,7 +104,7 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="White"
-                options={autocompletePlayers.map((option) => option.name)}
+                options={state.searchGamesDialog.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
               />
@@ -115,7 +112,7 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="Black"
-                options={autocompletePlayers.map((option) => option.name)}
+                options={state.searchGamesDialog.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
               />
