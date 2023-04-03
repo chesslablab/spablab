@@ -12,10 +12,6 @@ import {
 import * as infoAlert from '../../features/alert/infoAlertSlice';
 import * as openingsStatsDialog from '../../features/dialog/openingsStatsDialogSlice';
 
-const winRateForWhite = require('../../assets/json/win-rate-for-white.json');
-const winRateForBlack = require('../../assets/json/win-rate-for-black.json');
-const drawRate = require('../../assets/json/draw-rate.json');
-
 const OpeningsStatsDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -34,7 +30,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={winRateForWhite}
+            data={state.openingsStatsDialog.stats.winRateForWhite}
             margin={{
               right: 30,
               left: 20,
@@ -57,7 +53,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={winRateForBlack}
+            data={state.openingsStatsDialog.stats.winRateForBlack}
             margin={{
               top: 30,
               right: 30,
@@ -81,7 +77,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={drawRate}
+            data={state.openingsStatsDialog.stats.drawRate}
             margin={{
               top: 30,
               right: 30,

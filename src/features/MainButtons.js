@@ -196,8 +196,22 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem onClick={() => {
-          dispatch(openingsStatsDialog.open());
-          handleCloseDatabase();
+          dispatch(progressDialog.open());
+          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/stats/opening`)
+            .then(res => {
+              if (res.status === 200) {
+                res.json().then(data => {
+                  dispatch(openingsStatsDialog.setStats(data));
+                });
+              } else {
+                dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+              }
+            })
+            .finally(() => {
+              dispatch(progressDialog.close());
+              dispatch(openingsStatsDialog.open());
+              handleCloseDatabase();
+            });
         }}>
           <AutoGraphIcon size="small" />&nbsp;Top 50 Openings
         </MenuItem>
