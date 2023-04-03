@@ -57,7 +57,7 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar(
           store.getState(),
-          store.getState().board.fen,
+          store.getState().board.fen[store.getState().board.fen.length - 1],
           store.getState().variant.name
       );
     } else {
@@ -89,7 +89,7 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar(
           store.getState(),
-          store.getState().board.fen,
+          store.getState().board.fen[store.getState().board.fen.length - 1],
           store.getState().variant.name
       );
     } else {
@@ -160,7 +160,7 @@ export default class WsEvent {
     }
     WsAction.heuristicsBar(
         store.getState(),
-        store.getState().board.fen,
+        store.getState().board.fen[store.getState().board.fen.length - 1],
         store.getState().variant.name
     );
   }
@@ -247,7 +247,7 @@ export default class WsEvent {
     }));
   }
 
-  static onPlayFen = (props, data) => dispatch => {
+  static onPlayLan = (props, data) => dispatch => {
     const payload = {
       isCheck: data['/play_lan'].isCheck,
       isMate: data['/play_lan'].isMate,
@@ -322,7 +322,7 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar(
           store.getState(),
-          store.getState().board.fen,
+          store.getState().board.fen[store.getState().board.fen.length - 1],
           store.getState().variant.name
       );
     }
@@ -376,7 +376,7 @@ export default class WsEvent {
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
       WsAction.heuristicsBar(
           store.getState(),
-          store.getState().board.fen,
+          store.getState().board.fen[store.getState().board.fen.length - 1],
           store.getState().variant.name
       );
     }
@@ -471,7 +471,7 @@ export default class WsEvent {
       }));
       WsAction.heuristicsBar(
           store.getState(),
-          store.getState().board.fen,
+          store.getState().board.fen[store.getState().board.fen.length - 1],
           store.getState().variant.name
       );
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].state.movetext);

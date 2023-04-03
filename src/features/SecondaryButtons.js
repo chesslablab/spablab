@@ -18,7 +18,7 @@ const SecondaryButtons = ({props}) => {
 
   const handleDownloadImage = async () => {
     let body = {
-      fen: state.board.fen,
+      fen: state.board.fen[state.board.fen.length - 1],
       variant: state.variant.name,
       flip: state.board.flip
     };
@@ -90,7 +90,7 @@ const SecondaryButtons = ({props}) => {
         size="medium"
         title="Copy FEN string"
         aria-label="fen"
-        onClick={() => state.board.fen ? navigator.clipboard.writeText(state.board.fen) : null}
+        onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1])}
       >
         <WidgetsIcon fontSize="inherit" />
       </IconButton>

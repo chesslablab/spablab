@@ -45,7 +45,7 @@ export default class WsEventListener {
             dispatch(board.playMove({ fen: data['/play_lan'].fen }));
           }
         }
-        dispatch(WsEvent.onPlayFen(props, data));
+        dispatch(WsEvent.onPlayLan(props, data));
         break;
       case '/legal_sqs' === cmd:
         dispatch(WsEvent.onLegalSqs(data));

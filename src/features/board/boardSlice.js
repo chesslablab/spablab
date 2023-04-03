@@ -4,12 +4,12 @@ import Pgn from '../../common/Pgn';
 
 const initialState = {
   lan: '',
-  fen: '',
   turn: Pgn.symbol.WHITE,
   isCheck: false,
   isMate: false,
   picked: null,
   history: [Ascii.toAscii('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')],
+  fen: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'],
   movetext: '',
   flip: Pgn.symbol.WHITE,
   size: {
@@ -25,7 +25,7 @@ const boardSlice = createSlice({
     start: () => initialState,
     startCapablanca80(state, action) {
       const fenSplit = action.payload.fen.split(' ');
-      state.fen = action.payload.fen;
+      state.fen = [action.payload.fen];
       state.turn = fenSplit[1];
       state.history = [Ascii.toAscii(fenSplit[0])];
       state.size = {
@@ -35,18 +35,18 @@ const boardSlice = createSlice({
     },
     startChess960(state, action) {
       const fenSplit = action.payload.fen.split(' ');
-      state.fen = action.payload.fen;
+      state.fen = [action.payload.fen];
       state.turn = fenSplit[1];
       state.history = [Ascii.toAscii(fenSplit[0])];
     },
     startFen(state, action) {
       const fenSplit = action.payload.fen.split(' ');
-      state.fen = action.payload.fen;
+      state.fen = [action.payload.fen];
       state.turn = fenSplit[1];
       state.history = [Ascii.toAscii(fenSplit[0])];
     },
     startPgn(state, action) {
-      state.fen = action.payload.fen;
+      state.fen = [action.payload.fen];
       state.turn = action.payload.turn;
       state.history = action.payload.history;
       state.movetext = action.payload.movetext;
@@ -90,9 +90,11 @@ const boardSlice = createSlice({
     },
     castleShort(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
+      const newFen = JSON.parse(JSON.stringify(state.fen));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
+      newFen.push(action.payload.fen);
       state.lan = '';
-      state.fen = action.payload.fen;
+      state.fen = newFen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.picked = null;
@@ -101,9 +103,11 @@ const boardSlice = createSlice({
     },
     castleLong(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
+      const newFen = JSON.parse(JSON.stringify(state.fen));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
+      newFen.push(action.payload.fen);
       state.lan = '';
-      state.fen = action.payload.fen;
+      state.fen = newFen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.picked = null;
@@ -119,9 +123,11 @@ const boardSlice = createSlice({
     },
     undo(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
+      const newFen = JSON.parse(JSON.stringify(state.fen));
       newHistory.splice(-1);
+      newFen.splice(-1);
       state.lan = '';
-      state.fen = action.payload.fen;
+      state.fen = newFen;
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
@@ -131,9 +137,11 @@ const boardSlice = createSlice({
     },
     validMove(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
+      const newFen = JSON.parse(JSON.stringify(state.fen));
       newHistory[newHistory.length - 1] = Ascii.toAscii(action.payload.fen.split(' ')[0]);
+      newFen.push(action.payload.fen);
       state.lan = '';
-      state.fen = action.payload.fen;
+      state.fen = newFen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.picked = null;
@@ -148,9 +156,11 @@ const boardSlice = createSlice({
     },
     gm(state, action) {
       const newHistory = JSON.parse(JSON.stringify(state.history));
+      const newFen = JSON.parse(JSON.stringify(state.fen));
       newHistory.push(Ascii.toAscii(action.payload.fen.split(' ')[0]));
+      newFen.push(action.payload.fen);
       state.lan = '';
-      state.fen = action.payload.fen;
+      state.fen = newFen;
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
