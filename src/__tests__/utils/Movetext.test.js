@@ -50,3 +50,21 @@ describe('toRows()', () => {
     expect(Movetext.toRows(string)).toEqual(expected);
   });
 });
+
+describe('substring()', () => {
+  it('is 1.e4', () => {
+    const string = '1.e4 d5 2.exd5 Qxd5 3.Nc3 Qa5 4.d4 e5 5.dxe5 Nc6 6.Nf3 Bb4 7.Bd2';
+    const expected = '1.e4';
+    expect(Movetext.substring(string, -12)).toEqual(expected);
+  });
+  it('is 1.e4 d5', () => {
+    const string = '1.e4 d5 2.exd5 Qxd5 3.Nc3 Qa5 4.d4 e5 5.dxe5 Nc6 6.Nf3 Bb4 7.Bd2';
+    const expected = '1.e4 d5';
+    expect(Movetext.substring(string, -11)).toEqual(expected);
+  });
+  it('is 1.e4 d5 2.exd5', () => {
+    const string = '1.e4 d5 2.exd5 Qxd5 3.Nc3 Qa5 4.d4 e5 5.dxe5 Nc6 6.Nf3 Bb4 7.Bd2';
+    const expected = '1.e4 d5 2.exd5';
+    expect(Movetext.substring(string, -10)).toEqual(expected);
+  });
+});

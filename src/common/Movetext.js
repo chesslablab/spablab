@@ -1,6 +1,6 @@
 export default class Movetext {
   static toRows = (string) => {
-    let rows = [];    
+    let rows = [];
     if (string) {
       const arr = string.split(' ');
       arr.map((item, i) => {
@@ -14,5 +14,17 @@ export default class Movetext {
     }
 
     return rows;
+  }
+
+  static substring = (string, back) => {
+    let substring = '';
+    const arr = string.split(' ');
+    arr.forEach((item, i) => {
+      if (i <= arr.length - 1 + back) {
+        substring += `${item} `;
+      }
+    });
+
+    return substring.slice(0, -1);
   }
 }
