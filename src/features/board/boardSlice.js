@@ -46,7 +46,7 @@ const boardSlice = createSlice({
       state.history = [Ascii.toAscii(fenSplit[0])];
     },
     startPgn(state, action) {
-      state.fen = [action.payload.fen];
+      state.fen = action.payload.fen;
       state.turn = action.payload.turn;
       state.history = action.payload.history;
       state.movetext = action.payload.movetext;
