@@ -42,7 +42,7 @@ const SecondaryButtons = ({props}) => {
     dispatch(progressDialog.open());
     let body = {
       variant: state.variant.name,
-      movetext: state.board.movetext,
+      movetext: Movetext.substring(state.board.movetext, state.history.back),
       flip: state.board.flip
     };
     if (state.variant.name === variantConst.CHESS_960) {
