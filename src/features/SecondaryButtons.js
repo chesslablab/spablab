@@ -103,7 +103,7 @@ const SecondaryButtons = ({props}) => {
         aria-label="heuristics"
         onClick={() => {
           dispatch(progressDialog.open());
-          WsAction.heuristics(state);
+          WsAction.heuristics(state, Movetext.substring(state.board.movetext, state.history.back));
         }}
       >
         <BarChartIcon fontSize="inherit" />
