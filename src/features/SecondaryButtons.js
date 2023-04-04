@@ -7,6 +7,7 @@ import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
+import Movetext from '../common/Movetext';
 import * as modeConst from '../features/mode/modeConst';
 import * as variantConst from '../features/variant/variantConst';
 import * as progressDialog from '../features/dialog/progressDialogSlice';
@@ -80,7 +81,7 @@ const SecondaryButtons = ({props}) => {
         size="medium"
         title="Copy PGN movetext"
         aria-label="copy"
-        onClick={() => state.board.movetext ? navigator.clipboard.writeText(state.board.movetext) : null}
+        onClick={() => navigator.clipboard.writeText(Movetext.substring(state.board.movetext, state.history.back))}
       >
         <MoveDownIcon fontSize="inherit" />
       </IconButton>
