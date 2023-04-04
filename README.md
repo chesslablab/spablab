@@ -13,19 +13,6 @@ $ npm i @chesslablab/redux-chess
 Check out [this demo](https://www.chesslablab.com/).
 
 ![Figure 1](/src/assets/img/docs/figure-01.png)
-Figure 1. Analysis Board > Start Position
-
-![Figure 2](/src/assets/img/docs/figure-02.png)
-Figure 2. Opening Search > ECO Code
-
-![Figure 3](/src/assets/img/docs/figure-03.png)
-Figure 3. Heuristics of a game
-
-![Figure 4](/src/assets/img/docs/figure-04.png)
-Figure 4. Play a Friend
-
-![Figure 5](/src/assets/img/docs/figure-05.png)
-Figure 5. Play Computer
 
 ### Setup
 
