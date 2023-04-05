@@ -8,7 +8,9 @@ import {
   DialogTitle,
   Grid,
   IconButton,
+  MenuItem,
   Slider,
+  TextField,
   Typography
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
@@ -26,21 +28,39 @@ const PlayComputerDialog = () => {
   const dispatch = useDispatch();
 
   const [fields, setFields] = React.useState({
+    position: 'start',
     level: 1,
-    color: 'rand'
+    color: 'rand',
+    fen: ''
   });
 
-  const handleCreateGame = () => {
-    let color = fields.color === 'rand'
-      ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-      : fields.color;
-    const payload = configure(color);
+  const handleCreateGame = (event) => {
+    event.preventDefault();
+    let payload;
+    if (fields.position === 'fen') {
+      payload = configure(Pgn.symbol.WHITE); // arbitrary color
+      WsAction.start(state, variantConst.CLASSICAL, modeConst.STOCKFISH, {
+        fen: fields.fen
+      });
+    } else {
+      let color = fields.color === 'rand'
+        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+        : fields.color;
+      payload = configure(color);
+      WsAction.start(state, variantConst.CLASSICAL, modeConst.STOCKFISH, {
+        color: color
+      });
+    }
     dispatch(mode.setStockfish(payload));
     dispatch(mainButtons.setPlayComputer());
     dispatch(playComputerDialog.close());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, variantConst.CLASSICAL, modeConst.STOCKFISH, {
-      color: color
+  };
+
+  const handlePositionChange = (event: Event) => {
+    setFields({
+      ...fields,
+      position: event.target.value
     });
   };
 
@@ -48,6 +68,13 @@ const PlayComputerDialog = () => {
     setFields({
       ...fields,
       level: event.target.value
+    });
+  };
+
+  const handleFenChange = (event: Event) => {
+    setFields({
+      ...fields,
+      fen: event.target.value
     });
   };
 
@@ -84,35 +111,73 @@ const PlayComputerDialog = () => {
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <Typography
-          id="level"
-          gutterBottom
-          align="center"
-        >
-          Difficulty level
-        </Typography>
-        <Slider
-          name="level"
-          aria-label="Level"
-          defaultValue={1}
-          valueLabelDisplay="auto"
-          step={1}
-          min={0}
-          max={3}
-          marks
-          onChange={handleLevelChange}
-        />
-        <Grid container justifyContent="center">
-          <SelectColorButtons props={fields} />
-        </Grid>
-        <Button
-          fullWidth
-          variant="outlined"
-          onClick={() => handleCreateGame()}
-          sx={{ mt: 2 }}
-        >
-          Create Game
-        </Button>
+        <form onSubmit={handleCreateGame}>
+          <Typography
+            id="level"
+            gutterBottom
+            align="center"
+          >
+            Difficulty level
+          </Typography>
+          <Slider
+            name="level"
+            aria-label="Level"
+            defaultValue={1}
+            valueLabelDisplay="auto"
+            step={1}
+            min={0}
+            max={3}
+            marks
+            onChange={handleLevelChange}
+          />
+          {
+            fields.position === 'start'
+              ? <Grid container justifyContent="center">
+                <SelectColorButtons props={fields} />
+              </Grid>
+              : null
+          }
+          <TextField
+            select
+            required
+            fullWidth
+            name="position"
+            label="From position"
+            variant="filled"
+            defaultValue="start"
+            value={fields.position}
+            margin="normal"
+            onChange={handlePositionChange}
+            >
+            <MenuItem key={0} value="start">
+              Start
+            </MenuItem>
+            <MenuItem key={1} value="fen">
+              FEN
+            </MenuItem>
+          </TextField>
+          {
+            fields.position === 'fen'
+              ? <TextField
+                  fullWidth
+                  required
+                  name="fen"
+                  label="Enter a FEN position"
+                  variant="filled"
+                  margin="normal"
+                  onChange={handleFenChange}
+              />
+              : null
+          }
+          <Button
+            fullWidth
+            type="submit"
+            variant="outlined"
+            sx={{ mt: 2 }}
+          >
+            Create Game
+          </Button>
+        </form>
       </DialogContent>
     </Dialog>
   );
