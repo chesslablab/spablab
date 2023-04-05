@@ -150,10 +150,10 @@ const PlayComputerDialog = () => {
             onChange={handlePositionChange}
             >
             <MenuItem key={0} value="start">
-              Start position
+              Start
             </MenuItem>
             <MenuItem key={1} value="fen">
-              FEN position
+              FEN
             </MenuItem>
           </TextField>
           {
