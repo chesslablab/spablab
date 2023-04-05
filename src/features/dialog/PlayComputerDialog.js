@@ -9,6 +9,7 @@ import {
   Grid,
   IconButton,
   Slider,
+  TextField,
   Typography
 } from '@mui/material';
 import Pgn from '../../common/Pgn';
@@ -27,7 +28,8 @@ const PlayComputerDialog = () => {
 
   const [fields, setFields] = React.useState({
     level: 1,
-    color: 'rand'
+    color: 'rand',
+    fen: ''
   });
 
   const handleCreateGame = () => {
@@ -39,15 +41,28 @@ const PlayComputerDialog = () => {
     dispatch(mainButtons.setPlayComputer());
     dispatch(playComputerDialog.close());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, variantConst.CLASSICAL, modeConst.STOCKFISH, {
-      color: color
-    });
+    if (fields.fen) {
+      WsAction.start(state, variantConst.CLASSICAL, modeConst.STOCKFISH, {
+        fen: fields.fen
+      });
+    } else {
+      WsAction.start(state, variantConst.CLASSICAL, modeConst.STOCKFISH, {
+        color: color
+      });
+    }
   };
 
   const handleLevelChange = (event: Event) => {
     setFields({
       ...fields,
       level: event.target.value
+    });
+  };
+
+  const handleFenChange = (event: Event) => {
+    setFields({
+      ...fields,
+      fen: event.target.value
     });
   };
 
@@ -105,6 +120,14 @@ const PlayComputerDialog = () => {
         <Grid container justifyContent="center">
           <SelectColorButtons props={fields} />
         </Grid>
+        <TextField
+          fullWidth
+          name="fen"
+          label="From FEN position"
+          variant="filled"
+          margin="normal"
+          onChange={handleFenChange}
+        />
         <Button
           fullWidth
           variant="outlined"
