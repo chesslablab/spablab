@@ -1,27 +1,31 @@
 import store from '../../app/store';
 import Wording from '../../common/Wording.js';
 import * as board from '../../features/board/boardSlice';
+import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
 import * as progressDialog from '../../features/dialog/progressDialogSlice';
 import * as modeConst from '../../features/mode/modeConst';
 import WsEvent from '../../features/ws/WsEvent';
 
 export default class WsEventListener {
   static listen = (props, data) => dispatch => {
-    const cmd = Object.keys(data)[0];
+    const mssg = Object.keys(data)[0];
     switch (true) {
-      case '/leave' === cmd:
+      case 'broadcast' === mssg:
+        dispatch(playOnlineDialog.refresh(data['broadcast']['onlineGames']));
+        break;
+      case '/leave' === mssg:
         if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
           dispatch(WsEvent.onLeaveAccept());
         }
         break;
-      case '/takeback' === cmd:
+      case '/takeback' === mssg:
         if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
           dispatch(WsEvent.onTakebackPropose());
         } else if (data['/takeback'] ===  Wording.verb.ACCEPT.toLowerCase()) {
           dispatch(WsEvent.onTakebackAccept());
         }
         break;
-      case '/draw' === cmd:
+      case '/draw' === mssg:
         if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
           dispatch(WsEvent.onDrawPropose());
         } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
@@ -30,13 +34,13 @@ export default class WsEventListener {
           dispatch(WsEvent.onDrawDecline());
         }
         break;
-      case '/start' === cmd:
+      case '/start' === mssg:
         dispatch(WsEvent.onStart(data));
         break;
-      case '/accept' === cmd:
+      case '/accept' === mssg:
         dispatch(WsEvent.onAccept(data));
         break;
-      case '/play_lan' === cmd:
+      case '/play_lan' === mssg:
         if (store.getState().mode.name === modeConst.PLAY) {
           if (store.getState().mode.play.color !== data['/play_lan'].turn) {
             dispatch(board.playMove({ fen: data['/play_lan'].fen }));
@@ -44,25 +48,25 @@ export default class WsEventListener {
         }
         dispatch(WsEvent.onPlayLan(props, data));
         break;
-      case '/legal_sqs' === cmd:
+      case '/legal_sqs' === mssg:
         dispatch(WsEvent.onLegalSqs(data));
         break;
-      case '/heuristics' === cmd:
+      case '/heuristics' === mssg:
         dispatch(progressDialog.close());
         dispatch(WsEvent.onHeuristics(data));
         break;
-      case '/heuristics_bar' === cmd:
+      case '/heuristics_bar' === mssg:
         dispatch(WsEvent.onHeuristicsBar(data));
         break;
-      case '/undo' === cmd:
+      case '/undo' === mssg:
         dispatch(WsEvent.onUndo(data));
         break;
-      case '/resign' === cmd:
+      case '/resign' === mssg:
         if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
           dispatch(WsEvent.onResignAccept());
         }
         break;
-      case '/rematch' === cmd:
+      case '/rematch' === mssg:
         if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
           dispatch(WsEvent.onRematchPropose());
         } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
@@ -71,18 +75,18 @@ export default class WsEventListener {
           dispatch(WsEvent.onRematchDecline());
         }
         break;
-      case '/restart' === cmd:
+      case '/restart' === mssg:
         dispatch(WsEvent.onRestart(data));
         break;
-      case '/randomizer' === cmd:
+      case '/randomizer' === mssg:
         dispatch(progressDialog.close());
         dispatch(WsEvent.onRandomCheckmate(data));
         break;
-      case '/stockfish' === cmd:
+      case '/stockfish' === mssg:
         dispatch(progressDialog.close());
         dispatch(WsEvent.onStockfish(data));
         break;
-      case 'validate' === cmd:
+      case 'validate' === mssg:
         dispatch(progressDialog.close());
         dispatch(WsEvent.onValidate(data));
         break;
