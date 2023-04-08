@@ -36,9 +36,6 @@ export default class WsEventListener {
       case '/accept' === cmd:
         dispatch(WsEvent.onAccept(data));
         break;
-      case '/online_games' === cmd:
-        dispatch(WsEvent.onOnlineGames(data));
-        break;
       case '/play_lan' === cmd:
         if (store.getState().mode.name === modeConst.PLAY) {
           if (store.getState().mode.play.color !== data['/play_lan'].turn) {

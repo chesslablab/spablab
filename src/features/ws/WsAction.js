@@ -58,10 +58,6 @@ export default class WsAction {
     return await state.server.ws.send(mssg);
   }
 
-  static onlineGames = async (state) => {
-    return await state.server.ws.send('/online_games');
-  }
-
   static playLan = async (state) => {
     const color = state.board.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     return await state.server.ws.send(`/play_lan ${color} ${state.board.lan}`);

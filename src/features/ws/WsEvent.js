@@ -234,10 +234,6 @@ export default class WsEvent {
     }
   }
 
-  static onOnlineGames = (data) => dispatch => {
-    dispatch(playOnlineDialog.refresh(data['/online_games']));
-  }
-
   static onLegalSqs = (data) => dispatch => {
     dispatch(board.legalSqs({
       piece: data['/legal_sqs'].identity,

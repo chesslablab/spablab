@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
@@ -53,14 +53,6 @@ const VariantIcon = ({props}) => {
 const PlayOnlineTable = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      WsAction.onlineGames(state);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const handlePlay = (hash) => {
     dispatch(mainButtons.setPlayOnline());

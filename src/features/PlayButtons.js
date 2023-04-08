@@ -45,10 +45,7 @@ const PlayButtons = () => {
           <Button
             startIcon={<LanguageIcon />}
             variant={state.mainButtons.name === mainButtonsConst.PLAY_ONLINE ? "contained" : "outlined"}
-            onClick={() => {
-              dispatch(playOnlineDialog.open());
-              WsAction.onlineGames(state);
-            }}
+            onClick={() => dispatch(playOnlineDialog.open())}
           >
             Play Online
           </Button>
