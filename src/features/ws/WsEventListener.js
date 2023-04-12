@@ -86,9 +86,9 @@ export default class WsEventListener {
         dispatch(progressDialog.close());
         dispatch(WsEvent.onStockfish(data));
         break;
-      case 'validate' === mssg:
+      case 'error' === mssg:
         dispatch(progressDialog.close());
-        dispatch(WsEvent.onValidate(data));
+        dispatch(WsEvent.onError(data));
         break;
       default:
         break;

@@ -474,12 +474,11 @@ export default class WsEvent {
     }
   }
 
-  static onValidate = (data) => dispatch => {
-    Dispatcher.initGui(dispatch);
-    if (data['validate']) {
+  static onError = (data) => dispatch => {
+    if (data['error']) {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({
-        info: 'Whoops! Something went wrong, please try again with different data.'
+        info: 'Whoops! Something went wrong.'
       }));
     }
   }
