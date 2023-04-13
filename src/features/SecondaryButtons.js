@@ -42,6 +42,7 @@ const SecondaryButtons = ({props}) => {
     dispatch(progressDialog.open());
     let body = {
       variant: state.variant.name,
+      fen: state.board.fen[0],
       movetext: Movetext.substring(state.board.movetext, state.history.back),
       flip: state.board.flip
     };
