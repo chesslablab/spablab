@@ -5,7 +5,6 @@ import BlurOnIcon from '@mui/icons-material/BlurOn';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ExtensionIcon from '@mui/icons-material/Extension';
-import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import QuizIcon from '@mui/icons-material/Quiz';
@@ -39,7 +38,6 @@ import * as searchNameDialog from '../features/dialog/searchNameDialogSlice';
 import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialogSlice';
 import * as endgameSkillsDialog from '../features/dialog/endgameSkillsDialogSlice';
 import * as settingsDialog from '../features/dialog/settingsDialogSlice';
-import * as watchDialog from '../features/dialog/watchDialogSlice';
 import * as modeConst from '../features/mode/modeConst';
 import * as mode from '../features/mode/modeSlice';
 import * as variantConst from '../features/variant/variantConst';
@@ -315,12 +313,6 @@ const MainButtons = ({props}) => {
           <SpellcheckIcon size="small" />&nbsp;Name
         </MenuItem>
       </Menu>
-      <Button
-        startIcon={<OndemandVideoIcon />}
-        onClick={() => dispatch(watchDialog.open())}
-      >
-        Watch
-      </Button>
       <Button
         sx={{ borderRadius: 0 }}
         startIcon={<SettingsIcon />}
