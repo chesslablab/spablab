@@ -101,10 +101,7 @@ const boardSlice = createSlice({
       state.movetext = action.payload.movetext;
     },
     playMove(state, action) {
-      const newFen = JSON.parse(JSON.stringify(state.fen));
-      newFen.push(action.payload.fen);
       state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      state.fen = newFen;
     },
     gm(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
