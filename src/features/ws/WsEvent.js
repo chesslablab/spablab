@@ -252,7 +252,11 @@ export default class WsEvent {
     };
     if (data['/play_lan'].isLegal) {
       dispatch(board.validMove(payload));
-      if (
+      if (store.getState().mode.name === modeConst.PLAY) {
+        if (store.getState().mode.play.color !== data['/play_lan'].turn) {
+          dispatch(board.turn());
+        }
+      } else if (
         store.getState().variant.name === variantConst.CLASSICAL &&
         store.getState().mode.name === modeConst.ANALYSIS
       ) {

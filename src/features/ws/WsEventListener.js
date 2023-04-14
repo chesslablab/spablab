@@ -1,4 +1,3 @@
-import store from '../../app/store';
 import Wording from '../../common/Wording.js';
 import * as board from '../../features/board/boardSlice';
 import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
@@ -41,11 +40,6 @@ export default class WsEventListener {
         dispatch(WsEvent.onAccept(data));
         break;
       case '/play_lan' === mssg:
-        if (store.getState().mode.name === modeConst.PLAY) {
-          if (store.getState().mode.play.color !== data['/play_lan'].turn) {
-            dispatch(board.playMove({ fen: data['/play_lan'].fen }));
-          }
-        }
         dispatch(WsEvent.onPlayLan(props, data));
         break;
       case '/legal_sqs' === mssg:

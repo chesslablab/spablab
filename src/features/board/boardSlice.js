@@ -46,6 +46,12 @@ const boardSlice = createSlice({
       state.turn = action.payload.turn;
       state.movetext = action.payload.movetext;
     },
+    flip(state) {
+      state.flip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+    },
+    turn(state) {
+      state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+    },
     pickPiece(state, action) {
       const fen = state.fen[state.fen.length - 1].split(' ');
       const ascii = Ascii.toAscii(fen[0]);
@@ -72,9 +78,6 @@ const boardSlice = createSlice({
       state.picked = null;
       state.lan = '';
     },
-    flip(state) {
-      state.flip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-    },
     legalSqs(state, action) {
       state.picked.legal_sqs = action.payload.sqs;
       state.picked.en_passant = action.payload.en_passant;
@@ -100,9 +103,6 @@ const boardSlice = createSlice({
       state.picked = null;
       state.movetext = action.payload.movetext;
     },
-    playMove(state, action) {
-      state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-    },
     gm(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
       newFen.push(action.payload.fen);
@@ -123,14 +123,14 @@ export const {
   startChess960,
   startFen,
   startPgn,
+  flip,
+  turn,
   pickPiece,
   leavePiece,
   browseHistory,
-  flip,
   legalSqs,
   undo,
   validMove,
-  playMove,
   gm
 } = boardSlice.actions;
 export default boardSlice.reducer;
