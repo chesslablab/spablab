@@ -58,22 +58,11 @@ const boardSlice = createSlice({
       };
     },
     leavePiece(state, action) {
-      const newTurn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      const splitFen = state.fen[state.fen.length - 1].split(' ')[0];
-      const ascii = Ascii.toAscii(splitFen);
       if (state.picked.piece === ' . ') {
         state.picked = null;
       } else if (state.picked.legal_sqs.includes(action.payload.sq)) {
-        ascii[state.picked.i][state.picked.j] = ' . ';
-        ascii[action.payload.i][action.payload.j] = state.picked.piece;
-        if (state.picked.en_passant) {
-          if (action.payload.sq.charAt(0) === state.picked.en_passant.charAt(0)) {
-            const index = Ascii.fromAlgebraicToIndex(state.picked.en_passant, state.size);
-            ascii[index[0]][index[1]] = ' . ';
-          }
-        }
         state.lan += action.payload.sq;
-        state.turn = newTurn;
+        state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
         state.isCheck = false;
         state.isMate = false;
         state.picked = null;
