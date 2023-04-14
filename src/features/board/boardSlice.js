@@ -72,26 +72,6 @@ const boardSlice = createSlice({
       state.picked = null;
       state.lan = '';
     },
-    castleShort(state, action) {
-      const newFen = JSON.parse(JSON.stringify(state.fen));
-      newFen.push(action.payload.fen);
-      state.lan = '';
-      state.fen = newFen;
-      state.isCheck = action.payload.isCheck;
-      state.isMate = action.payload.isMate;
-      state.picked = null;
-      state.movetext = action.payload.movetext;
-    },
-    castleLong(state, action) {
-      const newFen = JSON.parse(JSON.stringify(state.fen));
-      newFen.push(action.payload.fen);
-      state.lan = '';
-      state.fen = newFen;
-      state.isCheck = action.payload.isCheck;
-      state.isMate = action.payload.isMate;
-      state.picked = null;
-      state.movetext = action.payload.movetext;
-    },
     flip(state) {
       state.flip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     },
@@ -149,8 +129,6 @@ export const {
   pickPiece,
   leavePiece,
   browseHistory,
-  castleShort,
-  castleLong,
   flip,
   legalSqs,
   undo,

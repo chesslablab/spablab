@@ -251,13 +251,7 @@ export default class WsEvent {
       fen: data['/play_lan'].fen
     };
     if (data['/play_lan'].isLegal) {
-      if (data['/play_lan'].pgn === Pgn.symbol.CASTLING_LONG) {
-        dispatch(board.castleLong(payload));
-      } else if (data['/play_lan'].pgn === Pgn.symbol.CASTLING_SHORT) {
-        dispatch(board.castleShort(payload));
-      } else {
-        dispatch(board.validMove(payload));
-      }
+      dispatch(board.validMove(payload));
       if (
         store.getState().variant.name === variantConst.CLASSICAL &&
         store.getState().mode.name === modeConst.ANALYSIS
