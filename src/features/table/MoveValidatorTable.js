@@ -36,7 +36,7 @@ const MoveValidatorTable = ({props}) => {
   }, [state.board.picked]);
 
   const highlight = (n) => {
-    if (n === state.board.history.length + state.history.back - 1) {
+    if (n === state.board.fen.length + state.history.back - 1) {
       return styles.currentMove;
     }
 
@@ -51,7 +51,7 @@ const MoveValidatorTable = ({props}) => {
           <TableCell
             sx={[styles.move, highlight(((i + 1) * 2) - 1)]}
             onClick={() => dispatch(history.goTo({
-              back: state.board.history.length - 1 - (((i + 1) * 2) - 1) }
+              back: state.board.fen.length - 1 - (((i + 1) * 2) - 1) }
             ))}
           >
             {row.w}
@@ -59,7 +59,7 @@ const MoveValidatorTable = ({props}) => {
           <TableCell
             sx={[styles.move, highlight((i + 1) * 2)]}
             onClick={() => {
-              const back = state.board.history.length - 1 - ((i + 1) * 2);
+              const back = state.board.fen.length - 1 - ((i + 1) * 2);
               if (back >= 0) {
                 dispatch(history.goTo({ back: back }));
               }

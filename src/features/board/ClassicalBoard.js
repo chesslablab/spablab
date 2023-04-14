@@ -36,7 +36,7 @@ const ClassicalBoard = ({props}) => {
         }
       }
     }
-  }, [state.board.history.length]);
+  }, [state.board.fen.length]);
 
   const handleMove = (payload) => {
     if (state.board.turn === Piece.color(payload.piece)) {

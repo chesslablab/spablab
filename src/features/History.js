@@ -21,12 +21,12 @@ const History = () => {
       />
       <Button
         startIcon={<FastRewindIcon />}
-        disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
-        onClick={() => dispatch(history.goTo({ back: state.board.history.length - 1 }))}
+        disabled={state.board.fen.length - 1 - Math.abs(state.history.back) === 0}
+        onClick={() => dispatch(history.goTo({ back: state.board.fen.length - 1 }))}
       />
       <Button
         startIcon={<SkipPreviousIcon />}
-        disabled={state.board.history.length - 1 - Math.abs(state.history.back) === 0}
+        disabled={state.board.fen.length - 1 - Math.abs(state.history.back) === 0}
         onClick={() => {
           dispatch(history.goBack());
           dispatch(board.browseHistory());
