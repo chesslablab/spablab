@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import Piece from '../../common/Piece';
-import * as boardSlice from '../../features/board/boardSlice';
+import * as board from '../../features/board/boardSlice';
 import Squares from '../../features/board/Squares';
 import * as modeConst from '../../features/mode/modeConst';
 import WsAction from '../../features/ws/WsAction';
@@ -23,17 +23,17 @@ const Chess960Board = ({props}) => {
       // allow the king to be dropped into the castling rook
       if (state.board.picked) {
         if (state.board.picked.legal_sqs.includes(payload.sq)) {
-          dispatch(boardSlice.leavePiece(payload));
+          dispatch(board.leavePiece(payload));
         } else {
-          dispatch(boardSlice.pickPiece(payload));
+          dispatch(board.pickPiece(payload));
           WsAction.legalSqs(state, payload.sq);
         }
       } else {
-        dispatch(boardSlice.pickPiece(payload));
+        dispatch(board.pickPiece(payload));
         WsAction.legalSqs(state, payload.sq);
       }
     } else if (state.board.picked) {
-      dispatch(boardSlice.leavePiece(payload));
+      dispatch(board.leavePiece(payload));
     }
   }
 

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import Piece from '../../common/Piece';
-import * as boardSlice from '../../features/board/boardSlice';
+import * as board from '../../features/board/boardSlice';
 import Squares from '../../features/board/Squares';
 import WsAction from '../../features/ws/WsAction';
 
@@ -19,10 +19,10 @@ const Capablanca80Board = ({props}) => {
 
   const handleMove = (payload) => {
     if (state.board.turn === Piece.color(payload.piece)) {
-      dispatch(boardSlice.pickPiece(payload));
+      dispatch(board.pickPiece(payload));
       WsAction.legalSqs(state, payload.sq);
     } else if (state.board.picked) {
-      dispatch(boardSlice.leavePiece(payload));
+      dispatch(board.leavePiece(payload));
     }
   }
 
