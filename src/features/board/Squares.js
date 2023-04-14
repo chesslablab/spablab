@@ -40,8 +40,8 @@ const Squares = ({props}) => {
   }
 
   const sqs = () => {
-    const fenSplit = state.board.fen[state.board.fen.length - 1 + state.history.back].split(' ')[0];
-    const ascii = Ascii.toAscii(fenSplit);
+    const splitFen = state.board.fen[state.board.fen.length - 1 + state.history.back].split(' ')[0];
+    const ascii = Ascii.toAscii(splitFen);
     return Ascii.flip(
       state.board.flip,
       ascii

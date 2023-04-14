@@ -24,26 +24,26 @@ const boardSlice = createSlice({
   reducers: {
     start: () => initialState,
     startCapablanca80(state, action) {
-      const fenSplit = action.payload.fen.split(' ');
+      const splitFen = action.payload.fen.split(' ');
       state.fen = [action.payload.fen];
-      state.turn = fenSplit[1];
-      state.history = [Ascii.toAscii(fenSplit[0])];
+      state.turn = splitFen[1];
+      state.history = [Ascii.toAscii(splitFen[0])];
       state.size = {
         files: 10,
         ranks: 8
       }
     },
     startChess960(state, action) {
-      const fenSplit = action.payload.fen.split(' ');
+      const splitFen = action.payload.fen.split(' ');
       state.fen = [action.payload.fen];
-      state.turn = fenSplit[1];
-      state.history = [Ascii.toAscii(fenSplit[0])];
+      state.turn = splitFen[1];
+      state.history = [Ascii.toAscii(splitFen[0])];
     },
     startFen(state, action) {
-      const fenSplit = action.payload.fen.split(' ');
+      const splitFen = action.payload.fen.split(' ');
       state.fen = [action.payload.fen];
-      state.turn = fenSplit[1];
-      state.history = [Ascii.toAscii(fenSplit[0])];
+      state.turn = splitFen[1];
+      state.history = [Ascii.toAscii(splitFen[0])];
     },
     startPgn(state, action) {
       state.fen = action.payload.fen;
