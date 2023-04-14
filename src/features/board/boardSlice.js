@@ -69,8 +69,6 @@ const boardSlice = createSlice({
       } else if (state.picked.legal_sqs.includes(action.payload.sq)) {
         state.lan += action.payload.sq;
         state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-        state.isCheck = false;
-        state.isMate = false;
         state.picked = null;
       }
     },
