@@ -23,23 +23,23 @@ const boardSlice = createSlice({
   reducers: {
     start: () => initialState,
     startCapablanca80(state, action) {
-      const splitFen = action.payload.fen.split(' ');
+      const fen = action.payload.fen.split(' ');
       state.fen = [action.payload.fen];
-      state.turn = splitFen[1];
+      state.turn = fen[1];
       state.size = {
         files: 10,
         ranks: 8
       }
     },
     startChess960(state, action) {
-      const splitFen = action.payload.fen.split(' ');
+      const fen = action.payload.fen.split(' ');
       state.fen = [action.payload.fen];
-      state.turn = splitFen[1];
+      state.turn = fen[1];
     },
     startFen(state, action) {
-      const splitFen = action.payload.fen.split(' ');
+      const fen = action.payload.fen.split(' ');
       state.fen = [action.payload.fen];
-      state.turn = splitFen[1];
+      state.turn = fen[1];
     },
     startPgn(state, action) {
       state.fen = action.payload.fen;
@@ -47,8 +47,8 @@ const boardSlice = createSlice({
       state.movetext = action.payload.movetext;
     },
     pickPiece(state, action) {
-      const splitFen = state.fen[state.fen.length - 1].split(' ')[0];
-      const ascii = Ascii.toAscii(splitFen);
+      const fen = state.fen[state.fen.length - 1].split(' ');
+      const ascii = Ascii.toAscii(fen[0]);
       state.lan = action.payload.sq;
       state.picked = {
         i: action.payload.i,
