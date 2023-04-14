@@ -40,9 +40,11 @@ const Squares = ({props}) => {
   }
 
   const sqs = () => {
+    const fenSplit = state.board.fen[state.board.fen.length - 1 + state.history.back].split(' ')[0];
+    const ascii = Ascii.toAscii(fenSplit);
     return Ascii.flip(
       state.board.flip,
-      state.board.history[state.board.history.length - 1 + state.history.back]
+      ascii
     ).map((rank, i) => {
       return rank.map((piece, j) => {
         let payload = { piece: piece };
