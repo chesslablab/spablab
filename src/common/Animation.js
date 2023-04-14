@@ -9,9 +9,12 @@ export default class Animation {
   }
 
   pieces() {
+    const fromFen = store.getState().board.fen[store.getState().board.fen.length - 2].split(' ');
+    const toFen = store.getState().board.fen[store.getState().board.fen.length - 1].split(' ');
+
     const lan = Ascii.longAlgebraicNotation(
-      store.getState().board.history[store.getState().board.history.length - 2],
-      store.getState().board.history[store.getState().board.history.length - 1]
+      Ascii.toAscii(fromFen[0]),
+      Ascii.toAscii(toFen[0])
     );
 
     const sqDiff = Ascii.sqDiff(lan[0], lan[1]);
