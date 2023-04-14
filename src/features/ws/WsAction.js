@@ -67,8 +67,8 @@ export default class WsAction {
     return await state.server.ws.send(`/accept ${hash}`);
   }
 
-  static legalSqs = async (state, sq) => {
-    return await state.server.ws.send(`/legal_sqs ${sq}`);
+  static legal = async (state, sq) => {
+    return await state.server.ws.send(`/legal ${sq}`);
   }
 
   static heuristics = async (state, movetext) => {

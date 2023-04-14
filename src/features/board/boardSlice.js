@@ -66,8 +66,11 @@ const boardSlice = createSlice({
     leavePiece(state, action) {
       if (state.picked.piece === ' . ') {
         state.picked = null;
-      } else if (state.picked.legal_sqs.includes(action.payload.sq)) {
+      } else if (Object.keys(state.picked.fen).includes(action.payload.sq)) {
+        const newFen = JSON.parse(JSON.stringify(state.fen));
+        newFen.push(state.picked.fen[action.payload.sq]);
         state.lan += action.payload.sq;
+        state.fen = newFen;
         state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
         state.picked = null;
       }
@@ -76,8 +79,8 @@ const boardSlice = createSlice({
       state.picked = null;
       state.lan = '';
     },
-    legalSqs(state, action) {
-      state.picked.legal_sqs = action.payload.sqs;
+    legal(state, action) {
+      state.picked.fen = action.payload.fen;
       state.picked.en_passant = action.payload.en_passant;
     },
     undo(state, action) {
@@ -92,14 +95,16 @@ const boardSlice = createSlice({
       state.movetext = action.payload.movetext;
     },
     validMove(state, action) {
-      const newFen = JSON.parse(JSON.stringify(state.fen));
-      newFen.push(action.payload.fen);
       state.lan = '';
-      state.fen = newFen;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.picked = null;
       state.movetext = action.payload.movetext;
+      if (state.turn === action.payload.turn) {
+        const newFen = JSON.parse(JSON.stringify(state.fen));
+        newFen.push(action.payload.fen);
+        state.fen = newFen;
+      }
     },
     gm(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
@@ -126,7 +131,7 @@ export const {
   pickPiece,
   leavePiece,
   browseHistory,
-  legalSqs,
+  legal,
   undo,
   validMove,
   gm

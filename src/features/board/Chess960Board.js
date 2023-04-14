@@ -22,15 +22,15 @@ const Chess960Board = ({props}) => {
     if (state.board.turn === Piece.color(payload.piece)) {
       // allow the king to be dropped into the castling rook
       if (state.board.picked) {
-        if (state.board.picked.legal_sqs.includes(payload.sq)) {
+        if (Object.keys(state.board.picked.fen).includes(payload.sq)) {
           dispatch(board.leavePiece(payload));
         } else {
           dispatch(board.pickPiece(payload));
-          WsAction.legalSqs(state, payload.sq);
+          WsAction.legal(state, payload.sq);
         }
       } else {
         dispatch(board.pickPiece(payload));
-        WsAction.legalSqs(state, payload.sq);
+        WsAction.legal(state, payload.sq);
       }
     } else if (state.board.picked) {
       dispatch(board.leavePiece(payload));

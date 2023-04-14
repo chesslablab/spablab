@@ -234,12 +234,12 @@ export default class WsEvent {
     }
   }
 
-  static onLegalSqs = (data) => dispatch => {
-    dispatch(board.legalSqs({
-      piece: data['/legal_sqs'].identity,
-      position: data['/legal_sqs'].position,
-      sqs: data['/legal_sqs'].sqs,
-      en_passant: data['/legal_sqs'].enPassant ? data['/legal_sqs'].enPassant : ''
+  static onLegal = (data) => dispatch => {
+    dispatch(board.legal({
+      piece: data['/legal'].identity,
+      position: data['/legal'].position,
+      fen: data['/legal'].fen,
+      en_passant: data['/legal'].enPassant ? data['/legal'].enPassant : ''
     }));
   }
 
@@ -248,7 +248,8 @@ export default class WsEvent {
       isCheck: data['/play_lan'].isCheck,
       isMate: data['/play_lan'].isMate,
       movetext: data['/play_lan'].movetext,
-      fen: data['/play_lan'].fen
+      fen: data['/play_lan'].fen,
+      turn: data['/play_lan'].turn
     };
     if (data['/play_lan'].isLegal) {
       dispatch(board.validMove(payload));

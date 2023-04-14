@@ -75,8 +75,8 @@ const Squares = ({props}) => {
           if (state.board.picked.sq === payload.sq) {
             isSelected = 'isSelected';
           }
-          if (state.board.picked.legal_sqs) {
-            if (state.board.picked.legal_sqs.includes(payload.sq)) {
+          if (state.board.picked.fen) {
+            if (Object.keys(state.board.picked.fen).includes(payload.sq)) {
               isLegal = 'isLegal';
             }
           }

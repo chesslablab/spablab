@@ -42,8 +42,8 @@ export default class WsEventListener {
       case '/play_lan' === mssg:
         dispatch(WsEvent.onPlayLan(props, data));
         break;
-      case '/legal_sqs' === mssg:
-        dispatch(WsEvent.onLegalSqs(data));
+      case '/legal' === mssg:
+        dispatch(WsEvent.onLegal(data));
         break;
       case '/heuristics' === mssg:
         dispatch(progressDialog.close());
