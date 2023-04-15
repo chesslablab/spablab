@@ -104,7 +104,7 @@ const Squares = ({props}) => {
               isCheck
             ].join(' ')
           }
-          onClick={() => {
+          onMouseDown={() => {
             filterMove() ? props.handleMove(payload) : null;
           }}
           onDrop={(ev) => {
