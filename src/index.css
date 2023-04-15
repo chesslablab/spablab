@@ -47,7 +47,7 @@
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;
   padding-right: 0.25em;
-  width: 110%;
+  width: 105%;
 }
 
 .sq.isSelected {
@@ -60,6 +60,7 @@
 .sq.isLegal {
   box-shadow: inset -4px 0 0 #ffdd43, inset 0 -4px 0 #ffdd43,
     inset 4px 0 0 #ffeb8e, inset 0 4px 0 #ffeb8e;
+  cursor: pointer;
 }
 
 .sq.isCheck {
