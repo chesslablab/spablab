@@ -42,7 +42,8 @@ const SearchGamesDialog = ({props}) => {
         [event.target.elements.Result.name]: event.target.elements.Result.value,
         [event.target.elements.movetext.name]: event.target.elements.movetext.value
       })
-    }).then(res => {
+    })
+    .then(res => {
       dispatch(progressDialog.close());
       if (res.status === 200) {
         res.json().then(data => {
@@ -51,10 +52,12 @@ const SearchGamesDialog = ({props}) => {
       } else if (res.status === 204) {
         dispatch(searchGamesDialog.close());
         dispatch(infoAlert.show({ info: 'No results were found, please try again.' }));
-      } else {
-        dispatch(searchGamesDialog.close());
-        dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
       }
+    })
+    .catch(error => {
+      dispatch(progressDialog.close());
+      dispatch(searchGamesDialog.close());
+      dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
     });
   };
 
