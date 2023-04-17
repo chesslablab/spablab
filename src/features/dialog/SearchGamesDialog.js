@@ -44,7 +44,6 @@ const SearchGamesDialog = ({props}) => {
       })
     })
     .then(res => {
-      dispatch(progressDialog.close());
       if (res.status === 200) {
         res.json().then(data => {
           setResult(data);
@@ -55,9 +54,11 @@ const SearchGamesDialog = ({props}) => {
       }
     })
     .catch(error => {
-      dispatch(progressDialog.close());
       dispatch(searchGamesDialog.close());
       dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+    })
+    .finally(() => {
+      dispatch(progressDialog.close());
     });
   };
 
