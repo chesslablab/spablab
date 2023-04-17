@@ -39,7 +39,8 @@ const SearchGamesDialog = ({props}) => {
         [event.target.elements.ECO.name]: event.target.elements.ECO.value,
         [event.target.elements.White.name]: event.target.elements.White.value,
         [event.target.elements.Black.name]: event.target.elements.Black.value,
-        [event.target.elements.Result.name]: event.target.elements.Result.value
+        [event.target.elements.Result.name]: event.target.elements.Result.value,
+        [event.target.elements.movetext.name]: event.target.elements.movetext.value
       })
     }).then(res => {
       dispatch(progressDialog.close());
@@ -139,6 +140,20 @@ const SearchGamesDialog = ({props}) => {
                   0-1
                 </MenuItem>
               </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                multiline
+                rows={1}
+                name="movetext"
+                label="PGN Movetext"
+                variant="filled"
+                margin="normal"
+                inputProps={{
+                  spellCheck: false
+                }}
+              />
             </Grid>
           </Grid>
           <Button
