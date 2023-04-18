@@ -37,19 +37,19 @@ const props = {
 };
 
 describe("Chess", () => {
-  it("is rendered", () => {
+  it("is a rendered component", () => {
     const chess = mount(<Chess props={props} />);
   });
-  it("the first chess board square is a black rook before flipping the chess board", () => {
+  it("is a black rook on a8 before flipping the chess board", () => {
     const chess = mount(<Chess props={props} />);
-    const text = chess.find('.board').at(0).find('.sq').at(0).find('img').at(0).prop('src');
+    const text = chess.find('.classicalBoard').at(0).find('.sq').at(0).find('img').at(0).prop('src');
     expect(store.getState().board.flip).toBe('w');
     expect(text).toEqual('bRook.svg');
   });
-  it("the first chess board square is a white rook after flipping the chess board", () => {
+  it("is a white rook on h1 after flipping the chess board", () => {
     const { result } = renderHook(() => SyncDispatcher(flip()), { wrapper });
     const chess = mount(<Chess props={props} />);
-    const text = chess.find('.board').at(0).find('.sq').at(0).find('img').at(0).prop('src');
+    const text = chess.find('.classicalBoard').at(0).find('.sq').at(0).find('img').at(0).prop('src');
     expect(result.current.state.board.flip).toBe('b');
     expect(text).toEqual('wRook.svg');
   });
@@ -63,6 +63,6 @@ describe("Chess", () => {
   });
   it("opens the 'Analysis Board' > 'PGN Movetext' dialog", () => {
     const { result } = renderHook(() => SyncDispatcher(loadPgnDialog.open()), { wrapper });
-    expect(result.current.state.loadPgnDialog.open).toBe(true)
-  })
+    expect(result.current.state.loadPgnDialog.open).toBe(true);
+  });
 });
