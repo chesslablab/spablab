@@ -28,4 +28,8 @@ describe("LoadFenDialog", () => {
     const { result } = renderHook(() => SyncDispatcher(loadFenDialog.open()), { wrapper });
     expect(result.current.state.loadFenDialog.open).toBe(true);
   });
+  it("closes the dialog", () => {
+    const { result } = renderHook(() => SyncDispatcher(loadFenDialog.close()), { wrapper });
+    expect(result.current.state.loadFenDialog.open).toBe(false);
+  });
 });

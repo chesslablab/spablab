@@ -28,4 +28,8 @@ describe("CreateInviteCodeDialog", () => {
     const { result } = renderHook(() => SyncDispatcher(createInviteCodeDialog.open()), { wrapper });
     expect(result.current.state.createInviteCodeDialog.open).toBe(true);
   });
+  it("closes the dialog", () => {
+    const { result } = renderHook(() => SyncDispatcher(createInviteCodeDialog.close()), { wrapper });
+    expect(result.current.state.createInviteCodeDialog.open).toBe(false);
+  });
 });

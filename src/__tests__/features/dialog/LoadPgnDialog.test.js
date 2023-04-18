@@ -28,4 +28,8 @@ describe("LoadPgnDialog", () => {
     const { result } = renderHook(() => SyncDispatcher(loadPgnDialog.open()), { wrapper });
     expect(result.current.state.loadPgnDialog.open).toBe(true);
   });
+  it("closes the dialog", () => {
+    const { result } = renderHook(() => SyncDispatcher(loadPgnDialog.close()), { wrapper });
+    expect(result.current.state.loadPgnDialog.open).toBe(false);
+  });
 });
