@@ -19,28 +19,28 @@ describe('byEco()', () => {
 });
 
 describe('byMovetext()', () => {
-  it('is 0 including foo', () => {
-    expect(Opening.byMovetext('foo').length).toBe(0);
+  it('is none starting with foo', () => {
+    expect(Opening.byMovetext('foo')).toBe(null);
   });
-  it('is 990 including 1.e4 e5', () => {
-    expect(Opening.byMovetext('1.e4 e5').length).toBe(990);
+  it('is none starting with 2.d4 g6', () => {
+    expect(Opening.byMovetext('2.d4 g6')).toBe(null);
   });
-  it('is 651 including 1.e4 e5 2.Nf3', () => {
-    expect(Opening.byMovetext('1.e4 e5 2.Nf3').length).toBe(651);
+  it('none starting with 2.Nf3 e4', () => {
+    expect(Opening.byMovetext('2.Nf3 e4')).toBe(null);
   });
-  it('is 6 including 2.Nf3 e4', () => {
-    expect(Opening.byMovetext('2.Nf3 e4').length).toBe(6);
+  it('is 1 starting with 1.e4 e5', () => {
+    expect(Opening.byMovetext('1.e4 e5').length).toBe(1);
   });
-  it('is 2 including 2.d4 g6', () => {
-    expect(Opening.byMovetext('2.d4 g6').length).toBe(2);
+  it('is 1 starting with 1.e4 e5 2.Nf3', () => {
+    expect(Opening.byMovetext('1.e4 e5 2.Nf3').length).toBe(1);
   });
 });
 
 describe('byName()', () => {
-  it('is 381 including Sicilian', () => {
+  it("is 381 including 'Sicilian'", () => {
     expect(Opening.byName('Sicilian').length).toBe(381);
   });
-  it('is 381 including sicilian', () => {
+  it("is 381 including 'sicilian'", () => {
     expect(Opening.byName('sicilian').length).toBe(381);
   });
 });
