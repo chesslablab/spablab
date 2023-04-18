@@ -34,9 +34,6 @@ const props = {
 };
 
 describe("Chess", () => {
-  it("is a rendered component", () => {
-    const chess = mount(<Chess props={props} />);
-  });
   it("is a black rook on a8 before flipping the chess board", () => {
     const chess = mount(<Chess props={props} />);
     const text = chess.find('.classicalBoard').at(0).find('.sq').at(0).find('img').at(0).prop('src');
