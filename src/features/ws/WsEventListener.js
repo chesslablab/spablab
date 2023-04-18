@@ -52,6 +52,9 @@ export default class WsEventListener {
       case '/heuristics_bar' === mssg:
         dispatch(WsEvent.onHeuristicsBar(data));
         break;
+      case '/online_games' === cmd:
+        dispatch(WsEvent.onOnlineGames(data));
+        break;
       case '/undo' === mssg:
         dispatch(WsEvent.onUndo(data));
         break;

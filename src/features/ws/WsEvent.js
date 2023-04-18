@@ -473,6 +473,10 @@ export default class WsEvent {
     }
   }
 
+  static onOnlineGames = (data) => dispatch => {
+    dispatch(playOnlineDialog.refresh(data['/online_games']));
+  }
+
   static onError = (data) => dispatch => {
     if (data['error']) {
       dispatch(mode.startUndefined());

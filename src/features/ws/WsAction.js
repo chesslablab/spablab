@@ -116,4 +116,8 @@ export default class WsAction {
 
     return await state.server.ws.send(`/stockfish "${options}" "${params}"`);
   }
+
+  static onlineGames = async (state) => {
+    return await state.server.ws.send('/online_games');
+  }
 }
