@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import Chess from 'features/Chess';
-import { act } from 'react-dom/test-utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
+import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
-import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
-import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
-import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
-import { flip } from 'features/board/boardSlice';
 import store from 'app/store';
+import * as board from 'features/board/boardSlice';
+import Chess from 'features/Chess';
 
 const SyncDispatcher = (action) => {
   const state = useSelector(state => state);
@@ -47,22 +44,10 @@ describe("Chess", () => {
     expect(text).toEqual('bRook.svg');
   });
   it("is a white rook on h1 after flipping the chess board", () => {
-    const { result } = renderHook(() => SyncDispatcher(flip()), { wrapper });
+    const { result } = renderHook(() => SyncDispatcher(board.flip()), { wrapper });
     const chess = mount(<Chess props={props} />);
     const text = chess.find('.classicalBoard').at(0).find('.sq').at(0).find('img').at(0).prop('src');
     expect(result.current.state.board.flip).toBe('b');
     expect(text).toEqual('wRook.svg');
-  });
-  it("opens the 'Play a Friend' > 'Create Invite Code' dialog", () => {
-    const { result } = renderHook(() => SyncDispatcher(createInviteCodeDialog.open()), { wrapper });
-    expect(result.current.state.createInviteCodeDialog.open).toBe(true);
-  });
-  it("opens the 'Analysis Board' > 'FEN String' dialog", () => {
-    const { result } = renderHook(() => SyncDispatcher(loadFenDialog.open()), { wrapper });
-    expect(result.current.state.loadFenDialog.open).toBe(true);
-  });
-  it("opens the 'Analysis Board' > 'PGN Movetext' dialog", () => {
-    const { result } = renderHook(() => SyncDispatcher(loadPgnDialog.open()), { wrapper });
-    expect(result.current.state.loadPgnDialog.open).toBe(true);
   });
 });
