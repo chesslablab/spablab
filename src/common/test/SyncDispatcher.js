@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { act } from 'react-dom/test-utils';
 
-const SyncDispatcher = (actions) => {
+const Dispatch = (actions) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -15,4 +15,4 @@ const SyncDispatcher = (actions) => {
   return { state }
 };
 
-export default SyncDispatcher;
+export default Dispatch;

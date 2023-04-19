@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import store from 'app/store';
 import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
-import SyncDispatcher from 'test/SyncDispatcher';
+import Dispatch from 'test/Dispatch';
 
 const wrapper = ({ children }) => (
   <Provider store={store}>{children}</Provider>
@@ -14,14 +14,14 @@ describe("LoadFenDialog", () => {
     const actions = [
       loadFenDialog.open()
     ];
-    const { result } = renderHook(() => SyncDispatcher(actions), { wrapper });
+    const { result } = renderHook(() => Dispatch(actions), { wrapper });
     expect(result.current.state.loadFenDialog.open).toBe(true);
   });
   it("closes the dialog", () => {
     const actions = [
       loadFenDialog.close()
     ];
-    const { result } = renderHook(() => SyncDispatcher(actions), { wrapper });
+    const { result } = renderHook(() => Dispatch(actions), { wrapper });
     expect(result.current.state.loadFenDialog.open).toBe(false);
   });
 });
