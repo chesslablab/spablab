@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
 import store from 'app/store';
-import SyncDispatcher from 'common/test/SyncDispatcher';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import SyncDispatcher from 'test/SyncDispatcher';
 
 const wrapper = ({ children }) => (
   <Provider store={store}>{children}</Provider>
