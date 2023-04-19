@@ -5,8 +5,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Button, ButtonGroup, Grid, Stack } from '@mui/material';
-import * as mainButtonsConst from '../features/mainButtonsConst';
-import * as modeConst from '../features/mode/modeConst';
+import store from '../app/store';
 import Wording from '../common/Wording';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';
@@ -18,6 +17,8 @@ import * as playComputerDialog from '../features/dialog/playComputerDialogSlice'
 import * as playOnlineDialog from '../features/dialog/playOnlineDialogSlice';
 import * as mode from '../features/mode/modeSlice';
 import WsAction from '../features/ws/WsAction';
+import * as mainButtonsConst from '../features/mainButtonsConst';
+import * as modeConst from '../features/mode/modeConst';
 
 const PlayButtons = () => {
   const state = useSelector(state => state);
@@ -45,7 +46,10 @@ const PlayButtons = () => {
           <Button
             startIcon={<LanguageIcon />}
             variant={state.mainButtons.name === mainButtonsConst.PLAY_ONLINE ? "contained" : "outlined"}
-            onClick={() => dispatch(playOnlineDialog.open())}
+            onClick={() => {
+                WsAction.onlineGames(store.getState());
+                dispatch(playOnlineDialog.open());
+            }}
           >
             Play Online
           </Button>
