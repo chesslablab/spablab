@@ -6,13 +6,13 @@ import { act } from 'react-dom/test-utils';
 import store from 'app/store';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 
-const SyncDispatcher = (action) => {
+const SyncDispatcher = (actions) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     act(() => {
-      dispatch(action);
+      actions.forEach(action => dispatch(action));
     });
   }, [dispatch]);
 
@@ -25,15 +25,22 @@ const wrapper = ({ children }) => (
 
 describe("InfoAlert", () => {
   it("opens the alert", () => {
-    const { result } = renderHook(
-      () => SyncDispatcher(infoAlert.show({ info: 'This is an informative message.' })),
-      { wrapper }
-    );
+    const actions = [infoAlert.show({ info: 'This is an informative message.' })];
+    const { result } = renderHook(() => SyncDispatcher(actions), { wrapper });
     expect(result.current.state.infoAlert.open).toBe(true);
     expect(result.current.state.infoAlert.info).toBe('This is an informative message.');
   });
   it("closes the alert", () => {
-    const { result } = renderHook(() => SyncDispatcher(infoAlert.close()), { wrapper });
+    const actions = [infoAlert.close()];
+    const { result } = renderHook(() => SyncDispatcher(actions), { wrapper });
+    expect(result.current.state.infoAlert.open).toBe(false);
+  });
+  it("opens and closes the alert", () => {
+    const actions = [
+      infoAlert.show({ info: 'This is an informative message.' }),
+      infoAlert.close()
+    ];
+    const { result } = renderHook(() => SyncDispatcher(actions), { wrapper });
     expect(result.current.state.infoAlert.open).toBe(false);
   });
 });
