@@ -1,11 +1,9 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { renderHook } from '@testing-library/react-hooks';
+import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import store from 'app/store';
 import * as board from 'features/board/boardSlice';
 import Chess from 'features/Chess';
-import Dispatch from 'test/Dispatch';
 
 const props = {
   server: {
@@ -15,10 +13,6 @@ const props = {
   }
 };
 
-const wrapper = ({ children }) => (
-  <Provider store={store}>{children}</Provider>
-);
-
 describe("Chess", () => {
   it("is a black rook on a8 before flipping the chess board", () => {
     const chess = mount(<Chess props={props} />);
@@ -27,13 +21,12 @@ describe("Chess", () => {
     expect(text).toEqual('bRook.svg');
   });
   it("is a white rook on h1 after flipping the chess board", () => {
-    const actions = [
-      board.flip()
-    ];
-    const { result } = renderHook(() => Dispatch(actions), { wrapper });
+    act(() => {
+      store.dispatch(board.flip());
+    });
     const chess = mount(<Chess props={props} />);
     const text = chess.find('.classicalBoard').at(0).find('.sq').at(0).find('img').at(0).prop('src');
-    expect(result.current.state.board.flip).toBe('b');
+    expect(store.getState().board.flip).toBe('b');
     expect(text).toEqual('wRook.svg');
   });
 });
