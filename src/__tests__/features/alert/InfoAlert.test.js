@@ -1,23 +1,9 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { useDispatch, useSelector } from 'react-redux';
 import { renderHook } from '@testing-library/react-hooks';
-import { act } from 'react-dom/test-utils';
 import store from 'app/store';
+import SyncDispatcher from 'common/test/SyncDispatcher';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-
-const SyncDispatcher = (actions) => {
-  const state = useSelector(state => state);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    act(() => {
-      actions.forEach(action => dispatch(action));
-    });
-  }, [dispatch]);
-
-  return { state }
-};
 
 const wrapper = ({ children }) => (
   <Provider store={store}>{children}</Provider>
