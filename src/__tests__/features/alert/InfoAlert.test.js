@@ -11,13 +11,17 @@ const wrapper = ({ children }) => (
 
 describe("InfoAlert", () => {
   it("opens the alert", () => {
-    const actions = [infoAlert.show({ info: 'This is an informative message.' })];
+    const actions = [
+      infoAlert.show({ info: 'This is an informative message.' })
+    ];
     const { result } = renderHook(() => SyncDispatcher(actions), { wrapper });
     expect(result.current.state.infoAlert.open).toBe(true);
     expect(result.current.state.infoAlert.info).toBe('This is an informative message.');
   });
   it("closes the alert", () => {
-    const actions = [infoAlert.close()];
+    const actions = [
+      infoAlert.close()
+    ];
     const { result } = renderHook(() => SyncDispatcher(actions), { wrapper });
     expect(result.current.state.infoAlert.open).toBe(false);
   });
