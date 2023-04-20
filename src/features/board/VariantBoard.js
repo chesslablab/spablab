@@ -11,7 +11,7 @@ const VariantBoard = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(WsAction.connect(state, props)).then(ws => WsAction.startOff(ws));
+    dispatch(WsAction.connect(props)).then(() => WsAction.startOff());
   }, [dispatch]);
 
   const variantBoard = () => {

@@ -6,12 +6,11 @@ import WsEventListener from '../../features/ws/WsEventListener';
 import * as wsSlice from '../../features/ws/wsSlice';
 
 export default class WsAction {
-  static connect = (state, props) => dispatch => {
+  static connect = (props) => dispatch => {
     return new Promise((resolve, reject) => {
       const ws = new WebSocket(`${props.server.prot}://${props.server.host}:${props.server.port}`);
       ws.onmessage = (res) => {
         dispatch(WsEventListener.listen(props, JSON.parse(res.data)));
-        resolve(res.data);
       };
       ws.onerror = (err) => {
         dispatch(wsSlice.connError());
@@ -19,13 +18,13 @@ export default class WsAction {
       };
       ws.onopen = () => {
         dispatch(wsSlice.connEstablished({ ws: ws }));
-        resolve(ws);
+        resolve();
       };
     });
   }
 
-  static startOff = async (ws) => {
-    return await ws.send('/start classical analysis');
+  static startOff = async () => {
+    return await store.getState().server.ws.send('/start classical analysis');
   }
 
   static start = async (variant, mode, add = {}) => {
@@ -63,6 +62,7 @@ export default class WsAction {
     const color = store.getState().board.turn === Pgn.symbol.WHITE
       ? Pgn.symbol.BLACK
       : Pgn.symbol.WHITE;
+
     return await store.getState().server.ws.send(`/play_lan ${color} ${store.getState().board.lan}`);
   }
 
@@ -81,6 +81,7 @@ export default class WsAction {
   static heuristicsBar = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
     const variant = store.getState().variant.name;
+
     if (store.getState().settingsDialog.fields.heuristics === 'on') {
       return await store.getState().server.ws.send(`/heuristics_bar "${fen}" ${variant}`);
     }
@@ -112,6 +113,7 @@ export default class WsAction {
 
   static randomizer = async (color, items) => {
     items = JSON.stringify(items).replace(/"/g, '\\"');
+
     return await store.getState().server.ws.send(`/randomizer ${color} "${items}"`);
   }
 
