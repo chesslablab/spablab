@@ -29,7 +29,7 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(progressDialog.open());
     dispatch(mainButtons.setOpeningSearch());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
+    WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
       movetext: movetext
     });
   };

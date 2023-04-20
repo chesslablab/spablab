@@ -99,7 +99,7 @@ const CreateCode = () => {
     };
     fields.fen ? settings.fen = fields.fen : null;
     fields.startPos ? settings.startPos = fields.startPos : null;
-    WsAction.start(state, fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
+    WsAction.start(fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
   }
 
   return (

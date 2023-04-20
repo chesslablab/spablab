@@ -48,7 +48,7 @@ const EndgameSkillsDialog = () => {
     dispatch(mainButtons.setTraining());
     dispatch(endgameSkillsDialog.close());
     Dispatcher.initGui(dispatch);
-    WsAction.randomizer(state, color, items);
+    WsAction.randomizer(color, items);
   };
 
   const handleTypeChange = (event: Event) => {

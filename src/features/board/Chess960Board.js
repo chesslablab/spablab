@@ -26,11 +26,11 @@ const Chess960Board = ({props}) => {
           dispatch(board.leavePiece(payload));
         } else {
           dispatch(board.pickPiece(payload));
-          WsAction.legal(state, payload.sq);
+          WsAction.legal(payload.sq);
         }
       } else {
         dispatch(board.pickPiece(payload));
-        WsAction.legal(state, payload.sq);
+        WsAction.legal(payload.sq);
       }
     } else if (state.board.picked) {
       dispatch(board.leavePiece(payload));

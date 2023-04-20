@@ -11,13 +11,13 @@ const AcceptDrawDialog = () => {
 
   const handleDrawAccept = (event) => {
     event.preventDefault();
-    WsAction.draw(state, Wording.verb.ACCEPT.toLowerCase());
+    WsAction.draw(Wording.verb.ACCEPT.toLowerCase());
     dispatch(acceptDrawDialog.close());
   };
 
   const handleDrawDecline = (event) => {
     event.preventDefault();
-    WsAction.draw(state, Wording.verb.DECLINE.toLowerCase());
+    WsAction.draw(Wording.verb.DECLINE.toLowerCase());
     dispatch(acceptDrawDialog.close());
   };
 

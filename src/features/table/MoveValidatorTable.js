@@ -31,7 +31,7 @@ const MoveValidatorTable = ({props}) => {
 
   useEffect(() => {
     if (state.board.lan && !state.board.picked) {
-      WsAction.playLan(state);
+      WsAction.playLan();
     }
   }, [state.board.picked]);
 

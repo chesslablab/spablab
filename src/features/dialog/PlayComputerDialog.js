@@ -39,7 +39,7 @@ const PlayComputerDialog = () => {
     let payload;
     if (fields.position === 'fen') {
       payload = configure(Pgn.symbol.WHITE); // arbitrary color
-      WsAction.start(state, variantConst.CLASSICAL, modeConst.STOCKFISH, {
+      WsAction.start(variantConst.CLASSICAL, modeConst.STOCKFISH, {
         fen: fields.fen
       });
     } else {
@@ -47,7 +47,7 @@ const PlayComputerDialog = () => {
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
         : fields.color;
       payload = configure(color);
-      WsAction.start(state, variantConst.CLASSICAL, modeConst.STOCKFISH, {
+      WsAction.start(variantConst.CLASSICAL, modeConst.STOCKFISH, {
         color: color
       });
     }

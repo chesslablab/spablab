@@ -55,11 +55,7 @@ export default class WsEvent {
       } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
         dispatch(variant.startCapablanca80());
       }
-      WsAction.heuristicsBar(
-          store.getState(),
-          store.getState().board.fen[store.getState().board.fen.length - 1],
-          store.getState().variant.name
-      );
+      WsAction.heuristicsBar();
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({
@@ -87,11 +83,7 @@ export default class WsEvent {
       } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
         dispatch(variant.startCapablanca80());
       }
-      WsAction.heuristicsBar(
-          store.getState(),
-          store.getState().board.fen[store.getState().board.fen.length - 1],
-          store.getState().variant.name
-      );
+      WsAction.heuristicsBar();
     } else {
       dispatch(mode.startUndefined());
       dispatch(infoAlert.show({
@@ -149,7 +141,7 @@ export default class WsEvent {
   static onStartStockfishByColor = (data) => dispatch => {
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(board.flip());
-      WsAction.stockfish(store.getState());
+      WsAction.stockfish();
     }
   }
 
@@ -158,11 +150,7 @@ export default class WsEvent {
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(board.flip());
     }
-    WsAction.heuristicsBar(
-        store.getState(),
-        store.getState().board.fen[store.getState().board.fen.length - 1],
-        store.getState().variant.name
-    );
+    WsAction.heuristicsBar();
   }
 
   static onStart = (data) => dispatch => {
@@ -313,13 +301,9 @@ export default class WsEvent {
         store.getState().mode.name === modeConst.STOCKFISH
       ) {
         dispatch(progressDialog.open());
-        WsAction.stockfish(store.getState());
+        WsAction.stockfish();
       }
-      WsAction.heuristicsBar(
-          store.getState(),
-          store.getState().board.fen[store.getState().board.fen.length - 1],
-          store.getState().variant.name
-      );
+      WsAction.heuristicsBar();
     }
   }
 
@@ -369,11 +353,7 @@ export default class WsEvent {
       dispatch(mode.declineTakeback());
     } else if (data['/undo'].mode === modeConst.ANALYSIS) {
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
-      WsAction.heuristicsBar(
-          store.getState(),
-          store.getState().board.fen[store.getState().board.fen.length - 1],
-          store.getState().variant.name
-      );
+      WsAction.heuristicsBar();
     }
   }
 
@@ -444,7 +424,6 @@ export default class WsEvent {
         }
       }));
       WsAction.start(
-        store.getState(),
         variantConst.CLASSICAL,
         modeConst.STOCKFISH,
         { fen: data['/randomizer'].fen }
@@ -464,11 +443,7 @@ export default class WsEvent {
         movetext: data['/stockfish'].state.movetext,
         fen: data['/stockfish'].state.fen
       }));
-      WsAction.heuristicsBar(
-          store.getState(),
-          store.getState().board.fen[store.getState().board.fen.length - 1],
-          store.getState().variant.name
-      );
+      WsAction.heuristicsBar();
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].state.movetext);
     }
   }

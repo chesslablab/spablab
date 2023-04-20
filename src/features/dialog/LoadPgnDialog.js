@@ -40,7 +40,7 @@ const LoadPgnDialog = () => {
     if (variant === variantConst.CHESS_960) {
       add.startPos = event.target.elements.startPos.value
     }
-    WsAction.start(state, event.target.elements.variant.value, modeConst.PGN, add);
+    WsAction.start(event.target.elements.variant.value, modeConst.PGN, add);
   };
 
   return (

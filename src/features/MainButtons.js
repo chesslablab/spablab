@@ -118,7 +118,7 @@ const MainButtons = ({props}) => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setAnalysis());
           Dispatcher.initGui(dispatch);
-          WsAction.start(state, variantConst.CLASSICAL, modeConst.ANALYSIS);
+          WsAction.start(variantConst.CLASSICAL, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
           <RestartAltIcon size="small" />&nbsp;Start Classical
@@ -126,7 +126,7 @@ const MainButtons = ({props}) => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setAnalysis());
           Dispatcher.initGui(dispatch);
-          WsAction.start(state, variantConst.CHESS_960, modeConst.ANALYSIS);
+          WsAction.start(variantConst.CHESS_960, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
           <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
@@ -134,7 +134,7 @@ const MainButtons = ({props}) => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setAnalysis());
           Dispatcher.initGui(dispatch);
-          WsAction.start(state, variantConst.CAPABLANCA_80, modeConst.ANALYSIS);
+          WsAction.start(variantConst.CAPABLANCA_80, modeConst.ANALYSIS);
           handleCloseAnalysis();
         }}>
           <BlurOnIcon size="small" />&nbsp;Start Capablanca
@@ -269,7 +269,7 @@ const MainButtons = ({props}) => {
         <MenuItem onClick={() => {
           dispatch(mainButtons.setTraining());
           Dispatcher.initGui(dispatch);
-          WsAction.start(state, variantConst.CLASSICAL, modeConst.GM, {
+          WsAction.start(variantConst.CLASSICAL, modeConst.GM, {
             color: Pgn.symbol.WHITE
           });
           handleCloseTraining();

@@ -47,8 +47,8 @@ const PlayButtons = () => {
             startIcon={<LanguageIcon />}
             variant={state.mainButtons.name === mainButtonsConst.PLAY_ONLINE ? "contained" : "outlined"}
             onClick={() => {
-                WsAction.onlineGames(store.getState());
-                dispatch(playOnlineDialog.open());
+              WsAction.onlineGames();
+              dispatch(playOnlineDialog.open());
             }}
           >
             Play Online

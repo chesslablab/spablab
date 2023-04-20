@@ -61,7 +61,7 @@ const DatabaseResultTable = ({props}) => {
     dispatch(progressDialog.open());
     dispatch(mainButtons.setDatabase());
     Dispatcher.initGui(dispatch);
-    WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
+    WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
       movetext: item.movetext
     });
     dispatch(gameTable.show({

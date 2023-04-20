@@ -1,3 +1,4 @@
+import store from '../../app/store';
 import Pgn from '../../common/Pgn';
 import * as modeConst from '../../features/mode/modeConst';
 import * as variantConst from '../../features/variant/variantConst';
@@ -27,7 +28,7 @@ export default class WsAction {
     return await ws.send('/start classical analysis');
   }
 
-  static start = async (state, variant, mode, add = {}) => {
+  static start = async (variant, mode, add = {}) => {
     let mssg = `/start ${variant} ${mode}`;
     if (Object.keys(add).length > 0) {
       if (mode === modeConst.GM) {
@@ -55,69 +56,73 @@ export default class WsAction {
       }
     }
 
-    return await state.server.ws.send(mssg);
+    return await store.getState().server.ws.send(mssg);
   }
 
-  static playLan = async (state) => {
-    const color = state.board.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-    return await state.server.ws.send(`/play_lan ${color} ${state.board.lan}`);
+  static playLan = async () => {
+    const color = store.getState().board.turn === Pgn.symbol.WHITE
+      ? Pgn.symbol.BLACK
+      : Pgn.symbol.WHITE;
+    return await store.getState().server.ws.send(`/play_lan ${color} ${store.getState().board.lan}`);
   }
 
-  static accept = async (state, hash) => {
-    return await state.server.ws.send(`/accept ${hash}`);
+  static accept = async (hash) => {
+    return await store.getState().server.ws.send(`/accept ${hash}`);
   }
 
-  static legal = async (state, sq) => {
-    return await state.server.ws.send(`/legal ${sq}`);
+  static legal = async (sq) => {
+    return await store.getState().server.ws.send(`/legal ${sq}`);
   }
 
-  static heuristics = async (state, movetext) => {
-    return await state.server.ws.send(`/heuristics "${movetext}"`);
+  static heuristics = async (movetext) => {
+    return await store.getState().server.ws.send(`/heuristics "${movetext}"`);
   }
 
-  static heuristicsBar = async (state, fen, variant) => {
-    if (state.settingsDialog.fields.heuristics === 'on') {
-      return await state.server.ws.send(`/heuristics_bar "${fen}" ${variant}`);
+  static heuristicsBar = async () => {
+    const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
+    const variant = store.getState().variant.name;
+    if (store.getState().settingsDialog.fields.heuristics === 'on') {
+      return await store.getState().server.ws.send(`/heuristics_bar "${fen}" ${variant}`);
     }
   }
 
-  static takeback = async (state, action) => {
-    return await state.server.ws.send(`/takeback ${action}`);
+  static takeback = async (action) => {
+    return await store.getState().server.ws.send(`/takeback ${action}`);
   }
 
-  static draw = async (state, action) => {
-    return await state.server.ws.send(`/draw ${action}`);
+  static draw = async (action) => {
+    return await store.getState().server.ws.send(`/draw ${action}`);
   }
 
-  static undo = async (state) => {
-    return await state.server.ws.send(`/undo`);
+  static undo = async () => {
+    return await store.getState().server.ws.send(`/undo`);
   }
 
-  static resign = async (state, action) => {
-    return await state.server.ws.send(`/resign ${action}`);
+  static resign = async (action) => {
+    return await store.getState().server.ws.send(`/resign ${action}`);
   }
 
-  static rematch = async (state, action) => {
-    return await state.server.ws.send(`/rematch ${action}`);
+  static rematch = async (action) => {
+    return await store.getState().server.ws.send(`/rematch ${action}`);
   }
 
-  static restart = async (state) => {
-    return await state.server.ws.send(`/restart ${state.mode.play.hash}`);
+  static restart = async () => {
+    return await store.getState().server.ws.send(`/restart ${store.getState().mode.play.hash}`);
   }
 
-  static randomizer = async (state, color, items) => {
+  static randomizer = async (color, items) => {
     items = JSON.stringify(items).replace(/"/g, '\\"');
-    return await state.server.ws.send(`/randomizer ${color} "${items}"`);
+    return await store.getState().server.ws.send(`/randomizer ${color} "${items}"`);
   }
 
-  static stockfish = async (state) => {
-    const options = JSON.stringify(state.mode.computer.options).replace(/"/g, '\\"');
-    const params = JSON.stringify(state.mode.computer.params).replace(/"/g, '\\"');
+  static stockfish = async () => {
+    const options = JSON.stringify(store.getState().mode.computer.options).replace(/"/g, '\\"');
+    const params = JSON.stringify(store.getState().mode.computer.params).replace(/"/g, '\\"');
 
-    return await state.server.ws.send(`/stockfish "${options}" "${params}"`);
+    return await store.getState().server.ws.send(`/stockfish "${options}" "${params}"`);
   }
 
-  static onlineGames = async (state) => {
-    return await state.server.ws.send('/online_games');
+  static onlineGames = async () => {
+    return await store.getState().server.ws.send('/online_games');
   }
 }

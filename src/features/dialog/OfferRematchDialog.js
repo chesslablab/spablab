@@ -12,7 +12,7 @@ const OfferRematchDialog = () => {
 
   const handleRematchOffer = (event) => {
     event.preventDefault();
-    WsAction.rematch(state, Wording.verb.PROPOSE.toLowerCase());
+    WsAction.rematch(Wording.verb.PROPOSE.toLowerCase());
     dispatch(mode.proposeRematch());
     dispatch(offerRematchDialog.close());
   };

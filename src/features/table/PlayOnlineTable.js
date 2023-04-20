@@ -56,7 +56,7 @@ const PlayOnlineTable = () => {
 
   const handlePlay = (hash) => {
     dispatch(mainButtons.setPlayOnline());
-    WsAction.accept(state, hash);
+    WsAction.accept(hash);
     dispatch(mode.startAnalysis());
     dispatch(playOnlineDialog.close());
   };

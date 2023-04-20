@@ -18,7 +18,7 @@ const StartedButtonsGmMode = () => {
           orientation="vertical"
           fullWidth={true}
         >
-          <Button onClick={() => WsAction.start(state, variantConst.CLASSICAL, modeConst.PGN, {
+          <Button onClick={() => WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
               movetext: state.mode.gm.movetext
             })}
           >

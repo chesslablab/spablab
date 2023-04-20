@@ -57,7 +57,7 @@ const PlayOnlineDialog = () => {
   const handleCreateGame = () => {
     dispatch(playOnlineDialog.close());
     dispatch(mainButtons.setPlayOnline());
-    WsAction.start(state, fields.variant, modeConst.PLAY, {
+    WsAction.start(fields.variant, modeConst.PLAY, {
       settings: {
         min: fields.minutes,
         increment: fields.increment,

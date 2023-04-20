@@ -17,7 +17,7 @@ const StartedButtonsAnalysisMode = () => {
           orientation="vertical"
           fullWidth={true}
         >
-          <Button onClick={() => WsAction.undo(state)}>
+          <Button onClick={() => WsAction.undo()}>
             Undo move
           </Button>
         </ButtonGroup>

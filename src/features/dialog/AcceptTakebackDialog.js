@@ -11,14 +11,14 @@ const AcceptTakebackDialog = () => {
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    WsAction.takeback(state, Wording.verb.ACCEPT.toLowerCase());
-    WsAction.undo(state);
+    WsAction.takeback(Wording.verb.ACCEPT.toLowerCase());
+    WsAction.undo();
     dispatch(acceptTakebackDialog.close());
   };
 
   const handleTakebackDecline = (event) => {
     event.preventDefault();
-    WsAction.takeback(state, Wording.verb.DECLINE.toLowerCase());
+    WsAction.takeback(Wording.verb.DECLINE.toLowerCase());
     dispatch(acceptTakebackDialog.close());
   };
 

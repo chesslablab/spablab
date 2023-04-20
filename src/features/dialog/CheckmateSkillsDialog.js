@@ -48,7 +48,7 @@ const CheckmateSkillsDialog = () => {
     dispatch(mainButtons.setTraining());
     dispatch(checkmateSkillsDialog.close());
     Dispatcher.initGui(dispatch);
-    WsAction.randomizer(state, color, items);
+    WsAction.randomizer(color, items);
   };
 
   const handleTypeChange = (event: Event) => {
