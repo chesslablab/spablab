@@ -1,12 +1,6 @@
 ## Redux Chess
 
-Easy-to-embed chessboard connected to a [chess server](https://github.com/chesslablab/chess-server).
-
-Ready to npm install:
-
-```
-$ npm i @chesslablab/redux-chess
-```
+Redux Chess is "just a chessboard" as lightweight as it can possibly be. It is connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
 
 ### Demo
 
@@ -14,35 +8,52 @@ Check out [this demo](https://www.chesslablab.com/).
 
 ![Figure 1](/src/assets/img/docs/figure-01.png)
 
-### Setup
+### Install and Setup
 
-Thank you for your interest in this exciting project! Redux Chess is "just a chessboard" as lightweight as it can possibly be.
+Make sure that both the chess server and the API are set up properly as per the [`src/App.js`](https://github.com/chesslablab/testing-redux-chess/blob/master/src/App.js) file.
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Chess } from '@chesslablab/redux-chess';
+import Chess from './features/Chess';
 
-const props = {
-  api: {
-    prot: 'https',
-    host: 'pchess.net',
-    port: '443'
-  },
-  server: {
-    prot: 'wss',
-    host: 'pchess.net',
-    port: '8443'
-  }
-};
+const App = () => {
+  return (
+    <Chess
+      props={{
+        api: {
+          prot: 'https',
+          host: 'pchess.net',
+          port: '443'
+        },
+        server: {
+          prot: 'wss',
+          host: 'pchess.net',
+          port: '8443'
+        }
+      }}
+    />
+  );
+}
 
-ReactDOM.render(
-  <Chess props={props} />,
-  document.getElementById('redux-chess')
-);
+export default App;
 ```
 
-It requires this [chess server](https://github.com/chesslablab/chess-server) up and running as well as this [chess API](https://github.com/chesslablab/chess-api).
+Create an `.env` file.
+
+```
+$ cp .env.example .env
+```
+
+Install the npm packages.
+
+```
+$ npm install
+```
+
+Start the app.
+
+```
+$ npm start
+```
 
 ### License
 
@@ -52,4 +63,4 @@ The MIT License.
 
 See the [contributing guidelines](https://github.com/chesslablab/redux-chess/blob/master/CONTRIBUTING.md).
 
-Happy learning and coding! Thank you, and keep it up.
+Happy learning and coding!
