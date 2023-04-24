@@ -55,7 +55,9 @@ Start the app.
 $ npm start
 ```
 
-### Build the App for Production
+### Build the App
+
+Build the app for production.
 
 ```
 $ npm run build
