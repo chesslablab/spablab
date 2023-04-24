@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import CachedIcon from '@mui/icons-material/Cached';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';

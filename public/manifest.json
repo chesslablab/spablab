@@ -1,0 +1,8 @@
+{
+  "short_name": "ChesslaBlab",
+  "name": "Improve your chess skills and play online for free",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,3 +1,6 @@
-import Chess from './features/Chess';
+import ReactDOM from 'react-dom/client';
+import App from "./App";
 
-export { Chess };
+const root = ReactDOM.createRoot(document.getElementById('demo'));
+
+root.render(<App />);

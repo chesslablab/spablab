@@ -33,7 +33,7 @@ const MoveValidatorTable = ({props}) => {
     if (state.board.lan && !state.board.picked) {
       WsAction.playLan();
     }
-  }, [state.board.picked]);
+  }, [state.board.picked, state.board.lan]);
 
   const highlight = (n) => {
     if (n === state.board.fen.length + state.history.back - 1) {

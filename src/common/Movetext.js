@@ -3,7 +3,7 @@ export default class Movetext {
     let rows = [];
     if (string) {
       const arr = string.split(' ');
-      arr.map((item, i) => {
+      arr.forEach((item, i) => {
         if (i % 2 === 0) {
           rows.push({
             w: arr[i].split('.')[1],

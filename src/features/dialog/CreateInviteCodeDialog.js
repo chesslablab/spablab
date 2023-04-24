@@ -39,7 +39,6 @@ const CreateInviteCodeDialog = () => {
 }
 
 const CreateCode = () => {
-  const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   const [fields, setFields] = React.useState({
@@ -97,8 +96,12 @@ const CreateCode = () => {
         : fields.color,
       submode: 'friend'
     };
-    fields.fen ? settings.fen = fields.fen : null;
-    fields.startPos ? settings.startPos = fields.startPos : null;
+    if (fields.fen) {
+      settings.fen = fields.fen;
+    }
+    if (fields.startPos) {
+      settings.startPos = fields.startPos;
+    }
     WsAction.start(fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
   }
 

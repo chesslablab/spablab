@@ -26,7 +26,7 @@ const mainButtonsSlice = createSlice({
       state.name = mainButtonsConst.OPENING_SEARCH;
     },
     setDatabase: (state) => {
-      state.name = mainButtonsConst.MAIN_BUTTON_DATABASE;
+      state.name = mainButtonsConst.DATABASE;
     }
   }
 });

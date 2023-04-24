@@ -1,45 +1,7 @@
 {
-  "name": "@chesslablab/redux-chess",
-  "description": "React chessboard connected to a chess server.",
+  "name": "redux-chess",
   "version": "1.2.12",
-  "private": false,
-  "author": "Jordi Bassagañas <info@programarivm.com>",
-  "license": "MIT",
-  "keywords": [
-    "react",
-    "redux",
-    "chess",
-    "board",
-    "ratchet",
-    "engine",
-    "js",
-    "websocket",
-    "php",
-    "play",
-    "pgn",
-    "api",
-    "validate",
-    "validator",
-    "game"
-  ],
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "files": "/dist",
-  "babel": {
-    "presets": [
-      "react",
-      "env",
-      "stage-0"
-    ]
-  },
-  "scripts": {
-    "test": "react-scripts test --env=jsdom",
-    "publish:npm": "rm -rf dist && mkdir dist &&  babel ./src -d dist --copy-files"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/chesslablab/redux-chess.git"
-  },
+  "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -48,20 +10,39 @@
     "@reduxjs/toolkit": "^1.9.1",
     "html2canvas": "^1.4.1",
     "jwt-decode": "^3.1.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "5.0.1",
     "react-timer-hook": "^3.0.5",
-    "recharts": "2.2.0"
+    "recharts": "2.2.0",
+    "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "@testing-library/react-hooks": "^7.0.2",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "enzyme": "^3.11.0",
-    "@cfaester/enzyme-adapter-react-18": "^0.6.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

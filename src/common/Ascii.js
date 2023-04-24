@@ -29,7 +29,7 @@ export default class Ascii {
   }
 
   static flip = (color, ascii) => {
-    if (color == Pgn.symbol.BLACK) {
+    if (color === Pgn.symbol.BLACK) {
       let flipped = ascii.map(rank => new Array(rank.length));
       const nFiles = ascii[0].length;
       const nRanks = ascii.length;

@@ -25,6 +25,7 @@ import Pgn from '../common/Pgn';
 import Wording from '../common/Wording';
 import * as mainButtonsConst from '../features/mainButtonsConst';
 import * as mainButtons from '../features/mainButtonsSlice';
+import * as infoAlert from '../features/alert/infoAlertSlice';
 import * as loadFenDialog from '../features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from '../features/dialog/loadPgnDialogSlice';
 import * as eventsStatsDialog from '../features/dialog/eventsStatsDialogSlice';
@@ -39,7 +40,6 @@ import * as checkmateSkillsDialog from '../features/dialog/checkmateSkillsDialog
 import * as endgameSkillsDialog from '../features/dialog/endgameSkillsDialogSlice';
 import * as settingsDialog from '../features/dialog/settingsDialogSlice';
 import * as modeConst from '../features/mode/modeConst';
-import * as mode from '../features/mode/modeSlice';
 import * as variantConst from '../features/variant/variantConst';
 import WsAction from '../features/ws/WsAction';
 
@@ -161,7 +161,7 @@ const MainButtons = ({props}) => {
         Opening Search
       </Button>
       <Button
-        variant={state.mainButtons.name === mainButtonsConst.MAIN_BUTTON_OPENING_DATABASE ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
         onClick={handleClickDatabase}
       >

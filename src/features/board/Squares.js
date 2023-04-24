@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Ascii from '../../common/Ascii';
 import Pgn from '../../common/Pgn';
 import Piece from '../../common/Piece';
@@ -7,7 +7,6 @@ import * as modeConst from '../../features/mode/modeConst';
 
 const Squares = ({props}) => {
   const state = useSelector(state => state);
-  const dispatch = useDispatch();
 
   const filterMove = () => {
     if (state.mode.name === modeConst.PLAY) {
@@ -105,11 +104,15 @@ const Squares = ({props}) => {
             ].join(' ')
           }
           onMouseDown={() => {
-            filterMove() ? props.handleMove(payload) : null;
+            if (filterMove()) {
+              props.handleMove(payload);
+            }
           }}
           onDrop={(ev) => {
             ev.preventDefault();
-            filterMove() ? props.handleMove(payload) : null;
+            if (filterMove()) {
+              props.handleMove(payload);
+            }
           }}
           onDragOver={(ev) => {
             ev.preventDefault();
@@ -117,11 +120,14 @@ const Squares = ({props}) => {
             {
               Piece.unicode[piece].char
                 ? <img
+                    alt={Piece.unicode[piece].char}
                     ref={el => props.imgsRef.current[payload.sq] = el}
                     src={Piece.unicode[piece].char}
                     draggable={Piece.color(piece) === state.board.turn ? true : false}
                     onDragStart={() => {
-                      filterMove() ? props.handleMove(payload) : null;
+                      if (filterMove()) {
+                        props.handleMove(payload);
+                      }
                     }}
                   />
                 : null

@@ -12,7 +12,7 @@ const VariantBoard = ({props}) => {
 
   useEffect(() => {
     dispatch(WsAction.connect(props)).then(() => WsAction.startOff());
-  }, [dispatch]);
+  }, [props, dispatch]);
 
   const variantBoard = () => {
     if (state.variant.name === variantConst.CAPABLANCA_80) {

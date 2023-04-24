@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Box, Dialog, DialogContent, LinearProgress } from '@mui/material';
+import { Box, Dialog, LinearProgress } from '@mui/material';
 
 const ProgressDialog = ({ props }) => {
   const state = useSelector(state => state);

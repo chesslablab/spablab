@@ -12,7 +12,6 @@ import {
   IconButton
 } from '@mui/material';
 import * as settingsDialog from '../../features/dialog/settingsDialogSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
 
 const SettingsDialog = () => {
   const state = useSelector((state) => state);

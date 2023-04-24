@@ -30,7 +30,7 @@ const SelectColorButtons = ({ props }) => {
 
   React.useEffect(() => {
     props.color = color;
-  }, [color]);
+  }, [props, color]);
 
   return (
     <ButtonGroup sx={styles.buttonGroup}>

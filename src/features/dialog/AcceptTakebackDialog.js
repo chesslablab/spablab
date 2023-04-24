@@ -16,12 +16,6 @@ const AcceptTakebackDialog = () => {
     dispatch(acceptTakebackDialog.close());
   };
 
-  const handleTakebackDecline = (event) => {
-    event.preventDefault();
-    WsAction.takeback(Wording.verb.DECLINE.toLowerCase());
-    dispatch(acceptTakebackDialog.close());
-  };
-
   return (
     <Dialog
       open={state.acceptTakebackDialog.open}

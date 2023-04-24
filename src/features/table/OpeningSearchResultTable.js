@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import Dispatcher from '../../common/Dispatcher';
 import * as mainButtons from '../../features/mainButtonsSlice';
@@ -19,7 +19,6 @@ const styles = {
 };
 
 const OpeningSearchResultTable = ({props}) => {
-  const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {

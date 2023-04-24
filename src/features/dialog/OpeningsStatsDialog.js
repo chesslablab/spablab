@@ -9,13 +9,11 @@ import {
   IconButton,
   Typography
 } from '@mui/material';
-import * as infoAlert from '../../features/alert/infoAlertSlice';
 import * as openingsStatsDialog from '../../features/dialog/openingsStatsDialogSlice';
 
 const OpeningsStatsDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [result, setResult] = React.useState([]);
 
   return (
     <Dialog open={state.openingsStatsDialog.open} maxWidth="md" fullWidth={true}>

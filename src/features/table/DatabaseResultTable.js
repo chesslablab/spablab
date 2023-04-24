@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   Paper,
   Table,
@@ -53,7 +53,6 @@ const styles = {
 };
 
 const DatabaseResultTable = ({props}) => {
-  const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {

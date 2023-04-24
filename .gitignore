@@ -2,8 +2,8 @@
 /node_modules
 /package-lock.json
 
-# Transpilation output
-dist
+# production
+/build
 
 # Environment variables
 .env

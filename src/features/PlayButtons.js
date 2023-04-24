@@ -5,7 +5,6 @@ import LanguageIcon from '@mui/icons-material/Language';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Button, ButtonGroup, Grid, Stack } from '@mui/material';
-import store from '../app/store';
 import Wording from '../common/Wording';
 import CreateInviteCodeDialog from './dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from './dialog/EnterInviteCodeDialog';

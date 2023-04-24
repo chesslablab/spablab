@@ -11,7 +11,7 @@ const openingAnalysisTableSlice = createSlice({
   reducers: {
     close: () => initialState,
     show(state, action) {
-      state.open = true,
+      state.open = true;
       state.rows = action.payload.rows;
     }
   }
