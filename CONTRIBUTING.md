@@ -24,9 +24,9 @@ $ git checkout -b issue/236-update-to-MUI-5
 
 That's it!
 
-### How to run Redux Chess
+### How to run React Chess
 
 If you want to contribute to this repo please make sure to read:
 
-- [Redux Chess Testing Application](https://github.com/chesslablab/testing-redux-chess)
+- [PHP Chess API](https://github.com/chesslablab/chess-api)
 - [PHP Chess Server](https://github.com/chesslablab/chess-server)

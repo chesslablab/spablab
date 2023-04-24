@@ -1,32 +1,66 @@
-# ChesslaBlab
-## Open Source Community
+## Redux Chess
 
-The game of chess involves quite a few different aspects of software development, which makes it a perfect topic for learning full-stack web development as well as for playing around with machine learning libraries. A bunch of public chess repos ranging from React and JavaScript to PHP are available on the ChesslaBlab community on GitHub.
+Redux Chess is "just a chessboard" as lightweight as it can possibly be. It is connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
 
-### Contributing guidelines
+### Demo
 
-- Find a ChesslaBlab repo and make sure to read its `CONTRIBUTING.md` file.
-- Look at the open issues.
-- Leave the following comment on the issue you want to be assigned to: "Hi there, happy learning and coding!"
-- Be prepared to create a friendly PR once the issue has been assigned to you.
+Check out [this demo](https://www.chesslablab.com/).
 
-Once you're ready, [fork the repo](https://docs.github.com/es/get-started/quickstart/fork-a-repo) and create a new branch from `master` as per the following convention.
+![Figure 1](/src/assets/img/docs/figure-01.png)
 
-```text
-$ git checkout -b issue/n-the-title-of-the-issue
+### Install and Setup
+
+Make sure that both the chess server and the API are set up properly as per the [`src/App.js`](https://github.com/chesslablab/testing-redux-chess/blob/master/src/App.js) file.
+
+```js
+import Chess from './features/Chess';
+
+const App = () => {
+  return (
+    <Chess
+      props={{
+        api: {
+          prot: 'https',
+          host: 'pchess.net',
+          port: '443'
+        },
+        server: {
+          prot: 'wss',
+          host: 'pchess.net',
+          port: '8443'
+        }
+      }}
+    />
+  );
+}
+
+export default App;
 ```
 
-For example, if the title of the issue is [Update to MUI 5 #236](https://github.com/chesslablab/redux-chess/issues/236) then its corresponding Git branch should be checked out from the main branch like this.
+Create an `.env` file.
 
-```text
-$ git checkout -b issue/236-update-to-MUI-5
+```
+$ cp .env.example .env
 ```
 
-That's it!
+Install the npm packages.
 
-### How to run React Chess
+```
+$ npm install
+```
 
-If you want to contribute to this repo please make sure to read:
+Start the app.
 
-- [PHP Chess API](https://github.com/chesslablab/chess-api)
-- [PHP Chess Server](https://github.com/chesslablab/chess-server)
+```
+$ npm start
+```
+
+### License
+
+The MIT License.
+
+### Contributions
+
+See the [contributing guidelines](https://github.com/chesslablab/redux-chess/blob/master/CONTRIBUTING.md).
+
+Happy learning and coding!
