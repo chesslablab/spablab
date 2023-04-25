@@ -17,7 +17,10 @@ const settingsDialogSlice = createSlice({
       state.open = false;
     },
     accept(state, action) {
-      state.fields = action.payload;
+      state.fields = {
+        ...state.fields,
+        ...action.payload
+      };
     }
   }
 });
