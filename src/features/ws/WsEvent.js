@@ -300,7 +300,6 @@ export default class WsEvent {
         store.getState().variant.name === variantConst.CLASSICAL &&
         store.getState().mode.name === modeConst.STOCKFISH
       ) {
-        dispatch(progressDialog.open());
         WsAction.stockfish();
       }
       WsAction.heuristicsBar();
