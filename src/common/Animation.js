@@ -39,12 +39,14 @@ export default class Animation {
 
     sqFrom.appendChild(img);
 
+    const distance = (Math.abs(xAxis) + Math.abs(yAxis)) / this.sqSize;
+
     img.animate(
       {
         transform: `translate(${xAxis}vw, ${yAxis}vw)`
       },
       {
-        duration: 110
+        duration: 25 + (10 * distance)
       }
     );
 
