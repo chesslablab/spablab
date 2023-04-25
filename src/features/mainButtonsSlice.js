@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as mainButtonsConst from '../features/mainButtonsConst';
+import * as mainButtonsConst from 'features/mainButtonsConst';
 
 const initialState = {
   name: mainButtonsConst.ANALYSIS,

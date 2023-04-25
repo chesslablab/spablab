@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import Wording from '../../common/Wording.js';
-import * as offerTakebackDialog from '../../features/dialog/offerTakebackDialogSlice';
-import * as mode from '../../features/mode/modeSlice';
-import WsAction from '../../features/ws/WsAction';
+import Wording from 'common/Wording.js';
+import * as offerTakebackDialog from 'features/dialog/offerTakebackDialogSlice';
+import * as mode from 'features/mode/modeSlice';
+import WsAction from 'features/ws/WsAction';
 
 const OfferTakebackDialog = () => {
   const state = useSelector((state) => state);

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import Timer from './timer/Timer';
-import FinishedButtonsPlayMode from './mode/play/FinishedButtonsPlayMode';
-import FinishedDialogsPlayMode from './mode/play/FinishedDialogsPlayMode';
-import StartedButtonsPlayMode from './mode/play/StartedButtonsPlayMode';
-import StartedDialogsPlayMode from './mode/play/StartedDialogsPlayMode';
-import MoveValidatorTable from './table/MoveValidatorTable';
+import Timer from 'features/timer/Timer';
+import FinishedButtonsPlayMode from 'features/mode/play/FinishedButtonsPlayMode';
+import FinishedDialogsPlayMode from 'features/mode/play/FinishedDialogsPlayMode';
+import StartedButtonsPlayMode from 'features/mode/play/StartedButtonsPlayMode';
+import StartedDialogsPlayMode from 'features/mode/play/StartedDialogsPlayMode';
+import MoveValidatorTable from 'features/table/MoveValidatorTable';
 import SecondaryButtons from './SecondaryButtons';
 import SecondaryDialogs from './SecondaryDialogs';
 import History from './History';

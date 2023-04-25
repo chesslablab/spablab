@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
-import * as modeConst from '../../../features/mode/modeConst';
-import * as offerDrawDialog from '../../../features/dialog/offerDrawDialogSlice';
-import * as acceptResignDialog from '../../../features/dialog/acceptResignDialogSlice';
-import * as offerTakebackDialog from '../../../features/dialog/offerTakebackDialogSlice';
+import * as modeConst from 'features/mode/modeConst';
+import * as offerDrawDialog from 'features/dialog/offerDrawDialogSlice';
+import * as acceptResignDialog from 'features/dialog/acceptResignDialogSlice';
+import * as offerTakebackDialog from 'features/dialog/offerTakebackDialogSlice';
 
 const StartedButtonsPlayMode = () => {
   const state = useSelector(state => state);

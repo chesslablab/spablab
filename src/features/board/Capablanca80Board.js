@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Piece from '../../common/Piece';
-import * as board from '../../features/board/boardSlice';
-import Squares from '../../features/board/Squares';
-import WsAction from '../../features/ws/WsAction';
+import Piece from 'common/Piece';
+import * as board from 'features/board/boardSlice';
+import Squares from 'features/board/Squares';
+import WsAction from 'features/ws/WsAction';
 
 const Capablanca80Board = ({props}) => {
   const state = useSelector(state => state);

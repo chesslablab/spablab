@@ -13,15 +13,15 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import Pgn from '../../common/Pgn';
-import Dispatcher from '../../common/Dispatcher';
-import * as mainButtons from '../../features/mainButtonsSlice';
-import * as playComputerDialog from '../../features/dialog/playComputerDialogSlice';
-import SelectColorButtons from '../../features/dialog/SelectColorButtons';
-import * as modeConst from '../../features/mode/modeConst';
-import * as mode from '../../features/mode/modeSlice';
-import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../features/ws/WsAction';
+import Pgn from 'common/Pgn';
+import Dispatcher from 'common/Dispatcher';
+import * as mainButtons from 'features/mainButtonsSlice';
+import * as playComputerDialog from 'features/dialog/playComputerDialogSlice';
+import SelectColorButtons from 'features/dialog/SelectColorButtons';
+import * as modeConst from 'features/mode/modeConst';
+import * as mode from 'features/mode/modeSlice';
+import * as variantConst from 'features/variant/variantConst';
+import WsAction from 'features/ws/WsAction';
 
 const PlayComputerDialog = () => {
   const state = useSelector(state => state);

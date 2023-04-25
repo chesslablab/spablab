@@ -9,9 +9,9 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import Opening from '../../common/Opening.js';
-import * as infoAlert from '../../features/alert/infoAlertSlice';
-import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
+import Opening from 'common/Opening.js';
+import * as infoAlert from 'features/alert/infoAlertSlice';
+import OpeningSearchResultTable from 'features/table/OpeningSearchResultTable.js';
 import * as searchNameDialog from './searchNameDialogSlice';
 
 const SearchNameDialog = ({ props }) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import * as variantConst from '../../features/variant/variantConst';
-import * as mainButtonsConst from '../../features/mainButtonsConst';
+import * as variantConst from 'features/variant/variantConst';
+import * as mainButtonsConst from 'features/mainButtonsConst';
 
 const OpeningAnalysisTable = ({props}) => {
   const state = useSelector(state => state);

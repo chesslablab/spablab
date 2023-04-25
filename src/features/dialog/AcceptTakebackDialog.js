@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import Wording from '../../common/Wording.js';
-import * as acceptTakebackDialog from '../../features/dialog/acceptTakebackDialogSlice';
-import WsAction from '../../features/ws/WsAction';
+import Wording from 'common/Wording.js';
+import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
+import WsAction from 'features/ws/WsAction';
 
 const AcceptTakebackDialog = () => {
   const state = useSelector((state) => state);

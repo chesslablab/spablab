@@ -1,23 +1,23 @@
 import jwt_decode from "jwt-decode";
-import store from '../../app/store';
-import Pgn from '../../common/Pgn';
-import Dispatcher from '../../common/Dispatcher';
-import * as heuristicsBar from '../../features/heuristicsBarSlice';
-import * as infoAlert from '../../features/alert/infoAlertSlice';
-import * as board from '../../features/board/boardSlice';
-import * as acceptDrawDialog from '../../features/dialog/acceptDrawDialogSlice';
-import * as acceptRematchDialog from '../../features/dialog/acceptRematchDialogSlice';
-import * as acceptTakebackDialog from '../../features/dialog/acceptTakebackDialogSlice';
-import * as createInviteCodeDialog from '../../features/dialog/createInviteCodeDialogSlice';
-import * as heuristicsDialog from '../../features/dialog/heuristicsDialogSlice';
-import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
-import * as modeConst from '../../features/mode/modeConst';
-import * as mode from '../../features/mode/modeSlice';
-import * as gameTable from '../../features/table/gameTableSlice';
-import * as variantConst from '../../features/variant/variantConst';
-import * as variant from '../../features/variant/variantSlice';
-import WsAction from '../../features/ws/WsAction';
+import store from 'app/store';
+import Pgn from 'common/Pgn';
+import Dispatcher from 'common/Dispatcher';
+import * as heuristicsBar from 'features/heuristicsBarSlice';
+import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as board from 'features/board/boardSlice';
+import * as acceptDrawDialog from 'features/dialog/acceptDrawDialogSlice';
+import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
+import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
+import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
+import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
+import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
+import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as modeConst from 'features/mode/modeConst';
+import * as mode from 'features/mode/modeSlice';
+import * as gameTable from 'features/table/gameTableSlice';
+import * as variantConst from 'features/variant/variantConst';
+import * as variant from 'features/variant/variantSlice';
+import WsAction from 'features/ws/WsAction';
 
 export default class WsEvent {
   static onStartAnalysis = (data) => dispatch => {

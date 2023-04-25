@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as variantConst from '../../features/variant/variantConst';
+import * as variantConst from 'features/variant/variantConst';
 
 const initialState = {
   name: variantConst.CLASSICAL

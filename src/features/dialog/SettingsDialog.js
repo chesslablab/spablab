@@ -11,7 +11,7 @@ import {
   FormGroup,
   IconButton
 } from '@mui/material';
-import * as settingsDialog from '../../features/dialog/settingsDialogSlice';
+import * as settingsDialog from 'features/dialog/settingsDialogSlice';
 
 const SettingsDialog = () => {
   const state = useSelector((state) => state);

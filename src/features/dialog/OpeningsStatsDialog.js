@@ -9,7 +9,7 @@ import {
   IconButton,
   Typography
 } from '@mui/material';
-import * as openingsStatsDialog from '../../features/dialog/openingsStatsDialogSlice';
+import * as openingsStatsDialog from 'features/dialog/openingsStatsDialogSlice';
 
 const OpeningsStatsDialog = ({props}) => {
   const state = useSelector((state) => state);

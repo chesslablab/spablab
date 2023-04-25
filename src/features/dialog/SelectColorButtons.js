@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Avatar, ButtonGroup, IconButton } from '@mui/material';
-import wKing from '../../assets/img/pieces/png/150/wKing.png';
-import wbKing from '../../assets/img/pieces/png/150/wbKing.png';
-import bKing from '../../assets/img/pieces/png/150/bKing.png';
-import Pgn from '../../common/Pgn';
+import wKing from 'assets/img/pieces/png/150/wKing.png';
+import wbKing from 'assets/img/pieces/png/150/wbKing.png';
+import bKing from 'assets/img/pieces/png/150/bKing.png';
+import Pgn from 'common/Pgn';
 
 const styles = {
   avatar: {

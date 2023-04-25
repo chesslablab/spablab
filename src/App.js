@@ -1,4 +1,4 @@
-import Chess from './features/Chess';
+import Chess from 'features/Chess';
 
 const App = () => {
   return (

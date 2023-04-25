@@ -13,10 +13,10 @@ import {
   TextField
 } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import * as infoAlert from '../../features/alert/infoAlertSlice';
-import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
-import DatabaseResultTable from '../../features/table/DatabaseResultTable.js';
+import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
+import * as progressDialog from 'features/dialog/progressDialogSlice';
+import DatabaseResultTable from 'features/table/DatabaseResultTable.js';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'any',

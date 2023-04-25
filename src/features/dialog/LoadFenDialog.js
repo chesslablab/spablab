@@ -10,13 +10,13 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import Dispatcher from '../../common/Dispatcher';
-import * as mainButtons from '../../features/mainButtonsSlice';
-import * as loadFenDialog from '../../features/dialog/loadFenDialogSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
-import * as modeConst from '../../features/mode/modeConst';
-import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../features/ws/WsAction';
+import Dispatcher from 'common/Dispatcher';
+import * as mainButtons from 'features/mainButtonsSlice';
+import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
+import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as modeConst from 'features/mode/modeConst';
+import * as variantConst from 'features/variant/variantConst';
+import WsAction from 'features/ws/WsAction';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);

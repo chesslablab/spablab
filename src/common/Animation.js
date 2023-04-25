@@ -1,5 +1,5 @@
-import store from '../app/store';
-import Ascii from '../common/Ascii';
+import store from 'app/store';
+import Ascii from 'common/Ascii';
 
 export default class Animation {
   constructor (sqSize, imgsRef, sqsRef) {

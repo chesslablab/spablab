@@ -12,14 +12,14 @@ import {
   TableCell,
   TableBody
 } from '@mui/material';
-import wKing from '../../assets/img/pieces/png/150/wKing.png';
-import bKing from '../../assets/img/pieces/png/150/bKing.png';
-import Pgn from '../../common/Pgn';
-import * as mainButtons from '../../features/mainButtonsSlice';
-import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
-import * as mode from '../../features/mode/modeSlice';
-import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../features/ws/WsAction';
+import wKing from 'assets/img/pieces/png/150/wKing.png';
+import bKing from 'assets/img/pieces/png/150/bKing.png';
+import Pgn from 'common/Pgn';
+import * as mainButtons from 'features/mainButtonsSlice';
+import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
+import * as mode from 'features/mode/modeSlice';
+import * as variantConst from 'features/variant/variantConst';
+import WsAction from 'features/ws/WsAction';
 
 const styles = {
   disabled: {

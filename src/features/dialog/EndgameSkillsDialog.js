@@ -11,12 +11,12 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import Pgn from '../../common/Pgn';
-import Dispatcher from '../../common/Dispatcher';
-import * as mainButtons from '../../features/mainButtonsSlice';
-import * as endgameSkillsDialog from '../../features/dialog/endgameSkillsDialogSlice';
-import SelectColorButtons from '../../features/dialog/SelectColorButtons';
-import WsAction from '../../features/ws/WsAction';
+import Pgn from 'common/Pgn';
+import Dispatcher from 'common/Dispatcher';
+import * as mainButtons from 'features/mainButtonsSlice';
+import * as endgameSkillsDialog from 'features/dialog/endgameSkillsDialogSlice';
+import SelectColorButtons from 'features/dialog/SelectColorButtons';
+import WsAction from 'features/ws/WsAction';
 
 const EndgameSkillsDialog = () => {
   const state = useSelector(state => state);

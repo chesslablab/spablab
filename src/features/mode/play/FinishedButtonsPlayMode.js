@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
-import * as modeConst from '../../../features/mode/modeConst';
-import Wording from "../../../common/Wording.js";
-import * as offerRematchDialog from '../../../features/dialog/offerRematchDialogSlice';
+import * as modeConst from 'features/mode/modeConst';
+import Wording from "common/Wording.js";
+import * as offerRematchDialog from 'features/dialog/offerRematchDialogSlice';
 
 const FinishedButtonsPlayMode = () => {
   const state = useSelector(state => state);

@@ -9,14 +9,14 @@ import {
   TableHead,
   TableRow
 } from '@mui/material';
-import Dispatcher from '../../common/Dispatcher';
-import * as mainButtons from '../../features/mainButtonsSlice';
-import * as searchGamesDialog from '../../features/dialog/searchGamesDialogSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
-import * as modeConst from '../../features/mode/modeConst';
-import * as gameTable from '../../features/table/gameTableSlice';
-import * as variantConst from '../../features/variant/variantConst';
-import WsAction from '../../features/ws/WsAction';
+import Dispatcher from 'common/Dispatcher';
+import * as mainButtons from 'features/mainButtonsSlice';
+import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
+import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as modeConst from 'features/mode/modeConst';
+import * as gameTable from 'features/table/gameTableSlice';
+import * as variantConst from 'features/variant/variantConst';
+import WsAction from 'features/ws/WsAction';
 
 const styles = {
   tableContainer: {

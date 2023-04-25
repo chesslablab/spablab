@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
 import { Box } from '@mui/material';
-import Pgn from '../../common/Pgn';
-import * as infoAlert from '../../features/alert/infoAlertSlice';
-import * as mode from '../../features/mode/modeSlice';
+import Pgn from 'common/Pgn';
+import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as mode from 'features/mode/modeSlice';
 
 const BlackTimer = () => {
   const state = useSelector(state => state);

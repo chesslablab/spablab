@@ -10,8 +10,8 @@ import {
   TextField
 } from '@mui/material';
 import * as searchEcoDialog from './searchEcoDialogSlice';
-import Opening from '../../common/Opening.js';
-import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
+import Opening from 'common/Opening.js';
+import OpeningSearchResultTable from 'features/table/OpeningSearchResultTable.js';
 
 const SearchEcoDialog = ({ props }) => {
   const state = useSelector(state => state);

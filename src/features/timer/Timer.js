@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Box } from '@mui/material';
 import BlackTimer from './BlackTimer';
 import WhiteTimer from './WhiteTimer';
-import * as modeConst from '../../features/mode/modeConst';
+import * as modeConst from 'features/mode/modeConst';
 
 const Timer = () => {
   const state = useSelector(state => state);

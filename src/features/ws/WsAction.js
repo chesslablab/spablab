@@ -1,9 +1,9 @@
-import store from '../../app/store';
-import Pgn from '../../common/Pgn';
-import * as modeConst from '../../features/mode/modeConst';
-import * as variantConst from '../../features/variant/variantConst';
-import WsEventListener from '../../features/ws/WsEventListener';
-import * as wsSlice from '../../features/ws/wsSlice';
+import store from 'app/store';
+import Pgn from 'common/Pgn';
+import * as modeConst from 'features/mode/modeConst';
+import * as variantConst from 'features/variant/variantConst';
+import WsEventListener from 'features/ws/WsEventListener';
+import * as wsSlice from 'features/ws/wsSlice';
 
 export default class WsAction {
   static connect = (props) => dispatch => {

@@ -1,7 +1,7 @@
-import Wording from '../../common/Wording.js';
-import * as playOnlineDialog from '../../features/dialog/playOnlineDialogSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
-import WsEvent from '../../features/ws/WsEvent';
+import Wording from 'common/Wording.js';
+import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
+import * as progressDialog from 'features/dialog/progressDialogSlice';
+import WsEvent from 'features/ws/WsEvent';
 
 export default class WsEventListener {
   static listen = (props, data) => dispatch => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Ascii from '../../common/Ascii';
-import Pgn from '../../common/Pgn';
-import Piece from '../../common/Piece';
-import * as modeConst from '../../features/mode/modeConst';
+import Ascii from 'common/Ascii';
+import Pgn from 'common/Pgn';
+import Piece from 'common/Piece';
+import * as modeConst from 'features/mode/modeConst';
 
 const Squares = ({props}) => {
   const state = useSelector(state => state);

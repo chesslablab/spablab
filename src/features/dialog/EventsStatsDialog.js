@@ -13,9 +13,9 @@ import {
   TextField
 } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import * as infoAlert from '../../features/alert/infoAlertSlice';
-import * as eventsStatsDialog from '../../features/dialog/eventsStatsDialogSlice';
-import * as progressDialog from '../../features/dialog/progressDialogSlice';
+import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as eventsStatsDialog from 'features/dialog/eventsStatsDialogSlice';
+import * as progressDialog from 'features/dialog/progressDialogSlice';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'any',

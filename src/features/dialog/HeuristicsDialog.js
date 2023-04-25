@@ -14,7 +14,7 @@ import {
 } from '@mui/material/';
 import html2canvas from 'html2canvas';
 import CloseIcon from '@mui/icons-material/Close';
-import * as heuristicsDialog from '../../features/dialog/heuristicsDialogSlice';
+import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
 
 const handleDownloadImage = async () => {
   const heuristics = document.getElementsByClassName('heuristic-picture')[0];

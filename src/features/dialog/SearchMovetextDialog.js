@@ -10,9 +10,9 @@ import {
   TextField
 } from '@mui/material';
 import * as searchMovetextDialog from './searchMovetextDialogSlice';
-import Opening from '../../common/Opening.js';
-import * as infoAlert from '../../features/alert/infoAlertSlice';
-import OpeningSearchResultTable from '../../features/table/OpeningSearchResultTable.js';
+import Opening from 'common/Opening.js';
+import * as infoAlert from 'features/alert/infoAlertSlice';
+import OpeningSearchResultTable from 'features/table/OpeningSearchResultTable.js';
 
 const SearchMovetextDialog = ({ props }) => {
   const state = useSelector(state => state);
