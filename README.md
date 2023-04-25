@@ -13,7 +13,7 @@ Check out [this demo](https://www.chesslablab.com/).
 Make sure that both the chess server and the API are set up properly as per the [`src/App.js`](https://github.com/chesslablab/react-chess/blob/master/src/App.js) file.
 
 ```js
-import Chess from './features/Chess';
+import Chess from 'features/Chess';
 
 const App = () => {
   return (
