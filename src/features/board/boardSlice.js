@@ -106,7 +106,7 @@ const boardSlice = createSlice({
         state.fen = newFen;
       }
     },
-    gm(state, action) {
+    stockfish(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
       newFen.push(action.payload.fen);
       state.lan = '';
@@ -134,6 +134,6 @@ export const {
   legal,
   undo,
   validMove,
-  gm
+  stockfish
 } = boardSlice.actions;
 export default boardSlice.reducer;

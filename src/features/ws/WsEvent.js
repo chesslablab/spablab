@@ -435,7 +435,7 @@ export default class WsEvent {
 
   static onStockfish = (data) => dispatch => {
     if (data['/stockfish']) {
-      dispatch(board.gm({
+      dispatch(board.stockfish({
         turn: data['/stockfish'].state.turn,
         isCheck: data['/stockfish'].state.isCheck,
         isMate: data['/stockfish'].state.isMate,
