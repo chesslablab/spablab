@@ -24,11 +24,14 @@ const Chess960Board = ({props}) => {
       isInitialMount.name = false;
     } else {
       if (state.board.fen.length > 1) {
-        new Animation(sqSize, imgsRef, sqsRef).pieces();
+        if (state.settingsDialog.fields.animation === 'on') {
+          new Animation(sqSize, imgsRef, sqsRef).pieces();
+        }
       }
     }
   }, [
     state.board.fen.length,
+    state.settingsDialog.fields.animation,
     sqSize
   ]);
 

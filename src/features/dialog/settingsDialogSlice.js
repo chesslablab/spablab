@@ -5,6 +5,7 @@ const settingsDialogSlice = createSlice({
   initialState: {
     open: false,
     fields: {
+      animation: 'on',
       heuristics: 'off'
     }
   },

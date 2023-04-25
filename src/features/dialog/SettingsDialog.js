@@ -17,6 +17,12 @@ const SettingsDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  const handleAnimationChange = (event: Event) => {
+    dispatch(settingsDialog.accept({
+      animation: event.target.value === 'on' ? 'off' : 'on'
+    }));
+  };
+
   const handleHeuristicsChange = (event: Event) => {
     dispatch(settingsDialog.accept({
       heuristics: event.target.value === 'on' ? 'off' : 'on'
@@ -33,6 +39,15 @@ const SettingsDialog = () => {
       </DialogTitle>
       <DialogContent>
         <FormGroup>
+          <FormControlLabel
+            label="Animate the chess pieces while playing"
+            control={<Checkbox
+              name="animation"
+              checked={state.settingsDialog.fields.animation === 'on'}
+              value={state.settingsDialog.fields.animation}
+              onChange={handleAnimationChange}
+            />}
+          />
           <FormControlLabel
             label="Show heuristics while playing"
             control={<Checkbox
