@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
-import * as modeConst from 'features/mode/modeConst';
 import Animation from 'common/Animation';
 import Piece from 'common/Piece';
 import * as board from 'features/board/boardSlice';
@@ -24,20 +23,13 @@ const ClassicalBoard = ({props}) => {
     if (isInitialMount.name) {
       isInitialMount.name = false;
     } else {
-      if (state.board.movetext) {
-        if (state.mode.name === modeConst.STOCKFISH) {
-          if (state.mode.computer.color === state.board.turn) {
-            new Animation(sqSize, imgsRef, sqsRef).pieces();
-          }
-        } else if (state.mode.name === modeConst.PLAY) {
-          if (state.mode.play.color === state.board.turn) {
-            new Animation(sqSize, imgsRef, sqsRef).pieces();
-          }
-        }
+      if (state.board.fen.length > 1) {
+        new Animation(sqSize, imgsRef, sqsRef).pieces();
       }
     }
   }, [
-    state.board.fen.length
+    state.board.fen.length,
+    sqSize
   ]);
 
   const handleMove = (payload) => {
