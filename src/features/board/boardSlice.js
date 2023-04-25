@@ -64,9 +64,9 @@ const boardSlice = createSlice({
       };
     },
     leavePiece(state, action) {
-      if (state.picked.piece === ' . ') {
+      if (state.picked?.piece === ' . ') {
         state.picked = null;
-      } else if (Object.keys(state.picked.fen).includes(action.payload.sq)) {
+      } else if (Object.keys(state.picked?.fen).includes(action.payload.sq)) {
         const newFen = JSON.parse(JSON.stringify(state.fen));
         newFen.push(state.picked.fen[action.payload.sq]);
         state.lan += action.payload.sq;
@@ -80,8 +80,8 @@ const boardSlice = createSlice({
       state.lan = '';
     },
     legal(state, action) {
-      state.picked.fen = action.payload.fen;
-      state.picked.en_passant = action.payload.en_passant;
+      state.picked.fen = action.payload?.fen;
+      state.picked.en_passant = action.payload?.en_passant;
     },
     undo(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
