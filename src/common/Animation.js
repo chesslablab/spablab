@@ -44,7 +44,7 @@ export default class Animation {
         transform: `translate(${xAxis}vw, ${yAxis}vw)`
       },
       {
-        duration: 125
+        duration: 110
       }
     );
 
