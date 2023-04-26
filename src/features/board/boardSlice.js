@@ -79,6 +79,7 @@ const boardSlice = createSlice({
     browseHistory(state) {
       delete state.lan;
       delete state.picked;
+      delete state.left;
     },
     legal(state, action) {
       state.picked.fen = action.payload?.fen;
