@@ -58,12 +58,12 @@ const boardSlice = createSlice({
         i: action.payload.i,
         j: action.payload.j,
         sq: action.payload.sq,
-        piece: ascii[action.payload.i][action.payload.j]
+        ascii: ascii[action.payload.i][action.payload.j]
       };
     },
     leavePiece(state, action) {
       if (state.pickedPiece) {
-        if (state.pickedPiece.piece === ' . ') {
+        if (state.pickedPiece.ascii === ' . ') {
           delete state.pickedPiece;
         } else if (Object.keys(state.pickedPiece.fen).includes(action.payload.sq)) {
           const newFen = JSON.parse(JSON.stringify(state.fen));
