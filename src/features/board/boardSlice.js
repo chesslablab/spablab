@@ -93,6 +93,7 @@ const boardSlice = createSlice({
       state.movetext = action.payload.movetext;
       delete state.lan;
       delete state.picked;
+      delete state.left;
     },
     validMove(state, action) {
       state.isCheck = action.payload.isCheck;
