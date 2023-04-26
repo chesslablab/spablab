@@ -9,7 +9,7 @@ export default class Animation {
     this.sqsRef = sqsRef;
   }
 
-  pieces() {
+  piece() {
     if (store.getState().settingsDialog.fields.animation === 'on') {
       if (
         store.getState().board?.left?.event === eventConst.ON_MOUSE_DOWN ||

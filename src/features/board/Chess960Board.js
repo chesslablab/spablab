@@ -23,7 +23,7 @@ const Chess960Board = ({props}) => {
     if (isInitialMount.name) {
       isInitialMount.name = false;
     } else {
-      new Animation(sqSize, imgsRef, sqsRef).pieces();
+      new Animation(sqSize, imgsRef, sqsRef).piece();
     }
   }, [
     state.board.fen.length,
