@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
 import Piece from 'common/Piece';
+import * as eventConst from 'features/event/eventConst';
 import * as modeConst from 'features/mode/modeConst';
 
 const Squares = ({props}) => {
@@ -105,14 +106,14 @@ const Squares = ({props}) => {
           }
           onMouseDown={() => {
             if (filterMove()) {
-              payload.left = { event: 'onMouseDown' };
+              payload.left = { event: eventConst.ON_MOUSE_DOWN };
               props.handleMove(payload);
             }
           }}
           onDrop={(ev) => {
             ev.preventDefault();
             if (filterMove()) {
-              payload.left = { event: 'onDrop' };
+              payload.left = { event: eventConst.ON_DROP };
               props.handleMove(payload);
             }
           }}
@@ -128,7 +129,7 @@ const Squares = ({props}) => {
                     draggable={Piece.color(piece) === state.board.turn ? true : false}
                     onDragStart={() => {
                       if (filterMove()) {
-                        payload.left = { event: 'onDragStart' };
+                        payload.left = { event: eventConst.ON_DRAG_START };
                         props.handleMove(payload);
                       }
                     }}

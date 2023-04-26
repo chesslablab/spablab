@@ -12,6 +12,7 @@ import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogS
 import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as eventConst from 'features/event/eventConst';
 import * as modeConst from 'features/mode/modeConst';
 import * as mode from 'features/mode/modeSlice';
 import * as gameTable from 'features/table/gameTableSlice';
@@ -244,7 +245,7 @@ export default class WsEvent {
       if (store.getState().mode.name === modeConst.PLAY) {
         if (store.getState().mode.play.color !== data['/play_lan'].turn) {
           dispatch(board.playLan({
-            left: { event: 'onPlayLan' }
+            left: { event: eventConst.ON_PLAY_LAN }
           }));
         }
       } else if (
@@ -443,7 +444,7 @@ export default class WsEvent {
         isMate: data['/stockfish'].state.isMate,
         movetext: data['/stockfish'].state.movetext,
         fen: data['/stockfish'].state.fen,
-        left: { event: 'onStockfish' }
+        left: { event: eventConst.ON_STOCKFISH }
       }));
       WsAction.heuristicsBar();
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].state.movetext);

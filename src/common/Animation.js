@@ -1,5 +1,6 @@
 import store from 'app/store';
 import Ascii from 'common/Ascii';
+import * as eventConst from 'features/event/eventConst';
 
 export default class Animation {
   constructor (sqSize, imgsRef, sqsRef) {
@@ -11,9 +12,9 @@ export default class Animation {
   pieces() {
     if (store.getState().settingsDialog.fields.animation === 'on') {
       if (
-        store.getState().board?.left?.event === 'onMouseDown' ||
-        store.getState().board?.left?.event === 'onStockfish' ||
-        store.getState().board?.left?.event === 'onPlayLan'
+        store.getState().board?.left?.event === eventConst.ON_MOUSE_DOWN ||
+        store.getState().board?.left?.event === eventConst.ON_STOCKFISH ||
+        store.getState().board?.left?.event === eventConst.ON_PLAY_LAN
       ) {
         const fromFen = store.getState().board.fen[store.getState().board.fen.length - 2].split(' ');
         const toFen = store.getState().board.fen[store.getState().board.fen.length - 1].split(' ');
