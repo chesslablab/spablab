@@ -48,7 +48,7 @@ const boardSlice = createSlice({
     },
     playLan(state, action) {
       state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      state.leftPiece = action.payload.leftPiece;
+      state.piecePut = action.payload.piecePut;
     },
     pickPiece(state, action) {
       const fen = state.fen[state.fen.length - 1].split(' ');
@@ -71,7 +71,7 @@ const boardSlice = createSlice({
           state.lan += action.payload.sq;
           state.fen = newFen;
           state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-          state.leftPiece = action.payload.leftPiece;
+          state.piecePut = action.payload.piecePut;
           delete state.pickedPiece;
         }
       }
@@ -79,7 +79,7 @@ const boardSlice = createSlice({
     browseHistory(state) {
       delete state.lan;
       delete state.pickedPiece;
-      delete state.leftPiece;
+      delete state.piecePut;
     },
     legal(state, action) {
       state.pickedPiece.fen = action.payload?.fen;
@@ -94,7 +94,7 @@ const boardSlice = createSlice({
       state.movetext = action.payload.movetext;
       delete state.lan;
       delete state.pickedPiece;
-      delete state.leftPiece;
+      delete state.piecePut;
     },
     validMove(state, action) {
       state.isCheck = action.payload.isCheck;
@@ -115,7 +115,7 @@ const boardSlice = createSlice({
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
-      state.leftPiece = action.payload.leftPiece;
+      state.piecePut = action.payload.piecePut;
       state.movetext = action.payload.movetext;
       delete state.lan;
       delete state.pickedPiece;
