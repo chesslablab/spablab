@@ -3,13 +3,10 @@ import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
 
 const initialState = {
-  lan: '',
   turn: Pgn.symbol.WHITE,
   isCheck: false,
   isMate: false,
-  picked: null,
   fen: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'],
-  movetext: '',
   flip: Pgn.symbol.WHITE,
   size: {
     files: 8,
@@ -65,21 +62,23 @@ const boardSlice = createSlice({
       };
     },
     leavePiece(state, action) {
-      if (state.picked?.piece === ' . ') {
-        state.picked = null;
-      } else if (Object.keys(state.picked?.fen).includes(action.payload.sq)) {
-        const newFen = JSON.parse(JSON.stringify(state.fen));
-        newFen.push(state.picked.fen[action.payload.sq]);
-        state.lan += action.payload.sq;
-        state.fen = newFen;
-        state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-        state.picked = null;
-        state.left = action.payload.left;
+      if (state.picked) {
+        if (state.picked.piece === ' . ') {
+          delete state.picked;
+        } else if (Object.keys(state.picked.fen).includes(action.payload.sq)) {
+          const newFen = JSON.parse(JSON.stringify(state.fen));
+          newFen.push(state.picked.fen[action.payload.sq]);
+          state.lan += action.payload.sq;
+          state.fen = newFen;
+          state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+          state.left = action.payload.left;
+          delete state.picked;
+        }
       }
     },
     browseHistory(state) {
-      state.picked = null;
-      state.lan = '';
+      delete state.lan;
+      delete state.picked;
     },
     legal(state, action) {
       state.picked.fen = action.payload?.fen;
@@ -87,37 +86,37 @@ const boardSlice = createSlice({
     undo(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
       newFen.splice(-1);
-      state.lan = '';
       state.fen = newFen;
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
-      state.picked = null;
       state.movetext = action.payload.movetext;
+      delete state.lan;
+      delete state.picked;
     },
     validMove(state, action) {
-      state.lan = '';
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
-      state.picked = null;
       state.movetext = action.payload.movetext;
       if (state.turn === action.payload.turn) {
         const newFen = JSON.parse(JSON.stringify(state.fen));
         newFen.push(action.payload.fen);
         state.fen = newFen;
       }
+      delete state.lan;
+      delete state.picked;
     },
     stockfish(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
       newFen.push(action.payload.fen);
-      state.lan = '';
       state.fen = newFen;
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
-      state.picked = null;
       state.left = action.payload.left;
       state.movetext = action.payload.movetext;
+      delete state.lan;
+      delete state.picked;
     },
   }
 });
