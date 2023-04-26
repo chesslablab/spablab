@@ -10,7 +10,11 @@ export default class Animation {
 
   pieces() {
     if (store.getState().settingsDialog.fields.animation === 'on') {
-      if (store.getState().board.fen.length > 1) {
+      if (
+        store.getState().board?.left?.event === 'onMouseDown' ||
+        store.getState().board?.left?.event === 'onStockfish' ||
+        store.getState().board?.left?.event === 'onPlayLan'
+      ) {
         const fromFen = store.getState().board.fen[store.getState().board.fen.length - 2].split(' ');
         const toFen = store.getState().board.fen[store.getState().board.fen.length - 1].split(' ');
 
@@ -41,14 +45,12 @@ export default class Animation {
 
         sqFrom.appendChild(img);
 
-        const distance = (Math.abs(xAxis) + Math.abs(yAxis)) / this.sqSize;
-
         img.animate(
           {
             transform: `translate(${xAxis}vw, ${yAxis}vw)`
           },
           {
-            duration: 25 + (10 * distance)
+            duration: 100
           }
         );
 

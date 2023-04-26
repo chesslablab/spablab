@@ -243,7 +243,9 @@ export default class WsEvent {
       dispatch(board.validMove(payload));
       if (store.getState().mode.name === modeConst.PLAY) {
         if (store.getState().mode.play.color !== data['/play_lan'].turn) {
-          dispatch(board.turn());
+          dispatch(board.playLan({
+            left: { event: 'onPlayLan' }
+          }));
         }
       } else if (
         store.getState().variant.name === variantConst.CLASSICAL &&
@@ -440,7 +442,8 @@ export default class WsEvent {
         isCheck: data['/stockfish'].state.isCheck,
         isMate: data['/stockfish'].state.isMate,
         movetext: data['/stockfish'].state.movetext,
-        fen: data['/stockfish'].state.fen
+        fen: data['/stockfish'].state.fen,
+        left: { event: 'onStockfish' }
       }));
       WsAction.heuristicsBar();
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].state.movetext);

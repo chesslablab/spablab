@@ -49,8 +49,9 @@ const boardSlice = createSlice({
     flip(state) {
       state.flip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     },
-    turn(state) {
+    playLan(state, action) {
       state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+      state.left = action.payload.left;
     },
     pickPiece(state, action) {
       const fen = state.fen[state.fen.length - 1].split(' ');
@@ -73,6 +74,7 @@ const boardSlice = createSlice({
         state.fen = newFen;
         state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
         state.picked = null;
+        state.left = action.payload.left;
       }
     },
     browseHistory(state) {
@@ -115,6 +117,7 @@ const boardSlice = createSlice({
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.picked = null;
+      state.left = action.payload.left;
       state.movetext = action.payload.movetext;
     },
   }
@@ -127,7 +130,7 @@ export const {
   startFen,
   startPgn,
   flip,
-  turn,
+  playLan,
   pickPiece,
   leavePiece,
   browseHistory,

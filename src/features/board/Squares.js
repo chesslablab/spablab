@@ -105,12 +105,14 @@ const Squares = ({props}) => {
           }
           onMouseDown={() => {
             if (filterMove()) {
+              payload.left = { event: 'onMouseDown' };
               props.handleMove(payload);
             }
           }}
           onDrop={(ev) => {
             ev.preventDefault();
             if (filterMove()) {
+              payload.left = { event: 'onDrop' };
               props.handleMove(payload);
             }
           }}
@@ -126,6 +128,7 @@ const Squares = ({props}) => {
                     draggable={Piece.color(piece) === state.board.turn ? true : false}
                     onDragStart={() => {
                       if (filterMove()) {
+                        payload.left = { event: 'onDragStart' };
                         props.handleMove(payload);
                       }
                     }}
