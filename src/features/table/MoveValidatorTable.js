@@ -30,10 +30,10 @@ const MoveValidatorTable = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (state.board.lan && !state.board.pickedPiece) {
+    if (state.board.lan && !state.board.pieceGrabbed) {
       WsAction.playLan();
     }
-  }, [state.board.pickedPiece, state.board.lan]);
+  }, [state.board.pieceGrabbed, state.board.lan]);
 
   const highlight = (n) => {
     if (n === state.board.fen.length + state.history.back - 1) {

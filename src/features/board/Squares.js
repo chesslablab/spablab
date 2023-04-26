@@ -71,12 +71,12 @@ const Squares = ({props}) => {
               state.board.size
             )
           };
-        if (state.board.pickedPiece) {
-          if (state.board.pickedPiece.sq === payload.sq) {
+        if (state.board.pieceGrabbed) {
+          if (state.board.pieceGrabbed.sq === payload.sq) {
             isSelected = 'isSelected';
           }
-          if (state.board.pickedPiece.fen) {
-            if (Object.keys(state.board.pickedPiece.fen).includes(payload.sq)) {
+          if (state.board.pieceGrabbed.fen) {
+            if (Object.keys(state.board.pieceGrabbed.fen).includes(payload.sq)) {
               isLegal = 'isLegal';
             }
           }
