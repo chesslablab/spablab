@@ -32,7 +32,7 @@ const ClassicalBoard = ({props}) => {
 
   const handleMove = (payload) => {
     if (state.board.turn === Piece.color(payload.piece)) {
-      dispatch(board.pickPiece(payload));
+      dispatch(board.grabPiece(payload));
       WsAction.legal(payload.sq);
     } else {
       dispatch(board.putPiece(payload));

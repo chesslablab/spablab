@@ -37,11 +37,11 @@ const Chess960Board = ({props}) => {
         if (Object.keys(state.board.pieceGrabbed.fen).includes(payload.sq)) {
           dispatch(board.putPiece(payload));
         } else {
-          dispatch(board.pickPiece(payload));
+          dispatch(board.grabPiece(payload));
           WsAction.legal(payload.sq);
         }
       } else {
-        dispatch(board.pickPiece(payload));
+        dispatch(board.grabPiece(payload));
         WsAction.legal(payload.sq);
       }
     } else {

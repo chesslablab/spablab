@@ -50,7 +50,7 @@ const boardSlice = createSlice({
       state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       state.piecePut = action.payload.piecePut;
     },
-    pickPiece(state, action) {
+    grabPiece(state, action) {
       const fen = state.fen[state.fen.length - 1].split(' ');
       const ascii = Ascii.toAscii(fen[0]);
       state.lan = action.payload.sq;
@@ -131,7 +131,7 @@ export const {
   startPgn,
   flip,
   playLan,
-  pickPiece,
+  grabPiece,
   putPiece,
   browseHistory,
   legal,
