@@ -61,7 +61,7 @@ const boardSlice = createSlice({
         ascii: ascii[action.payload.i][action.payload.j]
       };
     },
-    leavePiece(state, action) {
+    putPiece(state, action) {
       if (state.pickedPiece) {
         if (state.pickedPiece.ascii === ' . ') {
           delete state.pickedPiece;
@@ -132,7 +132,7 @@ export const {
   flip,
   playLan,
   pickPiece,
-  leavePiece,
+  putPiece,
   browseHistory,
   legal,
   undo,
