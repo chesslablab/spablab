@@ -15,7 +15,7 @@ const Capablanca80Board = ({props}) => {
     if (state.board.turn === Piece.color(payload.piece)) {
       dispatch(board.pickPiece(payload));
       WsAction.legal(payload.sq);
-    } else if (state.board.picked) {
+    } else {
       dispatch(board.leavePiece(payload));
     }
   }

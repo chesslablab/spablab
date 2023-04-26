@@ -44,7 +44,7 @@ const Chess960Board = ({props}) => {
         dispatch(board.pickPiece(payload));
         WsAction.legal(payload.sq);
       }
-    } else if (state.board.picked) {
+    } else {
       dispatch(board.leavePiece(payload));
     }
   }
