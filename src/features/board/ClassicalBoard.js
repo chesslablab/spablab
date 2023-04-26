@@ -23,9 +23,7 @@ const ClassicalBoard = ({props}) => {
     if (isInitialMount.name) {
       isInitialMount.name = false;
     } else {
-      if (state.board.fen.length > 1) {
-        new Animation(sqSize, imgsRef, sqsRef).pieces();
-      }
+      new Animation(sqSize, imgsRef, sqsRef).pieces();
     }
   }, [
     state.board.fen.length,
