@@ -12,9 +12,9 @@ export default class Animation {
   piece() {
     if (store.getState().settingsDialog.fields.pieceAnimation === 'on') {
       if (
-        store.getState().board?.left?.event === eventConst.ON_MOUSE_DOWN ||
-        store.getState().board?.left?.event === eventConst.ON_STOCKFISH ||
-        store.getState().board?.left?.event === eventConst.ON_PLAY_LAN
+        store.getState().board?.leftPiece?.event === eventConst.ON_MOUSE_DOWN ||
+        store.getState().board?.leftPiece?.event === eventConst.ON_STOCKFISH ||
+        store.getState().board?.leftPiece?.event === eventConst.ON_PLAY_LAN
       ) {
         const fromFen = store.getState().board.fen[store.getState().board.fen.length - 2].split(' ');
         const toFen = store.getState().board.fen[store.getState().board.fen.length - 1].split(' ');
