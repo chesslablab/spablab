@@ -35,7 +35,7 @@ const Chess960Board = ({props}) => {
       // allow the king to be dropped into the castling rook
       if (state.board.pieceGrabbed?.fen) {
         if (Object.keys(state.board.pieceGrabbed.fen).includes(payload.sq)) {
-          dispatch(board.putPiece(payload));
+          dispatch(board.placePiece(payload));
         } else {
           dispatch(board.grabPiece(payload));
           WsAction.legal(payload.sq);
@@ -45,7 +45,7 @@ const Chess960Board = ({props}) => {
         WsAction.legal(payload.sq);
       }
     } else {
-      dispatch(board.putPiece(payload));
+      dispatch(board.placePiece(payload));
     }
   }
 

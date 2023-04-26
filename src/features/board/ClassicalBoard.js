@@ -35,7 +35,7 @@ const ClassicalBoard = ({props}) => {
       dispatch(board.grabPiece(payload));
       WsAction.legal(payload.sq);
     } else {
-      dispatch(board.putPiece(payload));
+      dispatch(board.placePiece(payload));
     }
   }
 
