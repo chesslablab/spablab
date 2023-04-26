@@ -33,8 +33,8 @@ const Chess960Board = ({props}) => {
   const handleMove = (payload) => {
     if (state.board.turn === Piece.color(payload.piece)) {
       // allow the king to be dropped into the castling rook
-      if (state.board.picked?.fen) {
-        if (Object.keys(state.board.picked.fen).includes(payload.sq)) {
+      if (state.board.pickedPiece?.fen) {
+        if (Object.keys(state.board.pickedPiece.fen).includes(payload.sq)) {
           dispatch(board.leavePiece(payload));
         } else {
           dispatch(board.pickPiece(payload));

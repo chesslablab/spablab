@@ -54,7 +54,7 @@ const boardSlice = createSlice({
       const fen = state.fen[state.fen.length - 1].split(' ');
       const ascii = Ascii.toAscii(fen[0]);
       state.lan = action.payload.sq;
-      state.picked = {
+      state.pickedPiece = {
         i: action.payload.i,
         j: action.payload.j,
         sq: action.payload.sq,
@@ -62,27 +62,27 @@ const boardSlice = createSlice({
       };
     },
     leavePiece(state, action) {
-      if (state.picked) {
-        if (state.picked.piece === ' . ') {
-          delete state.picked;
-        } else if (Object.keys(state.picked.fen).includes(action.payload.sq)) {
+      if (state.pickedPiece) {
+        if (state.pickedPiece.piece === ' . ') {
+          delete state.pickedPiece;
+        } else if (Object.keys(state.pickedPiece.fen).includes(action.payload.sq)) {
           const newFen = JSON.parse(JSON.stringify(state.fen));
-          newFen.push(state.picked.fen[action.payload.sq]);
+          newFen.push(state.pickedPiece.fen[action.payload.sq]);
           state.lan += action.payload.sq;
           state.fen = newFen;
           state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
           state.left = action.payload.left;
-          delete state.picked;
+          delete state.pickedPiece;
         }
       }
     },
     browseHistory(state) {
       delete state.lan;
-      delete state.picked;
+      delete state.pickedPiece;
       delete state.left;
     },
     legal(state, action) {
-      state.picked.fen = action.payload?.fen;
+      state.pickedPiece.fen = action.payload?.fen;
     },
     undo(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
@@ -93,7 +93,7 @@ const boardSlice = createSlice({
       state.isMate = action.payload.isMate;
       state.movetext = action.payload.movetext;
       delete state.lan;
-      delete state.picked;
+      delete state.pickedPiece;
       delete state.left;
     },
     validMove(state, action) {
@@ -106,7 +106,7 @@ const boardSlice = createSlice({
         state.fen = newFen;
       }
       delete state.lan;
-      delete state.picked;
+      delete state.pickedPiece;
     },
     stockfish(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
@@ -118,7 +118,7 @@ const boardSlice = createSlice({
       state.left = action.payload.left;
       state.movetext = action.payload.movetext;
       delete state.lan;
-      delete state.picked;
+      delete state.pickedPiece;
     },
   }
 });
