@@ -227,8 +227,7 @@ export default class WsEvent {
     dispatch(board.legal({
       piece: data['/legal'].identity,
       position: data['/legal'].position,
-      fen: data['/legal'].fen,
-      en_passant: data['/legal'].enPassant ? data['/legal'].enPassant : ''
+      fen: data['/legal'].fen
     }));
   }
 

@@ -83,7 +83,6 @@ const boardSlice = createSlice({
     },
     legal(state, action) {
       state.picked.fen = action.payload?.fen;
-      state.picked.en_passant = action.payload?.en_passant;
     },
     undo(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
