@@ -19,7 +19,7 @@ const SettingsDialog = () => {
 
   const handleAnimationChange = (event: Event) => {
     dispatch(settingsDialog.accept({
-      animation: event.target.value === 'on' ? 'off' : 'on'
+      pieceAnimation: event.target.value === 'on' ? 'off' : 'on'
     }));
   };
 
@@ -42,9 +42,9 @@ const SettingsDialog = () => {
           <FormControlLabel
             label="Animate the chess pieces while playing"
             control={<Checkbox
-              name="animation"
-              checked={state.settingsDialog.fields.animation === 'on'}
-              value={state.settingsDialog.fields.animation}
+              name="pieceAnimation"
+              checked={state.settingsDialog.fields.pieceAnimation === 'on'}
+              value={state.settingsDialog.fields.pieceAnimation}
               onChange={handleAnimationChange}
             />}
           />

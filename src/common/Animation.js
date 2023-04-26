@@ -10,7 +10,7 @@ export default class Animation {
   }
 
   piece() {
-    if (store.getState().settingsDialog.fields.animation === 'on') {
+    if (store.getState().settingsDialog.fields.pieceAnimation === 'on') {
       if (
         store.getState().board?.left?.event === eventConst.ON_MOUSE_DOWN ||
         store.getState().board?.left?.event === eventConst.ON_STOCKFISH ||
