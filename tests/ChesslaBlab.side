@@ -138,7 +138,7 @@
     }]
   }, {
     "id": "7636fadd-908e-49e7-9a80-6aca0cc1bd07",
-    "name": "Play C20 and load PGN movetext",
+    "name": "Play C20 and load the PGN movetext",
     "commands": [{
       "id": "c890f0a7-bdab-456e-9f54-1b1808f751e9",
       "comment": "",
