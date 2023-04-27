@@ -300,6 +300,190 @@
       ],
       "value": ""
     }]
+  }, {
+    "id": "a244b156-04f7-44c6-be92-ff0f64a275e6",
+    "name": "Search A08 and continue the game",
+    "commands": [{
+      "id": "ca20283e-b911-425e-a528-4f911d4a7907",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c34864a3-3aa5-422a-adcf-5a9a6ab57b3c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x742",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "04c5f363-5e38-42c9-b5e6-a931a5f7036b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonGroup-groupedTextVertical:nth-child(2)",
+      "targets": [
+        ["css=.MuiButtonGroup-groupedTextVertical:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='demo']/div/div/div/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Opening Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d0afadf6-5c48-4362-8794-c3bcf31b891e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiMenuItem-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiMenuItem-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[3]", "xpath:position"],
+        ["xpath=//li[contains(.,' Name')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ffa3ce1-1600-484e-ada4-ac6e1dfade6f",
+      "comment": "",
+      "command": "click",
+      "target": "id=:rp:",
+      "targets": [
+        ["id=:rp:", "id"],
+        ["name=name", "name"],
+        ["css=#\\3Arp\\3A", "css:finder"],
+        ["xpath=//input[@id=':rp:']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6c59389-a842-4f9c-bb52-461ca5aafc16",
+      "comment": "",
+      "command": "type",
+      "target": "id=:rp:",
+      "targets": [
+        ["id=:rp:", "id"],
+        ["name=name", "name"],
+        ["css=#\\3Arp\\3A", "css:finder"],
+        ["xpath=//input[@id=':rp:']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "sicilian variation"
+    }, {
+      "id": "58b93f76-1439-41c8-9e81-3bd749ea0c51",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-outlinedSizeMedium",
+      "targets": [
+        ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "34cbd6f9-9f4c-4db4-aa8e-d55a8fe62916",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiTableRow-root:nth-child(2) > .MuiTableCell-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiTableRow-root:nth-child(2) > .MuiTableCell-root:nth-child(3)", "css:finder"],
+        ["xpath=//tr[2]/td[3]", "xpath:position"],
+        ["xpath=//td[contains(.,'1.e4 e6 2.d3 d5 3.Nd2 Nf6 4.Ngf3 c5 5.g3 Nc6 6.Bg2 Be7 7.O-O O-O 8.Re1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd150631-d51f-48b3-9c72-7a1fc5f657ed",
+      "comment": "",
+      "command": "click",
+      "target": "css=.d5 > img",
+      "targets": [
+        ["css=.d5 > img", "css:finder"],
+        ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[8]", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[28]/img", "xpath:idRelative"],
+        ["xpath=//div[28]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bd8be168-e68f-4a1c-a703-4a43ceaebf23",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e4",
+      "targets": [
+        ["css=.d3 > img", "css:finder"],
+        ["xpath=//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg']", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[44]/img", "xpath:idRelative"],
+        ["xpath=//div[44]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1f51399-e530-4422-96d6-a515f7576a16",
+      "comment": "",
+      "command": "click",
+      "target": "css=.d3 > img",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5ea8c1c9-0668-45f7-9117-70450c8d8f90",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e4",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "081866fd-c266-4957-aee6-d7f4fe431d48",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f6 > img",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8c145d5e-e220-4692-8174-0c2cb5c0e4e5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e4",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dea04794-2877-4cc0-861c-3811f39a5497",
+      "comment": "",
+      "command": "click",
+      "target": "css=.d2 > img",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e9a0f5ee-4a9c-40f8-922d-a469f8667720",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e4",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a7f2c7bf-22d1-4039-82b0-c9537c4650c2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.d8 > img",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2a6ef341-79f0-4fce-a07f-02143a7d3840",
+      "comment": "",
+      "command": "click",
+      "target": "css=.d1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "766d1174-1964-45e5-86de-1c3b973af4ee",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e1 > img",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bfac57c1-2a76-42e8-afcb-b83205a12109",
+      "comment": "",
+      "command": "click",
+      "target": "css=.d1",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d7fed61e-4010-4e9c-a67f-0bba942585e7",
