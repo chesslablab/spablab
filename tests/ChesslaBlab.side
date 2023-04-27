@@ -1,0 +1,150 @@
+{
+  "id": "4144d5e2-a14b-4d1b-b08c-fd5f5a035e27",
+  "version": "2.0",
+  "name": "ChesslaBlab",
+  "url": "https://www.chesslablab.com:9443",
+  "tests": [{
+    "id": "e04aef97-5032-4a14-8426-dadc9300e672",
+    "name": "Play C50",
+    "commands": [{
+      "id": "f9138c67-fac5-44bb-b01a-870b4456c7cb",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1895456c-d4b0-4d6a-9556-e54d4575e6bf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x742",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8ebde1da-5767-4bd7-82f7-fb2c41b631a8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e2 > img",
+      "targets": [
+        ["css=.e2 > img", "css:finder"],
+        ["xpath=(//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg'])[5]", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[53]/img", "xpath:idRelative"],
+        ["xpath=//div[53]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d09abe10-f6fa-45f9-bb6f-9f9c495bba18",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e4",
+      "targets": [
+        ["css=.e4", "css:finder"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[37]", "xpath:idRelative"],
+        ["xpath=//div[37]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "effc14fa-1f51-4e12-880c-1fe7a0b711e7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e7 > img",
+      "targets": [
+        ["css=.e7 > img", "css:finder"],
+        ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[5]", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[13]/img", "xpath:idRelative"],
+        ["xpath=//div[13]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "43f5596f-8254-428f-abd9-758aa379b1bb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e5",
+      "targets": [
+        ["css=.e5", "css:finder"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[29]", "xpath:idRelative"],
+        ["xpath=//div[29]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "268c78fb-c941-429b-9f49-a4fb406e932e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.g1 > img",
+      "targets": [
+        ["css=.g1 > img", "css:finder"],
+        ["xpath=(//img[@alt='/static/media/wKnight.145b8796b11b8d78677d2b1f52bba7ef.svg'])[2]", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[63]/img", "xpath:idRelative"],
+        ["xpath=//div[63]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fee101a2-8996-42cd-b0a0-061c61357ab3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f3",
+      "targets": [
+        ["css=.f3", "css:finder"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[46]", "xpath:idRelative"],
+        ["xpath=//div[46]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cbda82bc-4ab1-4986-8383-178b06ed1c14",
+      "comment": "",
+      "command": "click",
+      "target": "css=.b8 > img",
+      "targets": [
+        ["css=.b8 > img", "css:finder"],
+        ["xpath=//img[@alt='/static/media/bKnight.d714eeb4f02e045451775bdfc8c015a3.svg']", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[2]/img", "xpath:idRelative"],
+        ["xpath=//div[2]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5496c37-36b6-4131-ac6a-5f626f610854",
+      "comment": "",
+      "command": "click",
+      "target": "css=.c6",
+      "targets": [
+        ["css=.c6", "css:finder"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[19]", "xpath:idRelative"],
+        ["xpath=//div[19]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5afef84b-dbaf-4917-9863-015efe4b0203",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f1 > img",
+      "targets": [
+        ["css=.f1 > img", "css:finder"],
+        ["xpath=(//img[@alt='/static/media/wBishop.8333f40f6a469e7e580228139685c4a6.svg'])[2]", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[62]/img", "xpath:idRelative"],
+        ["xpath=//div[62]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "520e25e5-5643-43ff-94fc-28cb9fd3ff39",
+      "comment": "",
+      "command": "click",
+      "target": "css=.c4",
+      "targets": [
+        ["css=.c4", "css:finder"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[35]", "xpath:idRelative"],
+        ["xpath=//div[35]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "d7fed61e-4010-4e9c-a67f-0bba942585e7",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://www.chesslablab.com:9443/"],
+  "plugins": []
+}
