@@ -22,9 +22,10 @@ import SearchNameDialog from 'features/dialog/SearchNameDialog';
 import ProgressDialog from 'features/dialog/ProgressDialog';
 import SettingsDialog from 'features/dialog/SettingsDialog';
 import StartedButtonsAnalysisMode from 'features/mode/analysis/StartedButtonsAnalysisMode';
+import StartedButtonsFenMode from 'features/mode/fen/StartedButtonsFenMode';
+import StartedButtonsGmMode from 'features/mode/gm/StartedButtonsGmMode';
 import StartedButtonsPgnMode from 'features/mode/pgn/StartedButtonsPgnMode';
 import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsStockfishMode';
-import StartedButtonsGmMode from 'features/mode/gm//StartedButtonsGmMode';
 import GameTable from 'features/table/GameTable';
 import OpeningAnalysisTable from 'features/table/OpeningAnalysisTable';
 import Game from './Game';
@@ -55,9 +56,10 @@ const Chess = ({ props }) => {
             <GameTable />
             <OpeningAnalysisTable />
             <StartedButtonsAnalysisMode />
+            <StartedButtonsGmMode />
+            <StartedButtonsFenMode />
             <StartedButtonsPgnMode />
             <StartedButtonsStockfishMode />
-            <StartedButtonsGmMode />
             <InfoAlert />
           </Grid>
           <Grid item xs={12} md={2}>
