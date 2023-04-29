@@ -549,13 +549,6 @@
       ],
       "value": "qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -"
     }, {
-      "id": "3858a6b2-1d79-41fd-8d7c-a700bcb2d0b2",
-      "comment": "",
-      "command": "runScript",
-      "target": "window.scrollTo(0,0)",
-      "targets": [],
-      "value": ""
-    }, {
       "id": "09130493-6fcf-4122-9e0b-e110dc293991",
       "comment": "",
       "command": "mouseDown",
