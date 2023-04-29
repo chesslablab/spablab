@@ -484,6 +484,247 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "a8c20928-b9b1-4391-bb1c-be144f3ba4fc",
+    "name": "Undo castling in a Fischer Random game",
+    "commands": [{
+      "id": "00551f70-d02e-49c7-b318-514c63444b8c",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "01c7b6d9-5512-46f3-b390-af285972a3d9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x742",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9fa988ee-0c4e-465d-bdca-876a0d4b6f2f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='demo']/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Analysis Board')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e367e2a3-28dc-49e1-9d6e-9788a9d7d4d5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(6)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(6)", "css:finder"],
+        ["xpath=//li[5]", "xpath:position"],
+        ["xpath=//li[contains(.,' FEN String')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1669369a-1a96-41c6-a421-4fccad2300aa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiFormControl-root:nth-child(2)",
+      "targets": [
+        ["css=.MuiFormControl-root:nth-child(2)", "css:finder"],
+        ["xpath=//form/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "12fd4ccf-b034-4e62-98ab-b56e08895f66",
+      "comment": "",
+      "command": "type",
+      "target": "id=:rq:",
+      "targets": [
+        ["id=:rq:", "id"],
+        ["name=fen", "name"],
+        ["css=#\\3Arq\\3A", "css:finder"],
+        ["xpath=//input[@id=':rq:']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -"
+    }, {
+      "id": "3858a6b2-1d79-41fd-8d7c-a700bcb2d0b2",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "09130493-6fcf-4122-9e0b-e110dc293991",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "id=:rp:",
+      "targets": [
+        ["id=:rp:", "id"],
+        ["css=#\\3Arp\\3A", "css:finder"],
+        ["xpath=//div[@id=':rp:']", "xpath:attributes"],
+        ["xpath=//form/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cf1ca8a1-8ace-4f2a-9bd9-4a602f8b7199",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=.MuiBackdrop-invisible",
+      "targets": [
+        ["css=.MuiBackdrop-invisible", "css:finder"],
+        ["xpath=//div[@id='menu-variant']/div", "xpath:idRelative"],
+        ["xpath=//body/div[4]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "27ca2c1b-63d3-4512-8eec-38b686f2f116",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "157fd250-4baf-4491-8c85-f5374515b5b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiMenuItem-root:nth-child(2)",
+      "targets": [
+        ["css=.MuiMenuItem-root:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='menu-variant']/div[3]/ul/li[2]", "xpath:idRelative"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Fischer Random 960')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "aa39ae0e-f84b-440a-8f42-f0e71df2592c",
+      "comment": "",
+      "command": "click",
+      "target": "id=:rr:",
+      "targets": [
+        ["id=:rr:", "id"],
+        ["name=startPos", "name"],
+        ["css=#\\3Arr\\3A", "css:finder"],
+        ["xpath=//input[@id=':rr:']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7b5ef33c-c5c3-4aa4-8bdd-3682cde87bc4",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-outlinedSizeMedium",
+      "targets": [
+        ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Load')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "efc5e986-20ff-4eab-9b7f-a6a88894dcdc",
+      "comment": "",
+      "command": "type",
+      "target": "id=:rr:",
+      "targets": [
+        ["id=:rr:", "id"],
+        ["name=startPos", "name"],
+        ["css=#\\3Arr\\3A", "css:finder"],
+        ["xpath=//input[@id=':rr:']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "QNRNBKRB"
+    }, {
+      "id": "d3918fce-8e30-4ee3-8008-722d2303e809",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-outlinedSizeMedium",
+      "targets": [
+        ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Load')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "261c17bb-f1b7-4657-a1f8-58cb91d38c9d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f1 > img",
+      "targets": [
+        ["css=.f1 > img", "css:finder"],
+        ["xpath=//img[@alt='/static/media/wKing.3f959aab36df6290a8e0f17c7d242c19.svg']", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[62]/img", "xpath:idRelative"],
+        ["xpath=//div[62]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "37387fd9-2448-42da-a0d0-a6c9280bd5a8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.g1",
+      "targets": [
+        ["css=.g1 > img:nth-child(1)", "css:finder"],
+        ["xpath=//img[@alt='/static/media/wKing.3f959aab36df6290a8e0f17c7d242c19.svg']", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[63]/img", "xpath:idRelative"],
+        ["xpath=//div[63]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8949b8c1-5efe-4ebc-979d-91b1f22b5a4c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f8 > img",
+      "targets": [
+        ["css=.f8 > img", "css:finder"],
+        ["xpath=//img[@alt='/static/media/bKing.6c8cc8fabe5215cc854dec67ee7781fd.svg']", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[6]/img", "xpath:idRelative"],
+        ["xpath=//div[6]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a44ec284-cbc1-4827-94ac-b5ec5cd541a2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.g8",
+      "targets": [
+        ["css=.g8 > img:nth-child(1)", "css:finder"],
+        ["xpath=//img[@alt='/static/media/bKing.6c8cc8fabe5215cc854dec67ee7781fd.svg']", "xpath:img"],
+        ["xpath=//div[@id='demo']/div/div[2]/div/div[7]/img", "xpath:idRelative"],
+        ["xpath=//div[7]/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a44a9eb8-3aa6-41db-bb84-d2d6b3768847",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-sizeSmall",
+      "targets": [
+        ["css=.MuiButton-sizeSmall", "css:finder"],
+        ["xpath=(//button[@type='button'])[16]", "xpath:attributes"],
+        ["xpath=//div[@id='demo']/div/div[3]/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Undo move')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e92d241-f6b5-43fa-a265-477b3d156dca",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-sizeSmall",
+      "targets": [
+        ["css=.MuiButton-sizeSmall", "css:finder"],
+        ["xpath=(//button[@type='button'])[16]", "xpath:attributes"],
+        ["xpath=//div[@id='demo']/div/div[3]/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Undo move')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d7fed61e-4010-4e9c-a67f-0bba942585e7",
