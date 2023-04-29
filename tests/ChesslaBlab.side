@@ -342,19 +342,6 @@
       ],
       "value": ""
     }, {
-      "id": "4ffa3ce1-1600-484e-ada4-ac6e1dfade6f",
-      "comment": "",
-      "command": "click",
-      "target": "id=:rp:",
-      "targets": [
-        ["id=:rp:", "id"],
-        ["name=name", "name"],
-        ["css=#\\3Arp\\3A", "css:finder"],
-        ["xpath=//input[@id=':rp:']", "xpath:attributes"],
-        ["xpath=//input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "e6c59389-a842-4f9c-bb52-461ca5aafc16",
       "comment": "",
       "command": "type",
@@ -591,19 +578,6 @@
         ["xpath=//div[@id='menu-variant']/div[3]/ul/li[2]", "xpath:idRelative"],
         ["xpath=//li[2]", "xpath:position"],
         ["xpath=//li[contains(.,'Fischer Random 960')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "aa39ae0e-f84b-440a-8f42-f0e71df2592c",
-      "comment": "",
-      "command": "click",
-      "target": "id=:rr:",
-      "targets": [
-        ["id=:rr:", "id"],
-        ["name=startPos", "name"],
-        ["css=#\\3Arr\\3A", "css:finder"],
-        ["xpath=//input[@id=':rr:']", "xpath:attributes"],
-        ["xpath=//div[2]/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
