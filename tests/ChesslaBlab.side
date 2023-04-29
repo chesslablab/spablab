@@ -607,18 +607,6 @@
       ],
       "value": ""
     }, {
-      "id": "7b5ef33c-c5c3-4aa4-8bdd-3682cde87bc4",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "css=.MuiButton-outlinedSizeMedium",
-      "targets": [
-        ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
-        ["xpath=//button[@type='submit']", "xpath:attributes"],
-        ["xpath=//form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Load')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
       "id": "efc5e986-20ff-4eab-9b7f-a6a88894dcdc",
       "comment": "",
       "command": "type",
