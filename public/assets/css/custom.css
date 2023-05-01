@@ -43,10 +43,6 @@ table {
   display: table;
 }
 
-section:hover {
-  cursor: pointer;
-}
-
 footer {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   margin-top: 3rem;
