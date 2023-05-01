@@ -6,7 +6,7 @@ React Chess is "just a chessboard" as lightweight as it can possibly be. It is c
 
 Check out [this demo](https://www.chesslablab.com/).
 
-![Figure 1](/src/assets/img/docs/figure-01.png)
+![Figure 1](/public/assets/img/demo.png)
 
 ### Install and Setup
 

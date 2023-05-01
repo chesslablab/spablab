@@ -2,10 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Grid } from '@mui/material';
 import { ThemeProvider } from "@mui/material/styles";
-import 'index.css';
-import 'assets/css/fonts.css';
 import store from 'app/store';
-import theme from 'styles/theme.js';
 import VariantBoard from 'features/board/VariantBoard';
 import InfoAlert from 'features/alert/InfoAlert.js';
 import CheckmateSkillsDialog from 'features/dialog/CheckmateSkillsDialog';
@@ -28,10 +25,11 @@ import StartedButtonsPgnMode from 'features/mode/pgn/StartedButtonsPgnMode';
 import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsStockfishMode';
 import GameTable from 'features/table/GameTable';
 import OpeningAnalysisTable from 'features/table/OpeningAnalysisTable';
-import Game from './Game';
-import HeuristicsBar from './HeuristicsBar';
-import MainButtons from './MainButtons';
-import PlayButtons from './PlayButtons';
+import Game from 'features/Game';
+import HeuristicsBar from 'features/HeuristicsBar';
+import MainButtons from 'features/MainButtons';
+import PlayButtons from 'features/PlayButtons';
+import theme from 'styles/theme.js';
 
 const styles = {
   right: {
