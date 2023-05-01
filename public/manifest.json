@@ -1,6 +1,6 @@
 {
   "short_name": "ChesslaBlab",
-  "name": "Open source chess for the Web",
+  "name": "Open source chess for websites and apps",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
