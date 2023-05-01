@@ -1,0 +1,57 @@
+html * {
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+header {
+  padding-bottom: 1rem !important;
+  border-bottom: 0 !important;
+}
+
+header a {
+  color: #1976d2 !important;
+}
+
+header > nav {
+  padding: 1rem 0 1rem 0;
+}
+
+body > header h1 {
+  margin: 0rem auto;
+}
+
+pre {
+  font-size: 0.9rem;
+  background-color: #141414;
+  color: #fff;
+}
+
+table {
+  display: table;
+}
+
+body > div#footer {
+  margin-top: 3rem;
+  padding: 2rem 1rem 1.5rem 1rem;
+  color: var(--text-light);
+  font-size: .9rem;
+  text-align: center;
+  border-top: 1px solid #ccc !important;
+}
+
+body > div#footer a {
+  padding: 0 1.25rem 0 1.25rem;
+  text-decoration: none;
+  color: #323232;
+}
+
+body > div#footer a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,19 @@
+body > div#footer {
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  margin-top: 3rem;
+  padding: 2rem 1rem 1.5rem 1rem;
+  color: var(--text-light);
+  font-size: .9rem;
+  text-align: center;
+  border-top: 1px solid #ccc !important;
+}
+
+body > div#footer a {
+  padding: 0 1.25rem 0 1.25rem;
+  text-decoration: none;
+  color: #323232;
+}
+
+body > div#footer a:hover {
+  text-decoration: underline;
+}
