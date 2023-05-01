@@ -1,6 +1,6 @@
 {
   "short_name": "ChesslaBlab",
-  "name": "Improve your chess skills and play online for free",
+  "name": "Open source chess for the Web",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
