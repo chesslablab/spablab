@@ -3,28 +3,34 @@ html * {
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 2rem;
 }
 
 h2 {
   font-size: 1.75rem;
 }
 
+h3 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  color: #404040;
+  font-weight: normal;
+}
+
 header {
+  padding-top: 1rem !important;
   padding-bottom: 1rem !important;
   border-bottom: 0 !important;
 }
 
-header a {
-  color: #1976d2 !important;
+article {
+  border: 0;
 }
 
-header > nav {
-  padding: 1rem 0 1rem 0;
-}
-
-body > header h1 {
-  margin: 0rem auto;
+article h2,
+section h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
 }
 
 pre {
@@ -37,7 +43,12 @@ table {
   display: table;
 }
 
-body > div#footer {
+section:hover {
+  cursor: pointer;
+}
+
+footer {
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
   margin-top: 3rem;
   padding: 2rem 1rem 1.5rem 1rem;
   color: var(--text-light);
@@ -46,12 +57,13 @@ body > div#footer {
   border-top: 1px solid #ccc !important;
 }
 
-body > div#footer a {
+footer a,
+footer a:visited {
   padding: 0 1.25rem 0 1.25rem;
   text-decoration: none;
   color: #323232;
 }
 
-body > div#footer a:hover {
+footer a:hover {
   text-decoration: underline;
 }
