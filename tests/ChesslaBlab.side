@@ -196,17 +196,6 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "d5bfd061-a287-42ee-a30f-6539b804f2a9",
-      "comment": "",
-      "command": "click",
-      "target": "css=.classicalBoard",
-      "targets": [
-        ["css=.classicalBoard", "css:finder"],
-        ["xpath=//div[@id='demo']/div/div[2]/div", "xpath:idRelative"],
-        ["xpath=//div[2]/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "4cc33173-49f6-44d2-91aa-afa795e4f8f5",
       "comment": "",
       "command": "click",
