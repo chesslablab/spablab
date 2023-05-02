@@ -76,7 +76,7 @@ const SecondaryButtons = ({props}) => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton
-        id="SecondaryButtons-IconButton-copyPgnMovetext"
+        id="SecondaryButtons-copyPgnMovetext"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -87,7 +87,7 @@ const SecondaryButtons = ({props}) => {
         <MoveDownIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButtons-IconButton-copyFenString"
+        id="SecondaryButtons-copyFenString"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -98,7 +98,7 @@ const SecondaryButtons = ({props}) => {
         <WidgetsIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButtons-IconButton-heuristics"
+        id="SecondaryButtons-heuristics"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -112,7 +112,7 @@ const SecondaryButtons = ({props}) => {
         <BarChartIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButtons-IconButton-downloadImage"
+        id="SecondaryButtons-downloadImage"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -123,7 +123,7 @@ const SecondaryButtons = ({props}) => {
         <InsertPhotoIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButtons-IconButton-downloadVideo"
+        id="SecondaryButtons-downloadVideo"
         disabled={disabled}
         color="primary"
         size="medium"
