@@ -565,7 +565,7 @@
       "id": "d3918fce-8e30-4ee3-8008-722d2303e809",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-outlinedSizeMedium",
+      "target": "id=LoadFenDialog-Button-load",
       "targets": [
         ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
         ["xpath=//button[@type='submit']", "xpath:attributes"],
