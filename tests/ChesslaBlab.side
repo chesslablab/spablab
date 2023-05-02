@@ -505,7 +505,7 @@
       "id": "1669369a-1a96-41c6-a421-4fccad2300aa",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiFormControl-root:nth-child(2)",
+      "target": "id=LoadFenDialog-TextField-fen",
       "targets": [
         ["css=.MuiFormControl-root:nth-child(2)", "css:finder"],
         ["xpath=//form/div[2]", "xpath:position"]
@@ -515,7 +515,7 @@
       "id": "12fd4ccf-b034-4e62-98ab-b56e08895f66",
       "comment": "",
       "command": "type",
-      "target": "id=:rq:",
+      "target": "id=LoadFenDialog-TextField-fen",
       "targets": [
         ["id=:rq:", "id"],
         ["name=fen", "name"],
@@ -528,7 +528,7 @@
       "id": "09130493-6fcf-4122-9e0b-e110dc293991",
       "comment": "",
       "command": "mouseDown",
-      "target": "id=:rp:",
+      "target": "id=LoadFenDialog-TextField-variant",
       "targets": [
         ["id=:rp:", "id"],
         ["css=#\\3Arp\\3A", "css:finder"],
@@ -552,7 +552,7 @@
       "id": "efc5e986-20ff-4eab-9b7f-a6a88894dcdc",
       "comment": "",
       "command": "type",
-      "target": "id=:rr:",
+      "target": "id=LoadFenDialog-TextField-startPos",
       "targets": [
         ["id=:rr:", "id"],
         ["name=startPos", "name"],
