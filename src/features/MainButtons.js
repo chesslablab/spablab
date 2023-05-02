@@ -141,10 +141,13 @@ const MainButtons = ({props}) => {
           <BlurOnIcon size="small" />&nbsp;Start Capablanca
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => {
-          dispatch(loadPgnDialog.open());
-          handleCloseAnalysis();
-        }}>
+        <MenuItem
+          id="MenuItem-analysisBoard-pgnMovetext"
+          onClick={() => {
+            dispatch(loadPgnDialog.open());
+            handleCloseAnalysis();
+          }}
+        >
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
         <MenuItem onClick={() => {
