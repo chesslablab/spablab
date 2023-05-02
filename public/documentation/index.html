@@ -30,12 +30,14 @@
   <link rel="stylesheet" href="/assets/css/simple.min.css">
   <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/custom.css">
+  <!-- Include HTML -->
+  <script src="/assets/js/include.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Documentation</h1>
-  </header>
+  <nav></nav>
   <main>
+    <h1>Documentation</h1>
+    <section>
     <h2>Chess API for Web Apps</h2>
     <p>The ChesslaBlab <a href="https://github.com/chesslablab/chess-api">Chess API</a> allows to create chess web apps using GET and POST HTTP requests. It is open-source and can be hosted on a custom domain.</p>
     <details>
@@ -868,6 +870,8 @@ curl https://pchess.net/api/stats/player \
 ]
 </pre>
     </details>
+    </section>
+    <section>
     <h2>Chess Server for Web Apps</h2>
     <p>The ChesslaBlab <a href="https://github.com/chesslablab/chess-server">Chess Server</a> provides additional functionality to play chess online. It is based on WebSockets and can be hosted on a custom domain.</p>
     <p>This is how to open a WebSocket connection in JavaScript.</p>
@@ -1493,8 +1497,7 @@ ws.send('/heuristics_bar "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R
       <p>To be continued. The commands available are being documented in this section, please be patient.</p>
     </blockquote>
     <p>Keep it up, and happy coding and learning!</p>
+    </section>
   </main>
-  <footer></footer>
-  <script src="/assets/js/include.js"></script>
 </body>
 </html>

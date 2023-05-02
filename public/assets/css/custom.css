@@ -2,6 +2,10 @@ html * {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
 }
 
+body {
+  margin: 0;
+}
+
 a,
 a:visited {
   color: #323232;
@@ -15,11 +19,14 @@ code {
 
 h1 {
   font-size: 2rem;
+  text-align: center;
+  color: #101010;
 }
 
 h2 {
   font-size: 1.75rem;
   line-height: 2.25rem;
+  color: #202020;
 }
 
 h3 {
@@ -35,10 +42,26 @@ h3 a {
   text-decoration: none;
 }
 
-header {
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
-  border-bottom: 0 !important;
+nav {
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  padding: 1.25rem;
+  font-size: .9rem;
+  text-align: center;
+  height: 1rem;
+}
+
+nav a,
+nav a:visited {
+  padding: 0 1rem 0 1rem;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main > h2 {
+  text-align: center;
 }
 
 article {
@@ -59,24 +82,4 @@ pre {
 
 table {
   display: table;
-}
-
-footer {
-  font-family: Montserrat, Helvetica, Arial, sans-serif;
-  margin-top: 3rem;
-  padding: 2rem 1rem 1.5rem 1rem;
-  color: var(--text-light);
-  font-size: .9rem;
-  text-align: center;
-  border-top: 1px solid #ccc !important;
-}
-
-footer a,
-footer a:visited {
-  padding: 0 1.25rem 0 1.25rem;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
 }
