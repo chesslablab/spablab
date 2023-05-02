@@ -245,7 +245,7 @@
       "id": "9f5e4b92-a404-4dbd-b9aa-d40c81e1fa05",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-outlinedSizeMedium",
+      "target": "id=LoadPgnDialog-load",
       "targets": [
         ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
         ["xpath=//button[@type='submit']", "xpath:attributes"],
