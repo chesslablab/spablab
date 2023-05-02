@@ -76,7 +76,7 @@ const SecondaryButtons = ({props}) => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton
-        id="SecondaryButton-copyPgnMovetext"
+        id="SecondaryButtons-IconButton-copyPgnMovetext"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -87,7 +87,7 @@ const SecondaryButtons = ({props}) => {
         <MoveDownIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButton-copyFenString"
+        id="SecondaryButtons-IconButton-copyFenString"
         disabled={disabled}
         color="primary"
         size="medium"
