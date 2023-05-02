@@ -43,6 +43,7 @@ const SearchNameDialog = ({ props }) => {
       <DialogContent>
         <form onSubmit={handleSearch}>
           <TextField
+            id="SearchNameDialog-TextField-name"
             fullWidth
             required
             name="name"
@@ -51,6 +52,7 @@ const SearchNameDialog = ({ props }) => {
             margin="normal"
           />
           <Button
+            id="SearchNameDialog-Button-search"
             fullWidth
             type="submit"
             variant="outlined"
