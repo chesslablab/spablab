@@ -76,6 +76,7 @@ const SecondaryButtons = ({props}) => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton
+        id="SecondaryButton-copyPgnMovetext"
         disabled={disabled}
         color="primary"
         size="medium"

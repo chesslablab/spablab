@@ -199,7 +199,7 @@
       "id": "4cc33173-49f6-44d2-91aa-afa795e4f8f5",
       "comment": "",
       "command": "click",
-      "target": "id=SecondaryButton-copyFenString",
+      "target": "id=SecondaryButton-copyPgnMovetext",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
       ],
