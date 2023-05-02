@@ -18,7 +18,7 @@ const StartedButtonsAnalysisMode = () => {
           fullWidth={true}
         >
           <Button
-            id="StartedButtonsAnalysisMode-Button-undo"
+            id="StartedButtonsAnalysisMode-Button-undoMove"
             onClick={() => WsAction.undo()}
           >
             Undo move

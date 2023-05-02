@@ -18,7 +18,7 @@ const StartedButtonsPgnMode = () => {
           fullWidth={true}
         >
           <Button
-            id="StartedButtonsPgnMode-Button-undo"
+            id="StartedButtonsPgnMode-Button-undoMove"
             onClick={() => WsAction.undo()}
           >
             Undo move
