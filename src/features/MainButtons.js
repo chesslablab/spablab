@@ -116,28 +116,37 @@ const MainButtons = ({props}) => {
         open={Boolean(anchorElAnalysis)}
         onClose={handleCloseAnalysis}
       >
-        <MenuItem onClick={() => {
-          dispatch(mainButtons.setAnalysis());
-          Dispatcher.initGui(dispatch);
-          WsAction.start(variantConst.CLASSICAL, modeConst.ANALYSIS);
-          handleCloseAnalysis();
-        }}>
+        <MenuItem
+          id="MainButtons-MenuItem-startClassical"
+          onClick={() => {
+            dispatch(mainButtons.setAnalysis());
+            Dispatcher.initGui(dispatch);
+            WsAction.start(variantConst.CLASSICAL, modeConst.ANALYSIS);
+            handleCloseAnalysis();
+          }}
+        >
           <RestartAltIcon size="small" />&nbsp;Start Classical
         </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(mainButtons.setAnalysis());
-          Dispatcher.initGui(dispatch);
-          WsAction.start(variantConst.CHESS_960, modeConst.ANALYSIS);
-          handleCloseAnalysis();
-        }}>
+        <MenuItem
+          id="MainButtons-MenuItem-startFischerRandom960"
+          onClick={() => {
+            dispatch(mainButtons.setAnalysis());
+            Dispatcher.initGui(dispatch);
+            WsAction.start(variantConst.CHESS_960, modeConst.ANALYSIS);
+            handleCloseAnalysis();
+          }}
+        >
           <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
         </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(mainButtons.setAnalysis());
-          Dispatcher.initGui(dispatch);
-          WsAction.start(variantConst.CAPABLANCA_80, modeConst.ANALYSIS);
-          handleCloseAnalysis();
-        }}>
+        <MenuItem
+          id="MainButtons-MenuItem-startCapablanca"
+          onClick={() => {
+            dispatch(mainButtons.setAnalysis());
+            Dispatcher.initGui(dispatch);
+            WsAction.start(variantConst.CAPABLANCA_80, modeConst.ANALYSIS);
+            handleCloseAnalysis();
+          }}
+        >
           <BlurOnIcon size="small" />&nbsp;Start Capablanca
         </MenuItem>
         <Divider />
@@ -150,14 +159,18 @@ const MainButtons = ({props}) => {
         >
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(loadFenDialog.open());
-          handleCloseAnalysis();
-        }}>
+        <MenuItem
+          id="MainButtons-MenuItem-fenString"
+          onClick={() => {
+            dispatch(loadFenDialog.open());
+            handleCloseAnalysis();
+          }}
+        >
           <WidgetsIcon size="small" />&nbsp;FEN String
         </MenuItem>
       </Menu>
       <Button
+        id="MainButtons-Button-openingSearch"
         variant={state.mainButtons.name === mainButtonsConst.OPENING_SEARCH ? "contained" : "text"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
