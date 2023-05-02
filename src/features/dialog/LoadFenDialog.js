@@ -54,6 +54,7 @@ const LoadFenDialog = () => {
       <DialogContent>
         <form onSubmit={handleLoad}>
           <TextField
+            id="LoadFenDialog-TextField-variant"
             select
             required
             fullWidth
@@ -64,29 +65,43 @@ const LoadFenDialog = () => {
             margin="normal"
             onChange={handleVariantChange}
           >
-            <MenuItem key={0} value="classical">
+            <MenuItem
+              id="LoadFenDialog-TextField-variant-MenuItem-classical"
+              key={0}
+              value="classical"
+            >
               Classical
             </MenuItem>
-            <MenuItem key={1} value="960">
+            <MenuItem
+              id="LoadFenDialog-TextField-variant-MenuItem-960"
+              key={1}
+              value="960"
+            >
               Fischer Random 960
             </MenuItem>
-            <MenuItem key={2} value="capablanca80">
+            <MenuItem
+              id="LoadFenDialog-TextField-variant-MenuItem-capablanca80"
+              key={2}
+              value="capablanca80"
+            >
               Capablanca
             </MenuItem>
           </TextField>
           {
             variant === variantConst.CHESS_960
               ? <TextField
-                fullWidth
-                required
-                name="startPos"
-                label="Start position"
-                variant="filled"
-                helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+                  id="LoadFenDialog-TextField-startPos"
+                  fullWidth
+                  required
+                  name="startPos"
+                  label="Start position"
+                  variant="filled"
+                  helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
               />
               : null
           }
           <TextField
+            id="LoadFenDialog-TextField-fen"
             fullWidth
             required
             name="fen"
@@ -95,6 +110,7 @@ const LoadFenDialog = () => {
             margin="normal"
           />
           <Button
+            id="LoadFenDialog-Button-load"
             fullWidth
             type="submit"
             variant="outlined"
