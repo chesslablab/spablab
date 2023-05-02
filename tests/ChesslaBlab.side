@@ -334,7 +334,7 @@
       "id": "e6c59389-a842-4f9c-bb52-461ca5aafc16",
       "comment": "",
       "command": "type",
-      "target": "id=:rp:",
+      "target": "id=SearchNameDialog-TextField-name",
       "targets": [
         ["id=:rp:", "id"],
         ["name=name", "name"],
@@ -347,7 +347,7 @@
       "id": "58b93f76-1439-41c8-9e81-3bd749ea0c51",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-outlinedSizeMedium",
+      "target": "id=SearchNameDialog-Button-search",
       "targets": [
         ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
         ["xpath=//button[@type='submit']", "xpath:attributes"],
@@ -358,7 +358,7 @@
       "id": "34cbd6f9-9f4c-4db4-aa8e-d55a8fe62916",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiTableRow-root:nth-child(2) > .MuiTableCell-root:nth-child(3)",
+      "target": "id=OpeningSearchResultTable-TableRow-1",
       "targets": [
         ["css=.MuiTableRow-root:nth-child(2) > .MuiTableCell-root:nth-child(3)", "css:finder"],
         ["xpath=//tr[2]/td[3]", "xpath:position"],
