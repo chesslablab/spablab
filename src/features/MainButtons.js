@@ -103,7 +103,7 @@ const MainButtons = ({props}) => {
       disabled={disabled}
     >
       <Button
-        id="MainButtons-Button-analysisBoard"
+        id="MainButtons-analysisBoard"
         sx={{ borderRadius: 0 }}
         variant={state.mainButtons.name === mainButtonsConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
@@ -117,7 +117,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseAnalysis}
       >
         <MenuItem
-          id="MainButtons-MenuItem-startClassical"
+          id="MainButtons-analysisBoard-MenuItem-startClassical"
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
@@ -128,7 +128,7 @@ const MainButtons = ({props}) => {
           <RestartAltIcon size="small" />&nbsp;Start Classical
         </MenuItem>
         <MenuItem
-          id="MainButtons-MenuItem-startFischerRandom960"
+          id="MainButtons-analysisBoard-MenuItem-startFischerRandom960"
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
@@ -139,7 +139,7 @@ const MainButtons = ({props}) => {
           <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
         </MenuItem>
         <MenuItem
-          id="MainButtons-MenuItem-startCapablanca"
+          id="MainButtons-analysisBoard-MenuItem-startCapablanca"
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
@@ -151,7 +151,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="MainButtons-MenuItem-pgnMovetext"
+          id="MainButtons-analysisBoard-MenuItem-pgnMovetext"
           onClick={() => {
             dispatch(loadPgnDialog.open());
             handleCloseAnalysis();
@@ -160,7 +160,7 @@ const MainButtons = ({props}) => {
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
         <MenuItem
-          id="MainButtons-MenuItem-fenString"
+          id="MainButtons-analysisBoard-MenuItem-fenString"
           onClick={() => {
             dispatch(loadFenDialog.open());
             handleCloseAnalysis();
@@ -170,7 +170,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-Button-openingSearch"
+        id="MainButtons-openingSearch"
         variant={state.mainButtons.name === mainButtonsConst.OPENING_SEARCH ? "contained" : "text"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
@@ -183,7 +183,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseOpeningSearch}
       >
         <MenuItem
-          id="MainButtons-MenuItem-ecoCode"
+          id="MainButtons-openingSearch-MenuItem-ecoCode"
           onClick={() => {
             dispatch(searchEcoDialog.open());
             handleCloseOpeningSearch();
@@ -192,7 +192,7 @@ const MainButtons = ({props}) => {
           <BookIcon size="small" />&nbsp;ECO Code
         </MenuItem>
         <MenuItem
-          id="MainButtons-MenuItem-pgnMovetext"
+          id="MainButtons-openingSearch-MenuItem-pgnMovetext"
           onClick={() => {
             dispatch(searchMovetextDialog.open());
             handleCloseOpeningSearch();
@@ -201,7 +201,7 @@ const MainButtons = ({props}) => {
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
         <MenuItem
-          id="MainButtons-MenuItem-name"
+          id="MainButtons-openingSearch-MenuItem-name"
           onClick={() => {
             dispatch(searchNameDialog.open());
             handleCloseOpeningSearch();
@@ -211,6 +211,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
+        id="MainButtons-database"
         variant={state.mainButtons.name === mainButtonsConst.DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
         onClick={handleClickDatabase}
@@ -222,89 +223,102 @@ const MainButtons = ({props}) => {
         open={Boolean(anchorElDatabase)}
         onClose={handleCloseDatabase}
       >
-        <MenuItem onClick={() => {
-          dispatch(progressDialog.open());
-          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
-            .then(res => {
-              if (res.status === 200) {
-                res.json().then(data => {
-                  dispatch(searchGamesDialog.setAutocomplete(data));
-                });
-              } else {
-                dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
-              }
-            })
-            .finally(() => {
-              dispatch(progressDialog.close());
-              dispatch(searchGamesDialog.open());
-              handleCloseDatabase();
-            });
-        }}>
+        <MenuItem
+          id="MainButtons-database-MenuItem-searchGames"
+          onClick={() => {
+            dispatch(progressDialog.open());
+            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
+              .then(res => {
+                if (res.status === 200) {
+                  res.json().then(data => {
+                    dispatch(searchGamesDialog.setAutocomplete(data));
+                  });
+                } else {
+                  dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+                }
+              })
+              .finally(() => {
+                dispatch(progressDialog.close());
+                dispatch(searchGamesDialog.open());
+                handleCloseDatabase();
+              });
+          }}
+        >
           <TravelExploreIcon size="small" />&nbsp;Search Games
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => {
-          dispatch(progressDialog.open());
-          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/stats/opening`)
-            .then(res => {
-              if (res.status === 200) {
-                res.json().then(data => {
-                  dispatch(openingsStatsDialog.setStats(data));
-                });
-              } else {
-                dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
-              }
-            })
-            .finally(() => {
-              dispatch(progressDialog.close());
-              dispatch(openingsStatsDialog.open());
-              handleCloseDatabase();
-            });
-        }}>
+        <MenuItem
+          id="MainButtons-database-MenuItem-topOpenings"
+          onClick={() => {
+            dispatch(progressDialog.open());
+            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/stats/opening`)
+              .then(res => {
+                if (res.status === 200) {
+                  res.json().then(data => {
+                    dispatch(openingsStatsDialog.setStats(data));
+                  });
+                } else {
+                  dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+                }
+              })
+              .finally(() => {
+                dispatch(progressDialog.close());
+                dispatch(openingsStatsDialog.open());
+                handleCloseDatabase();
+              });
+          }}
+        >
           <AutoGraphIcon size="small" />&nbsp;Top 50 Openings
         </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(progressDialog.open());
-          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
-            .then(res => {
-              if (res.status === 200) {
-                res.json().then(data => {
-                  dispatch(playersStatsDialog.setAutocomplete(data));
-                });
-              } else {
-                dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
-              }
-            })
-            .finally(() => {
-              dispatch(progressDialog.close());
-              dispatch(playersStatsDialog.open());
-              handleCloseDatabase();
-            });
-        }}>
+        <MenuItem
+          id="MainButtons-database-MenuItem-playersStats"
+          onClick={() => {
+            dispatch(progressDialog.open());
+            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
+              .then(res => {
+                if (res.status === 200) {
+                  res.json().then(data => {
+                    dispatch(playersStatsDialog.setAutocomplete(data));
+                  });
+                } else {
+                  dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+                }
+              })
+              .finally(() => {
+                dispatch(progressDialog.close());
+                dispatch(playersStatsDialog.open());
+                handleCloseDatabase();
+              });
+          }}
+        >
           <QueryStatsIcon size="small" />&nbsp;Players Stats
         </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(progressDialog.open());
-          fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
-            .then(res => {
-              if (res.status === 200) {
-                res.json().then(data => {
-                  dispatch(eventsStatsDialog.setAutocomplete(data));
-                });
-              } else {
-                dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
-              }
-            })
-            .finally(() => {
-              dispatch(progressDialog.close());
-              dispatch(eventsStatsDialog.open());
-              handleCloseDatabase();
-            });
-        }}>
+        <MenuItem
+          id="MainButtons-database-MenuItem-eventsStats"
+          onClick={() => {
+            dispatch(progressDialog.open());
+            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
+              .then(res => {
+                if (res.status === 200) {
+                  res.json().then(data => {
+                    dispatch(eventsStatsDialog.setAutocomplete(data));
+                  });
+                } else {
+                  dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+                }
+              })
+              .finally(() => {
+                dispatch(progressDialog.close());
+                dispatch(eventsStatsDialog.open());
+                handleCloseDatabase();
+              });
+          }}
+        >
           <TroubleshootIcon size="small" />&nbsp;Events Stats
         </MenuItem>
       </Menu>
       <Button
+        id="MainButtons-training"
         variant={state.mainButtons.name === mainButtonsConst.TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
@@ -316,30 +330,40 @@ const MainButtons = ({props}) => {
         open={Boolean(anchorElTraining)}
         onClose={handleCloseTraining}
       >
-        <MenuItem onClick={() => {
-          dispatch(mainButtons.setTraining());
-          Dispatcher.initGui(dispatch);
-          WsAction.start(variantConst.CLASSICAL, modeConst.GM, {
-            color: Pgn.symbol.WHITE
-          });
-          handleCloseTraining();
-        }}>
+        <MenuItem
+          id="MainButtons-training-MenuItem-guessTheMove"
+          onClick={() => {
+            dispatch(mainButtons.setTraining());
+            Dispatcher.initGui(dispatch);
+            WsAction.start(variantConst.CLASSICAL, modeConst.GM, {
+              color: Pgn.symbol.WHITE
+            });
+            handleCloseTraining();
+          }}
+        >
           <QuizIcon size="small" />&nbsp;Guess the Move
         </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(endgameSkillsDialog.open());
-          handleCloseTraining();
-        }}>
+        <MenuItem
+          id="MainButtons-training-MenuItem-endgameSkills"
+          onClick={() => {
+            dispatch(endgameSkillsDialog.open());
+            handleCloseTraining();
+          }}
+        >
           <ExtensionIcon size="small" />&nbsp;Endgame Skills
         </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(checkmateSkillsDialog.open());
-          handleCloseTraining();
-        }}>
+        <MenuItem
+          id="MainButtons-training-MenuItem-checkmateSkills"
+          onClick={() => {
+            dispatch(checkmateSkillsDialog.open());
+            handleCloseTraining();
+          }}
+        >
           <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
         </MenuItem>
       </Menu>
       <Button
+        id="MainButtons-settings"
         sx={{ borderRadius: 0 }}
         startIcon={<SettingsIcon />}
         onClick={() => dispatch(settingsDialog.open())}
