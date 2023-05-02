@@ -540,7 +540,7 @@
       "id": "157fd250-4baf-4491-8c85-f5374515b5b3",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiMenuItem-root:nth-child(2)",
+      "target": "id=LoadFenDialog-TextField-variant-MenuItem-960",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(2)", "css:finder"],
         ["xpath=//div[@id='menu-variant']/div[3]/ul/li[2]", "xpath:idRelative"],
