@@ -40,6 +40,7 @@ const OpeningSearchResultTable = ({props}) => {
           {
             props.openings.map((item, i) => (
               <TableRow
+                id={"OpeningSearchResultTable-TableRow-"+i}
                 key={i}
                 hover={true}
                 sx={styles.clickable}

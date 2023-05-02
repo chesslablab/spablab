@@ -196,21 +196,10 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "d5bfd061-a287-42ee-a30f-6539b804f2a9",
-      "comment": "",
-      "command": "click",
-      "target": "css=.classicalBoard",
-      "targets": [
-        ["css=.classicalBoard", "css:finder"],
-        ["xpath=//div[@id='demo']/div/div[2]/div", "xpath:idRelative"],
-        ["xpath=//div[2]/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "4cc33173-49f6-44d2-91aa-afa795e4f8f5",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root",
+      "target": "id=SecondaryButtons-copyPgnMovetext",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
       ],
@@ -219,7 +208,7 @@
       "id": "0cd7406f-42a2-4690-8908-16e149267220",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-contained",
+      "target": "id=MainButtons-analysisBoard",
       "targets": [
         ["css=.MuiButton-contained", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
@@ -232,7 +221,7 @@
       "id": "eccecf7b-16c8-418c-8365-a11412796a92",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiMenuItem-root:nth-child(5)",
+      "target": "id=MainButtons-analysisBoard-MenuItem-pgnMovetext",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(5)", "css:finder"],
         ["xpath=//li[4]", "xpath:position"],
@@ -243,7 +232,7 @@
       "id": "daf255d0-c440-4421-91ad-d243cf112748",
       "comment": "",
       "command": "type",
-      "target": "id=:rq:",
+      "target": "id=LoadPgnDialog-TextField-movetext",
       "targets": [
         ["id=:rq:", "id"],
         ["name=pgn", "name"],
@@ -256,7 +245,7 @@
       "id": "9f5e4b92-a404-4dbd-b9aa-d40c81e1fa05",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-outlinedSizeMedium",
+      "target": "id=LoadPgnDialog-Button-load",
       "targets": [
         ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
         ["xpath=//button[@type='submit']", "xpath:attributes"],
@@ -321,7 +310,7 @@
       "id": "04c5f363-5e38-42c9-b5e6-a931a5f7036b",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButtonGroup-groupedTextVertical:nth-child(2)",
+      "target": "id=MainButtons-openingSearch",
       "targets": [
         ["css=.MuiButtonGroup-groupedTextVertical:nth-child(2)", "css:finder"],
         ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
@@ -334,7 +323,7 @@
       "id": "d0afadf6-5c48-4362-8794-c3bcf31b891e",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiMenuItem-root:nth-child(3)",
+      "target": "id=MainButtons-openingSearch-MenuItem-name",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(3)", "css:finder"],
         ["xpath=//li[3]", "xpath:position"],
@@ -345,7 +334,7 @@
       "id": "e6c59389-a842-4f9c-bb52-461ca5aafc16",
       "comment": "",
       "command": "type",
-      "target": "id=:rp:",
+      "target": "id=SearchNameDialog-TextField-name",
       "targets": [
         ["id=:rp:", "id"],
         ["name=name", "name"],
@@ -358,7 +347,7 @@
       "id": "58b93f76-1439-41c8-9e81-3bd749ea0c51",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-outlinedSizeMedium",
+      "target": "id=SearchNameDialog-Button-search",
       "targets": [
         ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
         ["xpath=//button[@type='submit']", "xpath:attributes"],
@@ -369,7 +358,7 @@
       "id": "34cbd6f9-9f4c-4db4-aa8e-d55a8fe62916",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiTableRow-root:nth-child(2) > .MuiTableCell-root:nth-child(3)",
+      "target": "id=OpeningSearchResultTable-TableRow-1",
       "targets": [
         ["css=.MuiTableRow-root:nth-child(2) > .MuiTableCell-root:nth-child(3)", "css:finder"],
         ["xpath=//tr[2]/td[3]", "xpath:position"],
@@ -492,7 +481,7 @@
       "id": "9fa988ee-0c4e-465d-bdca-876a0d4b6f2f",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-contained",
+      "target": "id=MainButtons-analysisBoard",
       "targets": [
         ["css=.MuiButton-contained", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
@@ -505,7 +494,7 @@
       "id": "e367e2a3-28dc-49e1-9d6e-9788a9d7d4d5",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButtonBase-root:nth-child(6)",
+      "target": "id=MainButtons-analysisBoard-MenuItem-fenString",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(6)", "css:finder"],
         ["xpath=//li[5]", "xpath:position"],
@@ -516,7 +505,7 @@
       "id": "1669369a-1a96-41c6-a421-4fccad2300aa",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiFormControl-root:nth-child(2)",
+      "target": "id=LoadFenDialog-TextField-fen",
       "targets": [
         ["css=.MuiFormControl-root:nth-child(2)", "css:finder"],
         ["xpath=//form/div[2]", "xpath:position"]
@@ -526,7 +515,7 @@
       "id": "12fd4ccf-b034-4e62-98ab-b56e08895f66",
       "comment": "",
       "command": "type",
-      "target": "id=:rq:",
+      "target": "id=LoadFenDialog-TextField-fen",
       "targets": [
         ["id=:rq:", "id"],
         ["name=fen", "name"],
@@ -539,7 +528,7 @@
       "id": "09130493-6fcf-4122-9e0b-e110dc293991",
       "comment": "",
       "command": "mouseDown",
-      "target": "id=:rp:",
+      "target": "id=LoadFenDialog-TextField-variant",
       "targets": [
         ["id=:rp:", "id"],
         ["css=#\\3Arp\\3A", "css:finder"],
@@ -548,31 +537,10 @@
       ],
       "value": ""
     }, {
-      "id": "cf1ca8a1-8ace-4f2a-9bd9-4a602f8b7199",
-      "comment": "",
-      "command": "mouseUp",
-      "target": "css=.MuiBackdrop-invisible",
-      "targets": [
-        ["css=.MuiBackdrop-invisible", "css:finder"],
-        ["xpath=//div[@id='menu-variant']/div", "xpath:idRelative"],
-        ["xpath=//body/div[4]/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "27ca2c1b-63d3-4512-8eec-38b686f2f116",
-      "comment": "",
-      "command": "click",
-      "target": "css=body",
-      "targets": [
-        ["css=body", "css:finder"],
-        ["xpath=//body", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "157fd250-4baf-4491-8c85-f5374515b5b3",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiMenuItem-root:nth-child(2)",
+      "target": "id=LoadFenDialog-TextField-variant-MenuItem-960",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(2)", "css:finder"],
         ["xpath=//div[@id='menu-variant']/div[3]/ul/li[2]", "xpath:idRelative"],
@@ -584,7 +552,7 @@
       "id": "efc5e986-20ff-4eab-9b7f-a6a88894dcdc",
       "comment": "",
       "command": "type",
-      "target": "id=:rr:",
+      "target": "id=LoadFenDialog-TextField-startPos",
       "targets": [
         ["id=:rr:", "id"],
         ["name=startPos", "name"],
@@ -597,7 +565,7 @@
       "id": "d3918fce-8e30-4ee3-8008-722d2303e809",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-outlinedSizeMedium",
+      "target": "id=LoadFenDialog-Button-load",
       "targets": [
         ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
         ["xpath=//button[@type='submit']", "xpath:attributes"],
@@ -657,7 +625,7 @@
       "id": "a44a9eb8-3aa6-41db-bb84-d2d6b3768847",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-sizeSmall",
+      "target": "id=StartedButtonsFenMode-Button-undoMove",
       "targets": [
         ["css=.MuiButton-sizeSmall", "css:finder"],
         ["xpath=(//button[@type='button'])[16]", "xpath:attributes"],
@@ -670,7 +638,7 @@
       "id": "2e92d241-f6b5-43fa-a265-477b3d156dca",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-sizeSmall",
+      "target": "id=StartedButtonsFenMode-Button-undoMove",
       "targets": [
         ["css=.MuiButton-sizeSmall", "css:finder"],
         ["xpath=(//button[@type='button'])[16]", "xpath:attributes"],
