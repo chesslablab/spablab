@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000">
     <meta
       name="description"
-      content="I managed to share a state variable between multiple components as shown in the animations below."
+      content="This is how I managed to share a state variable between multiple components as shown in the animations below."
    >
     <link rel="apple-touch-icon" href="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
     <link rel="manifest" href="/manifest.json">
@@ -16,7 +16,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@programarivm">
     <meta name="twitter:title" content="How to Share State Variables Between React Components">
-    <meta name="twitter:description" content="I managed to share a state variable between multiple components as shown in the animations below.">
+    <meta name="twitter:description" content="This is how I managed to share a state variable between multiple components as shown in the animations below.">
     <meta name="twitter:creator" content="@programarivm">
     <meta name="twitter:image" content="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
     <!-- Open Graph data -->
@@ -24,7 +24,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.chesslablab.com/">
     <meta property="og:image" content="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
-    <meta property="og:description" content="I managed to share a state variable between multiple components as shown in the animations below.">
+    <meta property="og:description" content="This is how I managed to share a state variable between multiple components as shown in the animations below.">
     <meta property="og:site_name" content="ChesslaBlab">
     <!-- Add CSS -->
     <link rel="stylesheet" href="/assets/css/simple.min.css">
@@ -37,7 +37,7 @@
     </header>
     <main>
       <article>
-        <p>Sept 12, 2022 by Jordi Bassaganas</p>
+        <p>Sept 8, 2022 by Jordi Bassaganas</p>
         <h2>How to Share State Variables Between React Components</h2>
         <h3>Stop writing the same thing over and over again</h3>
         <img src="cover.jpg" alt="How to Share State Variables Between React Components">
@@ -100,6 +100,7 @@
           words, it doesn't actually make sense for it to be accessed by other components
           globally via a Redux store.
         </p>
+        <script src="https://gist.github.com/programarivm/4af9a3c8a88c8d3a35acd928fb7835c8.js"></script>
         <p>
           <code>SelectColorButtons</code> basically receives the <code>props</code>
           from a parent component and changes its value whenever an icon button
@@ -144,6 +145,7 @@ React.useEffect(() => {
         <p>
           Let's have a look at <code>PlayComputerDialog</code> as an example.
         </p>
+        <script src="https://gist.github.com/programarivm/2c28b2fc1e8fad001f247bc7fa9a0d0f.js"></script>
         <p>
           The <code>useState</code> Hook is used in <code>PlayComputerDialog</code>
           to manage the internal state of the dialog. The object variable
