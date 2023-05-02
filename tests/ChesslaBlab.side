@@ -537,16 +537,6 @@
       ],
       "value": ""
     }, {
-      "id": "27ca2c1b-63d3-4512-8eec-38b686f2f116",
-      "comment": "",
-      "command": "click",
-      "target": "css=body",
-      "targets": [
-        ["css=body", "css:finder"],
-        ["xpath=//body", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "157fd250-4baf-4491-8c85-f5374515b5b3",
       "comment": "",
       "command": "click",
