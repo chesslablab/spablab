@@ -103,6 +103,7 @@ const MainButtons = ({props}) => {
       disabled={disabled}
     >
       <Button
+        id="MainButton-analysisBoard"
         sx={{ borderRadius: 0 }}
         variant={state.mainButtons.name === mainButtonsConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}

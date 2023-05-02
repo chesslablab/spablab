@@ -208,7 +208,7 @@
       "id": "0cd7406f-42a2-4690-8908-16e149267220",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-contained",
+      "target": "id=MainButton-analysisBoard",
       "targets": [
         ["css=.MuiButton-contained", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
