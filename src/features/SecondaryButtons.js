@@ -98,6 +98,7 @@ const SecondaryButtons = ({props}) => {
         <WidgetsIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        id="SecondaryButtons-IconButton-heuristics"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -111,6 +112,7 @@ const SecondaryButtons = ({props}) => {
         <BarChartIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        id="SecondaryButtons-IconButton-downloadImage"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -121,6 +123,7 @@ const SecondaryButtons = ({props}) => {
         <InsertPhotoIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        id="SecondaryButtons-IconButton-downloadVideo"
         disabled={disabled}
         color="primary"
         size="medium"
