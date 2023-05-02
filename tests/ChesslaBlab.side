@@ -199,7 +199,7 @@
       "id": "4cc33173-49f6-44d2-91aa-afa795e4f8f5",
       "comment": "",
       "command": "click",
-      "target": "id=SecondaryButtons-IconButton-copyPgnMovetext",
+      "target": "id=SecondaryButtons-copyPgnMovetext",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
       ],
@@ -208,7 +208,7 @@
       "id": "0cd7406f-42a2-4690-8908-16e149267220",
       "comment": "",
       "command": "click",
-      "target": "id=MainButtons-Button-analysisBoard",
+      "target": "id=MainButtons-analysisBoard",
       "targets": [
         ["css=.MuiButton-contained", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
@@ -221,7 +221,7 @@
       "id": "eccecf7b-16c8-418c-8365-a11412796a92",
       "comment": "",
       "command": "click",
-      "target": "id=MainButtons-MenuItem-pgnMovetext",
+      "target": "id=MainButtons-analysisBoard-MenuItem-pgnMovetext",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(5)", "css:finder"],
         ["xpath=//li[4]", "xpath:position"],
