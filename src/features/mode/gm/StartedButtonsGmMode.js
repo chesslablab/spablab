@@ -18,7 +18,9 @@ const StartedButtonsGmMode = () => {
           orientation="vertical"
           fullWidth={true}
         >
-          <Button onClick={() => WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
+          <Button
+            id="StartedButtonsGmMode-Button-undoMove"
+            onClick={() => WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
               movetext: state.mode.gm.movetext
             })}
           >
