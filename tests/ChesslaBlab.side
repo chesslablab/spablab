@@ -221,7 +221,7 @@
       "id": "eccecf7b-16c8-418c-8365-a11412796a92",
       "comment": "",
       "command": "click",
-      "target": "id=MenuItem-analysisBoard-pgnMovetext",
+      "target": "id=MainButton-analysisBoard-pgnMovetext",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(5)", "css:finder"],
         ["xpath=//li[4]", "xpath:position"],

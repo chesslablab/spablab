@@ -142,7 +142,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="MenuItem-analysisBoard-pgnMovetext"
+          id="MainButton-analysisBoard-pgnMovetext"
           onClick={() => {
             dispatch(loadPgnDialog.open());
             handleCloseAnalysis();
