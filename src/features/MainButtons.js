@@ -103,7 +103,7 @@ const MainButtons = ({props}) => {
       disabled={disabled}
     >
       <Button
-        id="MainButton-analysisBoard"
+        id="MainButtons-Button-analysisBoard"
         sx={{ borderRadius: 0 }}
         variant={state.mainButtons.name === mainButtonsConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
@@ -142,7 +142,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="MainButton-analysisBoard-pgnMovetext"
+          id="MainButtons-MenuItem-pgnMovetext"
           onClick={() => {
             dispatch(loadPgnDialog.open());
             handleCloseAnalysis();

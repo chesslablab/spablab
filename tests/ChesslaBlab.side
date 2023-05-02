@@ -208,7 +208,7 @@
       "id": "0cd7406f-42a2-4690-8908-16e149267220",
       "comment": "",
       "command": "click",
-      "target": "id=MainButton-analysisBoard",
+      "target": "id=MainButtons-Button-analysisBoard",
       "targets": [
         ["css=.MuiButton-contained", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
@@ -221,7 +221,7 @@
       "id": "eccecf7b-16c8-418c-8365-a11412796a92",
       "comment": "",
       "command": "click",
-      "target": "id=MainButton-analysisBoard-pgnMovetext",
+      "target": "id=MainButtons-MenuItem-pgnMovetext",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(5)", "css:finder"],
         ["xpath=//li[4]", "xpath:position"],
@@ -245,7 +245,7 @@
       "id": "9f5e4b92-a404-4dbd-b9aa-d40c81e1fa05",
       "comment": "",
       "command": "click",
-      "target": "id=LoadPgnDialog-load",
+      "target": "id=LoadPgnDialog-Button-load",
       "targets": [
         ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
         ["xpath=//button[@type='submit']", "xpath:attributes"],
