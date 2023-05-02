@@ -101,7 +101,7 @@ const LoadPgnDialog = () => {
             }}
           />
           <Button
-            id="LoadPgnDialog-load"
+            id="LoadPgnDialog-Button-load"
             fullWidth
             type="submit"
             variant="outlined"
