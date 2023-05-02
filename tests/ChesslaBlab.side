@@ -232,7 +232,7 @@
       "id": "daf255d0-c440-4421-91ad-d243cf112748",
       "comment": "",
       "command": "type",
-      "target": "id=:rq:",
+      "target": "id=LoadPgnDialog-TextField-movetext",
       "targets": [
         ["id=:rq:", "id"],
         ["name=pgn", "name"],

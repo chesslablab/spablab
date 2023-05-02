@@ -87,6 +87,7 @@ const LoadPgnDialog = () => {
               : null
           }
           <TextField
+            id="LoadPgnDialog-TextField-movetext"
             fullWidth
             required
             multiline
