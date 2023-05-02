@@ -86,6 +86,7 @@ const SecondaryButtons = ({props}) => {
         <MoveDownIcon fontSize="inherit" />
       </IconButton>
       <IconButton
+        id="SecondaryButton-copyFenString"
         disabled={disabled}
         color="primary"
         size="medium"
