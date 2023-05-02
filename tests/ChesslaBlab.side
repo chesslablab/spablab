@@ -625,7 +625,7 @@
       "id": "a44a9eb8-3aa6-41db-bb84-d2d6b3768847",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-sizeSmall",
+      "target": "id=StartedButtonsFenMode-Button-undoMove",
       "targets": [
         ["css=.MuiButton-sizeSmall", "css:finder"],
         ["xpath=(//button[@type='button'])[16]", "xpath:attributes"],
@@ -638,7 +638,7 @@
       "id": "2e92d241-f6b5-43fa-a265-477b3d156dca",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButton-sizeSmall",
+      "target": "id=StartedButtonsFenMode-Button-undoMove",
       "targets": [
         ["css=.MuiButton-sizeSmall", "css:finder"],
         ["xpath=(//button[@type='button'])[16]", "xpath:attributes"],
