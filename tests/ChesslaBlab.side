@@ -537,17 +537,6 @@
       ],
       "value": ""
     }, {
-      "id": "cf1ca8a1-8ace-4f2a-9bd9-4a602f8b7199",
-      "comment": "",
-      "command": "mouseUp",
-      "target": "css=.MuiBackdrop-invisible",
-      "targets": [
-        ["css=.MuiBackdrop-invisible", "css:finder"],
-        ["xpath=//div[@id='menu-variant']/div", "xpath:idRelative"],
-        ["xpath=//body/div[4]/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "27ca2c1b-63d3-4512-8eec-38b686f2f116",
       "comment": "",
       "command": "click",
