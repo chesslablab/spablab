@@ -310,7 +310,7 @@
       "id": "04c5f363-5e38-42c9-b5e6-a931a5f7036b",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiButtonGroup-groupedTextVertical:nth-child(2)",
+      "target": "id=MainButtons-openingSearch",
       "targets": [
         ["css=.MuiButtonGroup-groupedTextVertical:nth-child(2)", "css:finder"],
         ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
@@ -323,7 +323,7 @@
       "id": "d0afadf6-5c48-4362-8794-c3bcf31b891e",
       "comment": "",
       "command": "click",
-      "target": "css=.MuiMenuItem-root:nth-child(3)",
+      "target": "id=MainButtons-openingSearch-MenuItem-name",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(3)", "css:finder"],
         ["xpath=//li[3]", "xpath:position"],
