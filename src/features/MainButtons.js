@@ -177,6 +177,39 @@ const MainButtons = ({props}) => {
       >
         Opening Search
       </Button>
+      <Menu
+        anchorEl={anchorElOpeningSearch}
+        open={Boolean(anchorElOpeningSearch)}
+        onClose={handleCloseOpeningSearch}
+      >
+        <MenuItem
+          id="MainButtons-MenuItem-ecoCode"
+          onClick={() => {
+            dispatch(searchEcoDialog.open());
+            handleCloseOpeningSearch();
+          }}
+        >
+          <BookIcon size="small" />&nbsp;ECO Code
+        </MenuItem>
+        <MenuItem
+          id="MainButtons-MenuItem-pgnMovetext"
+          onClick={() => {
+            dispatch(searchMovetextDialog.open());
+            handleCloseOpeningSearch();
+          }
+        }>
+          <MoveDownIcon size="small" />&nbsp;PGN Movetext
+        </MenuItem>
+        <MenuItem
+          id="MainButtons-MenuItem-name"
+          onClick={() => {
+            dispatch(searchNameDialog.open());
+            handleCloseOpeningSearch();
+          }}
+        >
+          <SpellcheckIcon size="small" />&nbsp;Name
+        </MenuItem>
+      </Menu>
       <Button
         variant={state.mainButtons.name === mainButtonsConst.DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
@@ -304,30 +337,6 @@ const MainButtons = ({props}) => {
           handleCloseTraining();
         }}>
           <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
-        </MenuItem>
-      </Menu>
-      <Menu
-        anchorEl={anchorElOpeningSearch}
-        open={Boolean(anchorElOpeningSearch)}
-        onClose={handleCloseOpeningSearch}
-      >
-        <MenuItem onClick={() => {
-          dispatch(searchEcoDialog.open());
-          handleCloseOpeningSearch();
-        }}>
-          <BookIcon size="small" />&nbsp;ECO Code
-        </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(searchMovetextDialog.open());
-          handleCloseOpeningSearch();
-        }}>
-          <MoveDownIcon size="small" />&nbsp;PGN Movetext
-        </MenuItem>
-        <MenuItem onClick={() => {
-          dispatch(searchNameDialog.open());
-          handleCloseOpeningSearch();
-        }}>
-          <SpellcheckIcon size="small" />&nbsp;Name
         </MenuItem>
       </Menu>
       <Button
