@@ -34,4 +34,10 @@
     <priority> 0.8 </priority>
     <lastmod>2023-05-01T23:35:33+00:00</lastmod>
   </url>
+  <url>
+    <loc>https://www.chesslablab.com/how-to-share-state-variables-between-react-components/</loc>
+    <changefreq> daily </changefreq>
+    <priority> 0.8 </priority>
+    <lastmod>2023-05-02T10:45:00+00:00</lastmod>
+  </url>
 </urlset>

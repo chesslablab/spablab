@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta
+      name="description"
+      content="I managed to share a state variable between multiple components as shown in the animations below."
+   >
+    <link rel="apple-touch-icon" href="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
+    <link rel="manifest" href="/manifest.json">
+    <title>How to Share State Variables Between React Components</title>
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@programarivm">
+    <meta name="twitter:title" content="How to Share State Variables Between React Components">
+    <meta name="twitter:description" content="I managed to share a state variable between multiple components as shown in the animations below.">
+    <meta name="twitter:creator" content="@programarivm">
+    <meta name="twitter:image" content="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="How to Share State Variables Between React Components">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.chesslablab.com/">
+    <meta property="og:image" content="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
+    <meta property="og:description" content="I managed to share a state variable between multiple components as shown in the animations below.">
+    <meta property="og:site_name" content="ChesslaBlab">
+    <!-- Add CSS -->
+    <link rel="stylesheet" href="/assets/css/simple.min.css">
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+  </head>
+  <body>
+    <header>
+      <h1>ChesslaBlab Blog</h1>
+    </header>
+    <main>
+      <article>
+        <p>Sept 12, 2022 by Jordi Bassaganas</p>
+        <h2>How to Share State Variables Between React Components</h2>
+        <h3>Stop writing the same thing over and over again</h3>
+        <img src="cover.jpg" alt="How to Share State Variables Between React Components">
+        <small>
+          Photo by <a href="https://unsplash.com/@lautaroandreani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lautaro Andreani</a> on <a href="https://unsplash.com/photos/UYsBCu9RP3Y?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+        </small>
+        <p>
+          When developing React apps, it's quite common to write reusable functional
+          components which internal state will be shared by other Hooks. I had to
+          do this recently while working on <a href="https://github.com/chesslablab/react-chess">React Chess</a>,
+          a React Redux chessboard connected to a chess server.
+        </p>
+        <p>
+          Check out <a href="/">this demo</a>.
+        </p>
+        <p>
+          I managed to share a state variable between multiple components as shown in the animations below.
+        </p>
+        <img src="figure-01.gif" alt="Figure 1">
+        <img src="figure-02.gif" alt="Figure 2">
+        <img src="figure-03.gif" alt="Figure 3">
+        <p>
+          As you can see, a dialog pops up when clicking on any of these buttons:
+        </p>
+        <ul>
+          <li>Play Online</li>
+          <li>Play a Friend</li>
+          <li>Play Computer</li>
+        </ul>
+        <p>
+          The thing is you don't want to reinvent the wheel and write the same
+          color selection code over and over again. All three dialogs (parents)
+          use the same functional component (child) to allow users select the color
+          of the pieces.
+        </p>
+        <p>
+          Here are the React files involved.
+        </p>
+        <ul>
+          <li><a href="https://github.com/chesslablab/react-chess/blob/master/src/features/dialog/CreateInviteCodeDialog.js">src/features/dialog/CreateInviteCodeDialog.js</a></li>
+          <li><a href="https://github.com/chesslablab/react-chess/blob/master/src/features/dialog/createInviteCodeDialogSlice.js">src/features/dialog/createInviteCodeDialogSlice.js</a></li>
+          <li><a href="https://github.com/chesslablab/react-chess/blob/master/src/features/dialog/PlayOnlineDialog.js">src/features/dialog/PlayOnlineDialog.js</a></li>
+          <li><a href="https://github.com/chesslablab/react-chess/blob/master/src/features/dialog/playOnlineDialogSlice.js">src/features/dialog/playOnlineDialogSlice.js</a></li>
+          <li><a href="https://github.com/chesslablab/react-chess/blob/master/src/features/dialog/PlayComputerDialog.js">src/features/dialog/PlayComputerDialog.js</a></li>
+          <li><a href="https://github.com/chesslablab/react-chess/blob/master/src/features/dialog/playComputerDialogSlice.js">src/features/dialog/playComputerDialogSlice.js</a></li>
+        </ul>
+        <p>
+          Each dialog has been implemented according to
+          <a href="https://redux-toolkit.js.org/">Redux Toolkit</a> best practices.
+          The MUI code is written in a file ending with the word <code>Dialog</code> while its
+          state management logic is encoded in a
+          <a href="https://redux-toolkit.js.org/tutorials/quick-start#create-a-redux-state-slice">slice</a>.
+        </p>
+        <p>
+          It's two files for each dialog.
+        </p>
+        <p>
+          <code>SelectColorButtons</code> is a reusable, self-contained component
+          meaning it doesn't need any slice because its state is internal. In other
+          words, it doesn't actually make sense for it to be accessed by other components
+          globally via a Redux store.
+        </p>
+        <p>
+          <code>SelectColorButtons</code> basically receives the <code>props</code>
+          from a parent component and changes its value whenever an icon button
+          is clicked on.
+        </p>
+<pre>
+const handleSelectColor = (color) => {
+  setColor(color);
+};
+</pre>
+        <p>
+          This is achieved by the <code>handleSelectColor()</code> function working
+          along with React's <code>useEffect</code> Hook which listens for a state
+          change in the color variable.
+        </p>
+<pre>
+React.useEffect(() => {
+  props.color = color;
+}, [color]);
+</pre>
+        <p>
+          That's it!
+        </p>
+        <p>
+          Now let's have a look at the other way around.
+        </p>
+        <p>
+          The code of the parent components is perhaps a different story.
+          A harsh truth nobody wants to hear about but it's worth saying is that
+          full-stack web development may not be too obvious at times.
+          Probably this is the case with React Chess provided that it communicates
+          with both an API and a WebSocket server.
+        </p>
+        <p>
+          It is not the purpose of this post to go into the details of how React Chess works.
+        </p>
+        <p>
+          So I've removed the lines of code for the sake of simplicity to focus
+          on what really matters. Remember, we want a state variable to be shared
+          between components in a simple way.
+        </p>
+        <p>
+          Let's have a look at <code>PlayComputerDialog</code> as an example.
+        </p>
+        <p>
+          The <code>useState</code> Hook is used in <code>PlayComputerDialog</code>
+          to manage the internal state of the dialog. The object variable
+          <code>fields</code> holds the two values required to play the computer:
+          <code>level</code> and <code>color</code>.
+        </p>
+<pre>
+const [fields, setFields] = React.useState({
+  level: 1,
+  color: 'rand'
+});
+</pre>
+        <p>
+          The dialog fields are passed to the child component as <code>props</code>.
+        </p>
+<pre>
+&lt;SelectColorButtons props={fields} /&gt;
+</pre>
+        <p>
+          Thus, the user can select a color in the child component while the
+          parent gets automatically updated via the <code>fields</code> variable.
+        </p>
+        <h4>Conclusion</h4>
+        <p>
+          A simple way to share a state variable between a parent and a child
+          component is to make sure that the former passes it to the latter as
+          <code>props</code>.
+        </p>
+        <p>
+          In this example, we've seen how the <code>fields</code> of
+          <code>PlayComputerDialog</code> are passed to <code>SelectColorButtons</code>.
+        </p>
+        <p>
+          <code>props.color</code> is then updated in the child component whenever
+          its internal state changes. This is achieved by React's <code>useEffect</code>
+          Hook which listens for a state change in the <code>color</code> variable.
+        </p>
+      </article>
+    </main>
+    <footer></footer>
+    <script src="/assets/js/include.js"></script>
+  </body>
+</html>
