@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta
+      name="description"
+      content="One of its purposes is to mitigate DoS (Denial of Service) attacks by cybercriminals, and can be implemented in several different layers of the OSI and TCP/IP architecture stacks. "
+   >
+    <link rel="apple-touch-icon" href="https://www.chesslablab.com/how-to-rate-limit-a-websocket-server/cover.jpg">
+    <link rel="manifest" href="/manifest.json">
+    <title>How to Rate-Limit a WebSocket Server</title>
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@programarivm">
+    <meta name="twitter:title" content="How to Rate-Limit a WebSocket Server">
+    <meta name="twitter:description" content="One of its purposes is to mitigate DoS (Denial of Service) attacks by cybercriminals, and can be implemented in several different layers of the OSI and TCP/IP architecture stacks. ">
+    <meta name="twitter:creator" content="@programarivm">
+    <meta name="twitter:image" content="https://www.chesslablab.com/how-to-rate-limit-a-websocket-server/cover.jpg">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="How to Rate-Limit a WebSocket Server">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.chesslablab.com/">
+    <meta property="og:image" content="https://www.chesslablab.com/how-to-rate-limit-a-websocket-server/cover.jpg">
+    <meta property="og:description" content="One of its purposes is to mitigate DoS (Denial of Service) attacks by cybercriminals, and can be implemented in several different layers of the OSI and TCP/IP architecture stacks. ">
+    <meta property="og:site_name" content="ChesslaBlab">
+    <!-- Add CSS -->
+    <link rel="stylesheet" href="/assets/css/simple.min.css">
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <!-- Include HTML -->
+    <script src="/assets/js/include.js"></script>
+  </head>
+  <body>
+    <nav></nav>
+    <main>
+      <h1>ChesslaBlab Blog</h1>
+      <article>
+        <p>Aug 21, 2021 by Jordi Bassaganas</p>
+        <h2>How to Rate-Limit a WebSocket Server</h2>
+        <h3>This is how I hardened a WebSocket server on Ubuntu</h3>
+        <img src="cover.jpg" alt="How to Rate-Limit a WebSocket Server">
+        <small>
+          Photo by <a href="https://unsplash.com/@mbaumi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mika Baumeister</a> on <a href="https://unsplash.com/de/fotos/J5yoGZLdpSI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+        </small>
+        <p>
+          Rate limiting is about implementing security policies to control how much
+          network traffic a particular service will receive. One of its purposes is
+          to mitigate <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack">DoS (Denial of Service) attacks</a>
+          by cybercriminals. It is a crucial part of any hardening strategy and can be implemented in several
+          different layers of the <a href="https://en.wikipedia.org/wiki/OSI_model">OSI</a>
+          and <a href="https://simple.wikipedia.org/wiki/TCP/IP_model">TCP/IP</a> architecture stacks.
+        </p>
+        <h2>Hardening TCP Services</h2>
+        <p>
+          The transport layer in the TCP/IP model includes three protocols: TCP,
+          UDP and SCTP. In today's post, I'll show you the simplest possible way
+          to rate-limit a TCP service such as HTTP, HTTPS, FTP or SMTP.
+        </p>
+        <p>
+          For example, you may want to block IP addresses trying to connect to a
+          WebSocket server more than N times per minute.
+        </p>
+        <p>
+          Whether you're a DevOps person or a full-stack developer, probably you've
+          heard about <a href="https://en.wikipedia.org/wiki/Iptables">iptables</a>
+          which is a popular command line tool used to configure the Linux kernel
+          firewall.
+        </p>
+        <p>
+          But iptables rules can be complicated to set up if you don’t have too
+          much experience with Linux and TCP/IP networks.
+        </p>
+        <p>
+          The good news is, you don't need to be an expert system admin to configure
+          a Linux firewall, especially if creating a sandbox server with little
+          traffic at the beginning.
+        </p>
+        <h2>Uncomplicated Firewall Comes to the Rescue</h2>
+        <p>
+          <a href="https://wiki.ubuntu.com/UncomplicatedFirewall">ufw</a> is a
+          frontend for iptables.
+        </p>
+        <p>
+          Here is the simple approach that I took to harden my WebSocket server
+          in the blink of an eye.
+        </p>
+        <p>
+          The Uncomplicated Firewall is already installed in Ubuntu out-of-the-box.
+          If you're using Debian or any other Linux distro without it by default,
+          it can be installed as described next.
+        </p>
+<pre>
+$ sudo apt-get install ufw
+</pre>
+        <p>
+          This is how to find out the status of the firewall.
+        </p>
+<pre>
+$ sudo ufw status
+</pre>
+        <p>
+          And this is how to enable it.
+        </p>
+<pre>
+$ sudo ufw enable
+Firewall is active and enabled on system startup
+</pre>
+        <p>
+          Beware, if enabling ufw through an SSH connection the following message
+          will pop up.
+        </p>
+<pre>
+Command may disrupt existing ssh connections. Proceed with operation (y|n)?
+</pre>
+        <p>
+          I said yes.
+        </p>
+        <p>
+          Just after proceeding with the operation, I decided to close all ports
+          by implementing a deny policy by default.
+        </p>
+<pre>
+$ sudo ufw default deny
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+</pre>
+        <p>
+          This means Ubuntu Server won't accept any incoming connections.
+        </p>
+<pre>
+$ sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+</pre>
+        <p>
+          If using SSH to connect to the server it is crucial to explicitly open
+          the SSH port so that it can be SSHed, otherwise, the existing connection
+          will be disrupted.
+        </p>
+<pre>
+$ sudo ufw allow 22/tcp
+Rule added
+Rule added (v6)
+</pre>
+        <p>
+          Then, put into practice the
+          <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege">principle of least privilege</a>.
+          I opened port 8443 because apart from port 22 this is the only one which
+          needs to be accessed from anywhere on the Internet.
+        </p>
+<pre>
+$ sudo ufw allow 8443/tcp
+Rule added
+Rule added (v6)
+</pre>
+        <p>
+          By the way, it is a good idea to make sure everything is going as expected.
+        </p>
+<pre>
+$ sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere
+8443/tcp                   ALLOW IN    Anywhere
+22/tcp (v6)                ALLOW IN    Anywhere (v6)
+8443/tcp (v6)              ALLOW IN    Anywhere (v6)
+</pre>
+        <p>
+          Thus, here is how to list the actual iptables rules that the Uncomplicated
+          Firewall will write for us newbies.
+        </p>
+        <p>
+          IPv4 rules:
+        </p>
+<pre>
+$ sudo iptables -S
+</pre>
+        <p>
+          IPv6 rules:
+        </p>
+<pre>
+$ sudo ip6tables -S
+</pre>
+        <p>
+          As said previously this works for all TCP-based services. If you were
+          running, let's say an HTTPS server instead of a WSS server, you might
+          want to run the following command instead.
+        </p>
+<pre>
+$ sudo ufw allow 443/tcp
+Rule added
+Rule added (v6)
+</pre>
+        <p>
+          It is worth mentioning that if a port is opened by mistake, no problem,
+          it can be easily closed.
+        </p>
+<pre>
+$ sudo ufw delete allow 443/tcp
+Rule deleted
+Rule deleted (v6)
+</pre>
+        <h2>WSS Hardening With UFW Is Easy Peasy</h2>
+        <p>
+          ufw allows to rate-limit TCP network services as shown below.
+        </p>
+        <p>
+          SSH:
+        </p>
+<pre>
+$ sudo ufw limit 22/tcp
+Rule updated
+Rule updated (v6)
+</pre>
+        <p>
+          WSS:
+        </p>
+<pre>
+$ sudo ufw limit 8443/tcp
+Rule updated
+Rule updated (v6)
+</pre>
+        <p>
+          Firewall status:
+        </p>
+<pre>
+$ sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+To                         Action      From
+--                         ------      ----
+22/tcp                     LIMIT IN    Anywhere
+8443/tcp                   LIMIT IN    Anywhere
+22/tcp (v6)                LIMIT IN    Anywhere (v6)
+8443/tcp (v6)              LIMIT IN    Anywhere (v6)
+</pre>
+        <p>
+          This way IP addresses trying to establish a connection to ports 22 and 8443,
+          6 or more times in 30 seconds, will be blocked. The user rules are automatically
+          written in <code>/etc/ufw/user.rules</code> and <code>/etc/ufw/user6.rules</code>.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

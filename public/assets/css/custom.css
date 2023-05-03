@@ -75,7 +75,8 @@ section h2 {
 }
 
 pre {
-  font-size: 0.9rem;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 0.85rem;
   background-color: #141414;
   color: #fff;
 }
