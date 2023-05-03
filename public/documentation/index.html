@@ -49,20 +49,20 @@ curl https://pchess.net/api/autocomplete
     <p><b>Response</b></p>
 <pre>
 {
-    "events": [
-        { "Event": "1/2 Coupe de France" },
-        { "Event": "1/4 Coupe de France" },
-        ...
-        { "Event": "Zvenigorodskaya Open A" },
-        { "Event": "Zwolle op" }
-    ],
-    "players": [
-        { "name": "A-Ali,Sali Abbas Abdulzahra" },
-        { "name": "Aaberg,A" },
-        ...
-        { "name": "Zytogorski, Adolf" },
-        { "name": "Zyulyarkin" }
-    ]
+  "events": [
+    { "Event": "1/2 Coupe de France" },
+    { "Event": "1/4 Coupe de France" },
+    ...
+    { "Event": "Zvenigorodskaya Open A" },
+    { "Event": "Zwolle op" }
+  ],
+  "players": [
+    { "name": "A-Ali,Sali Abbas Abdulzahra" },
+    { "name": "Aaberg,A" },
+    ...
+    { "name": "Zytogorski, Adolf" },
+    { "name": "Zyulyarkin" }
+  ]
 }
 </pre>
     </details>
@@ -75,39 +75,39 @@ curl https://pchess.net/api/stats/opening
     <p><b>Response</b></p>
 <pre>
 {
-    "drawRate": [
-        {
-            "ECO": "C42",
-            "total": 2964
-        },
-        ...
-        {
-            "ECO": "B23",
-            "total": 1044
-        }
-    ],
-    "winRateForWhite": [
-        {
-            "ECO": "A45",
-            "total": 2880
-        },
-        ...
-        {
-            "ECO": "B51",
-            "total": 1053
-        }
-    ],
-    "winRateForBlack": [
-        {
-            "ECO": "A45",
-            "total": 2658
-        },
-        ...
-        {
-            "ECO": "D10",
-            "total": 732
-        }
-    ]
+  "drawRate": [
+    {
+      "ECO": "C42",
+      "total": 2964
+    },
+    ...
+    {
+      "ECO": "B23",
+      "total": 1044
+    }
+  ],
+  "winRateForWhite": [
+    {
+      "ECO": "A45",
+      "total": 2880
+    },
+    ...
+    {
+      "ECO": "B51",
+      "total": 1053
+    }
+  ],
+  "winRateForBlack": [
+    {
+      "ECO": "A45",
+      "total": 2658
+    },
+    ...
+    {
+      "ECO": "D10",
+      "total": 732
+    }
+  ]
 }
 </pre>
     </details>
@@ -157,13 +157,13 @@ curl https://pchess.net/api/stats/opening
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/download/image \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "variant": "classical",
-        "fen": "r1bq1rk1/pppnn1bp/3p2p1/3Ppp2/2P1P3/2N2P2/PP2B1PP/R1BQNRK1 w - f6",
-        "flip": "w"
-    }' \
-    --output image.png
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "variant": "classical",
+    "fen": "r1bq1rk1/pppnn1bp/3p2p1/3Ppp2/2P1P3/2N2P2/PP2B1PP/R1BQNRK1 w - f6",
+    "flip": "w"
+  }' \
+  --output image.png
 </pre>
       <p><b>Response</b></p>
       <img src="/assets/img/image.png" alt="Chess position">
@@ -225,13 +225,13 @@ curl https://pchess.net/api/download/image \
       <p>Downloads a classical game from the start position.</p>
 <pre>
 curl https://pchess.net/api/download/mp4 \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "variant": "classical",
-        "movetext": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6",
-        "flip": "b"
-    }' \
-    --output video.mp4
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "variant": "classical",
+    "movetext": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6",
+    "flip": "b"
+  }' \
+  --output video.mp4
 </pre>
       <p><b>Response</b></p>
       <video controls>
@@ -243,14 +243,14 @@ curl https://pchess.net/api/download/mp4 \
       <p>Downloads a classical game from a FEN position.</p>
 <pre>
 curl https://pchess.net/api/download/mp4 \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "variant": "classical",
-        "fen": "4k2r/pp1b1pp1/8/3pPp1p/P2P1P2/1P3N2/1qr3PP/R3QR1K w k -",
-        "movetext": "1.Rb1 Qa2",
-        "flip": "w"
-    }' \
-    --output video.mp4
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "variant": "classical",
+    "fen": "4k2r/pp1b1pp1/8/3pPp1p/P2P1P2/1P3N2/1qr3PP/R3QR1K w k -",
+    "movetext": "1.Rb1 Qa2",
+    "flip": "w"
+  }' \
+  --output video.mp4
 </pre>
       <p><b>Response</b></p>
       <video controls>
@@ -262,15 +262,15 @@ curl https://pchess.net/api/download/mp4 \
       <p>Downloads a Chess960 game from a FEN position.</p>
 <pre>
 curl https://pchess.net/api/download/mp4 \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "variant": "960",
-        "fen": "rnkbnqbr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNKBNQBR w KQkq e6",
-        "movetext": "1.Nf3 Nc6",
-        "startPos": "RNKBNQBR",
-        "flip": "b"
-    }' \
-    --output video.mp4
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "variant": "960",
+    "fen": "rnkbnqbr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNKBNQBR w KQkq e6",
+    "movetext": "1.Nf3 Nc6",
+    "startPos": "RNKBNQBR",
+    "flip": "b"
+  }' \
+  --output video.mp4
 </pre>
       <p><b>Response</b></p>
       <video controls>
@@ -282,14 +282,14 @@ curl https://pchess.net/api/download/mp4 \
       <p>Downloads a Capablanca game from a FEN position.</p>
 <pre>
 curl https://pchess.net/api/download/mp4 \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "variant": "capablanca80",
-        "fen": "rnabqkbcnr/ppppp1pppp/10/5p4/5P4/10/PPPPP1PPPP/RNABQKBCNR w KQkq f6",
-        "movetext": "1.Cg3 Ad6",
-        "flip": "w"
-    }' \
-    --output video.mp4
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "variant": "capablanca80",
+    "fen": "rnabqkbcnr/ppppp1pppp/10/5p4/5P4/10/PPPPP1PPPP/RNABQKBCNR w KQkq f6",
+    "movetext": "1.Cg3 Ad6",
+    "flip": "w"
+  }' \
+  --output video.mp4
 </pre>
       <p><b>Response</b></p>
       <video controls>
@@ -330,21 +330,21 @@ curl https://pchess.net/api/download/mp4 \
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/engine/stockfish \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "movetext": "e2e4 e7e5",
-        "skillLevel": "9",
-        "depth": "3"
-    }'
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "movetext": "e2e4 e7e5",
+    "skillLevel": "9",
+    "depth": "3"
+  }'
 </pre>
       <p><b>Response</b></p>
 <pre>
 {
-    "move": "b1c3",
-    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq -",
-    "isCheck": false,
-    "isMate": false,
-    "movetext": "1.e4 e5 2.Nc3"
+  "move": "b1c3",
+  "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq -",
+  "isCheck": false,
+  "isMate": false,
+  "movetext": "1.e4 e5 2.Nc3"
 }
 </pre>
     </details>
@@ -371,28 +371,28 @@ curl https://pchess.net/api/engine/stockfish \
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/grandmaster \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "movetext": "1.e4 c6 2.Nc3"
-    }'
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "movetext": "1.e4 c6 2.Nc3"
+  }'
 </pre>
       <p><b>Response</b></p>
 <pre>
 [
-    {
-        "id": 157019,
-        "Event": "38th Olympiad",
-        "Site": "Dresden GER",
-        "Date": "2008.11.22",
-        "White": "Can,E",
-        "Black": "Nielsen,PH",
-        "Result": "1/2-1/2",
-        "WhiteElo": "2464",
-        "BlackElo": "2662",
-        "ECO": "B11",
-        "FEN": null,
-        "movetext": "1.e4 c6 2.Nc3 d5 3.Nf3 Bg4 4.h3 Bxf3 5.Qxf3 e6 6.d4 dxe4 7.Nxe4 Qxd4 8.Bd3 Nd7 9.Be3 Qd5 10.O-O Ne5 11.Qg3 Nxd3 12.cxd3 Nf6 13.Bg5 Be7 14.Bxf6 Bxf6 15.Qc7 Qd7 16.Nd6+ Ke7 17.Nf5+ Ke8 18.Nd6+ Ke7 19.Nf5+ Ke8"
-    }
+  {
+    "id": 157019,
+    "Event": "38th Olympiad",
+    "Site": "Dresden GER",
+    "Date": "2008.11.22",
+    "White": "Can,E",
+    "Black": "Nielsen,PH",
+    "Result": "1/2-1/2",
+    "WhiteElo": "2464",
+    "BlackElo": "2662",
+    "ECO": "B11",
+    "FEN": null,
+    "movetext": "1.e4 c6 2.Nc3 d5 3.Nf3 Bg4 4.h3 Bxf3 5.Qxf3 e6 6.d4 dxe4 7.Nxe4 Qxd4 8.Bd3 Nd7 9.Be3 Qd5 10.O-O Ne5 11.Qg3 Nxd3 12.cxd3 Nf6 13.Bg5 Be7 14.Bxf6 Bxf6 15.Qc7 Qd7 16.Nd6+ Ke7 17.Nf5+ Ke8 18.Nd6+ Ke7 19.Nf5+ Ke8"
+  }
 ]
 </pre>
     </details>
@@ -429,74 +429,74 @@ curl https://pchess.net/api/grandmaster \
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/opening \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "eco": "B90"
-    }'
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "eco": "B90"
+  }'
 </pre>
       <p><b>Response</b></p>
 <pre>
 [
-    {
-        "id": 4820,
-        "eco": "B90",
-        "name": "Sicilian Defense: Scheveningen Variation, English Attack",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e6 7.f3"
-    },
-    {
-        "id": 4813,
-        "eco": "B90",
-        "name": "Sicilian Defense: Najdorf Variation, Dekker Gambit",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.g4"
-    },
-    {
-        "id": 4815,
-        "eco": "B90",
-        "name": "Sicilian Defense: Najdorf Variation, English Attack, Anti-English",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 Ng4"
-    },
-    {
-        "id": 4816,
-        "eco": "B90",
-        "name": "Sicilian Defense: Najdorf Variation, Freak Attack",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Rg1"
-    },
-    {
-        "id": 4814,
-        "eco": "B90",
-        "name": "Sicilian Defense: Najdorf Variation, English Attack",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3"
-    },
-    {
-        "id": 4812,
-        "eco": "B90",
-        "name": "Sicilian Defense: Najdorf Variation, Adams Attack",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.h3"
-    },
-    {
-        "id": 4818,
-        "eco": "B90",
-        "name": "Sicilian Defense: Scheveningen Variation, Delayed Keres Attack",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e6 7.g4"
-    },
-    {
-        "id": 4811,
-        "eco": "B90",
-        "name": "Sicilian Defense: Najdorf Variation",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6"
-    },
-    {
-        "id": 4819,
-        "eco": "B90",
-        "name": "Sicilian Defense: Scheveningen Variation, Delayed Keres Attack, Perenyi Gambit",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e6 7.g4 e5 8.Nf5 g6 9.g5"
-    },
-    {
-        "id": 4817,
-        "eco": "B90",
-        "name": "Sicilian Defense: Najdorf Variation, Lipnitsky Attack",
-        "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bc4"
-    }
+  {
+    "id": 4820,
+    "eco": "B90",
+    "name": "Sicilian Defense: Scheveningen Variation, English Attack",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e6 7.f3"
+  },
+  {
+    "id": 4813,
+    "eco": "B90",
+    "name": "Sicilian Defense: Najdorf Variation, Dekker Gambit",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.g4"
+  },
+  {
+    "id": 4815,
+    "eco": "B90",
+    "name": "Sicilian Defense: Najdorf Variation, English Attack, Anti-English",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 Ng4"
+  },
+  {
+    "id": 4816,
+    "eco": "B90",
+    "name": "Sicilian Defense: Najdorf Variation, Freak Attack",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Rg1"
+  },
+  {
+    "id": 4814,
+    "eco": "B90",
+    "name": "Sicilian Defense: Najdorf Variation, English Attack",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3"
+  },
+  {
+    "id": 4812,
+    "eco": "B90",
+    "name": "Sicilian Defense: Najdorf Variation, Adams Attack",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.h3"
+  },
+  {
+    "id": 4818,
+    "eco": "B90",
+    "name": "Sicilian Defense: Scheveningen Variation, Delayed Keres Attack",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e6 7.g4"
+  },
+  {
+    "id": 4811,
+    "eco": "B90",
+    "name": "Sicilian Defense: Najdorf Variation",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6"
+  },
+  {
+    "id": 4819,
+    "eco": "B90",
+    "name": "Sicilian Defense: Scheveningen Variation, Delayed Keres Attack, Perenyi Gambit",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e6 7.g4 e5 8.Nf5 g6 9.g5"
+  },
+  {
+    "id": 4817,
+    "eco": "B90",
+    "name": "Sicilian Defense: Najdorf Variation, Lipnitsky Attack",
+    "movetext": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bc4"
+  }
 ]
 </pre>
     </details>
@@ -540,20 +540,20 @@ curl https://pchess.net/api/opening \
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/play/lan \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "variant": "960",
-        "startPos": "RQKBBNNR",
-        "movetext": "e2e4 e7e5"
-    }'
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "variant": "960",
+    "startPos": "RQKBBNNR",
+    "movetext": "e2e4 e7e5"
+  }'
 </pre>
       <p><b>Response</b></p>
 <pre>
 {
-    "fen": "rqkbbnnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RQKBBNNR w KQkq e6",
-    "isCheck": false,
-    "isMate": false,
-    "movetext": "1.e4 e5"
+  "fen": "rqkbbnnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RQKBBNNR w KQkq e6",
+  "isCheck": false,
+  "isMate": false,
+  "movetext": "1.e4 e5"
 }
 </pre>
     </details>
@@ -597,20 +597,20 @@ curl https://pchess.net/api/play/lan \
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/play/pgn \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "variant": "960",
-        "startPos": "RQKBBNNR",
-        "movetext": "1.e4 e5"
-    }'
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "variant": "960",
+    "startPos": "RQKBBNNR",
+    "movetext": "1.e4 e5"
+  }'
 </pre>
       <p><b>Response</b></p>
 <pre>
 {
-    "fen": "rqkbbnnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RQKBBNNR w KQkq e6",
-    "isCheck": false,
-    "isMate": false,
-    "movetext": "1.e4 e5"
+  "fen": "rqkbbnnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RQKBBNNR w KQkq e6",
+  "isCheck": false,
+  "isMate": false,
+  "movetext": "1.e4 e5"
 }
 </pre>
     </details>
@@ -669,71 +669,71 @@ curl https://pchess.net/api/play/pgn \
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/search \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "Black": "Kasparov,G",
-        "ECO": "D37"
-    }'
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "Black": "Kasparov,G",
+    "ECO": "D37"
+  }'
 </pre>
       <p><b>Response</b></p>
 <pre>
 [
-    {
-        "id": 156639,
-        "Event": "Rapid",
-        "Site": "Reykjavik ISL",
-        "Date": "2004.03.20",
-        "White": "Nielsen,PH",
-        "Black": "Kasparov,G",
-        "Result": "1\/2-1\/2",
-        "WhiteElo": "2638",
-        "BlackElo": "2831",
-        "ECO": "D37",
-        "FEN": null,
-        "movetext": "1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bf4 O-O 6.e3 c5 7.dxc5 Bxc5 8.a3 Nc6 9.Rc1 a6 10.b4 Bd6 11.Bg5 a5 12.b5 Ne7 13.Bxf6 gxf6 14.a4 Bb4 15.Be2 dxc4 16.O-O Nd5 17.Na2 Nb6 18.Qc2 e5 19.Nxb4 axb4 20.Bxc4 Nxc4 21.Qxc4 Rxa4 22.Rfd1 Qb6 23.Nh4 Be6 24.Qe4 Qxb5 25.Qf3 Kg7 26.Nf5+ Bxf5 27.Qxf5 b3 28.Rd6 b2 29.Qxf6+ Kg8 30.Qg5+ Kh8 31.Qf6+"
-    },
-    {
-        "id": 369145,
-        "Event": "Corus",
-        "Site": "Wijk aan Zee NED",
-        "Date": "2001.01.27",
-        "White": "Van Wely,L",
-        "Black": "Kasparov,G",
-        "Result": "1\/2-1\/2",
-        "WhiteElo": "2700",
-        "BlackElo": "2849",
-        "ECO": "D37",
-        "FEN": null,
-        "movetext": "1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bf4 O-O 6.e3 c5 7.dxc5 Bxc5 8.cxd5 Nxd5 9.Nxd5 exd5 10.a3 Nc6 11.Bd3 Bb6 12.O-O Bg4 13.h3 Bh5 14.b4 Re8 15.Rc1 a6 16.g4 Bg6 17.Bxg6 hxg6 18.Rc3 d4 19.Rd3 Qd5 20.exd4 Re4 21.Be3 Rd8 22.Re1 f6 23.Kg2 f5 24.gxf5 gxf5 25.Qb3 Qxb3 26.Rxb3 f4 27.d5 fxe3 28.dxc6 Re6 29.fxe3 Rxc6 30.Kf2 Rf8 31.Ke2 Rc2+ 32.Nd2 Rd8 33.Rd3 Ra2 34.Rxd8+ Bxd8 35.Rc1 Bf6 36.Rc7 b5 37.Rc6 Rxa3 38.Ne4 Be7 39.Nc5 a5 40.Rb6 axb4 41.Rxb5 Ra2+ 42.Kd3 Rh2 43.Na6"
-    },
-    {
-        "id": 332967,
-        "Event": "Corus",
-        "Site": "Wijk aan Zee NED",
-        "Date": "2001.01.27",
-        "White": "Van Wely,L",
-        "Black": "Kasparov,G",
-        "Result": "1\/2-1\/2",
-        "WhiteElo": "2700",
-        "BlackElo": "2849",
-        "ECO": "D37",
-        "FEN": null,
-        "movetext": "1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bf4 O-O 6.e3 c5 7.dxc5 Bxc5 8.cxd5 Nxd5 9.Nxd5 exd5 10.a3 Nc6 11.Bd3 Bb6 12.O-O Bg4 13.h3 Bh5 14.b4 Re8 15.Rc1 a6 16.g4 Bg6 17.Bxg6 hxg6 18.Rc3 d4 19.Rd3 Qd5 20.exd4 Re4 21.Be3 Rd8 22.Re1 f6 23.Kg2 f5 24.gxf5 gxf5 25.Qb3 Qxb3 26.Rxb3 f4 27.d5 fxe3 28.dxc6 Re6 29.fxe3 Rxc6 30.Kf2 Rf8 31.Ke2 Rc2+ 32.Nd2 Rd8 33.Rd3 Ra2 34.Rxd8+ Bxd8 35.Rc1 Bf6 36.Rc7 b5 37.Rc6 Rxa3 38.Ne4 Be7 39.Nc5 a5 40.Rb6 axb4 41.Rxb5 Ra2+ 42.Kd3 Rh2 43.Na6"
-    },
-    {
-        "id": 369372,
-        "Event": "Rapid",
-        "Site": "Reykjavik ISL",
-        "Date": "2004.03.20",
-        "White": "Nielsen,PH",
-        "Black": "Kasparov,G",
-        "Result": "1\/2-1\/2",
-        "WhiteElo": "2638",
-        "BlackElo": "2831",
-        "ECO": "D37",
-        "FEN": null,
-        "movetext": "1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bf4 O-O 6.e3 c5 7.dxc5 Bxc5 8.a3 Nc6 9.Rc1 a6 10.b4 Bd6 11.Bg5 a5 12.b5 Ne7 13.Bxf6 gxf6 14.a4 Bb4 15.Be2 dxc4 16.O-O Nd5 17.Na2 Nb6 18.Qc2 e5 19.Nxb4 axb4 20.Bxc4 Nxc4 21.Qxc4 Rxa4 22.Rfd1 Qb6 23.Nh4 Be6 24.Qe4 Qxb5 25.Qf3 Kg7 26.Nf5+ Bxf5 27.Qxf5 b3 28.Rd6 b2 29.Qxf6+ Kg8 30.Qg5+ Kh8 31.Qf6+"
-    }
+  {
+    "id": 156639,
+    "Event": "Rapid",
+    "Site": "Reykjavik ISL",
+    "Date": "2004.03.20",
+    "White": "Nielsen,PH",
+    "Black": "Kasparov,G",
+    "Result": "1\/2-1\/2",
+    "WhiteElo": "2638",
+    "BlackElo": "2831",
+    "ECO": "D37",
+    "FEN": null,
+    "movetext": "1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bf4 O-O 6.e3 c5 7.dxc5 Bxc5 8.a3 Nc6 9.Rc1 a6 10.b4 Bd6 11.Bg5 a5 12.b5 Ne7 13.Bxf6 gxf6 14.a4 Bb4 15.Be2 dxc4 16.O-O Nd5 17.Na2 Nb6 18.Qc2 e5 19.Nxb4 axb4 20.Bxc4 Nxc4 21.Qxc4 Rxa4 22.Rfd1 Qb6 23.Nh4 Be6 24.Qe4 Qxb5 25.Qf3 Kg7 26.Nf5+ Bxf5 27.Qxf5 b3 28.Rd6 b2 29.Qxf6+ Kg8 30.Qg5+ Kh8 31.Qf6+"
+  },
+  {
+    "id": 369145,
+    "Event": "Corus",
+    "Site": "Wijk aan Zee NED",
+    "Date": "2001.01.27",
+    "White": "Van Wely,L",
+    "Black": "Kasparov,G",
+    "Result": "1\/2-1\/2",
+    "WhiteElo": "2700",
+    "BlackElo": "2849",
+    "ECO": "D37",
+    "FEN": null,
+    "movetext": "1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bf4 O-O 6.e3 c5 7.dxc5 Bxc5 8.cxd5 Nxd5 9.Nxd5 exd5 10.a3 Nc6 11.Bd3 Bb6 12.O-O Bg4 13.h3 Bh5 14.b4 Re8 15.Rc1 a6 16.g4 Bg6 17.Bxg6 hxg6 18.Rc3 d4 19.Rd3 Qd5 20.exd4 Re4 21.Be3 Rd8 22.Re1 f6 23.Kg2 f5 24.gxf5 gxf5 25.Qb3 Qxb3 26.Rxb3 f4 27.d5 fxe3 28.dxc6 Re6 29.fxe3 Rxc6 30.Kf2 Rf8 31.Ke2 Rc2+ 32.Nd2 Rd8 33.Rd3 Ra2 34.Rxd8+ Bxd8 35.Rc1 Bf6 36.Rc7 b5 37.Rc6 Rxa3 38.Ne4 Be7 39.Nc5 a5 40.Rb6 axb4 41.Rxb5 Ra2+ 42.Kd3 Rh2 43.Na6"
+  },
+  {
+    "id": 332967,
+    "Event": "Corus",
+    "Site": "Wijk aan Zee NED",
+    "Date": "2001.01.27",
+    "White": "Van Wely,L",
+    "Black": "Kasparov,G",
+    "Result": "1\/2-1\/2",
+    "WhiteElo": "2700",
+    "BlackElo": "2849",
+    "ECO": "D37",
+    "FEN": null,
+    "movetext": "1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bf4 O-O 6.e3 c5 7.dxc5 Bxc5 8.cxd5 Nxd5 9.Nxd5 exd5 10.a3 Nc6 11.Bd3 Bb6 12.O-O Bg4 13.h3 Bh5 14.b4 Re8 15.Rc1 a6 16.g4 Bg6 17.Bxg6 hxg6 18.Rc3 d4 19.Rd3 Qd5 20.exd4 Re4 21.Be3 Rd8 22.Re1 f6 23.Kg2 f5 24.gxf5 gxf5 25.Qb3 Qxb3 26.Rxb3 f4 27.d5 fxe3 28.dxc6 Re6 29.fxe3 Rxc6 30.Kf2 Rf8 31.Ke2 Rc2+ 32.Nd2 Rd8 33.Rd3 Ra2 34.Rxd8+ Bxd8 35.Rc1 Bf6 36.Rc7 b5 37.Rc6 Rxa3 38.Ne4 Be7 39.Nc5 a5 40.Rb6 axb4 41.Rxb5 Ra2+ 42.Kd3 Rh2 43.Na6"
+  },
+  {
+    "id": 369372,
+    "Event": "Rapid",
+    "Site": "Reykjavik ISL",
+    "Date": "2004.03.20",
+    "White": "Nielsen,PH",
+    "Black": "Kasparov,G",
+    "Result": "1\/2-1\/2",
+    "WhiteElo": "2638",
+    "BlackElo": "2831",
+    "ECO": "D37",
+    "FEN": null,
+    "movetext": "1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bf4 O-O 6.e3 c5 7.dxc5 Bxc5 8.a3 Nc6 9.Rc1 a6 10.b4 Bd6 11.Bg5 a5 12.b5 Ne7 13.Bxf6 gxf6 14.a4 Bb4 15.Be2 dxc4 16.O-O Nd5 17.Na2 Nb6 18.Qc2 e5 19.Nxb4 axb4 20.Bxc4 Nxc4 21.Qxc4 Rxa4 22.Rfd1 Qb6 23.Nh4 Be6 24.Qe4 Qxb5 25.Qf3 Kg7 26.Nf5+ Bxf5 27.Qxf5 b3 28.Rd6 b2 29.Qxf6+ Kg8 30.Qg5+ Kh8 31.Qf6+"
+  }
 ]
 </pre>
     </details>
@@ -772,11 +772,11 @@ curl https://pchess.net/api/search \
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/stats/event \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "Event": "FIDE Candidates 2022",
-        "Result": "0-1"
-    }'
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "Event": "FIDE Candidates 2022",
+    "Result": "0-1"
+  }'
 </pre>
       <p><b>Response</b></p>
 <pre>
@@ -841,32 +841,32 @@ curl https://pchess.net/api/stats/event \
       <p><b>Example</b></p>
 <pre>
 curl https://pchess.net/api/stats/player \
-    -H "Content-Type: application/json" \
-    --data-raw '{
-        "White": "Kasparov, Gary",
-        "Result": "0-1"
-    }'
+  -H "Content-Type: application/json" \
+  --data-raw '{
+    "White": "Kasparov, Gary",
+    "Result": "0-1"
+  }'
 </pre>
       <p><b>Response</b></p>
 <pre>
 [
-    {
-        "ECO": "C54",
-        "total": 6
-    },
-    {
-        "ECO": "A29",
-        "total": 4
-    },
-    ...
-    {
-        "ECO": "C01",
-        "total": 1
-    },
-    {
-        "ECO": "B50",
-        "total": 1
-    }
+  {
+    "ECO": "C54",
+    "total": 6
+  },
+  {
+    "ECO": "A29",
+    "total": 4
+  },
+  ...
+  {
+    "ECO": "C01",
+    "total": 1
+  },
+  {
+    "ECO": "B50",
+    "total": 1
+  }
 ]
 </pre>
     </details>
@@ -882,11 +882,11 @@ curl https://pchess.net/api/stats/player \
     <p>The <code>/start</code> command above starts a new classical chess game and retrieves a JSON response from the server.</p>
 <pre>
 {
-    "\/start": {
-        "variant":"classical",
-        "mode":"analysis",
-        "fen":"rnbqkbnr\/pppppppp\/8\/8\/8\/8\/PPPPPPPP\/RNBQKBNR w KQkq -"
-    }
+  "\/start": {
+    "variant":"classical",
+    "mode":"analysis",
+    "fen":"rnbqkbnr\/pppppppp\/8\/8\/8\/8\/PPPPPPPP\/RNBQKBNR w KQkq -"
+  }
 }
 </pre>
     <p>On successful server response a FEN string representing the starting position is returned as well as the variant and the mode required.</p>
@@ -901,15 +901,15 @@ curl https://pchess.net/api/stats/player \
     <p>The <code>/play_lan</code> command makes the chess move retrieving the following JSON response.</p>
 <pre>
 {
-    "/play_lan": {
-        "turn": "w",
-        "isLegal": true,
-        "isCheck": false,
-        "isMate": false,
-        "movetext": "1.e4",
-        "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3",
-        "pgn": "e4"
-    }
+  "/play_lan": {
+    "turn": "w",
+    "isLegal": true,
+    "isCheck": false,
+    "isMate": false,
+    "movetext": "1.e4",
+    "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3",
+    "pgn": "e4"
+  }
 }
 </pre>
     <p>A popular response to 1.e4 is 1...e5 which in LAN format is e7e5.</p>
@@ -917,15 +917,15 @@ curl https://pchess.net/api/stats/player \
     <p>Once again the <code>/play_lan</code> command makes this chess move retrieving the following JSON response.</p>
 <pre>
 {
-    "/play_lan": {
-        "turn": "b",
-        "isLegal": true,
-        "isCheck": false,
-        "isMate": false,
-        "movetext": "1.e4 e5",
-        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6",
-        "pgn": "e5"
-    }
+  "/play_lan": {
+    "turn": "b",
+    "isLegal": true,
+    "isCheck": false,
+    "isMate": false,
+    "movetext": "1.e4 e5",
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6",
+    "pgn": "e5"
+  }
 }
 </pre>
     <p>Let's recap.</p>
@@ -1081,11 +1081,11 @@ ws.send('/play_lan b e7e5');
   <p><b>Response</b></p>
 <pre>
 {
-    "/start": {
-        "variant": "classical",
-        "mode": "analysis",
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -"
-    }
+  "/start": {
+    "variant": "classical",
+    "mode": "analysis",
+    "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -"
+  }
 }
 </pre>
   <hr>
@@ -1095,11 +1095,11 @@ ws.send('/play_lan b e7e5');
   <p><b>Response</b></p>
 <pre>
 {
-    "/start": {
-        "variant": "classical",
-        "mode": "gm",
-        "color": "w"
-    }
+  "/start": {
+    "variant": "classical",
+    "mode": "gm",
+    "color": "w"
+  }
 }
 </pre>
   <hr>
@@ -1109,11 +1109,11 @@ ws.send('/play_lan b e7e5');
   <p><b>Response</b></p>
 <pre>
 {
-    "/start": {
-        "variant": "classical",
-        "mode": "fen",
-        "fen": "r1bqkbnr/pppppppp/2n5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3"
-    }
+  "/start": {
+    "variant": "classical",
+    "mode": "fen",
+    "fen": "r1bqkbnr/pppppppp/2n5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3"
+  }
 }
 </pre>
   <hr>
@@ -1123,38 +1123,38 @@ ws.send('/play_lan b e7e5');
   <p><b>Response</b></p>
 <pre>
 {
-    "/start": {
-        "variant": "classical",
-        "mode": "pgn",
-        "turn": "b",
-        "movetext": "1.e4 Nc6 2.d4",
-        "fen": "r1bqkbnr/pppppppp/2n5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3",
-        "history": [
-            [
-                [
-                    " r ",
-                    " n ",
-                    " b ",
-                    " q ",
-                    " k ",
-                    " b ",
-                    " n ",
-                    " r "
-                ],
-                ...
-                [
-                    " R ",
-                    " N ",
-                    " B ",
-                    " Q ",
-                    " K ",
-                    " B ",
-                    " N ",
-                    " R "
-                ]
-            ]
+  "/start": {
+    "variant": "classical",
+    "mode": "pgn",
+    "turn": "b",
+    "movetext": "1.e4 Nc6 2.d4",
+    "fen": "r1bqkbnr/pppppppp/2n5/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3",
+    "history": [
+      [
+        [
+          " r ",
+          " n ",
+          " b ",
+          " q ",
+          " k ",
+          " b ",
+          " n ",
+          " r "
+        ],
+        ...
+        [
+          " R ",
+          " N ",
+          " B ",
+          " Q ",
+          " K ",
+          " B ",
+          " N ",
+          " R "
         ]
-    }
+      ]
+    ]
+  }
 }
 </pre>
   <hr>
@@ -1164,38 +1164,38 @@ ws.send('/play_lan b e7e5');
   <p><b>Response</b></p>
 <pre>
 {
-    "/start": {
-        "variant": "960",
-        "mode": "pgn",
-        "turn": "b",
-        "movetext": "1.e4 Nc6 2.d4",
-        "fen": "b1rkqbrn/pppppppp/2n5/8/3PP3/8/PPP2PPP/BNRKQBRN b KQkq d3",
-        "history": [
-            [
-                [
-                    " r ",
-                    " n ",
-                    " b ",
-                    " q ",
-                    " k ",
-                    " b ",
-                    " n ",
-                    " r "
-                ],
-                ...
-                [
-                    " B ",
-                    " N ",
-                    " R ",
-                    " K ",
-                    " Q ",
-                    " B ",
-                    " R ",
-                    " N "
-                ]
-            ]
+  "/start": {
+    "variant": "960",
+    "mode": "pgn",
+    "turn": "b",
+    "movetext": "1.e4 Nc6 2.d4",
+    "fen": "b1rkqbrn/pppppppp/2n5/8/3PP3/8/PPP2PPP/BNRKQBRN b KQkq d3",
+    "history": [
+      [
+        [
+          " r ",
+          " n ",
+          " b ",
+          " q ",
+          " k ",
+          " b ",
+          " n ",
+          " r "
+        ],
+        ...
+        [
+          " B ",
+          " N ",
+          " R ",
+          " K ",
+          " Q ",
+          " B ",
+          " R ",
+          " N "
         ]
-    }
+      ]
+    ]
+  }
 }
 </pre>
   <hr>
@@ -1205,13 +1205,13 @@ ws.send('/play_lan b e7e5');
   <p><b>Response</b></p>
 <pre>
 {
-    "/start": {
-        "variant": "classical",
-        "mode": "play",
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -",
-        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwY2hlc3MubmV0IiwiaWF0IjoxNjc2NzYwNTgxLCJleHAiOjE2NzY3NjQxODEsInZhcmlhbnQiOiJjbGFzc2ljYWwiLCJzdWJtb2RlIjoiZnJpZW5kIiwiY29sb3IiOiJiIiwibWluIjo1LCJpbmNyZW1lbnQiOjMsImZlbiI6InJuYnFrYm5yXC9wcHBwcHBwcFwvOFwvOFwvOFwvOFwvUFBQUFBQUFBcL1JOQlFLQk5SIHcgS1FrcSAtIn0.jbVZGSaD9Q-QSrRkIdl-XXWMCuSV_4nrfJl28FObC24",
-        "hash": "9eebcdf09342ef257407f341518b5d81"
-    }
+  "/start": {
+    "variant": "classical",
+    "mode": "play",
+    "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -",
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwY2hlc3MubmV0IiwiaWF0IjoxNjc2NzYwNTgxLCJleHAiOjE2NzY3NjQxODEsInZhcmlhbnQiOiJjbGFzc2ljYWwiLCJzdWJtb2RlIjoiZnJpZW5kIiwiY29sb3IiOiJiIiwibWluIjo1LCJpbmNyZW1lbnQiOjMsImZlbiI6InJuYnFrYm5yXC9wcHBwcHBwcFwvOFwvOFwvOFwvOFwvUFBQUFBQUFBcL1JOQlFLQk5SIHcgS1FrcSAtIn0.jbVZGSaD9Q-QSrRkIdl-XXWMCuSV_4nrfJl28FObC24",
+    "hash": "9eebcdf09342ef257407f341518b5d81"
+  }
 }
 </pre>
   <hr>
@@ -1221,11 +1221,11 @@ ws.send('/play_lan b e7e5');
   <p><b>Response</b></p>
 <pre>
 {
-    "/start": {
-        "variant": "classical",
-        "mode": "stockfish",
-        "color": "b"
-    }
+  "/start": {
+    "variant": "classical",
+    "mode": "stockfish",
+    "color": "b"
+  }
 }
 </pre>
     </details>
@@ -1258,14 +1258,14 @@ ws.send('/legal_sqs e2');
       <p><b>Response</b></p>
 <pre>
 {
-    "/legal_sqs": {
-        "color": "w",
-        "id": "P",
-        "sqs": [
-            "e3",
-            "e4"
-        ]
-    }
+  "/legal_sqs": {
+    "color": "w",
+    "id": "P",
+    "sqs": [
+      "e3",
+      "e4"
+    ]
+  }
 }
 </pre>
     </details>
@@ -1303,15 +1303,15 @@ ws.send('/play_lan w e2e4');
       <p><b>Response</b></p>
 <pre>
 {
-    "/play_lan": {
-        "turn": "w",
-        "isLegal": true,
-        "isCheck": false,
-        "isMate": false,
-        "movetext": "1.e4",
-        "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3",
-        "pgn": "e4"
-    }
+  "/play_lan": {
+    "turn": "w",
+    "isLegal": true,
+    "isCheck": false,
+    "isMate": false,
+    "movetext": "1.e4",
+    "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3",
+    "pgn": "e4"
+  }
 }
 </pre>
     </details>
@@ -1330,17 +1330,17 @@ ws.send('/undo');
       <p><b>Response</b></p>
 <pre>
 {
-    "/undo": {
-        "turn": "w",
-        "pgn": "e5",
-        "castlingAbility": "KQkq",
-        "movetext": "1.e4 e5",
-        "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6",
-        "isCheck": false,
-        "isMate": false,
-        "isStalemate": false,
-        "mode": "analysis"
-    }
+  "/undo": {
+    "turn": "w",
+    "pgn": "e5",
+    "castlingAbility": "KQkq",
+    "movetext": "1.e4 e5",
+    "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6",
+    "isCheck": false,
+    "isMate": false,
+    "isStalemate": false,
+    "mode": "analysis"
+  }
 }
 </pre>
     </details>
@@ -1377,37 +1377,37 @@ ws.send('/heuristics "1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.Nc3"');
       <p><b>Response</b></p>
 <pre>
 {
-    "/heuristics": {
-        "dimensions": [
-            "Material",
-            "Center",
-            "Connectivity",
-            "Space",
-            "Pressure",
-            "King safety",
-            "Tactics",
-            "Attack",
-            "Doubled pawn",
-            "Passed pawn",
-            "Isolated pawn",
-            "Backward pawn",
-            "Absolute pin",
-            "Relative pin",
-            "Absolute fork",
-            "Relative fork",
-            "Square outpost",
-            "Knight outpost",
-            "Bishop outpost",
-            "Bishop pair",
-            "Bad bishop",
-            "Direct opposition"
-        ],
-        "balance": [
-            [ 0, 0.38, -0.37, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            ...
-            [ 0, 0.43, 0, 0.25, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-        ]
-    }
+  "/heuristics": {
+    "dimensions": [
+      "Material",
+      "Center",
+      "Connectivity",
+      "Space",
+      "Pressure",
+      "King safety",
+      "Tactics",
+      "Attack",
+      "Doubled pawn",
+      "Passed pawn",
+      "Isolated pawn",
+      "Backward pawn",
+      "Absolute pin",
+      "Relative pin",
+      "Absolute fork",
+      "Relative fork",
+      "Square outpost",
+      "Knight outpost",
+      "Bishop outpost",
+      "Bishop pair",
+      "Bad bishop",
+      "Direct opposition"
+    ],
+    "balance": [
+      [ 0, 0.38, -0.37, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+      ...
+      [ 0, 0.43, 0, 0.25, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+    ]
+  }
 }
 </pre>
     <p>
@@ -1457,35 +1457,35 @@ ws.send('/heuristics_bar "rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R
       <p><b>Response</b></p>
 <pre>
 {
-    "/heuristics_bar": {
-        "dimensions": [
-            "Material",
-            "Center",
-            "Connectivity",
-            "Space",
-            "Pressure",
-            "King safety",
-            "Tactics",
-            "Attack",
-            "Doubled pawn",
-            "Passed pawn",
-            "Isolated pawn",
-            "Backward pawn",
-            "Absolute pin",
-            "Relative pin",
-            "Absolute fork",
-            "Relative fork",
-            "Square outpost",
-            "Knight outpost",
-            "Bishop outpost",
-            "Bishop pair",
-            "Bad bishop",
-            "Direct opposition"
-        ],
-        "balance": [
-            0, 0.28, 0, 0.07, 0, 0, 0, 0, 0, 0, 0, 0.04, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]
-    }
+  "/heuristics_bar": {
+    "dimensions": [
+      "Material",
+      "Center",
+      "Connectivity",
+      "Space",
+      "Pressure",
+      "King safety",
+      "Tactics",
+      "Attack",
+      "Doubled pawn",
+      "Passed pawn",
+      "Isolated pawn",
+      "Backward pawn",
+      "Absolute pin",
+      "Relative pin",
+      "Absolute fork",
+      "Relative fork",
+      "Square outpost",
+      "Knight outpost",
+      "Bishop outpost",
+      "Bishop pair",
+      "Bad bishop",
+      "Direct opposition"
+    ],
+    "balance": [
+      0, 0.28, 0, 0.07, 0, 0, 0, 0, 0, 0, 0, 0.04, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ]
+  }
 }
 </pre>
     <p>
