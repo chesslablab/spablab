@@ -72,6 +72,10 @@ article {
   border: 0;
 }
 
+section {
+  border-top: 1px solid #c0c0c0;
+}
+
 article p:first-child,
 section p:first-child {
   font-size: 0.85em;
