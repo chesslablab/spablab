@@ -59,9 +59,15 @@ nav {
 }
 
 nav a {
-  padding: 0.5rem !important;
+  padding: 0.5rem;
   font-weight: 500;
   font-size: 0.875rem;
+  margin-left: -4px;
+}
+
+nav a:not(:last-child) {
+  border-color: rgba(25, 118, 210, 0.5);
+  border-right: 1px solid rgba(0, 0, 0, 0.23);
 }
 
 main > h2 {
