@@ -70,65 +70,65 @@
   left: 0;
 }
 
-.sq.a1:has(span),
-.sq.c1:has(span),
-.sq.e1:has(span),
-.sq.g1:has(span),
-.sq.i1:has(span),
-.sq.j8:has(span),
-.sq.h8:has(span),
-.sq.f8:has(span),
-.sq.d8:has(span),
-.sq.b8:has(span) {
+.sq.a1 span,
+.sq.c1 span,
+.sq.e1 span,
+.sq.g1 span,
+.sq.i1 span,
+.sq.j8 span,
+.sq.h8 span,
+.sq.f8 span,
+.sq.d8 span,
+.sq.b8 span {
   color: #ffce9e;
 }
 
-.sq.b1:has(span),
-.sq.d1:has(span),
-.sq.f1:has(span),
-.sq.h1:has(span),
-.sq.j1:has(span),
-.sq.i8:has(span),
-.sq.g8:has(span),
-.sq.e8:has(span),
-.sq.c8:has(span),
-.sq.a8:has(span) {
+.sq.b1 span,
+.sq.d1 span,
+.sq.f1 span,
+.sq.h1 span,
+.sq.j1 span,
+.sq.i8 span,
+.sq.g8 span,
+.sq.e8 span,
+.sq.c8 span,
+.sq.a8 span {
   color: #d18b47;
 }
 
-.sq.j2:has(span),
-.sq.j4:has(span),
-.sq.j6:has(span) {
+.sq.j2 span,
+.sq.j4 span,
+.sq.j6 span {
   color: #ffce9e;
 }
 
-.sq.a3:has(span),
-.sq.a5:has(span),
-.sq.a7:has(span) {
+.sq.a3 span,
+.sq.a5 span,
+.sq.a7 span {
   color: #ffce9e;
 }
 
-.sq.h6:has(span),
-.sq.h4:has(span),
-.sq.h2:has(span) {
+.sq.h6 span,
+.sq.h4 span,
+.sq.h2 span {
   color: #ffce9e;
 }
 
-.sq.j3:has(span),
-.sq.j5:has(span),
-.sq.j7:has(span) {
+.sq.j3 span,
+.sq.j5 span,
+.sq.j7 span {
   color: #d18b47;
 }
 
-.sq.a2:has(span),
-.sq.a4:has(span),
-.sq.a6:has(span) {
+.sq.a2 span,
+.sq.a4 span,
+.sq.a6 span {
   color: #d18b47;
 }
 
-.sq.h7:has(span),
-.sq.h5:has(span),
-.sq.h3:has(span) {
+.sq.h7 span,
+.sq.h5 span,
+.sq.h3 span {
   color: #d18b47;
 }
 
