@@ -28,6 +28,8 @@
 
 .sq img {
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .sq img[draggable=true] {
@@ -50,14 +52,66 @@
 
 .sq span.file {
   position: absolute;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-right: 0.15rem;
+  margin-bottom: 0.15rem;
   bottom: 0;
   right: 0;
 }
 
 .sq span.rank {
   position: absolute;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-left: 0.15rem;
+  margin-top: 0.15rem;
   top: 0;
   left: 0;
+}
+
+.sq.a1:has(span),
+.sq.c1:has(span),
+.sq.e1:has(span),
+.sq.g1:has(span),
+.sq.h8:has(span),
+.sq.f8:has(span),
+.sq.d8:has(span),
+.sq.b8:has(span) {
+  color: #ffce9e;
+}
+
+.sq.b1:has(span),
+.sq.d1:has(span),
+.sq.f1:has(span),
+.sq.h1:has(span),
+.sq.g8:has(span),
+.sq.e8:has(span),
+.sq.c8:has(span),
+.sq.a8:has(span) {
+  color: #d18b47;
+}
+
+.sq.a3:has(span),
+.sq.a5:has(span),
+.sq.a7:has(span) {
+  color: #ffce9e;
+}
+.sq.a2:has(span),
+.sq.a4:has(span),
+.sq.a6:has(span) {
+  color: #d18b47;
+}
+
+.sq.h6:has(span),
+.sq.h4:has(span),
+.sq.h2:has(span) {
+  color: #ffce9e;
+}
+.sq.h7:has(span),
+.sq.h5:has(span),
+.sq.h3:has(span) {
+  color: #d18b47;
 }
 
 .sq.isSelected {
