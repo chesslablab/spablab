@@ -74,6 +74,8 @@
 .sq.c1:has(span),
 .sq.e1:has(span),
 .sq.g1:has(span),
+.sq.i1:has(span),
+.sq.j8:has(span),
 .sq.h8:has(span),
 .sq.f8:has(span),
 .sq.d8:has(span),
@@ -85,6 +87,8 @@
 .sq.d1:has(span),
 .sq.f1:has(span),
 .sq.h1:has(span),
+.sq.j1:has(span),
+.sq.i8:has(span),
 .sq.g8:has(span),
 .sq.e8:has(span),
 .sq.c8:has(span),
@@ -92,15 +96,16 @@
   color: #d18b47;
 }
 
+.sq.j2:has(span),
+.sq.j4:has(span),
+.sq.j6:has(span) {
+  color: #ffce9e;
+}
+
 .sq.a3:has(span),
 .sq.a5:has(span),
 .sq.a7:has(span) {
   color: #ffce9e;
-}
-.sq.a2:has(span),
-.sq.a4:has(span),
-.sq.a6:has(span) {
-  color: #d18b47;
 }
 
 .sq.h6:has(span),
@@ -108,6 +113,19 @@
 .sq.h2:has(span) {
   color: #ffce9e;
 }
+
+.sq.j3:has(span),
+.sq.j5:has(span),
+.sq.j7:has(span) {
+  color: #d18b47;
+}
+
+.sq.a2:has(span),
+.sq.a4:has(span),
+.sq.a6:has(span) {
+  color: #d18b47;
+}
+
 .sq.h7:has(span),
 .sq.h5:has(span),
 .sq.h3:has(span) {
