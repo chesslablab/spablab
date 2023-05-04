@@ -92,7 +92,7 @@ const Squares = ({props}) => {
           }
         }
 
-        return <div
+        return <div style={{position: "relative"}}
           key={payload.sq}
           ref={el => props.sqsRef.current[payload.sq] = el}
           className={[
@@ -122,26 +122,26 @@ const Squares = ({props}) => {
           }}>
             {
               Piece.unicode[piece].char
-                ? <div style={{position: "relative"}}>
-                    <img
-                        alt={Piece.unicode[piece].char}
-                        ref={el => props.imgsRef.current[payload.sq] = el}
-                        src={Piece.unicode[piece].char}
-                        draggable={Piece.color(piece) === state.board.turn ? true : false}
-                        onDragStart={() => {
-                          if (filterMove()) {
-                            payload.piecePlaced = { event: eventConst.ON_DRAG_START };
-                            props.handleMove(payload);
-                          }
-                        }}
-                      />
-                      {i === 7 ? (
-                        <span style={{ position: "absolute", bottom: 0, right: 0 }}>
-                          {payload.sq.charAt(0)}
-                        </span>
-                      ) : null}
-                  </div>
+                ? <img
+                    alt={Piece.unicode[piece].char}
+                    ref={el => props.imgsRef.current[payload.sq] = el}
+                    src={Piece.unicode[piece].char}
+                    draggable={Piece.color(piece) === state.board.turn ? true : false}
+                    onDragStart={() => {
+                      if (filterMove()) {
+                        payload.piecePlaced = { event: eventConst.ON_DRAG_START };
+                        props.handleMove(payload);
+                      }
+                    }}
+                  />
                 : null
+            }
+            {
+              payload.i === 7
+              ? <span style={{ position: "absolute", bottom: 0, right: 0 }}>
+                  {payload.sq.charAt(0)}
+                </span>
+              : null
             }
         </div>
       });
