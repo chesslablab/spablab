@@ -137,14 +137,28 @@ const Squares = ({props}) => {
                 : null
             }
             {
-              payload.i === 7
+              payload.i === state.board.size.ranks - 1 && state.board.flip === 'w'
               ? <span className="file">
                   {payload.sq.charAt(0)}
                 </span>
               : null
             }
             {
-              payload.j === 0
+              payload.j === 0 && state.board.flip === 'w'
+              ? <span className="rank">
+                  {payload.sq.charAt(1)}
+                </span>
+              : null
+            }
+            {
+              payload.i === 0 && state.board.flip === 'b'
+              ? <span className="file">
+                  {payload.sq.charAt(0)}
+                </span>
+              : null
+            }
+            {
+              payload.j === state.board.size.files - 1 && state.board.flip === 'b'
               ? <span className="rank">
                   {payload.sq.charAt(1)}
                 </span>
