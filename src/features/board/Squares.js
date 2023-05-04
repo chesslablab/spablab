@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
 import Piece from 'common/Piece';
+import AlgebraicNotation from 'features/board/AlgebraicNotation';
 import * as eventConst from 'features/event/eventConst';
 import * as modeConst from 'features/mode/modeConst';
 
@@ -136,34 +137,7 @@ const Squares = ({props}) => {
                   />
                 : null
             }
-            {
-              payload.i === state.board.size.ranks - 1 && state.board.flip === 'w'
-              ? <span className="file">
-                  {payload.sq.charAt(0)}
-                </span>
-              : null
-            }
-            {
-              payload.j === 0 && state.board.flip === 'w'
-              ? <span className="rank">
-                  {payload.sq.charAt(1)}
-                </span>
-              : null
-            }
-            {
-              payload.i === 0 && state.board.flip === 'b'
-              ? <span className="file">
-                  {payload.sq.charAt(0)}
-                </span>
-              : null
-            }
-            {
-              payload.j === state.board.size.files - 1 && state.board.flip === 'b'
-              ? <span className="rank">
-                  {payload.sq.charAt(1)}
-                </span>
-              : null
-            }
+            <AlgebraicNotation props={payload} />
         </div>
       });
     });
