@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
 import Piece from 'common/Piece';
+import AlgebraicNotation from 'features/board/AlgebraicNotation';
 import * as eventConst from 'features/event/eventConst';
 import * as modeConst from 'features/mode/modeConst';
 
@@ -136,6 +137,7 @@ const Squares = ({props}) => {
                   />
                 : null
             }
+            <AlgebraicNotation props={payload} />
         </div>
       });
     });
