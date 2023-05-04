@@ -143,6 +143,13 @@ const Squares = ({props}) => {
                 </span>
               : null
             }
+            {
+              payload.j === 0
+              ? <span className="rank">
+                  {payload.sq.charAt(1)}
+                </span>
+              : null
+            }
         </div>
       });
     });

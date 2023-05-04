@@ -54,6 +54,12 @@
   right: 0;
 }
 
+.sq span.rank {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .sq.isSelected {
   background-color: #ffdd43 !important;
   opacity: 0.75;
