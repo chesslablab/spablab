@@ -21,6 +21,7 @@
 }
 
 .sq {
+  position: relative;
   text-align: center;
   cursor: default;
 }
@@ -45,6 +46,12 @@
   cursor: -webkit-grabbing;
   padding-right: 0.25em;
   width: 105%;
+}
+
+.sq span.file {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .sq.isSelected {

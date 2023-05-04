@@ -92,7 +92,7 @@ const Squares = ({props}) => {
           }
         }
 
-        return <div style={{position: "relative"}}
+        return <div
           key={payload.sq}
           ref={el => props.sqsRef.current[payload.sq] = el}
           className={[
@@ -138,7 +138,7 @@ const Squares = ({props}) => {
             }
             {
               payload.i === 7
-              ? <span style={{ position: "absolute", bottom: 0, right: 0 }}>
+              ? <span className="file">
                   {payload.sq.charAt(0)}
                 </span>
               : null
