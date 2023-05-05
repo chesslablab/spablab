@@ -12,7 +12,6 @@ import {
   TextField
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import * as mainButtons from 'features/mainButtonsSlice';
 import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
 import SelectColorButtons from 'features/dialog/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
@@ -37,8 +36,6 @@ const CreateCorrespondenceCodeDialog = () => {
 }
 
 const CreateCode = () => {
-  const dispatch = useDispatch();
-
   const [fields, setFields] = React.useState({
     color: 'rand',
     variant: variantConst.CLASSICAL,
@@ -69,7 +66,6 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    dispatch(mainButtons.setCorrespondence());
     let settings = {
       color: fields.color === 'rand'
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK

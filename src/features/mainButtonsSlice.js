@@ -10,9 +10,6 @@ const mainButtonsSlice = createSlice({
   initialState,
   reducers: {
     setAnalysis: () => initialState,
-    setCorrespondence: (state) => {
-      state.name = mainButtonsConst.CORRESPONDENCE;
-    },
     setPlayOnline: (state) => {
       state.name = mainButtonsConst.PLAY_ONLINE;
     },
@@ -36,7 +33,6 @@ const mainButtonsSlice = createSlice({
 
 export const {
   setAnalysis,
-  setCorrespondence,
   setPlayOnline,
   setPlayAFriend,
   setPlayComputer,

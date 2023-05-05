@@ -9,10 +9,7 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import * as mainButtons from 'features/mainButtonsSlice';
 import * as enterCorrespondenceCodeDialog from 'features/dialog/enterCorrespondenceCodeDialogSlice';
-import * as mode from 'features/mode/modeSlice';
-import WsAction from 'features/ws/WsAction';
 
 const EnterCorrespondenceCodeDialog = () => {
   const state = useSelector((state) => state);
@@ -28,11 +25,11 @@ const EnterCorrespondenceCodeDialog = () => {
     });
   };
 
-  const handlePlay = () => {
-    dispatch(mainButtons.setPlayAFriend());
-    dispatch(mode.startAnalysis());
+  const handleCheckInbox = () => {
     dispatch(enterCorrespondenceCodeDialog.close());
-    WsAction.accept(fields.hash);
+    // TODO ...
+    console.log('To do...');
+    console.log(fields);
   };
 
   return (
@@ -56,7 +53,7 @@ const EnterCorrespondenceCodeDialog = () => {
         <Button
           fullWidth
           variant="outlined"
-          onClick={() => handlePlay()}
+          onClick={() => handleCheckInbox()}
           sx={{ mt: 2 }}
         >
           Check Inbox
