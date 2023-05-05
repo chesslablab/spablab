@@ -8,6 +8,7 @@ import * as board from 'features/board/boardSlice';
 import * as acceptDrawDialog from 'features/dialog/acceptDrawDialogSlice';
 import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
 import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
+import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
 import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
@@ -32,6 +33,23 @@ export default class WsEvent {
     } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
       dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
       dispatch(variant.startCapablanca80());
+    }
+  }
+
+  static onStartCorrespondence = (data) => dispatch => {
+    Dispatcher.initGui(dispatch);
+    if (data['/start'].hash) {
+      // TODO ...
+      dispatch(mode.setCorrespondence({
+        hash: data['/start'].hash,
+      }));
+      dispatch(infoAlert.show({ info: 'Correspondence chess...' }));
+    } else {
+      dispatch(createCorrespondenceCodeDialog.close());
+      dispatch(mode.startUndefined());
+      dispatch(infoAlert.show({
+        info: 'Invalid FEN, please try again with a different one.'
+      }));
     }
   }
 
@@ -158,6 +176,8 @@ export default class WsEvent {
     dispatch(progressDialog.close());
     if (data['/start'].mode === modeConst.ANALYSIS) {
       dispatch(WsEvent.onStartAnalysis(data));
+    } else if (data['/start'].mode === modeConst.CORRESPONDENCE) {
+      dispatch(WsEvent.onStartCorrespondence(data));
     } else if (data['/start'].mode === modeConst.GM) {
       dispatch(WsEvent.onStartGm(data));
     } else if (data['/start'].mode === modeConst.FEN) {

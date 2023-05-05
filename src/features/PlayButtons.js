@@ -1,15 +1,20 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import EmailIcon from '@mui/icons-material/Email';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import LanguageIcon from '@mui/icons-material/Language';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Button, ButtonGroup, Grid, Stack } from '@mui/material';
 import Wording from 'common/Wording';
+import CreateCorrespondenceCodeDialog from 'features/dialog/CreateCorrespondenceCodeDialog';
 import CreateInviteCodeDialog from 'features/dialog/CreateInviteCodeDialog';
+import EnterCorrespondenceCodeDialog from 'features/dialog/EnterCorrespondenceCodeDialog';
 import EnterInviteCodeDialog from 'features/dialog/EnterInviteCodeDialog';
 import PlayComputerDialog from 'features/dialog/PlayComputerDialog';
 import PlayOnlineDialog from 'features/dialog/PlayOnlineDialog';
+import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
+import * as enterCorrespondenceCodeDialog from 'features/dialog/enterCorrespondenceCodeDialogSlice';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
 import * as enterInviteCodeDialog from 'features/dialog/enterInviteCodeDialogSlice';
 import * as playComputerDialog from 'features/dialog/playComputerDialogSlice';
@@ -36,7 +41,6 @@ const PlayButtons = () => {
     <Grid>
       <Stack spacing={2}>
         <ButtonGroup
-          size="large"
           orientation="vertical"
           aria-label="Play Online"
           fullWidth={true}
@@ -80,6 +84,30 @@ const PlayButtons = () => {
         <ButtonGroup
           size="large"
           orientation="vertical"
+          aria-label="Play A Friend"
+          fullWidth={true}
+          disabled={disabled}
+        >
+          <Button
+            startIcon={<EmailIcon />}
+            variant={state.mainButtons.name === mainButtonsConst.CORRESPONDENCE ? "contained" : "outlined"}
+            onClick={() => {
+              dispatch(createCorrespondenceCodeDialog.open());
+              // dispatch(mode.setCorrespondence());
+            }}
+          >
+            Play Correspondence
+          </Button>
+          <Button
+            startIcon={<KeyboardIcon />}
+            onClick={() => dispatch(enterCorrespondenceCodeDialog.open())}
+          >
+            Enter Correspondence Code
+          </Button>
+        </ButtonGroup>
+        <ButtonGroup
+          size="large"
+          orientation="vertical"
           aria-label="Play Computer"
           fullWidth={true}
           disabled={disabled}
@@ -96,6 +124,8 @@ const PlayButtons = () => {
       <PlayOnlineDialog />
       <CreateInviteCodeDialog />
       <EnterInviteCodeDialog />
+      <CreateCorrespondenceCodeDialog />
+      <EnterCorrespondenceCodeDialog />
       <PlayComputerDialog />
     </Grid>
   );

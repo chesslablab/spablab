@@ -46,6 +46,8 @@ export default class WsAction {
         mssg += ` "${add.movetext}" ${add.startPos}`;
       } else if (mode === modeConst.PLAY) {
         mssg += ` ${JSON.stringify(add.settings)}`;
+      } else if (mode === modeConst.CORRESPONDENCE) {
+        mssg += ` ${JSON.stringify(add.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {
         if (add.hasOwnProperty('color')) {
           mssg += ` ${add.color}`;
