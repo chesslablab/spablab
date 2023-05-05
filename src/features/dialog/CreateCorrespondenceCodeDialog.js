@@ -26,7 +26,7 @@ const CreateCorrespondenceCodeDialog = () => {
   return (
     <Dialog open={state.createCorrespondenceCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        Play Correspondence
+        Invite a Friend
         <IconButton onClick={() => dispatch(createCorrespondenceCodeDialog.close())}>
           <CloseIcon />
         </IconButton>
@@ -166,7 +166,7 @@ const CopyCode = () => {
           navigator.clipboard.writeText(state.mode.correspondence.hash);
           dispatch(createCorrespondenceCodeDialog.close());
       }}>
-        Copy and Play
+        Copy
       </Button>
     </DialogContent>
   );

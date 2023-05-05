@@ -38,7 +38,7 @@ const EnterCorrespondenceCodeDialog = () => {
   return (
     <Dialog open={state.enterCorrespondenceCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        Enter Correspondence Code
+        Make a Move
         <IconButton onClick={() => dispatch(enterCorrespondenceCodeDialog.close())}>
           <CloseIcon />
         </IconButton>
@@ -59,7 +59,7 @@ const EnterCorrespondenceCodeDialog = () => {
           onClick={() => handlePlay()}
           sx={{ mt: 2 }}
         >
-          Play correspondence
+          Check Inbox
         </Button>
       </DialogContent>
     </Dialog>
