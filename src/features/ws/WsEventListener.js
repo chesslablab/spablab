@@ -81,6 +81,10 @@ export default class WsEventListener {
         dispatch(progressDialog.close());
         dispatch(WsEvent.onStockfish(data));
         break;
+      case '/correspondence' === mssg:
+        dispatch(progressDialog.close());
+        dispatch(WsEvent.onCorrespondence(data));
+        break;
       case 'error' === mssg:
         dispatch(progressDialog.close());
         dispatch(WsEvent.onError(data));

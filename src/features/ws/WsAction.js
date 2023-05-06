@@ -129,4 +129,8 @@ export default class WsAction {
   static onlineGames = async () => {
     return await store.getState().server.ws.send('/online_games');
   }
+
+  static correspondence = async (hash, pgn) => {
+    return await store.getState().server.ws.send(`/correspondence ${hash} "${pgn}"`);
+  }
 }

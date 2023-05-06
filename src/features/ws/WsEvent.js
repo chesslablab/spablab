@@ -10,6 +10,7 @@ import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
 import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
 import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
+import * as enterCorrespondenceCodeDialog from 'features/dialog/enterCorrespondenceCodeDialogSlice';
 import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
@@ -472,6 +473,17 @@ export default class WsEvent {
 
   static onOnlineGames = (data) => dispatch => {
     dispatch(playOnlineDialog.refresh(data['/online_games']));
+  }
+
+  static onCorrespondence = (data) => dispatch => {
+    if (data['/correspondence'].fen) {
+      dispatch(enterCorrespondenceCodeDialog.setGame(data['/correspondence']));
+      dispatch(infoAlert.close());
+    } else {
+      dispatch(infoAlert.show({
+        info: 'Invalid correspondence code, please try again with a different one.'
+      }));
+    }
   }
 
   static onError = (data) => dispatch => {

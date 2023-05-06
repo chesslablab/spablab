@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const enterCorrespondenceCodeDialogSlice = createSlice({
   name: 'enterCorrespondenceCodeDialog',
   initialState: {
-    open: false
+    open: false,
+    game: null
   },
   reducers: {
     open(state) {
@@ -11,12 +12,16 @@ const enterCorrespondenceCodeDialogSlice = createSlice({
     },
     close(state) {
       state.open = false;
+    },
+    setGame(state, action) {
+      state.game = action.payload;
     }
   }
 });
 
 export const {
   open,
-  close
+  close,
+  setGame
 } = enterCorrespondenceCodeDialogSlice.actions;
 export default enterCorrespondenceCodeDialogSlice.reducer;

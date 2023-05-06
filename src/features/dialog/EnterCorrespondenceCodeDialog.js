@@ -6,30 +6,32 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  FormGroup,
   IconButton,
   TextField
 } from '@mui/material';
 import * as enterCorrespondenceCodeDialog from 'features/dialog/enterCorrespondenceCodeDialogSlice';
+import WsAction from 'features/ws/WsAction';
 
 const EnterCorrespondenceCodeDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const [fields, setFields] = React.useState({
-    hash: ''
+    hash: '',
+    pgn: ''
   });
 
   const handleHashChange = (event: Event) => {
     setFields({
+      ...fields,
       hash: event.target.value
     });
   };
 
   const handleCheckInbox = () => {
-    dispatch(enterCorrespondenceCodeDialog.close());
-    // TODO ...
-    console.log('To do...');
-    console.log(fields);
+    // dispatch(enterCorrespondenceCodeDialog.close());
+    WsAction.correspondence(fields.hash, fields.pgn);
   };
 
   return (
@@ -58,9 +60,50 @@ const EnterCorrespondenceCodeDialog = () => {
         >
           Check Inbox
         </Button>
+        <Game />
       </DialogContent>
     </Dialog>
   );
 };
+
+const Game = () => {
+  const state = useSelector(state => state);
+  // const dispatch = useDispatch();
+
+  const handleSendMove = () => {
+    console.log('To Do...');
+  };
+
+  if (state.enterCorrespondenceCodeDialog.game) {
+    return (
+      <FormGroup>
+        <TextField
+          id="EnterCorrespondenceCodeDialog-TextField-movetext"
+          fullWidth
+          multiline
+          rows={4}
+          name="pgn"
+          label="Movetext"
+          variant="filled"
+          margin="normal"
+          inputProps={{
+            spellCheck: false,
+            readOnly: true
+          }}
+        />
+        <Button
+          fullWidth
+          variant="outlined"
+          onClick={() => handleSendMove()}
+          sx={{ mt: 2 }}
+        >
+          Send Move
+        </Button>
+      </FormGroup>
+    );
+  }
+
+  return null;
+}
 
 export default EnterCorrespondenceCodeDialog;

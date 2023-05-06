@@ -162,7 +162,7 @@ const CopyCode = () => {
           navigator.clipboard.writeText(state.mode.correspondence.hash);
           dispatch(createCorrespondenceCodeDialog.close());
       }}>
-        Copy
+        Copy Code
       </Button>
     </DialogContent>
   );
