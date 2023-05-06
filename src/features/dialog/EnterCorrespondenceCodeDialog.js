@@ -17,6 +17,24 @@ const EnterCorrespondenceCodeDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  return (
+    <Dialog open={state.enterCorrespondenceCodeDialog.open} maxWidth="xs" fullWidth={true}>
+      <DialogTitle>
+        Make a Move
+        <IconButton onClick={() => dispatch(enterCorrespondenceCodeDialog.close())}>
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent>
+        <CheckInbox />
+        <Game />
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+const CheckInbox = () => {
+  const state = useSelector(state => state);
   const [fields, setFields] = React.useState({
     hash: '',
     pgn: ''
@@ -30,19 +48,12 @@ const EnterCorrespondenceCodeDialog = () => {
   };
 
   const handleCheckInbox = () => {
-    // dispatch(enterCorrespondenceCodeDialog.close());
     WsAction.correspondence(fields.hash, fields.pgn);
   };
 
-  return (
-    <Dialog open={state.enterCorrespondenceCodeDialog.open} maxWidth="xs" fullWidth={true}>
-      <DialogTitle>
-        Make a Move
-        <IconButton onClick={() => dispatch(enterCorrespondenceCodeDialog.close())}>
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent>
+  if (!state.enterCorrespondenceCodeDialog.game) {
+    return (
+      <FormGroup>
         <TextField
           fullWidth
           required
@@ -60,15 +71,15 @@ const EnterCorrespondenceCodeDialog = () => {
         >
           Check Inbox
         </Button>
-        <Game />
-      </DialogContent>
-    </Dialog>
-  );
-};
+      </FormGroup>
+    );
+  }
+
+  return null;
+}
 
 const Game = () => {
   const state = useSelector(state => state);
-  // const dispatch = useDispatch();
 
   const handleSendMove = () => {
     console.log('To Do...');
@@ -90,6 +101,15 @@ const Game = () => {
             spellCheck: false,
             readOnly: true
           }}
+        />
+        <TextField
+          id="EnterCorrespondenceCodeDialog-TextField-pgn"
+          required
+          fullWidth
+          name="pgn"
+          label="Your move"
+          variant="filled"
+          margin="normal"
         />
         <Button
           fullWidth
