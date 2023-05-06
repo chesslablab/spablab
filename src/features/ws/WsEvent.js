@@ -40,7 +40,7 @@ export default class WsEvent {
   static onStartCorrespondence = (data) => dispatch => {
     Dispatcher.initGui(dispatch);
     if (data['/start'].hash) {
-      dispatch(mode.setCorrespondence({
+      dispatch(createCorrespondenceCodeDialog.setCorrespondence({
         hash: data['/start'].hash,
       }));
     } else {

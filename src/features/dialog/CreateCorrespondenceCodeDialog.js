@@ -30,7 +30,7 @@ const CreateCorrespondenceCodeDialog = () => {
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.mode.correspondence?.hash ? <CopyCode /> : <CreateCode />}
+      {state.createCorrespondenceCodeDialog.correspondence?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
@@ -153,13 +153,13 @@ const CopyCode = () => {
         name="sharecode"
         label="Share this code with a friend"
         margin="normal"
-        value={state.mode.correspondence.hash}
+        value={state.createCorrespondenceCodeDialog.correspondence.hash}
       />
       <Button
         fullWidth
         variant="outlined"
         onClick={() => {
-          navigator.clipboard.writeText(state.mode.correspondence.hash);
+          navigator.clipboard.writeText(state.createCorrespondenceCodeDialog.correspondence.hash);
           dispatch(createCorrespondenceCodeDialog.close());
       }}>
         Copy Code

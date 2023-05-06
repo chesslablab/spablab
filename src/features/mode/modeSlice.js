@@ -17,10 +17,6 @@ const modeSlice = createSlice({
     startUndefined: (state) => {
       state.name = modeConst.UNDEFINED;
     },
-    setCorrespondence(state, action) {
-      state.name = modeConst.CORRESPONDENCE;
-      state.correspondence = action.payload;
-    },
     setFen(state, action) {
       state.name = modeConst.FEN;
       state.fen = action.payload.fen;
@@ -94,7 +90,6 @@ export const {
   startAnalysis,
   startPgn,
   startUndefined,
-  setCorrespondence,
   setFen,
   setGm,
   setPlay,
