@@ -45,6 +45,8 @@ const EnterCorrespondenceCodeDialog = () => {
   };
 
   const handleSendMove = () => {
+    dispatch(enterCorrespondenceCodeDialog.close());
+    // TODO
     console.log(fields.pgn);
   };
 
