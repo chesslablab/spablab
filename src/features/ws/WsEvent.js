@@ -40,11 +40,9 @@ export default class WsEvent {
   static onStartCorrespondence = (data) => dispatch => {
     Dispatcher.initGui(dispatch);
     if (data['/start'].hash) {
-      // TODO ...
       dispatch(mode.setCorrespondence({
         hash: data['/start'].hash,
       }));
-      dispatch(infoAlert.show({ info: 'Correspondence chess...' }));
     } else {
       dispatch(createCorrespondenceCodeDialog.close());
       dispatch(mode.startUndefined());
