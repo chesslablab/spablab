@@ -89,6 +89,9 @@ const EnterCorrespondenceCodeDialog = () => {
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                       Movetext
                     </Typography>
+                    <Typography variant="body2">
+                      {state.enterCorrespondenceCodeDialog.game.movetext}
+                    </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small">Copy Movetext</Button>
@@ -98,6 +101,9 @@ const EnterCorrespondenceCodeDialog = () => {
                   <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                       FEN
+                    </Typography>
+                    <Typography variant="body2">
+                      {state.enterCorrespondenceCodeDialog.game.fen}
                     </Typography>
                   </CardContent>
                   <CardActions>
