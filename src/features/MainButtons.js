@@ -400,6 +400,7 @@ const MainButtons = ({props}) => {
         <MenuItem
           id="MainButtons-training-MenuItem-endgameSkills"
           onClick={() => {
+            dispatch(enterCorrespondenceCodeDialog.close());
             dispatch(enterCorrespondenceCodeDialog.open());
             handleCloseCorrespondence();
           }}

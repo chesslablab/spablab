@@ -477,6 +477,7 @@ export default class WsEvent {
       dispatch(enterCorrespondenceCodeDialog.setGame(data['/correspondence']));
       dispatch(infoAlert.close());
     } else {
+      dispatch(enterCorrespondenceCodeDialog.close());
       dispatch(infoAlert.show({
         info: 'Invalid correspondence code, please try again with a different one.'
       }));
