@@ -470,11 +470,16 @@ export default class WsEvent {
 
   static onCorrespondenceCreate = (data) => dispatch => {
     if (data['/corresp'].action === Wording.verb.CREATE.toLowerCase()) {
-      dispatch(createCorrespondenceCodeDialog.setCorresp({
-        hash: data['/corresp'].hash,
-      }));
-    } else {
-      dispatch(createCorrespondenceCodeDialog.close());
+      if (data['/corresp'].hash) {
+        dispatch(createCorrespondenceCodeDialog.setCorresp({
+          hash: data['/corresp'].hash,
+        }));
+      } else {
+        dispatch(createCorrespondenceCodeDialog.close());
+        dispatch(infoAlert.show({
+          info: data['/corresp'].message,
+        }));
+      }
     }
   }
 
