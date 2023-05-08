@@ -6,12 +6,10 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Grid,
   IconButton,
   MenuItem,
   TextField
 } from '@mui/material';
-import Pgn from 'common/Pgn';
 import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
 import * as variantConst from 'features/variant/variantConst';
 import WsAction from 'features/ws/WsAction';

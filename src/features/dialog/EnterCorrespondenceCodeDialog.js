@@ -4,15 +4,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
   Card,
-  CardActions,
   CardContent,
   Dialog,
   DialogContent,
   DialogTitle,
   FormGroup,
   IconButton,
-  TextField,
-  Typography
+  TextField
 } from '@mui/material';
 import * as enterCorrespondenceCodeDialog from 'features/dialog/enterCorrespondenceCodeDialogSlice';
 import WsAction from 'features/ws/WsAction';
@@ -92,9 +90,7 @@ const EnterCorrespondenceCodeDialog = () => {
                   state.enterCorrespondenceCodeDialog.corresp.fen
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
-                          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            FEN String
-                          </Typography>
+                          <Button size="small">Copy FEN String</Button>
                           <TextField
                             id="EnterCorrespondenceCodeDialog-TextField-fen"
                             fullWidth
@@ -108,9 +104,6 @@ const EnterCorrespondenceCodeDialog = () => {
                             value={state.enterCorrespondenceCodeDialog.corresp.fen}
                           />
                         </CardContent>
-                        <CardActions>
-                          <Button size="small">Copy</Button>
-                        </CardActions>
                       </Card>
                     : null
                 }
@@ -118,9 +111,7 @@ const EnterCorrespondenceCodeDialog = () => {
                   state.enterCorrespondenceCodeDialog.corresp.movetext
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
-                          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            PGN Movetext
-                          </Typography>
+                          <Button size="small">Copy PGN Movetext</Button>
                           <TextField
                             id="EnterCorrespondenceCodeDialog-TextField-fen"
                             multiline
@@ -136,9 +127,6 @@ const EnterCorrespondenceCodeDialog = () => {
                             value={state.enterCorrespondenceCodeDialog.corresp.movetext}
                           />
                         </CardContent>
-                        <CardActions>
-                          <Button size="small">Copy</Button>
-                        </CardActions>
                       </Card>
                     : null
                 }
@@ -161,7 +149,7 @@ const EnterCorrespondenceCodeDialog = () => {
                   onClick={() => handleSendMove()}
                   sx={{ mt: 2 }}
                 >
-                  Send Move
+                  Send
                 </Button>
               </FormGroup>
             : null
