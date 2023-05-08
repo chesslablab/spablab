@@ -395,7 +395,7 @@ const MainButtons = ({props}) => {
             handleCloseCorrespondence();
           }}
         >
-          <PersonIcon size="small" />&nbsp;Invite a Friend
+          <PersonIcon size="small" />&nbsp;Play a Friend
         </MenuItem>
         <MenuItem
           id="MainButtons-training-MenuItem-endgameSkills"

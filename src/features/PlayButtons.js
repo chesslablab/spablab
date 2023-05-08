@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import LanguageIcon from '@mui/icons-material/Language';
-import QrCodeIcon from '@mui/icons-material/QrCode';
+import PersonIcon from '@mui/icons-material/Person';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Button, ButtonGroup, Grid, Stack } from '@mui/material';
 import Wording from 'common/Wording';
@@ -60,7 +60,7 @@ const PlayButtons = () => {
           disabled={disabled}
         >
           <Button
-            startIcon={<QrCodeIcon />}
+            startIcon={<PersonIcon />}
             variant={state.mainButtons.name === mainButtonsConst.PLAY_A_FRIEND ? "contained" : "outlined"}
             onClick={() => {
               dispatch(createInviteCodeDialog.open());

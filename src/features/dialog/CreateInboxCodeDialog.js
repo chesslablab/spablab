@@ -21,7 +21,7 @@ const CreateInboxCodeDialog = () => {
   return (
     <Dialog open={state.createCorrespondenceCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        Invite a Friend
+        Play a Friend
         <IconButton onClick={() => dispatch(createCorrespondenceCodeDialog.close())}>
           <CloseIcon />
         </IconButton>
