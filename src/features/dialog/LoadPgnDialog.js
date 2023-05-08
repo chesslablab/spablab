@@ -34,13 +34,13 @@ const LoadPgnDialog = () => {
     dispatch(loadPgnDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
-    let add = {
+    let settings = {
       movetext: event.target.elements.pgn.value
     };
     if (variant === variantConst.CHESS_960) {
-      add.startPos = event.target.elements.startPos.value
+      settings.startPos = event.target.elements.startPos.value
     }
-    WsAction.start(event.target.elements.variant.value, modeConst.PGN, add);
+    WsAction.start(event.target.elements.variant.value, modeConst.PGN, settings);
   };
 
   return (
