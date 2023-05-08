@@ -136,7 +136,7 @@ export default class WsAction {
     return await store.getState().server.ws.send(`/corresp read ${hash}`);
   }
 
-  static correspReply = async (hash, movetext) => {
-    return await store.getState().server.ws.send(`/corresp reply ${hash} "${movetext}"`);
+  static correspReply = async (hash, pgn) => {
+    return await store.getState().server.ws.send(`/corresp reply ${hash} "${pgn}"`);
   }
 }

@@ -22,7 +22,7 @@ const EnterCorrespondenceCodeDialog = () => {
 
   const initialState = {
     hash: '',
-    movetext: ''
+    pgn: ''
   };
 
   const [fields, setFields] = React.useState(initialState);
@@ -43,13 +43,13 @@ const EnterCorrespondenceCodeDialog = () => {
   const handlePgnChange = (event: Event) => {
     setFields({
       ...fields,
-      movetext: event.target.value
+      pgn: event.target.value
     });
   };
 
   const handleSendMove = () => {
     dispatch(enterCorrespondenceCodeDialog.close());
-    WsAction.correspReply(fields.hash, fields.movetext);
+    WsAction.correspReply(fields.hash, fields.pgn);
     setFields(initialState);
   };
 
@@ -88,30 +88,68 @@ const EnterCorrespondenceCodeDialog = () => {
         {
           state.enterCorrespondenceCodeDialog.corresp
             ? <FormGroup>
-                <Card sx={{ mt: 2 }}>
-                  <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                      FEN
-                    </Typography>
-                    <Typography variant="body2">
-                      {state.enterCorrespondenceCodeDialog.corresp.fen}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Copy FEN</Button>
-                  </CardActions>
-                </Card>
+                {
+                  state.enterCorrespondenceCodeDialog.corresp.fen
+                    ? <Card sx={{ mt: 2 }}>
+                        <CardContent>
+                          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            FEN
+                          </Typography>
+                          <TextField
+                            id="EnterCorrespondenceCodeDialog-TextField-fen"
+                            fullWidth
+                            name="fen"
+                            variant="filled"
+                            margin="normal"
+                            inputProps={{
+                              spellCheck: false,
+                              readOnly: true
+                            }}
+                            value={state.enterCorrespondenceCodeDialog.corresp.fen}
+                          />
+                        </CardContent>
+                        <CardActions>
+                          <Button size="small">Copy</Button>
+                        </CardActions>
+                      </Card>
+                    : null
+                }
+                {
+                  state.enterCorrespondenceCodeDialog.corresp.movetext
+                    ? <Card sx={{ mt: 2 }}>
+                        <CardContent>
+                          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            PGN Movetext
+                          </Typography>
+                          <TextField
+                            id="EnterCorrespondenceCodeDialog-TextField-fen"
+                            multiline
+                            rows={4}
+                            fullWidth
+                            name="movetext"
+                            variant="filled"
+                            margin="normal"
+                            inputProps={{
+                              spellCheck: false,
+                              readOnly: true
+                            }}
+                            value={state.enterCorrespondenceCodeDialog.corresp.movetext}
+                          />
+                        </CardContent>
+                        <CardActions>
+                          <Button size="small">Copy</Button>
+                        </CardActions>
+                      </Card>
+                    : null
+                }
                 <TextField
                   id="EnterCorrespondenceCodeDialog-TextField-movetext"
                   required
                   fullWidth
-                  multiline
-                  rows={4}
-                  name="movetext"
+                  name="pgn"
                   label="Your move"
                   variant="filled"
                   margin="normal"
-                  defaultValue={state.enterCorrespondenceCodeDialog.corresp.movetext}
                   inputProps={{
                     spellCheck: false
                   }}
