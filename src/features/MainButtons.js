@@ -29,8 +29,8 @@ import Wording from 'common/Wording';
 import * as mainButtonsConst from 'features/mainButtonsConst';
 import * as mainButtons from 'features/mainButtonsSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
-import * as enterCorrespondenceCodeDialog from 'features/dialog/enterCorrespondenceCodeDialogSlice';
+import * as createCorrespondenceCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
+import * as enterCorrespondenceCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
 import * as eventsStatsDialog from 'features/dialog/eventsStatsDialogSlice';
@@ -377,7 +377,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-corresp"
+        id="MainButtons-inbox"
         startIcon={<EmailIcon />}
         onClick={handleClickCorrespondence}
       >
@@ -389,7 +389,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseCorrespondence}
       >
         <MenuItem
-          id="MainButtons-corresp-MenuItem-inviteFriend"
+          id="MainButtons-inbox-MenuItem-inviteFriend"
           onClick={() => {
             dispatch(createCorrespondenceCodeDialog.open());
             handleCloseCorrespondence();

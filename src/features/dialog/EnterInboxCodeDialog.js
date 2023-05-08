@@ -12,10 +12,10 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import * as enterCorrespondenceCodeDialog from 'features/dialog/enterCorrespondenceCodeDialogSlice';
+import * as enterCorrespondenceCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import WsAction from 'features/ws/WsAction';
 
-const EnterCorrespondenceCodeDialog = () => {
+const EnterInboxCodeDialog = () => {
   const state = useSelector(state => state);
 
   const initialState = {
@@ -28,7 +28,7 @@ const EnterCorrespondenceCodeDialog = () => {
   const dispatch = useDispatch();
 
   const handleCheckInbox = () => {
-    WsAction.correspRead(fields.hash);
+    WsAction.inboxRead(fields.hash);
   };
 
   const handleHashChange = (event: Event) => {
@@ -47,7 +47,7 @@ const EnterCorrespondenceCodeDialog = () => {
 
   const handleSendMove = () => {
     dispatch(enterCorrespondenceCodeDialog.close());
-    WsAction.correspReply(fields.hash, fields.pgn);
+    WsAction.inboxReply(fields.hash, fields.pgn);
     setFields(initialState);
   };
 
@@ -61,7 +61,7 @@ const EnterCorrespondenceCodeDialog = () => {
       </DialogTitle>
       <DialogContent>
         {
-          !state.enterCorrespondenceCodeDialog.corresp
+          !state.enterCorrespondenceCodeDialog.inbox
             ? <FormGroup>
                 <TextField
                   fullWidth
@@ -84,15 +84,15 @@ const EnterCorrespondenceCodeDialog = () => {
           : null
         }
         {
-          state.enterCorrespondenceCodeDialog.corresp
+          state.enterCorrespondenceCodeDialog.inbox
             ? <FormGroup>
                 {
-                  state.enterCorrespondenceCodeDialog.corresp.fen
+                  state.enterCorrespondenceCodeDialog.inbox.fen
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
                           <Button size="small">Copy FEN String</Button>
                           <TextField
-                            id="EnterCorrespondenceCodeDialog-TextField-fen"
+                            id="EnterInboxCodeDialog-TextField-fen"
                             fullWidth
                             name="fen"
                             variant="filled"
@@ -101,19 +101,19 @@ const EnterCorrespondenceCodeDialog = () => {
                               spellCheck: false,
                               readOnly: true
                             }}
-                            value={state.enterCorrespondenceCodeDialog.corresp.fen}
+                            value={state.enterCorrespondenceCodeDialog.inbox.fen}
                           />
                         </CardContent>
                       </Card>
                     : null
                 }
                 {
-                  state.enterCorrespondenceCodeDialog.corresp.movetext
+                  state.enterCorrespondenceCodeDialog.inbox.movetext
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
                           <Button size="small">Copy PGN Movetext</Button>
                           <TextField
-                            id="EnterCorrespondenceCodeDialog-TextField-fen"
+                            id="EnterInboxCodeDialog-TextField-fen"
                             multiline
                             rows={4}
                             fullWidth
@@ -124,14 +124,14 @@ const EnterCorrespondenceCodeDialog = () => {
                               spellCheck: false,
                               readOnly: true
                             }}
-                            value={state.enterCorrespondenceCodeDialog.corresp.movetext}
+                            value={state.enterCorrespondenceCodeDialog.inbox.movetext}
                           />
                         </CardContent>
                       </Card>
                     : null
                 }
                 <TextField
-                  id="EnterCorrespondenceCodeDialog-TextField-movetext"
+                  id="EnterInboxCodeDialog-TextField-movetext"
                   required
                   fullWidth
                   name="pgn"
@@ -159,4 +159,4 @@ const EnterCorrespondenceCodeDialog = () => {
   );
 };
 
-export default EnterCorrespondenceCodeDialog;
+export default EnterInboxCodeDialog;

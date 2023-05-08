@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  open: false,
-  corresp: null
+  open: false
 };
 
-const enterCorrespondenceCodeDialogSlice = createSlice({
-  name: 'enterCorrespondenceCodeDialog',
+const createInboxCodeDialogSlice = createSlice({
+  name: 'createCorrespondenceCodeDialog',
   initialState,
   reducers: {
     close: () => initialState,
@@ -14,7 +13,7 @@ const enterCorrespondenceCodeDialogSlice = createSlice({
       state.open = true;
     },
     setCorresp(state, action) {
-      state.corresp = action.payload;
+      state.inbox = action.payload;
     }
   }
 });
@@ -23,5 +22,5 @@ export const {
   open,
   close,
   setCorresp
-} = enterCorrespondenceCodeDialogSlice.actions;
-export default enterCorrespondenceCodeDialogSlice.reducer;
+} = createInboxCodeDialogSlice.actions;
+export default createInboxCodeDialogSlice.reducer;

@@ -128,15 +128,15 @@ export default class WsAction {
     return await store.getState().server.ws.send('/online_games');
   }
 
-  static correspCreate = async (variant, settings) => {
-    return await store.getState().server.ws.send(`/corresp create ${variant} ${JSON.stringify(settings)}`);
+  static inboxCreate = async (variant, settings) => {
+    return await store.getState().server.ws.send(`/inbox create ${variant} ${JSON.stringify(settings)}`);
   }
 
-  static correspRead = async (hash) => {
-    return await store.getState().server.ws.send(`/corresp read ${hash}`);
+  static inboxRead = async (hash) => {
+    return await store.getState().server.ws.send(`/inbox read ${hash}`);
   }
 
-  static correspReply = async (hash, pgn) => {
-    return await store.getState().server.ws.send(`/corresp reply ${hash} "${pgn}"`);
+  static inboxReply = async (hash, pgn) => {
+    return await store.getState().server.ws.send(`/inbox reply ${hash} "${pgn}"`);
   }
 }

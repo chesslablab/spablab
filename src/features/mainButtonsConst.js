@@ -1,5 +1,5 @@
 const ANALYSIS = 'analysis';
-const CORRESPONDENCE = 'corresp';
+const CORRESPONDENCE = 'inbox';
 const DATABASE = 'database';
 const PLAY_ONLINE = 'play online';
 const PLAY_A_FRIEND = 'play a friend';

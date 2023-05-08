@@ -5,10 +5,10 @@ import acceptRematchDialogReducer from 'features/dialog/acceptRematchDialogSlice
 import acceptResignDialogReducer from 'features/dialog/acceptResignDialogSlice';
 import acceptTakebackDialogReducer from 'features/dialog/acceptTakebackDialogSlice';
 import checkmateSkillsDialogReducer from 'features/dialog/checkmateSkillsDialogSlice';
-import createCorrespondenceCodeDialogReducer from 'features/dialog/createCorrespondenceCodeDialogSlice';
+import createCorrespondenceCodeDialogReducer from 'features/dialog/createInboxCodeDialogSlice';
 import createInviteCodeDialogReducer from 'features/dialog/createInviteCodeDialogSlice';
 import endgameSkillsDialogReducer from 'features/dialog/endgameSkillsDialogSlice';
-import enterCorrespondenceCodeDialogReducer from 'features/dialog/enterCorrespondenceCodeDialogSlice';
+import enterCorrespondenceCodeDialogReducer from 'features/dialog/enterInboxCodeDialogSlice';
 import enterInviteCodeDialogReducer from 'features/dialog/enterInviteCodeDialogSlice';
 import eventsStatsDialogReducer from 'features/dialog/eventsStatsDialogSlice';
 import heuristicsDialogReducer from 'features/dialog/heuristicsDialogSlice';

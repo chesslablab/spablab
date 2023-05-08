@@ -9,9 +9,9 @@ import * as board from 'features/board/boardSlice';
 import * as acceptDrawDialog from 'features/dialog/acceptDrawDialogSlice';
 import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
 import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
-import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
+import * as createCorrespondenceCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
-import * as enterCorrespondenceCodeDialog from 'features/dialog/enterCorrespondenceCodeDialogSlice';
+import * as enterCorrespondenceCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
@@ -459,47 +459,47 @@ export default class WsEvent {
 
   static onCorrespondence = (data) => dispatch => {
     dispatch(progressDialog.close());
-    if (data['/corresp'].action === 'create') {
+    if (data['/inbox'].action === 'create') {
       dispatch(WsEvent.onCorrespondenceCreate(data));
-    } else if (data['/corresp'].action === 'read') {
+    } else if (data['/inbox'].action === 'read') {
       dispatch(WsEvent.onCorrespondenceRead(data));
-    } else if (data['/corresp'].action === 'reply') {
+    } else if (data['/inbox'].action === 'reply') {
       dispatch(WsEvent.onCorrespondenceReply(data));
     }
   }
 
   static onCorrespondenceCreate = (data) => dispatch => {
-    if (data['/corresp'].action === Wording.verb.CREATE.toLowerCase()) {
-      if (data['/corresp'].hash) {
+    if (data['/inbox'].action === Wording.verb.CREATE.toLowerCase()) {
+      if (data['/inbox'].hash) {
         dispatch(createCorrespondenceCodeDialog.setCorresp({
-          hash: data['/corresp'].hash,
+          hash: data['/inbox'].hash,
         }));
       } else {
         dispatch(createCorrespondenceCodeDialog.close());
         dispatch(infoAlert.show({
-          info: data['/corresp'].message,
+          info: data['/inbox'].message,
         }));
       }
     }
   }
 
   static onCorrespondenceRead = (data) => dispatch => {
-    if (data['/corresp'].action === Wording.verb.READ.toLowerCase()) {
-      if (data['/corresp'].corresp) {
-        dispatch(enterCorrespondenceCodeDialog.setCorresp(data['/corresp'].corresp));
+    if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
+      if (data['/inbox'].inbox) {
+        dispatch(enterCorrespondenceCodeDialog.setCorresp(data['/inbox'].inbox));
       } else {
         dispatch(enterCorrespondenceCodeDialog.close());
         dispatch(infoAlert.show({
-          info: data['/corresp'].message,
+          info: data['/inbox'].message,
         }));
       }
     }
   }
 
   static onCorrespondenceReply = (data) => dispatch => {
-    if (data['/corresp'].action === Wording.verb.REPLY.toLowerCase()) {
+    if (data['/inbox'].action === Wording.verb.REPLY.toLowerCase()) {
       dispatch(infoAlert.show({
-        info: data['/corresp'].message,
+        info: data['/inbox'].message,
       }));
     }
   }
