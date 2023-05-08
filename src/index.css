@@ -26,6 +26,11 @@
   cursor: default;
 }
 
+.square-right-clicked {
+  background-color: #eb3131;
+  opacity: 0.75;
+}
+
 .sq img {
   width: 100%;
   position: relative;
