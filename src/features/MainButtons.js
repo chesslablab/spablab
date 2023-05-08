@@ -377,7 +377,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-correspondence"
+        id="MainButtons-corresp"
         startIcon={<EmailIcon />}
         onClick={handleClickCorrespondence}
       >
@@ -389,7 +389,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseCorrespondence}
       >
         <MenuItem
-          id="MainButtons-correspondence-MenuItem-inviteFriend"
+          id="MainButtons-corresp-MenuItem-inviteFriend"
           onClick={() => {
             dispatch(createCorrespondenceCodeDialog.open());
             handleCloseCorrespondence();

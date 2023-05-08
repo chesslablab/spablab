@@ -12,8 +12,8 @@ const createCorrespondenceCodeDialogSlice = createSlice({
     open(state) {
       state.open = true;
     },
-    setCorrespondence(state, action) {
-      state.correspondence = action.payload;
+    setCorresp(state, action) {
+      state.corresp = action.payload;
     }
   }
 });
@@ -21,6 +21,6 @@ const createCorrespondenceCodeDialogSlice = createSlice({
 export const {
   open,
   close,
-  setCorrespondence
+  setCorresp
 } = createCorrespondenceCodeDialogSlice.actions;
 export default createCorrespondenceCodeDialogSlice.reducer;

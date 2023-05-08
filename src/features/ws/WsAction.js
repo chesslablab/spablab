@@ -46,8 +46,6 @@ export default class WsAction {
         mssg += ` "${add.movetext}" ${add.startPos}`;
       } else if (mode === modeConst.PLAY) {
         mssg += ` ${JSON.stringify(add.settings)}`;
-      } else if (mode === modeConst.CORRESPONDENCE) {
-        mssg += ` ${JSON.stringify(add.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {
         if (add.hasOwnProperty('color')) {
           mssg += ` ${add.color}`;
@@ -130,7 +128,15 @@ export default class WsAction {
     return await store.getState().server.ws.send('/online_games');
   }
 
-  static correspondence = async (hash, pgn) => {
-    return await store.getState().server.ws.send(`/correspondence ${hash} "${pgn}"`);
+  static correspCreate = async (variant, settings) => {
+    return await store.getState().server.ws.send(`/corresp create ${variant} ${JSON.stringify(settings)}`);
+  }
+
+  static correspRead = async (hash) => {
+    return await store.getState().server.ws.send(`/corresp read ${hash}`);
+  }
+
+  static correspReply = async (hash, movetext) => {
+    return await store.getState().server.ws.send(`/corresp reply ${hash} "${movetext}"`);
   }
 }

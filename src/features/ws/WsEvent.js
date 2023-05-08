@@ -2,6 +2,7 @@ import jwt_decode from "jwt-decode";
 import store from 'app/store';
 import Pgn from 'common/Pgn';
 import Dispatcher from 'common/Dispatcher';
+import Wording from 'common/Wording';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as board from 'features/board/boardSlice';
@@ -34,20 +35,6 @@ export default class WsEvent {
     } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
       dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
       dispatch(variant.startCapablanca80());
-    }
-  }
-
-  static onStartCorrespondence = (data) => dispatch => {
-    if (data['/start'].hash) {
-      dispatch(createCorrespondenceCodeDialog.setCorrespondence({
-        hash: data['/start'].hash,
-      }));
-    } else {
-      dispatch(createCorrespondenceCodeDialog.close());
-      dispatch(mode.startUndefined());
-      dispatch(infoAlert.show({
-        info: 'Invalid FEN, please try again with a different one.'
-      }));
     }
   }
 
@@ -174,8 +161,6 @@ export default class WsEvent {
     dispatch(progressDialog.close());
     if (data['/start'].mode === modeConst.ANALYSIS) {
       dispatch(WsEvent.onStartAnalysis(data));
-    } else if (data['/start'].mode === modeConst.CORRESPONDENCE) {
-      dispatch(WsEvent.onStartCorrespondence(data));
     } else if (data['/start'].mode === modeConst.GM) {
       dispatch(WsEvent.onStartGm(data));
     } else if (data['/start'].mode === modeConst.FEN) {
@@ -473,14 +458,49 @@ export default class WsEvent {
   }
 
   static onCorrespondence = (data) => dispatch => {
-    if (data['/correspondence'].fen) {
-      dispatch(enterCorrespondenceCodeDialog.setGame(data['/correspondence']));
-      dispatch(infoAlert.close());
-    } else {
-      dispatch(enterCorrespondenceCodeDialog.close());
-      dispatch(infoAlert.show({
-        info: 'Invalid correspondence code, please try again with a different one.'
+    dispatch(progressDialog.close());
+    if (data['/corresp'].action === 'create') {
+      dispatch(WsEvent.onCorrespondenceCreate(data));
+    } else if (data['/corresp'].action === 'read') {
+      dispatch(WsEvent.onCorrespondenceRead(data));
+    } else if (data['/corresp'].action === 'reply') {
+      dispatch(WsEvent.onCorrespondenceReply(data));
+    }
+  }
+
+  static onCorrespondenceCreate = (data) => dispatch => {
+    if (data['/corresp'].action === Wording.verb.CREATE.toLowerCase()) {
+      dispatch(createCorrespondenceCodeDialog.setCorresp({
+        hash: data['/corresp'].hash,
       }));
+    } else {
+      dispatch(createCorrespondenceCodeDialog.close());
+    }
+  }
+
+  static onCorrespondenceRead = (data) => dispatch => {
+    if (data['/corresp'].action === Wording.verb.READ.toLowerCase()) {
+      if (data['/corresp'].corresp) {
+        dispatch(enterCorrespondenceCodeDialog.setCorresp(data['/corresp'].corresp));
+      } else {
+        dispatch(enterCorrespondenceCodeDialog.close());
+        dispatch(infoAlert.show({
+          info: data['/corresp'].message,
+        }));
+      }
+    }
+  }
+
+  static onCorrespondenceReply = (data) => dispatch => {
+    if (data['/corresp'].action === Wording.verb.REPLY.toLowerCase()) {
+      if (data['/corresp'].corresp) {
+        // ...
+      } else {
+        dispatch(enterCorrespondenceCodeDialog.close());
+        dispatch(infoAlert.show({
+          info: data['/corresp'].message,
+        }));
+      }
     }
   }
 

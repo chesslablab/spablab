@@ -20,14 +20,17 @@ import WsAction from 'features/ws/WsAction';
 const EnterCorrespondenceCodeDialog = () => {
   const state = useSelector(state => state);
 
-  const [fields, setFields] = React.useState({
+  const initialState = {
     hash: '',
-    pgn: ''
-  });
+    movetext: ''
+  };
+
+  const [fields, setFields] = React.useState(initialState);
+
   const dispatch = useDispatch();
 
   const handleCheckInbox = () => {
-    WsAction.correspondence(fields.hash, fields.pgn);
+    WsAction.correspRead(fields.hash);
   };
 
   const handleHashChange = (event: Event) => {
@@ -40,13 +43,14 @@ const EnterCorrespondenceCodeDialog = () => {
   const handlePgnChange = (event: Event) => {
     setFields({
       ...fields,
-      pgn: event.target.value
+      movetext: event.target.value
     });
   };
 
   const handleSendMove = () => {
     dispatch(enterCorrespondenceCodeDialog.close());
-    WsAction.correspondence(fields.hash, fields.pgn);
+    WsAction.correspReply(fields.hash, fields.movetext);
+    setFields(initialState);
   };
 
   return (
@@ -59,7 +63,7 @@ const EnterCorrespondenceCodeDialog = () => {
       </DialogTitle>
       <DialogContent>
         {
-          !state.enterCorrespondenceCodeDialog.game
+          !state.enterCorrespondenceCodeDialog.corresp
             ? <FormGroup>
                 <TextField
                   fullWidth
@@ -82,28 +86,15 @@ const EnterCorrespondenceCodeDialog = () => {
           : null
         }
         {
-          state.enterCorrespondenceCodeDialog.game
+          state.enterCorrespondenceCodeDialog.corresp
             ? <FormGroup>
-                <Card>
-                  <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                      Movetext
-                    </Typography>
-                    <Typography variant="body2">
-                      {state.enterCorrespondenceCodeDialog.game.movetext}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Copy Movetext</Button>
-                  </CardActions>
-                </Card>
                 <Card sx={{ mt: 2 }}>
                   <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                       FEN
                     </Typography>
                     <Typography variant="body2">
-                      {state.enterCorrespondenceCodeDialog.game.fen}
+                      {state.enterCorrespondenceCodeDialog.corresp.fen}
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -111,13 +102,19 @@ const EnterCorrespondenceCodeDialog = () => {
                   </CardActions>
                 </Card>
                 <TextField
-                  id="EnterCorrespondenceCodeDialog-TextField-pgn"
+                  id="EnterCorrespondenceCodeDialog-TextField-movetext"
                   required
                   fullWidth
-                  name="pgn"
+                  multiline
+                  rows={4}
+                  name="movetext"
                   label="Your move"
                   variant="filled"
                   margin="normal"
+                  defaultValue={state.enterCorrespondenceCodeDialog.corresp.movetext}
+                  inputProps={{
+                    spellCheck: false
+                  }}
                   onChange={handlePgnChange}
                 />
                 <Button

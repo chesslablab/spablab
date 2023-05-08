@@ -14,7 +14,6 @@ import {
 import Pgn from 'common/Pgn';
 import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
 import SelectColorButtons from 'features/dialog/SelectColorButtons';
-import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/variant/variantConst';
 import WsAction from 'features/ws/WsAction';
 
@@ -30,7 +29,7 @@ const CreateCorrespondenceCodeDialog = () => {
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.createCorrespondenceCodeDialog.correspondence?.hash ? <CopyCode /> : <CreateCode />}
+      {state.createCorrespondenceCodeDialog.corresp?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
@@ -77,7 +76,7 @@ const CreateCode = () => {
     if (fields.startPos) {
       settings.startPos = fields.startPos;
     }
-    WsAction.start(fields.variant, modeConst.CORRESPONDENCE, { settings: JSON.stringify(settings) });
+    WsAction.correspCreate(fields.variant, JSON.stringify(settings));
   }
 
   return (
@@ -153,13 +152,13 @@ const CopyCode = () => {
         name="sharecode"
         label="Share this code with a friend"
         margin="normal"
-        value={state.createCorrespondenceCodeDialog.correspondence.hash}
+        value={state.createCorrespondenceCodeDialog.corresp.hash}
       />
       <Button
         fullWidth
         variant="outlined"
         onClick={() => {
-          navigator.clipboard.writeText(state.createCorrespondenceCodeDialog.correspondence.hash);
+          navigator.clipboard.writeText(state.createCorrespondenceCodeDialog.corresp.hash);
           dispatch(createCorrespondenceCodeDialog.close());
       }}>
         Copy Code
