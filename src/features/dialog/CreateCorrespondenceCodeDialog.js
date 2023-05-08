@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import Pgn from 'common/Pgn';
 import * as createCorrespondenceCodeDialog from 'features/dialog/createCorrespondenceCodeDialogSlice';
-import SelectColorButtons from 'features/dialog/SelectColorButtons';
 import * as variantConst from 'features/variant/variantConst';
 import WsAction from 'features/ws/WsAction';
 
@@ -36,7 +35,6 @@ const CreateCorrespondenceCodeDialog = () => {
 
 const CreateCode = () => {
   const [fields, setFields] = React.useState({
-    color: 'rand',
     variant: variantConst.CLASSICAL,
     fen: '',
     startPos: '',
@@ -65,11 +63,7 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    let settings = {
-      color: fields.color === 'rand'
-        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-        : fields.color
-    };
+    let settings = {};
     if (fields.fen) {
       settings.fen = fields.fen;
     }
@@ -82,9 +76,6 @@ const CreateCode = () => {
   return (
     <DialogContent>
       <form onSubmit={handleCreateCode}>
-        <Grid container justifyContent="center">
-          <SelectColorButtons props={fields} />
-        </Grid>
         <TextField
           select
           required
