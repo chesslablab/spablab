@@ -498,14 +498,9 @@ export default class WsEvent {
 
   static onCorrespondenceReply = (data) => dispatch => {
     if (data['/corresp'].action === Wording.verb.REPLY.toLowerCase()) {
-      if (data['/corresp'].corresp) {
-        // ...
-      } else {
-        dispatch(enterCorrespondenceCodeDialog.close());
-        dispatch(infoAlert.show({
-          info: data['/corresp'].message,
-        }));
-      }
+      dispatch(infoAlert.show({
+        info: data['/corresp'].message,
+      }));
     }
   }
 
