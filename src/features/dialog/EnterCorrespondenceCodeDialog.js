@@ -69,7 +69,7 @@ const EnterCorrespondenceCodeDialog = () => {
                   fullWidth
                   required
                   name="hash"
-                  label="Correspondence code"
+                  label="Inbox code"
                   variant="filled"
                   margin="normal"
                   onChange={handleHashChange}
@@ -80,7 +80,7 @@ const EnterCorrespondenceCodeDialog = () => {
                   onClick={() => handleCheckInbox()}
                   sx={{ mt: 2 }}
                 >
-                  Check Inbox
+                  Read Inbox
                 </Button>
               </FormGroup>
           : null
@@ -93,7 +93,7 @@ const EnterCorrespondenceCodeDialog = () => {
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
                           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            FEN
+                            FEN String
                           </Typography>
                           <TextField
                             id="EnterCorrespondenceCodeDialog-TextField-fen"

@@ -124,7 +124,7 @@ const CreateCode = () => {
           variant="outlined"
           sx={{ mt: 2 }}
         >
-          Create Correspondence Code
+          Create Inbox Code
         </Button>
       </form>
     </DialogContent>
@@ -152,7 +152,7 @@ const CopyCode = () => {
           navigator.clipboard.writeText(state.createCorrespondenceCodeDialog.corresp.hash);
           dispatch(createCorrespondenceCodeDialog.close());
       }}>
-        Copy Code
+        Copy Inbox Code
       </Button>
     </DialogContent>
   );
