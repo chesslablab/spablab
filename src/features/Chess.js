@@ -33,12 +33,18 @@ import MainButtons from 'features/MainButtons';
 import PlayButtons from 'features/PlayButtons';
 import theme from 'styles/theme.js';
 
+const styles = {
+  right: {
+    textAlign: 'right',
+  },
+};
+
 const Chess = ({ props }) => {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={2}>
+          <Grid item xs={12} md={2} sx={styles.right}>
             <MainButtons props={props} />
           </Grid>
           <Grid item xs={12} md={4}>
@@ -56,7 +62,7 @@ const Chess = ({ props }) => {
             <StartedButtonsStockfishMode />
             <InfoAlert />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={2}>
             <PlayButtons />
           </Grid>
         </Grid>
