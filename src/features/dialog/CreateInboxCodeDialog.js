@@ -75,7 +75,7 @@ const CreateCode = () => {
   return (
     <DialogContent>
        <Alert severity="info">
-        Create a correspondence inbox to play a game and then share it with a friend.
+        Create a correspondence inbox and share the code with a friend.
       </Alert>
       <form onSubmit={handleCreateCode}>
         <TextField

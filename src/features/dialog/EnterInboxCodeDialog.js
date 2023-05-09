@@ -65,8 +65,8 @@ const EnterInboxCodeDialog = () => {
           !state.enterInboxCodeDialog.inbox
             ? <FormGroup>
                 <Alert severity="info">
-                  Correspondence inboxes will automatically be deleted in 30 days. Enjoy a good game!
-               </Alert>
+                  Correspondence inboxes will automatically be deleted in 30 days. Have a nice game!
+                </Alert>
                 <TextField
                   fullWidth
                   required
@@ -91,8 +91,8 @@ const EnterInboxCodeDialog = () => {
           state.enterInboxCodeDialog.inbox
             ? <FormGroup>
                 <Alert severity="info">
-                 This is the current position. Whose turn is it now to play? Both players can send a move to the shared correspondence inbox.
-               </Alert>
+                  Both players can send a move to the shared correspondence inbox. Whose turn is it now to play?
+                </Alert>
                 {
                   state.enterInboxCodeDialog.inbox.fen
                     ? <Card sx={{ mt: 2 }}>
