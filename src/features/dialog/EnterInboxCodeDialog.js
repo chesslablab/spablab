@@ -90,7 +90,12 @@ const EnterInboxCodeDialog = () => {
                   state.enterInboxCodeDialog.inbox.fen
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
-                          <Button size="small">Copy FEN String</Button>
+                          <Button
+                            size="small"
+                            onClick={() => navigator.clipboard.writeText(state.enterInboxCodeDialog.inbox.fen)}
+                          >
+                            Copy FEN String
+                          </Button>
                           <TextField
                             id="EnterInboxCodeDialog-TextField-fen"
                             fullWidth
