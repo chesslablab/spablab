@@ -20,7 +20,7 @@ const CreateInboxCodeDialog = () => {
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.createInboxCodeDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.createInboxCodeDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Play a Friend
         <IconButton onClick={() => dispatch(createInboxCodeDialog.close())}>

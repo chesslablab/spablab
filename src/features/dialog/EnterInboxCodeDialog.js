@@ -53,7 +53,7 @@ const EnterInboxCodeDialog = () => {
   };
 
   return (
-    <Dialog open={state.enterInboxCodeDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.enterInboxCodeDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Read Inbox
         <IconButton onClick={() => dispatch(enterInboxCodeDialog.close())}>
@@ -91,7 +91,7 @@ const EnterInboxCodeDialog = () => {
           state.enterInboxCodeDialog.inbox
             ? <FormGroup>
                 <Alert severity="info">
-                 This is the current position. Please note that both players can send a move to the shared correspondence inbox. Whose turn is it to move now? 
+                 This is the current position. Whose turn is it now to play? Both players can send a move to the shared correspondence inbox.
                </Alert>
                 {
                   state.enterInboxCodeDialog.inbox.fen
