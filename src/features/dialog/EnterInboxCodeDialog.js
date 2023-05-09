@@ -90,6 +90,9 @@ const EnterInboxCodeDialog = () => {
         {
           state.enterInboxCodeDialog.inbox
             ? <FormGroup>
+                <Alert severity="info">
+                 This is the current position. Please note that both players can send a move to the shared correspondence inbox. Whose turn is it to move now? 
+               </Alert>
                 {
                   state.enterInboxCodeDialog.inbox.fen
                     ? <Card sx={{ mt: 2 }}>
