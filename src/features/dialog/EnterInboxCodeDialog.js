@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
+  Alert,
   Button,
   Card,
   CardContent,
@@ -54,7 +55,7 @@ const EnterInboxCodeDialog = () => {
   return (
     <Dialog open={state.enterInboxCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        Make a Move
+        Read Inbox
         <IconButton onClick={() => dispatch(enterInboxCodeDialog.close())}>
           <CloseIcon />
         </IconButton>
@@ -63,6 +64,9 @@ const EnterInboxCodeDialog = () => {
         {
           !state.enterInboxCodeDialog.inbox
             ? <FormGroup>
+                <Alert severity="info">
+                  Correspondence inboxes will automatically be deleted in 30 days. Enjoy a good game!
+               </Alert>
                 <TextField
                   fullWidth
                   required
@@ -145,7 +149,7 @@ const EnterInboxCodeDialog = () => {
                   required
                   fullWidth
                   name="pgn"
-                  label="Your move"
+                  label="Your move in PGN format"
                   variant="filled"
                   margin="normal"
                   inputProps={{

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
+  Alert,
   Button,
   Dialog,
   DialogContent,
@@ -73,6 +74,9 @@ const CreateCode = () => {
 
   return (
     <DialogContent>
+       <Alert severity="info">
+        Create a correspondence inbox to play a chess game and share it with a friend.
+      </Alert>
       <form onSubmit={handleCreateCode}>
         <TextField
           select
@@ -122,7 +126,7 @@ const CreateCode = () => {
           variant="outlined"
           sx={{ mt: 2 }}
         >
-          Create Inbox Code
+          Create Inbox
         </Button>
       </form>
     </DialogContent>

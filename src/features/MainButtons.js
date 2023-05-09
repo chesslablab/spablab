@@ -6,7 +6,7 @@ import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
-import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
+import InboxIcon from '@mui/icons-material/Inbox';
 import PersonIcon from '@mui/icons-material/Person';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
@@ -405,7 +405,7 @@ const MainButtons = ({props}) => {
             handleCloseCorrespondence();
           }}
         >
-          <MarkEmailReadIcon size="small" />&nbsp;Make a Move
+          <InboxIcon size="small" />&nbsp;Read Inbox
         </MenuItem>
       </Menu>
       <Button
