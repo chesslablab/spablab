@@ -12,7 +12,7 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import * as enterCorrespondenceCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
+import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import WsAction from 'features/ws/WsAction';
 
 const EnterInboxCodeDialog = () => {
@@ -46,22 +46,22 @@ const EnterInboxCodeDialog = () => {
   };
 
   const handleSendMove = () => {
-    dispatch(enterCorrespondenceCodeDialog.close());
+    dispatch(enterInboxCodeDialog.close());
     WsAction.inboxReply(fields.hash, fields.pgn);
     setFields(initialState);
   };
 
   return (
-    <Dialog open={state.enterCorrespondenceCodeDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.enterInboxCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Make a Move
-        <IconButton onClick={() => dispatch(enterCorrespondenceCodeDialog.close())}>
+        <IconButton onClick={() => dispatch(enterInboxCodeDialog.close())}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
       <DialogContent>
         {
-          !state.enterCorrespondenceCodeDialog.inbox
+          !state.enterInboxCodeDialog.inbox
             ? <FormGroup>
                 <TextField
                   fullWidth
@@ -84,10 +84,10 @@ const EnterInboxCodeDialog = () => {
           : null
         }
         {
-          state.enterCorrespondenceCodeDialog.inbox
+          state.enterInboxCodeDialog.inbox
             ? <FormGroup>
                 {
-                  state.enterCorrespondenceCodeDialog.inbox.fen
+                  state.enterInboxCodeDialog.inbox.fen
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
                           <Button size="small">Copy FEN String</Button>
@@ -101,14 +101,14 @@ const EnterInboxCodeDialog = () => {
                               spellCheck: false,
                               readOnly: true
                             }}
-                            value={state.enterCorrespondenceCodeDialog.inbox.fen}
+                            value={state.enterInboxCodeDialog.inbox.fen}
                           />
                         </CardContent>
                       </Card>
                     : null
                 }
                 {
-                  state.enterCorrespondenceCodeDialog.inbox.movetext
+                  state.enterInboxCodeDialog.inbox.movetext
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
                           <Button size="small">Copy PGN Movetext</Button>
@@ -124,7 +124,7 @@ const EnterInboxCodeDialog = () => {
                               spellCheck: false,
                               readOnly: true
                             }}
-                            value={state.enterCorrespondenceCodeDialog.inbox.movetext}
+                            value={state.enterInboxCodeDialog.inbox.movetext}
                           />
                         </CardContent>
                       </Card>

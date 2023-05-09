@@ -9,9 +9,9 @@ import * as board from 'features/board/boardSlice';
 import * as acceptDrawDialog from 'features/dialog/acceptDrawDialogSlice';
 import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
 import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
-import * as createCorrespondenceCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
+import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
-import * as enterCorrespondenceCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
+import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
@@ -471,11 +471,11 @@ export default class WsEvent {
   static onCorrespondenceCreate = (data) => dispatch => {
     if (data['/inbox'].action === Wording.verb.CREATE.toLowerCase()) {
       if (data['/inbox'].hash) {
-        dispatch(createCorrespondenceCodeDialog.setCorresp({
+        dispatch(createInboxCodeDialog.setInbox({
           hash: data['/inbox'].hash,
         }));
       } else {
-        dispatch(createCorrespondenceCodeDialog.close());
+        dispatch(createInboxCodeDialog.close());
         dispatch(infoAlert.show({
           info: data['/inbox'].message,
         }));
@@ -486,9 +486,9 @@ export default class WsEvent {
   static onCorrespondenceRead = (data) => dispatch => {
     if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
       if (data['/inbox'].inbox) {
-        dispatch(enterCorrespondenceCodeDialog.setCorresp(data['/inbox'].inbox));
+        dispatch(enterInboxCodeDialog.setInbox(data['/inbox'].inbox));
       } else {
-        dispatch(enterCorrespondenceCodeDialog.close());
+        dispatch(enterInboxCodeDialog.close());
         dispatch(infoAlert.show({
           info: data['/inbox'].message,
         }));

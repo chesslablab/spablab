@@ -5,14 +5,14 @@ const initialState = {
 };
 
 const createInboxCodeDialogSlice = createSlice({
-  name: 'createCorrespondenceCodeDialog',
+  name: 'createInboxCodeDialog',
   initialState,
   reducers: {
     close: () => initialState,
     open(state) {
       state.open = true;
     },
-    setCorresp(state, action) {
+    setInbox(state, action) {
       state.inbox = action.payload;
     }
   }
@@ -21,6 +21,6 @@ const createInboxCodeDialogSlice = createSlice({
 export const {
   open,
   close,
-  setCorresp
+  setInbox
 } = createInboxCodeDialogSlice.actions;
 export default createInboxCodeDialogSlice.reducer;

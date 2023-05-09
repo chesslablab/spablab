@@ -29,8 +29,8 @@ import Wording from 'common/Wording';
 import * as mainButtonsConst from 'features/mainButtonsConst';
 import * as mainButtons from 'features/mainButtonsSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import * as createCorrespondenceCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
-import * as enterCorrespondenceCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
+import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
+import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
 import * as eventsStatsDialog from 'features/dialog/eventsStatsDialogSlice';
@@ -391,7 +391,7 @@ const MainButtons = ({props}) => {
         <MenuItem
           id="MainButtons-inbox-MenuItem-inviteFriend"
           onClick={() => {
-            dispatch(createCorrespondenceCodeDialog.open());
+            dispatch(createInboxCodeDialog.open());
             handleCloseCorrespondence();
           }}
         >
@@ -400,8 +400,8 @@ const MainButtons = ({props}) => {
         <MenuItem
           id="MainButtons-training-MenuItem-endgameSkills"
           onClick={() => {
-            dispatch(enterCorrespondenceCodeDialog.close());
-            dispatch(enterCorrespondenceCodeDialog.open());
+            dispatch(enterInboxCodeDialog.close());
+            dispatch(enterInboxCodeDialog.open());
             handleCloseCorrespondence();
           }}
         >

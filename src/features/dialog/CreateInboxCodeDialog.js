@@ -10,7 +10,7 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import * as createCorrespondenceCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
+import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
 import * as variantConst from 'features/variant/variantConst';
 import WsAction from 'features/ws/WsAction';
 
@@ -19,14 +19,14 @@ const CreateInboxCodeDialog = () => {
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.createCorrespondenceCodeDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.createInboxCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play a Friend
-        <IconButton onClick={() => dispatch(createCorrespondenceCodeDialog.close())}>
+        <IconButton onClick={() => dispatch(createInboxCodeDialog.close())}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.createCorrespondenceCodeDialog.inbox?.hash ? <CopyCode /> : <CreateCode />}
+      {state.createInboxCodeDialog.inbox?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
@@ -141,14 +141,14 @@ const CopyCode = () => {
         name="sharecode"
         label="Share this code with a friend"
         margin="normal"
-        value={state.createCorrespondenceCodeDialog.inbox.hash}
+        value={state.createInboxCodeDialog.inbox.hash}
       />
       <Button
         fullWidth
         variant="outlined"
         onClick={() => {
-          navigator.clipboard.writeText(state.createCorrespondenceCodeDialog.inbox.hash);
-          dispatch(createCorrespondenceCodeDialog.close());
+          navigator.clipboard.writeText(state.createInboxCodeDialog.inbox.hash);
+          dispatch(createInboxCodeDialog.close());
       }}>
         Copy Inbox Code
       </Button>
