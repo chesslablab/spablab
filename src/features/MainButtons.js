@@ -4,7 +4,10 @@ import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
+import InboxIcon from '@mui/icons-material/Inbox';
+import PersonIcon from '@mui/icons-material/Person';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import QuizIcon from '@mui/icons-material/Quiz';
@@ -26,6 +29,8 @@ import Wording from 'common/Wording';
 import * as mainButtonsConst from 'features/mainButtonsConst';
 import * as mainButtons from 'features/mainButtonsSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
+import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
 import * as eventsStatsDialog from 'features/dialog/eventsStatsDialogSlice';
@@ -51,6 +56,7 @@ const MainButtons = ({props}) => {
   const [anchorElDatabase, setAnchorElDatabase] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
+  const [anchorElCorrespondence, setAnchorElCorrespondence] = useState(null);
 
   const matches = useMediaQuery("(min-width:900px)");
 
@@ -70,6 +76,10 @@ const MainButtons = ({props}) => {
     setAnchorElOpeningSearch(null);
   };
 
+  const handleCloseCorrespondence = () => {
+    setAnchorElCorrespondence(null);
+  };
+
   const handleClickAnalysis = (event) => {
     setAnchorElAnalysis(event.currentTarget);
   };
@@ -84,6 +94,10 @@ const MainButtons = ({props}) => {
 
   const handleClickOpeningSearch = (event) => {
     setAnchorElOpeningSearch(event.currentTarget);
+  };
+
+  const handleClickCorrespondence = (event) => {
+    setAnchorElCorrespondence(event.currentTarget);
   };
 
   const disabled = state.mode.name === modeConst.PLAY &&
@@ -360,6 +374,38 @@ const MainButtons = ({props}) => {
           }}
         >
           <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
+        </MenuItem>
+      </Menu>
+      <Button
+        id="MainButtons-inbox"
+        startIcon={<EmailIcon />}
+        onClick={handleClickCorrespondence}
+      >
+        Correspondence
+      </Button>
+      <Menu
+        anchorEl={anchorElCorrespondence}
+        open={Boolean(anchorElCorrespondence)}
+        onClose={handleCloseCorrespondence}
+      >
+        <MenuItem
+          id="MainButtons-inbox-MenuItem-inviteFriend"
+          onClick={() => {
+            dispatch(createInboxCodeDialog.open());
+            handleCloseCorrespondence();
+          }}
+        >
+          <PersonIcon size="small" />&nbsp;Play a Friend
+        </MenuItem>
+        <MenuItem
+          id="MainButtons-training-MenuItem-endgameSkills"
+          onClick={() => {
+            dispatch(enterInboxCodeDialog.close());
+            dispatch(enterInboxCodeDialog.open());
+            handleCloseCorrespondence();
+          }}
+        >
+          <InboxIcon size="small" />&nbsp;Read Inbox
         </MenuItem>
       </Menu>
       <Button

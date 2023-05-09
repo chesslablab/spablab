@@ -34,13 +34,13 @@ const LoadFenDialog = () => {
     dispatch(loadFenDialog.close());
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
-    let add = {
+    let settings = {
       fen: event.target.elements.fen.value
     };
     if (variant === variantConst.CHESS_960) {
-      add.startPos = event.target.elements.startPos.value
+      settings.startPos = event.target.elements.startPos.value
     }
-    WsAction.start(event.target.elements.variant.value, modeConst.FEN, add);
+    WsAction.start(event.target.elements.variant.value, modeConst.FEN, settings);
   };
 
   return (

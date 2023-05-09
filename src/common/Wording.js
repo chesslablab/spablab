@@ -1,14 +1,10 @@
 export default class Wording {
   static verb = {
     ACCEPT: 'ACCEPT',
+    CREATE: 'CREATE',
     DECLINE: 'DECLINE',
     PROPOSE: 'PROPOSE',
-    // ...
+    READ: 'READ',
+    REPLY: 'REPLY',
   };
-  static verbs = [
-    Wording.verb.ACCEPT,
-    Wording.verb.DECLINE,
-    Wording.verb.PROPOSE,
-    // ...
-  ];
 }
