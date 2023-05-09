@@ -111,7 +111,12 @@ const EnterInboxCodeDialog = () => {
                   state.enterInboxCodeDialog.inbox.movetext
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
-                          <Button size="small">Copy PGN Movetext</Button>
+                          <Button
+                            size="small"
+                            onClick={() => navigator.clipboard.writeText(state.enterInboxCodeDialog.inbox.movetext)}
+                          >
+                            Copy PGN Movetext
+                          </Button>
                           <TextField
                             id="EnterInboxCodeDialog-TextField-fen"
                             multiline
