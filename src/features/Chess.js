@@ -6,7 +6,9 @@ import store from 'app/store';
 import VariantBoard from 'features/board/VariantBoard';
 import InfoAlert from 'features/alert/InfoAlert.js';
 import CheckmateSkillsDialog from 'features/dialog/CheckmateSkillsDialog';
+import CreateInboxCodeDialog from 'features/dialog/CreateInboxCodeDialog';
 import EndgameSkillsDialog from 'features/dialog/EndgameSkillsDialog';
+import EnterInboxCodeDialog from 'features/dialog/EnterInboxCodeDialog';
 import EventsStatsDialog from 'features/dialog/EventsStatsDialog';
 import LoadFenDialog from 'features/dialog/LoadFenDialog';
 import LoadPgnDialog from 'features/dialog/LoadPgnDialog';
@@ -41,7 +43,7 @@ const Chess = ({ props }) => {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Grid container spacing={1}>
+        <Grid container spacing={2}>
           <Grid item xs={12} md={2} sx={styles.right}>
             <MainButtons props={props} />
           </Grid>
@@ -75,6 +77,8 @@ const Chess = ({ props }) => {
         <SearchEcoDialog props={props} />
         <SearchMovetextDialog props={props} />
         <SearchNameDialog props={props} />
+        <CreateInboxCodeDialog />
+        <EnterInboxCodeDialog />
         <SettingsDialog />
         <ProgressDialog />
       </Provider>

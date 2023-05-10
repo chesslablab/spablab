@@ -2,13 +2,16 @@ import jwt_decode from "jwt-decode";
 import store from 'app/store';
 import Pgn from 'common/Pgn';
 import Dispatcher from 'common/Dispatcher';
+import Wording from 'common/Wording';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as board from 'features/board/boardSlice';
 import * as acceptDrawDialog from 'features/dialog/acceptDrawDialogSlice';
 import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
 import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
+import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
+import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
@@ -452,6 +455,53 @@ export default class WsEvent {
 
   static onOnlineGames = (data) => dispatch => {
     dispatch(playOnlineDialog.refresh(data['/online_games']));
+  }
+
+  static onCorrespondence = (data) => dispatch => {
+    dispatch(progressDialog.close());
+    if (data['/inbox'].action === 'create') {
+      dispatch(WsEvent.onCorrespondenceCreate(data));
+    } else if (data['/inbox'].action === 'read') {
+      dispatch(WsEvent.onCorrespondenceRead(data));
+    } else if (data['/inbox'].action === 'reply') {
+      dispatch(WsEvent.onCorrespondenceReply(data));
+    }
+  }
+
+  static onCorrespondenceCreate = (data) => dispatch => {
+    if (data['/inbox'].action === Wording.verb.CREATE.toLowerCase()) {
+      if (data['/inbox'].hash) {
+        dispatch(createInboxCodeDialog.setInbox({
+          hash: data['/inbox'].hash,
+        }));
+      } else {
+        dispatch(createInboxCodeDialog.close());
+        dispatch(infoAlert.show({
+          info: data['/inbox'].message,
+        }));
+      }
+    }
+  }
+
+  static onCorrespondenceRead = (data) => dispatch => {
+    if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
+      if (data['/inbox'].inbox) {
+        dispatch(enterInboxCodeDialog.setInbox(data['/inbox'].inbox));
+      } else {
+        dispatch(enterInboxCodeDialog.close());
+        dispatch(infoAlert.show({
+          info: data['/inbox'].message,
+        }));
+      }
+    }
+  }
+
+  static onCorrespondenceReply = (data) => dispatch => {
+    if (data['/inbox'].action === Wording.verb.REPLY.toLowerCase()) {
+      dispatch(infoAlert.show({
+        info: data['/inbox'].message,
+      }));
+    }
   }
 
   static onError = (data) => dispatch => {

@@ -27,30 +27,30 @@ export default class WsAction {
     return await store.getState().server.ws.send('/start classical analysis');
   }
 
-  static start = async (variant, mode, add = {}) => {
+  static start = async (variant, mode, settings = {}) => {
     let mssg = `/start ${variant} ${mode}`;
-    if (Object.keys(add).length > 0) {
+    if (Object.keys(settings).length > 0) {
       if (mode === modeConst.GM) {
-        mssg += ` "${add.color}"`;
+        mssg += ` "${settings.color}"`;
       } else if (mode === modeConst.FEN && variant === variantConst.CLASSICAL) {
-        mssg += ` "${add.fen}"`;
+        mssg += ` "${settings.fen}"`;
       } else if (mode === modeConst.FEN && variant === variantConst.CAPABLANCA_80) {
-        mssg += ` "${add.fen}"`;
+        mssg += ` "${settings.fen}"`;
       } else if (mode === modeConst.FEN && variant === variantConst.CHESS_960) {
-        mssg += ` "${add.fen}" ${add.startPos}`;
+        mssg += ` "${settings.fen}" ${settings.startPos}`;
       } else if (mode === modeConst.PGN && variant === variantConst.CLASSICAL) {
-        mssg += ` "${add.movetext}"`;
+        mssg += ` "${settings.movetext}"`;
       } else if (mode === modeConst.PGN && variant === variantConst.CAPABLANCA_80) {
-        mssg += ` "${add.movetext}"`;
+        mssg += ` "${settings.movetext}"`;
       } else if (mode === modeConst.PGN && variant === variantConst.CHESS_960) {
-        mssg += ` "${add.movetext}" ${add.startPos}`;
+        mssg += ` "${settings.movetext}" ${settings.startPos}`;
       } else if (mode === modeConst.PLAY) {
-        mssg += ` ${JSON.stringify(add.settings)}`;
+        mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {
-        if (add.hasOwnProperty('color')) {
-          mssg += ` ${add.color}`;
-        } else if (add.hasOwnProperty('fen')) {
-          mssg += ` "${add.fen}"`;
+        if (settings.hasOwnProperty('color')) {
+          mssg += ` ${settings.color}`;
+        } else if (settings.hasOwnProperty('fen')) {
+          mssg += ` "${settings.fen}"`;
         }
       }
     }
@@ -126,5 +126,17 @@ export default class WsAction {
 
   static onlineGames = async () => {
     return await store.getState().server.ws.send('/online_games');
+  }
+
+  static inboxCreate = async (variant, settings) => {
+    return await store.getState().server.ws.send(`/inbox create ${variant} ${JSON.stringify(settings)}`);
+  }
+
+  static inboxRead = async (hash) => {
+    return await store.getState().server.ws.send(`/inbox read ${hash}`);
+  }
+
+  static inboxReply = async (hash, pgn) => {
+    return await store.getState().server.ws.send(`/inbox reply ${hash} "${pgn}"`);
   }
 }

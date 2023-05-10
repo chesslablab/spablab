@@ -1,4 +1,5 @@
 const ANALYSIS = 'analysis';
+const CORRESPONDENCE = 'inbox';
 const DATABASE = 'database';
 const PLAY_ONLINE = 'play online';
 const PLAY_A_FRIEND = 'play a friend';
@@ -8,6 +9,7 @@ const OPENING_SEARCH = 'opening search';
 
 export {
   ANALYSIS,
+  CORRESPONDENCE,
   DATABASE,
   PLAY_ONLINE,
   PLAY_A_FRIEND,
