@@ -53,7 +53,7 @@
           different layers of the <a href="https://en.wikipedia.org/wiki/OSI_model">OSI</a>
           and <a href="https://simple.wikipedia.org/wiki/TCP/IP_model">TCP/IP</a> architecture stacks.
         </p>
-        <h2>Hardening TCP Services</h2>
+        <h4>Hardening TCP Services</h4>
         <p>
           The transport layer in the TCP/IP model includes three protocols: TCP,
           UDP and SCTP. In today's post, I'll show you the simplest possible way
@@ -78,7 +78,7 @@
           a Linux firewall, especially if creating a sandbox server with little
           traffic at the beginning.
         </p>
-        <h2>Uncomplicated Firewall Comes to the Rescue</h2>
+        <h4>Uncomplicated Firewall Comes to the Rescue</h4>
         <p>
           <a href="https://wiki.ubuntu.com/UncomplicatedFirewall">ufw</a> is a
           frontend for iptables.
@@ -209,7 +209,7 @@ $ sudo ufw delete allow 443/tcp
 Rule deleted
 Rule deleted (v6)
 </pre>
-        <h2>WSS Hardening With UFW Is Easy Peasy</h2>
+        <h4>WSS Hardening With UFW Is Easy Peasy</h4>
         <p>
           ufw allows to rate-limit TCP network services as shown below.
         </p>
