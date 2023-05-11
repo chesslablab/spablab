@@ -52,4 +52,10 @@
     <priority> 0.8 </priority>
     <lastmod>2023-05-03T10:45:00+00:00</lastmod>
   </url>
+  <url>
+    <loc>https://www.chesslablab.com/why-you-shouldnt-use-real-data-for-development-purposes/</loc>
+    <changefreq> daily </changefreq>
+    <priority> 0.8 </priority>
+    <lastmod>2023-11-03T17:30:00+00:00</lastmod>
+  </url>
 </urlset>
