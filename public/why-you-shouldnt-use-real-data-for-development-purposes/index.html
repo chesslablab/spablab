@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta
+      name="description"
+      content="The present guide shows how to implement a secure database design methodology that I call fixture-driven development."
+   >
+    <link rel="apple-touch-icon" href="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
+    <link rel="manifest" href="/manifest.json">
+    <title>Why You Shouldn't Use Real Data for Development Purposes</title>
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@programarivm">
+    <meta name="twitter:title" content="Why You Shouldn't Use Real Data for Development Purposes">
+    <meta name="twitter:description" content="The present guide shows how to implement a secure database design methodology that I call fixture-driven development.">
+    <meta name="twitter:creator" content="@programarivm">
+    <meta name="twitter:image" content="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Why You Shouldn't Use Real Data for Development Purposes">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.chesslablab.com/">
+    <meta property="og:image" content="https://www.chesslablab.com/storing-multiple-refs-in-an-array-with-reacts-useref-hook/cover.jpg">
+    <meta property="og:description" content="The present guide shows how to implement a secure database design methodology that I call fixture-driven development.">
+    <meta property="og:site_name" content="ChesslaBlab">
+    <!-- Add CSS -->
+    <link rel="stylesheet" href="/assets/css/simple.min.css">
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <!-- Include HTML -->
+    <script src="/assets/js/include.js"></script>
+  </head>
+  <body>
+    <nav></nav>
+    <main>
+      <h1>ChesslaBlab Blog</h1>
+      <article>
+        <p>Jan 10, 2021 by Jordi Bassaganas</p>
+        <h2>Why You Shouldn't Use Real Data for Development Purposes</h2>
+        <h3>It is not the right thing to do</h3>
+        <img src="cover.jpg" alt="Why You Shouldn't Use Real Data for Development Purposes">
+        <small>
+          Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/photos/hCb3lIB8L8E?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+        </small>
+        <p>
+          You may end up using real production data instead of sample data because
+          of a number of reasons among them tight deadlines or budget constraints.
+          In a worst-case scenario, the data is at risk of being sent over email
+          in a rush or even shared on Slack or Discord.
+        </p>
+        <p>
+          But this is not the right thing to do.
+        </p>
+        <p>
+          The present guide shows how to implement a secure database design methodology
+          that I call fixture-driven development. It consists in seeding a development
+          database with sample fake data while designing it at the same time.
+        </p>
+        <p>
+          I used PHP and Symfony to write this tutorial but the important software
+          design concepts can be easily transferred to other programming languages
+          and frameworks too.
+        </p>
+        <h4>Before You Begin</h4>
+        <ul>
+          <li>
+            Learn the basics of <a href="https://en.wikipedia.org/wiki/Test-driven_development">test-driven development</a>.
+          </li>
+          <li>
+            Install and set up a fresh copy of <a href="https://symfony.com/doc/current/best_practices.html">Symfony</a>.
+          </li>
+          <li>
+            Familiarize yourself with the concepts of <a href="https://symfony.com/bundles/DoctrineFixturesBundle/current/index.html">fixtures</a> and <a href="https://symfony.com/bundles/DoctrineMigrationsBundle/current/index.html">migrations</a>.
+          </li>
+        </ul>
+        <p>
+          For further details please visit <a href="https://github.com/programarivm/zebra">programarivm/zebra</a>
+          which is a GitHub repository where the present methodology was used to
+          develop <a href="https://github.com/programarivm/easy-acl-bundle">EasyAcl Bundle</a>.
+        </p>
+        <h4>Fixture-Driven Development</h4>
+        <p>
+          The fixture-driven design methodology consists in letting the data fixtures
+          guide the database design process in a similar way as with test-driven
+          development (TDD).
+        </p>
+        <p>
+          A fixture-driven cycle looks like this:
+        </p>
+        <ol>
+          <li>Add a fixture</li>
+          <li>Try to load the fixtures and see if they can be loaded</li>
+          <li>Write some code in the entity layer</li>
+          <li>Load the fixtures</li>
+          <li>Repeat</li>
+        </ol>
+        <p>
+          Once the entire process is completed, you end up having precious sample data!
+          Let me elaborate on how one of these cycles may look like  – the very first one,
+          to be precise.
+        </p>
+        <h4>1. Add a Fixture</h4>
+        <p>
+          So let's write the first fixtures in <code>src/DataFixtures/UserFixtures.php</code>.
+        </p>
+        <script src="https://gist.github.com/programarivm/1c05400a6bafe70ffb97eb0f2e944b3c.js"></script>
+        <h4>2. Try to Load the Fixtures</h4>
+        <p>
+          Of course at this point the Symfony console will throw an error if trying
+          to load the user fixtures because the <code>App\Entity\User</code>
+          class does not exist yet.
+        </p>
+<pre>
+$ php bin/console doctrine:fixtures:load
+
+ Careful, database "zebra" will be purged. Do you want to continue? (yes/no) [no]:
+ > yes
+
+   > purging database
+   > loading App\DataFixtures\AppFixtures
+   > loading App\DataFixtures\UserFixtures
+2020-01-20T18:10:52+00:00 [critical] Uncaught Error: Class 'App\Entity\User' not found
+
+In UserFixtures.php line 13:
+
+  Attempted to load class "User" from namespace "App\Entity".
+  Did you forget a "use" statement for another namespace?
+</pre>
+        <p>
+          This is essentially the same thing as making a test fail in a TDD methodology.
+        </p>
+        <h4>3. Write Some Code in the Entity Layer</h4>
+        <p>
+          So, the entity layer must be refactored if you want the previous fixtures
+          to be loaded. A basic <code>src/Entity/User.php</code> file is written
+          for this purpose.
+        </p>
+        <script src="https://gist.github.com/programarivm/0e65389147fa485c09085c5d8b3a5e4a.js"></script>
+        <h4>4. Load the Fixtures</h4>
+        <p>
+          The next step is to run the <code>doctrine:migrations:diff</code> command.
+          This will generate a migration file by comparing the current database to the mapping information.
+        </p>
+<pre>
+$ php bin/console doctrine:migrations:diff
+Generated new migration class to "/zebra/src/Migrations/Version20200120182410.php"
+
+To run just this migration for testing purposes, you can use migrations:execute --up 20200120182410
+
+To revert the migration you can use migrations:execute --down 20200120182410
+</pre>
+        <p>
+          Then the migration is run as described next.
+        </p>
+<pre>
+$ php bin/console doctrine:migrations:migrate
+
+                    Application Migrations
+
+
+WARNING! You are about to execute a database migration that could result in schema changes and data loss. Are you sure you wish to continue? (y/n)yes
+Migrating up to 20200120182410 from 0
+
+  ++ migrating 20200120182410
+
+     -> CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, username VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+
+  ++ migrated (took 79.2ms, used 12M memory)
+
+  ------------------------
+
+  ++ finished in 87.6ms
+  ++ used 12M memory
+  ++ 1 migrations executed
+  ++ 1 sql queries
+</pre>
+        <p>
+          And finally the fixtures are loaded again.
+        </p>
+<pre>
+$ php bin/console doctrine:fixtures:load
+
+ Careful, database "zebra" will be purged. Do you want to continue? (yes/no) [no]:
+ > yes
+
+   > purging database
+   > loading App\DataFixtures\AppFixtures
+   > loading App\DataFixtures\UserFixtures
+</pre>
+        <p>
+          Described below is how the user table will look like after the first
+          fixture-driven development cycle is completed.
+        </p>
+<pre>
+mysql> select * from user;
++----+----------+
+| id | username |
++----+----------+
+|  1 | bob      |
++----+----------+
+1 row in set (0.00 sec)
+</pre>
+        <h4>5. Repeat</h4>
+        <p>
+          It is time to prepare the next cycle.
+        </p>
+        <p>
+          Let's keep on adding properties to the <code>User</code> entity.
+        </p>
+        <script src="https://gist.github.com/programarivm/ded922793098403a783d7885b369ec92.js"></script>
+        <p>
+          As expected, the loading of the fixtures will now fail because the
+          <code>setEmail()</code> method doesn't still exist in
+          <code>App\Entity\User</code>.
+        </p>
+<pre>
+$ php bin/console doctrine:fixtures:load
+
+ Careful, database "zebra" will be purged. Do you want to continue? (yes/no) [no]:
+ > yes
+
+   > purging database
+   > loading App\DataFixtures\AppFixtures
+   > loading App\DataFixtures\UserFixtures
+2020-01-20T19:34:14+00:00 [critical] Uncaught Error: Call to undefined method App\Entity\User::setEmail()
+
+In UserFixtures.php line 15:
+
+  Attempted to call an undefined method named "setEmail" of class "App\Entity\User".
+</pre>
+        <p>
+          That is pretty much it.
+        </p>
+        <p>
+          The first fixture-development cycle was uncomplicated. At some point
+          after completing a few more cycles, the <code>App\Entity\User</code>
+          entity may well end up looking like the following.
+        </p>
+        <script src="https://gist.github.com/programarivm/f21e45273f1a3542463b5168064f033a.js"></script>
+<pre>
+mysql> select * from user;
++----+------------------+-----------------------------+---------------------------------------------------------------------------------------------------+
+| id | username         | email                       | password                                                                                          |
++----+------------------+-----------------------------+---------------------------------------------------------------------------------------------------+
+|  1 | demarcus.koch    | cristal.hagenes@treutel.com | $argon2id$v=19$m=65536,t=4,p=1$LmX8EoXrkemR8VLIO1ZcTA$5UC0tWn+6fJEma/neKcitgpELZlPTAcL9wC6O1nNfn8 |
+|  2 | ablanda          | floy73@marks.com            | $argon2id$v=19$m=65536,t=4,p=1$Iq5mhGD4M5bYEvRcszqdsA$9sJExnkdKO2QMR8PA+DFZ+OL8EvCkvJ1WdhkUMuELN8 |
+|  3 | ernesto.wolf     | zstanton@hotmail.com        | $argon2id$v=19$m=65536,t=4,p=1$0mV3Wg6DADHoA8XjXu555w$RljkrrtDABBOTkQSNNmBOKA16e2jAcwRnBs6qjOIPhQ |
+|  4 | bwhite           | gsmith@gmail.com            | $argon2id$v=19$m=65536,t=4,p=1$7u2ecWB6IedLaMHY+bhb6g$72VHnkYwZw458orExJvvEaoZMLcHoL4f6upn+73qJZ8 |
+|  5 | dorris28         | vgrimes@hotmail.com         | $argon2id$v=19$m=65536,t=4,p=1$4+sjf5jOIkNPrgagmsCoMw$qxDBCxNy16ODcPAoDjbo0AgS2TnM/QGxo8kEIqWugSI |
+|  6 | xrodriguez       | ledner.verla@franecki.com   | $argon2id$v=19$m=65536,t=4,p=1$YhR3tHoopKSJNhehtZ4sIg$jxxKrrT9R6Weg4IbcSEdHn1WQoNmT2/OYuRfTaGTjjY |
+|  7 | rcronin          | ngutkowski@yahoo.com        | $argon2id$v=19$m=65536,t=4,p=1$TKtVQCp4chLWbhiGR+/axA$TbmnyuEmWIdtq5yNzPbjOlYeQNH3tFa612+LYwVxc3Y |
+|  8 | wunsch.edwardo   | freda16@wiza.com            | $argon2id$v=19$m=65536,t=4,p=1$Pp9AtCXw/XB6/Z5FiFH3aA$X420Ix4JAGcRu0x2gJdoToVeXSSFlZU33BeDR13/gOQ |
+|  9 | jacobi.broderick | ortiz.declan@gmail.com      | $argon2id$v=19$m=65536,t=4,p=1$31b2sF9Gt7WfAdpdLGofLg$PV/T4vCb9NUwprkKCS1N/MFSopHXFLiaGSxRMS/TtKw |
+| 10 | halie.beier      | dsimonis@haley.com          | $argon2id$v=19$m=65536,t=4,p=1$FW5MHfVG7evZan5uEEZhUA$S/tlt4LocrW998oDrW3K5k/LE5JUY0ioFMxgICg0pC4 |
+| 11 | ortiz.corine     | ostoltenberg@yahoo.com      | $argon2id$v=19$m=65536,t=4,p=1$Vr2hEI+PH6QPBY1elab5cg$wTM9Tkd4IcAyF9Eo0Oxec/ejlC/LgZg5oRtp39gICSQ |
+| 12 | uklocko          | emelia.donnelly@hyatt.org   | $argon2id$v=19$m=65536,t=4,p=1$4TvtIIJ1Lf4vHEjnZ+qubg$kOin2zZ40wWCRn3Wkn9U2X9ijmpQJ69duk/Yfh4WnOg |
+| 13 | williamson.willy | ikeeling@tillman.com        | $argon2id$v=19$m=65536,t=4,p=1$UdUPCVJFIM2xLtIHMW8iqg$ucx9nuPuS92GXfU1WQGew8YjTBhlJURk7vgzwIZadXk |
+| 14 | schoen.tristin   | thompson.zion@mante.com     | $argon2id$v=19$m=65536,t=4,p=1$DvvUHieQhWKFLNZ98NzWJw$QMd3G6zhW9uEPttwXpMk6DMvkr4TrDdFEBLgv3GpV3w |
+| 15 | collier.xavier   | emelie.padberg@yahoo.com    | $argon2id$v=19$m=65536,t=4,p=1$hGH8E+gf6fz8IoNJHaFiGA$M6euacVeiTgT5cVHvPctx3cTInWCRfk5b2rX50imOwg |
+| 16 | maxine.purdy     | ibednar@herman.info         | $argon2id$v=19$m=65536,t=4,p=1$VrFDOh6XF7bsXkUNyGYHzg$is+BNG3ZyxE0IEazy6ZNmdV/9n3omhgRXpQY4aH63OA |
+| 17 | anabelle50       | jmoen@gmail.com             | $argon2id$v=19$m=65536,t=4,p=1$ad/+ztC2VYgoFncfnKvd7w$Swqo2Wg0lHqObIEMRdkI4lwjAIDTG9hy1J30pUa8MGs |
+| 18 | titus.damore     | qlowe@hotmail.com           | $argon2id$v=19$m=65536,t=4,p=1$1hUK0xzB1iykjHtGx3cRpA$A/sXhRQwnnzSJ46NFW2te9xO84qs+WW5Y4wFQGdeSL8 |
+| 19 | amy.cronin       | kaitlyn66@toy.biz           | $argon2id$v=19$m=65536,t=4,p=1$RTzEBBGF+vrL8heH9I2CMw$bMSFOkbCapen1+3+feJmWQ/77hdjiHShrjbVudTxN9s |
+| 20 | darryl64         | friedrich00@feeney.com      | $argon2id$v=19$m=65536,t=4,p=1$dYpnao4o5MXhLEgzY82Q5A$hZ+4JR7/2ZjW2WLG1HJa8mTNFnBWLrYmDj4SuuhWCwc |
++----+------------------+-----------------------------+---------------------------------------------------------------------------------------------------+
+20 rows in set (0.00 sec)
+</pre>
+      </article>
+    </main>
+  </body>
+</html>
