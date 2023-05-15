@@ -33,18 +33,12 @@ import MainButtons from 'features/MainButtons';
 import PlayButtons from 'features/PlayButtons';
 import theme from 'styles/theme.js';
 
-const styles = {
-  right: {
-    textAlign: 'right',
-  },
-};
-
 const Chess = ({ props }) => {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={2} sx={styles.right}>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
             <MainButtons props={props} />
           </Grid>
           <Grid item xs={12} md={4}>

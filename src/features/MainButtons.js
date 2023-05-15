@@ -110,10 +110,11 @@ const MainButtons = ({props}) => {
 
   return (
     <ButtonGroup
-      orientation="vertical"
+      size="small"
+      orientation={matches ? "horizontal" : "vertical"}
       variant="text"
       aria-label="Main Menu"
-      fullWidth={matches ? false : true}
+      fullWidth={true}
       disabled={disabled}
     >
       <Button
