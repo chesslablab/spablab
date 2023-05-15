@@ -6,6 +6,7 @@ const PLAY_A_FRIEND = 'play a friend';
 const PLAY_COMPUTER = 'play computer';
 const TRAINING = 'training';
 const OPENING_SEARCH = 'opening search';
+const SETTINGS = 'settings';
 
 export {
   ANALYSIS,
@@ -15,5 +16,6 @@ export {
   PLAY_A_FRIEND,
   PLAY_COMPUTER,
   TRAINING,
-  OPENING_SEARCH
+  OPENING_SEARCH,
+  SETTINGS
 };
