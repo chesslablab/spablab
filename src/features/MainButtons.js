@@ -110,16 +110,15 @@ const MainButtons = ({props}) => {
 
   return (
     <ButtonGroup
-      orientation="vertical"
-      variant="text"
+      orientation={matches ? "horizontal" : "vertical"}
+      variant="outlined"
       aria-label="Main Menu"
-      fullWidth={matches ? false : true}
+      fullWidth={true}
       disabled={disabled}
     >
       <Button
         id="MainButtons-analysisBoard"
-        sx={{ borderRadius: 0 }}
-        variant={state.mainButtons.name === mainButtonsConst.ANALYSIS ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.ANALYSIS ? "contained" : "outlined"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
       >
@@ -185,7 +184,7 @@ const MainButtons = ({props}) => {
       </Menu>
       <Button
         id="MainButtons-openingSearch"
-        variant={state.mainButtons.name === mainButtonsConst.OPENING_SEARCH ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.OPENING_SEARCH ? "contained" : "outlined"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >
@@ -226,7 +225,7 @@ const MainButtons = ({props}) => {
       </Menu>
       <Button
         id="MainButtons-database"
-        variant={state.mainButtons.name === mainButtonsConst.DATABASE ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.DATABASE ? "contained" : "outlined"}
         startIcon={<StorageIcon />}
         onClick={handleClickDatabase}
       >
@@ -333,7 +332,7 @@ const MainButtons = ({props}) => {
       </Menu>
       <Button
         id="MainButtons-training"
-        variant={state.mainButtons.name === mainButtonsConst.TRAINING ? "contained" : "text"}
+        variant={state.mainButtons.name === mainButtonsConst.TRAINING ? "contained" : "outlined"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
       >
@@ -378,6 +377,7 @@ const MainButtons = ({props}) => {
       </Menu>
       <Button
         id="MainButtons-inbox"
+        variant={state.mainButtons.name === mainButtonsConst.CORRESPONDENCE ? "contained" : "outlined"}
         startIcon={<EmailIcon />}
         onClick={handleClickCorrespondence}
       >
@@ -410,7 +410,7 @@ const MainButtons = ({props}) => {
       </Menu>
       <Button
         id="MainButtons-settings"
-        sx={{ borderRadius: 0 }}
+        variant={state.mainButtons.name === mainButtonsConst.SETTINGS ? "contained" : "outlined"}
         startIcon={<SettingsIcon />}
         onClick={() => dispatch(settingsDialog.open())}
       >
