@@ -115,6 +115,7 @@ const MainButtons = ({props}) => {
       aria-label="Main Menu"
       fullWidth={true}
       disabled={disabled}
+      sx={{ borderTop: "1px solid #1976d280", borderBottom: "1px solid #1976d280", borderRadius: 0 }}
     >
       <Button
         id="MainButtons-analysisBoard"
