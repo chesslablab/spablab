@@ -110,7 +110,6 @@ const MainButtons = ({props}) => {
 
   return (
     <ButtonGroup
-      size="small"
       orientation={matches ? "horizontal" : "vertical"}
       variant="outlined"
       aria-label="Main Menu"

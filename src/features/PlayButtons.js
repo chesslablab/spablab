@@ -36,7 +36,6 @@ const PlayButtons = () => {
     <Grid>
       <Stack spacing={2}>
         <ButtonGroup
-          size="small"
           orientation="vertical"
           aria-label="Play Computer"
           fullWidth={true}
@@ -51,7 +50,6 @@ const PlayButtons = () => {
           </Button>
         </ButtonGroup>
         <ButtonGroup
-          size="small"
           orientation="vertical"
           aria-label="Play A Friend"
           fullWidth={true}
@@ -75,7 +73,6 @@ const PlayButtons = () => {
           </Button>
         </ButtonGroup>
         <ButtonGroup
-          size="small"
           orientation="vertical"
           aria-label="Play Online"
           fullWidth={true}
