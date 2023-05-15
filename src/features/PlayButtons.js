@@ -37,23 +37,19 @@ const PlayButtons = () => {
       <Stack spacing={2}>
         <ButtonGroup
           orientation="vertical"
-          aria-label="Play Online"
+          aria-label="Play Computer"
           fullWidth={true}
           disabled={disabled}
         >
           <Button
-            startIcon={<LanguageIcon />}
-            variant={state.mainButtons.name === mainButtonsConst.PLAY_ONLINE ? "contained" : "outlined"}
-            onClick={() => {
-              WsAction.onlineGames();
-              dispatch(playOnlineDialog.open());
-            }}
+            startIcon={<SmartToyIcon />}
+            variant={state.mainButtons.name === mainButtonsConst.PLAY_COMPUTER ? "contained" : "outlined"}
+            onClick={() => dispatch(playComputerDialog.open())}
           >
-            Play Online
+            Play Computer
           </Button>
         </ButtonGroup>
         <ButtonGroup
-          size="large"
           orientation="vertical"
           aria-label="Play A Friend"
           fullWidth={true}
@@ -77,18 +73,20 @@ const PlayButtons = () => {
           </Button>
         </ButtonGroup>
         <ButtonGroup
-          size="large"
           orientation="vertical"
-          aria-label="Play Computer"
+          aria-label="Play Online"
           fullWidth={true}
           disabled={disabled}
         >
           <Button
-            startIcon={<SmartToyIcon />}
-            variant={state.mainButtons.name === mainButtonsConst.PLAY_COMPUTER ? "contained" : "outlined"}
-            onClick={() => dispatch(playComputerDialog.open())}
+            startIcon={<LanguageIcon />}
+            variant={state.mainButtons.name === mainButtonsConst.PLAY_ONLINE ? "contained" : "outlined"}
+            onClick={() => {
+              WsAction.onlineGames();
+              dispatch(playOnlineDialog.open());
+            }}
           >
-            Play Computer
+            Play Online
           </Button>
         </ButtonGroup>
       </Stack>
