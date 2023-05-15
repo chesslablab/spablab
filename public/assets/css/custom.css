@@ -65,11 +65,6 @@ nav a {
   margin-left: -4px;
 }
 
-nav a:not(:last-child) {
-  border-color: rgba(25, 118, 210, 0.5);
-  border-right: 1px solid rgba(0, 0, 0, 0.23);
-}
-
 main > h2 {
   text-align: center;
 }
