@@ -26,6 +26,7 @@ code {
 }
 
 h1 {
+  margin-top: 0;
   font-size: 2rem;
   text-align: center;
   color: #101010;
@@ -54,7 +55,6 @@ nav {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   padding: 1.25rem;
   font-size: .9rem;
-  text-align: center;
   height: 1rem;
 }
 
@@ -70,10 +70,14 @@ main > h2 {
 }
 
 article {
-  border: 0;
+  margin: 2rem;
+  padding: 2rem 1rem;
+  border-top: 1px solid #c0c0c0;
 }
 
 section {
+  margin: 2rem;
+  padding: 2rem 1rem;
   border-top: 1px solid #c0c0c0;
 }
 
@@ -93,8 +97,52 @@ pre {
   font-size: 0.85rem;
   background-color: #141414;
   color: #fff;
+  padding: 0.75rem;
+  border-radius: 5px;
 }
 
+details {
+  background-color: #dcdcdc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  padding: .7rem 1rem;
+}
+
+article img {
+  width: -webkit-fill-available;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: .7rem 1rem;
+  margin: -.7rem -1rem;
+  word-break: break-all;
+}
+
+/* Format tables */
 table {
-  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+td,
+th {
+  border: 1px solid #c8c8c8;
+  text-align: start;
+  padding: 0.5rem;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+tr:nth-child(odd) {
+  background-color: #f8f8f8;
 }
