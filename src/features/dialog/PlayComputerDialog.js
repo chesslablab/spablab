@@ -52,7 +52,7 @@ const PlayComputerDialog = () => {
       });
     }
     dispatch(mode.setStockfish(payload));
-    dispatch(mainButtons.setPlayComputer());
+    dispatch(mainButtons.setPlay());
     dispatch(playComputerDialog.close());
     Dispatcher.initGui(dispatch);
   };
