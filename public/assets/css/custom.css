@@ -16,15 +16,24 @@ a:hover {
   background-color: rgba(25, 118, 210, 0.04);
 }
 
-nav {
-  font-family: Montserrat, Helvetica, Arial, sans-serif;
+nav,
+footer {
   padding: 1.25rem;
   font-size: .9rem;
-  background-color: #f5f5f5;
   height: 1rem;
 }
 
-nav a {
+nav {
+  background-color: #f5f5f5;
+}
+
+footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+nav a,
+footer a {
   padding: 0.5rem;
   font-weight: 500;
   font-size: 0.875rem;
