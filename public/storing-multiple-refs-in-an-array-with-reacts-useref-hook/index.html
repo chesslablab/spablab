@@ -29,8 +29,6 @@
     <!-- Add CSS -->
     <link rel="stylesheet" href="/assets/css/fonts.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
-    <!-- Include HTML -->
-    <script src="/assets/js/include.js"></script>
   </head>
   <body>
     <nav></nav>
@@ -85,7 +83,7 @@
         <p>
           The following example considers one element.
         </p>
-        <script async=false defer=false src="https://gist.github.com/programarivm/75e42876e4fa20b09c86559eae3c2fb6.js"></script>
+        <script src="https://gist.github.com/programarivm/75e42876e4fa20b09c86559eae3c2fb6.js"></script>
         <p>
           This way the targeted node can easily be accessed with the <code>current</code>
           property. Now, what if you're dealing with an array of references rather
@@ -95,7 +93,7 @@
           Let me show you an example. Attached below is the code of the <code>Board</code>
           component of <a href="https://github.com/chesslablab/react-chess">React Chess</a>.
         </p>
-        <script async=false defer=false src="https://gist.github.com/programarivm/89260aa40def3255802b203efb3f1565.js"></script>
+        <script src="https://gist.github.com/programarivm/89260aa40def3255802b203efb3f1565.js"></script>
         <p>
           The working code is available on GitHub but I've removed some lines of
           code in this example for the sake of simplicity to focus on what really matters.
@@ -149,5 +147,7 @@ ref={el => imgsRef.current[payload.sq] = el}
       </article>
     </main>
     <footer></footer>
+    <!-- Include HTML -->
+    <script src="/assets/js/include.js"></script>
   </body>
 </html>

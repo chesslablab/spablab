@@ -29,8 +29,6 @@
     <!-- Add CSS -->
     <link rel="stylesheet" href="/assets/css/fonts.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
-    <!-- Include HTML -->
-    <script src="/assets/js/include.js"></script>
   </head>
   <body>
     <nav></nav>
@@ -105,7 +103,7 @@
         <p>
           So let's write the first fixtures in <code>src/DataFixtures/UserFixtures.php</code>.
         </p>
-        <script async=false defer=false src="https://gist.github.com/programarivm/1c05400a6bafe70ffb97eb0f2e944b3c.js"></script>
+        <script src="https://gist.github.com/programarivm/1c05400a6bafe70ffb97eb0f2e944b3c.js"></script>
         <h4>2. Try to Load the Fixtures</h4>
         <p>
           Of course at this point the Symfony console will throw an error if trying
@@ -137,7 +135,7 @@ In UserFixtures.php line 13:
           to be loaded. A basic <code>src/Entity/User.php</code> file is written
           for this purpose.
         </p>
-        <script async=false defer=false src="https://gist.github.com/programarivm/0e65389147fa485c09085c5d8b3a5e4a.js"></script>
+        <script src="https://gist.github.com/programarivm/0e65389147fa485c09085c5d8b3a5e4a.js"></script>
         <h4>4. Load the Fixtures</h4>
         <p>
           The next step is to run the <code>doctrine:migrations:diff</code> command.
@@ -209,7 +207,7 @@ mysql> select * from user;
         <p>
           Let's keep on adding properties to the <code>User</code> entity.
         </p>
-        <script async=false defer=false src="https://gist.github.com/programarivm/ded922793098403a783d7885b369ec92.js"></script>
+        <script src="https://gist.github.com/programarivm/ded922793098403a783d7885b369ec92.js"></script>
         <p>
           As expected, the loading of the fixtures will now fail because the
           <code>setEmail()</code> method doesn't still exist in
@@ -238,7 +236,7 @@ In UserFixtures.php line 15:
           after completing a few more cycles, the <code>App\Entity\User</code>
           entity may well end up looking like the following.
         </p>
-        <script async=false defer=false src="https://gist.github.com/programarivm/f21e45273f1a3542463b5168064f033a.js"></script>
+        <script src="https://gist.github.com/programarivm/f21e45273f1a3542463b5168064f033a.js"></script>
 <pre>
 mysql> select * from user;
 +----+------------------+-----------------------------+---------------------------------------------------------------------------------------------------+
@@ -270,5 +268,7 @@ mysql> select * from user;
       </article>
     </main>
     <footer></footer>
+    <!-- Include HTML -->
+    <script src="/assets/js/include.js"></script>
   </body>
 </html>

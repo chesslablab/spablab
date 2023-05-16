@@ -29,8 +29,6 @@
     <!-- Add CSS -->
     <link rel="stylesheet" href="/assets/css/fonts.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
-    <!-- Include HTML -->
-    <script src="/assets/js/include.js"></script>
   </head>
   <body>
     <nav></nav>
@@ -100,7 +98,7 @@
           words, it doesn't actually make sense for it to be accessed by other components
           globally via a Redux store.
         </p>
-        <script async=false defer=false src="https://gist.github.com/programarivm/4af9a3c8a88c8d3a35acd928fb7835c8.js"></script>
+        <script src="https://gist.github.com/programarivm/4af9a3c8a88c8d3a35acd928fb7835c8.js"></script>
         <p>
           <code>SelectColorButtons</code> basically receives the <code>props</code>
           from a parent component and changes its value whenever an icon button
@@ -145,7 +143,7 @@ React.useEffect(() => {
         <p>
           Let's have a look at <code>PlayComputerDialog</code> as an example.
         </p>
-        <script async=false defer=false src="https://gist.github.com/programarivm/2c28b2fc1e8fad001f247bc7fa9a0d0f.js"></script>
+        <script src="https://gist.github.com/programarivm/2c28b2fc1e8fad001f247bc7fa9a0d0f.js"></script>
         <p>
           The <code>useState</code> Hook is used in <code>PlayComputerDialog</code>
           to manage the internal state of the dialog. The object variable
@@ -186,5 +184,7 @@ const [fields, setFields] = React.useState({
       </article>
     </main>
     <footer></footer>
+    <!-- Include HTML -->
+    <script src="/assets/js/include.js"></script>
   </body>
 </html>
