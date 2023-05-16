@@ -10,7 +10,8 @@ import {
   Table,
   TableRow,
   TableCell,
-  TableBody
+  TableBody,
+  TableHead
 } from '@mui/material';
 import wKing from 'assets/img/pieces/png/150/wKing.png';
 import bKing from 'assets/img/pieces/png/150/bKing.png';
@@ -63,8 +64,13 @@ const PlayOnlineTable = () => {
 
   if (state.playOnlineDialog.rows.length > 0) {
     return (
-      <TableContainer component={Paper} sx={{ mt: 1, mb: 0.5 }}>
+      <TableContainer component={Paper} sx={{ mb: 3 }}>
         <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" colSpan={5}>Online Invitations</TableCell>
+            </TableRow>
+          </TableHead>
           <TableBody>
             {state.playOnlineDialog.rows.map((row, i) => (
               <TableRow
