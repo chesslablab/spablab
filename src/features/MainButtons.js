@@ -6,7 +6,10 @@ import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
+import GradientIcon from '@mui/icons-material/Gradient';
 import InboxIcon from '@mui/icons-material/Inbox';
+import KeyboardIcon from '@mui/icons-material/Keyboard';
+import LanguageIcon from '@mui/icons-material/Language';
 import PersonIcon from '@mui/icons-material/Person';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
@@ -15,6 +18,7 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
@@ -29,20 +33,24 @@ import Wording from 'common/Wording';
 import * as mainButtonsConst from 'features/mainButtonsConst';
 import * as mainButtons from 'features/mainButtonsSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as checkmateSkillsDialog from 'features/dialog/checkmateSkillsDialogSlice';
 import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
+import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
+import * as endgameSkillsDialog from 'features/dialog/endgameSkillsDialogSlice';
 import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
+import * as enterInviteCodeDialog from 'features/dialog/enterInviteCodeDialogSlice';
+import * as eventsStatsDialog from 'features/dialog/eventsStatsDialogSlice';
 import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
 import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
-import * as eventsStatsDialog from 'features/dialog/eventsStatsDialogSlice';
 import * as openingsStatsDialog from 'features/dialog/openingsStatsDialogSlice';
+import * as playComputerDialog from 'features/dialog/playComputerDialogSlice';
+import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as playersStatsDialog from 'features/dialog/playersStatsDialogSlice';
-import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
-import * as searchEcoDialog from 'features/dialog/searchEcoDialogSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as searchEcoDialog from 'features/dialog/searchEcoDialogSlice';
+import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
 import * as searchMovetextDialog from 'features/dialog/searchMovetextDialogSlice';
 import * as searchNameDialog from 'features/dialog/searchNameDialogSlice';
-import * as checkmateSkillsDialog from 'features/dialog/checkmateSkillsDialogSlice';
-import * as endgameSkillsDialog from 'features/dialog/endgameSkillsDialogSlice';
 import * as settingsDialog from 'features/dialog/settingsDialogSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/variant/variantConst';
@@ -53,6 +61,7 @@ const MainButtons = ({props}) => {
   const dispatch = useDispatch();
 
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
+  const [anchorElPlay, setAnchorElPlay] = useState(null);
   const [anchorElDatabase, setAnchorElDatabase] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
@@ -62,6 +71,10 @@ const MainButtons = ({props}) => {
 
   const handleCloseAnalysis = () => {
     setAnchorElAnalysis(null);
+  };
+
+  const handleClosePlay = () => {
+    setAnchorElPlay(null);
   };
 
   const handleCloseDatabase = () => {
@@ -82,6 +95,10 @@ const MainButtons = ({props}) => {
 
   const handleClickAnalysis = (event) => {
     setAnchorElAnalysis(event.currentTarget);
+  };
+
+  const handleClickPlay = (event) => {
+    setAnchorElPlay(event.currentTarget);
   };
 
   const handleClickDatabase = (event) => {
@@ -182,6 +199,58 @@ const MainButtons = ({props}) => {
           }}
         >
           <WidgetsIcon size="small" />&nbsp;FEN String
+        </MenuItem>
+      </Menu>
+      <Button
+        id="MainButtons-play"
+        variant={state.mainButtons.name === mainButtonsConst.PLAY ? "contained" : "text"}
+        startIcon={<GradientIcon />}
+        onClick={handleClickPlay}
+      >
+        Play
+      </Button>
+      <Menu
+        anchorEl={anchorElPlay}
+        open={Boolean(anchorElPlay)}
+        onClose={handleClosePlay}
+      >
+        <MenuItem
+          id="MainButtons-play-MenuItem-computer"
+          onClick={() => {
+            dispatch(playComputerDialog.open());
+            handleClosePlay();
+          }}
+        >
+          <SmartToyIcon size="small" />&nbsp;Play Computer
+        </MenuItem>
+        <Divider />
+        <MenuItem
+          id="MainButtons-play-MenuItem-friend"
+          onClick={() => {
+            dispatch(createInviteCodeDialog.open());
+            handleClosePlay();
+          }}
+        >
+          <PersonIcon size="small" />&nbsp;Play a Friend
+        </MenuItem>
+        <MenuItem
+          id="MainButtons-play-MenuItem-enter-invite-code"
+          onClick={() => {
+            dispatch(enterInviteCodeDialog.open());
+            handleClosePlay();
+          }}
+        >
+          <KeyboardIcon size="small" />&nbsp;Enter Invite Code
+        </MenuItem>
+        <Divider />
+        <MenuItem
+          id="MainButtons-play-MenuItem-online"
+          onClick={() => {
+            dispatch(playOnlineDialog.open());
+            handleClosePlay();
+          }}
+        >
+          <LanguageIcon size="small" />&nbsp;Play Online
         </MenuItem>
       </Menu>
       <Button

@@ -87,7 +87,7 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    dispatch(mainButtons.setPlayAFriend());
+    dispatch(mainButtons.setPlay());
     let settings = {
       min: fields.minutes,
       increment: fields.increment,
