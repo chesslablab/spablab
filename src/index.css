@@ -58,7 +58,7 @@
 .sq span.file {
   position: absolute;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-right: 0.15rem;
   margin-bottom: 0.15rem;
   bottom: 0;
@@ -68,7 +68,7 @@
 .sq span.rank {
   position: absolute;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-left: 0.15rem;
   margin-top: 0.15rem;
   top: 0;
