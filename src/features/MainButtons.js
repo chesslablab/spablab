@@ -246,6 +246,7 @@ const MainButtons = ({props}) => {
         <MenuItem
           id="MainButtons-play-MenuItem-online"
           onClick={() => {
+            WsAction.onlineGames();
             dispatch(playOnlineDialog.open());
             handleClosePlay();
           }}
