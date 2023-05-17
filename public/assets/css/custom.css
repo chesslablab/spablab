@@ -63,6 +63,11 @@ h3 {
 h4 {
   font-size: 1.5rem;
   color: #202020;
+  margin-bottom: 1rem;
+}
+
+p, ol, ul {
+  line-height: 1.65rem;
 }
 
 main > h2 {
@@ -97,7 +102,7 @@ section h2 {
 
 code {
   background: #f0efed;
-  padding: 0.25rem;
+  padding: 0.22rem;
   color: #000000;
 }
 
