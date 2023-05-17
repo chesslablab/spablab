@@ -125,7 +125,8 @@ details {
   padding: .7rem 1rem;
 }
 
-article img {
+article img,
+details img {
   max-width: 100%;
   height: auto;
 }
