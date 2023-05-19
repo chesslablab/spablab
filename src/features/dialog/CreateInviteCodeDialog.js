@@ -33,7 +33,7 @@ const CreateInviteCodeDialog = () => {
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.mode.play && state.mode.play.hash ? <CopyCode /> : <CreateCode />}
+      {state.mode.play?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
