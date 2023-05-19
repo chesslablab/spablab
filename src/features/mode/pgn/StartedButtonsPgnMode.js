@@ -19,6 +19,7 @@ const StartedButtonsPgnMode = () => {
         >
           <Button
             id="StartedButtonsPgnMode-Button-undoMove"
+            disabled={state.history.back !== 0}
             onClick={() => WsAction.undo()}
           >
             Undo move

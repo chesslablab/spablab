@@ -53,6 +53,7 @@ import * as searchMovetextDialog from 'features/dialog/searchMovetextDialogSlice
 import * as searchNameDialog from 'features/dialog/searchNameDialogSlice';
 import * as settingsDialog from 'features/dialog/settingsDialogSlice';
 import * as modeConst from 'features/mode/modeConst';
+import * as mode from 'features/mode/modeSlice';
 import * as variantConst from 'features/variant/variantConst';
 import WsAction from 'features/ws/WsAction';
 
@@ -227,6 +228,7 @@ const MainButtons = ({props}) => {
         <MenuItem
           id="MainButtons-play-MenuItem-friend"
           onClick={() => {
+            dispatch(mode.setPlay({}));
             dispatch(createInviteCodeDialog.open());
             handleClosePlay();
           }}
