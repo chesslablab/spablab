@@ -6,8 +6,6 @@ React Chess is "just a chessboard" as lightweight as it can possibly be. It is c
 
 Check out [this demo](https://www.chesslablab.com/).
 
-![Figure 1](/public/assets/img/demo.png)
-
 ### Install and Setup
 
 Make sure that both the chess server and the API are set up properly as per the [`src/App.js`](https://github.com/chesslablab/react-chess/blob/master/src/App.js) file.

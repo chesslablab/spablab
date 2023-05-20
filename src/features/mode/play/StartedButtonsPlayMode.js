@@ -14,6 +14,7 @@ const StartedButtonsPlayMode = () => {
     if (state.mode.play.accepted) {
       if (
         !state.board.isMate &&
+        !state.board.isStalemate &&
         !state.mode.play.draw &&
         !state.mode.play.resign &&
         !state.mode.play.leave &&

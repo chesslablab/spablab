@@ -71,12 +71,7 @@ export default class WsEvent {
   static onStartPgn = (data) => dispatch => {
     if (data['/start'].movetext) {
       dispatch(mode.startPgn());
-      dispatch(board.startPgn({
-        turn: data['/start'].turn,
-        movetext: data['/start'].movetext,
-        fen: data['/start'].fen,
-        history: data['/start'].history
-      }));
+      dispatch(board.startPgn(data['/start']));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(variant.startClassical());
         Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
@@ -235,15 +230,8 @@ export default class WsEvent {
   }
 
   static onPlayLan = (props, data) => dispatch => {
-    const payload = {
-      isCheck: data['/play_lan'].isCheck,
-      isMate: data['/play_lan'].isMate,
-      movetext: data['/play_lan'].movetext,
-      fen: data['/play_lan'].fen,
-      turn: data['/play_lan'].turn
-    };
     if (data['/play_lan'].isLegal) {
-      dispatch(board.validMove(payload));
+      dispatch(board.validMove(data['/play_lan']));
       if (store.getState().mode.name === modeConst.PLAY) {
         if (store.getState().mode.play.color !== data['/play_lan'].turn) {
           dispatch(board.playLan({
@@ -254,7 +242,7 @@ export default class WsEvent {
         store.getState().variant.name === variantConst.CLASSICAL &&
         store.getState().mode.name === modeConst.ANALYSIS
       ) {
-        Dispatcher.openingAnalysisByMovetext(dispatch, payload.movetext);
+        Dispatcher.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
       } else if (
         store.getState().variant.name === variantConst.CLASSICAL &&
         store.getState().mode.name === modeConst.GM
@@ -441,15 +429,11 @@ export default class WsEvent {
   static onStockfish = (data) => dispatch => {
     if (data['/stockfish']) {
       dispatch(board.stockfish({
-        turn: data['/stockfish'].state.turn,
-        isCheck: data['/stockfish'].state.isCheck,
-        isMate: data['/stockfish'].state.isMate,
-        movetext: data['/stockfish'].state.movetext,
-        fen: data['/stockfish'].state.fen,
+        ...data['/stockfish'],
         piecePlaced: { event: eventConst.ON_STOCKFISH }
       }));
       WsAction.heuristicsBar();
-      Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].state.movetext);
+      Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].movetext);
     }
   }
 
