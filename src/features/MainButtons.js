@@ -124,7 +124,8 @@ const MainButtons = ({props}) => {
     !state.mode.play.resign &&
     !state.mode.play.leave &&
     !state.mode.play.timer.over &&
-    !state.board.isMate;
+    !state.board.isMate &&
+    !state.board.isStalemate;
 
   return (
     <ButtonGroup

@@ -15,6 +15,7 @@ const Squares = ({props}) => {
       if (
         !state.mode.play.accepted ||
         state.board.isMate ||
+        state.board.isStalemate ||
         state.mode.play.draw ||
         state.mode.play.resign ||
         state.mode.play.leave ||
@@ -31,6 +32,7 @@ const Squares = ({props}) => {
     } else if (state.mode.name !== modeConst.UNDEFINED) {
       if (
         state.board.isMate ||
+        state.board.isStalemate ||
         state.history.back !== 0
       ) {
         return false;

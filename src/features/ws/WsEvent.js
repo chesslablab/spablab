@@ -238,6 +238,7 @@ export default class WsEvent {
     const payload = {
       isCheck: data['/play_lan'].isCheck,
       isMate: data['/play_lan'].isMate,
+      isStalemate: data['/play_lan'].isStalemate,
       movetext: data['/play_lan'].movetext,
       fen: data['/play_lan'].fen,
       turn: data['/play_lan'].turn
@@ -444,6 +445,7 @@ export default class WsEvent {
         turn: data['/stockfish'].state.turn,
         isCheck: data['/stockfish'].state.isCheck,
         isMate: data['/stockfish'].state.isMate,
+        isStalemate: data['/stockfish'].state.isStalemate,
         movetext: data['/stockfish'].state.movetext,
         fen: data['/stockfish'].state.fen,
         piecePlaced: { event: eventConst.ON_STOCKFISH }

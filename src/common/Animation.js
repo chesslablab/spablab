@@ -16,7 +16,10 @@ export default class Animation {
         store.getState().board?.piecePlaced?.event === eventConst.ON_STOCKFISH ||
         store.getState().board?.piecePlaced?.event === eventConst.ON_PLAY_LAN
       ) {
-        if (!store.getState().board.isMate) {
+        if (
+          !store.getState().board.isMate &&
+          !store.getState().board.isStalemate
+        ) {
           const fromFen = store.getState().board.fen[store.getState().board.fen.length - 2].split(' ');
           const toFen = store.getState().board.fen[store.getState().board.fen.length - 1].split(' ');
 

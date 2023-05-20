@@ -6,6 +6,7 @@ const initialState = {
   turn: Pgn.symbol.WHITE,
   isCheck: false,
   isMate: false,
+  isStalemate: false,
   fen: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'],
   flip: Pgn.symbol.WHITE,
   size: {
@@ -91,6 +92,7 @@ const boardSlice = createSlice({
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
+      state.isStalemate = action.payload.isStalemate;
       state.movetext = action.payload.movetext;
       delete state.lan;
       delete state.pieceGrabbed;
@@ -99,6 +101,7 @@ const boardSlice = createSlice({
     validMove(state, action) {
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
+      state.isStalemate = action.payload.isStalemate;
       state.movetext = action.payload.movetext;
       if (state.turn === action.payload.turn) {
         const newFen = JSON.parse(JSON.stringify(state.fen));
@@ -115,6 +118,7 @@ const boardSlice = createSlice({
       state.turn = action.payload.turn;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
+      state.isStalemate = action.payload.isStalemate;
       state.piecePlaced = action.payload.piecePlaced;
       state.movetext = action.payload.movetext;
       delete state.lan;

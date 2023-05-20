@@ -13,6 +13,7 @@ const FinishedButtonsPlayMode = () => {
     if (state.mode.play.accepted) {
       if (
         state.board.isMate ||
+        state.board.isStalemate ||
         state.mode.play.draw === Wording.verb.ACCEPT.toLowerCase() ||
         state.mode.play.resign === Wording.verb.ACCEPT.toLowerCase() ||
         state.mode.play.timer.over
