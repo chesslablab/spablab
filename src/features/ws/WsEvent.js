@@ -71,12 +71,7 @@ export default class WsEvent {
   static onStartPgn = (data) => dispatch => {
     if (data['/start'].movetext) {
       dispatch(mode.startPgn());
-      dispatch(board.startPgn({
-        turn: data['/start'].turn,
-        movetext: data['/start'].movetext,
-        fen: data['/start'].fen,
-        history: data['/start'].history
-      }));
+      dispatch(board.startPgn(data['/start']));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(variant.startClassical());
         Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
