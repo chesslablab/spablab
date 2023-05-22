@@ -59,7 +59,7 @@ const PlayOnlineTable = () => {
   const handlePlay = (hash) => {
     dispatch(mainButtons.setPlay());
     WsAction.accept(hash);
-    dispatch(mode.startAnalysis());
+    dispatch(mode.startFen());
     dispatch(playOnlineDialog.close());
   };
 

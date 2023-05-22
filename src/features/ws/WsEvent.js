@@ -24,27 +24,6 @@ import * as variant from 'features/variant/variantSlice';
 import WsAction from 'features/ws/WsAction';
 
 export default class WsEvent {
-  static onStartAnalysis = (data) => dispatch => {
-    dispatch(mode.startAnalysis());
-    if (data['/start'].variant === variantConst.CHESS_960) {
-      dispatch(board.startChess960({ fen: data['/start'].fen }));
-      dispatch(variant.startChess960({
-        fen: data['/start'].fen,
-        startPos: data['/start'].startPos
-      }));
-    } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
-      dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
-      dispatch(variant.startCapablanca80());
-    }
-  }
-
-  static onStartGm = (data) => dispatch => {
-    dispatch(mode.setGm({
-      color: data['/start'].color,
-      movetext: null
-    }));
-  }
-
   static onStartFen = (data) => dispatch => {
     if (data['/start'].fen) {
       dispatch(mode.setFen({ fen: data['/start'].fen }));
@@ -66,6 +45,13 @@ export default class WsEvent {
         info: 'Invalid FEN, please try again with a different one.'
       }));
     }
+  }
+
+  static onStartGm = (data) => dispatch => {
+    dispatch(mode.setGm({
+      color: data['/start'].color,
+      movetext: null
+    }));
   }
 
   static onStartPgn = (data) => dispatch => {
@@ -154,12 +140,10 @@ export default class WsEvent {
 
   static onStart = (data) => dispatch => {
     dispatch(progressDialog.close());
-    if (data['/start'].mode === modeConst.ANALYSIS) {
-      dispatch(WsEvent.onStartAnalysis(data));
+    if (data['/start'].mode === modeConst.FEN) {
+      dispatch(WsEvent.onStartFen(data));
     } else if (data['/start'].mode === modeConst.GM) {
       dispatch(WsEvent.onStartGm(data));
-    } else if (data['/start'].mode === modeConst.FEN) {
-      dispatch(WsEvent.onStartFen(data));
     } else if (data['/start'].mode === modeConst.PGN) {
       dispatch(WsEvent.onStartPgn(data));
     } else if (data['/start'].mode === modeConst.PLAY) {
@@ -240,7 +224,7 @@ export default class WsEvent {
         }
       } else if (
         store.getState().variant.name === variantConst.CLASSICAL &&
-        store.getState().mode.name === modeConst.ANALYSIS
+        store.getState().mode.name === modeConst.FEN
       ) {
         Dispatcher.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
       } else if (
@@ -343,7 +327,7 @@ export default class WsEvent {
     dispatch(board.undo(data['/undo']));
     if (data['/undo'].mode === modeConst.PLAY) {
       dispatch(mode.declineTakeback());
-    } else if (data['/undo'].mode === modeConst.ANALYSIS) {
+    } else if (data['/undo'].mode === modeConst.FEN) {
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
       WsAction.heuristicsBar();
     }

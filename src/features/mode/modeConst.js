@@ -1,15 +1,13 @@
-const ANALYSIS = 'analysis';
-const GM = 'gm';
 const FEN = 'fen';
+const GM = 'gm';
 const PGN = 'pgn';
 const PLAY = 'play';
 const STOCKFISH = 'stockfish';
 const UNDEFINED = 'undefined';
 
 export {
-  ANALYSIS,
-  GM,
   FEN,
+  GM,
   PGN,
   PLAY,
   STOCKFISH,

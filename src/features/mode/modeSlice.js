@@ -3,14 +3,15 @@ import * as modeConst from 'features/mode/modeConst';
 import Wording from 'common/Wording.js';
 
 const initialState = {
-  name: modeConst.ANALYSIS
+  name: modeConst.FEN,
+  fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'
 };
 
 const modeSlice = createSlice({
   name: 'mode',
   initialState,
   reducers: {
-    startAnalysis: () => initialState,
+    startFen: () => initialState,
     startPgn: (state) => {
       state.name = modeConst.PGN;
     },
@@ -87,7 +88,7 @@ const modeSlice = createSlice({
 });
 
 export const {
-  startAnalysis,
+  startFen,
   startPgn,
   startUndefined,
   setFen,
