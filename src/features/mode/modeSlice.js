@@ -3,8 +3,7 @@ import * as modeConst from 'features/mode/modeConst';
 import Wording from 'common/Wording.js';
 
 const initialState = {
-  name: modeConst.FEN,
-  fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'
+  name: modeConst.FEN
 };
 
 const modeSlice = createSlice({

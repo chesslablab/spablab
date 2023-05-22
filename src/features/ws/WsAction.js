@@ -24,7 +24,7 @@ export default class WsAction {
   }
 
   static startOff = async () => {
-    return await store.getState().server.ws.send('/start classical fen "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -"');
+    return await store.getState().server.ws.send('/start classical fen');
   }
 
   static start = async (variant, mode, settings = {}) => {
