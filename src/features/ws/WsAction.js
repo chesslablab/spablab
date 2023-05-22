@@ -24,7 +24,7 @@ export default class WsAction {
   }
 
   static startOff = async () => {
-    return await store.getState().server.ws.send('/start classical analysis');
+    return await store.getState().server.ws.send('/start classical fen');
   }
 
   static start = async (variant, mode, settings = {}) => {
@@ -32,8 +32,6 @@ export default class WsAction {
     if (Object.keys(settings).length > 0) {
       if (mode === modeConst.GM) {
         mssg += ` "${settings.color}"`;
-      } else if (mode === modeConst.FEN && variant === variantConst.CLASSICAL) {
-        mssg += ` "${settings.fen}"`;
       } else if (mode === modeConst.FEN && variant === variantConst.CAPABLANCA_80) {
         mssg += ` "${settings.fen}"`;
       } else if (mode === modeConst.FEN && variant === variantConst.CHESS_960) {

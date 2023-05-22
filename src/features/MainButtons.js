@@ -155,7 +155,7 @@ const MainButtons = ({props}) => {
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
-            WsAction.start(variantConst.CLASSICAL, modeConst.ANALYSIS);
+            WsAction.startOff();
             handleCloseAnalysis();
           }}
         >
@@ -166,7 +166,7 @@ const MainButtons = ({props}) => {
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
-            WsAction.start(variantConst.CHESS_960, modeConst.ANALYSIS);
+            WsAction.start(variantConst.CHESS_960, modeConst.FEN);
             handleCloseAnalysis();
           }}
         >
@@ -177,7 +177,7 @@ const MainButtons = ({props}) => {
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
-            WsAction.start(variantConst.CAPABLANCA_80, modeConst.ANALYSIS);
+            WsAction.start(variantConst.CAPABLANCA_80, modeConst.FEN);
             handleCloseAnalysis();
           }}
         >

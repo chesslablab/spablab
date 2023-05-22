@@ -30,7 +30,7 @@ const EnterInviteCodeDialog = () => {
 
   const handlePlay = () => {
     dispatch(mainButtons.setPlay());
-    dispatch(mode.startAnalysis());
+    dispatch(mode.startFen());
     dispatch(enterInviteCodeDialog.close());
     WsAction.accept(fields.hash);
   };
