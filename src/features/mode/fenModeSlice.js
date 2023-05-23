@@ -6,7 +6,12 @@ const initialState = {
   active: false,
   name: modeConst.FEN,
   variant: variantConst.CLASSICAL,
-  fen: ''
+  fen: '',
+  dialogs: {
+    loadFen: {
+      open: false,
+    },
+  },
 };
 
 const fenModeSlice = createSlice({
@@ -18,12 +23,16 @@ const fenModeSlice = createSlice({
       state.active = true;
       state.variant = action.payload.variant;
       state.fen = action.payload.fen;
-    }
+    },
+    loadFenDialog(state, action) {
+      state.dialogs.loadFen = action.payload;
+    },
   }
 });
 
 export const {
   start,
-  set
+  set,
+  loadFenDialog
 } = fenModeSlice.actions;
 export default fenModeSlice.reducer;

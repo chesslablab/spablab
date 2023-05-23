@@ -6,7 +6,28 @@ const initialState = {
   active: false,
   name: modeConst.PGN,
   variant: variantConst.CLASSICAL,
-  fen: ''
+  fen: '',
+  dialogs: {
+    loadPgn: {
+      open: false,
+    },
+    searchEco: {
+      open: false,
+    },
+    searchGames: {
+      open: false,
+      autocomplete: {
+        events: [],
+        players: [],
+      },
+    },
+    searchMovetext: {
+      open: false,
+    },
+    searchName: {
+      open: false,
+    },
+  },
 };
 
 const pgnModeSlice = createSlice({
@@ -17,12 +38,32 @@ const pgnModeSlice = createSlice({
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
-    }
+    },
+    loadPgnDialog(state, action) {
+      state.dialogs.loadPgn = action.payload;
+    },
+    searchEcoDialog(state, action) {
+      state.dialogs.searchEco = action.payload;
+    },
+    searchGamesDialog(state, action) {
+      state.dialogs.searchGames = action.payload;
+    },
+    searchMovetextDialog(state, action) {
+      state.dialogs.searchMovetext = action.payload;
+    },
+    searchNameDialog(state, action) {
+      state.dialogs.searchName = action.payload;
+    },
   }
 });
 
 export const {
   start,
-  set
+  set,
+  loadPgnDialog,
+  searchEcoDialog,
+  searchGamesDialog,
+  searchMovetextDialog,
+  searchNameDialog
 } = pgnModeSlice.actions;
 export default pgnModeSlice.reducer;
