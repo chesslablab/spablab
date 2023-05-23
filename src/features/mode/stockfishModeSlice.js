@@ -6,6 +6,7 @@ const initialState = {
   active: false,
   name: modeConst.STOCKFISH,
   variant: variantConst.CLASSICAL,
+  fen: '',
   computer: {}
 };
 
