@@ -14,11 +14,11 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import * as mainButtons from 'features/navSlice';
-import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
-import SelectColorButtons from 'features/dialog/SelectColorButtons';
+import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
+import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 
 const CreateInviteCodeDialog = () => {
@@ -29,7 +29,7 @@ const CreateInviteCodeDialog = () => {
     <Dialog open={state.createInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play a Friend
-        <IconButton onClick={() => dispatch(createInviteCodeDialog.close())}>
+        <IconButton onClick={() => dispatch(playMode.createInviteCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
@@ -87,7 +87,7 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    dispatch(mainButtons.setPlay());
+    dispatch(nav.setPlay());
     let settings = {
       min: fields.minutes,
       increment: fields.increment,
@@ -219,7 +219,7 @@ const CopyCode = () => {
         variant="outlined"
         onClick={() => {
           navigator.clipboard.writeText(state.mode.play.hash);
-          dispatch(createInviteCodeDialog.close());
+          dispatch(playMode.createInviteCodeDialog({ open: false }));
       }}>
         Copy and Play
       </Button>

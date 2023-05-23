@@ -15,11 +15,10 @@ import {
 } from '@mui/material';
 import Pgn from 'common/Pgn';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/navSlice';
-import * as playComputerDialog from 'features/dialog/playComputerDialogSlice';
-import SelectColorButtons from 'features/dialog/SelectColorButtons';
+import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
-import * as mode from 'features/mode/modeSlice';
+import * as stockfishMode from 'features/mode/stockfishModeSlice';
+import * as nav from 'features/nav/navSlice';
 import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
 
@@ -51,9 +50,9 @@ const PlayComputerDialog = () => {
         color: color
       });
     }
-    dispatch(mode.setStockfish(payload));
-    dispatch(mainButtons.setPlay());
-    dispatch(playComputerDialog.close());
+    dispatch(stockfishMode.set(payload));
+    dispatch(nav.setPlay());
+    dispatch(stockfishMode.playComputerDialog({ open: false }));
     Dispatcher.initGui(dispatch);
   };
 
@@ -106,7 +105,7 @@ const PlayComputerDialog = () => {
     <Dialog open={state.playComputerDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play Computer
-        <IconButton onClick={() => dispatch(playComputerDialog.close())}>
+        <IconButton onClick={() => dispatch(stockfishMode.playComputerDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>

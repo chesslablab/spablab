@@ -11,8 +11,8 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
 import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 
 const CreateInboxCodeDialog = () => {
@@ -23,7 +23,7 @@ const CreateInboxCodeDialog = () => {
     <Dialog open={state.createInboxCodeDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Play a Friend
-        <IconButton onClick={() => dispatch(createInboxCodeDialog.close())}>
+        <IconButton onClick={() => dispatch(nav.createInboxCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
@@ -152,7 +152,7 @@ const CopyCode = () => {
         variant="outlined"
         onClick={() => {
           navigator.clipboard.writeText(state.createInboxCodeDialog.inbox.hash);
-          dispatch(createInboxCodeDialog.close());
+          dispatch(nav.createInboxCodeDialog({ open: false }));
       }}>
         Copy Inbox Code
       </Button>

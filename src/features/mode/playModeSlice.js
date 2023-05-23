@@ -54,7 +54,7 @@ const playModeSlice = createSlice({
       state.variant = action.payload.variant;
       state.fen =  action.payload.fen;
       state.startPos =  action.payload.startPos;
-      state.play = action.payload;
+      state.play = action.payload.play;
     },
     acceptPlay(state) {
       const expiryTimestamp = new Date();

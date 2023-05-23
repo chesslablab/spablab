@@ -9,9 +9,8 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import * as mainButtons from 'features/navSlice';
-import * as enterInviteCodeDialog from 'features/dialog/enterInviteCodeDialogSlice';
-import * as mode from 'features/mode/modeSlice';
+import * as playMode from 'features/mode/playModeSlice';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 
 const EnterInviteCodeDialog = () => {
@@ -29,9 +28,9 @@ const EnterInviteCodeDialog = () => {
   };
 
   const handlePlay = () => {
-    dispatch(mainButtons.setPlay());
-    dispatch(mode.startFen());
-    dispatch(enterInviteCodeDialog.close());
+    dispatch(nav.setPlay());
+    dispatch(playMode.start());
+    dispatch(playMode.enterInviteCodeDialog({ open: false }));
     WsAction.accept(fields.hash);
   };
 
@@ -39,7 +38,7 @@ const EnterInviteCodeDialog = () => {
     <Dialog open={state.enterInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Enter Invite Code
-        <IconButton onClick={() => dispatch(enterInviteCodeDialog.close())}>
+        <IconButton onClick={() => dispatch(playMode.enterInviteCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>

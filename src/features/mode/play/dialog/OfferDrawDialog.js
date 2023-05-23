@@ -2,8 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from 'common/Wording.js';
-import * as offerDrawDialog from 'features/dialog/offerDrawDialogSlice';
-import * as mode from 'features/mode/modeSlice';
+import * as playMode from 'features/mode/playModeSlice';
 import WsAction from 'features/ws/WsAction';
 
 const OfferDrawDialog = () => {
@@ -13,8 +12,8 @@ const OfferDrawDialog = () => {
   const handleDrawOffer = (event) => {
     event.preventDefault();
     WsAction.draw(Wording.verb.PROPOSE.toLowerCase());
-    dispatch(mode.proposeDraw());
-    dispatch(offerDrawDialog.close());
+    dispatch(playMode.proposeDraw());
+    dispatch(playMode.offerDrawDialog({ open: false }));
   };
 
   return (
@@ -24,7 +23,7 @@ const OfferDrawDialog = () => {
         <form onSubmit={handleDrawOffer}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(offerDrawDialog.close())}>
+            <Button onClick={() => dispatch(playMode.offerDrawDialog({ open: false }))}>
               Cancel
             </Button>
           </DialogActions>

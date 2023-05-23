@@ -14,12 +14,11 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import * as mainButtons from 'features/navSlice';
-import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
-import SelectColorButtons from 'features/dialog/SelectColorButtons';
-import * as modeConst from 'features/mode/modeConst';
-import PlayOnlineTable from 'features/table/PlayOnlineTable';
+import PlayOnlineTable from 'features/mode/play/table/PlayOnlineTable';
+import * as playMode from 'features/mode/playModeSlice';
+import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 
 const PlayOnlineDialog = () => {
@@ -55,8 +54,8 @@ const PlayOnlineDialog = () => {
   };
 
   const handleCreateGame = () => {
-    dispatch(playOnlineDialog.close());
-    dispatch(mainButtons.setPlay());
+    dispatch(playMode.playOnlineDialog({ open: false }));
+    dispatch(nav.setPlay());
     WsAction.start(fields.variant, modeConst.PLAY, {
       settings: {
         min: fields.minutes,
@@ -73,7 +72,7 @@ const PlayOnlineDialog = () => {
     <Dialog open={state.playOnlineDialog.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Play Online
-        <IconButton onClick={() => dispatch(playOnlineDialog.close())}>
+        <IconButton onClick={() => dispatch(playMode.playOnlineDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>

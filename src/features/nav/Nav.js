@@ -31,31 +31,16 @@ import Dispatcher from 'common/Dispatcher';
 import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
 import * as navConst from 'features/nav/navConst';
-import * as mainButtons from 'features/navSlice';
+import * as nav from 'features/nav/navSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import * as checkmateSkillsDialog from 'features/dialog/checkmateSkillsDialogSlice';
-import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
-import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
-import * as endgameSkillsDialog from 'features/dialog/endgameSkillsDialogSlice';
-import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
-import * as enterInviteCodeDialog from 'features/dialog/enterInviteCodeDialogSlice';
-import * as eventsStatsDialog from 'features/dialog/eventsStatsDialogSlice';
-import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
-import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
-import * as openingsStatsDialog from 'features/dialog/openingsStatsDialogSlice';
-import * as playComputerDialog from 'features/dialog/playComputerDialogSlice';
-import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
-import * as playersStatsDialog from 'features/dialog/playersStatsDialogSlice';
-import * as progressDialog from 'features/progressDialogSlice';
-import * as searchEcoDialog from 'features/dialog/searchEcoDialogSlice';
-import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
-import * as searchMovetextDialog from 'features/dialog/searchMovetextDialogSlice';
-import * as searchNameDialog from 'features/dialog/searchNameDialogSlice';
-import * as settingsDialog from 'features/dialog/settingsDialogSlice';
+import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
+import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as playMode from 'features/mode/playModeSlice';
+import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
-import * as mode from 'features/mode/modeSlice';
 import WsAction from 'features/ws/WsAction';
+import * as progressDialog from 'features/progressDialogSlice';
 
 const Nav = ({props}) => {
   const state = useSelector(state => state);
@@ -153,7 +138,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startClassical"
           onClick={() => {
-            dispatch(mainButtons.setAnalysis());
+            dispatch(nav.setAnalysis());
             Dispatcher.initGui(dispatch);
             WsAction.startOff();
             handleCloseAnalysis();
@@ -164,7 +149,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startFischerRandom960"
           onClick={() => {
-            dispatch(mainButtons.setAnalysis());
+            dispatch(nav.setAnalysis());
             Dispatcher.initGui(dispatch);
             WsAction.start(variantConst.CHESS_960, modeConst.FEN);
             handleCloseAnalysis();
@@ -175,7 +160,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startCapablanca"
           onClick={() => {
-            dispatch(mainButtons.setAnalysis());
+            dispatch(nav.setAnalysis());
             Dispatcher.initGui(dispatch);
             WsAction.start(variantConst.CAPABLANCA_80, modeConst.FEN);
             handleCloseAnalysis();
@@ -187,7 +172,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-analysisBoard-MenuItem-pgnMovetext"
           onClick={() => {
-            dispatch(loadPgnDialog.open());
+            dispatch(pgnMode.loadPgnDialog({ open: true }));
             handleCloseAnalysis();
           }}
         >
@@ -196,7 +181,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-analysisBoard-MenuItem-fenString"
           onClick={() => {
-            dispatch(loadFenDialog.open());
+            dispatch(fenMode.loadFenDialog({ open: true }));
             handleCloseAnalysis();
           }}
         >
@@ -219,7 +204,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-play-MenuItem-computer"
           onClick={() => {
-            dispatch(playComputerDialog.open());
+            dispatch(stockfishMode.playComputerDialog({ open: true }));
             handleClosePlay();
           }}
         >
@@ -229,8 +214,8 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-play-MenuItem-friend"
           onClick={() => {
-            dispatch(mode.setPlay({}));
-            dispatch(createInviteCodeDialog.open());
+            dispatch(playMode.set({ play: {} }));
+            dispatch(playMode.createInviteCodeDialog({ open: true }));
             handleClosePlay();
           }}
         >
@@ -239,7 +224,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-play-MenuItem-enter-invite-code"
           onClick={() => {
-            dispatch(enterInviteCodeDialog.open());
+            dispatch(playMode.enterInviteCodeDialog({ open: true }));
             handleClosePlay();
           }}
         >
@@ -250,7 +235,7 @@ const Nav = ({props}) => {
           id="Nav-play-MenuItem-online"
           onClick={() => {
             WsAction.onlineGames();
-            dispatch(playOnlineDialog.open());
+            dispatch(playMode.playOnlineDialog({ open: true }));
             handleClosePlay();
           }}
         >
@@ -273,7 +258,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-openingSearch-MenuItem-ecoCode"
           onClick={() => {
-            dispatch(searchEcoDialog.open());
+            dispatch(pgnMode.searchEcoDialog({ open: true }));
             handleCloseOpeningSearch();
           }}
         >
@@ -282,7 +267,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-openingSearch-MenuItem-pgnMovetext"
           onClick={() => {
-            dispatch(searchMovetextDialog.open());
+            dispatch(pgnMode.searchMovetextDialog({ open: true }));
             handleCloseOpeningSearch();
           }
         }>
@@ -291,7 +276,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-openingSearch-MenuItem-name"
           onClick={() => {
-            dispatch(searchNameDialog.open());
+            dispatch(pgnMode.searchNameDialog({ open: true }));
             handleCloseOpeningSearch();
           }}
         >
@@ -319,7 +304,7 @@ const Nav = ({props}) => {
               .then(res => {
                 if (res.status === 200) {
                   res.json().then(data => {
-                    dispatch(searchGamesDialog.setAutocomplete(data));
+                    dispatch(pgnMode.searchGamesDialog({ open: true, autocomplete: data }));
                   });
                 } else {
                   dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
@@ -327,7 +312,7 @@ const Nav = ({props}) => {
               })
               .finally(() => {
                 dispatch(progressDialog.close());
-                dispatch(searchGamesDialog.open());
+                dispatch(pgnMode.searchGamesDialog({ open: true }));
                 handleCloseDatabase();
               });
           }}
@@ -343,7 +328,7 @@ const Nav = ({props}) => {
               .then(res => {
                 if (res.status === 200) {
                   res.json().then(data => {
-                    dispatch(openingsStatsDialog.setStats(data));
+                    dispatch(nav.openingsStatsDialog({ open: true, stats: data }));
                   });
                 } else {
                   dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
@@ -351,7 +336,7 @@ const Nav = ({props}) => {
               })
               .finally(() => {
                 dispatch(progressDialog.close());
-                dispatch(openingsStatsDialog.open());
+                dispatch(nav.openingsStatsDialog({ open: true }));
                 handleCloseDatabase();
               });
           }}
@@ -366,7 +351,7 @@ const Nav = ({props}) => {
               .then(res => {
                 if (res.status === 200) {
                   res.json().then(data => {
-                    dispatch(playersStatsDialog.setAutocomplete(data));
+                    dispatch(nav.playersStatsDialog({ open: true, autocomplete: data }));
                   });
                 } else {
                   dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
@@ -374,7 +359,7 @@ const Nav = ({props}) => {
               })
               .finally(() => {
                 dispatch(progressDialog.close());
-                dispatch(playersStatsDialog.open());
+                dispatch(nav.playersStatsDialog({ open: true }));
                 handleCloseDatabase();
               });
           }}
@@ -389,7 +374,7 @@ const Nav = ({props}) => {
               .then(res => {
                 if (res.status === 200) {
                   res.json().then(data => {
-                    dispatch(eventsStatsDialog.setAutocomplete(data));
+                    dispatch(nav.eventsStatsDialog({ open: true, autocomplete: data }));
                   });
                 } else {
                   dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
@@ -397,7 +382,7 @@ const Nav = ({props}) => {
               })
               .finally(() => {
                 dispatch(progressDialog.close());
-                dispatch(eventsStatsDialog.open());
+                dispatch(nav.eventsStatsDialog({ open: true }));
                 handleCloseDatabase();
               });
           }}
@@ -421,7 +406,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-training-MenuItem-guessTheMove"
           onClick={() => {
-            dispatch(mainButtons.setTraining());
+            dispatch(nav.setTraining());
             Dispatcher.initGui(dispatch);
             WsAction.start(variantConst.CLASSICAL, modeConst.GM, {
               color: Pgn.symbol.WHITE
@@ -434,7 +419,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-training-MenuItem-endgameSkills"
           onClick={() => {
-            dispatch(endgameSkillsDialog.open());
+            dispatch(stockfishMode.endgameSkillsDialog({ open: true }));
             handleCloseTraining();
           }}
         >
@@ -443,7 +428,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-training-MenuItem-checkmateSkills"
           onClick={() => {
-            dispatch(checkmateSkillsDialog.open());
+            dispatch(stockfishMode.checkmateSkillsDialog({ open: true }));
             handleCloseTraining();
           }}
         >
@@ -466,7 +451,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-inbox-MenuItem-inviteFriend"
           onClick={() => {
-            dispatch(createInboxCodeDialog.open());
+            dispatch(nav.createInboxCodeDialog({ open: true }));
             handleCloseCorrespondence();
           }}
         >
@@ -475,8 +460,8 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-training-MenuItem-endgameSkills"
           onClick={() => {
-            dispatch(enterInboxCodeDialog.close());
-            dispatch(enterInboxCodeDialog.open());
+            dispatch(nav.enterInboxCodeDialog({ open: false }));
+            dispatch(nav.enterInboxCodeDialog({ open: true }));
             handleCloseCorrespondence();
           }}
         >
@@ -488,7 +473,7 @@ const Nav = ({props}) => {
         sx={{ borderRadius: 0 }}
         variant={state.mainButtons.name === navConst.SETTINGS ? "contained" : "text"}
         startIcon={<SettingsIcon />}
-        onClick={() => dispatch(settingsDialog.open())}
+        onClick={() => dispatch(nav.settingsDialog({ open: true }))}
       >
         Settings
       </Button>

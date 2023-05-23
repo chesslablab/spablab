@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from 'common/Wording.js';
-import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
+import * as playMode from 'features/mode/playModeSlice';
 import WsAction from 'features/ws/WsAction';
 
 const AcceptRematchDialog = () => {
@@ -12,14 +12,14 @@ const AcceptRematchDialog = () => {
   const handleRematchAccept = (event) => {
     event.preventDefault();
     WsAction.rematch(Wording.verb.ACCEPT.toLowerCase());
-    dispatch(acceptRematchDialog.close());
+    dispatch(playMode.acceptRematchDialog({ open: false }));
     WsAction.restart();
   };
 
   const handleRematchDecline = (event) => {
     event.preventDefault();
     WsAction.rematch(Wording.verb.DECLINE.toLowerCase());
-    dispatch(acceptRematchDialog.close());
+    dispatch(playMode.acceptRematchDialog({ open: false }));
   };
 
   return (

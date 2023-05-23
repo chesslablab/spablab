@@ -13,9 +13,9 @@ import {
 } from '@mui/material';
 import Pgn from 'common/Pgn';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/navSlice';
-import * as checkmateSkillsDialog from 'features/dialog/checkmateSkillsDialogSlice';
-import SelectColorButtons from 'features/dialog/SelectColorButtons';
+import SelectColorButtons from 'features/mode/SelectColorButtons';
+import * as stockfishMode from 'features/mode/stockfishModeSlice';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 
 const CheckmateSkillsDialog = () => {
@@ -45,8 +45,8 @@ const CheckmateSkillsDialog = () => {
       : items = {
         [color]: split[0]
       };
-    dispatch(mainButtons.setTraining());
-    dispatch(checkmateSkillsDialog.close());
+    dispatch(nav.setTraining());
+    dispatch(stockfishMode.checkmateSkillsDialog({ open: false }));
     Dispatcher.initGui(dispatch);
     WsAction.randomizer(color, items);
   };
@@ -62,7 +62,7 @@ const CheckmateSkillsDialog = () => {
     <Dialog open={state.checkmateSkillsDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Checkmate skills
-        <IconButton onClick={() => dispatch(checkmateSkillsDialog.close())}>
+        <IconButton onClick={() => dispatch(stockfishMode.checkmateSkillsDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>

@@ -17,10 +17,9 @@ import {
 import wKing from 'assets/img/pieces/png/150/wKing.png';
 import bKing from 'assets/img/pieces/png/150/bKing.png';
 import Pgn from 'common/Pgn';
-import * as mainButtons from 'features/navSlice';
-import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
-import * as mode from 'features/mode/modeSlice';
+import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 
 const styles = {
@@ -57,10 +56,10 @@ const PlayOnlineTable = () => {
   const dispatch = useDispatch();
 
   const handlePlay = (hash) => {
-    dispatch(mainButtons.setPlay());
+    dispatch(nav.setPlay());
     WsAction.accept(hash);
-    dispatch(mode.startFen());
-    dispatch(playOnlineDialog.close());
+    dispatch(playMode.start());
+    dispatch(playMode.playOnlineDialog({ open: false }));
   };
 
   if (state.playOnlineDialog.rows.length > 0) {

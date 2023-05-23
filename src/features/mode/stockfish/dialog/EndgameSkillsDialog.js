@@ -13,9 +13,9 @@ import {
 } from '@mui/material';
 import Pgn from 'common/Pgn';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/navSlice';
-import * as endgameSkillsDialog from 'features/dialog/endgameSkillsDialogSlice';
-import SelectColorButtons from 'features/dialog/SelectColorButtons';
+import SelectColorButtons from 'features/mode/SelectColorButtons';
+import * as stockfishMode from 'features/mode/stockfishModeSlice';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 
 const EndgameSkillsDialog = () => {
@@ -45,8 +45,8 @@ const EndgameSkillsDialog = () => {
       : items = {
         [color]: split[0]
       };
-    dispatch(mainButtons.setTraining());
-    dispatch(endgameSkillsDialog.close());
+    dispatch(nav.setTraining());
+    dispatch(stockfishMode.endgameSkillsDialog({ open: false }));
     Dispatcher.initGui(dispatch);
     WsAction.randomizer(color, items);
   };
@@ -62,7 +62,7 @@ const EndgameSkillsDialog = () => {
     <Dialog open={state.endgameSkillsDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Endgame skills
-        <IconButton onClick={() => dispatch(endgameSkillsDialog.close())}>
+        <IconButton onClick={() => dispatch(stockfishMode.endgameSkillsDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
