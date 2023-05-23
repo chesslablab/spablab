@@ -7,6 +7,7 @@ const initialState = {
   name: modeConst.FEN,
   variant: variantConst.CLASSICAL,
   fen: '',
+  startPos: '',
   dialogs: {
     loadFen: {
       open: false,
@@ -22,7 +23,8 @@ const fenModeSlice = createSlice({
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
-      state.fen = action.payload.fen;
+      state.fen =  action.payload.fen;
+      state.startPos =  action.payload.startPos;
     },
     loadFenDialog(state, action) {
       state.dialogs.loadFen = action.payload;

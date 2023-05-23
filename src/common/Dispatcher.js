@@ -3,7 +3,9 @@ import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as history from 'features/historySlice';
 import * as board from 'features/board/boardSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as fenMode from 'features/mode/fenModeSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as variantConst from 'features/mode/variantConst';
 
 export default class Dispatcher {
   static initGui = (dispatch) => {
@@ -13,6 +15,8 @@ export default class Dispatcher {
     dispatch(infoAlert.close());
     dispatch(history.goTo({ back: 0 }));
     dispatch(board.start());
+    dispatch(fenMode.start());
+    dispatch(fenMode.set({ variant: variantConst.CLASSICAL }));
   };
 
   static openingAnalysisByMovetext = (dispatch, movetext) => {

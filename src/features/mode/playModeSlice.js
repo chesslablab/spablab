@@ -7,6 +7,8 @@ const initialState = {
   active: false,
   name: modeConst.PLAY,
   variant: variantConst.CLASSICAL,
+  fen: '',
+  startPos: '',
   play: {},
   dialogs: {
     acceptDraw: {
@@ -50,6 +52,8 @@ const playModeSlice = createSlice({
     start: () => initialState,
     set(state, action) {
       state.variant = action.payload.variant;
+      state.fen =  action.payload.fen;
+      state.startPos =  action.payload.startPos;
       state.play = action.payload;
     },
     acceptPlay(state) {

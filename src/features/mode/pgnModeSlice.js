@@ -7,6 +7,7 @@ const initialState = {
   name: modeConst.PGN,
   variant: variantConst.CLASSICAL,
   fen: '',
+  startPos: '',
   dialogs: {
     loadPgn: {
       open: false,
@@ -48,6 +49,8 @@ const pgnModeSlice = createSlice({
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
+      state.fen =  action.payload.fen;
+      state.startPos =  action.payload.startPos;
     },
     loadPgnDialog(state, action) {
       state.dialogs.loadPgn = action.payload;

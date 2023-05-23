@@ -10,11 +10,15 @@ const undefinedModeSlice = createSlice({
   name: 'undefinedMode',
   initialState,
   reducers: {
-    start: () => initialState
+    start: () => initialState,
+    set(state) {
+      state.active = true;
+    }
   }
 });
 
 export const {
-  start
+  start,
+  set
 } = undefinedModeSlice.actions;
 export default undefinedModeSlice.reducer;
