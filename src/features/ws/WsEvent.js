@@ -101,7 +101,6 @@ export default class WsEvent {
   static onStartPlay = (data) => dispatch => {
     Dispatcher.initGui(dispatch);
     if (data['/start'].jwt) {
-      dispatch(playMode.start());
       const jwtDecoded = jwt_decode(data['/start'].jwt);
       const play = {
         jwt: data['/start'].jwt,
@@ -119,6 +118,7 @@ export default class WsEvent {
           over: null
         }
       };
+      dispatch(playMode.start());
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(playMode.set({
           variant: variantConst.CLASSICAL,
@@ -192,44 +192,52 @@ export default class WsEvent {
     Dispatcher.initGui(dispatch);
     if (data['/accept'].jwt) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
+      const play = {
+        jwt: data['/accept'].jwt,
+        jwt_decoded: jwt_decode(data['/accept'].jwt),
+        hash: data['/accept'].hash,
+        color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
+        takeback: null,
+        draw: null,
+        resign: null,
+        rematch: null,
+        leave: null,
+        accepted: false,
+        timer: {
+          expiry_timestamp: null,
+          over: null
+        },
+      };
+      dispatch(playMode.start());
       if (jwtDecoded.variant === variantConst.CLASSICAL) {
-        dispatch(variant.startClassical());
+        dispatch(playMode.set({
+          variant: variantConst.CLASSICAL,
+          play: play,
+        }));
         dispatch(board.startFen({ fen: jwtDecoded.fen }));
       } else if (jwtDecoded.variant === variantConst.CHESS_960) {
-        dispatch(variant.startChess960({
+        dispatch(playMode.set({
+          variant: variantConst.CHESS_960,
           fen: jwtDecoded.fen,
-          startPos: jwtDecoded.startPos
+          startPos: jwtDecoded.startPos,
+          play: play,
         }));
         dispatch(board.startChess960({ fen: jwtDecoded.fen }));
       } else if (jwtDecoded.variant === variantConst.CAPABLANCA_80) {
-        dispatch(variant.startCapablanca80());
-        dispatch(board.startCapablanca80({ fen: jwtDecoded.fen }));
-      }
-      if (!store.getState().mode.play) {
-        dispatch(mode.setPlay({
-          jwt: data['/accept'].jwt,
-          jwt_decoded: jwt_decode(data['/accept'].jwt),
-          hash: data['/accept'].hash,
-          color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
-          takeback: null,
-          draw: null,
-          resign: null,
-          rematch: null,
-          leave: null,
-          accepted: false,
-          timer: {
-            expiry_timestamp: null,
-            over: null
-          }
+        dispatch(playMode.set({
+          variant: variantConst.CAPABLANCA_80,
+          play: play,
         }));
+        dispatch(board.startCapablanca80({ fen: jwtDecoded.fen }));
       }
       if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
-      dispatch(mode.acceptPlay());
-      dispatch(playOnlineDialog.close());
+      dispatch(playMode.acceptPlay());
+      dispatch(playMode.playOnlineDialog({ open: false }));
     } else {
-      dispatch(mode.startUndefined());
+      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.set());
       dispatch(infoAlert.show({
         info: 'Invalid invite code, please try again with a different one.'
       }));
