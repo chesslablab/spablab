@@ -14,8 +14,8 @@ import {
 } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import * as playersStatsDialog from 'features/dialog/playersStatsDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as nav from 'features/nav/navSlice';
+import * as progressDialog from 'features/progressDialogSlice';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'any',
@@ -44,22 +44,22 @@ const PlayersStatsDialog = ({props}) => {
           setResult(data);
         });
       } else if (res.status === 204) {
-        dispatch(playersStatsDialog.close());
+        dispatch(nav.playersStatsDialog({ open: false }));
         dispatch(infoAlert.show({ info: 'No results were found, please try again.' }));
       } else {
-        dispatch(playersStatsDialog.close());
+        dispatch(nav.playersStatsDialog({ open: false }));
         dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
       }
     });
   };
 
   return (
-    <Dialog open={state.playersStatsDialog.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.nav.dialogs.playersStats.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Players Stats
         <IconButton onClick={() => {
           setResult([]);
-          dispatch(playersStatsDialog.close());
+          dispatch(nav.playersStatsDialog({ open: false }));
         }}>
           <CloseIcon />
         </IconButton>
@@ -70,7 +70,7 @@ const PlayersStatsDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="White"
-                options={state.playersStatsDialog.autocomplete.players.map((option) => option.name)}
+                options={state.nav.dialogs.playersStats.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
               />
@@ -78,7 +78,7 @@ const PlayersStatsDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="Black"
-                options={state.playersStatsDialog.autocomplete.players.map((option) => option.name)}
+                options={state.nav.dialogs.playersStats.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
               />

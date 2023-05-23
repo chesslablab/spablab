@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as navConst from 'features/navConst';
+import * as navConst from 'features/nav/navConst';
 
 const initialState = {
   name: navConst.ANALYSIS,
@@ -86,6 +86,12 @@ const navSlice = createSlice({
     settingsDialog(state, action) {
       state.dialogs.settings = action.payload;
     },
+    settingsDialogAccept(state, action) {
+      state.fields = {
+        ...state.fields,
+        ...action.payload
+      };
+    },
   },
 });
 
@@ -101,6 +107,7 @@ export const {
   heuristicsDialog,
   openingsStatsDialog,
   playersStatsDialog,
-  settingsDialog
+  settingsDialog,
+  settingsDialogAccept
 } = navSlice.actions;
 export default navSlice.reducer;

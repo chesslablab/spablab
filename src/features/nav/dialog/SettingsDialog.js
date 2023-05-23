@@ -11,29 +11,29 @@ import {
   FormGroup,
   IconButton
 } from '@mui/material';
-import * as settingsDialog from 'features/dialog/settingsDialogSlice';
+import * as nav from 'features/nav/navSlice';
 
 const SettingsDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const handleAnimationChange = (event: Event) => {
-    dispatch(settingsDialog.accept({
+    dispatch(nav.settingsDialogAccept({
       pieceAnimation: event.target.value === 'on' ? 'off' : 'on'
     }));
   };
 
   const handleHeuristicsChange = (event: Event) => {
-    dispatch(settingsDialog.accept({
+    dispatch(nav.settingsDialogAccept({
       heuristics: event.target.value === 'on' ? 'off' : 'on'
     }));
   };
 
   return (
-    <Dialog open={state.settingsDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.nav.dialogs.settings.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Settings
-        <IconButton onClick={() => dispatch(settingsDialog.close())}>
+        <IconButton onClick={() => dispatch(nav.settingsDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
@@ -43,8 +43,8 @@ const SettingsDialog = () => {
             label="Animate the chess pieces while playing"
             control={<Checkbox
               name="pieceAnimation"
-              checked={state.settingsDialog.fields.pieceAnimation === 'on'}
-              value={state.settingsDialog.fields.pieceAnimation}
+              checked={state.nav.dialogs.settings.fields.pieceAnimation === 'on'}
+              value={state.nav.dialogs.settings.fields.pieceAnimation}
               onChange={handleAnimationChange}
             />}
           />
@@ -62,7 +62,7 @@ const SettingsDialog = () => {
           fullWidth
           type="submit"
           variant="outlined"
-          onClick={() => dispatch(settingsDialog.close())}
+          onClick={() => dispatch(nav.settingsDialog({ open: false }))}
           sx={{ mt: 2 }}
         >
           Accept
