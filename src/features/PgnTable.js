@@ -25,7 +25,7 @@ const styles = {
   }
 };
 
-const MoveValidatorTable = ({props}) => {
+const PgnTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -83,4 +83,4 @@ const MoveValidatorTable = ({props}) => {
   );
 }
 
-export default MoveValidatorTable;
+export default PgnTable;

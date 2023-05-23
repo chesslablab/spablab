@@ -5,7 +5,7 @@ import FinishedButtonsPlayMode from 'features/mode/play/FinishedButtonsPlayMode'
 import FinishedDialogsPlayMode from 'features/mode/play/FinishedDialogsPlayMode';
 import StartedButtonsPlayMode from 'features/mode/play/StartedButtonsPlayMode';
 import StartedDialogsPlayMode from 'features/mode/play/StartedDialogsPlayMode';
-import MoveValidatorTable from 'features/table/MoveValidatorTable';
+import PgnTable from 'features/table/PgnTable';
 import SecondaryButtons from './SecondaryButtons';
 import SecondaryDialogs from './SecondaryDialogs';
 import History from './History';
@@ -37,7 +37,7 @@ const Game = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <MoveValidatorTable />
+            <PgnTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
