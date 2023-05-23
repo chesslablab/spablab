@@ -36,6 +36,10 @@ const initialState = {
     offerTakeback: {
       open: false,
     },
+    playOnline: {
+      open: false,
+      rows: [],
+    },
   },
 };
 
@@ -123,6 +127,9 @@ const playModeSlice = createSlice({
     offerTakebackDialog(state, action) {
       state.dialogs.offerTakeback = action.payload;
     },
+    playOnlineDialog(state, action) {
+      state.dialogs.playOnline = action.payload;
+    },
   }
 });
 
@@ -151,6 +158,7 @@ export const {
   enterInviteCodeDialog,
   offerDrawDialog,
   offerRematchDialog,
-  offerTakebackDialog
+  offerTakebackDialog,
+  playOnlineDialog
 } = playModeSlice.actions;
 export default playModeSlice.reducer;
