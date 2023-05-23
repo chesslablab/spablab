@@ -30,8 +30,8 @@ import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mu
 import Dispatcher from 'common/Dispatcher';
 import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
-import * as mainButtonsConst from 'features/mainButtonsConst';
-import * as mainButtons from 'features/mainButtonsSlice';
+import * as navConst from 'features/navConst';
+import * as mainButtons from 'features/navSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as checkmateSkillsDialog from 'features/dialog/checkmateSkillsDialogSlice';
 import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
@@ -57,7 +57,7 @@ import * as mode from 'features/mode/modeSlice';
 import * as variantConst from 'features/variant/variantConst';
 import WsAction from 'features/ws/WsAction';
 
-const MainButtons = ({props}) => {
+const Nav = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -137,9 +137,9 @@ const MainButtons = ({props}) => {
       sx={{ borderTop: "1px solid #1976d280", borderBottom: "1px solid #1976d280", borderRadius: 0 }}
     >
       <Button
-        id="MainButtons-analysisBoard"
+        id="Nav-analysisBoard"
         sx={{ borderRadius: 0 }}
-        variant={state.mainButtons.name === mainButtonsConst.ANALYSIS ? "contained" : "text"}
+        variant={state.mainButtons.name === navConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
       >
@@ -151,7 +151,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseAnalysis}
       >
         <MenuItem
-          id="MainButtons-analysisBoard-MenuItem-startClassical"
+          id="Nav-analysisBoard-MenuItem-startClassical"
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
@@ -162,7 +162,7 @@ const MainButtons = ({props}) => {
           <RestartAltIcon size="small" />&nbsp;Start Classical
         </MenuItem>
         <MenuItem
-          id="MainButtons-analysisBoard-MenuItem-startFischerRandom960"
+          id="Nav-analysisBoard-MenuItem-startFischerRandom960"
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
@@ -173,7 +173,7 @@ const MainButtons = ({props}) => {
           <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
         </MenuItem>
         <MenuItem
-          id="MainButtons-analysisBoard-MenuItem-startCapablanca"
+          id="Nav-analysisBoard-MenuItem-startCapablanca"
           onClick={() => {
             dispatch(mainButtons.setAnalysis());
             Dispatcher.initGui(dispatch);
@@ -185,7 +185,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="MainButtons-analysisBoard-MenuItem-pgnMovetext"
+          id="Nav-analysisBoard-MenuItem-pgnMovetext"
           onClick={() => {
             dispatch(loadPgnDialog.open());
             handleCloseAnalysis();
@@ -194,7 +194,7 @@ const MainButtons = ({props}) => {
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
         <MenuItem
-          id="MainButtons-analysisBoard-MenuItem-fenString"
+          id="Nav-analysisBoard-MenuItem-fenString"
           onClick={() => {
             dispatch(loadFenDialog.open());
             handleCloseAnalysis();
@@ -204,8 +204,8 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-play"
-        variant={state.mainButtons.name === mainButtonsConst.PLAY ? "contained" : "text"}
+        id="Nav-play"
+        variant={state.mainButtons.name === navConst.PLAY ? "contained" : "text"}
         startIcon={<GradientIcon />}
         onClick={handleClickPlay}
       >
@@ -217,7 +217,7 @@ const MainButtons = ({props}) => {
         onClose={handleClosePlay}
       >
         <MenuItem
-          id="MainButtons-play-MenuItem-computer"
+          id="Nav-play-MenuItem-computer"
           onClick={() => {
             dispatch(playComputerDialog.open());
             handleClosePlay();
@@ -227,7 +227,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="MainButtons-play-MenuItem-friend"
+          id="Nav-play-MenuItem-friend"
           onClick={() => {
             dispatch(mode.setPlay({}));
             dispatch(createInviteCodeDialog.open());
@@ -237,7 +237,7 @@ const MainButtons = ({props}) => {
           <PersonIcon size="small" />&nbsp;Play a Friend
         </MenuItem>
         <MenuItem
-          id="MainButtons-play-MenuItem-enter-invite-code"
+          id="Nav-play-MenuItem-enter-invite-code"
           onClick={() => {
             dispatch(enterInviteCodeDialog.open());
             handleClosePlay();
@@ -247,7 +247,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="MainButtons-play-MenuItem-online"
+          id="Nav-play-MenuItem-online"
           onClick={() => {
             WsAction.onlineGames();
             dispatch(playOnlineDialog.open());
@@ -258,8 +258,8 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-openingSearch"
-        variant={state.mainButtons.name === mainButtonsConst.OPENING_SEARCH ? "contained" : "text"}
+        id="Nav-openingSearch"
+        variant={state.mainButtons.name === navConst.OPENING_SEARCH ? "contained" : "text"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >
@@ -271,7 +271,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseOpeningSearch}
       >
         <MenuItem
-          id="MainButtons-openingSearch-MenuItem-ecoCode"
+          id="Nav-openingSearch-MenuItem-ecoCode"
           onClick={() => {
             dispatch(searchEcoDialog.open());
             handleCloseOpeningSearch();
@@ -280,7 +280,7 @@ const MainButtons = ({props}) => {
           <BookIcon size="small" />&nbsp;ECO Code
         </MenuItem>
         <MenuItem
-          id="MainButtons-openingSearch-MenuItem-pgnMovetext"
+          id="Nav-openingSearch-MenuItem-pgnMovetext"
           onClick={() => {
             dispatch(searchMovetextDialog.open());
             handleCloseOpeningSearch();
@@ -289,7 +289,7 @@ const MainButtons = ({props}) => {
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
         <MenuItem
-          id="MainButtons-openingSearch-MenuItem-name"
+          id="Nav-openingSearch-MenuItem-name"
           onClick={() => {
             dispatch(searchNameDialog.open());
             handleCloseOpeningSearch();
@@ -299,8 +299,8 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-database"
-        variant={state.mainButtons.name === mainButtonsConst.DATABASE ? "contained" : "text"}
+        id="Nav-database"
+        variant={state.mainButtons.name === navConst.DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
         onClick={handleClickDatabase}
       >
@@ -312,7 +312,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseDatabase}
       >
         <MenuItem
-          id="MainButtons-database-MenuItem-searchGames"
+          id="Nav-database-MenuItem-searchGames"
           onClick={() => {
             dispatch(progressDialog.open());
             fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
@@ -336,7 +336,7 @@ const MainButtons = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="MainButtons-database-MenuItem-topOpenings"
+          id="Nav-database-MenuItem-topOpenings"
           onClick={() => {
             dispatch(progressDialog.open());
             fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/stats/opening`)
@@ -359,7 +359,7 @@ const MainButtons = ({props}) => {
           <AutoGraphIcon size="small" />&nbsp;Top 50 Openings
         </MenuItem>
         <MenuItem
-          id="MainButtons-database-MenuItem-playersStats"
+          id="Nav-database-MenuItem-playersStats"
           onClick={() => {
             dispatch(progressDialog.open());
             fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
@@ -382,7 +382,7 @@ const MainButtons = ({props}) => {
           <QueryStatsIcon size="small" />&nbsp;Players Stats
         </MenuItem>
         <MenuItem
-          id="MainButtons-database-MenuItem-eventsStats"
+          id="Nav-database-MenuItem-eventsStats"
           onClick={() => {
             dispatch(progressDialog.open());
             fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
@@ -406,8 +406,8 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-training"
-        variant={state.mainButtons.name === mainButtonsConst.TRAINING ? "contained" : "text"}
+        id="Nav-training"
+        variant={state.mainButtons.name === navConst.TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
       >
@@ -419,7 +419,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseTraining}
       >
         <MenuItem
-          id="MainButtons-training-MenuItem-guessTheMove"
+          id="Nav-training-MenuItem-guessTheMove"
           onClick={() => {
             dispatch(mainButtons.setTraining());
             Dispatcher.initGui(dispatch);
@@ -432,7 +432,7 @@ const MainButtons = ({props}) => {
           <QuizIcon size="small" />&nbsp;Guess the Move
         </MenuItem>
         <MenuItem
-          id="MainButtons-training-MenuItem-endgameSkills"
+          id="Nav-training-MenuItem-endgameSkills"
           onClick={() => {
             dispatch(endgameSkillsDialog.open());
             handleCloseTraining();
@@ -441,7 +441,7 @@ const MainButtons = ({props}) => {
           <ExtensionIcon size="small" />&nbsp;Endgame Skills
         </MenuItem>
         <MenuItem
-          id="MainButtons-training-MenuItem-checkmateSkills"
+          id="Nav-training-MenuItem-checkmateSkills"
           onClick={() => {
             dispatch(checkmateSkillsDialog.open());
             handleCloseTraining();
@@ -451,8 +451,8 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-inbox"
-        variant={state.mainButtons.name === mainButtonsConst.CORRESPONDENCE ? "contained" : "text"}
+        id="Nav-inbox"
+        variant={state.mainButtons.name === navConst.CORRESPONDENCE ? "contained" : "text"}
         startIcon={<EmailIcon />}
         onClick={handleClickCorrespondence}
       >
@@ -464,7 +464,7 @@ const MainButtons = ({props}) => {
         onClose={handleCloseCorrespondence}
       >
         <MenuItem
-          id="MainButtons-inbox-MenuItem-inviteFriend"
+          id="Nav-inbox-MenuItem-inviteFriend"
           onClick={() => {
             dispatch(createInboxCodeDialog.open());
             handleCloseCorrespondence();
@@ -473,7 +473,7 @@ const MainButtons = ({props}) => {
           <PersonIcon size="small" />&nbsp;Play a Friend
         </MenuItem>
         <MenuItem
-          id="MainButtons-training-MenuItem-endgameSkills"
+          id="Nav-training-MenuItem-endgameSkills"
           onClick={() => {
             dispatch(enterInboxCodeDialog.close());
             dispatch(enterInboxCodeDialog.open());
@@ -484,9 +484,9 @@ const MainButtons = ({props}) => {
         </MenuItem>
       </Menu>
       <Button
-        id="MainButtons-settings"
+        id="Nav-settings"
         sx={{ borderRadius: 0 }}
-        variant={state.mainButtons.name === mainButtonsConst.SETTINGS ? "contained" : "text"}
+        variant={state.mainButtons.name === navConst.SETTINGS ? "contained" : "text"}
         startIcon={<SettingsIcon />}
         onClick={() => dispatch(settingsDialog.open())}
       >
@@ -496,4 +496,4 @@ const MainButtons = ({props}) => {
   );
 }
 
-export default MainButtons;
+export default Nav;

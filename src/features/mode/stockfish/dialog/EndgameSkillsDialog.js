@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import Pgn from 'common/Pgn';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/mainButtonsSlice';
+import * as mainButtons from 'features/navSlice';
 import * as endgameSkillsDialog from 'features/dialog/endgameSkillsDialogSlice';
 import SelectColorButtons from 'features/dialog/SelectColorButtons';
 import WsAction from 'features/ws/WsAction';

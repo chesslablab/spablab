@@ -17,7 +17,7 @@ import {
 import wKing from 'assets/img/pieces/png/150/wKing.png';
 import bKing from 'assets/img/pieces/png/150/bKing.png';
 import Pgn from 'common/Pgn';
-import * as mainButtons from 'features/mainButtonsSlice';
+import * as mainButtons from 'features/navSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as mode from 'features/mode/modeSlice';
 import * as variantConst from 'features/variant/variantConst';

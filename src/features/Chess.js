@@ -32,7 +32,7 @@ import GameTable from 'features/table/GameTable';
 import OpeningAnalysisTable from 'features/table/OpeningAnalysisTable';
 import Game from 'features/Game';
 import HeuristicsBar from 'features/HeuristicsBar';
-import MainButtons from 'features/MainButtons';
+import Nav from 'features/Nav';
 import theme from 'styles/theme.js';
 
 const Chess = ({ props }) => {
@@ -41,7 +41,7 @@ const Chess = ({ props }) => {
       <Provider store={store}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <MainButtons props={props} />
+            <Nav props={props} />
           </Grid>
           <Grid item xs={12} md={2}>
           </Grid>

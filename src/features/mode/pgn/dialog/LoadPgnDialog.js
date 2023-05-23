@@ -11,7 +11,7 @@ import {
   TextField
 } from '@mui/material';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/mainButtonsSlice';
+import * as mainButtons from 'features/navSlice';
 import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
 import * as modeConst from 'features/mode/modeConst';

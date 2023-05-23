@@ -10,7 +10,7 @@ import {
   TableRow
 } from '@mui/material';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/mainButtonsSlice';
+import * as mainButtons from 'features/navSlice';
 import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
 import * as modeConst from 'features/mode/modeConst';

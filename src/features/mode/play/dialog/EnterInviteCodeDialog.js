@@ -9,7 +9,7 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import * as mainButtons from 'features/mainButtonsSlice';
+import * as mainButtons from 'features/navSlice';
 import * as enterInviteCodeDialog from 'features/dialog/enterInviteCodeDialogSlice';
 import * as mode from 'features/mode/modeSlice';
 import WsAction from 'features/ws/WsAction';

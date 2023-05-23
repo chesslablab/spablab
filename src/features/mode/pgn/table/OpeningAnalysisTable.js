@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import * as variantConst from 'features/variant/variantConst';
-import * as mainButtonsConst from 'features/mainButtonsConst';
+import * as navConst from 'features/navConst';
 
 const OpeningAnalysisTable = ({props}) => {
   const state = useSelector(state => state);
@@ -10,7 +10,7 @@ const OpeningAnalysisTable = ({props}) => {
   if (
     state.variant.name === variantConst.CLASSICAL &&
     state.openingAnalysisTable.open &&
-    state.mainButtons.name !== mainButtonsConst.TRAINING
+    state.mainButtons.name !== navConst.TRAINING
   ) {
     return (
       <TableContainer sx={{ mt: 1.5 }}>

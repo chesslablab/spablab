@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/mainButtonsSlice';
+import * as mainButtons from 'features/navSlice';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
 import * as searchEcoDialog from 'features/dialog/searchEcoDialogSlice';
 import * as searchMovetextDialog from 'features/dialog/searchMovetextDialogSlice';

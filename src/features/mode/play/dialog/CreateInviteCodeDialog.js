@@ -14,7 +14,7 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import * as mainButtons from 'features/mainButtonsSlice';
+import * as mainButtons from 'features/navSlice';
 import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
 import SelectColorButtons from 'features/dialog/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as mainButtonsConst from 'features/mainButtonsConst';
+import * as navConst from 'features/navConst';
 
 const initialState = {
-  name: mainButtonsConst.ANALYSIS,
+  name: navConst.ANALYSIS,
   dialogs: {
     createInboxCode: {
       open: false,
@@ -48,22 +48,22 @@ const initialState = {
   },
 };
 
-const mainButtonsSlice = createSlice({
+const navSlice = createSlice({
   name: 'mainButtons',
   initialState,
   reducers: {
     setAnalysis: () => initialState,
     setPlay: (state) => {
-      state.name = mainButtonsConst.PLAY;
+      state.name = navConst.PLAY;
     },
     setTraining: (state) => {
-      state.name = mainButtonsConst.TRAINING;
+      state.name = navConst.TRAINING;
     },
     setOpeningSearch: (state) => {
-      state.name = mainButtonsConst.OPENING_SEARCH;
+      state.name = navConst.OPENING_SEARCH;
     },
     setDatabase: (state) => {
-      state.name = mainButtonsConst.DATABASE;
+      state.name = navConst.DATABASE;
     },
     createInboxCodeDialog(state, action) {
       state.dialogs.createInboxCode = action.payload;
@@ -102,5 +102,5 @@ export const {
   openingsStatsDialog,
   playersStatsDialog,
   settingsDialog
-} = mainButtonsSlice.actions;
-export default mainButtonsSlice.reducer;
+} = navSlice.actions;
+export default navSlice.reducer;
