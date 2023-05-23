@@ -9,10 +9,10 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import * as searchMovetextDialog from './searchMovetextDialogSlice';
 import Opening from 'common/Opening.js';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import OpeningSearchResultTable from 'features/table/OpeningSearchResultTable.js';
+import * as pgnMode from 'features/mode/pgnModeSlice';
+import OpeningSearchResultTable from 'features/mode/pgn/table/OpeningSearchResultTable.js';
 
 const SearchMovetextDialog = ({ props }) => {
   const state = useSelector(state => state);
@@ -24,18 +24,18 @@ const SearchMovetextDialog = ({ props }) => {
     const openings = Opening.byMovetext(event.target.elements.movetext.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch(searchMovetextDialog.close());
+      dispatch(pgnMode.searchMovetextDialog({ open: false }));
       dispatch(infoAlert.show({ info: 'No results were found. Please try again.' }));
     }
   }
 
   return (
-    <Dialog open={state.searchMovetextDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.pgnMode.dialogs.searchMovetext.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         PGN Movetext
         <IconButton onClick={() => {
           setOpenings([]);
-          dispatch(searchMovetextDialog.close());
+          dispatch(pgnMode.searchMovetextDialog({ open: false }));
         }}>
           <CloseIcon />
         </IconButton>

@@ -14,8 +14,8 @@ import {
 } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import * as eventsStatsDialog from 'features/dialog/eventsStatsDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as nav from 'features/nav/navSlice';
+import * as progressDialog from 'features/progressDialogSlice';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'any',
@@ -43,22 +43,22 @@ const EventsStatsDialog = ({props}) => {
           setResult(data);
         });
       } else if (res.status === 204) {
-        dispatch(eventsStatsDialog.close());
+        dispatch(nav.eventsStatsDialog({ open: false }));
         dispatch(infoAlert.show({ info: 'No results were found, please try again.' }));
       } else {
-        dispatch(eventsStatsDialog.close());
+        dispatch(nav.eventsStatsDialog({ open: false }));
         dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
       }
     });
   };
 
   return (
-    <Dialog open={state.eventsStatsDialog.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.nav.dialogs.eventsStats.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Events Stats
         <IconButton onClick={() => {
           setResult([]);
-          dispatch(eventsStatsDialog.close());
+          dispatch(nav.eventsStatsDialog({ open: false }));
         }}>
           <CloseIcon />
         </IconButton>
@@ -69,7 +69,7 @@ const EventsStatsDialog = ({props}) => {
             <Grid item xs={12} md={8}>
               <Autocomplete
                 id="Event"
-                options={state.eventsStatsDialog.autocomplete.events.map((option) => option.Event)}
+                options={state.nav.dialogs.eventsStats.autocomplete.events.map((option) => option.Event)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField required {...params} label="Event" variant="filled" name="Event" />}
               />

@@ -19,7 +19,7 @@ import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import SelectColorButtons from 'features/dialog/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
 import PlayOnlineTable from 'features/table/PlayOnlineTable';
-import * as variantConst from 'features/variant/variantConst';
+import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
 
 const PlayOnlineDialog = () => {

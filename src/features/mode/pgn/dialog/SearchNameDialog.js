@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 import Opening from 'common/Opening.js';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import OpeningSearchResultTable from 'features/table/OpeningSearchResultTable.js';
-import * as searchNameDialog from './searchNameDialogSlice';
+import * as pgnMode from 'features/mode/pgnModeSlice';
+import OpeningSearchResultTable from 'features/mode/pgn/table/OpeningSearchResultTable.js';
 
 const SearchNameDialog = ({ props }) => {
   const state = useSelector(state => state);
@@ -24,18 +24,18 @@ const SearchNameDialog = ({ props }) => {
     const openings = Opening.byName(event.target.elements.name.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch(searchNameDialog.close());
+      dispatch(pgnMode.searchNameDialog({ open: false }));
       dispatch(infoAlert.show({ info: 'No results were found. Please try again.' }));
     }
   }
 
   return (
-    <Dialog open={state.searchNameDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.pgnMode.dialogs.searchName.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Name
         <IconButton onClick={() => {
           setOpenings([]);
-          dispatch(searchNameDialog.close());
+          dispatch(pgnMode.searchNameDialog({ open: false }));
         }}>
           <CloseIcon />
         </IconButton>

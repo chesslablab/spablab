@@ -9,9 +9,9 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import * as searchEcoDialog from './searchEcoDialogSlice';
 import Opening from 'common/Opening.js';
-import OpeningSearchResultTable from 'features/table/OpeningSearchResultTable.js';
+import * as pgnMode from 'features/mode/pgnModeSlice';
+import OpeningSearchResultTable from 'features/mode/pgn/table/OpeningSearchResultTable.js';
 
 const SearchEcoDialog = ({ props }) => {
   const state = useSelector(state => state);
@@ -25,12 +25,12 @@ const SearchEcoDialog = ({ props }) => {
   }
 
   return (
-    <Dialog open={state.searchEcoDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.pgnMode.dialogs.searchEco.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         ECO Code
         <IconButton onClick={() => {
           setOpenings([]);
-          dispatch(searchEcoDialog.close());
+          dispatch(pgnMode.searchEcoDialog({ open: false }));
         }}>
           <CloseIcon />
         </IconButton>

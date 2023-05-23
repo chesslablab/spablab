@@ -20,7 +20,7 @@ import * as playComputerDialog from 'features/dialog/playComputerDialogSlice';
 import SelectColorButtons from 'features/dialog/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
 import * as mode from 'features/mode/modeSlice';
-import * as variantConst from 'features/variant/variantConst';
+import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
 
 const PlayComputerDialog = () => {

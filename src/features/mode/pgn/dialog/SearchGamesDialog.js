@@ -14,9 +14,9 @@ import {
 } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
-import DatabaseResultTable from 'features/table/DatabaseResultTable.js';
+import * as pgnMode from 'features/mode/pgnModeSlice';
+import DatabaseResultTable from 'features/mode/pgn/table/DatabaseResultTable.js';
+import * as progressDialog from 'features/progressDialogSlice';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'any',
@@ -49,12 +49,12 @@ const SearchGamesDialog = ({props}) => {
           setResult(data);
         });
       } else if (res.status === 204) {
-        dispatch(searchGamesDialog.close());
+        dispatch(pgnMode.searchGamesDialog({ open: false }));
         dispatch(infoAlert.show({ info: 'No results were found, please try again.' }));
       }
     })
     .catch(error => {
-      dispatch(searchGamesDialog.close());
+      dispatch(pgnMode.searchGamesDialog({ open: false }));
       dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
     })
     .finally(() => {
@@ -66,7 +66,7 @@ const SearchGamesDialog = ({props}) => {
     <Dialog open={state.searchGamesDialog.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Search Games
-        <IconButton onClick={() => dispatch(searchGamesDialog.close())}>
+        <IconButton onClick={() => dispatch(pgnMode.searchGamesDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>

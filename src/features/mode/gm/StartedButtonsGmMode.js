@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import * as modeConst from 'features/mode/modeConst';
-import * as variantConst from 'features/variant/variantConst';
+import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
 
 const StartedButtonsGmMode = () => {

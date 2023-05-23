@@ -9,17 +9,17 @@ import {
   IconButton,
   Typography
 } from '@mui/material';
-import * as openingsStatsDialog from 'features/dialog/openingsStatsDialogSlice';
+import * as nav from 'features/nav/navSlice';
 
 const OpeningsStatsDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.openingsStatsDialog.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.nav.dialogs.openingsStats.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Top 50 Openings
-        <IconButton onClick={() => dispatch(openingsStatsDialog.close())}>
+        <IconButton onClick={() => dispatch(nav.openingsStatsDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
@@ -28,7 +28,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={state.openingsStatsDialog.stats.winRateForWhite}
+            data={state.nav.dialogs.openingsStats.stats.winRateForWhite}
             margin={{
               right: 30,
               left: 20,
@@ -51,7 +51,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={state.openingsStatsDialog.stats.winRateForBlack}
+            data={state.nav.dialogs.openingsStats.stats.winRateForBlack}
             margin={{
               top: 30,
               right: 30,
@@ -75,7 +75,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={state.openingsStatsDialog.stats.drawRate}
+            data={state.nav.dialogs.openingsStats.stats.drawRate}
             margin={{
               top: 30,
               right: 30,

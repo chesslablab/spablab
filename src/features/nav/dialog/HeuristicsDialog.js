@@ -14,7 +14,7 @@ import {
 } from '@mui/material/';
 import html2canvas from 'html2canvas';
 import CloseIcon from '@mui/icons-material/Close';
-import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
+import * as nav from 'features/nav/navSlice';
 
 const handleDownloadImage = async () => {
   const heuristics = document.getElementsByClassName('heuristic-picture')[0];
@@ -52,10 +52,10 @@ const charts = (data) => {
 
 const Heuristics = () => {
   const state = useSelector(state => state);
-  if (state.heuristicsDialog.heuristics) {
-    const data = initData(state.heuristicsDialog.heuristics.dimensions);
-    state.heuristicsDialog.heuristics.balance.forEach((item, i) => {
-      state.heuristicsDialog.heuristics.dimensions.forEach((dimension, j) => {
+  if (state.nav.dialogs.heuristics.heuristics) {
+    const data = initData(state.nav.dialogs.heuristics.heuristics.dimensions);
+    state.nav.dialogs.heuristics.heuristics.balance.forEach((item, i) => {
+      state.nav.dialogs.heuristics.heuristics.dimensions.forEach((dimension, j) => {
         data[dimension].push({
           [dimension]: item[j]
         });
@@ -84,8 +84,8 @@ const HeuristicsDialog = () => {
   return (
     <Dialog
       fullScreen
-      open={state.heuristicsDialog.open}
-      onClose={() => dispatch(heuristicsDialog.close())}
+      open={state.nav.dialogs.heuristics.open}
+      onClose={() => dispatch(nav.heuristicsDialog({ open: false }))}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -93,7 +93,7 @@ const HeuristicsDialog = () => {
          <IconButton
            edge="start"
            color="inherit"
-           onClick={() => dispatch(heuristicsDialog.close())}
+           onClick={() => dispatch(nav.heuristicsDialog({ open: false }))}
            aria-label="close"
          >
            <CloseIcon />
@@ -104,7 +104,7 @@ const HeuristicsDialog = () => {
          <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
          </Button>
-         <Button autoFocus color="inherit" onClick={() => dispatch(heuristicsDialog.close())}>
+         <Button autoFocus color="inherit" onClick={() => dispatch(nav.heuristicsDialog({ open: false }))}>
            Close
          </Button>
        </Toolbar>

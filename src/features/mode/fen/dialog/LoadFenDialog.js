@@ -11,12 +11,12 @@ import {
   TextField
 } from '@mui/material';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/navSlice';
-import * as loadFenDialog from 'features/dialog/loadFenDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as variantConst from 'features/variant/variantConst';
+import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
+import progressDialog from 'features/progressDialogSlice';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
@@ -30,8 +30,8 @@ const LoadFenDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    dispatch(mainButtons.setAnalysis());
-    dispatch(loadFenDialog.close());
+    dispatch(nav.setAnalysis());
+    dispatch(fenMode.loadFenDialog({ open: false }));
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
     let settings = {
@@ -44,10 +44,10 @@ const LoadFenDialog = () => {
   };
 
   return (
-    <Dialog open={state.loadFenDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.pgnMode.dialogs.loadPgn.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         FEN String
-        <IconButton onClick={() => dispatch(loadFenDialog.close())}>
+        <IconButton onClick={() => dispatch(fenMode.loadFenDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>

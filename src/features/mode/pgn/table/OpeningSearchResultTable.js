@@ -2,14 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/navSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
-import * as searchEcoDialog from 'features/dialog/searchEcoDialogSlice';
-import * as searchMovetextDialog from 'features/dialog/searchMovetextDialogSlice';
-import * as searchNameDialog from 'features/dialog/searchNameDialogSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as variantConst from 'features/variant/variantConst';
+import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
+import * as progressDialog from 'features/progressDialogSlice';
 
 const styles = {
   clickable: {
@@ -22,11 +20,11 @@ const OpeningSearchResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {
-    dispatch(searchEcoDialog.close());
-    dispatch(searchMovetextDialog.close());
-    dispatch(searchNameDialog.close());
+    dispatch(pgnMode.searchEcoDialog({ open: false }));
+    dispatch(pgnMode.searchMovetextDialog({ open: false }));
+    dispatch(pgnMode.searchNameDialog({ open: false }));
     dispatch(progressDialog.open());
-    dispatch(mainButtons.setOpeningSearch());
+    dispatch(nav.setOpeningSearch());
     Dispatcher.initGui(dispatch);
     WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
       movetext: movetext

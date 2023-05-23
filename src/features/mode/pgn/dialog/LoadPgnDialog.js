@@ -11,12 +11,12 @@ import {
   TextField
 } from '@mui/material';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/navSlice';
-import * as loadPgnDialog from 'features/dialog/loadPgnDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as variantConst from 'features/variant/variantConst';
+import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
+import progressDialog from 'features/progressDialogSlice';
 
 const LoadPgnDialog = () => {
   const state = useSelector((state) => state);
@@ -30,8 +30,8 @@ const LoadPgnDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    dispatch(mainButtons.setAnalysis());
-    dispatch(loadPgnDialog.close());
+    dispatch(nav.setAnalysis());
+    dispatch(pgnMode.loadPgnDialog({ open: false }));
     dispatch(progressDialog.open());
     Dispatcher.initGui(dispatch);
     let settings = {
@@ -47,7 +47,7 @@ const LoadPgnDialog = () => {
     <Dialog open={state.loadPgnDialog.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         PGN Movetext
-        <IconButton onClick={() => dispatch(loadPgnDialog.close())}>
+        <IconButton onClick={() => dispatch(pgnMode.loadPgnDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>

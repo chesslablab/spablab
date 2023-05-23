@@ -12,7 +12,7 @@ import {
   TextField
 } from '@mui/material';
 import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
-import * as variantConst from 'features/variant/variantConst';
+import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
 
 const CreateInboxCodeDialog = () => {

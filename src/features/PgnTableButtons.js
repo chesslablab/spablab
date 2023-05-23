@@ -8,8 +8,8 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
 import Movetext from 'common/Movetext';
 import * as modeConst from 'features/mode/modeConst';
-import * as variantConst from 'features/variant/variantConst';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as variantConst from 'features/mode/variantConst';
+import * as progressDialog from 'features/progressDialogSlice';
 import WsAction from 'features/ws/WsAction';
 
 const PgnTableButtons = ({props}) => {

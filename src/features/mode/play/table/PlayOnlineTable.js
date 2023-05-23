@@ -20,7 +20,7 @@ import Pgn from 'common/Pgn';
 import * as mainButtons from 'features/navSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as mode from 'features/mode/modeSlice';
-import * as variantConst from 'features/variant/variantConst';
+import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
 
 const styles = {

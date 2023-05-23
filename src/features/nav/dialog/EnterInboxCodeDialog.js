@@ -13,7 +13,7 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 
 const EnterInboxCodeDialog = () => {
@@ -47,22 +47,22 @@ const EnterInboxCodeDialog = () => {
   };
 
   const handleSendMove = () => {
-    dispatch(enterInboxCodeDialog.close());
+    dispatch(nav.enterInboxCodeDialog({ open: false }));
     WsAction.inboxReply(fields.hash, fields.pgn);
     setFields(initialState);
   };
 
   return (
-    <Dialog open={state.enterInboxCodeDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.nav.dialogs.enterInboxCode.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Read Inbox
-        <IconButton onClick={() => dispatch(enterInboxCodeDialog.close())}>
+        <IconButton onClick={() => dispatch(nav.enterInboxCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
       <DialogContent>
         {
-          !state.enterInboxCodeDialog.inbox
+          !state.nav.dialogs.enterInboxCode.inbox
             ? <FormGroup>
                 <Alert severity="info">
                   Correspondence inboxes will automatically be deleted in 30 days. Have a nice game!
@@ -88,18 +88,18 @@ const EnterInboxCodeDialog = () => {
           : null
         }
         {
-          state.enterInboxCodeDialog.inbox
+          state.nav.dialogs.enterInboxCode.inbox
             ? <FormGroup>
                 <Alert severity="info">
                   Both players can send a move to the shared correspondence inbox. Whose turn is it now to play?
                 </Alert>
                 {
-                  state.enterInboxCodeDialog.inbox.fen
+                  state.nav.dialogs.enterInboxCode.inbox.fen
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
                           <Button
                             size="small"
-                            onClick={() => navigator.clipboard.writeText(state.enterInboxCodeDialog.inbox.fen)}
+                            onClick={() => navigator.clipboard.writeText(state.nav.dialogs.enterInboxCode.inbox.fen)}
                           >
                             Copy FEN String
                           </Button>
@@ -113,19 +113,19 @@ const EnterInboxCodeDialog = () => {
                               spellCheck: false,
                               readOnly: true
                             }}
-                            value={state.enterInboxCodeDialog.inbox.fen}
+                            value={state.nav.dialogs.enterInboxCode.inbox.fen}
                           />
                         </CardContent>
                       </Card>
                     : null
                 }
                 {
-                  state.enterInboxCodeDialog.inbox.movetext
+                  state.nav.dialogs.enterInboxCode.inbox.movetext
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
                           <Button
                             size="small"
-                            onClick={() => navigator.clipboard.writeText(state.enterInboxCodeDialog.inbox.movetext)}
+                            onClick={() => navigator.clipboard.writeText(state.nav.dialogs.enterInboxCode.inbox.movetext)}
                           >
                             Copy PGN Movetext
                           </Button>
@@ -141,7 +141,7 @@ const EnterInboxCodeDialog = () => {
                               spellCheck: false,
                               readOnly: true
                             }}
-                            value={state.enterInboxCodeDialog.inbox.movetext}
+                            value={state.nav.dialogs.enterInboxCode.inbox.movetext}
                           />
                         </CardContent>
                       </Card>

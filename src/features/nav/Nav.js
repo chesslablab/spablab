@@ -30,7 +30,7 @@ import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mu
 import Dispatcher from 'common/Dispatcher';
 import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
-import * as navConst from 'features/navConst';
+import * as navConst from 'features/nav/navConst';
 import * as mainButtons from 'features/navSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as checkmateSkillsDialog from 'features/dialog/checkmateSkillsDialogSlice';
@@ -46,15 +46,15 @@ import * as openingsStatsDialog from 'features/dialog/openingsStatsDialogSlice';
 import * as playComputerDialog from 'features/dialog/playComputerDialogSlice';
 import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
 import * as playersStatsDialog from 'features/dialog/playersStatsDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as progressDialog from 'features/progressDialogSlice';
 import * as searchEcoDialog from 'features/dialog/searchEcoDialogSlice';
 import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
 import * as searchMovetextDialog from 'features/dialog/searchMovetextDialogSlice';
 import * as searchNameDialog from 'features/dialog/searchNameDialogSlice';
 import * as settingsDialog from 'features/dialog/settingsDialogSlice';
 import * as modeConst from 'features/mode/modeConst';
+import * as variantConst from 'features/mode/variantConst';
 import * as mode from 'features/mode/modeSlice';
-import * as variantConst from 'features/variant/variantConst';
 import WsAction from 'features/ws/WsAction';
 
 const Nav = ({props}) => {

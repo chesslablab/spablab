@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
 import * as modeConst from 'features/mode/modeConst';
+import * as playMode from 'features/mode/playModeSlice';
 import Wording from "common/Wording.js";
-import * as offerRematchDialog from 'features/dialog/offerRematchDialogSlice';
 
 const FinishedButtonsPlayMode = () => {
   const state = useSelector(state => state);
@@ -26,7 +26,7 @@ const FinishedButtonsPlayMode = () => {
             aria-label="Game Over"
             fullWidth={true}
           >
-            <Button onClick={() => dispatch(offerRematchDialog.open())}>
+            <Button onClick={() => dispatch(playMode.offerRematchDialog({ open: true }))}>
               Offer Rematch
             </Button>
           </ButtonGroup>

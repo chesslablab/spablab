@@ -10,13 +10,12 @@ import {
   TableRow
 } from '@mui/material';
 import Dispatcher from 'common/Dispatcher';
-import * as mainButtons from 'features/navSlice';
-import * as searchGamesDialog from 'features/dialog/searchGamesDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as gameTable from 'features/table/gameTableSlice';
-import * as variantConst from 'features/variant/variantConst';
+import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
+import * as progressDialog from 'features/progressDialogSlice';
 
 const styles = {
   tableContainer: {
@@ -56,14 +55,14 @@ const DatabaseResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {
-    dispatch(searchGamesDialog.close());
+    dispatch(pgnMode.searchGamesDialog({ open: false }));
     dispatch(progressDialog.open());
-    dispatch(mainButtons.setDatabase());
+    dispatch(nav.setDatabase());
     Dispatcher.initGui(dispatch);
     WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
       movetext: item.movetext
     });
-    dispatch(gameTable.show({
+    dispatch(pgnMode.gameTable({
       game: {
         Event: item.Event,
         Site: item.Site,

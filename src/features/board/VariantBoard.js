@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Capablanca80Board from './Capablanca80Board';
-import Chess960Board from './Chess960Board';
-import ClassicalBoard from './ClassicalBoard';
-import * as variantConst from 'features/variant/variantConst';
+import Capablanca80Board from 'features/board/Capablanca80Board';
+import Chess960Board from 'features/board/Chess960Board';
+import ClassicalBoard from 'features/board/ClassicalBoard';
+import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
 
 const VariantBoard = ({props}) => {
