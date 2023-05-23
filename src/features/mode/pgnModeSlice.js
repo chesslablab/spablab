@@ -28,6 +28,16 @@ const initialState = {
       open: false,
     },
   },
+  tables: {
+    game: {
+      open: false,
+      game: {},
+    },
+    openingAnalysis: {
+      open: false,
+      rows: [],
+    },
+  },
 };
 
 const pgnModeSlice = createSlice({
@@ -54,6 +64,12 @@ const pgnModeSlice = createSlice({
     searchNameDialog(state, action) {
       state.dialogs.searchName = action.payload;
     },
+    gameTable(state, action) {
+      state.tables.game = action.payload;
+    },
+    openingAnalysisTable(state, action) {
+      state.tables.openingAnalysis = action.payload;
+    },
   }
 });
 
@@ -64,6 +80,8 @@ export const {
   searchEcoDialog,
   searchGamesDialog,
   searchMovetextDialog,
-  searchNameDialog
+  searchNameDialog,
+  gameTable,
+  openingAnalysisTable
 } = pgnModeSlice.actions;
 export default pgnModeSlice.reducer;
