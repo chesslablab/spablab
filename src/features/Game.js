@@ -1,13 +1,13 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import Timer from 'features/timer/Timer';
 import FinishedButtonsPlayMode from 'features/mode/play/FinishedButtonsPlayMode';
 import FinishedDialogsPlayMode from 'features/mode/play/FinishedDialogsPlayMode';
 import StartedButtonsPlayMode from 'features/mode/play/StartedButtonsPlayMode';
 import StartedDialogsPlayMode from 'features/mode/play/StartedDialogsPlayMode';
-import PgnTable from 'features/table/PgnTable';
-import PgnTableButtons from './PgnTableButtons';
-import SecondaryDialogs from './SecondaryDialogs';
+import Timer from 'features/mode/play/timer/Timer';
+import PgnTable from 'features/PgnTable';
+import PgnTableButtons from 'features/PgnTableButtons';
+import PgnTableDialogs from 'features/PgnTableDialogs';
 import History from './History';
 
 const styles = {
@@ -51,7 +51,7 @@ const Game = ({ props }) => {
         <StartedButtonsPlayMode />
         <FinishedButtonsPlayMode />
       </Grid>
-      <SecondaryDialogs />
+      <PgnTableDialogs />
       <StartedDialogsPlayMode />
       <FinishedDialogsPlayMode />
     </Grid>
