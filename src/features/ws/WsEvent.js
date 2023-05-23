@@ -6,25 +6,19 @@ import Wording from 'common/Wording';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as board from 'features/board/boardSlice';
-import * as acceptDrawDialog from 'features/dialog/acceptDrawDialogSlice';
-import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
-import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
-import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
-import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
-import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
 import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
-import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as gmMode from 'features/mode/gmModeSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
+import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as undefinedMode from 'features/mode/undefinedModeSlice';
 import * as modeConst from 'features/mode/modeConst';
-// import * as gameTable from 'features/table/gameTableSlice';
 import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 import * as eventConst from 'features/eventConst';
+import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
   static onStartFen = (data) => dispatch => {
@@ -145,7 +139,7 @@ export default class WsEvent {
       }
       dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
     } else {
-      dispatch(createInviteCodeDialog.close());
+      dispatch(playMode.createInviteCodeDialog({ open: false }));
       dispatch(undefinedMode.start());
       dispatch(undefinedMode.set());
       dispatch(infoAlert.show({
@@ -281,11 +275,15 @@ export default class WsEvent {
           if (res.status === 200) {
             res.json().then(data => {
               const game = data[0];
-              dispatch(mode.setGm({
-                color: Pgn.symbol.WHITE,
-                movetext: game.movetext
+              dispatch(gmMode.set({
+                variant: variantConst.CLASSICAL,
+                gm: {
+                  color: Pgn.symbol.WHITE,
+                  movetext: game.movetext,
+                },
               }));
-              dispatch(gameTable.show({
+              dispatch(pgnMode.gameTable({
+                open: true,
                 game: {
                   Event: game.Event,
                   Site: game.Site,
@@ -300,7 +298,7 @@ export default class WsEvent {
               }));
             });
           } else if (res.status === 204) {
-            dispatch(gameTable.close());
+            dispatch(pgnMode.gameTable({ open: false }));
             dispatch(infoAlert.show({
               info: 'This game was not found in the database, please try again with a different one.'
             }));
@@ -338,34 +336,34 @@ export default class WsEvent {
 
   static onTakebackPropose = () => dispatch => {
     if (!store.getState().mode.play.takeback) {
-      dispatch(acceptTakebackDialog.open());
+      dispatch(playMode.acceptTakebackDialog({ open: false }));
     }
   }
 
   static onTakebackAccept = () => dispatch => {
-    dispatch(mode.acceptTakeback());
+    dispatch(playMode.acceptTakebackDialog({ open: true }));
   }
 
   static onDrawPropose = () => dispatch => {
     if (!store.getState().mode.play.draw) {
-      dispatch(acceptDrawDialog.open());
+      dispatch(playMode.acceptDrawDialog({ open: true }));
     }
   }
 
   static onDrawAccept = () => dispatch => {
-    dispatch(mode.acceptDraw());
+    dispatch(playMode.acceptDraw());
     dispatch(infoAlert.show({ info: 'Draw offer accepted.' }));
   }
 
   static onDrawDecline = () => dispatch => {
-    dispatch(mode.declineDraw());
+    dispatch(playMode.declineDraw());
     dispatch(infoAlert.show({ info: 'Draw offer declined.' }));
   }
 
   static onUndo = (data) => dispatch => {
     dispatch(board.undo(data['/undo']));
     if (data['/undo'].mode === modeConst.PLAY) {
-      dispatch(mode.declineTakeback());
+      dispatch(playMode.declineTakeback());
     } else if (data['/undo'].mode === modeConst.FEN) {
       Dispatcher.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
       WsAction.heuristicsBar();
@@ -373,28 +371,28 @@ export default class WsEvent {
   }
 
   static onResignAccept = () => dispatch => {
-    dispatch(mode.acceptResign());
+    dispatch(playMode.acceptResign());
     dispatch(infoAlert.show({ info: 'Chess game resigned.' }));
   }
 
   static onRematchPropose = () => dispatch => {
     if (!store.getState().mode.play.rematch) {
-      dispatch(acceptRematchDialog.open());
+      dispatch(playMode.acceptRematchDialog({ open: true }));
     }
   }
 
   static onRematchAccept = () => dispatch => {
-    dispatch(mode.acceptRematch());
+    dispatch(playMode.acceptRematch());
     dispatch(infoAlert.show({ info: 'Rematch accepted.' }));
   }
 
   static onRematchDecline = () => dispatch => {
-    dispatch(mode.declineRematch());
+    dispatch(playMode.declineRematch());
     dispatch(infoAlert.show({ info: 'Rematch declined.' }));
   }
 
   static onLeaveAccept = () => dispatch => {
-    dispatch(mode.acceptLeave());
+    dispatch(playMode.acceptLeave());
     dispatch(infoAlert.show({ info: 'Your opponent left the game.' }));
   }
 
@@ -402,11 +400,12 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
-    dispatch(mode.setPlay({
+    dispatch(playMode.start());
+    dispatch(playMode.set({
       color: store.getState().mode.play.color,
       accepted: false
     }));
-    dispatch(mode.setPlay({
+    dispatch(playMode.set({
       jwt: data['/restart'].jwt,
       jwt_decoded: jwtDecoded,
       hash: data['/restart'].hash,
@@ -429,7 +428,7 @@ export default class WsEvent {
 
   static onRandomCheckmate = (data) => dispatch => {
     if (data['/randomizer'].fen) {
-      dispatch(mode.setStockfish({
+      dispatch(stockfishMode.set({
         color: data['/randomizer'].turn,
         options: {
           "Skill Level": 20
@@ -444,7 +443,8 @@ export default class WsEvent {
         { fen: data['/randomizer'].fen }
       );
     } else {
-      dispatch(mode.startUndefined());
+      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.set());
       dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));
     }
   }
@@ -461,7 +461,7 @@ export default class WsEvent {
   }
 
   static onOnlineGames = (data) => dispatch => {
-    dispatch(playOnlineDialog.refresh(data['/online_games']));
+    dispatch(playMode.playOnlineDialog({ open: true, rows: data['/online_games'] }));
   }
 
   static onCorrespondence = (data) => dispatch => {
@@ -478,11 +478,14 @@ export default class WsEvent {
   static onCorrespondenceCreate = (data) => dispatch => {
     if (data['/inbox'].action === Wording.verb.CREATE.toLowerCase()) {
       if (data['/inbox'].hash) {
-        dispatch(createInboxCodeDialog.setInbox({
-          hash: data['/inbox'].hash,
+        dispatch(nav.createInboxCodeDialog({
+          open: true,
+          inbox: {
+            hash: data['/inbox'].hash,
+          },
         }));
       } else {
-        dispatch(createInboxCodeDialog.close());
+        dispatch(nav.createInboxCodeDialog({ open: false }));
         dispatch(infoAlert.show({
           info: data['/inbox'].message,
         }));
@@ -493,9 +496,12 @@ export default class WsEvent {
   static onCorrespondenceRead = (data) => dispatch => {
     if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
       if (data['/inbox'].inbox) {
-        dispatch(enterInboxCodeDialog.setInbox(data['/inbox'].inbox));
+        dispatch(nav.enterInboxCodeDialog({
+          open: true,
+          inbox: data['/inbox'].inbox,
+        }));
       } else {
-        dispatch(enterInboxCodeDialog.close());
+        dispatch(nav.enterInboxCodeDialog({ open: false }));
         dispatch(infoAlert.show({
           info: data['/inbox'].message,
         }));
@@ -513,7 +519,8 @@ export default class WsEvent {
 
   static onError = (data) => dispatch => {
     if (data['error']) {
-      dispatch(mode.startUndefined());
+      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.set());
       dispatch(infoAlert.show({
         info: 'Whoops! Something went wrong.'
       }));
