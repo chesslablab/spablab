@@ -6,7 +6,7 @@ import FinishedDialogsPlayMode from 'features/mode/play/FinishedDialogsPlayMode'
 import StartedButtonsPlayMode from 'features/mode/play/StartedButtonsPlayMode';
 import StartedDialogsPlayMode from 'features/mode/play/StartedDialogsPlayMode';
 import PgnTable from 'features/table/PgnTable';
-import SecondaryButtons from './SecondaryButtons';
+import PgnTableButtons from './PgnTableButtons';
 import SecondaryDialogs from './SecondaryDialogs';
 import History from './History';
 
@@ -41,7 +41,7 @@ const Game = ({ props }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
-          <SecondaryButtons props={props} />
+          <PgnTableButtons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12} sx={styles.timer}>

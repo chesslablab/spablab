@@ -12,7 +12,7 @@ import * as variantConst from 'features/variant/variantConst';
 import * as progressDialog from 'features/dialog/progressDialogSlice';
 import WsAction from 'features/ws/WsAction';
 
-const SecondaryButtons = ({props}) => {
+const PgnTableButtons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -76,7 +76,7 @@ const SecondaryButtons = ({props}) => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton
-        id="SecondaryButtons-copyPgnMovetext"
+        id="PgnTableButtons-copyPgnMovetext"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -87,7 +87,7 @@ const SecondaryButtons = ({props}) => {
         <MoveDownIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButtons-copyFenString"
+        id="PgnTableButtons-copyFenString"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -98,7 +98,7 @@ const SecondaryButtons = ({props}) => {
         <WidgetsIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButtons-heuristics"
+        id="PgnTableButtons-heuristics"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -112,7 +112,7 @@ const SecondaryButtons = ({props}) => {
         <BarChartIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButtons-downloadImage"
+        id="PgnTableButtons-downloadImage"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -123,7 +123,7 @@ const SecondaryButtons = ({props}) => {
         <InsertPhotoIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="SecondaryButtons-downloadVideo"
+        id="PgnTableButtons-downloadVideo"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -137,4 +137,4 @@ const SecondaryButtons = ({props}) => {
   );
 }
 
-export default SecondaryButtons;
+export default PgnTableButtons;
