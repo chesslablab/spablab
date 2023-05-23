@@ -3,21 +3,20 @@ import store from 'app/store';
 import Pgn from 'common/Pgn';
 import Dispatcher from 'common/Dispatcher';
 import Wording from 'common/Wording';
-import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as board from 'features/board/boardSlice';
-import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as gmMode from 'features/mode/gmModeSlice';
+import * as modeConst from 'features/mode/modeConst';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as undefinedMode from 'features/mode/undefinedModeSlice';
-import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 import * as eventConst from 'features/eventConst';
+import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
@@ -321,9 +320,12 @@ export default class WsEvent {
   }
 
   static onHeuristics = (data) => dispatch => {
-    dispatch(heuristicsDialog.open({
-      dimensions: data['/heuristics'].dimensions,
-      balance: data['/heuristics'].balance
+    dispatch(nav.heuristicsDialog({
+      open: true,
+      heuristics: {
+        dimensions: data['/heuristics'].dimensions,
+        balance: data['/heuristics'].balance,
+      },
     }));
   }
 
