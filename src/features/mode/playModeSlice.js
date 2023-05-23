@@ -1,8 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Wording from 'common/Wording.js';
+import * as modeConst from 'features/mode/modeConst';
+import * as variantConst from 'features/mode/variantConst';
 
 const initialState = {
   active: false,
+  name: modeConst.PLAY,
+  variant: variantConst.CLASSICAL,
   play: {}
 };
 
@@ -12,6 +16,7 @@ const playModeSlice = createSlice({
   reducers: {
     start: () => initialState,
     set(state, action) {
+      state.variant = action.payload.variant;
       state.play = action.payload;
     },
     acceptPlay(state) {

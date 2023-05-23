@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import * as modeConst from 'features/mode/modeConst';
 
 const initialState = {
-  active: false
+  active: false,
+  name: modeConst.UNDEFINED
 };
 
 const undefinedModeSlice = createSlice({
