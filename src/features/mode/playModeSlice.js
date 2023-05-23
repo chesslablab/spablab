@@ -7,7 +7,36 @@ const initialState = {
   active: false,
   name: modeConst.PLAY,
   variant: variantConst.CLASSICAL,
-  play: {}
+  play: {},
+  dialogs: {
+    acceptDraw: {
+      open: false,
+    },
+    acceptRematch: {
+      open: false,
+    },
+    acceptResign: {
+      open: false,
+    },
+    acceptTakeback: {
+      open: false,
+    },
+    createInviteCode: {
+      open: false,
+    },
+    enterInviteCode: {
+      open: false,
+    },
+    offerDraw: {
+      open: false,
+    },
+    offerRematch: {
+      open: false,
+    },
+    offerTakeback: {
+      open: false,
+    },
+  },
 };
 
 const playModeSlice = createSlice({
@@ -65,7 +94,35 @@ const playModeSlice = createSlice({
     },
     acceptLeave(state) {
       state.play.leave = Wording.verb.ACCEPT.toLowerCase();
-    }
+    },
+    // dialogs
+    acceptDrawDialog(state, action) {
+      state.dialogs.acceptDraw = action.payload;
+    },
+    acceptRematchDialog(state, action) {
+      state.dialogs.acceptRematch = action.payload;
+    },
+    acceptResignDialog(state, action) {
+      state.dialogs.acceptResign = action.payload;
+    },
+    acceptTakebackDialog(state, action) {
+      state.dialogs.acceptTakeback = action.payload;
+    },
+    createInviteCodeDialog(state, action) {
+      state.dialogs.createInviteCode = action.payload;
+    },
+    enterInviteCodeDialog(state, action) {
+      state.dialogs.enterInviteCode = action.payload;
+    },
+    offerDrawDialog(state, action) {
+      state.dialogs.offerDraw = action.payload;
+    },
+    offerRematchDialog(state, action) {
+      state.dialogs.offerRematch = action.payload;
+    },
+    offerTakebackDialog(state, action) {
+      state.dialogs.offerTakeback = action.payload;
+    },
   }
 });
 
@@ -84,6 +141,16 @@ export const {
   acceptRematch,
   declineRematch,
   proposeRematch,
-  acceptLeave
+  acceptLeave,
+  // dialogs
+  acceptDrawDialog,
+  acceptRematchDialog,
+  acceptResignDialog,
+  acceptTakebackDialog,
+  createInviteCodeDialog,
+  enterInviteCodeDialog,
+  offerDrawDialog,
+  offerRematchDialog,
+  offerTakebackDialog
 } = playModeSlice.actions;
 export default playModeSlice.reducer;
