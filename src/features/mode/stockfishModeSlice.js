@@ -7,7 +7,18 @@ const initialState = {
   name: modeConst.STOCKFISH,
   variant: variantConst.CLASSICAL,
   fen: '',
-  computer: {}
+  computer: {},
+  dialogs: {
+    checkmateSkills: {
+      open: false,
+    },
+    endgameSkills: {
+      open: false,
+    },
+    playComputer: {
+      open: false,
+    },
+  },
 };
 
 const stockfishModeSlice = createSlice({
@@ -19,12 +30,24 @@ const stockfishModeSlice = createSlice({
       state.active = true;
       state.variant = action.payload.variant;
       state.computer = action.payload;
-    }
-  }
+    },
+    checkmateSkillsDialog(state, action) {
+      state.dialogs.checkmateSkills = action.payload;
+    },
+    endgameSkillsDialog(state, action) {
+      state.dialogs.endgameSkills = action.payload;
+    },
+    playComputerDialog(state, action) {
+      state.dialogs.playComputer = action.payload;
+    },
+  },
 });
 
 export const {
   start,
-  set
+  set,
+  checkmateSkillsDialog,
+  endgameSkillsDialog,
+  playComputerDialog
 } = stockfishModeSlice.actions;
 export default stockfishModeSlice.reducer;
