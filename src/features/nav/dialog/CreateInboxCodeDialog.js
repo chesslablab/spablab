@@ -20,14 +20,14 @@ const CreateInboxCodeDialog = () => {
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.createInboxCodeDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.nav.dialogs.createInboxCode.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Play a Friend
         <IconButton onClick={() => dispatch(nav.createInboxCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.createInboxCodeDialog.inbox?.hash ? <CopyCode /> : <CreateCode />}
+      {state.nav.dialogs.createInboxCode.inbox?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
@@ -145,13 +145,13 @@ const CopyCode = () => {
         name="sharecode"
         label="Share this code with a friend"
         margin="normal"
-        value={state.createInboxCodeDialog.inbox.hash}
+        value={state.nav.dialogs.createInboxCode.inbox.hash}
       />
       <Button
         fullWidth
         variant="outlined"
         onClick={() => {
-          navigator.clipboard.writeText(state.createInboxCodeDialog.inbox.hash);
+          navigator.clipboard.writeText(state.nav.dialogs.createInboxCode.inbox.hash);
           dispatch(nav.createInboxCodeDialog({ open: false }));
       }}>
         Copy Inbox Code

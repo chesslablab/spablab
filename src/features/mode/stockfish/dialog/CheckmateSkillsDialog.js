@@ -59,7 +59,7 @@ const CheckmateSkillsDialog = () => {
   };
 
   return (
-    <Dialog open={state.checkmateSkillsDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.stockfishMode.dialogs.checkmateSkills.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Checkmate skills
         <IconButton onClick={() => dispatch(stockfishMode.checkmateSkillsDialog({ open: false }))}>

@@ -52,8 +52,8 @@ const SettingsDialog = () => {
             label="Show heuristics while playing"
             control={<Checkbox
               name="heuristics"
-              checked={state.settingsDialog.fields.heuristics === 'on'}
-              value={state.settingsDialog.fields.heuristics}
+              checked={state.nav.dialogs.settings.fields.heuristics === 'on'}
+              value={state.nav.dialogs.settings.fields.heuristics}
               onChange={handleHeuristicsChange}
             />}
           />

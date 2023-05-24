@@ -59,7 +59,7 @@ const EndgameSkillsDialog = () => {
   };
 
   return (
-    <Dialog open={state.endgameSkillsDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.stockfishMode.dialogs.endgameSkills.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Endgame skills
         <IconButton onClick={() => dispatch(stockfishMode.endgameSkillsDialog({ open: false }))}>
