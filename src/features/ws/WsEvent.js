@@ -22,7 +22,7 @@ import * as progressDialog from 'features/progressDialogSlice';
 export default class WsEvent {
   static onStartFen = (data) => dispatch => {
     if (data['/start'].fen) {
-      dispatch(fenMode.reset());
+      MultiAction.resetModes(dispatch);
       dispatch(board.startFen({ fen: data['/start'].fen }));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(fenMode.set({
@@ -52,7 +52,7 @@ export default class WsEvent {
   }
 
   static onStartGm = (data) => dispatch => {
-    dispatch(gmMode.reset());
+    MultiAction.resetModes(dispatch);
     dispatch(gmMode.set({
       variant: variantConst.CLASSICAL,
       gm: {

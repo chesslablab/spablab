@@ -50,11 +50,10 @@ const PlayComputerDialog = () => {
         color: color
       });
     }
-    dispatch(stockfishMode.reset());
-    dispatch(stockfishMode.set(payload));
     dispatch(nav.setPlay());
     dispatch(stockfishMode.playComputerDialog({ open: false }));
     MultiAction.initGui(dispatch);
+    dispatch(stockfishMode.set(payload));
   };
 
   const handlePositionChange = (event: Event) => {
