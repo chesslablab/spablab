@@ -10,7 +10,6 @@ import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as undefinedMode from 'features/mode/undefinedModeSlice';
-import * as variantConst from 'features/mode/variantConst';
 
 export default class MultiAction {
   static initGui = (dispatch) => {
