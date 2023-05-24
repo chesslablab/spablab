@@ -68,10 +68,7 @@ const PgnTableButtons = ({props}) => {
     .finally(() => dispatch(progressDialog.close()));
   }
 
-  const disabled = !(
-      state.mode.name === modeConst.FEN ||
-      state.mode.name === modeConst.PGN
-    ) && !state.board.movetext;
+  const disabled = !state.board.movetext;
 
   return (
     <Stack direction="row" spacing={1}>
