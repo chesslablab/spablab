@@ -16,7 +16,7 @@ const OpeningAnalysisTablePgnMode = ({props}) => {
         <Table stickyHeader size="small" aria-label="Chess Openings">
           <TableBody>
             {
-              state.openingAnalysisTable.rows.map((item, i) => (
+              state.pgnMode.tables.openingAnalysis.rows.map((item, i) => (
                 <TableRow key={i}>
                   <TableCell align="left">{item.eco}</TableCell>
                   <TableCell align="left">{item.name}</TableCell>
