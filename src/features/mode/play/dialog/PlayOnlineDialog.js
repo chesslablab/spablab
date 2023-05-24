@@ -17,6 +17,7 @@ import Pgn from 'common/Pgn';
 import PlayOnlineTable from 'features/mode/play/table/PlayOnlineTable';
 import * as playMode from 'features/mode/playModeSlice';
 import SelectColorButtons from 'features/mode/SelectColorButtons';
+import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
@@ -69,7 +70,7 @@ const PlayOnlineDialog = () => {
   }
 
   return (
-    <Dialog open={state.playOnlineDialog.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.playMode.dialogs.playOnline.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Play Online
         <IconButton onClick={() => dispatch(playMode.playOnlineDialog({ open: false }))}>

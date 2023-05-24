@@ -44,7 +44,7 @@ const LoadPgnDialog = () => {
   };
 
   return (
-    <Dialog open={state.loadPgnDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.pgnMode.dialogs.loadPgn.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         PGN Movetext
         <IconButton onClick={() => dispatch(pgnMode.loadPgnDialog({ open: false }))}>

@@ -63,7 +63,7 @@ const SearchGamesDialog = ({props}) => {
   };
 
   return (
-    <Dialog open={state.searchGamesDialog.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.pgnMode.dialogs.searchGames.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Search Games
         <IconButton onClick={() => dispatch(pgnMode.searchGamesDialog({ open: false }))}>
@@ -83,7 +83,7 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
                 <Autocomplete
                   id="Event"
-                  options={state.searchGamesDialog.autocomplete.events.map((option) => option.Event)}
+                  options={state.pgnMode.dialogs.searchGames.autocomplete.events.map((option) => option.Event)}
                   filterOptions={filterOptions}
                   renderInput={(params) => <TextField {...params} label="Event" variant="filled" name="Event" />}
                 />
@@ -109,7 +109,7 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="White"
-                options={state.searchGamesDialog.autocomplete.players.map((option) => option.name)}
+                options={state.pgnMode.dialogs.searchGames.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
               />
@@ -117,7 +117,7 @@ const SearchGamesDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="Black"
-                options={state.searchGamesDialog.autocomplete.players.map((option) => option.name)}
+                options={state.pgnMode.dialogs.searchGames.autocomplete.players.map((option) => option.name)}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
               />

@@ -35,7 +35,7 @@ const EnterInviteCodeDialog = () => {
   };
 
   return (
-    <Dialog open={state.enterInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.playMode.dialogs.enterInviteCode.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Enter Invite Code
         <IconButton onClick={() => dispatch(playMode.enterInviteCodeDialog({ open: false }))}>

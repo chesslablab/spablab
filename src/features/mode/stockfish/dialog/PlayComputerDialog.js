@@ -102,7 +102,7 @@ const PlayComputerDialog = () => {
   }
 
   return (
-    <Dialog open={state.playComputerDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.stockfishMode.dialogs.playComputer.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play Computer
         <IconButton onClick={() => dispatch(stockfishMode.playComputerDialog({ open: false }))}>

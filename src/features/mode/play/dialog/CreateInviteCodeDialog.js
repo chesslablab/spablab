@@ -26,14 +26,14 @@ const CreateInviteCodeDialog = () => {
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.createInviteCodeDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.playMode.dialogs.createInviteCode.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play a Friend
         <IconButton onClick={() => dispatch(playMode.createInviteCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.mode.play?.hash ? <CopyCode /> : <CreateCode />}
+      {state.playMode.play?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
@@ -212,13 +212,13 @@ const CopyCode = () => {
         name="sharecode"
         label="Share this code with a friend"
         margin="normal"
-        value={state.mode.play.hash}
+        value={state.playMode.play.hash}
       />
       <Button
         fullWidth
         variant="outlined"
         onClick={() => {
-          navigator.clipboard.writeText(state.mode.play.hash);
+          navigator.clipboard.writeText(state.playMode.play.hash);
           dispatch(playMode.createInviteCodeDialog({ open: false }));
       }}>
         Copy and Play
