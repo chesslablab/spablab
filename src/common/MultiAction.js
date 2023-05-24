@@ -14,14 +14,18 @@ import * as variantConst from 'features/mode/variantConst';
 
 export default class MultiAction {
   static initGui = (dispatch) => {
-    dispatch(heuristicsBar.resetBar());
-    dispatch(pgnMode.openingAnalysisTable({ open: false }));
-    dispatch(pgnMode.gameTable({ open: false }));
-    dispatch(infoAlert.close());
-    dispatch(history.goTo({ back: 0 }));
-    dispatch(board.start());
-    dispatch(fenMode.reset());
-    dispatch(fenMode.set({ variant: variantConst.CLASSICAL }));
+    const actions = [
+      heuristicsBar.resetBar(),
+      pgnMode.openingAnalysisTable({ open: false }),
+      pgnMode.gameTable({ open: false }),
+      infoAlert.close(),
+      history.goTo({ back: 0 }),
+      board.start(),
+      fenMode.reset(),
+      fenMode.set({ variant: variantConst.CLASSICAL }),
+    ];
+
+    actions.forEach(action => dispatch(action));
   };
 
   static openingAnalysisByMovetext = (dispatch, movetext) => {
@@ -59,11 +63,15 @@ export default class MultiAction {
   };
 
   static resetModes = (dispatch) => {
-    dispatch(fenMode.reset());
-    dispatch(gmMode.reset());
-    dispatch(pgnMode.reset());
-    dispatch(playMode.reset());
-    dispatch(stockfishMode.reset());
-    dispatch(undefinedMode.reset());
+    const actions = [
+      fenMode.reset(),
+      gmMode.reset(),
+      pgnMode.reset(),
+      playMode.reset(),
+      stockfishMode.reset(),
+      undefinedMode.reset(),
+    ];
+
+    actions.forEach(action => dispatch(action));
   };
 }
