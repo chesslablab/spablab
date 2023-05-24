@@ -8,7 +8,7 @@ import * as modeConst from 'features/mode/modeConst';
 const Timer = () => {
   const state = useSelector(state => state);
 
-  if (state.playMode.active) {
+  if (state.playMode.active === modeConst.PLAY) {
     if (state.mode.play.accepted) {
       return (
         <Box sx={{ mt: 1.5 }}>
