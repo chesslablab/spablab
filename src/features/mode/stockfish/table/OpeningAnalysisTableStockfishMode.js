@@ -8,7 +8,7 @@ const OpeningAnalysisTableStockfishMode = ({props}) => {
 
   if (
     state.stockfishMode.active &&
-    state.stockfishMode.tables.openingAnalysisTable.open &&
+    state.stockfishMode.tables.openingAnalysis.open &&
     state.nav.name !== navConst.TRAINING
   ) {
     return (

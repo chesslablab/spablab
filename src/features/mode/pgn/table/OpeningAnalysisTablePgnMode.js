@@ -9,7 +9,7 @@ const OpeningAnalysisTablePgnMode = ({props}) => {
   if (
     state.pgnMode.active &&
     state.pgnMode.variant === variantConst.CLASSICAL &&
-    state.pgnMode.tables.openingAnalysisTable.open
+    state.pgnMode.tables.openingAnalysis.open
   ) {
     return (
       <TableContainer sx={{ mt: 1.5 }}>
