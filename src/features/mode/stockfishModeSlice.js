@@ -31,7 +31,7 @@ const stockfishModeSlice = createSlice({
   name: 'stockfishMode',
   initialState,
   reducers: {
-    start: () => initialState,
+    reset: () => initialState,
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
@@ -50,7 +50,7 @@ const stockfishModeSlice = createSlice({
 });
 
 export const {
-  start,
+  reset,
   set,
   checkmateSkillsDialog,
   endgameSkillsDialog,

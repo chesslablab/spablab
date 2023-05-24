@@ -45,7 +45,7 @@ const pgnModeSlice = createSlice({
   name: 'pgnMode',
   initialState,
   reducers: {
-    start: () => initialState,
+    reset: () => initialState,
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
@@ -77,7 +77,7 @@ const pgnModeSlice = createSlice({
 });
 
 export const {
-  start,
+  reset,
   set,
   loadPgnDialog,
   searchEcoDialog,

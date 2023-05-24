@@ -49,7 +49,7 @@ const playModeSlice = createSlice({
   name: 'playMode',
   initialState,
   reducers: {
-    start: () => initialState,
+    reset: () => initialState,
     set(state, action) {
       state.variant = action.payload.variant;
       state.fen =  action.payload.fen;
@@ -138,7 +138,7 @@ const playModeSlice = createSlice({
 });
 
 export const {
-  start,
+  reset,
   set,
   acceptPlay,
   acceptTakeback,

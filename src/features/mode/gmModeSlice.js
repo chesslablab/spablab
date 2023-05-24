@@ -19,7 +19,7 @@ const gmModeSlice = createSlice({
   name: 'gmMode',
   initialState,
   reducers: {
-    start: () => initialState,
+    reset: () => initialState,
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
@@ -32,7 +32,7 @@ const gmModeSlice = createSlice({
 });
 
 export const {
-  start,
+  reset,
   set,
   gameTable
 } = gmModeSlice.actions;

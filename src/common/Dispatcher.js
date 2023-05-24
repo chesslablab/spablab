@@ -5,7 +5,11 @@ import * as history from 'features/historySlice';
 import * as board from 'features/board/boardSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
+import * as gmMode from 'features/mode/gmModeSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as playMode from 'features/mode/playModeSlice';
+import * as stockfishMode from 'features/mode/stockfishModeSlice';
+import * as undefinedMode from 'features/mode/undefinedModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 
 export default class Dispatcher {
@@ -16,7 +20,7 @@ export default class Dispatcher {
     dispatch(infoAlert.close());
     dispatch(history.goTo({ back: 0 }));
     dispatch(board.start());
-    dispatch(fenMode.start());
+    dispatch(fenMode.reset());
     dispatch(fenMode.set({ variant: variantConst.CLASSICAL }));
   };
 
@@ -52,5 +56,14 @@ export default class Dispatcher {
     }
 
     return false;
+  };
+
+  static resetModes = (dispatch) => {
+    dispatch(fenMode.reset());
+    dispatch(gmMode.reset());
+    dispatch(pgnMode.reset());
+    dispatch(playMode.reset());
+    dispatch(stockfishMode.reset());
+    dispatch(undefinedMode.reset());
   };
 }

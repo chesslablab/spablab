@@ -22,7 +22,7 @@ import * as progressDialog from 'features/progressDialogSlice';
 export default class WsEvent {
   static onStartFen = (data) => dispatch => {
     if (data['/start'].fen) {
-      dispatch(fenMode.start());
+      dispatch(fenMode.reset());
       dispatch(board.startFen({ fen: data['/start'].fen }));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(fenMode.set({
@@ -43,7 +43,7 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar();
     } else {
-      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.reset());
       dispatch(undefinedMode.set());
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
@@ -52,7 +52,7 @@ export default class WsEvent {
   }
 
   static onStartGm = (data) => dispatch => {
-    dispatch(gmMode.start());
+    dispatch(gmMode.reset());
     dispatch(gmMode.set({
       variant: variantConst.CLASSICAL,
       gm: {
@@ -64,7 +64,7 @@ export default class WsEvent {
 
   static onStartPgn = (data) => dispatch => {
     if (data['/start'].movetext) {
-      dispatch(pgnMode.start());
+      dispatch(pgnMode.reset());
       dispatch(board.startPgn(data['/start']));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(pgnMode.set({
@@ -83,7 +83,7 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar();
     } else {
-      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.reset());
       dispatch(undefinedMode.set());
       dispatch(infoAlert.show({
         info: 'Invalid PGN movetext, please try again with a different one.'
@@ -111,7 +111,7 @@ export default class WsEvent {
           over: null
         }
       };
-      dispatch(playMode.start());
+      dispatch(playMode.reset());
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(playMode.set({
           variant: variantConst.CLASSICAL,
@@ -139,7 +139,7 @@ export default class WsEvent {
       dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
     } else {
       dispatch(playMode.createInviteCodeDialog({ open: false }));
-      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.reset());
       dispatch(undefinedMode.set());
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
@@ -201,7 +201,7 @@ export default class WsEvent {
           over: null
         },
       };
-      dispatch(playMode.start());
+      dispatch(playMode.reset());
       if (jwtDecoded.variant === variantConst.CLASSICAL) {
         dispatch(playMode.set({
           variant: variantConst.CLASSICAL,
@@ -229,7 +229,7 @@ export default class WsEvent {
       dispatch(playMode.acceptPlay());
       dispatch(playMode.playOnlineDialog({ open: false }));
     } else {
-      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.reset());
       dispatch(undefinedMode.set());
       dispatch(infoAlert.show({
         info: 'Invalid invite code, please try again with a different one.'
@@ -402,7 +402,7 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
-    dispatch(playMode.start());
+    dispatch(playMode.reset());
     dispatch(playMode.set({
       color: store.getState().playMode.play.color,
       accepted: false
@@ -445,7 +445,7 @@ export default class WsEvent {
         { fen: data['/randomizer'].fen }
       );
     } else {
-      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.reset());
       dispatch(undefinedMode.set());
       dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));
     }
@@ -521,7 +521,7 @@ export default class WsEvent {
 
   static onError = (data) => dispatch => {
     if (data['error']) {
-      dispatch(undefinedMode.start());
+      dispatch(undefinedMode.reset());
       dispatch(undefinedMode.set());
       dispatch(infoAlert.show({
         info: 'Whoops! Something went wrong.'

@@ -19,7 +19,7 @@ const fenModeSlice = createSlice({
   name: 'fenMode',
   initialState,
   reducers: {
-    start: () => initialState,
+    reset: () => initialState,
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
@@ -33,7 +33,7 @@ const fenModeSlice = createSlice({
 });
 
 export const {
-  start,
+  reset,
   set,
   loadFenDialog
 } = fenModeSlice.actions;

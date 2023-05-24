@@ -29,7 +29,7 @@ const EnterInviteCodeDialog = () => {
 
   const handlePlay = () => {
     dispatch(nav.setPlay());
-    dispatch(playMode.start());
+    dispatch(playMode.reset());
     dispatch(playMode.enterInviteCodeDialog({ open: false }));
     WsAction.accept(fields.hash);
   };
