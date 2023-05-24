@@ -24,7 +24,7 @@ import OpeningsStatsDialog from 'features/nav/dialog/OpeningsStatsDialog';
 import PlayersStatsDialog from 'features/nav/dialog/PlayersStatsDialog';
 import SettingsDialog from 'features/nav/dialog/SettingsDialog';
 import Nav from 'features/nav/Nav';
-import Game from 'features/Game';
+import Game from 'features/panel/Game';
 import HeuristicsBar from 'features/HeuristicsBar';
 import ProgressDialog from 'features/ProgressDialog';
 import theme from 'styles/theme.js';

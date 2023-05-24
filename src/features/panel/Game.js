@@ -13,10 +13,10 @@ import StartedDialogsPlayMode from 'features/mode/play/StartedDialogsPlayMode';
 import OpeningAnalysisTableStockfishMode from 'features/mode/stockfish/table/OpeningAnalysisTableStockfishMode';
 import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsStockfishMode';
 import Timer from 'features/mode/play/timer/Timer';
-import PgnTable from 'features/PgnTable';
-import PgnTableButtons from 'features/PgnTableButtons';
-import PgnTableDialogs from 'features/PgnTableDialogs';
-import History from './History';
+import History from 'features/panel/History';
+import PgnTable from 'features/panel/PgnTable';
+import PgnTableButtons from 'features/panel/PgnTableButtons';
+import PgnTableDialogs from 'features/panel/PgnTableDialogs';
 
 const styles = {
   gameBox: {
