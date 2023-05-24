@@ -18,7 +18,7 @@ const OfferTakebackDialog = () => {
 
   return (
     <Dialog
-      open={state.offerTakebackDialog.open}
+      open={state.playMode.dialogs.offerTakeback.open}
       maxWidth="xs"
       fullWidth={true}
     >

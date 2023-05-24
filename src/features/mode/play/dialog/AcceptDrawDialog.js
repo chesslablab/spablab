@@ -22,7 +22,7 @@ const AcceptDrawDialog = () => {
   };
 
   return (
-    <Dialog open={state.acceptDrawDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.playMode.dialogs.acceptDraw.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>A draw is being offered</DialogTitle>
       <DialogContent>
         <form onSubmit={handleDrawAccept}>

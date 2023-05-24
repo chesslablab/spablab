@@ -17,7 +17,7 @@ const OfferDrawDialog = () => {
   };
 
   return (
-    <Dialog open={state.offerDrawDialog.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.playMode.dialogs.offerDraw.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>Offer draw</DialogTitle>
       <DialogContent>
         <form onSubmit={handleDrawOffer}>
