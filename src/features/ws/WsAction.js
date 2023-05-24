@@ -1,10 +1,10 @@
 import store from 'app/store';
-import MultiAction from 'common/MultiAction';
 import Pgn from 'common/Pgn';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import WsEventListener from 'features/ws/WsEventListener';
 import * as wsSlice from 'features/ws/wsSlice';
+import multiAction from 'features/multiAction';
 
 export default class WsAction {
   static connect = (props) => dispatch => {
@@ -81,7 +81,7 @@ export default class WsAction {
 
   static heuristicsBar = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
-    const variant = MultiAction.activeVariant();
+    const variant = multiAction.activeVariant();
 
     if (store.getState().nav.dialogs.settings.fields.heuristics === 'on') {
       return await store.getState().server.ws.send(`/heuristics_bar "${fen}" ${variant}`);

@@ -9,12 +9,12 @@ import {
   TableHead,
   TableRow
 } from '@mui/material';
-import MultiAction from 'common/MultiAction';
 import * as modeConst from 'features/mode/modeConst';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
+import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const styles = {
@@ -58,7 +58,7 @@ const DatabaseResultTable = ({props}) => {
     dispatch(pgnMode.searchGamesDialog({ open: false }));
     dispatch(progressDialog.open());
     dispatch(nav.setDatabase());
-    MultiAction.initGui(dispatch);
+    multiAction.initGui(dispatch);
     WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
       movetext: item.movetext
     });

@@ -27,7 +27,6 @@ import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import MultiAction from 'common/MultiAction';
 import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
 import * as navConst from 'features/nav/navConst';
@@ -40,6 +39,7 @@ import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
+import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const Nav = ({props}) => {
@@ -140,7 +140,7 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startClassical"
           onClick={() => {
             dispatch(nav.setAnalysis());
-            MultiAction.initGui(dispatch);
+            multiAction.initGui(dispatch);
             WsAction.startOff();
             handleCloseAnalysis();
           }}
@@ -151,7 +151,7 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startFischerRandom960"
           onClick={() => {
             dispatch(nav.setAnalysis());
-            MultiAction.initGui(dispatch);
+            multiAction.initGui(dispatch);
             WsAction.start(variantConst.CHESS_960, modeConst.FEN);
             handleCloseAnalysis();
           }}
@@ -162,7 +162,7 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startCapablanca"
           onClick={() => {
             dispatch(nav.setAnalysis());
-            MultiAction.initGui(dispatch);
+            multiAction.initGui(dispatch);
             WsAction.start(variantConst.CAPABLANCA_80, modeConst.FEN);
             handleCloseAnalysis();
           }}
@@ -408,7 +408,7 @@ const Nav = ({props}) => {
           id="Nav-training-MenuItem-guessTheMove"
           onClick={() => {
             dispatch(nav.setTraining());
-            MultiAction.initGui(dispatch);
+            multiAction.initGui(dispatch);
             WsAction.start(variantConst.CLASSICAL, modeConst.GM, {
               color: Pgn.symbol.WHITE
             });

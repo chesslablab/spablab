@@ -11,7 +11,7 @@ import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as undefinedMode from 'features/mode/undefinedModeSlice';
 
-export default class MultiAction {
+export default class multiAction {
   static initGui = (dispatch) => {
     dispatch(heuristicsBar.resetBar());
     dispatch(pgnMode.openingAnalysisTable({ open: false }));

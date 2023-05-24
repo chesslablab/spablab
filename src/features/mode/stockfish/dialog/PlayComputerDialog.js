@@ -14,13 +14,13 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import MultiAction from 'common/MultiAction';
 import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
 import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
+import multiAction from 'features/multiAction';
 
 const PlayComputerDialog = () => {
   const state = useSelector(state => state);
@@ -52,7 +52,7 @@ const PlayComputerDialog = () => {
     }
     dispatch(nav.setPlay());
     dispatch(stockfishMode.playComputerDialog({ open: false }));
-    MultiAction.initGui(dispatch);
+    multiAction.initGui(dispatch);
     dispatch(stockfishMode.set({
       variant: variantConst.CLASSICAL,
       computer: payload,

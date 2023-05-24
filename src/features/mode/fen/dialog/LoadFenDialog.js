@@ -10,12 +10,12 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import MultiAction from 'common/MultiAction';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
+import multiAction from 'features/multiAction';
 import progressDialog from 'features/progressDialogSlice';
 
 const LoadFenDialog = () => {
@@ -33,7 +33,7 @@ const LoadFenDialog = () => {
     dispatch(nav.setAnalysis());
     dispatch(fenMode.loadFenDialog({ open: false }));
     dispatch(progressDialog.open());
-    MultiAction.initGui(dispatch);
+    multiAction.initGui(dispatch);
     let settings = {
       fen: event.target.elements.fen.value
     };

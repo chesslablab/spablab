@@ -12,11 +12,11 @@ import {
   TextField
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import MultiAction from 'common/MultiAction';
 import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
+import multiAction from 'features/multiAction';
 
 const EndgameSkillsDialog = () => {
   const state = useSelector(state => state);
@@ -47,7 +47,7 @@ const EndgameSkillsDialog = () => {
       };
     dispatch(nav.setTraining());
     dispatch(stockfishMode.endgameSkillsDialog({ open: false }));
-    MultiAction.initGui(dispatch);
+    multiAction.initGui(dispatch);
     WsAction.randomizer(color, items);
   };
 

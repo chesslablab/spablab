@@ -1,7 +1,6 @@
 import jwt_decode from "jwt-decode";
 import store from 'app/store';
 import Pgn from 'common/Pgn';
-import MultiAction from 'common/MultiAction';
 import Wording from 'common/Wording';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as board from 'features/board/boardSlice';
@@ -17,12 +16,13 @@ import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 import * as eventConst from 'features/eventConst';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
+import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
   static onStartFen = (data) => dispatch => {
     if (data['/start'].fen) {
-      MultiAction.resetModes(dispatch);
+      multiAction.resetModes(dispatch);
       dispatch(board.startFen({ fen: data['/start'].fen }));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(fenMode.set({
@@ -52,7 +52,7 @@ export default class WsEvent {
   }
 
   static onStartGm = (data) => dispatch => {
-    MultiAction.resetModes(dispatch);
+    multiAction.resetModes(dispatch);
     dispatch(gmMode.set({
       variant: variantConst.CLASSICAL,
       gm: {
@@ -70,7 +70,7 @@ export default class WsEvent {
         dispatch(pgnMode.set({
           variant: variantConst.CLASSICAL,
         }));
-        MultiAction.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
+        multiAction.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
       } else if (data['/start'].variant === variantConst.CHESS_960) {
         dispatch(pgnMode.set({
           variant: variantConst.CHESS_960,
@@ -92,7 +92,7 @@ export default class WsEvent {
   }
 
   static onStartPlay = (data) => dispatch => {
-    MultiAction.initGui(dispatch);
+    multiAction.initGui(dispatch);
     if (data['/start'].jwt) {
       const jwtDecoded = jwt_decode(data['/start'].jwt);
       const play = {
@@ -182,7 +182,7 @@ export default class WsEvent {
   }
 
   static onAccept = (data) => dispatch => {
-    MultiAction.initGui(dispatch);
+    multiAction.initGui(dispatch);
     if (data['/accept'].jwt) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
       const play = {
@@ -258,7 +258,7 @@ export default class WsEvent {
         store.getState().fenMode.active &&
         store.getState().fenMode.variant === variantConst.CLASSICAL
       ) {
-        MultiAction.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
+        multiAction.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
       } else if (
         store.getState().gmMode.active &&
         store.getState().fenMode.variant === variantConst.CLASSICAL
@@ -367,7 +367,7 @@ export default class WsEvent {
     if (data['/undo'].mode === modeConst.PLAY) {
       dispatch(playMode.declineTakeback());
     } else if (data['/undo'].mode === modeConst.FEN) {
-      MultiAction.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
+      multiAction.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
       WsAction.heuristicsBar();
     }
   }
@@ -458,7 +458,7 @@ export default class WsEvent {
         piecePlaced: { event: eventConst.ON_STOCKFISH }
       }));
       WsAction.heuristicsBar();
-      MultiAction.openingAnalysisByMovetext(dispatch, data['/stockfish'].movetext);
+      multiAction.openingAnalysisByMovetext(dispatch, data['/stockfish'].movetext);
     }
   }
 
