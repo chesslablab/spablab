@@ -5,13 +5,13 @@ import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/mate
 const GameTable = ({props}) => {
   const state = useSelector(state => state);
 
-  if (state.gameTable.open) {
+  if (state.pgnMode.tables.game.open) {
     return (
       <TableContainer sx={{ mt: 1.5 }}>
         <Table stickyHeader size="small" aria-label="Chess Openings">
           <TableBody>
             {
-              Object.entries(state.gameTable.game).map(([key, val]) => (
+              Object.entries(state.pgnMode.tables.game.game).map(([key, val]) => (
                 <TableRow key={key}>
                   <TableCell align="right">{key}</TableCell>
                   <TableCell align="left">{val}</TableCell>
