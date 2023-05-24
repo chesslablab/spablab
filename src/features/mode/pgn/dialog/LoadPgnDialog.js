@@ -10,7 +10,7 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
@@ -33,7 +33,7 @@ const LoadPgnDialog = () => {
     dispatch(nav.setAnalysis());
     dispatch(pgnMode.loadPgnDialog({ open: false }));
     dispatch(progressDialog.open());
-    Dispatcher.initGui(dispatch);
+    MultiAction.initGui(dispatch);
     let settings = {
       movetext: event.target.elements.pgn.value
     };

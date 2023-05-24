@@ -1,5 +1,5 @@
 import store from 'app/store';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import Pgn from 'common/Pgn';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
@@ -81,7 +81,7 @@ export default class WsAction {
 
   static heuristicsBar = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
-    const variant = Dispatcher.activeVariant();
+    const variant = MultiAction.activeVariant();
 
     if (store.getState().nav.dialogs.settings.fields.heuristics === 'on') {
       return await store.getState().server.ws.send(`/heuristics_bar "${fen}" ${variant}`);

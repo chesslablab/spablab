@@ -27,7 +27,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
 import * as navConst from 'features/nav/navConst';
@@ -140,7 +140,7 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startClassical"
           onClick={() => {
             dispatch(nav.setAnalysis());
-            Dispatcher.initGui(dispatch);
+            MultiAction.initGui(dispatch);
             WsAction.startOff();
             handleCloseAnalysis();
           }}
@@ -151,7 +151,7 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startFischerRandom960"
           onClick={() => {
             dispatch(nav.setAnalysis());
-            Dispatcher.initGui(dispatch);
+            MultiAction.initGui(dispatch);
             WsAction.start(variantConst.CHESS_960, modeConst.FEN);
             handleCloseAnalysis();
           }}
@@ -162,7 +162,7 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startCapablanca"
           onClick={() => {
             dispatch(nav.setAnalysis());
-            Dispatcher.initGui(dispatch);
+            MultiAction.initGui(dispatch);
             WsAction.start(variantConst.CAPABLANCA_80, modeConst.FEN);
             handleCloseAnalysis();
           }}
@@ -408,7 +408,7 @@ const Nav = ({props}) => {
           id="Nav-training-MenuItem-guessTheMove"
           onClick={() => {
             dispatch(nav.setTraining());
-            Dispatcher.initGui(dispatch);
+            MultiAction.initGui(dispatch);
             WsAction.start(variantConst.CLASSICAL, modeConst.GM, {
               color: Pgn.symbol.WHITE
             });

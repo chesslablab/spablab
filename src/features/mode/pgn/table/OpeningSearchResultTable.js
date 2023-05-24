@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import * as modeConst from 'features/mode/modeConst';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as variantConst from 'features/mode/variantConst';
@@ -25,7 +25,7 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(pgnMode.searchNameDialog({ open: false }));
     dispatch(progressDialog.open());
     dispatch(nav.setOpeningSearch());
-    Dispatcher.initGui(dispatch);
+    MultiAction.initGui(dispatch);
     WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
       movetext: movetext
     });

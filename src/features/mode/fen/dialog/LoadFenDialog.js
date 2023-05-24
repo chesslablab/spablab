@@ -10,7 +10,7 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
@@ -33,7 +33,7 @@ const LoadFenDialog = () => {
     dispatch(nav.setAnalysis());
     dispatch(fenMode.loadFenDialog({ open: false }));
     dispatch(progressDialog.open());
-    Dispatcher.initGui(dispatch);
+    MultiAction.initGui(dispatch);
     let settings = {
       fen: event.target.elements.fen.value
     };

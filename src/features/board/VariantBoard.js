@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import Capablanca80Board from 'features/board/Capablanca80Board';
 import Chess960Board from 'features/board/Chess960Board';
 import ClassicalBoard from 'features/board/ClassicalBoard';
@@ -15,9 +15,9 @@ const VariantBoard = ({props}) => {
   }, [props, dispatch]);
 
   const variantBoard = () => {
-    if (Dispatcher.activeVariant() === variantConst.CAPABLANCA_80) {
+    if (MultiAction.activeVariant() === variantConst.CAPABLANCA_80) {
       return <Capablanca80Board props={props} />;
-    } else if (Dispatcher.activeVariant() === variantConst.CHESS_960) {
+    } else if (MultiAction.activeVariant() === variantConst.CHESS_960) {
       return <Chess960Board props={props} />;
     }
 

@@ -14,7 +14,7 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
@@ -54,7 +54,7 @@ const PlayComputerDialog = () => {
     dispatch(stockfishMode.set(payload));
     dispatch(nav.setPlay());
     dispatch(stockfishMode.playComputerDialog({ open: false }));
-    Dispatcher.initGui(dispatch);
+    MultiAction.initGui(dispatch);
   };
 
   const handlePositionChange = (event: Event) => {

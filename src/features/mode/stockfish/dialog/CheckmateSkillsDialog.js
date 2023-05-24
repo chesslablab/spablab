@@ -12,7 +12,7 @@ import {
   TextField
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
@@ -47,7 +47,7 @@ const CheckmateSkillsDialog = () => {
       };
     dispatch(nav.setTraining());
     dispatch(stockfishMode.checkmateSkillsDialog({ open: false }));
-    Dispatcher.initGui(dispatch);
+    MultiAction.initGui(dispatch);
     WsAction.randomizer(color, items);
   };
 

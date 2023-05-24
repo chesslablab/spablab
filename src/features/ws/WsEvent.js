@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
 import store from 'app/store';
 import Pgn from 'common/Pgn';
-import Dispatcher from 'common/Dispatcher';
+import MultiAction from 'common/MultiAction';
 import Wording from 'common/Wording';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as board from 'features/board/boardSlice';
@@ -70,7 +70,7 @@ export default class WsEvent {
         dispatch(pgnMode.set({
           variant: variantConst.CLASSICAL,
         }));
-        Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
+        MultiAction.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
       } else if (data['/start'].variant === variantConst.CHESS_960) {
         dispatch(pgnMode.set({
           variant: variantConst.CHESS_960,
@@ -92,7 +92,7 @@ export default class WsEvent {
   }
 
   static onStartPlay = (data) => dispatch => {
-    Dispatcher.initGui(dispatch);
+    MultiAction.initGui(dispatch);
     if (data['/start'].jwt) {
       const jwtDecoded = jwt_decode(data['/start'].jwt);
       const play = {
@@ -182,7 +182,7 @@ export default class WsEvent {
   }
 
   static onAccept = (data) => dispatch => {
-    Dispatcher.initGui(dispatch);
+    MultiAction.initGui(dispatch);
     if (data['/accept'].jwt) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
       const play = {
@@ -258,7 +258,7 @@ export default class WsEvent {
         store.getState().fenMode.active &&
         store.getState().fenMode.variant === variantConst.CLASSICAL
       ) {
-        Dispatcher.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
+        MultiAction.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
       } else if (
         store.getState().gmMode.active &&
         store.getState().fenMode.variant === variantConst.CLASSICAL
@@ -367,7 +367,7 @@ export default class WsEvent {
     if (data['/undo'].mode === modeConst.PLAY) {
       dispatch(playMode.declineTakeback());
     } else if (data['/undo'].mode === modeConst.FEN) {
-      Dispatcher.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
+      MultiAction.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
       WsAction.heuristicsBar();
     }
   }
@@ -458,7 +458,7 @@ export default class WsEvent {
         piecePlaced: { event: eventConst.ON_STOCKFISH }
       }));
       WsAction.heuristicsBar();
-      Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].movetext);
+      MultiAction.openingAnalysisByMovetext(dispatch, data['/stockfish'].movetext);
     }
   }
 
