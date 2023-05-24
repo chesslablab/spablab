@@ -62,7 +62,7 @@ const PlayOnlineTable = () => {
     dispatch(playMode.playOnlineDialog({ open: false }));
   };
 
-  if (state.playOnlineDialog.rows.length > 0) {
+  if (state.playMode.dialogs.playOnline.rows) {
     return (
       <>
         <TableContainer component={Paper}>
@@ -73,17 +73,17 @@ const PlayOnlineTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {state.playOnlineDialog.rows.map((row, i) => (
+              {state.playMode.dialogs.playOnline.rows.map((row, i) => (
                 <TableRow
                   key={i}
                   selected={true}
                   sx={
-                    state.mode.play && state.mode.play.hash === row.hash
+                    state.playMode.play.hash === row.hash
                       ? styles.disabled
                       : styles.clickable
                   }
                   onClick={() =>
-                    state.mode.play && state.mode.play.hash === row.hash
+                    state.playMode.play.hash === row.hash
                       ? null
                       : handlePlay(row.hash)
                   }
