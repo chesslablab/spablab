@@ -223,7 +223,7 @@ export default class WsEvent {
         }));
         dispatch(board.startCapablanca80({ fen: jwtDecoded.fen }));
       }
-      if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
+      if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
       dispatch(playMode.acceptPlay());
@@ -310,8 +310,8 @@ export default class WsEvent {
           dispatch(progressDialog.close());
         });
       } else if (
-        store.getState().variant.name === variantConst.CLASSICAL &&
-        store.getState().mode.name === modeConst.STOCKFISH
+        store.getState().stockfishMode.active &&
+        store.getState().stockfishMode.variant === variantConst.CLASSICAL
       ) {
         WsAction.stockfish();
       }
@@ -337,7 +337,7 @@ export default class WsEvent {
   }
 
   static onTakebackPropose = () => dispatch => {
-    if (!store.getState().mode.play.takeback) {
+    if (!store.getState().playMode.play.takeback) {
       dispatch(playMode.acceptTakebackDialog({ open: false }));
     }
   }
@@ -347,7 +347,7 @@ export default class WsEvent {
   }
 
   static onDrawPropose = () => dispatch => {
-    if (!store.getState().mode.play.draw) {
+    if (!store.getState().playMode.play.draw) {
       dispatch(playMode.acceptDrawDialog({ open: true }));
     }
   }
@@ -378,7 +378,7 @@ export default class WsEvent {
   }
 
   static onRematchPropose = () => dispatch => {
-    if (!store.getState().mode.play.rematch) {
+    if (!store.getState().playMode.play.rematch) {
       dispatch(playMode.acceptRematchDialog({ open: true }));
     }
   }
@@ -404,14 +404,14 @@ export default class WsEvent {
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
     dispatch(playMode.start());
     dispatch(playMode.set({
-      color: store.getState().mode.play.color,
+      color: store.getState().playMode.play.color,
       accepted: false
     }));
     dispatch(playMode.set({
       jwt: data['/restart'].jwt,
       jwt_decoded: jwtDecoded,
       hash: data['/restart'].hash,
-      color: store.getState().mode.play.color,
+      color: store.getState().playMode.play.color,
       takeback: null,
       draw: null,
       resign: null,
@@ -423,7 +423,7 @@ export default class WsEvent {
       }
     }));
     dispatch(board.start());
-    if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
+    if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
       dispatch(board.flip());
     }
   }
