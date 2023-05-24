@@ -103,12 +103,13 @@ const Nav = ({props}) => {
     setAnchorElCorrespondence(event.currentTarget);
   };
 
-  const disabled = state.mode.name === modeConst.PLAY &&
-    state.mode.play.accepted &&
-    (!state.mode.play.draw || state.mode.play.draw === Wording.verb.PROPOSE.toLowerCase()) &&
-    !state.mode.play.resign &&
-    !state.mode.play.leave &&
-    !state.mode.play.timer.over &&
+
+  const disabled = state.playMode.active &&
+    state.playMode.play.accepted &&
+    (!state.playMode.play.draw || state.playMode.play.draw === Wording.verb.PROPOSE.toLowerCase()) &&
+    !state.playMode.play.resign &&
+    !state.playMode.play.leave &&
+    !state.playMode.play.timer.over &&
     !state.board.isMate &&
     !state.board.isStalemate;
 
@@ -124,7 +125,7 @@ const Nav = ({props}) => {
       <Button
         id="Nav-analysisBoard"
         sx={{ borderRadius: 0 }}
-        variant={state.mainButtons.name === navConst.ANALYSIS ? "contained" : "text"}
+        variant={state.nav.name === navConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
       >
@@ -190,7 +191,7 @@ const Nav = ({props}) => {
       </Menu>
       <Button
         id="Nav-play"
-        variant={state.mainButtons.name === navConst.PLAY ? "contained" : "text"}
+        variant={state.nav.name === navConst.PLAY ? "contained" : "text"}
         startIcon={<GradientIcon />}
         onClick={handleClickPlay}
       >
@@ -244,7 +245,7 @@ const Nav = ({props}) => {
       </Menu>
       <Button
         id="Nav-openingSearch"
-        variant={state.mainButtons.name === navConst.OPENING_SEARCH ? "contained" : "text"}
+        variant={state.nav.name === navConst.OPENING_SEARCH ? "contained" : "text"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >
@@ -285,7 +286,7 @@ const Nav = ({props}) => {
       </Menu>
       <Button
         id="Nav-database"
-        variant={state.mainButtons.name === navConst.DATABASE ? "contained" : "text"}
+        variant={state.nav.name === navConst.DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
         onClick={handleClickDatabase}
       >
@@ -392,7 +393,7 @@ const Nav = ({props}) => {
       </Menu>
       <Button
         id="Nav-training"
-        variant={state.mainButtons.name === navConst.TRAINING ? "contained" : "text"}
+        variant={state.nav.name === navConst.TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
       >
@@ -437,7 +438,7 @@ const Nav = ({props}) => {
       </Menu>
       <Button
         id="Nav-inbox"
-        variant={state.mainButtons.name === navConst.CORRESPONDENCE ? "contained" : "text"}
+        variant={state.nav.name === navConst.CORRESPONDENCE ? "contained" : "text"}
         startIcon={<EmailIcon />}
         onClick={handleClickCorrespondence}
       >
@@ -471,7 +472,7 @@ const Nav = ({props}) => {
       <Button
         id="Nav-settings"
         sx={{ borderRadius: 0 }}
-        variant={state.mainButtons.name === navConst.SETTINGS ? "contained" : "text"}
+        variant={state.nav.name === navConst.SETTINGS ? "contained" : "text"}
         startIcon={<SettingsIcon />}
         onClick={() => dispatch(nav.settingsDialog({ open: true }))}
       >
