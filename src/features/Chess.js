@@ -14,7 +14,6 @@ import SearchGamesDialog from 'features/mode/pgn/dialog/SearchGamesDialog';
 import SearchMovetextDialog from 'features/mode/pgn/dialog/SearchMovetextDialog';
 import SearchNameDialog from 'features/mode/pgn/dialog/SearchNameDialog';
 import GameTable from 'features/mode/pgn/table/GameTable';
-import OpeningAnalysisTable from 'features/mode/pgn/table/OpeningAnalysisTable';
 import StartedButtonsPgnMode from 'features/mode/pgn/StartedButtonsPgnMode';
 import CreateInviteCodeDialog from 'features/mode/play/dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from 'features/mode/play/dialog/EnterInviteCodeDialog';
@@ -23,6 +22,7 @@ import CheckmateSkillsDialog from 'features/mode/stockfish/dialog/CheckmateSkill
 import EndgameSkillsDialog from 'features/mode/stockfish/dialog/EndgameSkillsDialog';
 import PlayComputerDialog from 'features/mode/stockfish/dialog/PlayComputerDialog';
 import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsStockfishMode';
+import OpeningAnalysisTable from 'features/mode/OpeningAnalysisTable';
 import CreateInboxCodeDialog from 'features/nav/dialog/CreateInboxCodeDialog';
 import EnterInboxCodeDialog from 'features/nav/dialog/EnterInboxCodeDialog';
 import EventsStatsDialog from 'features/nav/dialog/EventsStatsDialog';
