@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 
-const GameTable = ({props}) => {
+const GameTablePgnMode = ({props}) => {
   const state = useSelector(state => state);
 
   if (state.pgnMode.tables.game.open) {
@@ -27,4 +27,4 @@ const GameTable = ({props}) => {
   return null;
 }
 
-export default GameTable;
+export default GameTablePgnMode;

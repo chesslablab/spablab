@@ -8,8 +8,8 @@ import WsAction from 'features/ws/WsAction';
 const StartedButtonsGmMode = () => {
   const state = useSelector(state => state);
 
-  if (state.mode.name === modeConst.GM) {
-    if (state.gameTable.open) {
+  if (state.gmMode.active) {
+    if (state.gmMode.tables.game.open) {
       return (
         <ButtonGroup
           sx={{ mt: 1.5 }}
