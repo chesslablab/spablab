@@ -53,20 +53,4 @@ export default class Dispatcher {
 
     return false;
   };
-
-  static activeMode = () => {
-    if (store.getState().fenMode.active) {
-      return store.getState().fenMode.name;
-    } else if(store.getState().gmMode.active) {
-      return store.getState().gmMode.name;
-    } else if(store.getState().pgnMode.active) {
-      return store.getState().pgnMode.name;
-    } else if(store.getState().playMode.active) {
-      return store.getState().playMode.name;
-    } else if(store.getState().stockfishMode.active) {
-      return store.getState().stockfishMode.name;
-    }
-
-    return false;
-  };
 }
