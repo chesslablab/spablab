@@ -28,7 +28,7 @@ const Squares = ({props}) => {
           return false;
         }
       }
-    } else if (state.undefinedMode.active) {
+    } else {
       if (
         state.board.isMate ||
         state.board.isStalemate ||

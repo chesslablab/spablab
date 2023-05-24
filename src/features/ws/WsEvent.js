@@ -10,7 +10,6 @@ import * as modeConst from 'features/mode/modeConst';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
-import * as undefinedMode from 'features/mode/undefinedModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
@@ -43,8 +42,7 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar();
     } else {
-      dispatch(undefinedMode.reset());
-      dispatch(undefinedMode.set());
+      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
       }));
@@ -83,8 +81,7 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar();
     } else {
-      dispatch(undefinedMode.reset());
-      dispatch(undefinedMode.set());
+      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Invalid PGN movetext, please try again with a different one.'
       }));
@@ -139,8 +136,7 @@ export default class WsEvent {
       dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
     } else {
       dispatch(playMode.createInviteCodeDialog({ open: false }));
-      dispatch(undefinedMode.reset());
-      dispatch(undefinedMode.set());
+      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
       }));
@@ -229,8 +225,7 @@ export default class WsEvent {
       dispatch(playMode.acceptPlay());
       dispatch(playMode.playOnlineDialog({ open: false }));
     } else {
-      dispatch(undefinedMode.reset());
-      dispatch(undefinedMode.set());
+      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Invalid invite code, please try again with a different one.'
       }));
@@ -445,8 +440,7 @@ export default class WsEvent {
         { fen: data['/randomizer'].fen }
       );
     } else {
-      dispatch(undefinedMode.reset());
-      dispatch(undefinedMode.set());
+      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));
     }
   }
@@ -521,8 +515,7 @@ export default class WsEvent {
 
   static onError = (data) => dispatch => {
     if (data['error']) {
-      dispatch(undefinedMode.reset());
-      dispatch(undefinedMode.set());
+      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Whoops! Something went wrong.'
       }));

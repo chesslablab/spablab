@@ -9,7 +9,6 @@ import * as gmMode from 'features/mode/gmModeSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
-import * as undefinedMode from 'features/mode/undefinedModeSlice';
 
 export default class multiAction {
   static initGui = (dispatch) => {
@@ -25,7 +24,6 @@ export default class multiAction {
     dispatch(pgnMode.reset());
     dispatch(playMode.reset());
     dispatch(stockfishMode.reset());
-    dispatch(undefinedMode.reset());
   };
 
   static openingAnalysisByMovetext = (dispatch, movetext) => {
@@ -68,6 +66,5 @@ export default class multiAction {
     dispatch(pgnMode.reset());
     dispatch(playMode.reset());
     dispatch(stockfishMode.reset());
-    dispatch(undefinedMode.reset());
   };
 }
