@@ -1,14 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box } from '@mui/material';
-import BlackTimer from './BlackTimer';
-import WhiteTimer from './WhiteTimer';
+import Dispatcher from 'common/Dispatcher';
+import BlackTimer from 'features/mode/play/timer/BlackTimer';
+import WhiteTimer from 'features/mode/play/timer/WhiteTimer';
 import * as modeConst from 'features/mode/modeConst';
 
 const Timer = () => {
   const state = useSelector(state => state);
 
-  if (state.mode.name === modeConst.PLAY) {
+  if (Dispatcher.activeMode() === modeConst.PLAY) {
     if (state.mode.play.accepted) {
       return (
         <Box sx={{ mt: 1.5 }}>
