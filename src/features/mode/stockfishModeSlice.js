@@ -35,7 +35,7 @@ const stockfishModeSlice = createSlice({
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
-      state.computer = action.payload;
+      state.computer = action.payload.computer;
     },
     checkmateSkillsDialog(state, action) {
       state.dialogs.checkmateSkills = action.payload;

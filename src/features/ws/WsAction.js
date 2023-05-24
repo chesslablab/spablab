@@ -119,8 +119,8 @@ export default class WsAction {
   }
 
   static stockfish = async () => {
-    const options = JSON.stringify(store.getState().mode.computer.options).replace(/"/g, '\\"');
-    const params = JSON.stringify(store.getState().mode.computer.params).replace(/"/g, '\\"');
+    const options = JSON.stringify(store.getState().stockfishMode.computer.options).replace(/"/g, '\\"');
+    const params = JSON.stringify(store.getState().stockfishMode.computer.params).replace(/"/g, '\\"');
 
     return await store.getState().server.ws.send(`/stockfish "${options}" "${params}"`);
   }

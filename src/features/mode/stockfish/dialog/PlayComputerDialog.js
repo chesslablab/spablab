@@ -53,7 +53,10 @@ const PlayComputerDialog = () => {
     dispatch(nav.setPlay());
     dispatch(stockfishMode.playComputerDialog({ open: false }));
     MultiAction.initGui(dispatch);
-    dispatch(stockfishMode.set(payload));
+    dispatch(stockfishMode.set({
+      variant: variantConst.CLASSICAL,
+      computer: payload,
+    }));
   };
 
   const handlePositionChange = (event: Event) => {
