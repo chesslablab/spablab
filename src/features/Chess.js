@@ -6,25 +6,17 @@ import store from 'app/store';
 import InfoAlert from 'features/alert/InfoAlert.js';
 import VariantBoard from 'features/board/VariantBoard';
 import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
-import StartedButtonsFenMode from 'features/mode/fen/StartedButtonsFenMode';
-import GameTableGmMode from 'features/mode/gm/table/GameTableGmMode';
-import StartedButtonsGmMode from 'features/mode/gm/StartedButtonsGmMode';
 import LoadPgnDialog from 'features/mode/pgn/dialog/LoadPgnDialog';
 import SearchEcoDialog from 'features/mode/pgn/dialog/SearchEcoDialog';
 import SearchGamesDialog from 'features/mode/pgn/dialog/SearchGamesDialog';
 import SearchMovetextDialog from 'features/mode/pgn/dialog/SearchMovetextDialog';
 import SearchNameDialog from 'features/mode/pgn/dialog/SearchNameDialog';
-import GameTablePgnMode from 'features/mode/pgn/table/GameTablePgnMode';
-import OpeningAnalysisTablePgnMode from 'features/mode/pgn/table/OpeningAnalysisTablePgnMode';
-import StartedButtonsPgnMode from 'features/mode/pgn/StartedButtonsPgnMode';
 import CreateInviteCodeDialog from 'features/mode/play/dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from 'features/mode/play/dialog/EnterInviteCodeDialog';
 import PlayOnlineDialog from 'features/mode/play/dialog/PlayOnlineDialog';
 import CheckmateSkillsDialog from 'features/mode/stockfish/dialog/CheckmateSkillsDialog';
 import EndgameSkillsDialog from 'features/mode/stockfish/dialog/EndgameSkillsDialog';
 import PlayComputerDialog from 'features/mode/stockfish/dialog/PlayComputerDialog';
-import OpeningAnalysisTableStockfishMode from 'features/mode/stockfish/table/OpeningAnalysisTableStockfishMode';
-import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsStockfishMode';
 import CreateInboxCodeDialog from 'features/nav/dialog/CreateInboxCodeDialog';
 import EnterInboxCodeDialog from 'features/nav/dialog/EnterInboxCodeDialog';
 import EventsStatsDialog from 'features/nav/dialog/EventsStatsDialog';
@@ -53,14 +45,6 @@ const Chess = ({ props }) => {
           </Grid>
           <Grid item xs={12} md={4}>
             <Game props={props} />
-            <GameTablePgnMode />
-            <GameTableGmMode />
-            <OpeningAnalysisTablePgnMode />
-            <OpeningAnalysisTableStockfishMode />
-            <StartedButtonsGmMode />
-            <StartedButtonsFenMode />
-            <StartedButtonsPgnMode />
-            <StartedButtonsStockfishMode />
           </Grid>
           <Grid item xs={12} md={2}>
           </Grid>
