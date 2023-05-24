@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
-import * as modeConst from 'features/mode/modeConst';
 import WsAction from 'features/ws/WsAction';
 
 const StartedButtonsPgnMode = () => {
   const state = useSelector(state => state);
 
-  if (state.mode.name === modeConst.PGN) {
+  if (state.pgnMode.active) {
     if (state.board.movetext) {
       return (
         <ButtonGroup

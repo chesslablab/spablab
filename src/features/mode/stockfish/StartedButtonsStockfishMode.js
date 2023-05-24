@@ -2,13 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import Pgn from 'common/Pgn';
-import * as modeConst from 'features/mode/modeConst';
 import WsAction from 'features/ws/WsAction';
 
 const StartedButtonsStockfishMode = () => {
   const state = useSelector(state => state);
 
-  if (state.mode.name === modeConst.STOCKFISH) {
+  if (state.stockfishMode.active) {
     if (state.board.movetext) {
       return (
         <ButtonGroup
