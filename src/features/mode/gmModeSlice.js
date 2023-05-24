@@ -8,7 +8,7 @@ const initialState = {
   variant: variantConst.CLASSICAL,
   gm: {},
   tables: {
-    game: {
+    panel: {
       open: false,
       game: {},
     },
@@ -25,8 +25,8 @@ const gmModeSlice = createSlice({
       state.variant = action.payload.variant;
       state.gm = action.payload;
     },
-    gameTable(state, action) {
-      state.tables.game = action.payload;
+    panelTable(state, action) {
+      state.tables.panel = action.payload;
     },
   }
 });
@@ -34,6 +34,6 @@ const gmModeSlice = createSlice({
 export const {
   reset,
   set,
-  gameTable
+  panelTable
 } = gmModeSlice.actions;
 export default gmModeSlice.reducer;

@@ -30,7 +30,7 @@ const initialState = {
     },
   },
   tables: {
-    game: {
+    panel: {
       open: false,
       game: {},
     },
@@ -67,8 +67,8 @@ const pgnModeSlice = createSlice({
     searchNameDialog(state, action) {
       state.dialogs.searchName = action.payload;
     },
-    gameTable(state, action) {
-      state.tables.game = action.payload;
+    panelTable(state, action) {
+      state.tables.panel = action.payload;
     },
     openingAnalysisTable(state, action) {
       state.tables.openingAnalysis = action.payload;
@@ -84,7 +84,7 @@ export const {
   searchGamesDialog,
   searchMovetextDialog,
   searchNameDialog,
-  gameTable,
+  panelTable,
   openingAnalysisTable
 } = pgnModeSlice.actions;
 export default pgnModeSlice.reducer;

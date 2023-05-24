@@ -1,7 +1,7 @@
 import React from 'react';
 import HeuristicsDialog from 'features/nav/dialog/HeuristicsDialog';
 
-const SecondaryDialogs = () => {
+const PgnDialogs = () => {
   return (
     <div>
       <HeuristicsDialog />
@@ -9,4 +9,4 @@ const SecondaryDialogs = () => {
   );
 }
 
-export default SecondaryDialogs;
+export default PgnDialogs;

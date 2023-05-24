@@ -15,8 +15,8 @@ import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsS
 import Timer from 'features/mode/play/timer/Timer';
 import History from 'features/panel/History';
 import PgnTable from 'features/panel/PgnTable';
-import PgnTableButtons from 'features/panel/PgnTableButtons';
-import PgnTableDialogs from 'features/panel/PgnTableDialogs';
+import PgnButtons from 'features/panel/PgnButtons';
+import PgnDialogs from 'features/panel/PgnDialogs';
 
 const styles = {
   gameBox: {
@@ -36,7 +36,7 @@ const styles = {
   },
 };
 
-const Game = ({ props }) => {
+const Panel = ({ props }) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.gameBox}>
@@ -49,7 +49,7 @@ const Game = ({ props }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
-          <PgnTableButtons props={props} />
+          <PgnButtons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12} sx={styles.timer}>
@@ -72,11 +72,11 @@ const Game = ({ props }) => {
         <OpeningAnalysisTableStockfishMode />
         <StartedButtonsStockfishMode />
       </Grid>
-      <PgnTableDialogs />
+      <PgnDialogs />
       <StartedDialogsPlayMode />
       <FinishedDialogsPlayMode />
     </Grid>
   );
 };
 
-export default Game;
+export default Panel;

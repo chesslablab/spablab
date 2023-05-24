@@ -15,7 +15,7 @@ export default class MultiAction {
   static initGui = (dispatch) => {
     dispatch(heuristicsBar.resetBar());
     dispatch(pgnMode.openingAnalysisTable({ open: false }));
-    dispatch(pgnMode.gameTable({ open: false }));
+    dispatch(pgnMode.panelTable({ open: false }));
     dispatch(infoAlert.close());
     dispatch(history.goTo({ back: 0 }));
     dispatch(board.start());

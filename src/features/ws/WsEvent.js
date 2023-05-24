@@ -281,7 +281,7 @@ export default class WsEvent {
                   movetext: game.movetext,
                 },
               }));
-              dispatch(pgnMode.gameTable({
+              dispatch(pgnMode.panelTable({
                 open: true,
                 game: {
                   Event: game.Event,
@@ -297,7 +297,7 @@ export default class WsEvent {
               }));
             });
           } else if (res.status === 204) {
-            dispatch(pgnMode.gameTable({ open: false }));
+            dispatch(pgnMode.panelTable({ open: false }));
             dispatch(infoAlert.show({
               info: 'This game was not found in the database, please try again with a different one.'
             }));

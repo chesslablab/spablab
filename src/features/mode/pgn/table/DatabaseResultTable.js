@@ -62,7 +62,7 @@ const DatabaseResultTable = ({props}) => {
     WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
       movetext: item.movetext
     });
-    dispatch(pgnMode.gameTable({
+    dispatch(pgnMode.panelTable({
       game: {
         Event: item.Event,
         Site: item.Site,

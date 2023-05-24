@@ -24,7 +24,7 @@ import OpeningsStatsDialog from 'features/nav/dialog/OpeningsStatsDialog';
 import PlayersStatsDialog from 'features/nav/dialog/PlayersStatsDialog';
 import SettingsDialog from 'features/nav/dialog/SettingsDialog';
 import Nav from 'features/nav/Nav';
-import Game from 'features/panel/Game';
+import Panel from 'features/panel/Panel';
 import HeuristicsBar from 'features/HeuristicsBar';
 import ProgressDialog from 'features/ProgressDialog';
 import theme from 'styles/theme.js';
@@ -44,7 +44,7 @@ const Chess = ({ props }) => {
             <HeuristicsBar />
           </Grid>
           <Grid item xs={12} md={4}>
-            <Game props={props} />
+            <Panel props={props} />
           </Grid>
           <Grid item xs={12} md={2}>
           </Grid>
