@@ -248,20 +248,20 @@ export default class WsEvent {
   static onPlayLan = (props, data) => dispatch => {
     if (data['/play_lan'].isLegal) {
       dispatch(board.validMove(data['/play_lan']));
-      if (store.getState().mode.name === modeConst.PLAY) {
-        if (store.getState().mode.play.color !== data['/play_lan'].turn) {
+      if (store.getState().playMode.active) {
+        if (store.getState().playMode.play.color !== data['/play_lan'].turn) {
           dispatch(board.playLan({
             piecePlaced: { event: eventConst.ON_PLAY_LAN }
           }));
         }
       } else if (
-        store.getState().variant.name === variantConst.CLASSICAL &&
-        store.getState().mode.name === modeConst.FEN
+        store.getState().fenMode.active &&
+        store.getState().fenMode.variant === variantConst.CLASSICAL
       ) {
         Dispatcher.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
       } else if (
-        store.getState().variant.name === variantConst.CLASSICAL &&
-        store.getState().mode.name === modeConst.GM
+        store.getState().gmMode.active &&
+        store.getState().fenMode.variant === variantConst.CLASSICAL
       ) {
         dispatch(infoAlert.close());
         dispatch(progressDialog.open());
