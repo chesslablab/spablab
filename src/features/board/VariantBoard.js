@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import Dispatcher from 'common/Dispatcher';
 import Capablanca80Board from 'features/board/Capablanca80Board';
 import Chess960Board from 'features/board/Chess960Board';
 import ClassicalBoard from 'features/board/ClassicalBoard';
@@ -7,7 +8,6 @@ import * as variantConst from 'features/mode/variantConst';
 import WsAction from 'features/ws/WsAction';
 
 const VariantBoard = ({props}) => {
-  const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,9 +15,9 @@ const VariantBoard = ({props}) => {
   }, [props, dispatch]);
 
   const variantBoard = () => {
-    if (state.variant.name === variantConst.CAPABLANCA_80) {
+    if (Dispatcher.activeVariant() === variantConst.CAPABLANCA_80) {
       return <Capablanca80Board props={props} />;
-    } else if (state.variant.name === variantConst.CHESS_960) {
+    } else if (Dispatcher.activeVariant() === variantConst.CHESS_960) {
       return <Chess960Board props={props} />;
     }
 
