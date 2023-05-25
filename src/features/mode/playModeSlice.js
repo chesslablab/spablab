@@ -5,9 +5,6 @@ import * as variantConst from 'features/mode/variantConst';
 const initialState = {
   active: false,
   variant: variantConst.CLASSICAL,
-  fen: '',
-  startPos: '',
-  play: {},
   dialogs: {
     acceptDraw: {
       open: false,
@@ -58,8 +55,9 @@ const playModeSlice = createSlice({
     acceptPlay(state) {
       const expiryTimestamp = new Date();
       expiryTimestamp.setSeconds(
-        expiryTimestamp.getSeconds() + parseInt(state.play.jwt_decoded.min) * 60
+        expiryTimestamp.getSeconds() + parseInt(state.play?.jwt_decoded?.min) * 60
       );
+      state.active = true;
       state.play.accepted = true;
       state.play.timer = {
         expiry_timestamp: expiryTimestamp,

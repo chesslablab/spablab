@@ -78,12 +78,12 @@ const PlayOnlineTable = () => {
                   key={i}
                   selected={true}
                   sx={
-                    state.playMode.play.hash === row.hash
+                    state.playMode.play?.hash === row.hash
                       ? styles.disabled
                       : styles.clickable
                   }
                   onClick={() =>
-                    state.playMode.play.hash === row.hash
+                    state.playMode.play?.hash === row.hash
                       ? null
                       : handlePlay(row.hash)
                   }

@@ -175,46 +175,39 @@ export default class WsEvent {
   }
 
   static onAccept = (data) => dispatch => {
-    multiAction.resetModes(dispatch);
-    multiAction.initGui(dispatch);
     if (data['/accept'].jwt) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
-      const play = {
-        jwt: data['/accept'].jwt,
-        jwt_decoded: jwt_decode(data['/accept'].jwt),
-        hash: data['/accept'].hash,
-        color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
-        takeback: null,
-        draw: null,
-        resign: null,
-        rematch: null,
-        leave: null,
-        accepted: false,
-        timer: {
-          expiry_timestamp: null,
-          over: null
+      const payload = {
+        play: {
+          jwt: data['/accept'].jwt,
+          jwt_decoded: jwt_decode(data['/accept'].jwt),
+          hash: data['/accept'].hash,
+          color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
+          takeback: null,
+          draw: null,
+          resign: null,
+          rematch: null,
+          leave: null,
+          accepted: false,
+          timer: {
+            expiry_timestamp: null,
+            over: null
+          },
         },
       };
       if (jwtDecoded.variant === variantConst.CLASSICAL) {
-        dispatch(playMode.set({
-          variant: variantConst.CLASSICAL,
-          play: play,
-        }));
+        payload.variant = variantConst.CLASSICAL;
         dispatch(board.startFen({ fen: jwtDecoded.fen }));
       } else if (jwtDecoded.variant === variantConst.CHESS_960) {
-        dispatch(playMode.set({
-          variant: variantConst.CHESS_960,
-          fen: jwtDecoded.fen,
-          startPos: jwtDecoded.startPos,
-          play: play,
-        }));
+        payload.variant = variantConst.CHESS_960;
         dispatch(board.startChess960({ fen: jwtDecoded.fen }));
       } else if (jwtDecoded.variant === variantConst.CAPABLANCA_80) {
-        dispatch(playMode.set({
-          variant: variantConst.CAPABLANCA_80,
-          play: play,
-        }));
+        payload.variant = variantConst.CAPABLANCA_80;
         dispatch(board.startCapablanca80({ fen: jwtDecoded.fen }));
+      }
+      if (!store.getState().playMode.play) {
+        multiAction.resetModes(dispatch);
+        dispatch(playMode.set(payload));
       }
       if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
