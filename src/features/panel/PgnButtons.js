@@ -18,7 +18,7 @@ const PgnButtons = ({props}) => {
 
   const handleDownloadImage = async () => {
     let body = {
-      fen: state.board.fen[state.board.fen.length - 1 + state.history.back],
+      fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
       variant: storeParser.getActiveMode().variant,
       flip: state.board.flip
     };
@@ -42,7 +42,7 @@ const PgnButtons = ({props}) => {
     let body = {
       variant: storeParser.getActiveMode().variant,
       fen: state.board.fen[0],
-      movetext: Movetext.substring(state.board.movetext, state.history.back),
+      movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
       flip: state.board.flip
     };
     if (storeParser.getActiveMode().variant === variantConst.CHESS_960) {
@@ -79,7 +79,7 @@ const PgnButtons = ({props}) => {
         size="medium"
         title="Copy PGN movetext"
         aria-label="copy"
-        onClick={() => navigator.clipboard.writeText(Movetext.substring(state.board.movetext, state.history.back))}
+        onClick={() => navigator.clipboard.writeText(Movetext.substring(state.board.movetext, state.panel.history.back))}
       >
         <MoveDownIcon fontSize="inherit" />
       </IconButton>
@@ -90,7 +90,7 @@ const PgnButtons = ({props}) => {
         size="medium"
         title="Copy FEN string"
         aria-label="fen"
-        onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.history.back])}
+        onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.panel.history.back])}
       >
         <WidgetsIcon fontSize="inherit" />
       </IconButton>
@@ -103,7 +103,7 @@ const PgnButtons = ({props}) => {
         aria-label="heuristics"
         onClick={() => {
           dispatch(progressDialog.open());
-          WsAction.heuristics(Movetext.substring(state.board.movetext, state.history.back));
+          WsAction.heuristics(Movetext.substring(state.board.movetext, state.panel.history.back));
         }}
       >
         <BarChartIcon fontSize="inherit" />

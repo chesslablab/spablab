@@ -9,7 +9,6 @@ import navReducer from 'features/nav/navSlice';
 import panelReducer from 'features/panel/panelSlice';
 import wsReducer from 'features/ws/wsSlice';
 import heuristicsBarReducer from 'features/heuristicsBarSlice';
-import historyReducer from 'features/historySlice';
 import progressDialogReducer from 'features/progressDialogSlice';
 
 const rootReducer = {
@@ -24,7 +23,6 @@ const rootReducer = {
   panel: panelReducer,
   server: wsReducer,
   heuristicsBar: heuristicsBarReducer,
-  history: historyReducer,
   progressDialog: progressDialogReducer,
 };
 

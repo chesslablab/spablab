@@ -1,6 +1,5 @@
 import Opening from 'common/Opening.js';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
-import * as history from 'features/historySlice';
 import * as board from 'features/board/boardSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
@@ -14,9 +13,9 @@ export default class multiAction {
   static initGui = (dispatch) => {
     dispatch(heuristicsBar.resetBar());
     dispatch(panel.openingAnalysisTable({ open: false }));
+    dispatch(panel.goToHistory({ back: 0 }));
     dispatch(pgnMode.panelTable({ open: false }));
     dispatch(infoAlert.close());
-    dispatch(history.goTo({ back: 0 }));
     dispatch(board.reset());
     // reset modes
     dispatch(fenMode.reset());

@@ -19,7 +19,7 @@ const Squares = ({props}) => {
         state.playMode.play.resign ||
         state.playMode.play.leave ||
         state.playMode.play.timer?.over ||
-        state.history.back !== 0
+        state.panel.history.back !== 0
       ) {
         return false;
       }
@@ -32,7 +32,7 @@ const Squares = ({props}) => {
       if (
         state.board.isMate ||
         state.board.isStalemate ||
-        state.history.back !== 0
+        state.panel.history.back !== 0
       ) {
         return false;
       }
@@ -42,7 +42,7 @@ const Squares = ({props}) => {
   }
 
   const sqs = () => {
-    const fen = state.board.fen[state.board.fen.length - 1 + state.history.back].split(' ');
+    const fen = state.board.fen[state.board.fen.length - 1 + state.panel.history.back].split(' ');
     const ascii = Ascii.toAscii(fen[0]);
     return Ascii.flip(
       state.board.flip,
@@ -149,7 +149,7 @@ const Squares = ({props}) => {
   }
 
   return (
-    <div className={[props.className, state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+    <div className={[props.className, state.panel.history.back !== 0 ? 'past' : 'present'].join(' ')}>
       {sqs()}
     </div>
   );

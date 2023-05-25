@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
-import * as history from 'features/historySlice';
+import * as panel from 'features/panel/panelSlice';
 import WsAction from 'features/ws/WsAction';
 
 const styles = {
@@ -36,7 +36,7 @@ const PgnTable = ({props}) => {
   }, [state.board.pieceGrabbed, state.board.lan]);
 
   const highlight = (n) => {
-    if (n === state.board.fen.length + state.history.back - 1) {
+    if (n === state.board.fen.length + state.panel.history.back - 1) {
       return styles.currentMove;
     }
 
@@ -50,7 +50,7 @@ const PgnTable = ({props}) => {
           <TableCell>{i + 1}</TableCell>
           <TableCell
             sx={[styles.move, highlight(((i + 1) * 2) - 1)]}
-            onClick={() => dispatch(history.goTo({
+            onClick={() => dispatch(panel.goToHistory({
               back: state.board.fen.length - 1 - (((i + 1) * 2) - 1) }
             ))}
           >
@@ -61,7 +61,7 @@ const PgnTable = ({props}) => {
             onClick={() => {
               const back = state.board.fen.length - 1 - ((i + 1) * 2);
               if (back >= 0) {
-                dispatch(history.goTo({ back: back }));
+                dispatch(panel.goToHistory({ back: back }));
               }
             }}
           >

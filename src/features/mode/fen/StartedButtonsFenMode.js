@@ -18,7 +18,7 @@ const StartedButtonsFenMode = () => {
         >
           <Button
             id="StartedButtonsFenMode-Button-undoMove"
-            disabled={state.history.back !== 0}
+            disabled={state.panel.history.back !== 0}
             onClick={() => WsAction.undo()}
           >
             Undo move

@@ -19,7 +19,7 @@ const StartedButtonsStockfishMode = () => {
         >
           <Button
             disabled={
-              (state.history.back !==0) ||
+              (state.panel.history.back !==0) ||
               (state.stockfishMode.computer.color !== state.board.turn) ||
               (state.board.turn === Pgn.symbol.BLACK && state.board.fen.length === 2)
             }
