@@ -6,6 +6,7 @@ import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
+import storeParser from 'app/storeParser';
 import Movetext from 'common/Movetext';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
@@ -19,7 +20,7 @@ const PgnButtons = ({props}) => {
   const handleDownloadImage = async () => {
     let body = {
       fen: state.board.fen[state.board.fen.length - 1 + state.history.back],
-      variant: state.variant.name,
+      variant: storeParser.activeVariant(),
       flip: state.board.flip
     };
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/image`, {
@@ -40,12 +41,12 @@ const PgnButtons = ({props}) => {
   const handleDownloadMp4 = async () => {
     dispatch(progressDialog.open());
     let body = {
-      variant: state.variant.name,
+      variant: storeParser.activeVariant(),
       fen: state.board.fen[0],
       movetext: Movetext.substring(state.board.movetext, state.history.back),
       flip: state.board.flip
     };
-    if (state.variant.name === variantConst.CHESS_960) {
+    if (storeParser.activeVariant() === variantConst.CHESS_960) {
       body.startPos = state.variant.startPos;
     }
     if (state.mode.name === modeConst.FEN) {
