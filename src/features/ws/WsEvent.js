@@ -22,19 +22,30 @@ export default class WsEvent {
   static onStartFen = (data) => dispatch => {
     multiAction.resetModes(dispatch);
     if (data['/start'].fen) {
-      dispatch(board.startFen({ fen: data['/start'].fen }));
       if (data['/start'].variant === variantConst.CLASSICAL) {
+        dispatch(board.start({
+          variant: variantConst.CLASSICAL,
+          fen: data['/start'].fen,
+        }));
         dispatch(fenMode.set({
           variant: variantConst.CLASSICAL,
           fen: data['/start'].fen,
         }));
       } else if (data['/start'].variant === variantConst.CHESS_960) {
+        dispatch(board.start({
+          variant: variantConst.CHESS_960,
+          fen: data['/start'].fen,
+        }));
         dispatch(fenMode.set({
           variant: variantConst.CHESS_960,
           fen: data['/start'].fen,
           startPos: data['/start'].startPos,
         }));
       } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
+        dispatch(board.start({
+          variant: variantConst.CAPABLANCA_80,
+          fen: data['/start'].fen,
+        }));
         dispatch(fenMode.set({
           variant: variantConst.CAPABLANCA_80,
           fen: data['/start'].fen,
@@ -112,7 +123,10 @@ export default class WsEvent {
           variant: variantConst.CLASSICAL,
           play: play,
         }));
-        dispatch(board.startFen({ fen: data['/start'].fen }));
+        dispatch(board.start({
+          variant: variantConst.CLASSICAL,
+          fen: data['/start'].fen,
+        }));
       } else if (data['/start'].variant === variantConst.CHESS_960) {
         dispatch(playMode.set({
           variant: variantConst.CHESS_960,
@@ -120,13 +134,19 @@ export default class WsEvent {
           startPos: data['/start'].startPos,
           play: play,
         }));
-        dispatch(board.startChess960({ fen: data['/start'].fen }));
+        dispatch(board.start({
+          variant: variantConst.CHESS_960,
+          fen: data['/start'].fen,
+        }));
       } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
         dispatch(playMode.set({
           variant: variantConst.CAPABLANCA_80,
           play: play,
         }));
-        dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
+        dispatch(board.start({
+          variant: variantConst.CAPABLANCA_80,
+          fen: data['/start'].fen,
+        }));
       }
       if (jwtDecoded.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
@@ -148,7 +168,10 @@ export default class WsEvent {
   }
 
   static onStartStockfishByFen = (data) => dispatch => {
-    dispatch(board.startFen({ fen: data['/start'].fen }));
+    dispatch(board.start({
+      variant: variantConst.CLASSICAL,
+      fen: data['/start'].fen,
+    }));
     if (data['/start'].color === Pgn.symbol.BLACK) {
       dispatch(board.flip());
     }
@@ -177,37 +200,31 @@ export default class WsEvent {
   static onAccept = (data) => dispatch => {
     if (data['/accept'].jwt) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
-      const payload = {
-        play: {
-          jwt: data['/accept'].jwt,
-          jwt_decoded: jwt_decode(data['/accept'].jwt),
-          hash: data['/accept'].hash,
-          color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
-          takeback: null,
-          draw: null,
-          resign: null,
-          rematch: null,
-          leave: null,
-          accepted: false,
-          timer: {
-            expiry_timestamp: null,
-            over: null
-          },
-        },
-      };
-      if (jwtDecoded.variant === variantConst.CLASSICAL) {
-        payload.variant = variantConst.CLASSICAL;
-        dispatch(board.startFen({ fen: jwtDecoded.fen }));
-      } else if (jwtDecoded.variant === variantConst.CHESS_960) {
-        payload.variant = variantConst.CHESS_960;
-        dispatch(board.startChess960({ fen: jwtDecoded.fen }));
-      } else if (jwtDecoded.variant === variantConst.CAPABLANCA_80) {
-        payload.variant = variantConst.CAPABLANCA_80;
-        dispatch(board.startCapablanca80({ fen: jwtDecoded.fen }));
-      }
+      dispatch(board.start({
+        variant: jwtDecoded.variant,
+        fen: jwtDecoded.fen
+      }));
       if (!store.getState().playMode.play) {
         multiAction.resetModes(dispatch);
-        dispatch(playMode.set(payload));
+        dispatch(playMode.set({
+          variant: jwtDecoded.variant,
+          play: {
+            jwt: data['/accept'].jwt,
+            jwt_decoded: jwt_decode(data['/accept'].jwt),
+            hash: data['/accept'].hash,
+            color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
+            takeback: null,
+            draw: null,
+            resign: null,
+            rematch: null,
+            leave: null,
+            accepted: false,
+            timer: {
+              expiry_timestamp: null,
+              over: null
+            },
+          },
+        }));
       }
       if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
@@ -406,7 +423,7 @@ export default class WsEvent {
         over: null
       }
     }));
-    dispatch(board.start());
+    dispatch(board.reset());
     if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
       dispatch(board.flip());
     }

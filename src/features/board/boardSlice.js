@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
+import * as variantConst from 'features/mode/variantConst';
 
 const initialState = {
   turn: Pgn.symbol.WHITE,
@@ -19,25 +20,25 @@ const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    start: () => initialState,
-    startCapablanca80(state, action) {
-      const fen = action.payload.fen.split(' ');
-      state.fen = [action.payload.fen];
-      state.turn = fen[1];
-      state.size = {
-        files: 10,
-        ranks: 8
+    reset: () => initialState,
+    start(state, action) {
+      if (action.payload.variant === variantConst.CHESS_960) {
+        const fen = action.payload.fen.split(' ');
+        state.fen = [action.payload.fen];
+        state.turn = fen[1];
+      } else if (action.payload.variant === variantConst.CAPABLANCA_80) {
+        const fen = action.payload.fen.split(' ');
+        state.fen = [action.payload.fen];
+        state.turn = fen[1];
+        state.size = {
+          files: 10,
+          ranks: 8
+        };
+      } else {
+        const fen = action.payload.fen.split(' ');
+        state.fen = [action.payload.fen];
+        state.turn = fen[1];
       }
-    },
-    startChess960(state, action) {
-      const fen = action.payload.fen.split(' ');
-      state.fen = [action.payload.fen];
-      state.turn = fen[1];
-    },
-    startFen(state, action) {
-      const fen = action.payload.fen.split(' ');
-      state.fen = [action.payload.fen];
-      state.turn = fen[1];
     },
     startPgn(state, action) {
       state.fen = action.payload.fen;
@@ -128,10 +129,8 @@ const boardSlice = createSlice({
 });
 
 export const {
+  reset,
   start,
-  startCapablanca80,
-  startChess960,
-  startFen,
   startPgn,
   flip,
   playLan,

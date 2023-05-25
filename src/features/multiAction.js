@@ -17,7 +17,7 @@ export default class multiAction {
     dispatch(pgnMode.panelTable({ open: false }));
     dispatch(infoAlert.close());
     dispatch(history.goTo({ back: 0 }));
-    dispatch(board.start());
+    dispatch(board.reset());
     // reset modes
     dispatch(fenMode.reset());
     dispatch(gmMode.reset());
