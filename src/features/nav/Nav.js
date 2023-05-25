@@ -103,7 +103,6 @@ const Nav = ({props}) => {
     setAnchorElCorrespondence(event.currentTarget);
   };
 
-
   const disabled = state.playMode.active &&
     state.playMode.play.accepted &&
     (!state.playMode.play.draw || state.playMode.play.draw === Wording.verb.PROPOSE.toLowerCase()) &&
@@ -313,7 +312,6 @@ const Nav = ({props}) => {
               })
               .finally(() => {
                 dispatch(progressDialog.close());
-                dispatch(pgnMode.searchGamesDialog({ open: true }));
                 handleCloseDatabase();
               });
           }}
