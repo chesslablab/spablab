@@ -19,6 +19,25 @@ import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
+  static onStart = (data) => dispatch => {
+    dispatch(progressDialog.close());
+    if (data['/start'].mode === modeConst.FEN) {
+      dispatch(WsEvent.onStartFen(data));
+    } else if (data['/start'].mode === modeConst.GM) {
+      dispatch(WsEvent.onStartGm(data));
+    } else if (data['/start'].mode === modeConst.PGN) {
+      dispatch(WsEvent.onStartPgn(data));
+    } else if (data['/start'].mode === modeConst.PLAY) {
+      dispatch(WsEvent.onStartPlay(data));
+    } else if (data['/start'].mode === modeConst.STOCKFISH) {
+      if (data['/start'].fen) {
+        dispatch(WsEvent.onStartStockfishByFen(data));
+      } else {
+        dispatch(WsEvent.onStartStockfishByColor(data));
+      }
+    }
+  }
+  
   static onStartFen = (data) => dispatch => {
     multiAction.initGui(dispatch);
     if (data['/start'].fen) {
@@ -165,25 +184,6 @@ export default class WsEvent {
       dispatch(board.flip());
     }
     WsAction.heuristicsBar();
-  }
-
-  static onStart = (data) => dispatch => {
-    dispatch(progressDialog.close());
-    if (data['/start'].mode === modeConst.FEN) {
-      dispatch(WsEvent.onStartFen(data));
-    } else if (data['/start'].mode === modeConst.GM) {
-      dispatch(WsEvent.onStartGm(data));
-    } else if (data['/start'].mode === modeConst.PGN) {
-      dispatch(WsEvent.onStartPgn(data));
-    } else if (data['/start'].mode === modeConst.PLAY) {
-      dispatch(WsEvent.onStartPlay(data));
-    } else if (data['/start'].mode === modeConst.STOCKFISH) {
-      if (data['/start'].fen) {
-        dispatch(WsEvent.onStartStockfishByFen(data));
-      } else {
-        dispatch(WsEvent.onStartStockfishByColor(data));
-      }
-    }
   }
 
   static onAccept = (data) => dispatch => {
