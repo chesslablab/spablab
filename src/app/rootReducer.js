@@ -6,6 +6,7 @@ import pgnModeReducer from 'features/mode/pgnModeSlice';
 import playModeReducer from 'features/mode/playModeSlice';
 import stockfishModeReducer from 'features/mode/stockfishModeSlice';
 import navReducer from 'features/nav/navSlice';
+import panelReducer from 'features/panel/panelSlice';
 import wsReducer from 'features/ws/wsSlice';
 import heuristicsBarReducer from 'features/heuristicsBarSlice';
 import historyReducer from 'features/historySlice';
@@ -20,6 +21,7 @@ const rootReducer = {
   playMode: playModeReducer,
   stockfishMode: stockfishModeReducer,
   nav: navReducer,
+  panel: panelReducer,
   server: wsReducer,
   heuristicsBar: heuristicsBarReducer,
   history: historyReducer,

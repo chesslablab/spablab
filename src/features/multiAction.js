@@ -8,11 +8,12 @@ import * as gmMode from 'features/mode/gmModeSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
+import * as panel from 'features/panel/panelSlice';
 
 export default class multiAction {
   static initGui = (dispatch) => {
     dispatch(heuristicsBar.resetBar());
-    dispatch(pgnMode.openingAnalysisTable({ open: false }));
+    dispatch(panel.openingAnalysisTable({ open: false }));
     dispatch(pgnMode.panelTable({ open: false }));
     dispatch(infoAlert.close());
     dispatch(history.goTo({ back: 0 }));
@@ -28,18 +29,18 @@ export default class multiAction {
   static openingAnalysisByMovetext = (dispatch, movetext) => {
     let rows = Opening.byMovetext(movetext);
     if (rows) {
-      dispatch(pgnMode.openingAnalysisTable({ open: true, rows: rows }));
+      dispatch(panel.openingAnalysisTable({ open: true, rows: rows }));
     } else {
-      dispatch(pgnMode.openingAnalysisTable({ open: false }));
+      dispatch(panel.openingAnalysisTable({ open: false }));
     }
   };
 
   static openingAnalysisBySameMovetext = (dispatch, movetext) => {
     let rows = Opening.bySameMovetext(movetext);
     if (rows) {
-      dispatch(pgnMode.openingAnalysisTable({ open: true, rows: rows }));
+      dispatch(panel.openingAnalysisTable({ open: true, rows: rows }));
     } else {
-      dispatch(pgnMode.openingAnalysisTable({ open: false }));
+      dispatch(panel.openingAnalysisTable({ open: false }));
     }
   };
 

@@ -5,15 +5,14 @@ import StartedButtonsGmMode from 'features/mode/gm/StartedButtonsGmMode';
 import StartedButtonsFenMode from 'features/mode/fen/StartedButtonsFenMode';
 import StartedButtonsPgnMode from 'features/mode/pgn/StartedButtonsPgnMode';
 import GameTablePgnMode from 'features/mode/pgn/table/GameTablePgnMode';
-import OpeningAnalysisTablePgnMode from 'features/mode/pgn/table/OpeningAnalysisTablePgnMode';
 import FinishedButtonsPlayMode from 'features/mode/play/FinishedButtonsPlayMode';
 import FinishedDialogsPlayMode from 'features/mode/play/FinishedDialogsPlayMode';
 import StartedButtonsPlayMode from 'features/mode/play/StartedButtonsPlayMode';
 import StartedDialogsPlayMode from 'features/mode/play/StartedDialogsPlayMode';
-import OpeningAnalysisTableStockfishMode from 'features/mode/stockfish/table/OpeningAnalysisTableStockfishMode';
 import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsStockfishMode';
 import Timer from 'features/mode/play/timer/Timer';
 import History from 'features/panel/History';
+import OpeningAnalysisTable from 'features/panel/OpeningAnalysisTable';
 import PgnTable from 'features/panel/PgnTable';
 import PgnButtons from 'features/panel/PgnButtons';
 import PgnDialogs from 'features/panel/PgnDialogs';
@@ -56,20 +55,20 @@ const Panel = ({ props }) => {
         <Timer />
       </Grid>
       <Grid item xs={12}>
+        { /* All modes */ }
+        <OpeningAnalysisTable />
         { /* GM mode */ }
         <GameTableGmMode />
         <StartedButtonsGmMode />
         { /* FEN mode */ }
         <StartedButtonsFenMode />
         { /* PGN mode */ }
-        <OpeningAnalysisTablePgnMode />
         <GameTablePgnMode />
         <StartedButtonsPgnMode />
         { /* Play mode */ }
         <StartedButtonsPlayMode />
         <FinishedButtonsPlayMode />
         { /* Stockfish mode */ }
-        <OpeningAnalysisTableStockfishMode />
         <StartedButtonsStockfishMode />
       </Grid>
       <PgnDialogs />
