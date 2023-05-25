@@ -34,10 +34,6 @@ const initialState = {
       open: false,
       game: {},
     },
-    openingAnalysis: {
-      open: false,
-      rows: [],
-    },
   },
 };
 

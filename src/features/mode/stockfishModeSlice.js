@@ -19,12 +19,6 @@ const initialState = {
       open: false,
     },
   },
-  tables: {
-    openingAnalysis: {
-      open: false,
-      rows: [],
-    },
-  },
 };
 
 const stockfishModeSlice = createSlice({
