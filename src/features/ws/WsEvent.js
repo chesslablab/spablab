@@ -106,16 +106,6 @@ export default class WsEvent {
         jwt_decoded: jwtDecoded,
         hash: data['/start'].hash,
         color: jwtDecoded.color,
-        takeback: null,
-        draw: null,
-        resign: null,
-        rematch: null,
-        leave: null,
-        accepted: false,
-        timer: {
-          expiry_timestamp: null,
-          over: null
-        }
       };
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(board.start({
@@ -210,16 +200,6 @@ export default class WsEvent {
           jwt_decoded: jwt_decode(data['/accept'].jwt),
           hash: data['/accept'].hash,
           color: jwtDecoded.color,
-          takeback: null,
-          draw: null,
-          resign: null,
-          rematch: null,
-          leave: null,
-          accepted: false,
-          timer: {
-            expiry_timestamp: null,
-            over: null
-          },
         },
       };
       if (store.getState().playMode.play) {
@@ -414,15 +394,7 @@ export default class WsEvent {
         jwt_decoded: jwtDecoded,
         hash: data['/restart'].hash,
         color: store.getState().playMode.play.color,
-        takeback: null,
-        draw: null,
-        resign: null,
-        rematch: null,
         accepted: true,
-        timer: {
-          expiry_timestamp: expiryTimestamp,
-          over: null
-        }
       }
     }));
     dispatch(board.reset());

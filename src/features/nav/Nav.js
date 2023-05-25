@@ -108,7 +108,7 @@ const Nav = ({props}) => {
     (!state.playMode.play.draw || state.playMode.play.draw === Wording.verb.PROPOSE.toLowerCase()) &&
     !state.playMode.play.resign &&
     !state.playMode.play.leave &&
-    !state.playMode.play.timer.over &&
+    !state.playMode.play.timer?.over &&
     !state.board.isMate &&
     !state.board.isStalemate;
 

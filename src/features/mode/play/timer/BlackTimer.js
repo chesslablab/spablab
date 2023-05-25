@@ -9,7 +9,7 @@ import * as playMode from 'features/mode/playModeSlice';
 const BlackTimer = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const expiryTimestamp = state.playMode.play.timer.expiry_timestamp;
+  const expiryTimestamp = state.playMode.play.timer?.expiry_timestamp;
   const timer = useTimer({
     expiryTimestamp,
     onExpire: () => {
@@ -30,7 +30,7 @@ const BlackTimer = () => {
         state.playMode.play.draw ||
         state.playMode.play.resign ||
         state.playMode.play.leave ||
-        state.playMode.play.timer.over
+        state.playMode.play.timer?.over
       ) {
         timer.pause();
       } else if (state.board.turn === Pgn.symbol.BLACK) {
@@ -54,7 +54,7 @@ const BlackTimer = () => {
     state.playMode.play.draw,
     state.playMode.play.resign,
     state.playMode.play.leave,
-    state.playMode.play.timer.over
+    state.playMode.play.timer?.over
   ]);
 
   return (

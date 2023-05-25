@@ -5,6 +5,15 @@ import * as variantConst from 'features/mode/variantConst';
 const initialState = {
   active: false,
   variant: variantConst.CLASSICAL,
+  takeback: null,
+  draw: null,
+  resign: null,
+  rematch: null,
+  leave: null,
+  timer: {
+    expiry_timestamp: null,
+    over: null
+  },
   dialogs: {
     acceptDraw: {
       open: false,
