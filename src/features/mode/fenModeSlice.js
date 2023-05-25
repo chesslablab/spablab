@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 
 const initialState = {
   active: false,
-  name: modeConst.FEN,
   variant: variantConst.CLASSICAL,
   fen: '',
   startPos: '',
