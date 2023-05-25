@@ -20,8 +20,8 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
   static onStartFen = (data) => dispatch => {
+    multiAction.resetModes(dispatch);
     if (data['/start'].fen) {
-      multiAction.resetModes(dispatch);
       dispatch(board.startFen({ fen: data['/start'].fen }));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(fenMode.set({
@@ -42,7 +42,6 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar();
     } else {
-      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
       }));
@@ -61,8 +60,8 @@ export default class WsEvent {
   }
 
   static onStartPgn = (data) => dispatch => {
+    multiAction.resetModes(dispatch);
     if (data['/start'].movetext) {
-      dispatch(pgnMode.reset());
       dispatch(board.startPgn(data['/start']));
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(pgnMode.set({
@@ -81,7 +80,6 @@ export default class WsEvent {
       }
       WsAction.heuristicsBar();
     } else {
-      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Invalid PGN movetext, please try again with a different one.'
       }));
@@ -89,6 +87,7 @@ export default class WsEvent {
   }
 
   static onStartPlay = (data) => dispatch => {
+    multiAction.resetModes(dispatch);
     multiAction.initGui(dispatch);
     if (data['/start'].jwt) {
       const jwtDecoded = jwt_decode(data['/start'].jwt);
@@ -108,7 +107,6 @@ export default class WsEvent {
           over: null
         }
       };
-      dispatch(playMode.reset());
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(playMode.set({
           variant: variantConst.CLASSICAL,
@@ -136,7 +134,6 @@ export default class WsEvent {
       dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
     } else {
       dispatch(playMode.createInviteCodeDialog({ open: false }));
-      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
       }));
@@ -178,6 +175,7 @@ export default class WsEvent {
   }
 
   static onAccept = (data) => dispatch => {
+    multiAction.resetModes(dispatch);
     multiAction.initGui(dispatch);
     if (data['/accept'].jwt) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
@@ -197,7 +195,6 @@ export default class WsEvent {
           over: null
         },
       };
-      dispatch(playMode.reset());
       if (jwtDecoded.variant === variantConst.CLASSICAL) {
         dispatch(playMode.set({
           variant: variantConst.CLASSICAL,
@@ -225,7 +222,6 @@ export default class WsEvent {
       dispatch(playMode.acceptPlay());
       dispatch(playMode.playOnlineDialog({ open: false }));
     } else {
-      multiAction.resetModes(dispatch);
       dispatch(infoAlert.show({
         info: 'Invalid invite code, please try again with a different one.'
       }));
@@ -397,7 +393,7 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
-    dispatch(playMode.reset());
+    multiAction.resetModes(dispatch);
     dispatch(playMode.set({
       color: store.getState().playMode.play.color,
       accepted: false
