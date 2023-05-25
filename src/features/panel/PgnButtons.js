@@ -20,7 +20,7 @@ const PgnButtons = ({props}) => {
   const handleDownloadImage = async () => {
     let body = {
       fen: state.board.fen[state.board.fen.length - 1 + state.history.back],
-      variant: storeParser.activeVariant(),
+      variant: storeParser.getActiveMode().variant,
       flip: state.board.flip
     };
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/image`, {
@@ -41,12 +41,12 @@ const PgnButtons = ({props}) => {
   const handleDownloadMp4 = async () => {
     dispatch(progressDialog.open());
     let body = {
-      variant: storeParser.activeVariant(),
+      variant: storeParser.getActiveMode().variant,
       fen: state.board.fen[0],
       movetext: Movetext.substring(state.board.movetext, state.history.back),
       flip: state.board.flip
     };
-    if (storeParser.activeVariant() === variantConst.CHESS_960) {
+    if (storeParser.getActiveMode().variant === variantConst.CHESS_960) {
       body.startPos = state.variant.startPos;
     }
     if (state.mode.name === modeConst.FEN) {

@@ -81,7 +81,7 @@ export default class WsAction {
 
   static heuristicsBar = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
-    const variant = storeParser.activeVariant();
+    const variant = storeParser.getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.heuristics === 'on') {
       return await store.getState().server.ws.send(`/heuristics_bar "${fen}" ${variant}`);

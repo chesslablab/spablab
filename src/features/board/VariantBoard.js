@@ -15,9 +15,9 @@ const VariantBoard = ({props}) => {
   }, [props, dispatch]);
 
   const variantBoard = () => {
-    if (storeParser.activeVariant() === variantConst.CAPABLANCA_80) {
+    if (storeParser.getActiveMode().variant === variantConst.CAPABLANCA_80) {
       return <Capablanca80Board props={props} />;
-    } else if (storeParser.activeVariant() === variantConst.CHESS_960) {
+    } else if (storeParser.getActiveMode().variant === variantConst.CHESS_960) {
       return <Chess960Board props={props} />;
     }
 
