@@ -50,7 +50,7 @@ const PgnTable = ({props}) => {
           <TableCell>{i + 1}</TableCell>
           <TableCell
             sx={[styles.move, highlight(((i + 1) * 2) - 1)]}
-            onClick={() => dispatch(panel.goToHistory({
+            onClick={() => dispatch(panel.goTo({
               back: state.board.fen.length - 1 - (((i + 1) * 2) - 1) }
             ))}
           >
@@ -61,7 +61,7 @@ const PgnTable = ({props}) => {
             onClick={() => {
               const back = state.board.fen.length - 1 - ((i + 1) * 2);
               if (back >= 0) {
-                dispatch(panel.goToHistory({ back: back }));
+                dispatch(panel.goTo({ back: back }));
               }
             }}
           >

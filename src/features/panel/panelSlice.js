@@ -18,16 +18,16 @@ const panelSlice = createSlice({
     openingTable(state, action) {
       state.tables.opening = action.payload;
     },
-    goToHistory(state, action) {
+    goTo(state, action) {
       state.history.back = 0 - action.payload.back;
     },
-    goBackHistory(state) {
+    goBack(state) {
       state.history.back = state.history.back - 1;
     },
-    goForwardHistory(state) {
+    goForward(state) {
       state.history.back = state.history.back + 1;
     },
-    goToEndHistory(state) {
+    goToEnd(state) {
       state.history.back = 0;
     },
   }
@@ -35,9 +35,9 @@ const panelSlice = createSlice({
 
 export const {
   openingTable,
-  goToHistory,
-  goBackHistory,
-  goForwardHistory,
-  goToEndHistory
+  goTo,
+  goBack,
+  goForward,
+  goToEnd
 } = panelSlice.actions;
 export default panelSlice.reducer;

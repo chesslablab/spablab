@@ -13,7 +13,7 @@ export default class multiAction {
   static initGui = (dispatch) => {
     dispatch(heuristicsBar.reset());
     dispatch(panel.openingTable({ open: false }));
-    dispatch(panel.goToHistory({ back: 0 }));
+    dispatch(panel.goTo({ back: 0 }));
     dispatch(pgnMode.panelTable({ open: false }));
     dispatch(infoAlert.close());
     dispatch(board.reset());

@@ -22,13 +22,13 @@ const History = () => {
       <Button
         startIcon={<FastRewindIcon />}
         disabled={state.board.fen.length - 1 - Math.abs(state.panel.history.back) === 0}
-        onClick={() => dispatch(panel.goToHistory({ back: state.board.fen.length - 1 }))}
+        onClick={() => dispatch(panel.goTo({ back: state.board.fen.length - 1 }))}
       />
       <Button
         startIcon={<SkipPreviousIcon />}
         disabled={state.board.fen.length - 1 - Math.abs(state.panel.history.back) === 0}
         onClick={() => {
-          dispatch(panel.goBackHistory());
+          dispatch(panel.goBack());
           dispatch(board.browseHistory());
         }}
       />
@@ -36,7 +36,7 @@ const History = () => {
         startIcon={<SkipNextIcon />}
         disabled={state.panel.history.back === 0}
         onClick={() => {
-          dispatch(panel.goForwardHistory());
+          dispatch(panel.goForward());
           dispatch(board.browseHistory());
         }}
       />
@@ -44,7 +44,7 @@ const History = () => {
         startIcon={<FastForwardIcon />}
         disabled={state.panel.history.back === 0}
         onClick={() => {
-          dispatch(panel.goToEndHistory());
+          dispatch(panel.goToEnd());
           dispatch(board.browseHistory());
         }}
       />
