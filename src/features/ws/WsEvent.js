@@ -203,27 +203,32 @@ export default class WsEvent {
         variant: jwtDecoded.variant,
         fen: jwtDecoded.fen
       }));
-      if (!store.getState().playMode.play) {
-        multiAction.initGui(dispatch);
-        dispatch(playMode.set({
-          variant: jwtDecoded.variant,
-          play: {
-            jwt: data['/accept'].jwt,
-            jwt_decoded: jwt_decode(data['/accept'].jwt),
-            hash: data['/accept'].hash,
-            color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
-            takeback: null,
-            draw: null,
-            resign: null,
-            rematch: null,
-            leave: null,
-            accepted: false,
-            timer: {
-              expiry_timestamp: null,
-              over: null
-            },
+      let payload = {
+        variant: jwtDecoded.variant,
+        play: {
+          jwt: data['/accept'].jwt,
+          jwt_decoded: jwt_decode(data['/accept'].jwt),
+          hash: data['/accept'].hash,
+          color: jwtDecoded.color,
+          takeback: null,
+          draw: null,
+          resign: null,
+          rematch: null,
+          leave: null,
+          accepted: false,
+          timer: {
+            expiry_timestamp: null,
+            over: null
           },
-        }));
+        },
+      };
+      if (store.getState().playMode.play) {
+        multiAction.initGui(dispatch);
+        dispatch(playMode.set(payload));
+      } else {
+        multiAction.initGui(dispatch);
+        payload.play.color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
+        dispatch(playMode.set(payload));
       }
       if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
