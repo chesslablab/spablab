@@ -109,7 +109,7 @@ export default class WsAction {
   }
 
   static restart = async () => {
-    return await store.getState().server.ws.send(`/restart ${store.getState().mode.play.hash}`);
+    return await store.getState().server.ws.send(`/restart ${store.getState().playMode.play.hash}`);
   }
 
   static randomizer = async (color, items) => {

@@ -339,12 +339,12 @@ export default class WsEvent {
 
   static onTakebackPropose = () => dispatch => {
     if (!store.getState().playMode.play.takeback) {
-      dispatch(playMode.acceptTakebackDialog({ open: false }));
+      dispatch(playMode.acceptTakebackDialog({ open: true }));
     }
   }
 
   static onTakebackAccept = () => dispatch => {
-    dispatch(playMode.acceptTakebackDialog({ open: true }));
+    dispatch(playMode.acceptTakebackDialog({ open: false }));
   }
 
   static onDrawPropose = () => dispatch => {
