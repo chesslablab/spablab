@@ -119,33 +119,33 @@ export default class WsEvent {
         }
       };
       if (data['/start'].variant === variantConst.CLASSICAL) {
-        dispatch(playMode.set({
-          variant: variantConst.CLASSICAL,
-          play: play,
-        }));
         dispatch(board.start({
           variant: variantConst.CLASSICAL,
           fen: data['/start'].fen,
         }));
+        dispatch(playMode.set({
+          variant: variantConst.CLASSICAL,
+          play: play,
+        }));
       } else if (data['/start'].variant === variantConst.CHESS_960) {
+        dispatch(board.start({
+          variant: variantConst.CHESS_960,
+          fen: data['/start'].fen,
+        }));
         dispatch(playMode.set({
           variant: variantConst.CHESS_960,
           fen: data['/start'].fen,
           startPos: data['/start'].startPos,
           play: play,
         }));
+      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
         dispatch(board.start({
-          variant: variantConst.CHESS_960,
+          variant: variantConst.CAPABLANCA_80,
           fen: data['/start'].fen,
         }));
-      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
         dispatch(playMode.set({
           variant: variantConst.CAPABLANCA_80,
           play: play,
-        }));
-        dispatch(board.start({
-          variant: variantConst.CAPABLANCA_80,
-          fen: data['/start'].fen,
         }));
       }
       if (jwtDecoded.color === Pgn.symbol.BLACK) {
