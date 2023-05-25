@@ -44,7 +44,7 @@ const LoadFenDialog = () => {
   };
 
   return (
-    <Dialog open={state.pgnMode.dialogs.loadPgn.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.fenMode.dialogs.loadFen.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         FEN String
         <IconButton onClick={() => dispatch(fenMode.loadFenDialog({ open: false }))}>
