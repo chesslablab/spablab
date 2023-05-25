@@ -33,12 +33,4 @@ export default class multiAction {
   static openingAnalysisBySameMovetext = (dispatch, movetext) => {
     dispatch(panel.openingAnalysisTable({ rows: Opening.bySameMovetext(movetext) }));
   };
-
-  static resetModes = (dispatch) => {
-    dispatch(fenMode.reset());
-    dispatch(gmMode.reset());
-    dispatch(pgnMode.reset());
-    dispatch(playMode.reset());
-    dispatch(stockfishMode.reset());
-  };
 }

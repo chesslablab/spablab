@@ -20,7 +20,7 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
   static onStartFen = (data) => dispatch => {
-    multiAction.resetModes(dispatch);
+    multiAction.initGui(dispatch);
     if (data['/start'].fen) {
       if (data['/start'].variant === variantConst.CLASSICAL) {
         dispatch(board.start({
@@ -60,7 +60,7 @@ export default class WsEvent {
   }
 
   static onStartGm = (data) => dispatch => {
-    multiAction.resetModes(dispatch);
+    multiAction.initGui(dispatch);
     dispatch(gmMode.set({
       variant: variantConst.CLASSICAL,
       gm: {
@@ -71,7 +71,7 @@ export default class WsEvent {
   }
 
   static onStartPgn = (data) => dispatch => {
-    multiAction.resetModes(dispatch);
+    multiAction.initGui(dispatch);
     if (data['/start'].movetext) {
       dispatch(board.startPgn(data['/start']));
       if (data['/start'].variant === variantConst.CLASSICAL) {
@@ -98,7 +98,6 @@ export default class WsEvent {
   }
 
   static onStartPlay = (data) => dispatch => {
-    multiAction.resetModes(dispatch);
     multiAction.initGui(dispatch);
     if (data['/start'].jwt) {
       const jwtDecoded = jwt_decode(data['/start'].jwt);
@@ -205,7 +204,7 @@ export default class WsEvent {
         fen: jwtDecoded.fen
       }));
       if (!store.getState().playMode.play) {
-        multiAction.resetModes(dispatch);
+        multiAction.initGui(dispatch);
         dispatch(playMode.set({
           variant: jwtDecoded.variant,
           play: {
@@ -403,7 +402,7 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
-    multiAction.resetModes(dispatch);
+    multiAction.initGui(dispatch);
     dispatch(playMode.set({
       color: store.getState().playMode.play.color,
       accepted: false
@@ -446,7 +445,7 @@ export default class WsEvent {
         { fen: data['/randomizer'].fen }
       );
     } else {
-      multiAction.resetModes(dispatch);
+      multiAction.initGui(dispatch);
       dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));
     }
   }
@@ -521,7 +520,7 @@ export default class WsEvent {
 
   static onError = (data) => dispatch => {
     if (data['error']) {
-      multiAction.resetModes(dispatch);
+      multiAction.initGui(dispatch);
       dispatch(infoAlert.show({
         info: 'Whoops! Something went wrong.'
       }));
