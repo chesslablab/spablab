@@ -5,7 +5,7 @@ const initialState = {
     back: 0,
   },
   tables: {
-    openingAnalysis: {
+    opening: {
       rows: [],
     },
   },
@@ -15,8 +15,8 @@ const panelSlice = createSlice({
   name: 'panel',
   initialState,
   reducers: {
-    openingAnalysisTable(state, action) {
-      state.tables.openingAnalysis = action.payload;
+    openingTable(state, action) {
+      state.tables.opening = action.payload;
     },
     goToHistory(state, action) {
       state.history.back = 0 - action.payload.back;
@@ -34,7 +34,7 @@ const panelSlice = createSlice({
 });
 
 export const {
-  openingAnalysisTable,
+  openingTable,
   goToHistory,
   goBackHistory,
   goForwardHistory,

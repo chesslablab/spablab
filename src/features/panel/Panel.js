@@ -12,7 +12,7 @@ import StartedDialogsPlayMode from 'features/mode/play/StartedDialogsPlayMode';
 import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsStockfishMode';
 import Timer from 'features/mode/play/timer/Timer';
 import History from 'features/panel/History';
-import OpeningAnalysisTable from 'features/panel/OpeningAnalysisTable';
+import OpeningTable from 'features/panel/OpeningTable';
 import PgnTable from 'features/panel/PgnTable';
 import PgnButtons from 'features/panel/PgnButtons';
 import PgnDialogs from 'features/panel/PgnDialogs';
@@ -56,7 +56,7 @@ const Panel = ({ props }) => {
       </Grid>
       <Grid item xs={12}>
         { /* All modes */ }
-        <OpeningAnalysisTable />
+        <OpeningTable />
         { /* GM mode */ }
         <GameTableGmMode />
         <StartedButtonsGmMode />

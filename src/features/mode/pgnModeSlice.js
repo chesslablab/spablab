@@ -64,8 +64,8 @@ const pgnModeSlice = createSlice({
     panelTable(state, action) {
       state.tables.panel = action.payload;
     },
-    openingAnalysisTable(state, action) {
-      state.tables.openingAnalysis = action.payload;
+    openingTable(state, action) {
+      state.tables.opening = action.payload;
     },
   }
 });
@@ -79,6 +79,6 @@ export const {
   searchMovetextDialog,
   searchNameDialog,
   panelTable,
-  openingAnalysisTable
+  openingTable
 } = pgnModeSlice.actions;
 export default pgnModeSlice.reducer;

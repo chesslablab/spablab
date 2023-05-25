@@ -12,7 +12,7 @@ import * as panel from 'features/panel/panelSlice';
 export default class multiAction {
   static initGui = (dispatch) => {
     dispatch(heuristicsBar.resetBar());
-    dispatch(panel.openingAnalysisTable({ open: false }));
+    dispatch(panel.openingTable({ open: false }));
     dispatch(panel.goToHistory({ back: 0 }));
     dispatch(pgnMode.panelTable({ open: false }));
     dispatch(infoAlert.close());
@@ -25,11 +25,11 @@ export default class multiAction {
     dispatch(stockfishMode.reset());
   };
 
-  static openingAnalysisByMovetext = (dispatch, movetext) => {
-    dispatch(panel.openingAnalysisTable({ rows: Opening.byMovetext(movetext) }));
+  static openingByMovetext = (dispatch, movetext) => {
+    dispatch(panel.openingTable({ rows: Opening.byMovetext(movetext) }));
   };
 
-  static openingAnalysisBySameMovetext = (dispatch, movetext) => {
-    dispatch(panel.openingAnalysisTable({ rows: Opening.bySameMovetext(movetext) }));
+  static openingBySameMovetext = (dispatch, movetext) => {
+    dispatch(panel.openingTable({ rows: Opening.bySameMovetext(movetext) }));
   };
 }

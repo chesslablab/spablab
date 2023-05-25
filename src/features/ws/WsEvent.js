@@ -97,7 +97,7 @@ export default class WsEvent {
         dispatch(pgnMode.set({
           variant: variantConst.CLASSICAL,
         }));
-        multiAction.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
+        multiAction.openingBySameMovetext(dispatch, data['/start'].movetext);
       } else if (data['/start'].variant === variantConst.CHESS_960) {
         dispatch(pgnMode.set({
           variant: variantConst.CHESS_960,
@@ -243,7 +243,7 @@ export default class WsEvent {
         store.getState().fenMode.active &&
         store.getState().fenMode.variant === variantConst.CLASSICAL
       ) {
-        multiAction.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
+        multiAction.openingByMovetext(dispatch, data['/play_lan'].movetext);
       } else if (
         store.getState().gmMode.active &&
         store.getState().fenMode.variant === variantConst.CLASSICAL
@@ -352,7 +352,7 @@ export default class WsEvent {
     if (data['/undo'].mode === modeConst.PLAY) {
       dispatch(playMode.declineTakeback());
     } else if (data['/undo'].mode === modeConst.FEN) {
-      multiAction.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
+      multiAction.openingByMovetext(dispatch, data['/undo'].movetext);
       WsAction.heuristicsBar();
     }
   }
@@ -432,7 +432,7 @@ export default class WsEvent {
         piecePlaced: { event: eventConst.ON_STOCKFISH }
       }));
       WsAction.heuristicsBar();
-      multiAction.openingAnalysisByMovetext(dispatch, data['/stockfish'].movetext);
+      multiAction.openingByMovetext(dispatch, data['/stockfish'].movetext);
     }
   }
 
