@@ -407,24 +407,22 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
-    multiAction.initGui(dispatch);
     dispatch(playMode.set({
-      color: store.getState().playMode.play.color,
-      accepted: false
-    }));
-    dispatch(playMode.set({
-      jwt: data['/restart'].jwt,
-      jwt_decoded: jwtDecoded,
-      hash: data['/restart'].hash,
-      color: store.getState().playMode.play.color,
-      takeback: null,
-      draw: null,
-      resign: null,
-      rematch: null,
-      accepted: true,
-      timer: {
-        expiry_timestamp: expiryTimestamp,
-        over: null
+      variant: jwtDecoded.variant,
+      play: {
+        jwt: data['/restart'].jwt,
+        jwt_decoded: jwtDecoded,
+        hash: data['/restart'].hash,
+        color: store.getState().playMode.play.color,
+        takeback: null,
+        draw: null,
+        resign: null,
+        rematch: null,
+        accepted: true,
+        timer: {
+          expiry_timestamp: expiryTimestamp,
+          over: null
+        }
       }
     }));
     dispatch(board.reset());
