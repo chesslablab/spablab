@@ -75,7 +75,7 @@ export default class WsEventListener {
         break;
       case '/randomizer' === mssg:
         dispatch(progressDialog.close());
-        dispatch(WsEvent.onRandomCheckmate(data));
+        dispatch(WsEvent.onRandomizer(data));
         break;
       case '/stockfish' === mssg:
         dispatch(progressDialog.close());

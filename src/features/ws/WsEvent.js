@@ -403,7 +403,7 @@ export default class WsEvent {
     }
   }
 
-  static onRandomCheckmate = (data) => dispatch => {
+  static onRandomizer = (data) => dispatch => {
     if (data['/randomizer'].fen) {
       dispatch(stockfishMode.set({
         color: data['/randomizer'].turn,
