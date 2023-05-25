@@ -1,4 +1,3 @@
-import store from 'app/store';
 import Opening from 'common/Opening.js';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as history from 'features/historySlice';
@@ -42,22 +41,6 @@ export default class multiAction {
     } else {
       dispatch(pgnMode.openingAnalysisTable({ open: false }));
     }
-  };
-
-  static activeVariant = () => {
-    if (store.getState().fenMode.active) {
-      return store.getState().fenMode.variant;
-    } else if(store.getState().gmMode.active) {
-      return store.getState().gmMode.variant;
-    } else if(store.getState().pgnMode.active) {
-      return store.getState().pgnMode.variant;
-    } else if(store.getState().playMode.active) {
-      return store.getState().playMode.variant;
-    } else if(store.getState().stockfishMode.active) {
-      return store.getState().stockfishMode.variant;
-    }
-
-    return false;
   };
 
   static resetModes = (dispatch) => {
