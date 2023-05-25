@@ -131,7 +131,10 @@ const playModeSlice = createSlice({
       state.dialogs.offerTakeback = action.payload;
     },
     playOnlineDialog(state, action) {
-      state.dialogs.playOnline = action.payload;
+      state.dialogs.playOnline = {
+        ...state.dialogs.playOnline,
+        ...action.payload
+      };
     },
   }
 });
