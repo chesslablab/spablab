@@ -8,7 +8,6 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
 import storeParser from 'app/storeParser';
 import Movetext from 'common/Movetext';
-import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as progressDialog from 'features/progressDialogSlice';
 import WsAction from 'features/ws/WsAction';
@@ -49,8 +48,8 @@ const PgnButtons = ({props}) => {
     if (storeParser.getActiveMode().variant === variantConst.CHESS_960) {
       body.startPos = state.variant.startPos;
     }
-    if (state.mode.name === modeConst.FEN) {
-      body.fen = state.mode.fen;
+    if (state.fenMode.active) {
+      body.fen = state.fenMode.fen;
     }
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/mp4`, {
       method: 'POST',
