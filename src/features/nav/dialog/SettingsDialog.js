@@ -18,13 +18,13 @@ const SettingsDialog = () => {
   const dispatch = useDispatch();
 
   const handleAnimationChange = (event: Event) => {
-    dispatch(nav.settingsDialogAccept({
+    dispatch(nav.settingsDialogSet({
       pieceAnimation: event.target.value === 'on' ? 'off' : 'on'
     }));
   };
 
   const handleHeuristicsChange = (event: Event) => {
-    dispatch(nav.settingsDialogAccept({
+    dispatch(nav.settingsDialogSet({
       heuristics: event.target.value === 'on' ? 'off' : 'on'
     }));
   };

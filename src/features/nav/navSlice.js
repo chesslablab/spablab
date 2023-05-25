@@ -49,7 +49,7 @@ const initialState = {
 };
 
 const navSlice = createSlice({
-  name: 'mainButtons',
+  name: 'nav',
   initialState,
   reducers: {
     setAnalysis: () => initialState,
@@ -84,11 +84,11 @@ const navSlice = createSlice({
       state.dialogs.playersStats = action.payload;
     },
     settingsDialog(state, action) {
-      state.dialogs.settings = action.payload;
+      state.dialogs.settings.open = action.payload.open;
     },
-    settingsDialogAccept(state, action) {
-      state.fields = {
-        ...state.fields,
+    settingsDialogSet(state, action) {
+      state.dialogs.settings.fields = {
+        ...state.dialogs.settings.fields,
         ...action.payload
       };
     },
@@ -108,6 +108,6 @@ export const {
   openingsStatsDialog,
   playersStatsDialog,
   settingsDialog,
-  settingsDialogAccept
+  settingsDialogSet
 } = navSlice.actions;
 export default navSlice.reducer;
