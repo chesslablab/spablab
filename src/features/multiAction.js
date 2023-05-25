@@ -27,21 +27,11 @@ export default class multiAction {
   };
 
   static openingAnalysisByMovetext = (dispatch, movetext) => {
-    let rows = Opening.byMovetext(movetext);
-    if (rows) {
-      dispatch(panel.openingAnalysisTable({ open: true, rows: rows }));
-    } else {
-      dispatch(panel.openingAnalysisTable({ open: false }));
-    }
+    dispatch(panel.openingAnalysisTable({ rows: Opening.byMovetext(movetext) }));
   };
 
   static openingAnalysisBySameMovetext = (dispatch, movetext) => {
-    let rows = Opening.bySameMovetext(movetext);
-    if (rows) {
-      dispatch(panel.openingAnalysisTable({ open: true, rows: rows }));
-    } else {
-      dispatch(panel.openingAnalysisTable({ open: false }));
-    }
+    dispatch(panel.openingAnalysisTable({ rows: Opening.bySameMovetext(movetext) }));
   };
 
   static resetModes = (dispatch) => {

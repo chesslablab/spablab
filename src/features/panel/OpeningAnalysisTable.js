@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/mate
 const OpeningAnalysisTable = ({props}) => {
   const state = useSelector(state => state);
 
-  if (state.panel.tables.openingAnalysis.open) {
+  if (state.panel.tables.openingAnalysis.rows) {
     return (
       <TableContainer sx={{ mt: 1.5 }}>
         <Table stickyHeader size="small" aria-label="Chess Openings">
