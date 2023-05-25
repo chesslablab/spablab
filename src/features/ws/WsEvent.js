@@ -315,7 +315,7 @@ export default class WsEvent {
   }
 
   static onHeuristicsBar = (data) => dispatch => {
-    dispatch(heuristicsBar.updateBar({
+    dispatch(heuristicsBar.set({
       dimensions: data['/heuristics_bar'].dimensions,
       balance: data['/heuristics_bar'].balance
     }));

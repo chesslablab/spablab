@@ -11,7 +11,7 @@ import * as panel from 'features/panel/panelSlice';
 
 export default class multiAction {
   static initGui = (dispatch) => {
-    dispatch(heuristicsBar.resetBar());
+    dispatch(heuristicsBar.reset());
     dispatch(panel.openingTable({ open: false }));
     dispatch(panel.goToHistory({ back: 0 }));
     dispatch(pgnMode.panelTable({ open: false }));
