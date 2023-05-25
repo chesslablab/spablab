@@ -16,7 +16,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import WsAction from 'features/ws/WsAction';
 import multiAction from 'features/multiAction';
-import progressDialog from 'features/progressDialogSlice';
+import * as progressDialog from 'features/progressDialogSlice';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
