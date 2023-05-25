@@ -8,7 +8,7 @@ const Timer = () => {
   const state = useSelector(state => state);
 
   if (state.playMode.active) {
-    if (state.mode.play.accepted) {
+    if (state.playMode.play.accepted) {
       return (
         <Box sx={{ mt: 1.5 }}>
           <WhiteTimer /><BlackTimer />

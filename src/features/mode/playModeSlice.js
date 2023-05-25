@@ -51,6 +51,7 @@ const playModeSlice = createSlice({
   reducers: {
     reset: () => initialState,
     set(state, action) {
+      state.active = true;
       state.variant = action.payload.variant;
       state.fen =  action.payload.fen;
       state.startPos =  action.payload.startPos;

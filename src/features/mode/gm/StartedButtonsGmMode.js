@@ -22,7 +22,7 @@ const StartedButtonsGmMode = () => {
             id="StartedButtonsGmMode-Button-undoMove"
             disabled={state.history.back !== 0}
             onClick={() => WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
-              movetext: state.mode.gm.movetext
+              movetext: state.gmMode.gm.movetext
             })}
           >
             View Game
