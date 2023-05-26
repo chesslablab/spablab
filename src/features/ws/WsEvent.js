@@ -66,7 +66,6 @@ export default class WsEvent {
           fen: data['/start'].fen,
         }));
       }
-      WsAction.heuristicsBar();
     } else {
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
@@ -104,7 +103,6 @@ export default class WsEvent {
           variant: variantConst.CAPABLANCA_80,
         }));
       }
-      WsAction.heuristicsBar();
     } else {
       dispatch(infoAlert.show({
         info: 'Invalid PGN movetext, please try again with a different one.'
@@ -157,7 +155,6 @@ export default class WsEvent {
       }
       dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
     } else {
-      dispatch(playMode.createInviteCodeDialog({ open: false }));
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
       }));
@@ -173,7 +170,6 @@ export default class WsEvent {
       if (data['/start'].color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
-      WsAction.heuristicsBar();
     } else {
       if (data['/start'].color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
@@ -349,8 +345,8 @@ export default class WsEvent {
       dispatch(playMode.declineTakeback());
     } else if (data['/undo'].mode === modeConst.FEN) {
       multiAction.openingByMovetext(dispatch, data['/undo'].movetext);
-      WsAction.heuristicsBar();
     }
+    WsAction.heuristicsBar();
   }
 
   static onResignAccept = () => dispatch => {
