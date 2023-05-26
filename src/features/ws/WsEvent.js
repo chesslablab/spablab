@@ -180,31 +180,21 @@ export default class WsEvent {
   static onAccept = (data) => dispatch => {
     if (data['/accept'].jwt) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
+      const inviterColor = store.getState().playMode.play?.color;
+      multiAction.initGui(dispatch);
       dispatch(board.start({
         variant: jwtDecoded.variant,
         fen: jwtDecoded.fen
       }));
-      if (store.getState().playMode.play) {
-        dispatch(playMode.set({
-          variant: jwtDecoded.variant,
-          play: {
-            jwt: data['/accept'].jwt,
-            jwt_decoded: jwt_decode(data['/accept'].jwt),
-            hash: data['/accept'].hash,
-            color: jwtDecoded.color,
-          },
-        }));
-      } else {
-        dispatch(playMode.set({
-          variant: jwtDecoded.variant,
-          play: {
-            jwt: data['/accept'].jwt,
-            jwt_decoded: jwt_decode(data['/accept'].jwt),
-            hash: data['/accept'].hash,
-            color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
-          },
-        }));
-      }
+      dispatch(playMode.set({
+        variant: jwtDecoded.variant,
+        play: {
+          jwt: data['/accept'].jwt,
+          jwt_decoded: jwt_decode(data['/accept'].jwt),
+          hash: data['/accept'].hash,
+          color: inviterColor ?? (jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE),
+        },
+      }));
       if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
