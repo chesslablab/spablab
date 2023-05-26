@@ -224,18 +224,12 @@ export default class WsEvent {
   static onHeuristics = (data) => dispatch => {
     dispatch(nav.heuristicsDialog({
       open: true,
-      heuristics: {
-        dimensions: data['/heuristics'].dimensions,
-        balance: data['/heuristics'].balance,
-      },
+      heuristics: data['/heuristics'],
     }));
   }
 
   static onHeuristicsBar = (data) => dispatch => {
-    dispatch(heuristicsBar.set({
-      dimensions: data['/heuristics_bar'].dimensions,
-      balance: data['/heuristics_bar'].balance
-    }));
+    dispatch(heuristicsBar.set(data['/heuristics_bar']));
   }
 
   static onTakebackPropose = () => dispatch => {
