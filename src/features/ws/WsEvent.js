@@ -242,20 +242,18 @@ export default class WsEvent {
     dispatch(playMode.acceptTakebackDialog({ open: false }));
   }
 
-  static onDrawPropose = () => dispatch => {
-    if (!store.getState().playMode.play.draw) {
-      dispatch(playMode.acceptDrawDialog({ open: true }));
+  static onDraw = (data) => dispatch => {
+    if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
+      if (!store.getState().playMode.play.draw) {
+        dispatch(playMode.acceptDrawDialog({ open: true }));
+      }
+    } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
+      dispatch(playMode.acceptDraw());
+      dispatch(infoAlert.show({ info: 'Draw offer accepted.' }));
+    } else if (data['/draw'] === Wording.verb.DECLINE.toLowerCase()) {
+      dispatch(playMode.declineDraw());
+      dispatch(infoAlert.show({ info: 'Draw offer declined.' }));
     }
-  }
-
-  static onDrawAccept = () => dispatch => {
-    dispatch(playMode.acceptDraw());
-    dispatch(infoAlert.show({ info: 'Draw offer accepted.' }));
-  }
-
-  static onDrawDecline = () => dispatch => {
-    dispatch(playMode.declineDraw());
-    dispatch(infoAlert.show({ info: 'Draw offer declined.' }));
   }
 
   static onUndo = (data) => dispatch => {

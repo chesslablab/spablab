@@ -23,13 +23,7 @@ export default class WsEventListener {
         }
         break;
       case '/draw' === mssg:
-        if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
-          dispatch(WsEvent.onDrawPropose());
-        } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onDrawAccept());
-        } else if (data['/draw'] === Wording.verb.DECLINE.toLowerCase()) {
-          dispatch(WsEvent.onDrawDecline());
-        }
+        dispatch(WsEvent.onDraw(data));
         break;
       case '/start' === mssg:
         dispatch(WsEvent.onStart(data));
