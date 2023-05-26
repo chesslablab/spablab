@@ -4,6 +4,7 @@ import storeParser from 'app/storeParser';
 import Capablanca80Board from 'features/board/Capablanca80Board';
 import Chess960Board from 'features/board/Chess960Board';
 import ClassicalBoard from 'features/board/ClassicalBoard';
+import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
 
@@ -11,7 +12,11 @@ const VariantBoard = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(Ws.connect(props)).then(() => Ws.startOff());
+    dispatch(Ws.connect(props))
+      .then(() => Ws.start(
+        variantConst.CLASSICAL,
+        modeConst.FEN
+      ));
   }, [props, dispatch]);
 
   const variantBoard = () => {

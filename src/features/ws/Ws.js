@@ -24,10 +24,6 @@ export default class Ws {
     });
   }
 
-  static startOff = async () => {
-    return await store.getState().server.ws.send('/start classical fen');
-  }
-
   static start = async (variant, mode, settings = {}) => {
     let mssg = `/start ${variant} ${mode}`;
     if (Object.keys(settings).length > 0) {

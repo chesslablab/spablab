@@ -140,7 +140,7 @@ const Nav = ({props}) => {
           onClick={() => {
             dispatch(nav.setAnalysis());
             multiAction.initGui(dispatch);
-            Ws.startOff();
+            Ws.start(variantConst.CLASSICAL, modeConst.FEN);
             handleCloseAnalysis();
           }}
         >
