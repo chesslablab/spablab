@@ -199,7 +199,7 @@
       "id": "4cc33173-49f6-44d2-91aa-afa795e4f8f5",
       "comment": "",
       "command": "click",
-      "target": "id=SecondaryButtons-copyPgnMovetext",
+      "target": "id=PgnButtons-copyPgnMovetext",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
       ],
@@ -208,7 +208,7 @@
       "id": "0cd7406f-42a2-4690-8908-16e149267220",
       "comment": "",
       "command": "click",
-      "target": "id=MainButtons-analysisBoard",
+      "target": "id=Nav-analysisBoard",
       "targets": [
         ["css=.MuiButton-contained", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
@@ -221,7 +221,7 @@
       "id": "eccecf7b-16c8-418c-8365-a11412796a92",
       "comment": "",
       "command": "click",
-      "target": "id=MainButtons-analysisBoard-MenuItem-pgnMovetext",
+      "target": "id=Nav-analysisBoard-MenuItem-pgnMovetext",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(5)", "css:finder"],
         ["xpath=//li[4]", "xpath:position"],
@@ -310,7 +310,7 @@
       "id": "04c5f363-5e38-42c9-b5e6-a931a5f7036b",
       "comment": "",
       "command": "click",
-      "target": "id=MainButtons-openingSearch",
+      "target": "id=Nav-openingSearch",
       "targets": [
         ["css=.MuiButtonGroup-groupedTextVertical:nth-child(2)", "css:finder"],
         ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
@@ -323,7 +323,7 @@
       "id": "d0afadf6-5c48-4362-8794-c3bcf31b891e",
       "comment": "",
       "command": "click",
-      "target": "id=MainButtons-openingSearch-MenuItem-name",
+      "target": "id=Nav-openingSearch-MenuItem-name",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(3)", "css:finder"],
         ["xpath=//li[3]", "xpath:position"],
@@ -481,7 +481,7 @@
       "id": "9fa988ee-0c4e-465d-bdca-876a0d4b6f2f",
       "comment": "",
       "command": "click",
-      "target": "id=MainButtons-analysisBoard",
+      "target": "id=Nav-analysisBoard",
       "targets": [
         ["css=.MuiButton-contained", "css:finder"],
         ["xpath=//button[@type='button']", "xpath:attributes"],
@@ -494,7 +494,7 @@
       "id": "e367e2a3-28dc-49e1-9d6e-9788a9d7d4d5",
       "comment": "",
       "command": "click",
-      "target": "id=MainButtons-analysisBoard-MenuItem-fenString",
+      "target": "id=Nav-analysisBoard-MenuItem-fenString",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(6)", "css:finder"],
         ["xpath=//li[5]", "xpath:position"],
