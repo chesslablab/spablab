@@ -37,7 +37,7 @@ export default class WsEvent {
       }
     }
   }
-  
+
   static onStartFen = (data) => dispatch => {
     multiAction.initGui(dispatch);
     if (data['/start'].fen) {
@@ -406,6 +406,7 @@ export default class WsEvent {
   static onRandomizer = (data) => dispatch => {
     if (data['/randomizer'].fen) {
       dispatch(stockfishMode.set({
+        variant: variantConst.CLASSICAL,
         color: data['/randomizer'].turn,
         options: {
           "Skill Level": 20
