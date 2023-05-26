@@ -268,7 +268,7 @@ export default class WsEvent {
     Ws.heuristicsBar();
   }
 
-  static onResignAccept = () => dispatch => {
+  static onResign = () => dispatch => {
     dispatch(playMode.acceptResign());
     dispatch(infoAlert.show({ info: 'Chess game resigned.' }));
   }
