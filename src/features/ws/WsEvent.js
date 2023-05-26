@@ -72,43 +72,21 @@ export default class WsEvent {
 
   static onStartPlay = (data) => dispatch => {
     if (data['/start'].jwt) {
+      dispatch(board.start(data['/start']));
       const jwtDecoded = jwt_decode(data['/start'].jwt);
-      const play = {
-        jwt: data['/start'].jwt,
-        jwt_decoded: jwtDecoded,
-        hash: data['/start'].hash,
-        color: jwtDecoded.color,
+      let payload = {
+        variant: data['/start'].variant,
+        play: {
+          jwt: data['/start'].jwt,
+          jwt_decoded: jwtDecoded,
+          hash: data['/start'].hash,
+          color: jwtDecoded.color,
+        },
       };
-      if (data['/start'].variant === variantConst.CLASSICAL) {
-        dispatch(board.start({
-          variant: variantConst.CLASSICAL,
-          fen: data['/start'].fen,
-        }));
-        dispatch(playMode.set({
-          variant: variantConst.CLASSICAL,
-          play: play,
-        }));
-      } else if (data['/start'].variant === variantConst.CHESS_960) {
-        dispatch(board.start({
-          variant: variantConst.CHESS_960,
-          fen: data['/start'].fen,
-        }));
-        dispatch(playMode.set({
-          variant: variantConst.CHESS_960,
-          fen: data['/start'].fen,
-          startPos: data['/start'].startPos,
-          play: play,
-        }));
-      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
-        dispatch(board.start({
-          variant: variantConst.CAPABLANCA_80,
-          fen: data['/start'].fen,
-        }));
-        dispatch(playMode.set({
-          variant: variantConst.CAPABLANCA_80,
-          play: play,
-        }));
+      if (data['/start'].startPos) {
+        payload.play.startPos = data['/start'].startPos;
       }
+      dispatch(playMode.set(payload));
       if (jwtDecoded.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
@@ -122,10 +100,7 @@ export default class WsEvent {
 
   static onStartStockfish = (data) => dispatch => {
     if (data['/start'].fen) {
-      dispatch(board.start({
-        variant: variantConst.CLASSICAL,
-        fen: data['/start'].fen,
-      }));
+      dispatch(board.start(data['/start']));
       if (data['/start'].color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
