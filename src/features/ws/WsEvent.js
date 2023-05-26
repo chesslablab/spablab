@@ -40,11 +40,9 @@ export default class WsEvent {
       let payload = {
         variant: data['/start'].variant,
         fen: data['/start'].fen,
+        ...(data['/start'].startPos ? data['/start'].startPos : {})
       };
       dispatch(board.start(payload));
-      if (data['/start'].variant === variantConst.CHESS_960) {
-        payload.startPos = data['/start'].startPos;
-      }
       dispatch(fenMode.set(payload));
     } else {
       dispatch(infoAlert.show({
