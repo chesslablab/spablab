@@ -407,13 +407,15 @@ export default class WsEvent {
     if (data['/randomizer'].fen) {
       dispatch(stockfishMode.set({
         variant: variantConst.CLASSICAL,
-        color: data['/randomizer'].turn,
-        options: {
-          "Skill Level": 20
+        computer: {
+          color: data['/randomizer'].turn,
+          options: {
+            "Skill Level": 20
+          },
+          params: {
+            "depth": 12
+          },
         },
-        params: {
-          "depth": 12
-        }
       }));
       WsAction.start(
         variantConst.CLASSICAL,
