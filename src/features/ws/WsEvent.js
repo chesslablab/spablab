@@ -142,11 +142,9 @@ export default class WsEvent {
   }
 
   static onLegal = (data) => dispatch => {
-    dispatch(board.legal({
-      piece: data['/legal'].identity,
-      position: data['/legal'].position,
-      fen: data['/legal'].fen
-    }));
+    if (data['/legal']) {
+      dispatch(board.legal(data['/legal']));
+    }
   }
 
   static onPlayLan = (props, data) => dispatch => {
