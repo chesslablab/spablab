@@ -221,6 +221,16 @@ export default class WsEvent {
     }
   }
 
+  static onUndo = (data) => dispatch => {
+    dispatch(board.undo(data['/undo']));
+    if (data['/undo'].mode === modeConst.PLAY) {
+      dispatch(playMode.declineTakeback());
+    } else if (data['/undo'].mode === modeConst.FEN) {
+      multiAction.openingByMovetext(dispatch, data['/undo'].movetext);
+    }
+    Ws.heuristicsBar();
+  }
+
   static onHeuristics = (data) => dispatch => {
     dispatch(nav.heuristicsDialog({
       open: true,
@@ -232,14 +242,14 @@ export default class WsEvent {
     dispatch(heuristicsBar.set(data['/heuristics_bar']));
   }
 
-  static onTakebackPropose = () => dispatch => {
-    if (!store.getState().playMode.play.takeback) {
-      dispatch(playMode.acceptTakebackDialog({ open: true }));
+  static onTakeback = (data) => dispatch => {
+    if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
+      if (!store.getState().playMode.play.takeback) {
+        dispatch(playMode.acceptTakebackDialog({ open: true }));
+      }
+    } else if (data['/takeback'] === Wording.verb.ACCEPT.toLowerCase()) {
+      dispatch(playMode.acceptTakebackDialog({ open: false }));
     }
-  }
-
-  static onTakebackAccept = () => dispatch => {
-    dispatch(playMode.acceptTakebackDialog({ open: false }));
   }
 
   static onDraw = (data) => dispatch => {
@@ -254,16 +264,6 @@ export default class WsEvent {
       dispatch(playMode.declineDraw());
       dispatch(infoAlert.show({ info: 'Draw offer declined.' }));
     }
-  }
-
-  static onUndo = (data) => dispatch => {
-    dispatch(board.undo(data['/undo']));
-    if (data['/undo'].mode === modeConst.PLAY) {
-      dispatch(playMode.declineTakeback());
-    } else if (data['/undo'].mode === modeConst.FEN) {
-      multiAction.openingByMovetext(dispatch, data['/undo'].movetext);
-    }
-    Ws.heuristicsBar();
   }
 
   static onResign = (data) => dispatch => {

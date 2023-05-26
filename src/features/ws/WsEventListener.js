@@ -16,11 +16,7 @@ export default class WsEventListener {
         }
         break;
       case '/takeback' === mssg:
-        if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
-          dispatch(WsEvent.onTakebackPropose());
-        } else if (data['/takeback'] ===  Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onTakebackAccept());
-        }
+        dispatch(WsEvent.onTakeback(data));
         break;
       case '/draw' === mssg:
         dispatch(WsEvent.onDraw(data));
