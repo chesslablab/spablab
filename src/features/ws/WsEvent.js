@@ -284,6 +284,7 @@ export default class WsEvent {
       ) {
         Ws.stockfish();
       }
+      Ws.heuristicsBar();
     }
   }
 
