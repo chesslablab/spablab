@@ -11,9 +11,7 @@ export default class WsEventListener {
         dispatch(playMode.playOnlineDialog({ rows: data['broadcast']['onlineGames'] }));
         break;
       case '/leave' === mssg:
-        if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onLeaveAccept());
-        }
+        dispatch(WsEvent.onLeave(data));
         break;
       case '/takeback' === mssg:
         dispatch(WsEvent.onTakeback(data));

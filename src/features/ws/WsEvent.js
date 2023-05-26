@@ -287,9 +287,11 @@ export default class WsEvent {
     }
   }
 
-  static onLeaveAccept = () => dispatch => {
-    dispatch(playMode.acceptLeave());
-    dispatch(infoAlert.show({ info: 'Your opponent left the game.' }));
+  static onLeave = (data) => dispatch => {
+    if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
+      dispatch(playMode.acceptLeave());
+      dispatch(infoAlert.show({ info: 'Your opponent left the game.' }));
+    }
   }
 
   static onRestart = (data) => dispatch => {
