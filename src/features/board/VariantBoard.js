@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import storeParser from 'app/storeParser';
+import { useDispatch, useSelector } from 'react-redux';
 import Capablanca80Board from 'features/board/Capablanca80Board';
 import Chess960Board from 'features/board/Chess960Board';
 import ClassicalBoard from 'features/board/ClassicalBoard';
@@ -9,6 +8,7 @@ import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
 
 const VariantBoard = ({props}) => {
+  const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,9 +20,10 @@ const VariantBoard = ({props}) => {
   }, [props, dispatch]);
 
   const variantBoard = () => {
-    if (storeParser.getActiveMode().variant === variantConst.CAPABLANCA_80) {
+    const activeMode = Object.values(state).find((val, key) => val.active);
+    if (activeMode?.variant === variantConst.CAPABLANCA_80) {
       return <Capablanca80Board props={props} />;
-    } else if (storeParser.getActiveMode().variant === variantConst.CHESS_960) {
+    } else if (activeMode?.variant === variantConst.CHESS_960) {
       return <Chess960Board props={props} />;
     }
 
