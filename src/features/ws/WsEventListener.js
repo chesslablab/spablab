@@ -57,9 +57,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onUndo(data));
         break;
       case '/resign' === mssg:
-        if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onResign());
-        }
+        dispatch(WsEvent.onResign(data));
         break;
       case '/rematch' === mssg:
         dispatch(WsEvent.onRematch(data));

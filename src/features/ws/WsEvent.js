@@ -268,9 +268,11 @@ export default class WsEvent {
     Ws.heuristicsBar();
   }
 
-  static onResign = () => dispatch => {
-    dispatch(playMode.acceptResign());
-    dispatch(infoAlert.show({ info: 'Chess game resigned.' }));
+  static onResign = (data) => dispatch => {
+    if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
+      dispatch(playMode.acceptResign());
+      dispatch(infoAlert.show({ info: 'Chess game resigned.' }));
+    }
   }
 
   static onRematch = (data) => dispatch => {
