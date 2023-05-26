@@ -30,11 +30,7 @@ export default class WsEvent {
     } else if (data['/start'].mode === modeConst.PLAY) {
       dispatch(WsEvent.onStartPlay(data));
     } else if (data['/start'].mode === modeConst.STOCKFISH) {
-      if (data['/start'].fen) {
-        dispatch(WsEvent.onStartStockfishByFen(data));
-      } else {
-        dispatch(WsEvent.onStartStockfishByColor(data));
-      }
+      dispatch(WsEvent.onStartStockfish(data));
     }
   }
 
@@ -168,22 +164,22 @@ export default class WsEvent {
     }
   }
 
-  static onStartStockfishByColor = (data) => dispatch => {
-    if (data['/start'].color === Pgn.symbol.BLACK) {
-      dispatch(board.flip());
-      WsAction.stockfish();
+  static onStartStockfish = (data) => dispatch => {
+    if (data['/start'].fen) {
+      dispatch(board.start({
+        variant: variantConst.CLASSICAL,
+        fen: data['/start'].fen,
+      }));
+      if (data['/start'].color === Pgn.symbol.BLACK) {
+        dispatch(board.flip());
+      }
+      WsAction.heuristicsBar();
+    } else {
+      if (data['/start'].color === Pgn.symbol.BLACK) {
+        dispatch(board.flip());
+        WsAction.stockfish();
+      }
     }
-  }
-
-  static onStartStockfishByFen = (data) => dispatch => {
-    dispatch(board.start({
-      variant: variantConst.CLASSICAL,
-      fen: data['/start'].fen,
-    }));
-    if (data['/start'].color === Pgn.symbol.BLACK) {
-      dispatch(board.flip());
-    }
-    WsAction.heuristicsBar();
   }
 
   static onAccept = (data) => dispatch => {
