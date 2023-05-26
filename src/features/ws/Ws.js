@@ -1,5 +1,4 @@
-import store from 'app/store';
-import storeParser from 'app/storeParser';
+import store, { getActiveMode } from 'app/store';
 import Pgn from 'common/Pgn';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
@@ -77,7 +76,7 @@ export default class Ws {
 
   static heuristicsBar = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
-    const variant = storeParser.getActiveMode().variant;
+    const variant = getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.heuristics === 'on') {
       return await store.getState().server.ws.send(`/heuristics_bar "${fen}" ${variant}`);
