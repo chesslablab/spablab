@@ -37,13 +37,8 @@ export default class WsEvent {
   static onStartFen = (data) => dispatch => {
     multiAction.initGui(dispatch);
     if (data['/start'].fen) {
-      let payload = {
-        variant: data['/start'].variant,
-        fen: data['/start'].fen,
-        ...(data['/start'].startPos ? data['/start'].startPos : {})
-      };
-      dispatch(board.start(payload));
-      dispatch(fenMode.set(payload));
+      dispatch(board.start(data['/start']));
+      dispatch(fenMode.set(data['/start']));
     } else {
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
