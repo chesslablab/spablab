@@ -273,20 +273,18 @@ export default class WsEvent {
     dispatch(infoAlert.show({ info: 'Chess game resigned.' }));
   }
 
-  static onRematchPropose = () => dispatch => {
-    if (!store.getState().playMode.play.rematch) {
-      dispatch(playMode.acceptRematchDialog({ open: true }));
+  static onRematch = (data) => dispatch => {
+    if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
+      if (!store.getState().playMode.play.rematch) {
+        dispatch(playMode.acceptRematchDialog({ open: true }));
+      }
+    } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
+      dispatch(playMode.acceptRematch());
+      dispatch(infoAlert.show({ info: 'Rematch accepted.' }));
+    } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
+      dispatch(playMode.declineRematch());
+      dispatch(infoAlert.show({ info: 'Rematch declined.' }));
     }
-  }
-
-  static onRematchAccept = () => dispatch => {
-    dispatch(playMode.acceptRematch());
-    dispatch(infoAlert.show({ info: 'Rematch accepted.' }));
-  }
-
-  static onRematchDecline = () => dispatch => {
-    dispatch(playMode.declineRematch());
-    dispatch(infoAlert.show({ info: 'Rematch declined.' }));
   }
 
   static onLeaveAccept = () => dispatch => {

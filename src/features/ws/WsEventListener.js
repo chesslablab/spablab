@@ -62,13 +62,7 @@ export default class WsEventListener {
         }
         break;
       case '/rematch' === mssg:
-        if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
-          dispatch(WsEvent.onRematchPropose());
-        } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onRematchAccept());
-        } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
-          dispatch(WsEvent.onRematchDecline());
-        }
+        dispatch(WsEvent.onRematch(data));
         break;
       case '/restart' === mssg:
         dispatch(WsEvent.onRestart(data));
