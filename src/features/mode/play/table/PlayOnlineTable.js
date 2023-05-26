@@ -20,7 +20,7 @@ import Pgn from 'common/Pgn';
 import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const styles = {
   disabled: {
@@ -57,7 +57,7 @@ const PlayOnlineTable = () => {
 
   const handlePlay = (hash) => {
     dispatch(nav.setPlay());
-    WsAction.accept(hash);
+    Ws.accept(hash);
     dispatch(playMode.reset());
     dispatch(playMode.playOnlineDialog({ open: false }));
   };

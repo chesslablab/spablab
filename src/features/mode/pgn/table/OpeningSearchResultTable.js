@@ -5,7 +5,7 @@ import * as modeConst from 'features/mode/modeConst';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
@@ -26,7 +26,7 @@ const OpeningSearchResultTable = ({props}) => {
     dispatch(progressDialog.open());
     dispatch(nav.setOpeningSearch());
     multiAction.initGui(dispatch);
-    WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
+    Ws.start(variantConst.CLASSICAL, modeConst.PGN, {
       movetext: movetext
     });
   };

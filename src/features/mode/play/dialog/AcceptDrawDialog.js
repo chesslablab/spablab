@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from 'common/Wording.js';
 import * as playMode from 'features/mode/playModeSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const AcceptDrawDialog = () => {
   const state = useSelector((state) => state);
@@ -11,13 +11,13 @@ const AcceptDrawDialog = () => {
 
   const handleDrawAccept = (event) => {
     event.preventDefault();
-    WsAction.draw(Wording.verb.ACCEPT.toLowerCase());
+    Ws.draw(Wording.verb.ACCEPT.toLowerCase());
     dispatch(playMode.acceptDrawDialog({ open: false }));
   };
 
   const handleDrawDecline = (event) => {
     event.preventDefault();
-    WsAction.draw(Wording.verb.DECLINE.toLowerCase());
+    Ws.draw(Wording.verb.DECLINE.toLowerCase());
     dispatch(playMode.acceptDrawDialog({ open: false }));
   };
 

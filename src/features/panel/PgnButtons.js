@@ -10,7 +10,7 @@ import storeParser from 'app/storeParser';
 import Movetext from 'common/Movetext';
 import * as variantConst from 'features/mode/variantConst';
 import * as progressDialog from 'features/progressDialogSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const PgnButtons = ({props}) => {
   const state = useSelector(state => state);
@@ -103,7 +103,7 @@ const PgnButtons = ({props}) => {
         aria-label="heuristics"
         onClick={() => {
           dispatch(progressDialog.open());
-          WsAction.heuristics(Movetext.substring(state.board.movetext, state.panel.history.back));
+          Ws.heuristics(Movetext.substring(state.board.movetext, state.panel.history.back));
         }}
       >
         <BarChartIcon fontSize="inherit" />

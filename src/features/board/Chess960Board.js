@@ -5,7 +5,7 @@ import Animation from 'common/Animation';
 import Piece from 'common/Piece';
 import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const Chess960Board = ({props}) => {
   const state = useSelector(state => state);
@@ -38,11 +38,11 @@ const Chess960Board = ({props}) => {
           dispatch(board.placePiece(payload));
         } else {
           dispatch(board.grabPiece(payload));
-          WsAction.legal(payload.sq);
+          Ws.legal(payload.sq);
         }
       } else {
         dispatch(board.grabPiece(payload));
-        WsAction.legal(payload.sq);
+        Ws.legal(payload.sq);
       }
     } else {
       dispatch(board.placePiece(payload));

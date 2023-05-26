@@ -14,7 +14,7 @@ import {
   TextField
 } from '@mui/material';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const EnterInboxCodeDialog = () => {
   const state = useSelector(state => state);
@@ -29,7 +29,7 @@ const EnterInboxCodeDialog = () => {
   const dispatch = useDispatch();
 
   const handleCheckInbox = () => {
-    WsAction.inboxRead(fields.hash);
+    Ws.inboxRead(fields.hash);
   };
 
   const handleHashChange = (event: Event) => {
@@ -48,7 +48,7 @@ const EnterInboxCodeDialog = () => {
 
   const handleSendMove = () => {
     dispatch(nav.enterInboxCodeDialog({ open: false }));
-    WsAction.inboxReply(fields.hash, fields.pgn);
+    Ws.inboxReply(fields.hash, fields.pgn);
     setFields(initialState);
   };
 

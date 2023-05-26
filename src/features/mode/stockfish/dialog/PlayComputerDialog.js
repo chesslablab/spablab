@@ -19,7 +19,7 @@ import * as modeConst from 'features/mode/modeConst';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
 import * as variantConst from 'features/mode/variantConst';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
 const PlayComputerDialog = () => {
@@ -38,7 +38,7 @@ const PlayComputerDialog = () => {
     let payload;
     if (fields.position === 'fen') {
       payload = configure(Pgn.symbol.WHITE); // arbitrary color
-      WsAction.start(variantConst.CLASSICAL, modeConst.STOCKFISH, {
+      Ws.start(variantConst.CLASSICAL, modeConst.STOCKFISH, {
         fen: fields.fen
       });
     } else {
@@ -46,7 +46,7 @@ const PlayComputerDialog = () => {
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
         : fields.color;
       payload = configure(color);
-      WsAction.start(variantConst.CLASSICAL, modeConst.STOCKFISH, {
+      Ws.start(variantConst.CLASSICAL, modeConst.STOCKFISH, {
         color: color
       });
     }

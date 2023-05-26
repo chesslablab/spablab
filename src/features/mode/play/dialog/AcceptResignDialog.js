@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import Wording from 'common/Wording.js';
 import * as playMode from 'features/mode/playModeSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const AcceptResignDialog = () => {
   const state = useSelector((state) => state);
@@ -11,7 +11,7 @@ const AcceptResignDialog = () => {
 
   const handleResignAccept = (event) => {
     event.preventDefault();
-    WsAction.resign(Wording.verb.ACCEPT.toLowerCase());
+    Ws.resign(Wording.verb.ACCEPT.toLowerCase());
     dispatch(playMode.acceptResign());
     dispatch(playMode.acceptResignDialog({ open: false }));
   };

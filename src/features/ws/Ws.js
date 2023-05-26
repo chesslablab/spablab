@@ -6,7 +6,7 @@ import * as variantConst from 'features/mode/variantConst';
 import WsEventListener from 'features/ws/WsEventListener';
 import * as wsSlice from 'features/ws/wsSlice';
 
-export default class WsAction {
+export default class Ws {
   static connect = (props) => dispatch => {
     return new Promise((resolve, reject) => {
       const ws = new WebSocket(`${props.server.prot}://${props.server.host}:${props.server.port}`);

@@ -19,7 +19,7 @@ import * as modeConst from 'features/mode/modeConst';
 import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
@@ -102,7 +102,7 @@ const CreateCode = () => {
     if (fields.startPos) {
       settings.startPos = fields.startPos;
     }
-    WsAction.start(fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
+    Ws.start(fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
   }
 
   return (

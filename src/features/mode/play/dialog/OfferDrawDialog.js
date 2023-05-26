@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Wording from 'common/Wording.js';
 import * as playMode from 'features/mode/playModeSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const OfferDrawDialog = () => {
   const state = useSelector((state) => state);
@@ -11,7 +11,7 @@ const OfferDrawDialog = () => {
 
   const handleDrawOffer = (event) => {
     event.preventDefault();
-    WsAction.draw(Wording.verb.PROPOSE.toLowerCase());
+    Ws.draw(Wording.verb.PROPOSE.toLowerCase());
     dispatch(playMode.proposeDraw());
     dispatch(playMode.offerDrawDialog({ open: false }));
   };

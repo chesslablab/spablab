@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import Pgn from 'common/Pgn';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const StartedButtonsStockfishMode = () => {
   const state = useSelector(state => state);
@@ -24,8 +24,8 @@ const StartedButtonsStockfishMode = () => {
               (state.board.turn === Pgn.symbol.BLACK && state.board.fen.length === 2)
             }
             onClick={() => {
-              WsAction.undo();
-              WsAction.undo();
+              Ws.undo();
+              Ws.undo();
           }}>
             Undo move
           </Button>

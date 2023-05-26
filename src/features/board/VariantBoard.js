@@ -5,13 +5,13 @@ import Capablanca80Board from 'features/board/Capablanca80Board';
 import Chess960Board from 'features/board/Chess960Board';
 import ClassicalBoard from 'features/board/ClassicalBoard';
 import * as variantConst from 'features/mode/variantConst';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const VariantBoard = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(WsAction.connect(props)).then(() => WsAction.startOff());
+    dispatch(Ws.connect(props)).then(() => Ws.startOff());
   }, [props, dispatch]);
 
   const variantBoard = () => {

@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import * as playMode from 'features/mode/playModeSlice';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const EnterInviteCodeDialog = () => {
   const state = useSelector((state) => state);
@@ -31,7 +31,7 @@ const EnterInviteCodeDialog = () => {
     dispatch(nav.setPlay());
     dispatch(playMode.reset());
     dispatch(playMode.enterInviteCodeDialog({ open: false }));
-    WsAction.accept(fields.hash);
+    Ws.accept(fields.hash);
   };
 
   return (

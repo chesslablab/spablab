@@ -20,7 +20,7 @@ import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
@@ -57,7 +57,7 @@ const PlayOnlineDialog = () => {
   const handleCreateGame = () => {
     dispatch(playMode.playOnlineDialog({ open: false }));
     dispatch(nav.setPlay());
-    WsAction.start(fields.variant, modeConst.PLAY, {
+    Ws.start(fields.variant, modeConst.PLAY, {
       settings: {
         min: fields.minutes,
         increment: fields.increment,

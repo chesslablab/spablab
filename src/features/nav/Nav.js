@@ -38,7 +38,7 @@ import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
@@ -140,7 +140,7 @@ const Nav = ({props}) => {
           onClick={() => {
             dispatch(nav.setAnalysis());
             multiAction.initGui(dispatch);
-            WsAction.startOff();
+            Ws.startOff();
             handleCloseAnalysis();
           }}
         >
@@ -151,7 +151,7 @@ const Nav = ({props}) => {
           onClick={() => {
             dispatch(nav.setAnalysis());
             multiAction.initGui(dispatch);
-            WsAction.start(variantConst.CHESS_960, modeConst.FEN);
+            Ws.start(variantConst.CHESS_960, modeConst.FEN);
             handleCloseAnalysis();
           }}
         >
@@ -162,7 +162,7 @@ const Nav = ({props}) => {
           onClick={() => {
             dispatch(nav.setAnalysis());
             multiAction.initGui(dispatch);
-            WsAction.start(variantConst.CAPABLANCA_80, modeConst.FEN);
+            Ws.start(variantConst.CAPABLANCA_80, modeConst.FEN);
             handleCloseAnalysis();
           }}
         >
@@ -234,7 +234,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-play-MenuItem-online"
           onClick={() => {
-            WsAction.onlineGames();
+            Ws.onlineGames();
             dispatch(playMode.playOnlineDialog({ open: true }));
             handleClosePlay();
           }}
@@ -407,7 +407,7 @@ const Nav = ({props}) => {
           onClick={() => {
             dispatch(nav.setTraining());
             multiAction.initGui(dispatch);
-            WsAction.start(variantConst.CLASSICAL, modeConst.GM, {
+            Ws.start(variantConst.CLASSICAL, modeConst.GM, {
               color: Pgn.symbol.WHITE
             });
             handleCloseTraining();

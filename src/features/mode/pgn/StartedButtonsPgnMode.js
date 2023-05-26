@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const StartedButtonsPgnMode = () => {
   const state = useSelector(state => state);
@@ -19,7 +19,7 @@ const StartedButtonsPgnMode = () => {
           <Button
             id="StartedButtonsPgnMode-Button-undoMove"
             disabled={state.panel.history.back !== 0}
-            onClick={() => WsAction.undo()}
+            onClick={() => Ws.undo()}
           >
             Undo move
           </Button>

@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const CreateInboxCodeDialog = () => {
   const state = useSelector(state => state);
@@ -69,7 +69,7 @@ const CreateCode = () => {
     if (fields.startPos) {
       settings.startPos = fields.startPos;
     }
-    WsAction.inboxCreate(fields.variant, JSON.stringify(settings));
+    Ws.inboxCreate(fields.variant, JSON.stringify(settings));
   }
 
   return (

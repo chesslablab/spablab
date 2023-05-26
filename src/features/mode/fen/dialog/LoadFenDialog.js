@@ -14,7 +14,7 @@ import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
@@ -40,7 +40,7 @@ const LoadFenDialog = () => {
     if (variant === variantConst.CHESS_960) {
       settings.startPos = event.target.elements.startPos.value
     }
-    WsAction.start(event.target.elements.variant.value, modeConst.FEN, settings);
+    Ws.start(event.target.elements.variant.value, modeConst.FEN, settings);
   };
 
   return (

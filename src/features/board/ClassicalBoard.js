@@ -5,7 +5,7 @@ import Animation from 'common/Animation';
 import Piece from 'common/Piece';
 import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const ClassicalBoard = ({props}) => {
   const state = useSelector(state => state);
@@ -33,7 +33,7 @@ const ClassicalBoard = ({props}) => {
   const handleMove = (payload) => {
     if (state.board.turn === Piece.color(payload.piece)) {
       dispatch(board.grabPiece(payload));
-      WsAction.legal(payload.sq);
+      Ws.legal(payload.sq);
     } else {
       dispatch(board.placePiece(payload));
     }

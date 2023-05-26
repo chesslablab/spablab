@@ -12,7 +12,7 @@ import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 import * as eventConst from 'features/eventConst';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
 import multiAction from 'features/multiAction';
@@ -173,7 +173,7 @@ export default class WsEvent {
     } else {
       if (data['/start'].color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
-        WsAction.stockfish();
+        Ws.stockfish();
       }
     }
   }
@@ -290,9 +290,9 @@ export default class WsEvent {
         store.getState().stockfishMode.active &&
         store.getState().stockfishMode.variant === variantConst.CLASSICAL
       ) {
-        WsAction.stockfish();
+        Ws.stockfish();
       }
-      WsAction.heuristicsBar();
+      Ws.heuristicsBar();
     }
   }
 
@@ -346,7 +346,7 @@ export default class WsEvent {
     } else if (data['/undo'].mode === modeConst.FEN) {
       multiAction.openingByMovetext(dispatch, data['/undo'].movetext);
     }
-    WsAction.heuristicsBar();
+    Ws.heuristicsBar();
   }
 
   static onResignAccept = () => dispatch => {
@@ -409,7 +409,7 @@ export default class WsEvent {
           },
         },
       }));
-      WsAction.start(
+      Ws.start(
         variantConst.CLASSICAL,
         modeConst.STOCKFISH,
         { fen: data['/randomizer'].fen }
@@ -426,7 +426,7 @@ export default class WsEvent {
         ...data['/stockfish'],
         piecePlaced: { event: eventConst.ON_STOCKFISH }
       }));
-      WsAction.heuristicsBar();
+      Ws.heuristicsBar();
       multiAction.openingByMovetext(dispatch, data['/stockfish'].movetext);
     }
   }

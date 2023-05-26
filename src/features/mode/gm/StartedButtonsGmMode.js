@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const StartedButtonsGmMode = () => {
   const state = useSelector(state => state);
@@ -21,7 +21,7 @@ const StartedButtonsGmMode = () => {
           <Button
             id="StartedButtonsGmMode-Button-undoMove"
             disabled={state.panel.history.back !== 0}
-            onClick={() => WsAction.start(variantConst.CLASSICAL, modeConst.PGN, {
+            onClick={() => Ws.start(variantConst.CLASSICAL, modeConst.PGN, {
               movetext: state.gmMode.gm.movetext
             })}
           >

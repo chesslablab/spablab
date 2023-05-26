@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
 import * as panel from 'features/panel/panelSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const styles = {
   table: {
@@ -31,7 +31,7 @@ const PgnTable = ({props}) => {
 
   useEffect(() => {
     if (state.board.lan && !state.board.pieceGrabbed) {
-      WsAction.playLan();
+      Ws.playLan();
     }
   }, [state.board.pieceGrabbed, state.board.lan]);
 

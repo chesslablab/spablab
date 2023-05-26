@@ -15,7 +15,7 @@ import Pgn from 'common/Pgn';
 import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
 const EndgameSkillsDialog = () => {
@@ -48,7 +48,7 @@ const EndgameSkillsDialog = () => {
     dispatch(nav.setTraining());
     dispatch(stockfishMode.endgameSkillsDialog({ open: false }));
     multiAction.initGui(dispatch);
-    WsAction.randomizer(color, items);
+    Ws.randomizer(color, items);
   };
 
   const handleTypeChange = (event: Event) => {
