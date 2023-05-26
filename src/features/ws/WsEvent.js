@@ -60,14 +60,8 @@ export default class WsEvent {
   static onStartPgn = (data) => dispatch => {
     multiAction.initGui(dispatch);
     if (data['/start'].movetext) {
-      let payload = {
-        variant: data['/start'].variant,
-      };
       dispatch(board.startPgn(data['/start']));
-      if (data['/start'].variant === variantConst.CHESS_960) {
-        payload.startPos = data['/start'].startPos;
-      }
-      dispatch(pgnMode.set(payload));
+      dispatch(pgnMode.set(data['/start']));
       multiAction.openingBySameMovetext(dispatch, data['/start']);
     } else {
       dispatch(infoAlert.show({
