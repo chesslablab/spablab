@@ -356,16 +356,6 @@ export default class WsEvent {
 
   static onCorrespondence = (data) => dispatch => {
     dispatch(progressDialog.close());
-    if (data['/inbox'].action === 'create') {
-      dispatch(WsEvent.onCorrespondenceCreate(data));
-    } else if (data['/inbox'].action === 'read') {
-      dispatch(WsEvent.onCorrespondenceRead(data));
-    } else if (data['/inbox'].action === 'reply') {
-      dispatch(WsEvent.onCorrespondenceReply(data));
-    }
-  }
-
-  static onCorrespondenceCreate = (data) => dispatch => {
     if (data['/inbox'].action === Wording.verb.CREATE.toLowerCase()) {
       if (data['/inbox'].hash) {
         dispatch(nav.createInboxCodeDialog({
@@ -380,11 +370,7 @@ export default class WsEvent {
           info: data['/inbox'].message,
         }));
       }
-    }
-  }
-
-  static onCorrespondenceRead = (data) => dispatch => {
-    if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
+    } else if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
       if (data['/inbox'].inbox) {
         dispatch(nav.enterInboxCodeDialog({
           open: true,
@@ -396,11 +382,7 @@ export default class WsEvent {
           info: data['/inbox'].message,
         }));
       }
-    }
-  }
-
-  static onCorrespondenceReply = (data) => dispatch => {
-    if (data['/inbox'].action === Wording.verb.REPLY.toLowerCase()) {
+    } else if (data['/inbox'].action === Wording.verb.REPLY.toLowerCase()) {
       dispatch(infoAlert.show({
         info: data['/inbox'].message,
       }));
