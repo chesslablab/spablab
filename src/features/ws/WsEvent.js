@@ -232,6 +232,7 @@ export default class WsEvent {
   }
 
   static onHeuristics = (data) => dispatch => {
+    dispatch(progressDialog.close());
     dispatch(nav.heuristicsDialog({
       open: true,
       heuristics: data['/heuristics'],

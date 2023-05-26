@@ -1,6 +1,4 @@
-import Wording from 'common/Wording.js';
 import * as playMode from 'features/mode/playModeSlice';
-import * as progressDialog from 'features/progressDialogSlice';
 import WsEvent from 'features/ws/WsEvent';
 
 export default class WsEventListener {
@@ -32,7 +30,6 @@ export default class WsEventListener {
         dispatch(WsEvent.onLegal(data));
         break;
       case '/heuristics' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onHeuristics(data));
         break;
       case '/heuristics_bar' === mssg:
@@ -54,19 +51,15 @@ export default class WsEventListener {
         dispatch(WsEvent.onRestart(data));
         break;
       case '/randomizer' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onRandomizer(data));
         break;
       case '/stockfish' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onStockfish(data));
         break;
       case '/inbox' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onCorrespondence(data));
         break;
       case 'error' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onError(data));
         break;
       default:
