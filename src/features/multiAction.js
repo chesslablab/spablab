@@ -7,6 +7,7 @@ import * as gmMode from 'features/mode/gmModeSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
+import * as variantConst from 'features/mode/variantConst';
 import * as panel from 'features/panel/panelSlice';
 
 export default class multiAction {
@@ -29,7 +30,9 @@ export default class multiAction {
     dispatch(panel.openingTable({ rows: Opening.byMovetext(movetext) }));
   };
 
-  static openingBySameMovetext = (dispatch, movetext) => {
-    dispatch(panel.openingTable({ rows: Opening.bySameMovetext(movetext) }));
+  static openingBySameMovetext = (dispatch, data) => {
+    if (data.variant === variantConst.CLASSICAL) {
+      dispatch(panel.openingTable({ rows: Opening.bySameMovetext(data.movetext) }));
+    }
   };
 }

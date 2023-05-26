@@ -67,22 +67,15 @@ export default class WsEvent {
   static onStartPgn = (data) => dispatch => {
     multiAction.initGui(dispatch);
     if (data['/start'].movetext) {
+      let payload = {
+        variant: data['/start'].variant,
+      };
       dispatch(board.startPgn(data['/start']));
-      if (data['/start'].variant === variantConst.CLASSICAL) {
-        dispatch(pgnMode.set({
-          variant: variantConst.CLASSICAL,
-        }));
-        multiAction.openingBySameMovetext(dispatch, data['/start'].movetext);
-      } else if (data['/start'].variant === variantConst.CHESS_960) {
-        dispatch(pgnMode.set({
-          variant: variantConst.CHESS_960,
-          startPos: data['/start'].startPos
-        }));
-      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
-        dispatch(pgnMode.set({
-          variant: variantConst.CAPABLANCA_80,
-        }));
+      if (data['/start'].variant === variantConst.CHESS_960) {
+        payload.startPos = data['/start'].startPos;
       }
+      dispatch(pgnMode.set(payload));
+      multiAction.openingBySameMovetext(dispatch, data['/start']);
     } else {
       dispatch(infoAlert.show({
         info: 'Invalid PGN movetext, please try again with a different one.'
