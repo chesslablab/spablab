@@ -1,6 +1,6 @@
 import Wording from 'common/Wording.js';
-import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as playMode from 'features/mode/playModeSlice';
+import * as progressDialog from 'features/progressDialogSlice';
 import WsEvent from 'features/ws/WsEvent';
 
 export default class WsEventListener {
@@ -8,7 +8,7 @@ export default class WsEventListener {
     const mssg = Object.keys(data)[0];
     switch (true) {
       case 'broadcast' === mssg:
-        dispatch(playOnlineDialog.refresh(data['broadcast']['onlineGames']));
+        dispatch(playMode.playOnlineDialog({ rows: data['broadcast']['onlineGames'] }));
         break;
       case '/leave' === mssg:
         if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
@@ -75,7 +75,7 @@ export default class WsEventListener {
         break;
       case '/randomizer' === mssg:
         dispatch(progressDialog.close());
-        dispatch(WsEvent.onRandomCheckmate(data));
+        dispatch(WsEvent.onRandomizer(data));
         break;
       case '/stockfish' === mssg:
         dispatch(progressDialog.close());

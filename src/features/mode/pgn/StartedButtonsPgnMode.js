@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
-import * as modeConst from 'features/mode/modeConst';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const StartedButtonsPgnMode = () => {
   const state = useSelector(state => state);
 
-  if (state.mode.name === modeConst.PGN) {
+  if (state.pgnMode.active) {
     if (state.board.movetext) {
       return (
         <ButtonGroup
@@ -19,8 +18,8 @@ const StartedButtonsPgnMode = () => {
         >
           <Button
             id="StartedButtonsPgnMode-Button-undoMove"
-            disabled={state.history.back !== 0}
-            onClick={() => WsAction.undo()}
+            disabled={state.panel.history.back !== 0}
+            onClick={() => Ws.undo()}
           >
             Undo move
           </Button>

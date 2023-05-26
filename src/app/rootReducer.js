@@ -1,79 +1,29 @@
 import infoAlertReducer from 'features/alert/infoAlertSlice';
 import boardReducer from 'features/board/boardSlice';
-import acceptDrawDialogReducer from 'features/dialog/acceptDrawDialogSlice';
-import acceptRematchDialogReducer from 'features/dialog/acceptRematchDialogSlice';
-import acceptResignDialogReducer from 'features/dialog/acceptResignDialogSlice';
-import acceptTakebackDialogReducer from 'features/dialog/acceptTakebackDialogSlice';
-import checkmateSkillsDialogReducer from 'features/dialog/checkmateSkillsDialogSlice';
-import createInboxCodeDialogReducer from 'features/dialog/createInboxCodeDialogSlice';
-import createInviteCodeDialogReducer from 'features/dialog/createInviteCodeDialogSlice';
-import endgameSkillsDialogReducer from 'features/dialog/endgameSkillsDialogSlice';
-import enterInboxCodeDialogReducer from 'features/dialog/enterInboxCodeDialogSlice';
-import enterInviteCodeDialogReducer from 'features/dialog/enterInviteCodeDialogSlice';
-import eventsStatsDialogReducer from 'features/dialog/eventsStatsDialogSlice';
-import heuristicsDialogReducer from 'features/dialog/heuristicsDialogSlice';
-import loadFenDialogReducer from 'features/dialog/loadFenDialogSlice';
-import loadPgnDialogReducer from 'features/dialog/loadPgnDialogSlice';
-import offerDrawDialogReducer from 'features/dialog/offerDrawDialogSlice';
-import offerRematchDialogReducer from 'features/dialog/offerRematchDialogSlice';
-import offerTakebackDialogReducer from 'features/dialog/offerTakebackDialogSlice';
-import playComputerDialogReducer from 'features/dialog/playComputerDialogSlice';
-import playOnlineDialogReducer from 'features/dialog/playOnlineDialogSlice';
-import progressDialogReducer from 'features/dialog/progressDialogSlice';
-import openingsStatsDialogReducer from 'features/dialog/openingsStatsDialogSlice';
-import playersStatsDialogReducer from 'features/dialog/playersStatsDialogSlice';
-import searchEcoDialogReducer from 'features/dialog/searchEcoDialogSlice';
-import searchGamesDialogReducer from 'features/dialog/searchGamesDialogSlice';
-import searchMovetextDialogReducer from 'features/dialog/searchMovetextDialogSlice';
-import searchNameDialogReducer from 'features/dialog/searchNameDialogSlice';
-import settingsDialogReducer from 'features/dialog/settingsDialogSlice';
-import modeReducer from 'features/mode/modeSlice';
-import gameTableReducer from 'features/table/gameTableSlice';
-import openingAnalysisTableReducer from 'features/table/openingAnalysisTableSlice';
-import variantReducer from 'features/variant/variantSlice';
-import serverReducer from 'features/ws/wsSlice';
+import fenModeReducer from 'features/mode/fenModeSlice';
+import gmModeReducer from 'features/mode/gmModeSlice';
+import pgnModeReducer from 'features/mode/pgnModeSlice';
+import playModeReducer from 'features/mode/playModeSlice';
+import stockfishModeReducer from 'features/mode/stockfishModeSlice';
+import navReducer from 'features/nav/navSlice';
+import panelReducer from 'features/panel/panelSlice';
+import wsReducer from 'features/ws/wsSlice';
 import heuristicsBarReducer from 'features/heuristicsBarSlice';
-import historyReducer from 'features/historySlice';
-import mainButtonsReducer from 'features/mainButtonsSlice';
+import progressDialogReducer from 'features/progressDialogSlice';
 
 const rootReducer = {
   infoAlert: infoAlertReducer,
   board: boardReducer,
-  acceptDrawDialog: acceptDrawDialogReducer,
-  acceptRematchDialog: acceptRematchDialogReducer,
-  acceptResignDialog: acceptResignDialogReducer,
-  acceptTakebackDialog: acceptTakebackDialogReducer,
-  checkmateSkillsDialog: checkmateSkillsDialogReducer,
-  endgameSkillsDialog: endgameSkillsDialogReducer,
-  createInboxCodeDialog: createInboxCodeDialogReducer,
-  createInviteCodeDialog: createInviteCodeDialogReducer,
-  enterInboxCodeDialog: enterInboxCodeDialogReducer,
-  enterInviteCodeDialog: enterInviteCodeDialogReducer,
-  eventsStatsDialog: eventsStatsDialogReducer,
-  heuristicsDialog: heuristicsDialogReducer,
-  loadFenDialog: loadFenDialogReducer,
-  loadPgnDialog: loadPgnDialogReducer,
-  offerDrawDialog: offerDrawDialogReducer,
-  offerRematchDialog: offerRematchDialogReducer,
-  offerTakebackDialog: offerTakebackDialogReducer,
-  playComputerDialog: playComputerDialogReducer,
-  playOnlineDialog: playOnlineDialogReducer,
-  progressDialog: progressDialogReducer,
-  openingsStatsDialog: openingsStatsDialogReducer,
-  playersStatsDialog: playersStatsDialogReducer,
-  searchEcoDialog: searchEcoDialogReducer,
-  searchGamesDialog: searchGamesDialogReducer,
-  searchMovetextDialog: searchMovetextDialogReducer,
-  searchNameDialog: searchNameDialogReducer,
-  settingsDialog: settingsDialogReducer,
-  gameTable: gameTableReducer,
-  openingAnalysisTable: openingAnalysisTableReducer,
+  fenMode: fenModeReducer,
+  gmMode: gmModeReducer,
+  pgnMode: pgnModeReducer,
+  playMode: playModeReducer,
+  stockfishMode: stockfishModeReducer,
+  nav: navReducer,
+  panel: panelReducer,
+  server: wsReducer,
   heuristicsBar: heuristicsBarReducer,
-  history: historyReducer,
-  mainButtons: mainButtonsReducer,
-  mode: modeReducer,
-  variant: variantReducer,
-  server: serverReducer
+  progressDialog: progressDialogReducer,
 };
 
 export default rootReducer;

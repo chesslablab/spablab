@@ -1,143 +1,24 @@
 import jwt_decode from "jwt-decode";
 import store from 'app/store';
 import Pgn from 'common/Pgn';
-import Dispatcher from 'common/Dispatcher';
 import Wording from 'common/Wording';
-import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as board from 'features/board/boardSlice';
-import * as acceptDrawDialog from 'features/dialog/acceptDrawDialogSlice';
-import * as acceptRematchDialog from 'features/dialog/acceptRematchDialogSlice';
-import * as acceptTakebackDialog from 'features/dialog/acceptTakebackDialogSlice';
-import * as createInboxCodeDialog from 'features/dialog/createInboxCodeDialogSlice';
-import * as createInviteCodeDialog from 'features/dialog/createInviteCodeDialogSlice';
-import * as enterInboxCodeDialog from 'features/dialog/enterInboxCodeDialogSlice';
-import * as heuristicsDialog from 'features/dialog/heuristicsDialogSlice';
-import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
-import * as eventConst from 'features/event/eventConst';
+import * as fenMode from 'features/mode/fenModeSlice';
+import * as gmMode from 'features/mode/gmModeSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as mode from 'features/mode/modeSlice';
-import * as gameTable from 'features/table/gameTableSlice';
-import * as variantConst from 'features/variant/variantConst';
-import * as variant from 'features/variant/variantSlice';
-import WsAction from 'features/ws/WsAction';
+import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as playMode from 'features/mode/playModeSlice';
+import * as stockfishMode from 'features/mode/stockfishModeSlice';
+import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
+import Ws from 'features/ws/Ws';
+import * as eventConst from 'features/eventConst';
+import * as heuristicsBar from 'features/heuristicsBarSlice';
+import multiAction from 'features/multiAction';
+import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
-  static onStartFen = (data) => dispatch => {
-    if (data['/start'].fen) {
-      dispatch(mode.setFen({ fen: data['/start'].fen }));
-      dispatch(board.startFen({ fen: data['/start'].fen }));
-      if (data['/start'].variant === variantConst.CLASSICAL) {
-        dispatch(variant.startClassical());
-      } else if (data['/start'].variant === variantConst.CHESS_960) {
-        dispatch(variant.startChess960({
-          fen: data['/start'].fen,
-          startPos: data['/start'].startPos
-        }));
-      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
-        dispatch(variant.startCapablanca80());
-      }
-      WsAction.heuristicsBar();
-    } else {
-      dispatch(mode.startUndefined());
-      dispatch(infoAlert.show({
-        info: 'Invalid FEN, please try again with a different one.'
-      }));
-    }
-  }
-
-  static onStartGm = (data) => dispatch => {
-    dispatch(mode.setGm({
-      color: data['/start'].color,
-      movetext: null
-    }));
-  }
-
-  static onStartPgn = (data) => dispatch => {
-    if (data['/start'].movetext) {
-      dispatch(mode.startPgn());
-      dispatch(board.startPgn(data['/start']));
-      if (data['/start'].variant === variantConst.CLASSICAL) {
-        dispatch(variant.startClassical());
-        Dispatcher.openingAnalysisBySameMovetext(dispatch, data['/start'].movetext);
-      } else if (data['/start'].variant === variantConst.CHESS_960) {
-        dispatch(variant.startChess960({
-          startPos: data['/start'].startPos
-        }));
-      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
-        dispatch(variant.startCapablanca80());
-      }
-      WsAction.heuristicsBar();
-    } else {
-      dispatch(mode.startUndefined());
-      dispatch(infoAlert.show({
-        info: 'Invalid PGN movetext, please try again with a different one.'
-      }));
-    }
-  }
-
-  static onStartPlay = (data) => dispatch => {
-    Dispatcher.initGui(dispatch);
-    if (data['/start'].jwt) {
-      const jwtDecoded = jwt_decode(data['/start'].jwt);
-      if (data['/start'].variant === variantConst.CLASSICAL) {
-        dispatch(variant.startClassical());
-        dispatch(board.startFen({ fen: data['/start'].fen }));
-      } else if (data['/start'].variant === variantConst.CHESS_960) {
-        dispatch(variant.startChess960({
-          fen: data['/start'].fen,
-          startPos: data['/start'].startPos
-        }));
-        dispatch(board.startChess960({ fen: data['/start'].fen }));
-      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
-        dispatch(variant.startCapablanca80());
-        dispatch(board.startCapablanca80({ fen: data['/start'].fen }));
-      }
-      dispatch(mode.setPlay({
-        jwt: data['/start'].jwt,
-        jwt_decoded: jwtDecoded,
-        hash: data['/start'].hash,
-        color: jwtDecoded.color,
-        takeback: null,
-        draw: null,
-        resign: null,
-        rematch: null,
-        leave: null,
-        accepted: false,
-        timer: {
-          expiry_timestamp: null,
-          over: null
-        }
-      }));
-      if (jwtDecoded.color === Pgn.symbol.BLACK) {
-        dispatch(board.flip());
-      }
-      dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
-    } else {
-      dispatch(createInviteCodeDialog.close());
-      dispatch(mode.startUndefined());
-      dispatch(infoAlert.show({
-        info: 'Invalid FEN, please try again with a different one.'
-      }));
-    }
-  }
-
-  static onStartStockfishByColor = (data) => dispatch => {
-    if (data['/start'].color === Pgn.symbol.BLACK) {
-      dispatch(board.flip());
-      WsAction.stockfish();
-    }
-  }
-
-  static onStartStockfishByFen = (data) => dispatch => {
-    dispatch(board.startFen({ fen: data['/start'].fen }));
-    if (data['/start'].color === Pgn.symbol.BLACK) {
-      dispatch(board.flip());
-    }
-    WsAction.heuristicsBar();
-  }
-
   static onStart = (data) => dispatch => {
     dispatch(progressDialog.close());
     if (data['/start'].mode === modeConst.FEN) {
@@ -149,56 +30,111 @@ export default class WsEvent {
     } else if (data['/start'].mode === modeConst.PLAY) {
       dispatch(WsEvent.onStartPlay(data));
     } else if (data['/start'].mode === modeConst.STOCKFISH) {
-      if (data['/start'].fen) {
-        dispatch(WsEvent.onStartStockfishByFen(data));
-      } else {
-        dispatch(WsEvent.onStartStockfishByColor(data));
+      dispatch(WsEvent.onStartStockfish(data));
+    }
+  }
+
+  static onStartFen = (data) => dispatch => {
+    multiAction.initGui(dispatch);
+    if (data['/start'].fen) {
+      dispatch(board.start(data['/start']));
+      dispatch(fenMode.set(data['/start']));
+    } else {
+      dispatch(infoAlert.show({
+        info: 'Invalid FEN, please try again with a different one.'
+      }));
+    }
+  }
+
+  static onStartGm = (data) => dispatch => {
+    multiAction.initGui(dispatch);
+    dispatch(gmMode.set({
+      variant: variantConst.CLASSICAL,
+      gm: {
+        color: data['/start'].color,
+        movetext: null,
+      },
+    }));
+  }
+
+  static onStartPgn = (data) => dispatch => {
+    multiAction.initGui(dispatch);
+    if (data['/start'].movetext) {
+      dispatch(board.startPgn(data['/start']));
+      dispatch(pgnMode.set(data['/start']));
+      multiAction.openingBySameMovetext(dispatch, data['/start']);
+    } else {
+      dispatch(infoAlert.show({
+        info: 'Invalid PGN movetext, please try again with a different one.'
+      }));
+    }
+  }
+
+  static onStartPlay = (data) => dispatch => {
+    if (data['/start'].jwt) {
+      dispatch(board.start(data['/start']));
+      const jwtDecoded = jwt_decode(data['/start'].jwt);
+      let payload = {
+        variant: data['/start'].variant,
+        play: {
+          jwt: data['/start'].jwt,
+          jwt_decoded: jwtDecoded,
+          hash: data['/start'].hash,
+          color: jwtDecoded.color,
+        },
+      };
+      if (data['/start'].startPos) {
+        payload.play.startPos = data['/start'].startPos;
+      }
+      dispatch(playMode.set(payload));
+      if (jwtDecoded.color === Pgn.symbol.BLACK) {
+        dispatch(board.flip());
+      }
+      dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
+    } else {
+      dispatch(infoAlert.show({
+        info: 'Invalid FEN, please try again with a different one.'
+      }));
+    }
+  }
+
+  static onStartStockfish = (data) => dispatch => {
+    if (data['/start'].fen) {
+      dispatch(board.start(data['/start']));
+      if (data['/start'].color === Pgn.symbol.BLACK) {
+        dispatch(board.flip());
+      }
+    } else {
+      if (data['/start'].color === Pgn.symbol.BLACK) {
+        dispatch(board.flip());
+        Ws.stockfish();
       }
     }
   }
 
   static onAccept = (data) => dispatch => {
-    Dispatcher.initGui(dispatch);
     if (data['/accept'].jwt) {
       const jwtDecoded = jwt_decode(data['/accept'].jwt);
-      if (jwtDecoded.variant === variantConst.CLASSICAL) {
-        dispatch(variant.startClassical());
-        dispatch(board.startFen({ fen: jwtDecoded.fen }));
-      } else if (jwtDecoded.variant === variantConst.CHESS_960) {
-        dispatch(variant.startChess960({
-          fen: jwtDecoded.fen,
-          startPos: jwtDecoded.startPos
-        }));
-        dispatch(board.startChess960({ fen: jwtDecoded.fen }));
-      } else if (jwtDecoded.variant === variantConst.CAPABLANCA_80) {
-        dispatch(variant.startCapablanca80());
-        dispatch(board.startCapablanca80({ fen: jwtDecoded.fen }));
-      }
-      if (!store.getState().mode.play) {
-        dispatch(mode.setPlay({
+      const inviterColor = store.getState().playMode.play?.color;
+      multiAction.initGui(dispatch);
+      dispatch(board.start({
+        variant: jwtDecoded.variant,
+        fen: jwtDecoded.fen
+      }));
+      dispatch(playMode.set({
+        variant: jwtDecoded.variant,
+        play: {
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
           hash: data['/accept'].hash,
-          color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
-          takeback: null,
-          draw: null,
-          resign: null,
-          rematch: null,
-          leave: null,
-          accepted: false,
-          timer: {
-            expiry_timestamp: null,
-            over: null
-          }
-        }));
-      }
-      if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
+          color: inviterColor ?? (jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE),
+        },
+      }));
+      if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
-      dispatch(mode.acceptPlay());
-      dispatch(playOnlineDialog.close());
+      dispatch(playMode.acceptPlay());
     } else {
-      dispatch(mode.startUndefined());
       dispatch(infoAlert.show({
         info: 'Invalid invite code, please try again with a different one.'
       }));
@@ -206,30 +142,28 @@ export default class WsEvent {
   }
 
   static onLegal = (data) => dispatch => {
-    dispatch(board.legal({
-      piece: data['/legal'].identity,
-      position: data['/legal'].position,
-      fen: data['/legal'].fen
-    }));
+    if (data['/legal']) {
+      dispatch(board.legal(data['/legal']));
+    }
   }
 
   static onPlayLan = (props, data) => dispatch => {
     if (data['/play_lan'].isLegal) {
       dispatch(board.validMove(data['/play_lan']));
-      if (store.getState().mode.name === modeConst.PLAY) {
-        if (store.getState().mode.play.color !== data['/play_lan'].turn) {
+      if (store.getState().playMode.active) {
+        if (store.getState().playMode.play.color !== data['/play_lan'].turn) {
           dispatch(board.playLan({
             piecePlaced: { event: eventConst.ON_PLAY_LAN }
           }));
         }
       } else if (
-        store.getState().variant.name === variantConst.CLASSICAL &&
-        store.getState().mode.name === modeConst.FEN
+        store.getState().fenMode.active &&
+        store.getState().fenMode.variant === variantConst.CLASSICAL
       ) {
-        Dispatcher.openingAnalysisByMovetext(dispatch, data['/play_lan'].movetext);
+        multiAction.openingByMovetext(dispatch, data['/play_lan'].movetext);
       } else if (
-        store.getState().variant.name === variantConst.CLASSICAL &&
-        store.getState().mode.name === modeConst.GM
+        store.getState().gmMode.active &&
+        store.getState().fenMode.variant === variantConst.CLASSICAL
       ) {
         dispatch(infoAlert.close());
         dispatch(progressDialog.open());
@@ -242,11 +176,15 @@ export default class WsEvent {
           if (res.status === 200) {
             res.json().then(data => {
               const game = data[0];
-              dispatch(mode.setGm({
-                color: Pgn.symbol.WHITE,
-                movetext: game.movetext
+              dispatch(gmMode.set({
+                variant: variantConst.CLASSICAL,
+                gm: {
+                  color: Pgn.symbol.WHITE,
+                  movetext: game.movetext,
+                },
               }));
-              dispatch(gameTable.show({
+              dispatch(pgnMode.panelTable({
+                open: true,
                 game: {
                   Event: game.Event,
                   Site: game.Site,
@@ -261,7 +199,7 @@ export default class WsEvent {
               }));
             });
           } else if (res.status === 204) {
-            dispatch(gameTable.close());
+            dispatch(pgnMode.panelTable({ open: false }));
             dispatch(infoAlert.show({
               info: 'This game was not found in the database, please try again with a different one.'
             }));
@@ -274,88 +212,91 @@ export default class WsEvent {
           dispatch(progressDialog.close());
         });
       } else if (
-        store.getState().variant.name === variantConst.CLASSICAL &&
-        store.getState().mode.name === modeConst.STOCKFISH
+        store.getState().stockfishMode.active &&
+        store.getState().stockfishMode.variant === variantConst.CLASSICAL
       ) {
-        WsAction.stockfish();
+        Ws.stockfish();
       }
-      WsAction.heuristicsBar();
+      Ws.heuristicsBar();
     }
   }
 
   static onHeuristics = (data) => dispatch => {
-    dispatch(heuristicsDialog.open({
-      dimensions: data['/heuristics'].dimensions,
-      balance: data['/heuristics'].balance
+    dispatch(nav.heuristicsDialog({
+      open: true,
+      heuristics: {
+        dimensions: data['/heuristics'].dimensions,
+        balance: data['/heuristics'].balance,
+      },
     }));
   }
 
   static onHeuristicsBar = (data) => dispatch => {
-    dispatch(heuristicsBar.updateBar({
+    dispatch(heuristicsBar.set({
       dimensions: data['/heuristics_bar'].dimensions,
       balance: data['/heuristics_bar'].balance
     }));
   }
 
   static onTakebackPropose = () => dispatch => {
-    if (!store.getState().mode.play.takeback) {
-      dispatch(acceptTakebackDialog.open());
+    if (!store.getState().playMode.play.takeback) {
+      dispatch(playMode.acceptTakebackDialog({ open: true }));
     }
   }
 
   static onTakebackAccept = () => dispatch => {
-    dispatch(mode.acceptTakeback());
+    dispatch(playMode.acceptTakebackDialog({ open: false }));
   }
 
   static onDrawPropose = () => dispatch => {
-    if (!store.getState().mode.play.draw) {
-      dispatch(acceptDrawDialog.open());
+    if (!store.getState().playMode.play.draw) {
+      dispatch(playMode.acceptDrawDialog({ open: true }));
     }
   }
 
   static onDrawAccept = () => dispatch => {
-    dispatch(mode.acceptDraw());
+    dispatch(playMode.acceptDraw());
     dispatch(infoAlert.show({ info: 'Draw offer accepted.' }));
   }
 
   static onDrawDecline = () => dispatch => {
-    dispatch(mode.declineDraw());
+    dispatch(playMode.declineDraw());
     dispatch(infoAlert.show({ info: 'Draw offer declined.' }));
   }
 
   static onUndo = (data) => dispatch => {
     dispatch(board.undo(data['/undo']));
     if (data['/undo'].mode === modeConst.PLAY) {
-      dispatch(mode.declineTakeback());
+      dispatch(playMode.declineTakeback());
     } else if (data['/undo'].mode === modeConst.FEN) {
-      Dispatcher.openingAnalysisByMovetext(dispatch, data['/undo'].movetext);
-      WsAction.heuristicsBar();
+      multiAction.openingByMovetext(dispatch, data['/undo'].movetext);
     }
+    Ws.heuristicsBar();
   }
 
   static onResignAccept = () => dispatch => {
-    dispatch(mode.acceptResign());
+    dispatch(playMode.acceptResign());
     dispatch(infoAlert.show({ info: 'Chess game resigned.' }));
   }
 
   static onRematchPropose = () => dispatch => {
-    if (!store.getState().mode.play.rematch) {
-      dispatch(acceptRematchDialog.open());
+    if (!store.getState().playMode.play.rematch) {
+      dispatch(playMode.acceptRematchDialog({ open: true }));
     }
   }
 
   static onRematchAccept = () => dispatch => {
-    dispatch(mode.acceptRematch());
+    dispatch(playMode.acceptRematch());
     dispatch(infoAlert.show({ info: 'Rematch accepted.' }));
   }
 
   static onRematchDecline = () => dispatch => {
-    dispatch(mode.declineRematch());
+    dispatch(playMode.declineRematch());
     dispatch(infoAlert.show({ info: 'Rematch declined.' }));
   }
 
   static onLeaveAccept = () => dispatch => {
-    dispatch(mode.acceptLeave());
+    dispatch(playMode.acceptLeave());
     dispatch(infoAlert.show({ info: 'Your opponent left the game.' }));
   }
 
@@ -363,49 +304,43 @@ export default class WsEvent {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
-    dispatch(mode.setPlay({
-      color: store.getState().mode.play.color,
-      accepted: false
-    }));
-    dispatch(mode.setPlay({
-      jwt: data['/restart'].jwt,
-      jwt_decoded: jwtDecoded,
-      hash: data['/restart'].hash,
-      color: store.getState().mode.play.color,
-      takeback: null,
-      draw: null,
-      resign: null,
-      rematch: null,
-      accepted: true,
-      timer: {
-        expiry_timestamp: expiryTimestamp,
-        over: null
+    dispatch(playMode.set({
+      variant: jwtDecoded.variant,
+      play: {
+        jwt: data['/restart'].jwt,
+        jwt_decoded: jwtDecoded,
+        hash: data['/restart'].hash,
+        color: store.getState().playMode.play.color,
+        accepted: true,
       }
     }));
-    dispatch(board.start());
-    if (store.getState().mode.play.color === Pgn.symbol.BLACK) {
+    dispatch(board.reset());
+    if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
       dispatch(board.flip());
     }
   }
 
-  static onRandomCheckmate = (data) => dispatch => {
+  static onRandomizer = (data) => dispatch => {
     if (data['/randomizer'].fen) {
-      dispatch(mode.setStockfish({
-        color: data['/randomizer'].turn,
-        options: {
-          "Skill Level": 20
+      dispatch(stockfishMode.set({
+        variant: variantConst.CLASSICAL,
+        computer: {
+          color: data['/randomizer'].turn,
+          options: {
+            "Skill Level": 20
+          },
+          params: {
+            "depth": 12
+          },
         },
-        params: {
-          "depth": 12
-        }
       }));
-      WsAction.start(
+      Ws.start(
         variantConst.CLASSICAL,
         modeConst.STOCKFISH,
         { fen: data['/randomizer'].fen }
       );
     } else {
-      dispatch(mode.startUndefined());
+      multiAction.initGui(dispatch);
       dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));
     }
   }
@@ -416,13 +351,13 @@ export default class WsEvent {
         ...data['/stockfish'],
         piecePlaced: { event: eventConst.ON_STOCKFISH }
       }));
-      WsAction.heuristicsBar();
-      Dispatcher.openingAnalysisByMovetext(dispatch, data['/stockfish'].movetext);
+      Ws.heuristicsBar();
+      multiAction.openingByMovetext(dispatch, data['/stockfish'].movetext);
     }
   }
 
   static onOnlineGames = (data) => dispatch => {
-    dispatch(playOnlineDialog.refresh(data['/online_games']));
+    dispatch(playMode.playOnlineDialog({ open: true, rows: data['/online_games'] }));
   }
 
   static onCorrespondence = (data) => dispatch => {
@@ -439,11 +374,14 @@ export default class WsEvent {
   static onCorrespondenceCreate = (data) => dispatch => {
     if (data['/inbox'].action === Wording.verb.CREATE.toLowerCase()) {
       if (data['/inbox'].hash) {
-        dispatch(createInboxCodeDialog.setInbox({
-          hash: data['/inbox'].hash,
+        dispatch(nav.createInboxCodeDialog({
+          open: true,
+          inbox: {
+            hash: data['/inbox'].hash,
+          },
         }));
       } else {
-        dispatch(createInboxCodeDialog.close());
+        dispatch(nav.createInboxCodeDialog({ open: false }));
         dispatch(infoAlert.show({
           info: data['/inbox'].message,
         }));
@@ -454,9 +392,12 @@ export default class WsEvent {
   static onCorrespondenceRead = (data) => dispatch => {
     if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
       if (data['/inbox'].inbox) {
-        dispatch(enterInboxCodeDialog.setInbox(data['/inbox'].inbox));
+        dispatch(nav.enterInboxCodeDialog({
+          open: true,
+          inbox: data['/inbox'].inbox,
+        }));
       } else {
-        dispatch(enterInboxCodeDialog.close());
+        dispatch(nav.enterInboxCodeDialog({ open: false }));
         dispatch(infoAlert.show({
           info: data['/inbox'].message,
         }));
@@ -474,7 +415,7 @@ export default class WsEvent {
 
   static onError = (data) => dispatch => {
     if (data['error']) {
-      dispatch(mode.startUndefined());
+      multiAction.initGui(dispatch);
       dispatch(infoAlert.show({
         info: 'Whoops! Something went wrong.'
       }));
