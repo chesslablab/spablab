@@ -37,35 +37,15 @@ export default class WsEvent {
   static onStartFen = (data) => dispatch => {
     multiAction.initGui(dispatch);
     if (data['/start'].fen) {
-      if (data['/start'].variant === variantConst.CLASSICAL) {
-        dispatch(board.start({
-          variant: variantConst.CLASSICAL,
-          fen: data['/start'].fen,
-        }));
-        dispatch(fenMode.set({
-          variant: variantConst.CLASSICAL,
-          fen: data['/start'].fen,
-        }));
-      } else if (data['/start'].variant === variantConst.CHESS_960) {
-        dispatch(board.start({
-          variant: variantConst.CHESS_960,
-          fen: data['/start'].fen,
-        }));
-        dispatch(fenMode.set({
-          variant: variantConst.CHESS_960,
-          fen: data['/start'].fen,
-          startPos: data['/start'].startPos,
-        }));
-      } else if (data['/start'].variant === variantConst.CAPABLANCA_80) {
-        dispatch(board.start({
-          variant: variantConst.CAPABLANCA_80,
-          fen: data['/start'].fen,
-        }));
-        dispatch(fenMode.set({
-          variant: variantConst.CAPABLANCA_80,
-          fen: data['/start'].fen,
-        }));
+      let payload = {
+        variant: data['/start'].variant,
+        fen: data['/start'].fen,
+      };
+      dispatch(board.start(payload));
+      if (data['/start'].variant === variantConst.CHESS_960) {
+        payload.startPos = data['/start'].startPos;
       }
+      dispatch(fenMode.set(payload));
     } else {
       dispatch(infoAlert.show({
         info: 'Invalid FEN, please try again with a different one.'
