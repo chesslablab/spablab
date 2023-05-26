@@ -185,7 +185,6 @@ export default class WsEvent {
         fen: jwtDecoded.fen
       }));
       if (store.getState().playMode.play) {
-        multiAction.initGui(dispatch);
         dispatch(playMode.set({
           variant: jwtDecoded.variant,
           play: {
@@ -196,7 +195,6 @@ export default class WsEvent {
           },
         }));
       } else {
-        multiAction.initGui(dispatch);
         dispatch(playMode.set({
           variant: jwtDecoded.variant,
           play: {
@@ -211,7 +209,6 @@ export default class WsEvent {
         dispatch(board.flip());
       }
       dispatch(playMode.acceptPlay());
-      // dispatch(playMode.playOnlineDialog({ open: false }));
     } else {
       dispatch(infoAlert.show({
         info: 'Invalid invite code, please try again with a different one.'
