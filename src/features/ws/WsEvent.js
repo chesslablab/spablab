@@ -111,7 +111,6 @@ export default class WsEvent {
   }
 
   static onStartPlay = (data) => dispatch => {
-    multiAction.initGui(dispatch);
     if (data['/start'].jwt) {
       const jwtDecoded = jwt_decode(data['/start'].jwt);
       const play = {
@@ -185,28 +184,34 @@ export default class WsEvent {
         variant: jwtDecoded.variant,
         fen: jwtDecoded.fen
       }));
-      let payload = {
-        variant: jwtDecoded.variant,
-        play: {
-          jwt: data['/accept'].jwt,
-          jwt_decoded: jwt_decode(data['/accept'].jwt),
-          hash: data['/accept'].hash,
-          color: jwtDecoded.color,
-        },
-      };
       if (store.getState().playMode.play) {
         multiAction.initGui(dispatch);
-        dispatch(playMode.set(payload));
+        dispatch(playMode.set({
+          variant: jwtDecoded.variant,
+          play: {
+            jwt: data['/accept'].jwt,
+            jwt_decoded: jwt_decode(data['/accept'].jwt),
+            hash: data['/accept'].hash,
+            color: jwtDecoded.color,
+          },
+        }));
       } else {
         multiAction.initGui(dispatch);
-        payload.play.color = jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-        dispatch(playMode.set(payload));
+        dispatch(playMode.set({
+          variant: jwtDecoded.variant,
+          play: {
+            jwt: data['/accept'].jwt,
+            jwt_decoded: jwt_decode(data['/accept'].jwt),
+            hash: data['/accept'].hash,
+            color: jwtDecoded.color === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE,
+          },
+        }));
       }
       if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
       dispatch(playMode.acceptPlay());
-      dispatch(playMode.playOnlineDialog({ open: false }));
+      // dispatch(playMode.playOnlineDialog({ open: false }));
     } else {
       dispatch(infoAlert.show({
         info: 'Invalid invite code, please try again with a different one.'

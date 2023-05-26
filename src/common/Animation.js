@@ -17,6 +17,7 @@ export default class Animation {
         store.getState().board?.piecePlaced?.event === eventConst.ON_PLAY_LAN
       ) {
         if (
+          store.getState().board.fen.length > 1 &&
           !store.getState().board.isMate &&
           !store.getState().board.isStalemate
         ) {
