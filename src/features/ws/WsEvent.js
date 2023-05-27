@@ -36,7 +36,6 @@ export default class WsEvent {
   }
 
   static onStartFen = (data) => dispatch => {
-    multiAction.initGui(dispatch);
     if (data['/start'].fen) {
       dispatch(board.start(data['/start']));
       dispatch(fenMode.set(data['/start']));
@@ -59,7 +58,6 @@ export default class WsEvent {
   }
 
   static onStartPgn = (data) => dispatch => {
-    multiAction.initGui(dispatch);
     if (data['/start'].movetext) {
       dispatch(board.startPgn(data['/start']));
       dispatch(pgnMode.set(data['/start']));

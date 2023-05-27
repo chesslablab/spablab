@@ -16,7 +16,6 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import * as progressDialog from 'features/progressDialogSlice';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
@@ -32,14 +31,11 @@ const LoadFenDialog = () => {
     event.preventDefault();
     dispatch(nav.setAnalysis());
     dispatch(fenMode.loadFenDialog({ open: false }));
-    dispatch(progressDialog.open());
     multiAction.initGui(dispatch);
     let settings = {
-      fen: event.target.elements.fen.value
+      fen: event.target.elements.fen.value,
+      ...(variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
     };
-    if (variant === variantConst.CHESS_960) {
-      settings.startPos = event.target.elements.startPos.value
-    }
     Ws.start(event.target.elements.variant.value, modeConst.FEN, settings);
   };
 
