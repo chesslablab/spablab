@@ -57,6 +57,7 @@ const DatabaseResultTable = ({props}) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setDatabase());
     dispatch(pgnMode.panelTable({
+      open: true,
       game: {
         Event: item.Event,
         Site: item.Site,
