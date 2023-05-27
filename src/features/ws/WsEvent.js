@@ -210,6 +210,11 @@ export default class WsEvent {
           dispatch(progressDialog.close());
         });
       } else if (
+        store.getState().pgnMode.active &&
+        store.getState().pgnMode.variant === variantConst.CLASSICAL
+      ) {
+        multiAction.openingByMovetext(dispatch, data['/play_lan'].movetext);
+      } else if (
         store.getState().stockfishMode.active &&
         store.getState().stockfishMode.variant === variantConst.CLASSICAL
       ) {
