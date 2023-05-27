@@ -60,7 +60,7 @@ export default class WsEvent {
     if (data['/start'].movetext) {
       dispatch(board.startPgn(data['/start']));
       dispatch(pgnMode.set(data['/start']));
-      multiAction.openingBySameMovetext(dispatch, data['/start']);
+      multiAction.openingByMovetext(dispatch, data['/start'].movetext);
     } else {
       dispatch(warningAlert.show({
         mssg: 'Invalid PGN movetext, please try again with a different one.'

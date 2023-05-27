@@ -31,10 +31,4 @@ export default class multiAction {
   static openingByMovetext = (dispatch, movetext) => {
     dispatch(panel.openingTable({ rows: Opening.byMovetext(movetext) }));
   };
-
-  static openingBySameMovetext = (dispatch, data) => {
-    if (data.variant === variantConst.CLASSICAL) {
-      dispatch(panel.openingTable({ rows: Opening.bySameMovetext(data.movetext) }));
-    }
-  };
 }
