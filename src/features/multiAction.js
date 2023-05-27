@@ -2,6 +2,7 @@ import Opening from 'common/Opening.js';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
 import * as board from 'features/board/boardSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as gmMode from 'features/mode/gmModeSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
@@ -17,6 +18,7 @@ export default class multiAction {
     dispatch(panel.goTo({ back: 0 }));
     dispatch(pgnMode.panelTable({ open: false }));
     dispatch(infoAlert.close());
+    dispatch(warningAlert.close());
     dispatch(board.reset());
     // reset modes
     dispatch(fenMode.reset());
