@@ -3,6 +3,7 @@ import store from 'app/store';
 import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as board from 'features/board/boardSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as gmMode from 'features/mode/gmModeSlice';
@@ -40,7 +41,7 @@ export default class WsEvent {
       dispatch(board.start(data['/start']));
       dispatch(fenMode.set(data['/start']));
     } else {
-      dispatch(infoAlert.show({
+      dispatch(warningAlert.show({
         mssg: 'Invalid FEN, please try again with a different one.'
       }));
     }
@@ -64,7 +65,7 @@ export default class WsEvent {
       dispatch(pgnMode.set(data['/start']));
       multiAction.openingBySameMovetext(dispatch, data['/start']);
     } else {
-      dispatch(infoAlert.show({
+      dispatch(warningAlert.show({
         mssg: 'Invalid PGN movetext, please try again with a different one.'
       }));
     }
@@ -92,7 +93,7 @@ export default class WsEvent {
       }
       dispatch(infoAlert.show({ mssg: 'Waiting for player to join...' }));
     } else {
-      dispatch(infoAlert.show({
+      dispatch(warningAlert.show({
         mssg: 'Invalid FEN, please try again with a different one.'
       }));
     }
@@ -135,7 +136,7 @@ export default class WsEvent {
       }
       dispatch(playMode.acceptPlay());
     } else {
-      dispatch(infoAlert.show({
+      dispatch(warningAlert.show({
         mssg: 'Invalid invite code, please try again with a different one.'
       }));
     }
@@ -206,7 +207,7 @@ export default class WsEvent {
           }
         })
         .catch(error => {
-          dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+          dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
         })
         .finally(() => {
           dispatch(progressDialog.close());
@@ -335,8 +336,7 @@ export default class WsEvent {
         { fen: data['/randomizer'].fen }
       );
     } else {
-      multiAction.initGui(dispatch);
-      dispatch(infoAlert.show({ mssg: 'Whoops! A random checkmate could not be loaded.' }));
+      dispatch(warningAlert.show({ mssg: 'Whoops! A random checkmate could not be loaded.' }));
     }
   }
 
@@ -392,8 +392,7 @@ export default class WsEvent {
 
   static onError = (data) => dispatch => {
     if (data['error']) {
-      multiAction.initGui(dispatch);
-      dispatch(infoAlert.show({
+      dispatch(warningAlert.show({
         mssg: 'Whoops! Something went wrong.'
       }));
     }

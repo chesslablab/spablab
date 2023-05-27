@@ -32,6 +32,7 @@ import Wording from 'common/Wording';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as pgnMode from 'features/mode/pgnModeSlice';
@@ -307,7 +308,7 @@ const Nav = ({props}) => {
                     dispatch(pgnMode.searchGamesDialog({ open: true, autocomplete: data }));
                   });
                 } else {
-                  dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+                  dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
                 }
               })
               .finally(() => {
@@ -330,7 +331,7 @@ const Nav = ({props}) => {
                     dispatch(nav.openingsStatsDialog({ open: true, stats: data }));
                   });
                 } else {
-                  dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+                  dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
                 }
               })
               .finally(() => {
@@ -353,7 +354,7 @@ const Nav = ({props}) => {
                     dispatch(nav.playersStatsDialog({ open: true, autocomplete: data }));
                   });
                 } else {
-                  dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+                  dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
                 }
               })
               .finally(() => {
@@ -376,7 +377,7 @@ const Nav = ({props}) => {
                     dispatch(nav.eventsStatsDialog({ open: true, autocomplete: data }));
                   });
                 } else {
-                  dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+                  dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
                 }
               })
               .finally(() => {

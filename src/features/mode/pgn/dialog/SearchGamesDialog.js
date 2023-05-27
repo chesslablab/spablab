@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
 import DatabaseResultTable from 'features/mode/pgn/table/DatabaseResultTable.js';
 import * as progressDialog from 'features/progressDialogSlice';
@@ -55,7 +56,7 @@ const SearchGamesDialog = ({props}) => {
     })
     .catch(error => {
       dispatch(pgnMode.searchGamesDialog({ open: false }));
-      dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+      dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
     })
     .finally(() => {
       dispatch(progressDialog.close());

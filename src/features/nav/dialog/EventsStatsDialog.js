@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
@@ -47,7 +48,7 @@ const EventsStatsDialog = ({props}) => {
         dispatch(infoAlert.show({ mssg: 'No results were found, please try again.' }));
       } else {
         dispatch(nav.eventsStatsDialog({ open: false }));
-        dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+        dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
       }
     });
   };
