@@ -47,7 +47,6 @@ export default class WsEvent {
   }
 
   static onStartGm = (data) => dispatch => {
-    multiAction.initGui(dispatch);
     dispatch(gmMode.set({
       variant: variantConst.CLASSICAL,
       gm: {

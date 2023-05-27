@@ -140,9 +140,9 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startClassical"
           onClick={() => {
             dispatch(nav.setAnalysis());
+            handleCloseAnalysis();
             multiAction.initGui(dispatch);
             Ws.start(variantConst.CLASSICAL, modeConst.FEN);
-            handleCloseAnalysis();
           }}
         >
           <RestartAltIcon size="small" />&nbsp;Start Classical
@@ -151,9 +151,9 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startFischerRandom960"
           onClick={() => {
             dispatch(nav.setAnalysis());
+            handleCloseAnalysis();
             multiAction.initGui(dispatch);
             Ws.start(variantConst.CHESS_960, modeConst.FEN);
-            handleCloseAnalysis();
           }}
         >
           <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
@@ -162,9 +162,9 @@ const Nav = ({props}) => {
           id="Nav-analysisBoard-MenuItem-startCapablanca"
           onClick={() => {
             dispatch(nav.setAnalysis());
+            handleCloseAnalysis();
             multiAction.initGui(dispatch);
             Ws.start(variantConst.CAPABLANCA_80, modeConst.FEN);
-            handleCloseAnalysis();
           }}
         >
           <BlurOnIcon size="small" />&nbsp;Start Capablanca
@@ -407,11 +407,9 @@ const Nav = ({props}) => {
           id="Nav-training-MenuItem-guessTheMove"
           onClick={() => {
             dispatch(nav.setTraining());
-            multiAction.initGui(dispatch);
-            Ws.start(variantConst.CLASSICAL, modeConst.GM, {
-              color: Pgn.symbol.WHITE
-            });
             handleCloseTraining();
+            multiAction.initGui(dispatch);
+            Ws.start(variantConst.CLASSICAL, modeConst.GM, { color: Pgn.symbol.WHITE });
           }}
         >
           <QuizIcon size="small" />&nbsp;Guess the Move
