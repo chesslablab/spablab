@@ -1,4 +1,5 @@
 import infoAlertReducer from 'features/alert/infoAlertSlice';
+import warningAlertReducer from 'features/alert/warningAlertSlice';
 import boardReducer from 'features/board/boardSlice';
 import fenModeReducer from 'features/mode/fenModeSlice';
 import gmModeReducer from 'features/mode/gmModeSlice';
@@ -13,6 +14,7 @@ import progressDialogReducer from 'features/progressDialogSlice';
 
 const rootReducer = {
   infoAlert: infoAlertReducer,
+  warningAlert: warningAlertReducer,
   board: boardReducer,
   fenMode: fenModeReducer,
   gmMode: gmModeReducer,

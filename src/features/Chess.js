@@ -4,6 +4,7 @@ import { Grid } from '@mui/material';
 import { ThemeProvider } from "@mui/material/styles";
 import store from 'app/store';
 import InfoAlert from 'features/alert/InfoAlert.js';
+import WarningAlert from 'features/alert/WarningAlert.js';
 import VariantBoard from 'features/board/VariantBoard';
 import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
 import LoadPgnDialog from 'features/mode/pgn/dialog/LoadPgnDialog';
@@ -69,6 +70,7 @@ const Chess = ({ props }) => {
         <SettingsDialog />
         <ProgressDialog />
         <InfoAlert />
+        <WarningAlert />
       </Provider>
     </ThemeProvider>
   );
