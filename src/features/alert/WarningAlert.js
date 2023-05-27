@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Alert, Backdrop, Button } from '@mui/material';
-import * as warningAlert from 'features/alert/warningAlertSlice';
 import multiAction from 'features/multiAction';
 
 const WarningAlert = () => {
@@ -9,7 +8,7 @@ const WarningAlert = () => {
   const dispatch = useDispatch();
 
   const handleClose = () => {
-    multiAction.initGui();
+    multiAction.initGui(dispatch);
   };
 
   if (state.warningAlert.open) {
