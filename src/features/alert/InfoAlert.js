@@ -25,7 +25,7 @@ const InfoAlert = () => {
             </Button>
           }
         >
-          {state.infoAlert.info}
+          {state.infoAlert.mssg}
         </Alert>
       </Backdrop>
     );

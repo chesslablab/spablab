@@ -1,6 +1,4 @@
-import Wording from 'common/Wording.js';
-import * as playOnlineDialog from 'features/dialog/playOnlineDialogSlice';
-import * as progressDialog from 'features/dialog/progressDialogSlice';
+import * as playMode from 'features/mode/playModeSlice';
 import WsEvent from 'features/ws/WsEvent';
 
 export default class WsEventListener {
@@ -8,28 +6,16 @@ export default class WsEventListener {
     const mssg = Object.keys(data)[0];
     switch (true) {
       case 'broadcast' === mssg:
-        dispatch(playOnlineDialog.refresh(data['broadcast']['onlineGames']));
+        dispatch(playMode.playOnlineDialog({ rows: data['broadcast']['onlineGames'] }));
         break;
       case '/leave' === mssg:
-        if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onLeaveAccept());
-        }
+        dispatch(WsEvent.onLeave(data));
         break;
       case '/takeback' === mssg:
-        if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
-          dispatch(WsEvent.onTakebackPropose());
-        } else if (data['/takeback'] ===  Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onTakebackAccept());
-        }
+        dispatch(WsEvent.onTakeback(data));
         break;
       case '/draw' === mssg:
-        if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
-          dispatch(WsEvent.onDrawPropose());
-        } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onDrawAccept());
-        } else if (data['/draw'] === Wording.verb.DECLINE.toLowerCase()) {
-          dispatch(WsEvent.onDrawDecline());
-        }
+        dispatch(WsEvent.onDraw(data));
         break;
       case '/start' === mssg:
         dispatch(WsEvent.onStart(data));
@@ -44,7 +30,6 @@ export default class WsEventListener {
         dispatch(WsEvent.onLegal(data));
         break;
       case '/heuristics' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onHeuristics(data));
         break;
       case '/heuristics_bar' === mssg:
@@ -57,36 +42,24 @@ export default class WsEventListener {
         dispatch(WsEvent.onUndo(data));
         break;
       case '/resign' === mssg:
-        if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onResignAccept());
-        }
+        dispatch(WsEvent.onResign(data));
         break;
       case '/rematch' === mssg:
-        if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
-          dispatch(WsEvent.onRematchPropose());
-        } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
-          dispatch(WsEvent.onRematchAccept());
-        } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
-          dispatch(WsEvent.onRematchDecline());
-        }
+        dispatch(WsEvent.onRematch(data));
         break;
       case '/restart' === mssg:
         dispatch(WsEvent.onRestart(data));
         break;
       case '/randomizer' === mssg:
-        dispatch(progressDialog.close());
-        dispatch(WsEvent.onRandomCheckmate(data));
+        dispatch(WsEvent.onRandomizer(data));
         break;
       case '/stockfish' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onStockfish(data));
         break;
       case '/inbox' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onCorrespondence(data));
         break;
       case 'error' === mssg:
-        dispatch(progressDialog.close());
         dispatch(WsEvent.onError(data));
         break;
       default:

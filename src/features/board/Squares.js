@@ -4,36 +4,35 @@ import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
 import Piece from 'common/Piece';
 import AlgebraicNotation from 'features/board/AlgebraicNotation';
-import * as eventConst from 'features/event/eventConst';
-import * as modeConst from 'features/mode/modeConst';
+import * as eventConst from 'features/eventConst';
 
 const Squares = ({props}) => {
   const state = useSelector(state => state);
 
   const filterMove = () => {
-    if (state.mode.name === modeConst.PLAY) {
+    if (state.playMode.active) {
       if (
-        !state.mode.play.accepted ||
+        !state.playMode.play.accepted ||
         state.board.isMate ||
         state.board.isStalemate ||
-        state.mode.play.draw ||
-        state.mode.play.resign ||
-        state.mode.play.leave ||
-        state.mode.play.timer.over ||
-        state.history.back !== 0
+        state.playMode.play.draw ||
+        state.playMode.play.resign ||
+        state.playMode.play.leave ||
+        state.playMode.play.timer?.over ||
+        state.panel.history.back !== 0
       ) {
         return false;
       }
-      if (state.mode.play.accepted) {
-        if (state.board.turn !== state.mode.play.color) {
+      if (state.playMode.play.accepted) {
+        if (state.board.turn !== state.playMode.play.color) {
           return false;
         }
       }
-    } else if (state.mode.name !== modeConst.UNDEFINED) {
+    } else {
       if (
         state.board.isMate ||
         state.board.isStalemate ||
-        state.history.back !== 0
+        state.panel.history.back !== 0
       ) {
         return false;
       }
@@ -43,7 +42,7 @@ const Squares = ({props}) => {
   }
 
   const sqs = () => {
-    const fen = state.board.fen[state.board.fen.length - 1 + state.history.back].split(' ');
+    const fen = state.board.fen[state.board.fen.length - 1 + state.panel.history.back].split(' ');
     const ascii = Ascii.toAscii(fen[0]);
     return Ascii.flip(
       state.board.flip,
@@ -150,7 +149,7 @@ const Squares = ({props}) => {
   }
 
   return (
-    <div className={[props.className, state.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+    <div className={[props.className, state.panel.history.back !== 0 ? 'past' : 'present'].join(' ')}>
       {sqs()}
     </div>
   );

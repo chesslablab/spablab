@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Piece from 'common/Piece';
 import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
-import WsAction from 'features/ws/WsAction';
+import Ws from 'features/ws/Ws';
 
 const Capablanca80Board = ({props}) => {
   const state = useSelector(state => state);
@@ -14,7 +14,7 @@ const Capablanca80Board = ({props}) => {
   const handleMove = (payload) => {
     if (state.board.turn === Piece.color(payload.piece)) {
       dispatch(board.grabPiece(payload));
-      WsAction.legal(payload.sq);
+      Ws.legal(payload.sq);
     } else {
       dispatch(board.placePiece(payload));
     }

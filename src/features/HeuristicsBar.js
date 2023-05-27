@@ -21,7 +21,7 @@ const initData = (dim, balance) => {
 const HeuristicsBar = () => {
   const state = useSelector(state => state);
   if (
-    state.settingsDialog.fields.heuristics === 'on' && 
+    state.nav.dialogs.settings.fields.heuristics === 'on' && 
     state.heuristicsBar.heuristics
   ) {
     const data = initData(

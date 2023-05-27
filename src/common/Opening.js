@@ -15,15 +15,6 @@ export default class Opening {
     return null;
   }
 
-  static bySameMovetext = (movetext) => {
-    let items = openings.filter(item => movetext === item.movetext);
-    if (items) {
-      return items;
-    }
-
-    return null;
-  }
-
   static byName = (name) => {
     return openings.filter(item => item.name.toLowerCase().includes(name.toLowerCase()));
   }

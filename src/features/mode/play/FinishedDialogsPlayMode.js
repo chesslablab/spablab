@@ -1,6 +1,6 @@
 import React from 'react';
-import AcceptRematchDialog from 'features/dialog/AcceptRematchDialog';
-import OfferRematchDialog from 'features/dialog/OfferRematchDialog';
+import AcceptRematchDialog from 'features/mode/play/dialog/AcceptRematchDialog';
+import OfferRematchDialog from 'features/mode/play/dialog/OfferRematchDialog';
 
 const FinishedDialogsPlayMode = () => {
   return (

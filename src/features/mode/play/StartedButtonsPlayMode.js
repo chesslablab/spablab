@@ -1,24 +1,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
-import * as modeConst from 'features/mode/modeConst';
-import * as offerDrawDialog from 'features/dialog/offerDrawDialogSlice';
-import * as acceptResignDialog from 'features/dialog/acceptResignDialogSlice';
-import * as offerTakebackDialog from 'features/dialog/offerTakebackDialogSlice';
+import * as playMode from 'features/mode/playModeSlice';
 
 const StartedButtonsPlayMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (state.mode.name === modeConst.PLAY) {
-    if (state.mode.play.accepted) {
+  if (state.playMode.active) {
+    if (state.playMode.play.accepted) {
       if (
         !state.board.isMate &&
         !state.board.isStalemate &&
-        !state.mode.play.draw &&
-        !state.mode.play.resign &&
-        !state.mode.play.leave &&
-        !state.mode.play.timer.over
+        !state.playMode.play.draw &&
+        !state.playMode.play.resign &&
+        !state.playMode.play.leave &&
+        !state.playMode.play.timer?.over
       ) {
         return (
           <ButtonGroup
@@ -30,14 +27,14 @@ const StartedButtonsPlayMode = () => {
           >
             <Button
                 disabled={!state.board.movetext}
-                onClick={() => dispatch(offerTakebackDialog.open())}
+                onClick={() => dispatch(playMode.offerTakebackDialog({ open: true }))}
             >
               Propose a takeback
             </Button>
-            <Button onClick={() => dispatch(offerDrawDialog.open())}>
+            <Button onClick={() => dispatch(playMode.offerDrawDialog({ open: true }))}>
               Offer draw
             </Button>
-            <Button onClick={() => dispatch(acceptResignDialog.open())}>
+            <Button onClick={() => dispatch(playMode.acceptResignDialog({ open: true }))}>
               Resign
             </Button>
           </ButtonGroup>
