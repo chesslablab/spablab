@@ -22,7 +22,7 @@ const CreateInboxCodeDialog = () => {
   return (
     <Dialog open={state.nav.dialogs.createInboxCode.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
-        Play a Friend
+        Create Inbox
         <IconButton onClick={() => dispatch(nav.createInboxCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>

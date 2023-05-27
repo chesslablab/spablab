@@ -4,6 +4,7 @@ import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import GradientIcon from '@mui/icons-material/Gradient';
@@ -452,7 +453,7 @@ const Nav = ({props}) => {
             handleCloseCorrespondence();
           }}
         >
-          <PersonIcon size="small" />&nbsp;Play a Friend
+          <ContactMailIcon size="small" />&nbsp;Create Inbox
         </MenuItem>
         <MenuItem
           id="Nav-training-MenuItem-endgameSkills"
