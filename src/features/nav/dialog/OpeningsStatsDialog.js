@@ -28,7 +28,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={state.nav.dialogs.openingsStats.stats.winRateForWhite}
+            data={state.nav.dialogs.openingsStats.stats?.winRateForWhite}
             margin={{
               right: 30,
               left: 20,
@@ -51,7 +51,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={state.nav.dialogs.openingsStats.stats.winRateForBlack}
+            data={state.nav.dialogs.openingsStats.stats?.winRateForBlack}
             margin={{
               top: 30,
               right: 30,
@@ -75,7 +75,7 @@ const OpeningsStatsDialog = ({props}) => {
           <BarChart
             width={500}
             height={300}
-            data={state.nav.dialogs.openingsStats.stats.drawRate}
+            data={state.nav.dialogs.openingsStats.stats?.drawRate}
             margin={{
               top: 30,
               right: 30,
