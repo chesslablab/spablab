@@ -15,7 +15,6 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import * as progressDialog from 'features/progressDialogSlice';
 
 const styles = {
   tableContainer: {
@@ -55,13 +54,8 @@ const DatabaseResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {
-    dispatch(pgnMode.searchGamesDialog({ open: false }));
-    dispatch(progressDialog.open());
-    dispatch(nav.setDatabase());
     multiAction.initGui(dispatch);
-    Ws.start(variantConst.CLASSICAL, modeConst.PGN, {
-      movetext: item.movetext
-    });
+    dispatch(nav.setDatabase());
     dispatch(pgnMode.panelTable({
       game: {
         Event: item.Event,
@@ -75,6 +69,7 @@ const DatabaseResultTable = ({props}) => {
         ECO: item.ECO
       }
     }));
+    Ws.start(variantConst.CLASSICAL, modeConst.PGN, { movetext: item.movetext });
   };
 
   return (

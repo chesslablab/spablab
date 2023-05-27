@@ -31,7 +31,6 @@ import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
-import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
@@ -139,9 +138,9 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startClassical"
           onClick={() => {
+            multiAction.initGui(dispatch);
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
-            multiAction.initGui(dispatch);
             Ws.start(variantConst.CLASSICAL, modeConst.FEN);
           }}
         >
@@ -150,9 +149,9 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startFischerRandom960"
           onClick={() => {
+            multiAction.initGui(dispatch);
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
-            multiAction.initGui(dispatch);
             Ws.start(variantConst.CHESS_960, modeConst.FEN);
           }}
         >
@@ -161,9 +160,9 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startCapablanca"
           onClick={() => {
+            multiAction.initGui(dispatch);
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
-            multiAction.initGui(dispatch);
             Ws.start(variantConst.CAPABLANCA_80, modeConst.FEN);
           }}
         >
@@ -406,9 +405,9 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-training-MenuItem-guessTheMove"
           onClick={() => {
+            multiAction.initGui(dispatch);
             dispatch(nav.setTraining());
             handleCloseTraining();
-            multiAction.initGui(dispatch);
             Ws.start(variantConst.CLASSICAL, modeConst.GM, { color: Pgn.symbol.WHITE });
           }}
         >

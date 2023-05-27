@@ -29,9 +29,8 @@ const LoadFenDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    dispatch(nav.setAnalysis());
-    dispatch(fenMode.loadFenDialog({ open: false }));
     multiAction.initGui(dispatch);
+    dispatch(nav.setAnalysis());
     let settings = {
       fen: event.target.elements.fen.value,
       ...(variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},

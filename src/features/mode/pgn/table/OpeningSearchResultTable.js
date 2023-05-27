@@ -2,12 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import * as modeConst from 'features/mode/modeConst';
-import * as pgnMode from 'features/mode/pgnModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import * as progressDialog from 'features/progressDialogSlice';
 
 const styles = {
   clickable: {
@@ -20,15 +18,9 @@ const OpeningSearchResultTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {
-    dispatch(pgnMode.searchEcoDialog({ open: false }));
-    dispatch(pgnMode.searchMovetextDialog({ open: false }));
-    dispatch(pgnMode.searchNameDialog({ open: false }));
-    dispatch(progressDialog.open());
-    dispatch(nav.setOpeningSearch());
     multiAction.initGui(dispatch);
-    Ws.start(variantConst.CLASSICAL, modeConst.PGN, {
-      movetext: movetext
-    });
+    dispatch(nav.setOpeningSearch());
+    Ws.start(variantConst.CLASSICAL, modeConst.PGN, { movetext: movetext });
   };
 
   return (

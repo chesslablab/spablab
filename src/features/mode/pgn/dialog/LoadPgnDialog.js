@@ -29,9 +29,8 @@ const LoadPgnDialog = () => {
 
   const handleLoad = (event) => {
     event.preventDefault();
-    dispatch(nav.setAnalysis());
-    dispatch(pgnMode.loadPgnDialog({ open: false }));
     multiAction.initGui(dispatch);
+    dispatch(nav.setAnalysis());
     let settings = {
       movetext: event.target.elements.pgn.value,
       ...(variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},

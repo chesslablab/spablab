@@ -45,9 +45,8 @@ const CheckmateSkillsDialog = () => {
       : items = {
         [color]: split[0]
       };
-    dispatch(nav.setTraining());
-    dispatch(stockfishMode.checkmateSkillsDialog({ open: false }));
     multiAction.initGui(dispatch);
+    dispatch(nav.setTraining());
     Ws.randomizer(color, items);
   };
 

@@ -50,9 +50,8 @@ const PlayComputerDialog = () => {
         color: color
       });
     }
-    dispatch(nav.setPlay());
-    dispatch(stockfishMode.playComputerDialog({ open: false }));
     multiAction.initGui(dispatch);
+    dispatch(nav.setPlay());
     dispatch(stockfishMode.set({
       variant: variantConst.CLASSICAL,
       computer: payload,

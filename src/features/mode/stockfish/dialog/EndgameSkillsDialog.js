@@ -45,9 +45,8 @@ const EndgameSkillsDialog = () => {
       : items = {
         [color]: split[0]
       };
-    dispatch(nav.setTraining());
-    dispatch(stockfishMode.endgameSkillsDialog({ open: false }));
     multiAction.initGui(dispatch);
+    dispatch(nav.setTraining());
     Ws.randomizer(color, items);
   };
 
