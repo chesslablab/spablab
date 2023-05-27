@@ -4,7 +4,7 @@ import * as infoAlert from 'features/alert/infoAlertSlice';
 
 describe("InfoAlert", () => {
   it("opens the alert", () => {
-    store.dispatch(infoAlert.show({ info: 'This is an informative message.' }));
+    store.dispatch(infoAlert.show({ mssg: 'This is an informative message.' }));
     expect(store.getState().infoAlert.open).toBe(true);
     expect(store.getState().infoAlert.info).toBe('This is an informative message.');
   });
@@ -13,7 +13,7 @@ describe("InfoAlert", () => {
     expect(store.getState().infoAlert.open).toBe(false);
   });
   it("opens and closes the alert", () => {
-    store.dispatch(infoAlert.show({ info: 'This is an informative message.' }));
+    store.dispatch(infoAlert.show({ mssg: 'This is an informative message.' }));
     store.dispatch(infoAlert.close());
     expect(store.getState().infoAlert.open).toBe(false);
   });

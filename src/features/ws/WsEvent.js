@@ -41,7 +41,7 @@ export default class WsEvent {
       dispatch(fenMode.set(data['/start']));
     } else {
       dispatch(infoAlert.show({
-        info: 'Invalid FEN, please try again with a different one.'
+        mssg: 'Invalid FEN, please try again with a different one.'
       }));
     }
   }
@@ -65,7 +65,7 @@ export default class WsEvent {
       multiAction.openingBySameMovetext(dispatch, data['/start']);
     } else {
       dispatch(infoAlert.show({
-        info: 'Invalid PGN movetext, please try again with a different one.'
+        mssg: 'Invalid PGN movetext, please try again with a different one.'
       }));
     }
   }
@@ -90,10 +90,10 @@ export default class WsEvent {
       if (jwtDecoded.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
-      dispatch(infoAlert.show({ info: 'Waiting for player to join...' }));
+      dispatch(infoAlert.show({ mssg: 'Waiting for player to join...' }));
     } else {
       dispatch(infoAlert.show({
-        info: 'Invalid FEN, please try again with a different one.'
+        mssg: 'Invalid FEN, please try again with a different one.'
       }));
     }
   }
@@ -136,7 +136,7 @@ export default class WsEvent {
       dispatch(playMode.acceptPlay());
     } else {
       dispatch(infoAlert.show({
-        info: 'Invalid invite code, please try again with a different one.'
+        mssg: 'Invalid invite code, please try again with a different one.'
       }));
     }
   }
@@ -201,12 +201,12 @@ export default class WsEvent {
           } else if (res.status === 204) {
             dispatch(pgnMode.panelTable({ open: false }));
             dispatch(infoAlert.show({
-              info: 'This game was not found in the database, please try again with a different one.'
+              mssg: 'This game was not found in the database, please try again with a different one.'
             }));
           }
         })
         .catch(error => {
-          dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+          dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
         })
         .finally(() => {
           dispatch(progressDialog.close());
@@ -260,17 +260,17 @@ export default class WsEvent {
       }
     } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptDraw());
-      dispatch(infoAlert.show({ info: 'Draw offer accepted.' }));
+      dispatch(infoAlert.show({ mssg: 'Draw offer accepted.' }));
     } else if (data['/draw'] === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineDraw());
-      dispatch(infoAlert.show({ info: 'Draw offer declined.' }));
+      dispatch(infoAlert.show({ mssg: 'Draw offer declined.' }));
     }
   }
 
   static onResign = (data) => dispatch => {
     if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptResign());
-      dispatch(infoAlert.show({ info: 'Chess game resigned.' }));
+      dispatch(infoAlert.show({ mssg: 'Chess game resigned.' }));
     }
   }
 
@@ -281,17 +281,17 @@ export default class WsEvent {
       }
     } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptRematch());
-      dispatch(infoAlert.show({ info: 'Rematch accepted.' }));
+      dispatch(infoAlert.show({ mssg: 'Rematch accepted.' }));
     } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineRematch());
-      dispatch(infoAlert.show({ info: 'Rematch declined.' }));
+      dispatch(infoAlert.show({ mssg: 'Rematch declined.' }));
     }
   }
 
   static onLeave = (data) => dispatch => {
     if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptLeave());
-      dispatch(infoAlert.show({ info: 'Your opponent left the game.' }));
+      dispatch(infoAlert.show({ mssg: 'Your opponent left the game.' }));
     }
   }
 
@@ -336,7 +336,7 @@ export default class WsEvent {
       );
     } else {
       multiAction.initGui(dispatch);
-      dispatch(infoAlert.show({ info: 'Whoops! A random checkmate could not be loaded.' }));
+      dispatch(infoAlert.show({ mssg: 'Whoops! A random checkmate could not be loaded.' }));
     }
   }
 
@@ -368,7 +368,7 @@ export default class WsEvent {
       } else {
         dispatch(nav.createInboxCodeDialog({ open: false }));
         dispatch(infoAlert.show({
-          info: data['/inbox'].message,
+          mssg: data['/inbox'].message,
         }));
       }
     } else if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
@@ -380,12 +380,12 @@ export default class WsEvent {
       } else {
         dispatch(nav.enterInboxCodeDialog({ open: false }));
         dispatch(infoAlert.show({
-          info: data['/inbox'].message,
+          mssg: data['/inbox'].message,
         }));
       }
     } else if (data['/inbox'].action === Wording.verb.REPLY.toLowerCase()) {
       dispatch(infoAlert.show({
-        info: data['/inbox'].message,
+        mssg: data['/inbox'].message,
       }));
     }
   }
@@ -394,7 +394,7 @@ export default class WsEvent {
     if (data['error']) {
       multiAction.initGui(dispatch);
       dispatch(infoAlert.show({
-        info: 'Whoops! Something went wrong.'
+        mssg: 'Whoops! Something went wrong.'
       }));
     }
   }

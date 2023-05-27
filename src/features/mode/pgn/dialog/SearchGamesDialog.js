@@ -50,12 +50,12 @@ const SearchGamesDialog = ({props}) => {
         });
       } else if (res.status === 204) {
         dispatch(pgnMode.searchGamesDialog({ open: false }));
-        dispatch(infoAlert.show({ info: 'No results were found, please try again.' }));
+        dispatch(infoAlert.show({ mssg: 'No results were found, please try again.' }));
       }
     })
     .catch(error => {
       dispatch(pgnMode.searchGamesDialog({ open: false }));
-      dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+      dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
     })
     .finally(() => {
       dispatch(progressDialog.close());

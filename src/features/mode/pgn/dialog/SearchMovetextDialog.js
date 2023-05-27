@@ -25,7 +25,7 @@ const SearchMovetextDialog = ({ props }) => {
     setOpenings(openings);
     if (openings.length === 0) {
       dispatch(pgnMode.searchMovetextDialog({ open: false }));
-      dispatch(infoAlert.show({ info: 'No results were found. Please try again.' }));
+      dispatch(infoAlert.show({ mssg: 'No results were found. Please try again.' }));
     }
   }
 

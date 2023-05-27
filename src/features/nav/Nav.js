@@ -307,7 +307,7 @@ const Nav = ({props}) => {
                     dispatch(pgnMode.searchGamesDialog({ open: true, autocomplete: data }));
                   });
                 } else {
-                  dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+                  dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
                 }
               })
               .finally(() => {
@@ -330,7 +330,7 @@ const Nav = ({props}) => {
                     dispatch(nav.openingsStatsDialog({ open: true, stats: data }));
                   });
                 } else {
-                  dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+                  dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
                 }
               })
               .finally(() => {
@@ -353,7 +353,7 @@ const Nav = ({props}) => {
                     dispatch(nav.playersStatsDialog({ open: true, autocomplete: data }));
                   });
                 } else {
-                  dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+                  dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
                 }
               })
               .finally(() => {
@@ -376,7 +376,7 @@ const Nav = ({props}) => {
                     dispatch(nav.eventsStatsDialog({ open: true, autocomplete: data }));
                   });
                 } else {
-                  dispatch(infoAlert.show({ info: 'Whoops! Something went wrong, please try again.' }));
+                  dispatch(infoAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
                 }
               })
               .finally(() => {

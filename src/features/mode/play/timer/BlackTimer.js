@@ -14,7 +14,7 @@ const BlackTimer = () => {
     expiryTimestamp,
     onExpire: () => {
       dispatch(playMode.timeOver({ color: Pgn.symbol.BLACK }));
-      dispatch(infoAlert.show({ info: 'White wins.' }));
+      dispatch(infoAlert.show({ mssg: 'White wins.' }));
     }
   });
   const isInitialMount = useRef(true);
