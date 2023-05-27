@@ -21,6 +21,7 @@ import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
+import multiAction from 'features/multiAction';
 
 const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
@@ -57,6 +58,7 @@ const PlayOnlineDialog = () => {
   const handleCreateGame = () => {
     dispatch(playMode.playOnlineDialog({ open: false }));
     dispatch(nav.setPlay());
+    multiAction.initGui(dispatch);
     Ws.start(fields.variant, modeConst.PLAY, {
       settings: {
         min: fields.minutes,
