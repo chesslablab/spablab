@@ -220,13 +220,11 @@ export default class WsEvent {
   }
 
   static onUndo = (data) => dispatch => {
-    dispatch(board.undo(data['/undo']));
-    if (data['/undo'].mode === modeConst.PLAY) {
-      dispatch(playMode.declineTakeback());
-    } else if (data['/undo'].mode === modeConst.FEN) {
+    if (data['/undo']) {
+      dispatch(board.undo(data['/undo']));
       multiAction.openingByMovetext(dispatch, data['/undo'].movetext);
+      Ws.heuristicsBar();
     }
-    Ws.heuristicsBar();
   }
 
   static onHeuristics = (data) => dispatch => {
