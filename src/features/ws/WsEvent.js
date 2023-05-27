@@ -21,7 +21,6 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
   static onStart = (data) => dispatch => {
-    dispatch(progressDialog.close());
     if (data['/start'].mode === modeConst.FEN) {
       dispatch(WsEvent.onStartFen(data));
     } else if (data['/start'].mode === modeConst.GM) {
@@ -60,7 +59,7 @@ export default class WsEvent {
     if (data['/start'].movetext) {
       dispatch(board.startPgn(data['/start']));
       dispatch(pgnMode.set(data['/start']));
-      multiAction.openingByMovetext(dispatch, data['/start'].movetext);
+      multiAction.openingByMovetext(dispatch, data['/start']);
     } else {
       dispatch(warningAlert.show({
         mssg: 'Invalid PGN movetext, please try again with a different one.'
@@ -154,15 +153,7 @@ export default class WsEvent {
             piecePlaced: { event: eventConst.ON_PLAY_LAN }
           }));
         }
-      } else if (
-        store.getState().fenMode.active &&
-        store.getState().fenMode.variant === variantConst.CLASSICAL
-      ) {
-        multiAction.openingByMovetext(dispatch, data['/play_lan'].movetext);
-      } else if (
-        store.getState().gmMode.active &&
-        store.getState().fenMode.variant === variantConst.CLASSICAL
-      ) {
+      } else if (store.getState().gmMode.active) {
         dispatch(infoAlert.close());
         dispatch(progressDialog.open());
         fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/grandmaster`, {
@@ -209,17 +200,10 @@ export default class WsEvent {
         .finally(() => {
           dispatch(progressDialog.close());
         });
-      } else if (
-        store.getState().pgnMode.active &&
-        store.getState().pgnMode.variant === variantConst.CLASSICAL
-      ) {
-        multiAction.openingByMovetext(dispatch, data['/play_lan'].movetext);
-      } else if (
-        store.getState().stockfishMode.active &&
-        store.getState().stockfishMode.variant === variantConst.CLASSICAL
-      ) {
+      } else if (store.getState().stockfishMode.active) {
         Ws.stockfish();
       }
+      multiAction.openingByMovetext(dispatch, data['/play_lan']);
       Ws.heuristicsBar();
     }
   }
@@ -227,7 +211,7 @@ export default class WsEvent {
   static onUndo = (data) => dispatch => {
     if (data['/undo']) {
       dispatch(board.undo(data['/undo']));
-      multiAction.openingByMovetext(dispatch, data['/undo'].movetext);
+      multiAction.openingByMovetext(dispatch, data['/undo']);
       Ws.heuristicsBar();
     }
   }
@@ -347,7 +331,7 @@ export default class WsEvent {
         piecePlaced: { event: eventConst.ON_STOCKFISH }
       }));
       Ws.heuristicsBar();
-      multiAction.openingByMovetext(dispatch, data['/stockfish'].movetext);
+      multiAction.openingByMovetext(dispatch, data['/stockfish']);
     }
   }
 

@@ -55,8 +55,6 @@ const Panel = ({ props }) => {
         <Timer />
       </Grid>
       <Grid item xs={12}>
-        { /* All modes */ }
-        <OpeningTable />
         { /* GM mode */ }
         <GameTableGmMode />
         <StartedButtonsGmMode />
@@ -70,6 +68,8 @@ const Panel = ({ props }) => {
         <FinishedButtonsPlayMode />
         { /* Stockfish mode */ }
         <StartedButtonsStockfishMode />
+        { /* All modes */ }
+        <OpeningTable />
       </Grid>
       <PgnDialogs />
       <StartedDialogsPlayMode />
