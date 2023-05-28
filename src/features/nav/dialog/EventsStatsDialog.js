@@ -70,7 +70,11 @@ const EventsStatsDialog = ({props}) => {
             <Grid item xs={12} md={8}>
               <Autocomplete
                 id="Event"
-                options={state.nav.dialogs.eventsStats.autocomplete.events.map((option) => option.Event)}
+                options={
+                  state.nav.dialogs.eventsStats.autocomplete?.events
+                    ? state.nav.dialogs.eventsStats.autocomplete.events.map((option) => option.Event)
+                    : []
+                }
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField required {...params} label="Event" variant="filled" name="Event" />}
               />
