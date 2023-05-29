@@ -9,7 +9,7 @@ const StartedButtonsGmMode = () => {
   const state = useSelector(state => state);
 
   if (state.gmMode.active) {
-    if (state.gmMode.tables.panel.open) {
+    if (state.board.movetext) {
       return (
         <ButtonGroup
           sx={{ mt: 1.5 }}
