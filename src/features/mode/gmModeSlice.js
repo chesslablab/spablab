@@ -21,7 +21,7 @@ const gmModeSlice = createSlice({
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
-      state.gm = action.payload;
+      state.gm = action.payload.gm;
     },
     panelTable(state, action) {
       state.tables.panel = action.payload;
