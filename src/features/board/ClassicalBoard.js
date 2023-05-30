@@ -10,7 +10,6 @@ import Ws from 'features/ws/Ws';
 const ClassicalBoard = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const isInitialMount = useRef(true);
   const maxWidth = {
     '600': useMediaQuery("(max-width:600px)"),
     '900': useMediaQuery("(max-width:900px)")
@@ -20,13 +19,9 @@ const ClassicalBoard = ({props}) => {
   const imgsRef = useRef([]);
 
   useEffect(() => {
-    if (isInitialMount.name) {
-      isInitialMount.name = false;
-    } else {
-      new Animation(sqSize, imgsRef, sqsRef).piece();
-    }
+    new Animation(sqSize, imgsRef, sqsRef).piece();
   }, [
-    state.board.fen.length,
+    state.board.fen,
     sqSize
   ]);
 
