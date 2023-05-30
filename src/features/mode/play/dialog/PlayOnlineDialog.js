@@ -27,12 +27,14 @@ const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [fields, setFields] = React.useState({
+  const initialState = {
     minutes: 5,
     increment: 3,
     color: 'rand',
     variant: variantConst.CLASSICAL,
-  });
+  };
+
+  const [fields, setFields] = React.useState(initialState);
 
   const handleMinutesChange = (event: Event) => {
     setFields({
@@ -68,6 +70,7 @@ const PlayOnlineDialog = () => {
         submode: 'online'
       }
     });
+    setFields(initialState);
   }
 
   return (
