@@ -10,10 +10,6 @@ const initialState = {
   resign: null,
   rematch: null,
   leave: null,
-  timer: {
-    expiry_timestamp: null,
-    over: null
-  },
   dialogs: {
     acceptDraw: {
       open: false,
