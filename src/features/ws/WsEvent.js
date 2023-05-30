@@ -120,6 +120,8 @@ export default class WsEvent {
       }));
       dispatch(playMode.set({
         variant: jwtDecoded.variant,
+        fen: jwtDecoded.fen,
+        startPos: jwtDecoded.startPos,
         play: {
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
