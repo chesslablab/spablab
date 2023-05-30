@@ -120,6 +120,8 @@ export default class WsEvent {
       }));
       dispatch(playMode.set({
         variant: jwtDecoded.variant,
+        fen: jwtDecoded.fen,
+        startPos: jwtDecoded.startPos,
         play: {
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
@@ -282,8 +284,7 @@ export default class WsEvent {
 
   static onRestart = (data) => dispatch => {
     const jwtDecoded = jwt_decode(data['/restart'].jwt);
-    const expiryTimestamp = new Date();
-    expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + parseInt(jwtDecoded.min) * 60);
+    dispatch(board.start(jwtDecoded));
     dispatch(playMode.set({
       variant: jwtDecoded.variant,
       play: {
@@ -294,10 +295,6 @@ export default class WsEvent {
         accepted: true,
       }
     }));
-    dispatch(board.reset());
-    if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
-      dispatch(board.flip());
-    }
   }
 
   static onRandomizer = (data) => dispatch => {
