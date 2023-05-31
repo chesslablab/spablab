@@ -27,18 +27,20 @@ const BlackTimer = () => {
       state.playMode.play.leave ||
       state.playMode.play.timer.over
     ) {
+      const time = new Date();
+      time.setSeconds(time.getSeconds() + state.playMode.play.jwt_decoded.min * 60);
+      timer.restart(time);
       timer.pause();
     } else if (state.board.turn === Pgn.symbol.BLACK) {
       timer.resume();
     } else {
-      let now = new Date();
-      let elapsedSeconds = timer.minutes * 60 + timer.seconds
-      now.setSeconds(
-        now.getSeconds() +
-        elapsedSeconds +
-        parseInt(state.playMode.play.jwt_decoded.increment)
+      const time = new Date();
+      time.setSeconds(
+        time.getSeconds() +
+        timer.minutes * 60 + timer.seconds +
+        state.playMode.play.jwt_decoded.increment
       );
-      timer.restart(now);
+      timer.restart(time);
       timer.pause();
     }
   }, [
@@ -48,7 +50,9 @@ const BlackTimer = () => {
     state.playMode.play.draw,
     state.playMode.play.resign,
     state.playMode.play.leave,
-    state.playMode.play.timer.over
+    state.playMode.play.timer.over,
+    state.playMode.play.jwt_decoded.min,
+    state.playMode.play.jwt_decoded.increment,
   ]);
 
   return (
