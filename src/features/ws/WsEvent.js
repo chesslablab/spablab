@@ -295,6 +295,7 @@ export default class WsEvent {
         accepted: true,
       }
     }));
+    dispatch(playMode.acceptPlay());
   }
 
   static onRandomizer = (data) => dispatch => {
