@@ -9,9 +9,8 @@ import * as playMode from 'features/mode/playModeSlice';
 const BlackTimer = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const expiryTimestamp = state.playMode.play.timer.expiry_timestamp;
   const timer = useTimer({
-    expiryTimestamp,
+    expiryTimestamp: state.playMode.play.timer.expiryTimestamp,
     onExpire: () => {
       dispatch(playMode.timeOver({ color: Pgn.symbol.BLACK }));
       dispatch(infoAlert.show({ mssg: 'White wins.' }));
