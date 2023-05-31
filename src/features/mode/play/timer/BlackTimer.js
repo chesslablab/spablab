@@ -27,11 +27,22 @@ const BlackTimer = () => {
       state.playMode.play.timer.over
     ) {
       const time = new Date();
-      time.setSeconds(time.getSeconds() + state.playMode.play.jwt_decoded.min * 60);
+      time.setSeconds(
+        time.getSeconds() +
+        state.playMode.play.jwt_decoded.min * 60
+      );
       timer.restart(time);
       timer.pause();
     } else if (state.board.turn === Pgn.symbol.BLACK) {
       timer.resume();
+    } else if (state.board.fen.length === 1) {
+      const time = new Date();
+      time.setSeconds(
+        time.getSeconds() +
+        timer.minutes * 60 + timer.seconds
+      );
+      timer.restart(time);
+      timer.pause();
     } else {
       const time = new Date();
       time.setSeconds(
@@ -44,6 +55,7 @@ const BlackTimer = () => {
     }
   }, [
     state.board.turn,
+    state.board.fen,
     state.board.isMate,
     state.board.isStalemate,
     state.playMode.play.draw,
