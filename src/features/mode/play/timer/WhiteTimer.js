@@ -27,7 +27,10 @@ const WhiteTimer = () => {
       state.playMode.play.timer.over
     ) {
       const time = new Date();
-      time.setSeconds(time.getSeconds() + state.playMode.play.jwt_decoded.min * 60);
+      time.setSeconds(
+        time.getSeconds() +
+        state.playMode.play.jwt_decoded.min * 60
+      );
       timer.restart(time);
       timer.pause();
     } else if (state.board.turn === Pgn.symbol.WHITE) {
