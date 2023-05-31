@@ -10,10 +10,6 @@ const initialState = {
   resign: null,
   rematch: null,
   leave: null,
-  timer: {
-    expiry_timestamp: null,
-    over: null
-  },
   dialogs: {
     acceptDraw: {
       open: false,
@@ -69,7 +65,7 @@ const playModeSlice = createSlice({
       state.active = true;
       state.play.accepted = true;
       state.play.timer = {
-        expiry_timestamp: expiryTimestamp,
+        expiryTimestamp: expiryTimestamp,
         over: null
       };
     },
