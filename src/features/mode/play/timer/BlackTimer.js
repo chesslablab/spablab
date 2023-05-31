@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTimer } from 'react-timer-hook';
 import { Box } from '@mui/material';
@@ -17,35 +17,29 @@ const BlackTimer = () => {
       dispatch(infoAlert.show({ mssg: 'White wins.' }));
     }
   });
-  const isInitialMount = useRef(true);
 
   useEffect(() => {
-    if (isInitialMount.name) {
+    if (
+      state.board.isMate ||
+      state.board.isStalemate ||
+      state.playMode.play.draw ||
+      state.playMode.play.resign ||
+      state.playMode.play.leave ||
+      state.playMode.play.timer.over
+    ) {
       timer.pause();
-      isInitialMount.name = false;
+    } else if (state.board.turn === Pgn.symbol.BLACK) {
+      timer.resume();
     } else {
-      if (
-        state.board.isMate ||
-        state.board.isStalemate ||
-        state.playMode.play.draw ||
-        state.playMode.play.resign ||
-        state.playMode.play.leave ||
-        state.playMode.play.timer.over
-      ) {
-        timer.pause();
-      } else if (state.board.turn === Pgn.symbol.BLACK) {
-        timer.resume();
-      } else {
-        let now = new Date();
-        let elapsedSeconds = timer.minutes * 60 + timer.seconds
-        now.setSeconds(
-          now.getSeconds() +
-          elapsedSeconds +
-          parseInt(state.playMode.play.jwt_decoded.increment)
-        );
-        timer.restart(now);
-        timer.pause();
-      }
+      let now = new Date();
+      let elapsedSeconds = timer.minutes * 60 + timer.seconds
+      now.setSeconds(
+        now.getSeconds() +
+        elapsedSeconds +
+        parseInt(state.playMode.play.jwt_decoded.increment)
+      );
+      timer.restart(now);
+      timer.pause();
     }
   }, [
     state.board.turn,
