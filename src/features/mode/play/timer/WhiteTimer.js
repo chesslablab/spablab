@@ -31,7 +31,9 @@ const WhiteTimer = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
+      if (state.board.turn === Pgn.symbol.WHITE) {
+        setTimeLeft(calculateTimeLeft());
+      }
     }, 1000);
   });
 

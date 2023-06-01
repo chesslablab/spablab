@@ -31,7 +31,9 @@ const BlackTimer = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
+      if (state.board.turn === Pgn.symbol.BLACK) {
+        setTimeLeft(calculateTimeLeft());
+      }
     }, 1000);
   });
 
