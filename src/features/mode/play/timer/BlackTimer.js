@@ -9,42 +9,25 @@ const BlackTimer = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const now = new Date();
-  const [expiration, setExpiration] = useState(now.setSeconds(now.getSeconds() + state.playMode.timer.w));
-
-  const calculateTimeLeft = () => {
-    const diff = expiration - new Date();
-    let timeLeft = {};
-
-    if (diff > 0) {
-      timeLeft = {
-        hours: Math.floor(diff / (1000 * 60 * 60)),
-        minutes: Math.floor((diff / 1000 / 60) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      };
-    }
-
-    return timeLeft;
-  };
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [count, setCount] = useState(state.playMode.timer.b);
 
   useEffect(() => {
     setTimeout(() => {
       if (state.board.turn === Pgn.symbol.BLACK) {
-        setTimeLeft(calculateTimeLeft());
-      } else {
-        const now = new Date();
-        now.setSeconds(now.getSeconds() + state.playMode.timer.w)
-        setExpiration(now);
-        setTimeLeft(calculateTimeLeft());
+        setCount(prevCount => prevCount - 1);
       }
     }, 1000);
   });
 
+  useEffect(() => {
+    setCount(state.playMode.timer.b);
+  }, [
+    state.playMode.timer.b
+  ]);
+
   return (
-    <Box component="span">
-      {timeLeft.minutes}:{timeLeft.seconds}
+    <Box component="span" style={{ marginRight: 10 }}>
+      {Math.floor(count / (60 * 60))}:{Math.floor((count / 60) % 60)}:{Math.floor(count % 60)}
     </Box>
   );
 }
