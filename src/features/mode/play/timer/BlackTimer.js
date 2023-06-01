@@ -13,7 +13,7 @@ const BlackTimer = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (state.board.turn === Pgn.symbol.BLACK) {
+      if (state.board.turn === Pgn.symbol.BLACK && count > 0) {
         setCount(prevCount => prevCount - 1);
       }
     }, 1000);
@@ -23,6 +23,15 @@ const BlackTimer = () => {
     setCount(state.playMode.timer.b);
   }, [
     state.playMode.timer.b
+  ]);
+
+  useEffect(() => {
+    if (count <= 0) {
+      dispatch(infoAlert.show({ mssg: 'White wins.' }));
+    }
+  }, [
+    count,
+    dispatch
   ]);
 
   return (
