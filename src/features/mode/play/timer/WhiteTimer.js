@@ -12,20 +12,17 @@ const WhiteTimer = () => {
   const [count, setCount] = useState(state.playMode.timer.w);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (state.board.turn === Pgn.symbol.WHITE && count > 0) {
+    if (state.board.turn === Pgn.symbol.WHITE && count > 0) {
+      setTimeout(() => {
         setCount(prevCount => prevCount - 1);
-      }
-    }, 1000);
+      }, 1000);
+    } else {
+      setCount(state.playMode.timer.w);
+    }
   }, [
     state.board.turn,
-    count
-  ]);
-
-  useEffect(() => {
-    setCount(state.playMode.timer.w);
-  }, [
-    state.playMode.timer.w
+    state.playMode.timer.w,
+    count,
   ]);
 
   useEffect(() => {

@@ -12,20 +12,17 @@ const BlackTimer = () => {
   const [count, setCount] = useState(state.playMode.timer.b);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (state.board.turn === Pgn.symbol.BLACK && count > 0) {
+    if (state.board.turn === Pgn.symbol.BLACK && count > 0) {
+      setTimeout(() => {
         setCount(prevCount => prevCount - 1);
-      }
-    }, 1000);
+      }, 1000);
+    } else {
+      setCount(state.playMode.timer.b);
+    }
   }, [
     state.board.turn,
-    count
-  ]);
-
-  useEffect(() => {
-    setCount(state.playMode.timer.b);
-  }, [
-    state.playMode.timer.b
+    state.playMode.timer.b,
+    count,
   ]);
 
   useEffect(() => {
