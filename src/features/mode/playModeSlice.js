@@ -62,16 +62,20 @@ const playModeSlice = createSlice({
       state.play = action.payload.play;
     },
     acceptPlay(state) {
+      /*
       const expiryTimestamp = new Date();
       expiryTimestamp.setSeconds(
         expiryTimestamp.getSeconds() + parseInt(state.play?.jwt_decoded?.min) * 60
       );
+      */
       state.active = true;
       state.play.accepted = true;
+      /*
       state.play.timer = {
         expiryTimestamp: expiryTimestamp,
         over: null
       };
+      */
     },
     acceptTakeback(state) {
       state.play.takeback = Wording.verb.ACCEPT.toLowerCase();
@@ -93,9 +97,6 @@ const playModeSlice = createSlice({
     },
     acceptResign(state) {
       state.play.resign = Wording.verb.ACCEPT.toLowerCase();
-    },
-    timeOver(state, action) {
-      state.play.timer.over = action.payload.color;
     },
     acceptRematch(state) {
       state.play.rematch = Wording.verb.ACCEPT.toLowerCase();
@@ -143,8 +144,12 @@ const playModeSlice = createSlice({
         ...action.payload
       };
     },
+    // timer
     timer(state, action) {
-      state.play.timer = action.payload;
+      state.timer = {
+        ...state.timer,
+        ...action.payload
+      };
     },
   }
 });
@@ -160,7 +165,6 @@ export const {
   declineDraw,
   proposeDraw,
   acceptResign,
-  timeOver,
   acceptRematch,
   declineRematch,
   proposeRematch,
@@ -177,6 +181,6 @@ export const {
   offerTakebackDialog,
   playOnlineDialog,
   // timer
-  timer
+  timer,
 } = playModeSlice.actions;
 export default playModeSlice.reducer;

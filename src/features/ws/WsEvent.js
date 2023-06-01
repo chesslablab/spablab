@@ -133,6 +133,7 @@ export default class WsEvent {
         dispatch(board.flip());
       }
       dispatch(playMode.acceptPlay());
+      dispatch(playMode.timer(data['/accept'].timer));
     } else {
       dispatch(warningAlert.show({
         mssg: 'Invalid invite code, please try again with a different one.'
