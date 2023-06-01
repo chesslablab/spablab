@@ -63,20 +63,8 @@ const playModeSlice = createSlice({
       state.play = action.payload.play;
     },
     acceptPlay(state) {
-      /*
-      const expiryTimestamp = new Date();
-      expiryTimestamp.setSeconds(
-        expiryTimestamp.getSeconds() + parseInt(state.play?.jwt_decoded?.min) * 60
-      );
-      */
       state.active = true;
       state.play.accepted = true;
-      /*
-      state.play.timer = {
-        expiryTimestamp: expiryTimestamp,
-        over: null
-      };
-      */
     },
     acceptTakeback(state) {
       state.play.takeback = Wording.verb.ACCEPT.toLowerCase();
