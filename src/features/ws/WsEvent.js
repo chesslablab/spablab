@@ -147,10 +147,10 @@ export default class WsEvent {
   }
 
   static onPlayLan = (props, data) => dispatch => {
-    if (data['/play_lan'].isLegal) {
+    if (data['/play_lan'].fen) {
       dispatch(board.validMove(data['/play_lan']));
       if (store.getState().playMode.active) {
-        if (store.getState().playMode.play.color !== data['/play_lan'].turn) {
+        if (store.getState().playMode.play.color === data['/play_lan'].turn) {
           dispatch(board.playLan({
             piecePlaced: { event: eventConst.ON_PLAY_LAN }
           }));
