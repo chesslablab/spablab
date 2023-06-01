@@ -17,7 +17,10 @@ const WhiteTimer = () => {
         setCount(prevCount => prevCount - 1);
       }
     }, 1000);
-  });
+  }, [
+    state.board.turn,
+    count
+  ]);
 
   useEffect(() => {
     setCount(state.playMode.timer.w);
