@@ -10,7 +10,7 @@ const WhiteTimer = () => {
   const dispatch = useDispatch();
 
   const now = new Date();
-  const [expiration] = useState(now.setSeconds(now.getSeconds() + state.playMode.timer.w));
+  const [expiration, setExpiration] = useState(now.setSeconds(now.getSeconds() + state.playMode.timer.w));
 
   const calculateTimeLeft = () => {
     const diff = expiration - new Date();
@@ -32,6 +32,11 @@ const WhiteTimer = () => {
   useEffect(() => {
     setTimeout(() => {
       if (state.board.turn === Pgn.symbol.WHITE) {
+        setTimeLeft(calculateTimeLeft());
+      } else {
+        const now = new Date();
+        now.setSeconds(now.getSeconds() + state.playMode.timer.w)
+        setExpiration(now);
         setTimeLeft(calculateTimeLeft());
       }
     }, 1000);
