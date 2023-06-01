@@ -10,6 +10,7 @@ const initialState = {
   resign: null,
   rematch: null,
   leave: null,
+  timeOut: false,
   dialogs: {
     acceptDraw: {
       open: false,
@@ -110,6 +111,9 @@ const playModeSlice = createSlice({
     acceptLeave(state) {
       state.play.leave = Wording.verb.ACCEPT.toLowerCase();
     },
+    timeOut(state) {
+      state.play.timeOut = true;
+    },
     // dialogs
     acceptDrawDialog(state, action) {
       state.dialogs.acceptDraw = action.payload;
@@ -169,6 +173,7 @@ export const {
   declineRematch,
   proposeRematch,
   acceptLeave,
+  timeOut,
   // dialogs
   acceptDrawDialog,
   acceptRematchDialog,

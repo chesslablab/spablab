@@ -15,7 +15,7 @@ const FinishedButtonsPlayMode = () => {
         state.board.isStalemate ||
         state.playMode.play.draw === Wording.verb.ACCEPT.toLowerCase() ||
         state.playMode.play.resign === Wording.verb.ACCEPT.toLowerCase() ||
-        state.playMode.play.timer?.over
+        state.playMode.play.timeOut
       ) {
         return (
           <ButtonGroup

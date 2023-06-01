@@ -15,7 +15,7 @@ const StartedButtonsPlayMode = () => {
         !state.playMode.play.draw &&
         !state.playMode.play.resign &&
         !state.playMode.play.leave &&
-        !state.playMode.play.timer?.over
+        !state.playMode.play.timeOut
       ) {
         return (
           <ButtonGroup
