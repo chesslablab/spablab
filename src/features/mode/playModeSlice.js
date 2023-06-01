@@ -43,6 +43,10 @@ const initialState = {
       rows: [],
     },
   },
+  timer: {
+    w: 0,
+    b: 0,
+  },
 };
 
 const playModeSlice = createSlice({
@@ -139,6 +143,9 @@ const playModeSlice = createSlice({
         ...action.payload
       };
     },
+    timer(state, action) {
+      state.play.timer = action.payload;
+    },
   }
 });
 
@@ -168,6 +175,8 @@ export const {
   offerDrawDialog,
   offerRematchDialog,
   offerTakebackDialog,
-  playOnlineDialog
+  playOnlineDialog,
+  // timer
+  timer
 } = playModeSlice.actions;
 export default playModeSlice.reducer;
