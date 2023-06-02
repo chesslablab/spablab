@@ -124,6 +124,7 @@ export default class WsEvent {
         accepted: true,
         fen: jwtDecoded.fen,
         startPos: jwtDecoded.startPos,
+        timer: data['/accept'].timer,
         play: {
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
@@ -134,7 +135,6 @@ export default class WsEvent {
       if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
-      dispatch(playMode.timer(data['/accept'].timer));
     } else {
       dispatch(warningAlert.show({
         mssg: 'Invalid invite code, please try again with a different one.'

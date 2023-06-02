@@ -63,6 +63,7 @@ const playModeSlice = createSlice({
       state.fen =  action.payload.fen;
       state.startPos =  action.payload.startPos;
       state.play = action.payload.play;
+      state.timer = action.payload.timer;
     },
     timeOut(state) {
       state.timeOut = true;
