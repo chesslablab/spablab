@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box } from '@mui/material';
 import Pgn from 'common/Pgn';
-import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as playMode from 'features/mode/playModeSlice';
 
 const BlackTimer = () => {
@@ -45,13 +44,24 @@ const BlackTimer = () => {
   ]);
 
   useEffect(() => {
-    if (count <= 0) {
+    if (
+      count <= 0 ||
+      state.board.isMate ||
+      state.board.isStalemate ||
+      state.playMode.draw ||
+      state.playMode.resign ||
+      state.playMode.leave
+    ) {
       clearInterval(intervalId);
       dispatch(playMode.timeOut());
-      dispatch(infoAlert.show({ mssg: 'White wins.' }));
     }
   }, [
     count,
+    state.board.isMate,
+    state.board.isStalemate,
+    state.playMode.draw,
+    state.playMode.resign,
+    state.playMode.leave,
     intervalId,
     dispatch,
   ]);
