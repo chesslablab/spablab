@@ -30,12 +30,12 @@ const WhiteTimer = () => {
   useEffect(() => {
     if (state.board.turn === Pgn.symbol.BLACK) {
       clearInterval(intervalId);
-      setCount(state.playMode.timer.w);
+      setCount(prevCount => prevCount + state.playMode.play.jwt_decoded.increment);
     }
   }, [
     state.board.turn,
-    state.playMode.timer.w,
     intervalId,
+    state.playMode.play.jwt_decoded.increment,
   ]);
 
   useEffect(() => {
@@ -48,9 +48,13 @@ const WhiteTimer = () => {
     dispatch,
   ]);
 
+  const h = Math.floor(count / (60 * 60)).toString().padStart(2, '0');
+  const m = Math.floor(count / 60 % 60).toString().padStart(2, '0');
+  const s = Math.floor(count % 60).toString().padStart(2, '0');
+
   return (
     <Box component="span" style={{ marginRight: 10 }}>
-      {Math.floor(count / (60 * 60))}:{Math.floor((count / 60) % 60)}:{Math.floor(count % 60)}
+      { h > 0 ? `${h}:${m}:${s}` : `${m}:${s}` }
     </Box>
   );
 }
