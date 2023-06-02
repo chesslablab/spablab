@@ -12,18 +12,18 @@ const Squares = ({props}) => {
   const filterMove = () => {
     if (state.playMode.active) {
       if (
-        !state.playMode.play.accepted ||
+        !state.playMode.accepted ||
         state.board.isMate ||
         state.board.isStalemate ||
-        state.playMode.play.draw ||
-        state.playMode.play.resign ||
-        state.playMode.play.leave ||
-        state.playMode.play.timeOut ||
+        state.playMode.draw ||
+        state.playMode.resign ||
+        state.playMode.leave ||
+        state.playMode.timeOut ||
         state.panel.history.back !== 0
       ) {
         return false;
       }
-      if (state.playMode.play.accepted) {
+      if (state.playMode.accepted) {
         if (state.board.turn !== state.playMode.play.color) {
           return false;
         }

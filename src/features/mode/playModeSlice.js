@@ -5,12 +5,13 @@ import * as variantConst from 'features/mode/variantConst';
 const initialState = {
   active: false,
   variant: variantConst.CLASSICAL,
+  accepted: false,
+  timeOut: false,
   takeback: null,
   draw: null,
   resign: null,
   rematch: null,
   leave: null,
-  timeOut: false,
   dialogs: {
     acceptDraw: {
       open: false,
@@ -64,43 +65,43 @@ const playModeSlice = createSlice({
     },
     acceptPlay(state) {
       state.active = true;
-      state.play.accepted = true;
-    },
-    acceptTakeback(state) {
-      state.play.takeback = Wording.verb.ACCEPT.toLowerCase();
-    },
-    declineTakeback(state) {
-      state.play.takeback = null;
-    },
-    proposeTakeback(state) {
-      state.play.takeback = Wording.verb.PROPOSE.toLowerCase();
-    },
-    acceptDraw(state) {
-      state.play.draw = Wording.verb.ACCEPT.toLowerCase();
-    },
-    declineDraw(state) {
-      state.play.draw = null;
-    },
-    proposeDraw(state) {
-      state.play.draw = Wording.verb.PROPOSE.toLowerCase();
-    },
-    acceptResign(state) {
-      state.play.resign = Wording.verb.ACCEPT.toLowerCase();
-    },
-    acceptRematch(state) {
-      state.play.rematch = Wording.verb.ACCEPT.toLowerCase();
-    },
-    declineRematch(state) {
-      state.play.rematch = null;
-    },
-    proposeRematch(state) {
-      state.play.rematch = Wording.verb.PROPOSE.toLowerCase();
-    },
-    acceptLeave(state) {
-      state.play.leave = Wording.verb.ACCEPT.toLowerCase();
+      state.accepted = true;
     },
     timeOut(state) {
-      state.play.timeOut = true;
+      state.timeOut = true;
+    },
+    acceptTakeback(state) {
+      state.takeback = Wording.verb.ACCEPT.toLowerCase();
+    },
+    declineTakeback(state) {
+      state.takeback = null;
+    },
+    proposeTakeback(state) {
+      state.takeback = Wording.verb.PROPOSE.toLowerCase();
+    },
+    acceptDraw(state) {
+      state.draw = Wording.verb.ACCEPT.toLowerCase();
+    },
+    declineDraw(state) {
+      state.draw = null;
+    },
+    proposeDraw(state) {
+      state.draw = Wording.verb.PROPOSE.toLowerCase();
+    },
+    acceptResign(state) {
+      state.resign = Wording.verb.ACCEPT.toLowerCase();
+    },
+    acceptRematch(state) {
+      state.rematch = Wording.verb.ACCEPT.toLowerCase();
+    },
+    declineRematch(state) {
+      state.rematch = null;
+    },
+    proposeRematch(state) {
+      state.rematch = Wording.verb.PROPOSE.toLowerCase();
+    },
+    acceptLeave(state) {
+      state.leave = Wording.verb.ACCEPT.toLowerCase();
     },
     // dialogs
     acceptDrawDialog(state, action) {
@@ -150,6 +151,7 @@ export const {
   reset,
   set,
   acceptPlay,
+  timer,
   acceptTakeback,
   declineTakeback,
   proposeTakeback,
@@ -173,7 +175,5 @@ export const {
   offerRematchDialog,
   offerTakebackDialog,
   playOnlineDialog,
-  // timer
-  timer,
 } = playModeSlice.actions;
 export default playModeSlice.reducer;

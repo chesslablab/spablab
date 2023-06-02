@@ -8,14 +8,14 @@ const StartedButtonsPlayMode = () => {
   const dispatch = useDispatch();
 
   if (state.playMode.active) {
-    if (state.playMode.play.accepted) {
+    if (state.playMode.accepted) {
       if (
         !state.board.isMate &&
         !state.board.isStalemate &&
-        !state.playMode.play.draw &&
-        !state.playMode.play.resign &&
-        !state.playMode.play.leave &&
-        !state.playMode.play.timeOut
+        !state.playMode.draw &&
+        !state.playMode.resign &&
+        !state.playMode.leave &&
+        !state.playMode.timeOut
       ) {
         return (
           <ButtonGroup

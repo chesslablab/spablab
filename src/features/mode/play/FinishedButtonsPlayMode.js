@@ -9,13 +9,13 @@ const FinishedButtonsPlayMode = () => {
   const dispatch = useDispatch();
 
   if (state.playMode.active) {
-    if (state.playMode.play.accepted) {
+    if (state.playMode.accepted) {
       if (
         state.board.isMate ||
         state.board.isStalemate ||
-        state.playMode.play.draw === Wording.verb.ACCEPT.toLowerCase() ||
-        state.playMode.play.resign === Wording.verb.ACCEPT.toLowerCase() ||
-        state.playMode.play.timeOut
+        state.playMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
+        state.playMode.resign === Wording.verb.ACCEPT.toLowerCase() ||
+        state.playMode.timeOut
       ) {
         return (
           <ButtonGroup

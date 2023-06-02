@@ -234,7 +234,7 @@ export default class WsEvent {
 
   static onTakeback = (data) => dispatch => {
     if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
-      if (!store.getState().playMode.play.takeback) {
+      if (!store.getState().playMode.takeback) {
         dispatch(playMode.acceptTakebackDialog({ open: true }));
       }
     } else if (data['/takeback'] === Wording.verb.ACCEPT.toLowerCase()) {
@@ -244,7 +244,7 @@ export default class WsEvent {
 
   static onDraw = (data) => dispatch => {
     if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
-      if (!store.getState().playMode.play.draw) {
+      if (!store.getState().playMode.draw) {
         dispatch(playMode.acceptDrawDialog({ open: true }));
       }
     } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
@@ -265,11 +265,12 @@ export default class WsEvent {
 
   static onRematch = (data) => dispatch => {
     if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
-      if (!store.getState().playMode.play.rematch) {
+      if (!store.getState().playMode.rematch) {
         dispatch(playMode.acceptRematchDialog({ open: true }));
       }
     } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptRematch());
+      dispatch(playMode.timer(data['/rematch'].timer));
       dispatch(infoAlert.show({ mssg: 'Rematch accepted.' }));
     } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineRematch());
