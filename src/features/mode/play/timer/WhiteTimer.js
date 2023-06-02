@@ -21,9 +21,11 @@ const WhiteTimer = () => {
   useEffect(() => {
     if (state.board.turn === Pgn.symbol.BLACK) {
       clearInterval(intervalId);
+      setCount(state.playMode.timer.w);
     }
   }, [
     state.board.turn,
+    state.playMode.timer.w,
     intervalId,
   ]);
 
