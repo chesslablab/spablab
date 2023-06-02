@@ -40,11 +40,13 @@ const WhiteTimer = () => {
 
   useEffect(() => {
     if (count <= 0) {
+      clearInterval(intervalId);
       dispatch(playMode.timeOut());
       dispatch(infoAlert.show({ mssg: 'Black wins.' }));
     }
   }, [
     count,
+    intervalId,
     dispatch,
   ]);
 
