@@ -19,9 +19,6 @@ const initialState = {
     acceptRematch: {
       open: false,
     },
-    acceptResign: {
-      open: false,
-    },
     acceptTakeback: {
       open: false,
     },
@@ -104,9 +101,6 @@ const playModeSlice = createSlice({
     acceptRematchDialog(state, action) {
       state.dialogs.acceptRematch = action.payload;
     },
-    acceptResignDialog(state, action) {
-      state.dialogs.acceptResign = action.payload;
-    },
     acceptTakebackDialog(state, action) {
       state.dialogs.acceptTakeback = action.payload;
     },
@@ -157,7 +151,6 @@ export const {
   // dialogs
   acceptDrawDialog,
   acceptRematchDialog,
-  acceptResignDialog,
   acceptTakebackDialog,
   createInviteCodeDialog,
   enterInviteCodeDialog,

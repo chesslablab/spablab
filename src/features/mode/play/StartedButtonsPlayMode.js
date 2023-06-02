@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
+import Wording from 'common/Wording';
 import * as playMode from 'features/mode/playModeSlice';
+import Ws from 'features/ws/Ws';
 
 const StartedButtonsPlayMode = () => {
   const state = useSelector(state => state);
@@ -34,7 +36,10 @@ const StartedButtonsPlayMode = () => {
             <Button onClick={() => dispatch(playMode.offerDrawDialog({ open: true }))}>
               Offer draw
             </Button>
-            <Button onClick={() => dispatch(playMode.acceptResignDialog({ open: true }))}>
+            <Button onClick={() => {
+              Ws.resign(Wording.verb.ACCEPT.toLowerCase());
+              dispatch(playMode.acceptResign());
+            }}>
               Resign
             </Button>
           </ButtonGroup>
