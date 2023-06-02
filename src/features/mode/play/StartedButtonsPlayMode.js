@@ -33,7 +33,10 @@ const StartedButtonsPlayMode = () => {
             >
               Propose a takeback
             </Button>
-            <Button onClick={() => dispatch(playMode.offerDrawDialog({ open: true }))}>
+            <Button onClick={() => {
+              Ws.draw(Wording.verb.PROPOSE.toLowerCase());
+              dispatch(playMode.proposeDraw());
+            }}>
               Offer draw
             </Button>
             <Button onClick={() => {

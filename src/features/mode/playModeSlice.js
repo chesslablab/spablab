@@ -28,9 +28,6 @@ const initialState = {
     enterInviteCode: {
       open: false,
     },
-    offerDraw: {
-      open: false,
-    },
     offerRematch: {
       open: false,
     },
@@ -110,9 +107,6 @@ const playModeSlice = createSlice({
     enterInviteCodeDialog(state, action) {
       state.dialogs.enterInviteCode = action.payload;
     },
-    offerDrawDialog(state, action) {
-      state.dialogs.offerDraw = action.payload;
-    },
     offerRematchDialog(state, action) {
       state.dialogs.offerRematch = action.payload;
     },
@@ -154,7 +148,6 @@ export const {
   acceptTakebackDialog,
   createInviteCodeDialog,
   enterInviteCodeDialog,
-  offerDrawDialog,
   offerRematchDialog,
   offerTakebackDialog,
   playOnlineDialog,
