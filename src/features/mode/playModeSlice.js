@@ -45,10 +45,6 @@ const initialState = {
       rows: [],
     },
   },
-  timer: {
-    w: 0,
-    b: 0,
-  },
 };
 
 const playModeSlice = createSlice({
