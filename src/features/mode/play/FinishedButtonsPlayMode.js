@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
-import * as playMode from 'features/mode/playModeSlice';
 import Wording from "common/Wording.js";
+import * as playMode from 'features/mode/playModeSlice';
+import Ws from 'features/ws/Ws';
 
 const FinishedButtonsPlayMode = () => {
   const state = useSelector(state => state);
@@ -25,7 +26,10 @@ const FinishedButtonsPlayMode = () => {
             aria-label="Game Over"
             fullWidth={true}
           >
-            <Button onClick={() => dispatch(playMode.offerRematchDialog({ open: true }))}>
+            <Button onClick={() => {
+              Ws.rematch(Wording.verb.PROPOSE.toLowerCase());
+              dispatch(playMode.proposeRematch());
+            }}>
               Offer Rematch
             </Button>
           </ButtonGroup>

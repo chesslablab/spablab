@@ -104,9 +104,6 @@ const playModeSlice = createSlice({
     enterInviteCodeDialog(state, action) {
       state.dialogs.enterInviteCode = action.payload;
     },
-    offerRematchDialog(state, action) {
-      state.dialogs.offerRematch = action.payload;
-    },
     playOnlineDialog(state, action) {
       state.dialogs.playOnline = {
         ...state.dialogs.playOnline,
@@ -142,7 +139,6 @@ export const {
   acceptTakebackDialog,
   createInviteCodeDialog,
   enterInviteCodeDialog,
-  offerRematchDialog,
   playOnlineDialog,
 } = playModeSlice.actions;
 export default playModeSlice.reducer;
