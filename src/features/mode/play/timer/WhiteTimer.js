@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box } from '@mui/material';
 import Pgn from 'common/Pgn';
@@ -10,19 +10,30 @@ const WhiteTimer = () => {
   const dispatch = useDispatch();
 
   const [count, setCount] = useState(state.playMode.timer.w);
+  const [intervalId, setIntervalId] = useState(0);
+
+  const counter = useCallback(() => setInterval(() => {
+    setCount(prevCount => prevCount - 1);
+  }, 1000), [
+    setCount,
+  ]);
 
   useEffect(() => {
-    if (state.board.turn === Pgn.symbol.WHITE && count > 0) {
-      setTimeout(() => {
-        setCount(prevCount => prevCount - 1);
-      }, 1000);
-    } else {
-      setCount(state.playMode.timer.w);
+    if (state.board.turn === Pgn.symbol.BLACK) {
+      clearInterval(intervalId);
     }
   }, [
     state.board.turn,
-    state.playMode.timer.w,
-    count,
+    intervalId,
+  ]);
+
+  useEffect(() => {
+    if (state.board.turn === Pgn.symbol.WHITE) {
+      setIntervalId(counter());
+    }
+  }, [
+    state.board.turn,
+    counter,
   ]);
 
   useEffect(() => {
@@ -32,7 +43,7 @@ const WhiteTimer = () => {
     }
   }, [
     count,
-    dispatch
+    dispatch,
   ]);
 
   return (
