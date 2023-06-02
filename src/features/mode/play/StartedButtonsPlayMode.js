@@ -1,21 +1,24 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
+import Wording from 'common/Wording';
 import * as playMode from 'features/mode/playModeSlice';
+import Ws from 'features/ws/Ws';
 
 const StartedButtonsPlayMode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   if (state.playMode.active) {
-    if (state.playMode.play.accepted) {
+    if (state.playMode.accepted) {
       if (
         !state.board.isMate &&
         !state.board.isStalemate &&
-        !state.playMode.play.draw &&
-        !state.playMode.play.resign &&
-        !state.playMode.play.leave &&
-        !state.playMode.play.timer?.over
+        !state.playMode.draw &&
+        (state.playMode.takeback !== Wording.verb.PROPOSE.toLowerCase()) &&
+        !state.playMode.resign &&
+        !state.playMode.leave &&
+        !state.playMode.timeOut
       ) {
         return (
           <ButtonGroup
@@ -25,16 +28,22 @@ const StartedButtonsPlayMode = () => {
             orientation="vertical"
             fullWidth={true}
           >
-            <Button
-                disabled={!state.board.movetext}
-                onClick={() => dispatch(playMode.offerTakebackDialog({ open: true }))}
-            >
+            <Button onClick={() => {
+              Ws.takeback(Wording.verb.PROPOSE.toLowerCase());
+              dispatch(playMode.proposeTakeback());
+            }}>
               Propose a takeback
             </Button>
-            <Button onClick={() => dispatch(playMode.offerDrawDialog({ open: true }))}>
+            <Button onClick={() => {
+              Ws.draw(Wording.verb.PROPOSE.toLowerCase());
+              dispatch(playMode.proposeDraw());
+            }}>
               Offer draw
             </Button>
-            <Button onClick={() => dispatch(playMode.acceptResignDialog({ open: true }))}>
+            <Button onClick={() => {
+              Ws.resign(Wording.verb.ACCEPT.toLowerCase());
+              dispatch(playMode.acceptResign());
+            }}>
               Resign
             </Button>
           </ButtonGroup>

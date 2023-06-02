@@ -105,11 +105,11 @@ const Nav = ({props}) => {
   };
 
   const disabled = state.playMode.active &&
-    state.playMode.play.accepted &&
-    (!state.playMode.play.draw || state.playMode.play.draw === Wording.verb.PROPOSE.toLowerCase()) &&
-    !state.playMode.play.resign &&
-    !state.playMode.play.leave &&
-    !state.playMode.play.timer?.over &&
+    state.playMode.accepted &&
+    (!state.playMode.draw || state.playMode.draw === Wording.verb.PROPOSE.toLowerCase()) &&
+    !state.playMode.resign &&
+    !state.playMode.leave &&
+    !state.playMode.timeOut &&
     !state.board.isMate &&
     !state.board.isStalemate;
 
