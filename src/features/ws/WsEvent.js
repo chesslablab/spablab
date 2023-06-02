@@ -119,7 +119,9 @@ export default class WsEvent {
         fen: jwtDecoded.fen
       }));
       dispatch(playMode.set({
+        active: true,
         variant: jwtDecoded.variant,
+        accepted: true,
         fen: jwtDecoded.fen,
         startPos: jwtDecoded.startPos,
         play: {
@@ -132,7 +134,6 @@ export default class WsEvent {
       if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
-      dispatch(playMode.acceptPlay());
       dispatch(playMode.timer(data['/accept'].timer));
     } else {
       dispatch(warningAlert.show({

@@ -59,13 +59,10 @@ const playModeSlice = createSlice({
     set(state, action) {
       state.active = true;
       state.variant = action.payload.variant;
+      state.accepted = action.payload.accepted;
       state.fen =  action.payload.fen;
       state.startPos =  action.payload.startPos;
       state.play = action.payload.play;
-    },
-    acceptPlay(state) {
-      state.active = true;
-      state.accepted = true;
     },
     timeOut(state) {
       state.timeOut = true;
@@ -147,7 +144,6 @@ const playModeSlice = createSlice({
 export const {
   reset,
   set,
-  acceptPlay,
   timer,
   acceptTakeback,
   declineTakeback,
