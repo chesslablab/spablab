@@ -31,9 +31,6 @@ const initialState = {
     offerRematch: {
       open: false,
     },
-    offerTakeback: {
-      open: false,
-    },
     playOnline: {
       open: false,
       rows: [],
@@ -59,10 +56,10 @@ const playModeSlice = createSlice({
       state.timeOut = true;
     },
     acceptTakeback(state) {
-      state.takeback = Wording.verb.ACCEPT.toLowerCase();
+      state.takeback = null;
     },
     declineTakeback(state) {
-      state.takeback = null;
+      state.takeback = Wording.verb.DECLINE.toLowerCase();
     },
     proposeTakeback(state) {
       state.takeback = Wording.verb.PROPOSE.toLowerCase();
@@ -110,9 +107,6 @@ const playModeSlice = createSlice({
     offerRematchDialog(state, action) {
       state.dialogs.offerRematch = action.payload;
     },
-    offerTakebackDialog(state, action) {
-      state.dialogs.offerTakeback = action.payload;
-    },
     playOnlineDialog(state, action) {
       state.dialogs.playOnline = {
         ...state.dialogs.playOnline,
@@ -149,7 +143,6 @@ export const {
   createInviteCodeDialog,
   enterInviteCodeDialog,
   offerRematchDialog,
-  offerTakebackDialog,
   playOnlineDialog,
 } = playModeSlice.actions;
 export default playModeSlice.reducer;

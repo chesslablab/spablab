@@ -15,6 +15,7 @@ const StartedButtonsPlayMode = () => {
         !state.board.isMate &&
         !state.board.isStalemate &&
         !state.playMode.draw &&
+        (state.playMode.takeback !== Wording.verb.PROPOSE.toLowerCase()) &&
         !state.playMode.resign &&
         !state.playMode.leave &&
         !state.playMode.timeOut
@@ -27,10 +28,10 @@ const StartedButtonsPlayMode = () => {
             orientation="vertical"
             fullWidth={true}
           >
-            <Button
-                disabled={!state.board.movetext}
-                onClick={() => dispatch(playMode.offerTakebackDialog({ open: true }))}
-            >
+            <Button onClick={() => {
+              Ws.takeback(Wording.verb.PROPOSE.toLowerCase());
+              dispatch(playMode.proposeTakeback());
+            }}>
               Propose a takeback
             </Button>
             <Button onClick={() => {
