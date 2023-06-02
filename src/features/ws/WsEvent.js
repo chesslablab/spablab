@@ -269,9 +269,7 @@ export default class WsEvent {
         dispatch(playMode.acceptRematchDialog({ open: true }));
       }
     } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
-      dispatch(playMode.acceptRematch());
-      dispatch(playMode.timer(data['/rematch'].timer));
-      dispatch(infoAlert.show({ mssg: 'Rematch accepted.' }));
+      Ws.restart();
     } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineRematch());
       dispatch(infoAlert.show({ mssg: 'Rematch declined.' }));
@@ -286,19 +284,9 @@ export default class WsEvent {
   }
 
   static onRestart = (data) => dispatch => {
-    const jwtDecoded = jwt_decode(data['/restart'].jwt);
-    dispatch(board.start(jwtDecoded));
-    dispatch(playMode.set({
-      variant: jwtDecoded.variant,
-      play: {
-        jwt: data['/restart'].jwt,
-        jwt_decoded: jwtDecoded,
-        hash: data['/restart'].hash,
-        color: store.getState().playMode.play.color,
-        accepted: true,
-      }
+    dispatch(WsEvent.onAccept({
+      '/accept': data['/restart'],
     }));
-    dispatch(playMode.acceptPlay());
   }
 
   static onRandomizer = (data) => dispatch => {
