@@ -62,6 +62,7 @@ const BlackTimer = () => {
     state.playMode.draw,
     state.playMode.resign,
     state.playMode.leave,
+    state.playMode.play.jwt_decoded.min,
     intervalId,
     dispatch,
   ]);

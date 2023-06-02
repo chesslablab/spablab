@@ -139,10 +139,7 @@ const playModeSlice = createSlice({
     },
     // timer
     timer(state, action) {
-      state.timer = {
-        ...state.timer,
-        ...action.payload
-      };
+      state.timer = action.payload;
     },
   }
 });

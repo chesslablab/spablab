@@ -269,6 +269,7 @@ export default class WsEvent {
         dispatch(playMode.acceptRematchDialog({ open: true }));
       }
     } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
+      dispatch(playMode.acceptRematch());
       Ws.restart();
     } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineRematch());
