@@ -27,7 +27,10 @@ const AcceptTakebackDialog = () => {
         <form onSubmit={handleTakebackAccept}>
           <DialogActions>
             <Button type="submit">Accept</Button>
-            <Button onClick={() => dispatch(playMode.acceptTakebackDialog({ open: false }))}>
+            <Button onClick={() => {
+              Ws.takeback(Wording.verb.DECLINE.toLowerCase());
+              dispatch(playMode.acceptTakebackDialog({ open: false }));
+            }}>
               Decline
             </Button>
           </DialogActions>

@@ -119,9 +119,12 @@ export default class WsEvent {
         fen: jwtDecoded.fen
       }));
       dispatch(playMode.set({
+        active: true,
         variant: jwtDecoded.variant,
+        accepted: true,
         fen: jwtDecoded.fen,
         startPos: jwtDecoded.startPos,
+        timer: data['/accept'].timer,
         play: {
           jwt: data['/accept'].jwt,
           jwt_decoded: jwt_decode(data['/accept'].jwt),
@@ -132,7 +135,6 @@ export default class WsEvent {
       if (store.getState().playMode.play.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
-      dispatch(playMode.acceptPlay());
     } else {
       dispatch(warningAlert.show({
         mssg: 'Invalid invite code, please try again with a different one.'
@@ -147,10 +149,11 @@ export default class WsEvent {
   }
 
   static onPlayLan = (props, data) => dispatch => {
-    if (data['/play_lan'].isLegal) {
+    if (data['/play_lan'].fen) {
       dispatch(board.validMove(data['/play_lan']));
       if (store.getState().playMode.active) {
-        if (store.getState().playMode.play.color !== data['/play_lan'].turn) {
+        dispatch(playMode.timer(data['/play_lan'].timer));
+        if (store.getState().playMode.play.color === data['/play_lan'].turn) {
           dispatch(board.playLan({
             piecePlaced: { event: eventConst.ON_PLAY_LAN }
           }));
@@ -232,17 +235,24 @@ export default class WsEvent {
 
   static onTakeback = (data) => dispatch => {
     if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
-      if (!store.getState().playMode.play.takeback) {
+      if (
+        !store.getState().playMode.takeback ||
+        store.getState().playMode.takeback ===  Wording.verb.DECLINE.toLowerCase()
+      ) {
         dispatch(playMode.acceptTakebackDialog({ open: true }));
       }
     } else if (data['/takeback'] === Wording.verb.ACCEPT.toLowerCase()) {
-      dispatch(playMode.acceptTakebackDialog({ open: false }));
+      dispatch(playMode.acceptTakeback());
+      dispatch(infoAlert.show({ mssg: 'Takeback accepted.' }));
+    } else if (data['/takeback'] === Wording.verb.DECLINE.toLowerCase()) {
+      dispatch(playMode.declineTakeback());
+      dispatch(infoAlert.show({ mssg: 'Takeback declined.' }));
     }
   }
 
   static onDraw = (data) => dispatch => {
     if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
-      if (!store.getState().playMode.play.draw) {
+      if (!store.getState().playMode.draw) {
         dispatch(playMode.acceptDrawDialog({ open: true }));
       }
     } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
@@ -263,12 +273,12 @@ export default class WsEvent {
 
   static onRematch = (data) => dispatch => {
     if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
-      if (!store.getState().playMode.play.rematch) {
+      if (!store.getState().playMode.rematch) {
         dispatch(playMode.acceptRematchDialog({ open: true }));
       }
     } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptRematch());
-      dispatch(infoAlert.show({ mssg: 'Rematch accepted.' }));
+      Ws.restart();
     } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineRematch());
       dispatch(infoAlert.show({ mssg: 'Rematch declined.' }));
@@ -283,19 +293,9 @@ export default class WsEvent {
   }
 
   static onRestart = (data) => dispatch => {
-    const jwtDecoded = jwt_decode(data['/restart'].jwt);
-    dispatch(board.start(jwtDecoded));
-    dispatch(playMode.set({
-      variant: jwtDecoded.variant,
-      play: {
-        jwt: data['/restart'].jwt,
-        jwt_decoded: jwtDecoded,
-        hash: data['/restart'].hash,
-        color: store.getState().playMode.play.color,
-        accepted: true,
-      }
+    dispatch(WsEvent.onAccept({
+      '/accept': data['/restart'],
     }));
-    dispatch(playMode.acceptPlay());
   }
 
   static onRandomizer = (data) => dispatch => {

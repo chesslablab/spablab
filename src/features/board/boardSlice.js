@@ -104,7 +104,7 @@ const boardSlice = createSlice({
       state.isMate = action.payload.isMate;
       state.isStalemate = action.payload.isStalemate;
       state.movetext = action.payload.movetext;
-      if (state.turn === action.payload.turn) {
+      if (state.turn !== action.payload.turn) {
         const newFen = JSON.parse(JSON.stringify(state.fen));
         newFen.push(action.payload.fen);
         state.fen = newFen;
