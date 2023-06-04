@@ -30,8 +30,11 @@ const StartedButtonsPlayMode = () => {
           disabled={disabled}
         >
           <Button onClick={() => {
-            Ws.takeback(Wording.verb.PROPOSE.toLowerCase());
+            dispatch(infoAlert.show({
+              mssg: 'Waiting for the opponent to accept or decline.'
+            }));
             dispatch(playMode.proposeTakeback());
+            Ws.takeback(Wording.verb.PROPOSE.toLowerCase());
           }}>
             Propose a takeback
           </Button>
