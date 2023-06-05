@@ -23,7 +23,7 @@ const rootReducer = {
   stockfishMode: stockfishModeReducer,
   nav: navReducer,
   panel: panelReducer,
-  server: wsReducer,
+  ws: wsReducer,
   heuristicsBar: heuristicsBarReducer,
   progressDialog: progressDialogReducer,
 };
