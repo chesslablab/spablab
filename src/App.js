@@ -9,7 +9,7 @@ const App = () => {
           host: 'pchess.net',
           port: '443'
         },
-        server: {
+        ws: {
           prot: 'wss',
           host: 'pchess.net',
           port: '8443'

@@ -8,16 +8,16 @@ import * as wsSlice from 'features/ws/wsSlice';
 export default class Ws {
   static connect = (props) => dispatch => {
     return new Promise((resolve, reject) => {
-      const ws = new WebSocket(`${props.server.prot}://${props.server.host}:${props.server.port}`);
+      const ws = new WebSocket(`${props.ws.prot}://${props.ws.host}:${props.ws.port}`);
       ws.onmessage = (res) => {
         dispatch(WsEventListener.listen(props, JSON.parse(res.data)));
       };
       ws.onerror = (err) => {
-        dispatch(wsSlice.connError());
+        dispatch(wsSlice.error());
         reject(err);
       };
       ws.onopen = () => {
-        dispatch(wsSlice.connEstablished({ ws: ws }));
+        dispatch(wsSlice.established({ ws: ws }));
         resolve();
       };
     });
@@ -51,7 +51,7 @@ export default class Ws {
       }
     }
 
-    return await store.getState().server.ws.send(mssg);
+    return await store.getState().ws.ws.send(mssg);
   }
 
   static playLan = async () => {
@@ -59,19 +59,19 @@ export default class Ws {
       ? Pgn.symbol.BLACK
       : Pgn.symbol.WHITE;
 
-    return await store.getState().server.ws.send(`/play_lan ${color} ${store.getState().board.lan}`);
+    return await store.getState().ws.ws.send(`/play_lan ${color} ${store.getState().board.lan}`);
   }
 
   static accept = async (hash) => {
-    return await store.getState().server.ws.send(`/accept ${hash}`);
+    return await store.getState().ws.ws.send(`/accept ${hash}`);
   }
 
   static legal = async (sq) => {
-    return await store.getState().server.ws.send(`/legal ${sq}`);
+    return await store.getState().ws.ws.send(`/legal ${sq}`);
   }
 
   static heuristics = async (movetext) => {
-    return await store.getState().server.ws.send(`/heuristics "${movetext}"`);
+    return await store.getState().ws.ws.send(`/heuristics "${movetext}"`);
   }
 
   static heuristicsBar = async () => {
@@ -79,60 +79,60 @@ export default class Ws {
     const variant = getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.heuristics === 'on') {
-      return await store.getState().server.ws.send(`/heuristics_bar "${fen}" ${variant}`);
+      return await store.getState().ws.ws.send(`/heuristics_bar "${fen}" ${variant}`);
     }
   }
 
   static takeback = async (action) => {
-    return await store.getState().server.ws.send(`/takeback ${action}`);
+    return await store.getState().ws.ws.send(`/takeback ${action}`);
   }
 
   static draw = async (action) => {
-    return await store.getState().server.ws.send(`/draw ${action}`);
+    return await store.getState().ws.ws.send(`/draw ${action}`);
   }
 
   static undo = async () => {
-    return await store.getState().server.ws.send(`/undo`);
+    return await store.getState().ws.ws.send(`/undo`);
   }
 
   static resign = async (action) => {
-    return await store.getState().server.ws.send(`/resign ${action}`);
+    return await store.getState().ws.ws.send(`/resign ${action}`);
   }
 
   static rematch = async (action) => {
-    return await store.getState().server.ws.send(`/rematch ${action}`);
+    return await store.getState().ws.ws.send(`/rematch ${action}`);
   }
 
   static restart = async () => {
-    return await store.getState().server.ws.send(`/restart ${store.getState().playMode.play.hash}`);
+    return await store.getState().ws.ws.send(`/restart ${store.getState().playMode.play.hash}`);
   }
 
   static randomizer = async (color, items) => {
     items = JSON.stringify(items).replace(/"/g, '\\"');
 
-    return await store.getState().server.ws.send(`/randomizer ${color} "${items}"`);
+    return await store.getState().ws.ws.send(`/randomizer ${color} "${items}"`);
   }
 
   static stockfish = async () => {
     const options = JSON.stringify(store.getState().stockfishMode.computer.options).replace(/"/g, '\\"');
     const params = JSON.stringify(store.getState().stockfishMode.computer.params).replace(/"/g, '\\"');
 
-    return await store.getState().server.ws.send(`/stockfish "${options}" "${params}"`);
+    return await store.getState().ws.ws.send(`/stockfish "${options}" "${params}"`);
   }
 
   static onlineGames = async () => {
-    return await store.getState().server.ws.send('/online_games');
+    return await store.getState().ws.ws.send('/online_games');
   }
 
   static inboxCreate = async (variant, settings) => {
-    return await store.getState().server.ws.send(`/inbox create ${variant} ${JSON.stringify(settings)}`);
+    return await store.getState().ws.ws.send(`/inbox create ${variant} ${JSON.stringify(settings)}`);
   }
 
   static inboxRead = async (hash) => {
-    return await store.getState().server.ws.send(`/inbox read ${hash}`);
+    return await store.getState().ws.ws.send(`/inbox read ${hash}`);
   }
 
   static inboxReply = async (hash, pgn) => {
-    return await store.getState().server.ws.send(`/inbox reply ${hash} "${pgn}"`);
+    return await store.getState().ws.ws.send(`/inbox reply ${hash} "${pgn}"`);
   }
 }

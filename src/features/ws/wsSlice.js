@@ -1,22 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  ws: null
+  conn: null
 };
 
 const wsSlice = createSlice({
-  name: 'ws',
+  name: 'conn',
   initialState,
   reducers: {
-    connError: () => initialState,
-    connEstablished(state, action) {
+    error: () => initialState,
+    established(state, action) {
       state.ws = action.payload.ws;
     }
   }
 });
 
 export const {
-  connError,
-  connEstablished
+  error,
+  established
 } = wsSlice.actions;
 export default wsSlice.reducer;

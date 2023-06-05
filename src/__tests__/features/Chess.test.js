@@ -6,7 +6,7 @@ import * as board from 'features/board/boardSlice';
 import Chess from 'features/Chess';
 
 const props = {
-  server: {
+  ws: {
     prot: 'wss',
     host: 'pchess.net',
     port: '8443'
