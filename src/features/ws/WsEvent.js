@@ -318,7 +318,7 @@ export default class WsEvent {
         { fen: data['/randomizer'].fen }
       );
     } else {
-      dispatch(warningAlert.show({ mssg: 'Whoops! A random checkmate could not be loaded.' }));
+      dispatch(warningAlert.show({ mssg: 'Whoops! A random chess position could not be loaded.' }));
     }
   }
 
