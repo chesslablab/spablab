@@ -6,7 +6,7 @@ describe("InfoAlert", () => {
   it("opens the alert", () => {
     store.dispatch(infoAlert.show({ mssg: 'This is an informative message.' }));
     expect(store.getState().infoAlert.open).toBe(true);
-    expect(store.getState().infoAlert.info).toBe('This is an informative message.');
+    expect(store.getState().infoAlert.mssg).toBe('This is an informative message.');
   });
   it("closes the alert", () => {
     store.dispatch(infoAlert.close());
@@ -15,6 +15,6 @@ describe("InfoAlert", () => {
   it("opens and closes the alert", () => {
     store.dispatch(infoAlert.show({ mssg: 'This is an informative message.' }));
     store.dispatch(infoAlert.close());
-    expect(store.getState().infoAlert.open).toBe(false);
+    expect(store.getState().infoAlert.mssg).toBe(null);
   });
 });
