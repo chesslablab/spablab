@@ -82,6 +82,19 @@ describe('toFen()', () => {
     ];
     expect(Ascii.toFen(board)).toBe('r1bqkbnR/pppp1p2/2n5/4p1p1/2B1P3/5N2/PPPP1PP1/RNBQK3');
   });
+  it('is r1r3k1/p2p1pp1/1ppq1n1p/4p3/1PP1P3/P4N2/1B3PPP/R4RK1', () => {
+    const board = [
+      [ ' r ', ' . ', ' r ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
+      [ ' p ', ' . ', ' . ', ' p ', ' . ', ' p ', ' p ', ' . ' ],
+      [ ' . ', ' p ', ' p ', ' q ', ' . ', ' n ', ' . ', ' p ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' P ', ' P ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+      [ ' P ', ' . ', ' . ', ' . ', ' . ', ' N ', ' . ', ' . ' ],
+      [ ' . ', ' B ', ' . ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
+      [ ' R ', ' . ', ' . ', ' . ', ' . ', ' R ', ' K ', ' . ' ]
+    ];
+    expect(Ascii.toFen(board)).toBe('r1r3k1/p2p1pp1/1ppq1n1p/4p3/1PP1P3/P4N2/1B3PPP/R4RK1');
+  });
 });
 
 describe('flip()', () => {
@@ -252,6 +265,20 @@ describe('toAscii()', () => {
       [ ' . ', ' . ', ' N ', ' P ', ' . ', ' . ', ' P ', ' . ' ],
       [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' B ', ' P ' ],
       [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' . ', ' N ', ' R ' ]
+    ];
+    expect(Ascii.toAscii(fen)).toEqual(expected);
+  });
+  it('is r1r3k1/p2p1pp1/1ppq1n1p/4p3/1PP1P3/P4N2/1B3PPP/R4RK1 w - -', () => {
+    const fen = 'r1r3k1/p2p1pp1/1ppq1n1p/4p3/1PP1P3/P4N2/1B3PPP/R4RK1';
+    const expected = [
+      [ ' r ', ' . ', ' r ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
+      [ ' p ', ' . ', ' . ', ' p ', ' . ', ' p ', ' p ', ' . ' ],
+      [ ' . ', ' p ', ' p ', ' q ', ' . ', ' n ', ' . ', ' p ' ],
+      [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
+      [ ' . ', ' P ', ' P ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+      [ ' P ', ' . ', ' . ', ' . ', ' . ', ' N ', ' . ', ' . ' ],
+      [ ' . ', ' B ', ' . ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
+      [ ' R ', ' . ', ' . ', ' . ', ' . ', ' R ', ' K ', ' . ' ]
     ];
     expect(Ascii.toAscii(fen)).toEqual(expected);
   });
