@@ -35,8 +35,16 @@ const PgnTable = ({props}) => {
     }
   }, [state.board.pieceGrabbed, state.board.lan]);
 
+  const offset = () => {
+    if (state.board?.movetext?.startsWith('1...')) {
+      return 1;
+    }
+
+    return 0;
+  };
+
   const highlight = (n) => {
-    if (n === state.board.fen.length + state.panel.history.back - 1) {
+    if (n === state.board.fen.length + state.panel.history.back - 1 + offset()) {
       return styles.currentMove;
     }
 
@@ -51,7 +59,7 @@ const PgnTable = ({props}) => {
           <TableCell
             sx={[styles.move, highlight(((i + 1) * 2) - 1)]}
             onClick={() => dispatch(panel.goTo({
-              back: state.board.fen.length - 1 - (((i + 1) * 2) - 1) }
+              back: state.board.fen.length - 1 - (((i + 1) * 2) - 1 - offset()) }
             ))}
           >
             {row.w}
@@ -59,7 +67,7 @@ const PgnTable = ({props}) => {
           <TableCell
             sx={[styles.move, highlight((i + 1) * 2)]}
             onClick={() => {
-              const back = state.board.fen.length - 1 - ((i + 1) * 2);
+              const back = state.board.fen.length - 1 - ((i + 1) * 2 - offset());
               if (back >= 0) {
                 dispatch(panel.goTo({ back: back }));
               }
