@@ -3,6 +3,18 @@ export default class Movetext {
     let rows = [];
     if (string) {
       const arr = string.split(' ');
+      if (string.startsWith('1...')) {
+        rows.push({
+          w: '...',
+          b: arr[0].split('...')[1],
+        });
+      } else {
+        rows.push({
+          w: arr[0].split('.')[1],
+          b: arr[1]
+        });
+      }
+      arr.shift();
       arr.forEach((item, i) => {
         if (i % 2 === 0) {
           rows.push({
