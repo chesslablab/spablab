@@ -8,13 +8,15 @@ export default class Movetext {
           w: '...',
           b: arr[0].split('...')[1],
         });
+        arr.shift();
       } else {
         rows.push({
           w: arr[0].split('.')[1],
           b: arr[1]
         });
+        arr.shift();
+        arr.shift();
       }
-      arr.shift();
       arr.forEach((item, i) => {
         if (i % 2 === 0) {
           rows.push({
