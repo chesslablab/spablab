@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Capablanca80Board from 'features/board/Capablanca80Board';
+import CapablancaBoard from 'features/board/CapablancaBoard';
 import Chess960Board from 'features/board/Chess960Board';
 import ClassicalBoard from 'features/board/ClassicalBoard';
 import * as modeConst from 'features/mode/modeConst';
@@ -21,8 +21,8 @@ const VariantBoard = ({props}) => {
 
   const variantBoard = () => {
     const activeMode = Object.values(state).find((val, key) => val.active);
-    if (activeMode?.variant === variantConst.CAPABLANCA_80) {
-      return <Capablanca80Board props={props} />;
+    if (activeMode?.variant === variantConst.CAPABLANCA) {
+      return <CapablancaBoard props={props} />;
     } else if (activeMode?.variant === variantConst.CHESS_960) {
       return <Chess960Board props={props} />;
     }

@@ -15,7 +15,7 @@ describe('toFen()', () => {
     ];
     expect(Ascii.toFen(board)).toBe('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR');
   });
-  it('is a capablanca80 starting position', () => {
+  it('is a capablanca starting position', () => {
     const board = [
       [ ' r ', ' n ', ' a ', ' b ', ' q ', ' k ', ' b ', ' c ', ' n ', ' r ' ],
       [ ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
@@ -112,7 +112,7 @@ describe('flip()', () => {
     const expected = board;
     expect(Ascii.flip(Pgn.symbol.WHITE, board)).toEqual(expected);
   });
-  it('is a capablanca80 starting position for White', () => {
+  it('is a capablanca starting position for White', () => {
     const board = [
       [ ' r ', ' n ', ' a ', ' b ', ' q ', ' k ', ' b ', ' c ', ' n ', ' r ' ],
       [ ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
@@ -149,7 +149,7 @@ describe('flip()', () => {
     ];
     expect(Ascii.flip(Pgn.symbol.BLACK, board)).toEqual(expected);
   });
-  it('is a capablanca80 starting position for Black', () => {
+  it('is a capablanca starting position for Black', () => {
     const board = [
       [ ' r ', ' n ', ' a ', ' b ', ' q ', ' k ', ' b ', ' c ', ' n ', ' r ' ],
       [ ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ', ' p ' ],

@@ -5,7 +5,7 @@ import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
-const Capablanca80Board = ({props}) => {
+const CapablancaBoard = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const sqsRef = useRef([]);
@@ -21,11 +21,11 @@ const Capablanca80Board = ({props}) => {
   }
 
   return <Squares props={{
-    className: 'capablanca80Board',
+    className: 'capablancaBoard',
     imgsRef: imgsRef,
     sqsRef: sqsRef,
     handleMove: handleMove
   }}/>;
 }
 
-export default Capablanca80Board;
+export default CapablancaBoard;

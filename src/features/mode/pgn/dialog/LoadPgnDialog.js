@@ -65,7 +65,7 @@ const LoadPgnDialog = () => {
             <MenuItem key={1} value="960">
               Fischer Random 960
             </MenuItem>
-            <MenuItem key={2} value="capablanca80">
+            <MenuItem key={2} value="capablanca">
               Capablanca
             </MenuItem>
           </TextField>

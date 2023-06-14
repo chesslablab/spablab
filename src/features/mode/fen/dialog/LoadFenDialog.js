@@ -75,9 +75,9 @@ const LoadFenDialog = () => {
               Fischer Random 960
             </MenuItem>
             <MenuItem
-              id="LoadFenDialog-TextField-variant-MenuItem-capablanca80"
+              id="LoadFenDialog-TextField-variant-MenuItem-capablanca"
               key={2}
-              value="capablanca80"
+              value="capablanca"
             >
               Capablanca
             </MenuItem>
