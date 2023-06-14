@@ -38,19 +38,19 @@ export default App;
 Create an `.env` file.
 
 ```
-$ cp .env.example .env
+cp .env.example .env
 ```
 
 Install the npm packages.
 
 ```
-$ npm install
+npm install
 ```
 
 Start the app.
 
 ```
-$ npm start
+npm start
 ```
 
 ### Build the App
@@ -58,7 +58,7 @@ $ npm start
 Build the app for production.
 
 ```
-$ npm run build
+npm run build
 ```
 
 ### License

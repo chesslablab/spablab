@@ -44,7 +44,7 @@ const VariantIcon = ({props}) => {
     return <RestartAltIcon />;
   } else if (props.variant === variantConst.CHESS_960) {
     return <ShuffleIcon />;
-  } else if (props.variant === variantConst.CAPABLANCA_80) {
+  } else if (props.variant === variantConst.CAPABLANCA) {
     return <BlurOnIcon />;
   }
 

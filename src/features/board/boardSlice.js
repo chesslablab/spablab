@@ -26,7 +26,7 @@ const boardSlice = createSlice({
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];
         state.turn = fen[1];
-      } else if (action.payload.variant === variantConst.CAPABLANCA_80) {
+      } else if (action.payload.variant === variantConst.CAPABLANCA) {
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];
         state.turn = fen[1];

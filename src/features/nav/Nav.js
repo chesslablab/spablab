@@ -164,7 +164,7 @@ const Nav = ({props}) => {
             multiAction.initGui(dispatch);
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
-            Ws.start(variantConst.CAPABLANCA_80, modeConst.FEN);
+            Ws.start(variantConst.CAPABLANCA, modeConst.FEN);
           }}
         >
           <BlurOnIcon size="small" />&nbsp;Start Capablanca
