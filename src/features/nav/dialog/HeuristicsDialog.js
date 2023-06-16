@@ -30,9 +30,9 @@ const handleDownloadImage = async () => {
   a.remove();
 };
 
-const initData = (dim) => {
+const initData = (evalNames) => {
   let data = {};
-  dim.forEach(item => data[item] = []);
+  evalNames.forEach(item => data[item] = []);
   return data;
 };
 
@@ -53,11 +53,11 @@ const charts = (data) => {
 const Heuristics = () => {
   const state = useSelector(state => state);
   if (state.nav.dialogs.heuristics.heuristics) {
-    const data = initData(state.nav.dialogs.heuristics.heuristics.dimensions);
+    const data = initData(state.nav.dialogs.heuristics.heuristics.evalNames);
     state.nav.dialogs.heuristics.heuristics.balance.forEach((item, i) => {
-      state.nav.dialogs.heuristics.heuristics.dimensions.forEach((dimension, j) => {
-        data[dimension].push({
-          [dimension]: item[j]
+      state.nav.dialogs.heuristics.heuristics.evalNames.forEach((evalName, j) => {
+        data[evalName].push({
+          [evalName]: item[j]
         });
       });
     });
