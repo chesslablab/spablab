@@ -46,7 +46,7 @@ const PgnButtons = ({props}) => {
       flip: state.board.flip
     };
     if (getActiveMode().variant === variantConst.CHESS_960) {
-      body.startPos = state.variant.startPos;
+      body.startPos = state.fenMode.startPos;
     }
     if (state.fenMode.active) {
       body.fen = state.fenMode.fen;
