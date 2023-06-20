@@ -47,6 +47,12 @@ Install the npm packages.
 npm install
 ```
 
+Add the following entry to your `/etc/hosts` file.
+
+```
+127.0.0.1       www.chesslablab.com
+```
+
 Start the app.
 
 ```
