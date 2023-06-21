@@ -54,7 +54,7 @@ const Nav = ({props}) => {
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
   const [anchorElCorrespondence, setAnchorElCorrespondence] = useState(null);
 
-  const matches = useMediaQuery("(min-width:900px)");
+  const matches = useMediaQuery("(min-width:1100px)");
 
   const handleCloseAnalysis = () => {
     setAnchorElAnalysis(null);
