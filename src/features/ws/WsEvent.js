@@ -337,7 +337,7 @@ export default class WsEvent {
     dispatch(playMode.playOnlineDialog({ open: true, rows: data['/online_games'] }));
   }
 
-  static onCorrespondence = (data) => dispatch => {
+  static onInbox = (data) => dispatch => {
     dispatch(progressDialog.close());
     if (data['/inbox'].action === Wording.verb.CREATE.toLowerCase()) {
       if (data['/inbox'].hash) {
