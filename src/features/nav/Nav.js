@@ -52,9 +52,9 @@ const Nav = ({props}) => {
   const [anchorElDatabase, setAnchorElDatabase] = useState(null);
   const [anchorElTraining, setAnchorElTraining] = useState(null);
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
-  const [anchorElCorrespondence, setAnchorElCorrespondence] = useState(null);
+  const [anchorElInbox, setAnchorElInbox] = useState(null);
 
-  const matches = useMediaQuery("(min-width:1100px)");
+  const matches = useMediaQuery("(min-width:900px)");
 
   const handleCloseAnalysis = () => {
     setAnchorElAnalysis(null);
@@ -76,8 +76,8 @@ const Nav = ({props}) => {
     setAnchorElOpeningSearch(null);
   };
 
-  const handleCloseCorrespondence = () => {
-    setAnchorElCorrespondence(null);
+  const handleCloseInbox = () => {
+    setAnchorElInbox(null);
   };
 
   const handleClickAnalysis = (event) => {
@@ -100,8 +100,8 @@ const Nav = ({props}) => {
     setAnchorElOpeningSearch(event.currentTarget);
   };
 
-  const handleClickCorrespondence = (event) => {
-    setAnchorElCorrespondence(event.currentTarget);
+  const handleClickInbox = (event) => {
+    setAnchorElInbox(event.currentTarget);
   };
 
   const disabled = state.playMode.active &&
@@ -435,22 +435,22 @@ const Nav = ({props}) => {
       </Menu>
       <Button
         id="Nav-inbox"
-        variant={state.nav.name === navConst.CORRESPONDENCE ? "contained" : "text"}
+        variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
         startIcon={<EmailIcon />}
-        onClick={handleClickCorrespondence}
+        onClick={handleClickInbox}
       >
-        Correspondence
+        Inbox
       </Button>
       <Menu
-        anchorEl={anchorElCorrespondence}
-        open={Boolean(anchorElCorrespondence)}
-        onClose={handleCloseCorrespondence}
+        anchorEl={anchorElInbox}
+        open={Boolean(anchorElInbox)}
+        onClose={handleCloseInbox}
       >
         <MenuItem
           id="Nav-inbox-MenuItem-inviteFriend"
           onClick={() => {
             dispatch(nav.createInboxCodeDialog({ open: true }));
-            handleCloseCorrespondence();
+            handleCloseInbox();
           }}
         >
           <ContactMailIcon size="small" />&nbsp;Create Inbox
@@ -460,7 +460,7 @@ const Nav = ({props}) => {
           onClick={() => {
             dispatch(nav.enterInboxCodeDialog({ open: false }));
             dispatch(nav.enterInboxCodeDialog({ open: true }));
-            handleCloseCorrespondence();
+            handleCloseInbox();
           }}
         >
           <InboxIcon size="small" />&nbsp;Read Inbox
