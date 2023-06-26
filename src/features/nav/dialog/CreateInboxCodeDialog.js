@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
-  Alert,
   Button,
   Dialog,
   DialogContent,
@@ -74,9 +73,6 @@ const CreateCode = () => {
 
   return (
     <DialogContent>
-       <Alert severity="info">
-        Create a correspondence inbox and share the code with a friend.
-      </Alert>
       <form onSubmit={handleCreateCode}>
         <TextField
           select
