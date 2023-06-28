@@ -14,6 +14,7 @@ import Timer from 'features/mode/play/timer/Timer';
 import History from 'features/panel/History';
 import OpeningTable from 'features/panel/OpeningTable';
 import PgnTable from 'features/panel/PgnTable';
+import RavTable from 'features/panel/RavTable';
 import PgnButtons from 'features/panel/PgnButtons';
 import PgnDialogs from 'features/panel/PgnDialogs';
 
@@ -45,6 +46,7 @@ const Panel = ({ props }) => {
           </Grid>
           <Grid item xs={12}>
             <PgnTable />
+            <RavTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>

@@ -46,8 +46,8 @@ const RavTable = ({props}) => {
   const tableRows = () => {
     let j = 1;
     let rows = [];
-    if (state.pgnMode.active) {
-      state.pgnMode.breakdown.forEach((breakdown, i) => {
+    if (state.ravMode.active) {
+      state.ravMode.breakdown.forEach((breakdown, i) => {
         rows = [...rows, ...Movetext.toCommentedRows(breakdown)];
       });
       rows.forEach((row, i) => {

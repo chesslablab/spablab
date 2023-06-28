@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import BookIcon from '@mui/icons-material/Book';
@@ -36,6 +37,7 @@ import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
@@ -179,6 +181,16 @@ const Nav = ({props}) => {
         >
           <MoveDownIcon size="small" />&nbsp;PGN Movetext
         </MenuItem>
+        <MenuItem
+          id="Nav-analysisBoard-MenuItem-ravMovetext"
+          onClick={() => {
+            dispatch(ravMode.loadRavDialog({ open: true }));
+            handleCloseAnalysis();
+          }}
+        >
+          <AccountTreeIcon size="small" />&nbsp;RAV Movetext
+        </MenuItem>
+        <Divider />
         <MenuItem
           id="Nav-analysisBoard-MenuItem-fenString"
           onClick={() => {

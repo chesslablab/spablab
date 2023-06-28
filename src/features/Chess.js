@@ -8,6 +8,7 @@ import WarningAlert from 'features/alert/WarningAlert.js';
 import VariantBoard from 'features/board/VariantBoard';
 import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
 import LoadPgnDialog from 'features/mode/pgn/dialog/LoadPgnDialog';
+import LoadRavDialog from 'features/mode/rav/dialog/LoadRavDialog';
 import SearchEcoDialog from 'features/mode/pgn/dialog/SearchEcoDialog';
 import SearchGamesDialog from 'features/mode/pgn/dialog/SearchGamesDialog';
 import SearchMovetextDialog from 'features/mode/pgn/dialog/SearchMovetextDialog';
@@ -52,6 +53,7 @@ const Chess = ({ props }) => {
         </Grid>
         <LoadFenDialog />
         <LoadPgnDialog />
+        <LoadRavDialog />
         <OpeningsStatsDialog />
         <PlayersStatsDialog props={props} />
         <EventsStatsDialog props={props} />

@@ -6,6 +6,7 @@ import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as gmMode from 'features/mode/gmModeSlice';
 import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
@@ -24,6 +25,7 @@ export default class multiAction {
     dispatch(fenMode.reset());
     dispatch(gmMode.reset());
     dispatch(pgnMode.reset());
+    dispatch(ravMode.reset());
     dispatch(playMode.reset());
     dispatch(stockfishMode.reset());
   };
