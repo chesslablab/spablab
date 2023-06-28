@@ -25,7 +25,7 @@ const styles = {
   }
 };
 
-const PgnTable = ({props}) => {
+const RavTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -35,16 +35,8 @@ const PgnTable = ({props}) => {
     }
   }, [state.board.pieceGrabbed, state.board.lan]);
 
-  const offset = () => {
-    if (state.board?.movetext?.startsWith('1...')) {
-      return 1;
-    }
-
-    return 0;
-  };
-
-  const highlight = (n) => {
-    if (n === state.board.fen.length + state.panel.history.back - 1 + offset()) {
+  const highlight = (fen) => {
+    if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
       return styles.currentMove;
     }
 
@@ -52,32 +44,53 @@ const PgnTable = ({props}) => {
   };
 
   const tableRows = () => {
-    return Movetext.toRows(state.board.movetext)
-      .map((row, i) => (
-        <TableRow key={i}>
-          <TableCell>{i + 1}</TableCell>
+    let j = 1;
+    let rows = [];
+    if (state.pgnMode.active) {
+      state.pgnMode.breakdown.forEach((breakdown, i) => {
+        rows = [...rows, ...Movetext.toCommentedRows(breakdown)];
+      });
+      rows.forEach((row, i) => {
+        if (row.w !== '...') {
+          row.wFen = j;
+          j += 1;
+        }
+        if (row.b) {
+          row.bFen = j;
+          j += 1;
+        }
+      });
+
+      return rows.map((row, i) => {
+        return <TableRow key={i}>
+          <TableCell>{row.n}</TableCell>
           <TableCell
-            sx={[styles.move, highlight(((i + 1) * 2) - 1)]}
-            onClick={() => dispatch(panel.goTo({
-              back: state.board.fen.length - 1 - (((i + 1) * 2) - 1 - offset()) }
-            ))}
+            sx={[styles.move, highlight(row.wFen)]}
+            onClick={() => {
+              if (row.w !== '...') {
+                dispatch(panel.goTo({
+                  back: state.board.fen.length - 1 - row.wFen
+                }));
+              }
+            }}
           >
             {row.w}
           </TableCell>
           <TableCell
-            sx={[styles.move, highlight((i + 1) * 2)]}
+            sx={[styles.move, highlight(row.bFen)]}
             onClick={() => {
-              const back = state.board.fen.length - 1 - ((i + 1) * 2 - offset());
-              if (back >= 0) {
-                dispatch(panel.goTo({ back: back }));
+              if (row.b) {
+                dispatch(panel.goTo({
+                  back: state.board.fen.length - 1 - row.bFen
+                }));
               }
             }}
           >
             {row.b}
           </TableCell>
         </TableRow>
-      )
-    );
+      });
+    }
   };
 
   return (
@@ -91,4 +104,4 @@ const PgnTable = ({props}) => {
   );
 }
 
-export default PgnTable;
+export default RavTable;
