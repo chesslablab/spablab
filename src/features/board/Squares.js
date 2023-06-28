@@ -10,7 +10,9 @@ const Squares = ({props}) => {
   const state = useSelector(state => state);
 
   const filterMove = () => {
-    if (state.playMode.active) {
+    if (state.ravMode.active) {
+      return false; 
+    } else if (state.playMode.active) {
       if (
         !state.playMode.accepted ||
         state.board.isMate ||

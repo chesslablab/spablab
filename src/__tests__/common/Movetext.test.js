@@ -5,8 +5,8 @@ describe('toRows()', () => {
     const string = '1.e4';
     const expected = [
       {
+        n: 1,
         w: 'e4',
-        b: '',
       }
     ];
     expect(Movetext.toRows(string)).toEqual(expected);
@@ -15,6 +15,7 @@ describe('toRows()', () => {
     const string = '1.e4 e5';
     const expected = [
       {
+        n: 1,
         w: 'e4',
         b: 'e5',
       }
@@ -25,10 +26,12 @@ describe('toRows()', () => {
     const string = '1.e4 e5 2.Nf3';
     const expected = [
       {
+        n: 1,
         w: 'e4',
         b: 'e5',
       },
       {
+        n: 2,
         w: 'Nf3',
         b: '',
       }
@@ -39,10 +42,12 @@ describe('toRows()', () => {
     const string = '1.e4 e5 2.Nf3 Nc6';
     const expected = [
       {
+        n: 1,
         w: 'e4',
         b: 'e5',
       },
       {
+        n: 2,
         w: 'Nf3',
         b: 'Nc6',
       }

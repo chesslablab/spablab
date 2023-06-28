@@ -3,7 +3,8 @@ import warningAlertReducer from 'features/alert/warningAlertSlice';
 import boardReducer from 'features/board/boardSlice';
 import fenModeReducer from 'features/mode/fenModeSlice';
 import gmModeReducer from 'features/mode/gmModeSlice';
-import pgnModeReducer from 'features/mode/pgnModeSlice';
+import sanModeReducer from 'features/mode/sanModeSlice';
+import ravModeReducer from 'features/mode/ravModeSlice';
 import playModeReducer from 'features/mode/playModeSlice';
 import stockfishModeReducer from 'features/mode/stockfishModeSlice';
 import navReducer from 'features/nav/navSlice';
@@ -18,7 +19,8 @@ const rootReducer = {
   board: boardReducer,
   fenMode: fenModeReducer,
   gmMode: gmModeReducer,
-  pgnMode: pgnModeReducer,
+  sanMode: sanModeReducer,
+  ravMode: ravModeReducer,
   playMode: playModeReducer,
   stockfishMode: stockfishModeReducer,
   nav: navReducer,

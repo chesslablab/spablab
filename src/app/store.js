@@ -14,8 +14,10 @@ export const getActiveMode = () => {
     return store.getState().fenMode;
   } else if(store.getState().gmMode.active) {
     return store.getState().gmMode;
-  } else if(store.getState().pgnMode.active) {
-    return store.getState().pgnMode;
+  } else if(store.getState().sanMode.active) {
+    return store.getState().sanMode;
+  } else if(store.getState().ravMode.active) {
+    return store.getState().ravMode;
   } else if(store.getState().playMode.active) {
     return store.getState().playMode;
   } else if(store.getState().stockfishMode.active) {
