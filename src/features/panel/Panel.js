@@ -15,7 +15,7 @@ import History from 'features/panel/History';
 import OpeningTable from 'features/panel/OpeningTable';
 import SanTable from 'features/panel/SanTable';
 import RavTable from 'features/panel/RavTable';
-import PgnButtons from 'features/panel/PgnButtons';
+import SanButtons from 'features/panel/SanButtons';
 import PgnDialogs from 'features/panel/PgnDialogs';
 
 const styles = {
@@ -50,7 +50,7 @@ const Panel = ({ props }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
-          <PgnButtons props={props} />
+          <SanButtons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12} sx={styles.timer}>

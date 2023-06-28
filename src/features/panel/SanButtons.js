@@ -12,7 +12,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as progressDialog from 'features/progressDialogSlice';
 import Ws from 'features/ws/Ws';
 
-const PgnButtons = ({props}) => {
+const SanButtons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -73,7 +73,7 @@ const PgnButtons = ({props}) => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton
-        id="PgnButtons-copyMovetext"
+        id="SanButtons-copyMovetext"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -84,7 +84,7 @@ const PgnButtons = ({props}) => {
         <MoveDownIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="PgnButtons-copyFenString"
+        id="SanButtons-copyFenString"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -95,7 +95,7 @@ const PgnButtons = ({props}) => {
         <WidgetsIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="PgnButtons-heuristics"
+        id="SanButtons-heuristics"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -109,7 +109,7 @@ const PgnButtons = ({props}) => {
         <BarChartIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="PgnButtons-downloadImage"
+        id="SanButtons-downloadImage"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -120,7 +120,7 @@ const PgnButtons = ({props}) => {
         <InsertPhotoIcon fontSize="inherit" />
       </IconButton>
       <IconButton
-        id="PgnButtons-downloadVideo"
+        id="SanButtons-downloadVideo"
         disabled={disabled}
         color="primary"
         size="medium"
@@ -134,4 +134,4 @@ const PgnButtons = ({props}) => {
   );
 }
 
-export default PgnButtons;
+export default SanButtons;
