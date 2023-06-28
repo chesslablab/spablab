@@ -45,7 +45,6 @@ const sanModeSlice = createSlice({
       state.variant = action.payload.variant;
       state.fen =  action.payload.fen;
       state.startPos =  action.payload.startPos;
-      state.breakdown =  action.payload.breakdown;
       state.filtered =  action.payload.filtered;
     },
     loadSanDialog(state, action) {
