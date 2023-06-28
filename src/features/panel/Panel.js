@@ -12,15 +12,15 @@ const Panel = ({ props }) => {
 
   if (state.fenMode.active) {
     return (
-      <FenPanel />
+      <FenPanel props={props} />
     );
   } else if (state.gmMode.active) {
     return (
-      <GmPanel />
+      <GmPanel props={props} />
     );
   } else if (state.playMode.active) {
     return (
-      <PlayPanel />
+      <PlayPanel props={props} />
     );
   } else if (state.ravMode.active) {
     return (
@@ -32,7 +32,7 @@ const Panel = ({ props }) => {
     );
   } else if (state.stockfishMode.active) {
     return (
-      <StockfishPanel />
+      <StockfishPanel props={props} />
     );
   }
 };
