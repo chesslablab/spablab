@@ -35,7 +35,7 @@ const LoadRavDialog = () => {
       movetext: event.target.elements.pgn.value,
       ...(variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
     };
-    Ws.start(event.target.elements.variant.value, modeConst.PGN, settings);
+    Ws.start(event.target.elements.variant.value, modeConst.RAV, settings);
   };
 
   return (

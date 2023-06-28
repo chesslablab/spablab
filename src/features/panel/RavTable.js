@@ -46,62 +46,64 @@ const RavTable = ({props}) => {
   const tableRows = () => {
     let j = 1;
     let rows = [];
-    if (state.ravMode.active) {
-      state.ravMode.breakdown.forEach((breakdown, i) => {
-        rows = [...rows, ...Movetext.toCommentedRows(breakdown)];
-      });
-      rows.forEach((row, i) => {
-        if (row.w !== '...') {
-          row.wFen = j;
-          j += 1;
-        }
-        if (row.b) {
-          row.bFen = j;
-          j += 1;
-        }
-      });
+    state.ravMode?.breakdown.forEach((breakdown, i) => {
+      rows = [...rows, ...Movetext.toCommentedRows(breakdown)];
+    });
+    rows.forEach((row, i) => {
+      if (row.w !== '...') {
+        row.wFen = j;
+        j += 1;
+      }
+      if (row.b) {
+        row.bFen = j;
+        j += 1;
+      }
+    });
 
-      return rows.map((row, i) => {
-        return <TableRow key={i}>
-          <TableCell>{row.n}</TableCell>
-          <TableCell
-            sx={[styles.move, highlight(row.wFen)]}
-            onClick={() => {
-              if (row.w !== '...') {
-                dispatch(panel.goTo({
-                  back: state.board.fen.length - 1 - row.wFen
-                }));
-              }
-            }}
-          >
-            {row.w}
-          </TableCell>
-          <TableCell
-            sx={[styles.move, highlight(row.bFen)]}
-            onClick={() => {
-              if (row.b) {
-                dispatch(panel.goTo({
-                  back: state.board.fen.length - 1 - row.bFen
-                }));
-              }
-            }}
-          >
-            {row.b}
-          </TableCell>
-        </TableRow>
-      });
-    }
+    return rows.map((row, i) => {
+      return <TableRow key={i}>
+        <TableCell>{row.n}</TableCell>
+        <TableCell
+          sx={[styles.move, highlight(row.wFen)]}
+          onClick={() => {
+            if (row.w !== '...') {
+              dispatch(panel.goTo({
+                back: state.board.fen.length - 1 - row.wFen
+              }));
+            }
+          }}
+        >
+          {row.w}
+        </TableCell>
+        <TableCell
+          sx={[styles.move, highlight(row.bFen)]}
+          onClick={() => {
+            if (row.b) {
+              dispatch(panel.goTo({
+                back: state.board.fen.length - 1 - row.bFen
+              }));
+            }
+          }}
+        >
+          {row.b}
+        </TableCell>
+      </TableRow>
+    });
   };
 
-  return (
-    <TableContainer className="noTextSelection" sx={styles.table}>
-      <Table stickyHeader size="small" aria-label="Movetext">
-        <TableBody>
-          {tableRows()}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  if (state.ravMode.active) {
+    return (
+      <TableContainer className="noTextSelection" sx={styles.table}>
+        <Table stickyHeader size="small" aria-label="Movetext">
+          <TableBody>
+            {tableRows()}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
+
+  return null;
 }
 
 export default RavTable;

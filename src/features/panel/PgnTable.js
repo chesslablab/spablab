@@ -80,15 +80,17 @@ const PgnTable = ({props}) => {
     );
   };
 
-  return (
-    <TableContainer className="noTextSelection" sx={styles.table}>
-      <Table stickyHeader size="small" aria-label="Movetext">
-        <TableBody>
-          {tableRows()}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  if (!state.ravMode.active) {
+    return (
+      <TableContainer className="noTextSelection" sx={styles.table}>
+        <Table stickyHeader size="small" aria-label="Movetext">
+          <TableBody>
+            {tableRows()}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
 }
 
 export default PgnTable;

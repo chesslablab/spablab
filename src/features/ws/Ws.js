@@ -28,18 +28,30 @@ export default class Ws {
     if (Object.keys(settings).length > 0) {
       if (mode === modeConst.GM) {
         mssg += ` "${settings.color}"`;
-      } else if (mode === modeConst.FEN && variant === variantConst.CLASSICAL) {
-        mssg += ` "${settings.fen}"`;
-      } else if (mode === modeConst.FEN && variant === variantConst.CAPABLANCA) {
-        mssg += ` "${settings.fen}"`;
-      } else if (mode === modeConst.FEN && variant === variantConst.CHESS_960) {
-        mssg += ` "${settings.fen}" ${settings.startPos}`;
-      } else if (mode === modeConst.PGN && variant === variantConst.CLASSICAL) {
-        mssg += ` "${settings.movetext}"`;
-      } else if (mode === modeConst.PGN && variant === variantConst.CAPABLANCA) {
-        mssg += ` "${settings.movetext}"`;
-      } else if (mode === modeConst.PGN && variant === variantConst.CHESS_960) {
-        mssg += ` "${settings.movetext}" ${settings.startPos}`;
+      } else if (mode === modeConst.FEN) {
+        if (variant === variantConst.CLASSICAL) {
+          mssg += ` "${settings.fen}"`;
+        } else if (variantConst.CAPABLANCA) {
+          mssg += ` "${settings.fen}"`;
+        } else if (variantConst.CHESS_960) {
+          mssg += ` "${settings.fen}" ${settings.startPos}`;
+        }
+      } else if (mode === modeConst.PGN) {
+        if (variant === variantConst.CLASSICAL) {
+          mssg += ` "${settings.movetext}"`;
+        } else if (variantConst.CAPABLANCA) {
+          mssg += ` "${settings.movetext}"`;
+        } else if (variantConst.CHESS_960) {
+          mssg += ` "${settings.movetext}" ${settings.startPos}`;
+        }
+      } else if (mode === modeConst.RAV) {
+        if (variant === variantConst.CLASSICAL) {
+          mssg += ` "${settings.movetext}"`;
+        } else if (variantConst.CAPABLANCA) {
+          mssg += ` "${settings.movetext}"`;
+        } else if (variantConst.CHESS_960) {
+          mssg += ` "${settings.movetext}" ${settings.startPos}`;
+        }
       } else if (mode === modeConst.PLAY) {
         mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {
