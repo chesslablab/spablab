@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import BookIcon from '@mui/icons-material/Book';
@@ -35,7 +36,8 @@ import * as nav from 'features/nav/navSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as sanMode from 'features/mode/sanModeSlice';
+import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
@@ -171,14 +173,24 @@ const Nav = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="Nav-analysisBoard-MenuItem-pgnMovetext"
+          id="Nav-analysisBoard-MenuItem-sanMovetext"
           onClick={() => {
-            dispatch(pgnMode.loadPgnDialog({ open: true }));
+            dispatch(sanMode.loadSanDialog({ open: true }));
             handleCloseAnalysis();
           }}
         >
-          <MoveDownIcon size="small" />&nbsp;PGN Movetext
+          <MoveDownIcon size="small" />&nbsp;SAN Movetext
         </MenuItem>
+        <MenuItem
+          id="Nav-analysisBoard-MenuItem-ravMovetext"
+          onClick={() => {
+            dispatch(ravMode.loadRavDialog({ open: true }));
+            handleCloseAnalysis();
+          }}
+        >
+          <AccountTreeIcon size="small" />&nbsp;RAV Movetext
+        </MenuItem>
+        <Divider />
         <MenuItem
           id="Nav-analysisBoard-MenuItem-fenString"
           onClick={() => {
@@ -259,25 +271,25 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-openingSearch-MenuItem-ecoCode"
           onClick={() => {
-            dispatch(pgnMode.searchEcoDialog({ open: true }));
+            dispatch(sanMode.searchEcoDialog({ open: true }));
             handleCloseOpeningSearch();
           }}
         >
           <BookIcon size="small" />&nbsp;ECO Code
         </MenuItem>
         <MenuItem
-          id="Nav-openingSearch-MenuItem-pgnMovetext"
+          id="Nav-openingSearch-MenuItem-sanMovetext"
           onClick={() => {
-            dispatch(pgnMode.searchMovetextDialog({ open: true }));
+            dispatch(sanMode.searchMovetextDialog({ open: true }));
             handleCloseOpeningSearch();
           }
         }>
-          <MoveDownIcon size="small" />&nbsp;PGN Movetext
+          <MoveDownIcon size="small" />&nbsp;SAN Movetext
         </MenuItem>
         <MenuItem
           id="Nav-openingSearch-MenuItem-name"
           onClick={() => {
-            dispatch(pgnMode.searchNameDialog({ open: true }));
+            dispatch(sanMode.searchNameDialog({ open: true }));
             handleCloseOpeningSearch();
           }}
         >
@@ -305,7 +317,7 @@ const Nav = ({props}) => {
               .then(res => {
                 if (res.status === 200) {
                   res.json().then(data => {
-                    dispatch(pgnMode.searchGamesDialog({ open: true, autocomplete: data }));
+                    dispatch(sanMode.searchGamesDialog({ open: true, autocomplete: data }));
                   });
                 } else {
                   dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));

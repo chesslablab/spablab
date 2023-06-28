@@ -8,7 +8,8 @@ import * as board from 'features/board/boardSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as gmMode from 'features/mode/gmModeSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as sanMode from 'features/mode/sanModeSlice';
+import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
@@ -25,8 +26,10 @@ export default class WsEvent {
       dispatch(WsEvent.onStartFen(data));
     } else if (data['/start'].mode === modeConst.GM) {
       dispatch(WsEvent.onStartGm(data));
-    } else if (data['/start'].mode === modeConst.PGN) {
-      dispatch(WsEvent.onStartPgn(data));
+    } else if (data['/start'].mode === modeConst.SAN) {
+      dispatch(WsEvent.onStartSan(data));
+    } else if (data['/start'].mode === modeConst.RAV) {
+      dispatch(WsEvent.onStartRav(data));
     } else if (data['/start'].mode === modeConst.PLAY) {
       dispatch(WsEvent.onStartPlay(data));
     } else if (data['/start'].mode === modeConst.STOCKFISH) {
@@ -55,14 +58,25 @@ export default class WsEvent {
     }));
   }
 
-  static onStartPgn = (data) => dispatch => {
+  static onStartSan = (data) => dispatch => {
     if (data['/start'].movetext) {
       dispatch(board.startPgn(data['/start']));
-      dispatch(pgnMode.set(data['/start']));
+      dispatch(sanMode.set(data['/start']));
       multiAction.openingByMovetext(dispatch, data['/start']);
     } else {
       dispatch(warningAlert.show({
-        mssg: 'Invalid PGN movetext, please try again with a different one.'
+        mssg: 'Invalid SAN movetext, please try again with a different one.'
+      }));
+    }
+  }
+
+  static onStartRav = (data) => dispatch => {
+    if (data['/start'].movetext) {
+      dispatch(board.startPgn(data['/start']));
+      dispatch(ravMode.set(data['/start']));
+    } else {
+      dispatch(warningAlert.show({
+        mssg: 'Invalid RAV movetext, please try again with a different one.'
       }));
     }
   }
@@ -177,7 +191,7 @@ export default class WsEvent {
                   movetext: game.movetext,
                 },
               }));
-              dispatch(pgnMode.panelTable({
+              dispatch(sanMode.panelTable({
                 open: true,
                 game: {
                   Event: game.Event,
@@ -193,7 +207,7 @@ export default class WsEvent {
               }));
             });
           } else if (res.status === 204) {
-            dispatch(pgnMode.panelTable({ open: false }));
+            dispatch(sanMode.panelTable({ open: false }));
             dispatch(infoAlert.show({
               mssg: 'This game was not found in the database, please try again with a different one.'
             }));

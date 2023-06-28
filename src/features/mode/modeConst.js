@@ -1,13 +1,15 @@
 const FEN = 'fen';
 const GM = 'gm';
-const PGN = 'pgn';
 const PLAY = 'play';
+const RAV = 'rav';
+const SAN = 'san';
 const STOCKFISH = 'stockfish';
 
 export {
   FEN,
   GM,
-  PGN,
   PLAY,
+  RAV,
+  SAN,
   STOCKFISH
 };
