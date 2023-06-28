@@ -2,7 +2,7 @@ import React from 'react';
 import store from 'app/store';
 import * as sanMode from 'features/mode/sanModeSlice';
 
-describe("LoadPgnDialog", () => {
+describe("LoadSanDialog", () => {
   it("opens the dialog", () => {
     store.dispatch(sanMode.loadPgnDialog({ open: true }));
     expect(store.getState().sanMode.dialogs.loadPgn.open).toBe(true);
