@@ -6,7 +6,7 @@ import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
-const StartedButtonsPlayMode = () => {
+const StartedButtons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -61,4 +61,4 @@ const StartedButtonsPlayMode = () => {
   return null;
 }
 
-export default StartedButtonsPlayMode;
+export default StartedButtons;

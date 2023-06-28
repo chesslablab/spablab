@@ -1,7 +1,7 @@
 import React from 'react';
 import AcceptRematchDialog from 'features/mode/play/dialog/AcceptRematchDialog';
 
-const FinishedDialogsPlayMode = () => {
+const FinishedDialogs = () => {
   return (
     <div>
       <AcceptRematchDialog />
@@ -9,4 +9,4 @@ const FinishedDialogsPlayMode = () => {
   );
 }
 
-export default FinishedDialogsPlayMode;
+export default FinishedDialogs;

@@ -1,12 +1,12 @@
 import React from 'react';
 import HeuristicsDialog from 'features/nav/dialog/HeuristicsDialog';
 
-const PgnDialogs = () => {
+const SanButtonsDialogs = () => {
   return (
-    <div>
+    <>
       <HeuristicsDialog />
-    </div>
+    </>
   );
 }
 
-export default PgnDialogs;
+export default SanButtonsDialogs;

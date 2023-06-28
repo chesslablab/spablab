@@ -2,7 +2,7 @@ import React from 'react';
 import AcceptDrawDialog from 'features/mode/play/dialog/AcceptDrawDialog';
 import AcceptTakebackDialog from 'features/mode/play/dialog/AcceptTakebackDialog';
 
-const StartedDialogsPlayMode = () => {
+const StartedDialogs = () => {
   return (
     <div>
       <AcceptDrawDialog />
@@ -11,4 +11,4 @@ const StartedDialogsPlayMode = () => {
   );
 }
 
-export default StartedDialogsPlayMode;
+export default StartedDialogs;

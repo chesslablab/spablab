@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import Ws from 'features/ws/Ws';
 
-const StartedButtonsSanMode = () => {
+const StartedButtons = () => {
   const state = useSelector(state => state);
 
-  if (state.sanMode.active) {
+  if (state.fenMode.active) {
     if (state.board.movetext) {
       return (
         <ButtonGroup
@@ -17,7 +17,7 @@ const StartedButtonsSanMode = () => {
           fullWidth={true}
         >
           <Button
-            id="StartedButtonsSanMode-Button-undoMove"
+            id="StartedButtons-Button-undoMove"
             disabled={state.panel.history.back !== 0}
             onClick={() => Ws.undo()}
           >
@@ -31,4 +31,4 @@ const StartedButtonsSanMode = () => {
   return null;
 }
 
-export default StartedButtonsSanMode;
+export default StartedButtons;
