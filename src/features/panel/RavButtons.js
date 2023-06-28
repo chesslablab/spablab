@@ -1,17 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import { useSelector } from 'react-redux';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
 import { getActiveMode } from 'app/store';
-import Movetext from 'common/Movetext';
-import * as progressDialog from 'features/progressDialogSlice';
-import Ws from 'features/ws/Ws';
 
 const RavButtons = ({props}) => {
   const state = useSelector(state => state);
-  const dispatch = useDispatch();
 
   const handleDownloadImage = async () => {
     let body = {
@@ -49,20 +44,6 @@ const RavButtons = ({props}) => {
           onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.panel.history.back])}
         >
           <WidgetsIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton
-          id="RavButtons-heuristics"
-          disabled={disabled}
-          color="primary"
-          size="medium"
-          title="Heuristics"
-          aria-label="heuristics"
-          onClick={() => {
-            dispatch(progressDialog.open());
-            Ws.heuristics(Movetext.substring(state.board.movetext, state.panel.history.back));
-          }}
-        >
-          <BarChartIcon fontSize="inherit" />
         </IconButton>
         <IconButton
           id="RavButtons-downloadImage"
