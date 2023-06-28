@@ -31,25 +31,25 @@ export default class Ws {
       } else if (mode === modeConst.FEN) {
         if (variant === variantConst.CLASSICAL) {
           mssg += ` "${settings.fen}"`;
-        } else if (variantConst.CAPABLANCA) {
+        } else if (variant === variantConst.CAPABLANCA) {
           mssg += ` "${settings.fen}"`;
-        } else if (variantConst.CHESS_960) {
+        } else if (variant === variantConst.CHESS_960) {
           mssg += ` "${settings.fen}" ${settings.startPos}`;
         }
       } else if (mode === modeConst.SAN) {
         if (variant === variantConst.CLASSICAL) {
           mssg += ` "${settings.movetext}"`;
-        } else if (variantConst.CAPABLANCA) {
+        } else if (variant === variantConst.CAPABLANCA) {
           mssg += ` "${settings.movetext}"`;
-        } else if (variantConst.CHESS_960) {
+        } else if (variant === variantConst.CHESS_960) {
           mssg += ` "${settings.movetext}" ${settings.startPos}`;
         }
       } else if (mode === modeConst.RAV) {
         if (variant === variantConst.CLASSICAL) {
           mssg += ` "${settings.movetext}"`;
-        } else if (variantConst.CAPABLANCA) {
+        } else if (variant === variantConst.CAPABLANCA) {
           mssg += ` "${settings.movetext}"`;
-        } else if (variantConst.CHESS_960) {
+        } else if (variant === variantConst.CHESS_960) {
           mssg += ` "${settings.movetext}" ${settings.startPos}`;
         }
       } else if (mode === modeConst.PLAY) {
