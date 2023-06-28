@@ -2,17 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import MoveDownIcon from '@mui/icons-material/MoveDown';
-import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
 import { getActiveMode } from 'app/store';
 import Movetext from 'common/Movetext';
-import * as variantConst from 'features/mode/variantConst';
 import * as progressDialog from 'features/progressDialogSlice';
 import Ws from 'features/ws/Ws';
 
-const SanButtons = ({props}) => {
+const RavButtons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -37,55 +34,13 @@ const SanButtons = ({props}) => {
       });
   }
 
-  const handleDownloadMp4 = async () => {
-    dispatch(progressDialog.open());
-    let body = {
-      variant: getActiveMode().variant,
-      fen: state.board.fen[0],
-      movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
-      flip: state.board.flip
-    };
-    if (getActiveMode().variant === variantConst.CHESS_960) {
-      body.startPos = state.fenMode.startPos;
-    }
-    if (state.fenMode.active) {
-      body.fen = state.fenMode.fen;
-    }
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/mp4`, {
-      method: 'POST',
-      body: JSON.stringify(body)
-    })
-    .then(res => res.blob())
-    .then(blob => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = "chessgame.mp4";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    })
-    .finally(() => dispatch(progressDialog.close()));
-  }
-
   const disabled = !state.board.movetext;
 
-  if (!state.ravMode.active) {
+  if (state.ravMode.active) {
     return (
       <Stack direction="row" spacing={1}>
         <IconButton
-          id="SanButtons-copyMovetext"
-          disabled={disabled}
-          color="primary"
-          size="medium"
-          title="Copy movetext"
-          aria-label="copy"
-          onClick={() => navigator.clipboard.writeText(Movetext.substring(state.board.movetext, state.panel.history.back))}
-        >
-          <MoveDownIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton
-          id="SanButtons-copyFenString"
+          id="RavButtons-copyFenString"
           disabled={disabled}
           color="primary"
           size="medium"
@@ -96,7 +51,7 @@ const SanButtons = ({props}) => {
           <WidgetsIcon fontSize="inherit" />
         </IconButton>
         <IconButton
-          id="SanButtons-heuristics"
+          id="RavButtons-heuristics"
           disabled={disabled}
           color="primary"
           size="medium"
@@ -110,7 +65,7 @@ const SanButtons = ({props}) => {
           <BarChartIcon fontSize="inherit" />
         </IconButton>
         <IconButton
-          id="SanButtons-downloadImage"
+          id="RavButtons-downloadImage"
           disabled={disabled}
           color="primary"
           size="medium"
@@ -120,20 +75,9 @@ const SanButtons = ({props}) => {
         >
           <InsertPhotoIcon fontSize="inherit" />
         </IconButton>
-        <IconButton
-          id="SanButtons-downloadVideo"
-          disabled={disabled}
-          color="primary"
-          size="medium"
-          title="Download Video"
-          aria-label="flip"
-          onClick={() => handleDownloadMp4()}
-        >
-          <VideoCameraBackIcon fontSize="inherit" />
-        </IconButton>
       </Stack>
     );
   }
 }
 
-export default SanButtons;
+export default RavButtons;

@@ -16,6 +16,7 @@ import OpeningTable from 'features/panel/OpeningTable';
 import SanTable from 'features/panel/SanTable';
 import RavTable from 'features/panel/RavTable';
 import SanButtons from 'features/panel/SanButtons';
+import RavButtons from 'features/panel/RavButtons';
 import PgnDialogs from 'features/panel/PgnDialogs';
 
 const styles = {
@@ -45,12 +46,17 @@ const Panel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
+            { /* SAN mode */ }
             <SanTable />
+            { /* RAV mode */ }
             <RavTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
+          { /* SAN mode */ }
           <SanButtons props={props} />
+          { /* RAV mode */ }
+          <RavButtons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12} sx={styles.timer}>
