@@ -7,7 +7,7 @@ const initialState = {
   fen: '',
   startPos: '',
   dialogs: {
-    loadPgn: {
+    loadSan: {
       open: false,
     },
     searchEco: {
@@ -35,8 +35,8 @@ const initialState = {
   },
 };
 
-const pgnModeSlice = createSlice({
-  name: 'pgnMode',
+const sanModeSlice = createSlice({
+  name: 'sanMode',
   initialState,
   reducers: {
     reset: () => initialState,
@@ -48,8 +48,8 @@ const pgnModeSlice = createSlice({
       state.breakdown =  action.payload.breakdown;
       state.filtered =  action.payload.filtered;
     },
-    loadPgnDialog(state, action) {
-      state.dialogs.loadPgn = action.payload;
+    loadSanDialog(state, action) {
+      state.dialogs.loadSan = action.payload;
     },
     searchEcoDialog(state, action) {
       state.dialogs.searchEco = action.payload;
@@ -75,12 +75,12 @@ const pgnModeSlice = createSlice({
 export const {
   reset,
   set,
-  loadPgnDialog,
+  loadSanDialog,
   searchEcoDialog,
   searchGamesDialog,
   searchMovetextDialog,
   searchNameDialog,
   panelTable,
   openingTable
-} = pgnModeSlice.actions;
-export default pgnModeSlice.reducer;
+} = sanModeSlice.actions;
+export default sanModeSlice.reducer;

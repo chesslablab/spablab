@@ -11,31 +11,31 @@ import {
 } from '@mui/material';
 import Opening from 'common/Opening.js';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import * as pgnMode from 'features/mode/pgnModeSlice';
-import OpeningSearchResultTable from 'features/mode/pgn/table/OpeningSearchResultTable.js';
+import * as sanMode from 'features/mode/sanModeSlice';
+import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
 
-const SearchNameDialog = ({ props }) => {
+const SearchMovetextDialog = ({ props }) => {
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();
 
   const handleSearch = (event) => {
     event.preventDefault();
-    const openings = Opening.byName(event.target.elements.name.value);
+    const openings = Opening.byMovetext(event.target.elements.movetext.value);
     setOpenings(openings);
     if (openings.length === 0) {
-      dispatch(pgnMode.searchNameDialog({ open: false }));
+      dispatch(sanMode.searchMovetextDialog({ open: false }));
       dispatch(infoAlert.show({ mssg: 'No results were found. Please try again.' }));
     }
   }
 
   return (
-    <Dialog open={state.pgnMode.dialogs.searchName.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.sanMode.dialogs.searchMovetext.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
-        Name
+        PGN Movetext
         <IconButton onClick={() => {
           setOpenings([]);
-          dispatch(pgnMode.searchNameDialog({ open: false }));
+          dispatch(sanMode.searchMovetextDialog({ open: false }));
         }}>
           <CloseIcon />
         </IconButton>
@@ -43,16 +43,14 @@ const SearchNameDialog = ({ props }) => {
       <DialogContent>
         <form onSubmit={handleSearch}>
           <TextField
-            id="SearchNameDialog-TextField-name"
             fullWidth
             required
-            name="name"
-            label="Name"
+            name="movetext"
+            label="Movetext"
             variant="filled"
             margin="normal"
           />
           <Button
-            id="SearchNameDialog-Button-search"
             fullWidth
             type="submit"
             variant="outlined"
@@ -67,4 +65,4 @@ const SearchNameDialog = ({ props }) => {
   );
 }
 
-export default SearchNameDialog;
+export default SearchMovetextDialog;

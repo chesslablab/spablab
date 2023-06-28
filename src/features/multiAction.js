@@ -5,7 +5,7 @@ import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as gmMode from 'features/mode/gmModeSlice';
-import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
@@ -17,14 +17,14 @@ export default class multiAction {
     dispatch(heuristicsBar.reset());
     dispatch(panel.openingTable({ open: false }));
     dispatch(panel.goTo({ back: 0 }));
-    dispatch(pgnMode.panelTable({ open: false }));
+    dispatch(sanMode.panelTable({ open: false }));
     dispatch(infoAlert.close());
     dispatch(warningAlert.close());
     dispatch(board.reset());
     // reset modes
     dispatch(fenMode.reset());
     dispatch(gmMode.reset());
-    dispatch(pgnMode.reset());
+    dispatch(sanMode.reset());
     dispatch(ravMode.reset());
     dispatch(playMode.reset());
     dispatch(stockfishMode.reset());

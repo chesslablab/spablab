@@ -10,8 +10,8 @@ import {
   TextField
 } from '@mui/material';
 import Opening from 'common/Opening.js';
-import * as pgnMode from 'features/mode/pgnModeSlice';
-import OpeningSearchResultTable from 'features/mode/pgn/table/OpeningSearchResultTable.js';
+import * as sanMode from 'features/mode/sanModeSlice';
+import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
 
 const SearchEcoDialog = ({ props }) => {
   const state = useSelector(state => state);
@@ -25,12 +25,12 @@ const SearchEcoDialog = ({ props }) => {
   }
 
   return (
-    <Dialog open={state.pgnMode.dialogs.searchEco.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.sanMode.dialogs.searchEco.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         ECO Code
         <IconButton onClick={() => {
           setOpenings([]);
-          dispatch(pgnMode.searchEcoDialog({ open: false }));
+          dispatch(sanMode.searchEcoDialog({ open: false }));
         }}>
           <CloseIcon />
         </IconButton>

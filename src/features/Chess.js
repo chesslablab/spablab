@@ -7,12 +7,12 @@ import InfoAlert from 'features/alert/InfoAlert.js';
 import WarningAlert from 'features/alert/WarningAlert.js';
 import VariantBoard from 'features/board/VariantBoard';
 import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
-import LoadPgnDialog from 'features/mode/pgn/dialog/LoadPgnDialog';
+import LoadSanDialog from 'features/mode/san/dialog/LoadSanDialog';
 import LoadRavDialog from 'features/mode/rav/dialog/LoadRavDialog';
-import SearchEcoDialog from 'features/mode/pgn/dialog/SearchEcoDialog';
-import SearchGamesDialog from 'features/mode/pgn/dialog/SearchGamesDialog';
-import SearchMovetextDialog from 'features/mode/pgn/dialog/SearchMovetextDialog';
-import SearchNameDialog from 'features/mode/pgn/dialog/SearchNameDialog';
+import SearchEcoDialog from 'features/mode/san/dialog/SearchEcoDialog';
+import SearchGamesDialog from 'features/mode/san/dialog/SearchGamesDialog';
+import SearchMovetextDialog from 'features/mode/san/dialog/SearchMovetextDialog';
+import SearchNameDialog from 'features/mode/san/dialog/SearchNameDialog';
 import CreateInviteCodeDialog from 'features/mode/play/dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from 'features/mode/play/dialog/EnterInviteCodeDialog';
 import PlayOnlineDialog from 'features/mode/play/dialog/PlayOnlineDialog';
@@ -52,7 +52,7 @@ const Chess = ({ props }) => {
           </Grid>
         </Grid>
         <LoadFenDialog />
-        <LoadPgnDialog />
+        <LoadSanDialog />
         <LoadRavDialog />
         <OpeningsStatsDialog />
         <PlayersStatsDialog props={props} />

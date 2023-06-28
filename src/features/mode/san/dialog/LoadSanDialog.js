@@ -10,14 +10,14 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as sanMode from 'features/mode/sanModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
-const LoadPgnDialog = () => {
+const LoadSanDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -39,10 +39,10 @@ const LoadPgnDialog = () => {
   };
 
   return (
-    <Dialog open={state.pgnMode.dialogs.loadPgn.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.sanMode.dialogs.loadSan.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         PGN Movetext
-        <IconButton onClick={() => dispatch(pgnMode.loadPgnDialog({ open: false }))}>
+        <IconButton onClick={() => dispatch(sanMode.loadSanDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
@@ -82,7 +82,7 @@ const LoadPgnDialog = () => {
               : null
           }
           <TextField
-            id="LoadPgnDialog-TextField-movetext"
+            id="LoadSanDialog-TextField-movetext"
             fullWidth
             required
             multiline
@@ -96,7 +96,7 @@ const LoadPgnDialog = () => {
             }}
           />
           <Button
-            id="LoadPgnDialog-Button-load"
+            id="LoadSanDialog-Button-load"
             fullWidth
             type="submit"
             variant="outlined"
@@ -110,4 +110,4 @@ const LoadPgnDialog = () => {
   );
 };
 
-export default LoadPgnDialog;
+export default LoadSanDialog;

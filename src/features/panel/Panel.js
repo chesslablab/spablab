@@ -3,8 +3,8 @@ import { Grid } from '@mui/material';
 import GameTableGmMode from 'features/mode/gm/table/GameTableGmMode';
 import StartedButtonsGmMode from 'features/mode/gm/StartedButtonsGmMode';
 import StartedButtonsFenMode from 'features/mode/fen/StartedButtonsFenMode';
-import StartedButtonsPgnMode from 'features/mode/pgn/StartedButtonsPgnMode';
-import GameTablePgnMode from 'features/mode/pgn/table/GameTablePgnMode';
+import StartedButtonsSanMode from 'features/mode/san/StartedButtonsSanMode';
+import GameTablePgnMode from 'features/mode/san/table/GameTablePgnMode';
 import FinishedButtonsPlayMode from 'features/mode/play/FinishedButtonsPlayMode';
 import FinishedDialogsPlayMode from 'features/mode/play/FinishedDialogsPlayMode';
 import StartedButtonsPlayMode from 'features/mode/play/StartedButtonsPlayMode';
@@ -64,7 +64,7 @@ const Panel = ({ props }) => {
         <StartedButtonsFenMode />
         { /* PGN mode */ }
         <GameTablePgnMode />
-        <StartedButtonsPgnMode />
+        <StartedButtonsSanMode />
         { /* Play mode */ }
         <StartedButtonsPlayMode />
         <FinishedButtonsPlayMode />

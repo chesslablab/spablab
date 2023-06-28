@@ -8,7 +8,7 @@ import * as board from 'features/board/boardSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as gmMode from 'features/mode/gmModeSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
@@ -61,7 +61,7 @@ export default class WsEvent {
   static onStartPgn = (data) => dispatch => {
     if (data['/start'].movetext) {
       dispatch(board.startPgn(data['/start']));
-      dispatch(pgnMode.set(data['/start']));
+      dispatch(sanMode.set(data['/start']));
       multiAction.openingByMovetext(dispatch, data['/start']);
     } else {
       dispatch(warningAlert.show({
@@ -191,7 +191,7 @@ export default class WsEvent {
                   movetext: game.movetext,
                 },
               }));
-              dispatch(pgnMode.panelTable({
+              dispatch(sanMode.panelTable({
                 open: true,
                 game: {
                   Event: game.Event,
@@ -207,7 +207,7 @@ export default class WsEvent {
               }));
             });
           } else if (res.status === 204) {
-            dispatch(pgnMode.panelTable({ open: false }));
+            dispatch(sanMode.panelTable({ open: false }));
             dispatch(infoAlert.show({
               mssg: 'This game was not found in the database, please try again with a different one.'
             }));

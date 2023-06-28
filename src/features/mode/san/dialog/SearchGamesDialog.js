@@ -15,8 +15,8 @@ import {
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
-import * as pgnMode from 'features/mode/pgnModeSlice';
-import DatabaseResultTable from 'features/mode/pgn/table/DatabaseResultTable.js';
+import * as sanMode from 'features/mode/sanModeSlice';
+import DatabaseResultTable from 'features/mode/san/table/DatabaseResultTable.js';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const filterOptions = createFilterOptions({
@@ -50,12 +50,12 @@ const SearchGamesDialog = ({props}) => {
           setResult(data);
         });
       } else if (res.status === 204) {
-        dispatch(pgnMode.searchGamesDialog({ open: false }));
+        dispatch(sanMode.searchGamesDialog({ open: false }));
         dispatch(infoAlert.show({ mssg: 'No results were found, please try again.' }));
       }
     })
     .catch(error => {
-      dispatch(pgnMode.searchGamesDialog({ open: false }));
+      dispatch(sanMode.searchGamesDialog({ open: false }));
       dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
     })
     .finally(() => {
@@ -64,10 +64,10 @@ const SearchGamesDialog = ({props}) => {
   };
 
   return (
-    <Dialog open={state.pgnMode.dialogs.searchGames.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.sanMode.dialogs.searchGames.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Search Games
-        <IconButton onClick={() => dispatch(pgnMode.searchGamesDialog({ open: false }))}>
+        <IconButton onClick={() => dispatch(sanMode.searchGamesDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
@@ -85,8 +85,8 @@ const SearchGamesDialog = ({props}) => {
                 <Autocomplete
                   id="Event"
                   options={
-                    state.pgnMode.dialogs.searchGames.autocomplete?.events
-                      ? state.pgnMode.dialogs.searchGames.autocomplete.events.map((option) => option.Event)
+                    state.sanMode.dialogs.searchGames.autocomplete?.events
+                      ? state.sanMode.dialogs.searchGames.autocomplete.events.map((option) => option.Event)
                       : []
                   }
                   filterOptions={filterOptions}
@@ -115,8 +115,8 @@ const SearchGamesDialog = ({props}) => {
               <Autocomplete
                 id="White"
                 options={
-                  state.pgnMode.dialogs.searchGames.autocomplete?.players
-                    ? state.pgnMode.dialogs.searchGames.autocomplete.players.map((option) => option.name)
+                  state.sanMode.dialogs.searchGames.autocomplete?.players
+                    ? state.sanMode.dialogs.searchGames.autocomplete.players.map((option) => option.name)
                     : []
                 }
                 filterOptions={filterOptions}
@@ -127,8 +127,8 @@ const SearchGamesDialog = ({props}) => {
               <Autocomplete
                 id="Black"
                 options={
-                  state.pgnMode.dialogs.searchGames.autocomplete?.players
-                    ? state.pgnMode.dialogs.searchGames.autocomplete.players.map((option) => option.name)
+                  state.sanMode.dialogs.searchGames.autocomplete?.players
+                    ? state.sanMode.dialogs.searchGames.autocomplete.players.map((option) => option.name)
                     : []
                 }
                 filterOptions={filterOptions}

@@ -10,7 +10,7 @@ import {
   TableRow
 } from '@mui/material';
 import * as modeConst from 'features/mode/modeConst';
-import * as pgnMode from 'features/mode/pgnModeSlice';
+import * as sanMode from 'features/mode/sanModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
@@ -56,7 +56,7 @@ const DatabaseResultTable = ({props}) => {
   const handleLoad = (item) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setDatabase());
-    dispatch(pgnMode.panelTable({
+    dispatch(sanMode.panelTable({
       open: true,
       game: {
         Event: item.Event,
