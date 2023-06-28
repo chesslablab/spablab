@@ -199,7 +199,7 @@
       "id": "4cc33173-49f6-44d2-91aa-afa795e4f8f5",
       "comment": "",
       "command": "click",
-      "target": "id=PgnButtons-copyPgnMovetext",
+      "target": "id=SanButtons-copyMovetext",
       "targets": [
         ["css=.MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
       ],
@@ -221,7 +221,7 @@
       "id": "eccecf7b-16c8-418c-8365-a11412796a92",
       "comment": "",
       "command": "click",
-      "target": "id=Nav-analysisBoard-MenuItem-pgnMovetext",
+      "target": "id=Nav-analysisBoard-MenuItem-sanMovetext",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(5)", "css:finder"],
         ["xpath=//li[4]", "xpath:position"],
@@ -232,7 +232,7 @@
       "id": "daf255d0-c440-4421-91ad-d243cf112748",
       "comment": "",
       "command": "type",
-      "target": "id=LoadPgnDialog-TextField-movetext",
+      "target": "id=LoadSanDialog-TextField-movetext",
       "targets": [
         ["id=:rq:", "id"],
         ["name=pgn", "name"],
@@ -245,7 +245,7 @@
       "id": "9f5e4b92-a404-4dbd-b9aa-d40c81e1fa05",
       "comment": "",
       "command": "click",
-      "target": "id=LoadPgnDialog-Button-load",
+      "target": "id=LoadSanDialog-Button-load",
       "targets": [
         ["css=.MuiButton-outlinedSizeMedium", "css:finder"],
         ["xpath=//button[@type='submit']", "xpath:attributes"],
@@ -625,7 +625,7 @@
       "id": "a44a9eb8-3aa6-41db-bb84-d2d6b3768847",
       "comment": "",
       "command": "click",
-      "target": "id=StartedButtonsFenMode-Button-undoMove",
+      "target": "id=StartedButtons-Button-undoMove",
       "targets": [
         ["css=.MuiButton-sizeSmall", "css:finder"],
         ["xpath=(//button[@type='button'])[16]", "xpath:attributes"],
@@ -638,7 +638,7 @@
       "id": "2e92d241-f6b5-43fa-a265-477b3d156dca",
       "comment": "",
       "command": "click",
-      "target": "id=StartedButtonsFenMode-Button-undoMove",
+      "target": "id=StartedButtons-Button-undoMove",
       "targets": [
         ["css=.MuiButton-sizeSmall", "css:finder"],
         ["xpath=(//button[@type='button'])[16]", "xpath:attributes"],
