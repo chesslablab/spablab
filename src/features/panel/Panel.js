@@ -13,7 +13,8 @@ import StartedButtonsStockfishMode from 'features/mode/stockfish/StartedButtonsS
 import Timer from 'features/mode/play/timer/Timer';
 import History from 'features/panel/History';
 import OpeningTable from 'features/panel/OpeningTable';
-import PgnTable from 'features/panel/PgnTable';
+import RavTable from 'features/panel/RavTable';
+import SanTable from 'features/panel/SanTable';
 import PgnButtons from 'features/panel/PgnButtons';
 import PgnDialogs from 'features/panel/PgnDialogs';
 
@@ -44,7 +45,7 @@ const Panel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <PgnTable />
+            <RavTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
