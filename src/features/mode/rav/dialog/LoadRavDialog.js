@@ -32,7 +32,7 @@ const LoadRavDialog = () => {
     multiAction.initGui(dispatch);
     dispatch(nav.setAnalysis());
     let settings = {
-      movetext: event.target.elements.pgn.value,
+      movetext: event.target.elements.rav.value,
       ...(variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
     };
     Ws.start(event.target.elements.variant.value, modeConst.RAV, settings);
@@ -87,7 +87,7 @@ const LoadRavDialog = () => {
             required
             multiline
             rows={4}
-            name="pgn"
+            name="rav"
             label="Movetext"
             variant="filled"
             margin="normal"

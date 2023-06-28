@@ -73,11 +73,11 @@ const PgnButtons = ({props}) => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton
-        id="PgnButtons-copyPgnMovetext"
+        id="PgnButtons-copyMovetext"
         disabled={disabled}
         color="primary"
         size="medium"
-        title="Copy PGN movetext"
+        title="Copy movetext"
         aria-label="copy"
         onClick={() => navigator.clipboard.writeText(Movetext.substring(state.board.movetext, state.panel.history.back))}
       >

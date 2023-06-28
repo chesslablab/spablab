@@ -32,7 +32,7 @@ const SearchMovetextDialog = ({ props }) => {
   return (
     <Dialog open={state.sanMode.dialogs.searchMovetext.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
-        PGN Movetext
+        SAN Movetext
         <IconButton onClick={() => {
           setOpenings([]);
           dispatch(sanMode.searchMovetextDialog({ open: false }));

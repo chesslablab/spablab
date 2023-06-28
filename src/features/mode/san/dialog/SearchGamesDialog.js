@@ -164,7 +164,7 @@ const SearchGamesDialog = ({props}) => {
                 multiline
                 rows={1}
                 name="movetext"
-                label="PGN Movetext"
+                label="SAN Movetext"
                 variant="filled"
                 margin="normal"
                 inputProps={{

@@ -32,16 +32,16 @@ const LoadSanDialog = () => {
     multiAction.initGui(dispatch);
     dispatch(nav.setAnalysis());
     let settings = {
-      movetext: event.target.elements.pgn.value,
+      movetext: event.target.elements.san.value,
       ...(variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
     };
-    Ws.start(event.target.elements.variant.value, modeConst.PGN, settings);
+    Ws.start(event.target.elements.variant.value, modeConst.SAN, settings);
   };
 
   return (
     <Dialog open={state.sanMode.dialogs.loadSan.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        PGN Movetext
+        SAN Movetext
         <IconButton onClick={() => dispatch(sanMode.loadSanDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
@@ -87,7 +87,7 @@ const LoadSanDialog = () => {
             required
             multiline
             rows={4}
-            name="pgn"
+            name="san"
             label="Movetext"
             variant="filled"
             margin="normal"

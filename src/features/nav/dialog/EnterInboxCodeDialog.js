@@ -127,7 +127,7 @@ const EnterInboxCodeDialog = () => {
                             size="small"
                             onClick={() => navigator.clipboard.writeText(state.nav.dialogs.enterInboxCode.inbox.movetext)}
                           >
-                            Copy PGN Movetext
+                            Copy SAN Movetext
                           </Button>
                           <TextField
                             id="EnterInboxCodeDialog-TextField-fen"

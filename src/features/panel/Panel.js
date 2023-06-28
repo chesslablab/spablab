@@ -22,7 +22,7 @@ const styles = {
   gameBox: {
     background: '#f6f6f6',
   },
-  pgn: {
+  moves: {
     height: 225,
   },
   buttons: {
@@ -40,7 +40,7 @@ const Panel = ({ props }) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.gameBox}>
-        <Grid item xs={12} sx={styles.pgn}>
+        <Grid item xs={12} sx={styles.moves}>
           <Grid item xs={12} sx={styles.buttons}>
             <History />
           </Grid>
@@ -62,7 +62,7 @@ const Panel = ({ props }) => {
         <StartedButtonsGmMode />
         { /* FEN mode */ }
         <StartedButtonsFenMode />
-        { /* PGN mode */ }
+        { /* SAN mode */ }
         <GameTablePgnMode />
         <StartedButtonsSanMode />
         { /* Play mode */ }

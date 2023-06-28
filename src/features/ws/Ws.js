@@ -36,7 +36,7 @@ export default class Ws {
         } else if (variantConst.CHESS_960) {
           mssg += ` "${settings.fen}" ${settings.startPos}`;
         }
-      } else if (mode === modeConst.PGN) {
+      } else if (mode === modeConst.SAN) {
         if (variant === variantConst.CLASSICAL) {
           mssg += ` "${settings.movetext}"`;
         } else if (variantConst.CAPABLANCA) {

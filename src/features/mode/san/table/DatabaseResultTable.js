@@ -70,7 +70,7 @@ const DatabaseResultTable = ({props}) => {
         ECO: item.ECO
       }
     }));
-    Ws.start(variantConst.CLASSICAL, modeConst.PGN, { movetext: item.movetext });
+    Ws.start(variantConst.CLASSICAL, modeConst.SAN, { movetext: item.movetext });
   };
 
   return (

@@ -173,7 +173,7 @@ const Nav = ({props}) => {
         </MenuItem>
         <Divider />
         <MenuItem
-          id="Nav-analysisBoard-MenuItem-pgnMovetext"
+          id="Nav-analysisBoard-MenuItem-sanMovetext"
           onClick={() => {
             dispatch(sanMode.loadSanDialog({ open: true }));
             handleCloseAnalysis();
@@ -278,7 +278,7 @@ const Nav = ({props}) => {
           <BookIcon size="small" />&nbsp;ECO Code
         </MenuItem>
         <MenuItem
-          id="Nav-openingSearch-MenuItem-pgnMovetext"
+          id="Nav-openingSearch-MenuItem-sanMovetext"
           onClick={() => {
             dispatch(sanMode.searchMovetextDialog({ open: true }));
             handleCloseOpeningSearch();

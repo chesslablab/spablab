@@ -20,7 +20,7 @@ const OpeningSearchResultTable = ({props}) => {
   const handleLoad = (movetext) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setOpeningSearch());
-    Ws.start(variantConst.CLASSICAL, modeConst.PGN, { movetext: movetext });
+    Ws.start(variantConst.CLASSICAL, modeConst.SAN, { movetext: movetext });
   };
 
   return (

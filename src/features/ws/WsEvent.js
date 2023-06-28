@@ -26,8 +26,8 @@ export default class WsEvent {
       dispatch(WsEvent.onStartFen(data));
     } else if (data['/start'].mode === modeConst.GM) {
       dispatch(WsEvent.onStartGm(data));
-    } else if (data['/start'].mode === modeConst.PGN) {
-      dispatch(WsEvent.onStartPgn(data));
+    } else if (data['/start'].mode === modeConst.SAN) {
+      dispatch(WsEvent.onStartSan(data));
     } else if (data['/start'].mode === modeConst.RAV) {
       dispatch(WsEvent.onStartRav(data));
     } else if (data['/start'].mode === modeConst.PLAY) {
@@ -58,14 +58,14 @@ export default class WsEvent {
     }));
   }
 
-  static onStartPgn = (data) => dispatch => {
+  static onStartSan = (data) => dispatch => {
     if (data['/start'].movetext) {
       dispatch(board.startPgn(data['/start']));
       dispatch(sanMode.set(data['/start']));
       multiAction.openingByMovetext(dispatch, data['/start']);
     } else {
       dispatch(warningAlert.show({
-        mssg: 'Invalid PGN movetext, please try again with a different one.'
+        mssg: 'Invalid SAN movetext, please try again with a different one.'
       }));
     }
   }
@@ -76,7 +76,7 @@ export default class WsEvent {
       dispatch(ravMode.set(data['/start']));
     } else {
       dispatch(warningAlert.show({
-        mssg: 'Invalid PGN movetext, please try again with a different one.'
+        mssg: 'Invalid RAV movetext, please try again with a different one.'
       }));
     }
   }

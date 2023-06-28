@@ -21,7 +21,7 @@ const StartedButtonsGmMode = () => {
           <Button
             id="StartedButtonsGmMode-Button-undoMove"
             disabled={state.panel.history.back !== 0}
-            onClick={() => Ws.start(variantConst.CLASSICAL, modeConst.PGN, {
+            onClick={() => Ws.start(variantConst.CLASSICAL, modeConst.SAN, {
               movetext: state.gmMode.gm.movetext
             })}
           >
