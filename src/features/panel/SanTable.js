@@ -25,7 +25,7 @@ const styles = {
   }
 };
 
-const PgnTable = ({props}) => {
+const SanTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -93,4 +93,4 @@ const PgnTable = ({props}) => {
   }
 }
 
-export default PgnTable;
+export default SanTable;
