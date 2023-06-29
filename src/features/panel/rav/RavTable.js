@@ -7,7 +7,7 @@ import Ws from 'features/ws/Ws';
 
 const styles = {
   table: {
-    maxHeight: 190,
+    maxHeight: 362,
     display: 'flex',
     flexDirection: 'column-reverse'
   },

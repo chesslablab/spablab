@@ -191,7 +191,7 @@ export default class WsEvent {
                   movetext: game.movetext,
                 },
               }));
-              dispatch(sanMode.panelTable({
+              dispatch(gmMode.panelTable({
                 open: true,
                 game: {
                   Event: game.Event,
