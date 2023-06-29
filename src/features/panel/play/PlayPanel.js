@@ -9,6 +9,7 @@ import StartedButtons from 'features/panel/play/StartedButtons';
 import StartedDialogs from 'features/panel/play/StartedDialogs';
 import FinishedButtons from 'features/panel/play/FinishedButtons';
 import FinishedDialogs from 'features/panel/play/FinishedDialogs';
+import Timer from 'features/panel/play/timer/Timer';
 
 const styles = {
   gameBox: {
@@ -43,6 +44,9 @@ const PlayPanel = ({ props }) => {
         <Grid item xs={12} sx={styles.buttons}>
           <SanButtons props={props} />
         </Grid>
+      </Grid>
+      <Grid item xs={12} sx={styles.timer}>
+        <Timer />
       </Grid>
       <Grid item xs={12}>
         <StartedButtons />
