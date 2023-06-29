@@ -12,7 +12,7 @@ const StartedButtons = () => {
 
   const disabled = state.board.isMate ||
     state.board.isStalemate ||
-    state.playMode.draw ||
+    state.playMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
     state.playMode.takeback === Wording.verb.PROPOSE.toLowerCase() ||
     state.playMode.resign === Wording.verb.ACCEPT.toLowerCase() ||
     state.playMode.leave ||
