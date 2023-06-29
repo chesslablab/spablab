@@ -14,7 +14,7 @@ const StartedButtons = () => {
     state.board.isStalemate ||
     state.playMode.draw ||
     state.playMode.takeback === Wording.verb.PROPOSE.toLowerCase() ||
-    state.playMode.resign ||
+    state.playMode.resign === Wording.verb.ACCEPT.toLowerCase() ||
     state.playMode.leave ||
     state.playMode.timeOut;
 
