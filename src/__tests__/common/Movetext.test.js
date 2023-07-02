@@ -73,6 +73,33 @@ describe('toCommentedRows()', () => {
     ];
     expect(Movetext.toCommentedRows(string)).toEqual(expected);
   });
+  it('is 1.e4 c5 {foo}', () => {
+    const string = '1.e4 c5 {foo}';
+    const expected = [
+      {
+        n: 1,
+        w: 'e4',
+        b: 'c5 foo'
+      }
+    ];
+    expect(Movetext.toCommentedRows(string)).toEqual(expected);
+  });
+  it('is 1.e4 c5 {foo} (2.Nf3 d6)', () => {
+    const string = '1.e4 c5 {foo} (2.Nf3 d6)';
+    const expected = [
+      {
+        n: 1,
+        w: 'e4',
+        b: 'c5 foo'
+      },
+      {
+        n: 2,
+        w: 'Nf3',
+        b: 'd6'
+      }
+    ];
+    expect(Movetext.toCommentedRows(string)).toEqual(expected);
+  });
 });
 
 describe('substring()', () => {
