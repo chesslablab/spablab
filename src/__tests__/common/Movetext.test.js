@@ -56,6 +56,25 @@ describe('toRows()', () => {
   });
 });
 
+describe('toCommentedRows()', () => {
+  it('is 1.e4 c5 {foo} 2.Nf3 d6', () => {
+    const string = '1.e4 c5 {foo} 2.Nf3 d6';
+    const expected = [
+      {
+        n: 1,
+        w: 'e4',
+        b: 'c5 foo'
+      },
+      {
+        n: 2,
+        w: 'Nf3',
+        b: 'd6'
+      }
+    ];
+    expect(Movetext.toCommentedRows(string)).toEqual(expected);
+  });
+});
+
 describe('substring()', () => {
   it('is 1.e4', () => {
     const string = '1.e4 d5 2.exd5 Qxd5 3.Nc3 Qa5 4.d4 e5 5.dxe5 Nc6 6.Nf3 Bb4 7.Bd2';
