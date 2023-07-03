@@ -3,7 +3,7 @@ export default class Movetext {
     let n = 1;
     let rows = [];
     if (string) {
-      const arr = string.split(' ');
+      const arr = string.split(' ').filter(item => item);
       if (/^[1-9][0-9]*\.\.\.(.*)/.exec(string)) {
         const exploded = arr[0].split('...');
         n = parseInt(exploded[0]);
@@ -40,7 +40,10 @@ export default class Movetext {
   }
 
   static toCommentedRows = (string) => {
-    const filtered = string.replace(/(\{.*?\})/g, '').replace(/  +/g, ' ');
+    const filtered = string
+      .replace(/(\{.*?\})/g, '')
+      .replace(/  +/g, ' ')
+      .replace(/[()]/g, '');
     const rows = Movetext.toRows(filtered);
     const comments = string.match(/\{(.*?)\}/g);
     rows.forEach((item, i) => {
