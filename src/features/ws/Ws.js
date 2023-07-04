@@ -1,7 +1,6 @@
 import store, { getActiveMode } from 'app/store';
 import Pgn from 'common/Pgn';
 import * as modeConst from 'features/mode/modeConst';
-import * as variantConst from 'features/mode/variantConst';
 import WsEventListener from 'features/ws/WsEventListener';
 import * as wsSlice from 'features/ws/wsSlice';
 
@@ -29,29 +28,11 @@ export default class Ws {
       if (mode === modeConst.GM) {
         mssg += ` "${settings.color}"`;
       } else if (mode === modeConst.FEN) {
-        if (variant === variantConst.CLASSICAL) {
-          mssg += ` "${settings.fen}"`;
-        } else if (variant === variantConst.CAPABLANCA) {
-          mssg += ` "${settings.fen}"`;
-        } else if (variant === variantConst.CHESS_960) {
-          mssg += ` "${settings.fen}" ${settings.startPos}`;
-        }
+        mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.SAN) {
-        if (variant === variantConst.CLASSICAL) {
-          mssg += ` "${settings.movetext}"`;
-        } else if (variant === variantConst.CAPABLANCA) {
-          mssg += ` "${settings.movetext}"`;
-        } else if (variant === variantConst.CHESS_960) {
-          mssg += ` "${settings.movetext}" ${settings.startPos}`;
-        }
+        mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.RAV) {
-        if (variant === variantConst.CLASSICAL) {
-          mssg += ` "${settings.movetext}"`;
-        } else if (variant === variantConst.CAPABLANCA) {
-          mssg += ` "${settings.movetext}"`;
-        } else if (variant === variantConst.CHESS_960) {
-          mssg += ` "${settings.movetext}" ${settings.startPos}`;
-        }
+        mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.PLAY) {
         mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {

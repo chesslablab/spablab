@@ -21,10 +21,31 @@ const LoadRavDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [variant, setVariant] = useState(variantConst.CLASSICAL);
+  const [fields, setFields] = useState({
+    position: 'start',
+    variant: variantConst.CLASSICAL,
+    fen: ''
+  });
 
   const handleVariantChange = (event: Event) => {
-    setVariant(event.target.value);
+    setFields({
+      ...fields,
+      variant: event.target.value
+    });
+  };
+
+  const handlePositionChange = (event: Event) => {
+    setFields({
+      ...fields,
+      position: event.target.value
+    });
+  };
+
+  const handleFenChange = (event: Event) => {
+    setFields({
+      ...fields,
+      fen: event.target.value
+    });
   };
 
   const handleLoad = (event) => {
@@ -33,9 +54,14 @@ const LoadRavDialog = () => {
     dispatch(nav.setAnalysis());
     let settings = {
       movetext: event.target.elements.rav.value,
-      ...(variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+      ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+      ...(fields.fen && {fen: event.target.elements.fen.value})
     };
-    Ws.start(event.target.elements.variant.value, modeConst.RAV, settings);
+    Ws.start(
+      event.target.elements.variant.value,
+      modeConst.RAV,
+      { settings: JSON.stringify(settings) }
+    );
   };
 
   return (
@@ -55,7 +81,7 @@ const LoadRavDialog = () => {
             name="variant"
             label="Variant"
             variant="filled"
-            value={variant}
+            value={fields.variant}
             margin="normal"
             onChange={handleVariantChange}
             >
@@ -70,7 +96,7 @@ const LoadRavDialog = () => {
             </MenuItem>
           </TextField>
           {
-            variant === variantConst.CHESS_960
+            fields.variant === variantConst.CHESS_960
               ? <TextField
                 fullWidth
                 required
@@ -78,6 +104,38 @@ const LoadRavDialog = () => {
                 label="Start position"
                 variant="filled"
                 helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+              />
+              : null
+          }
+          <TextField
+            select
+            required
+            fullWidth
+            name="position"
+            label="From position"
+            variant="filled"
+            defaultValue="start"
+            value={fields.position}
+            margin="normal"
+            onChange={handlePositionChange}
+            >
+            <MenuItem key={0} value="start">
+              Start
+            </MenuItem>
+            <MenuItem key={1} value="fen">
+              FEN
+            </MenuItem>
+          </TextField>
+          {
+            fields.position === 'fen'
+              ? <TextField
+                  fullWidth
+                  required
+                  name="fen"
+                  label="Enter a FEN position"
+                  variant="filled"
+                  margin="normal"
+                  onChange={handleFenChange}
               />
               : null
           }
