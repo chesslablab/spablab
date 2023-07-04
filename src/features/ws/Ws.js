@@ -45,16 +45,7 @@ export default class Ws {
           mssg += ` "${settings.movetext}" ${settings.startPos}`;
         }
       } else if (mode === modeConst.RAV) {
-        if (settings.fen) {
-          mssg += ` "${settings.fen}"`;
-        }
-        if (variant === variantConst.CLASSICAL) {
-          mssg += ` "${settings.movetext}"`;
-        } else if (variant === variantConst.CAPABLANCA) {
-          mssg += ` "${settings.movetext}"`;
-        } else if (variant === variantConst.CHESS_960) {
-          mssg += ` "${settings.movetext}" ${settings.startPos}`;
-        }
+        mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.PLAY) {
         mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {

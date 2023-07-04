@@ -57,7 +57,11 @@ const LoadRavDialog = () => {
       ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
       ...(fields.fen && {fen: event.target.elements.fen.value})
     };
-    Ws.start(event.target.elements.variant.value, modeConst.RAV, settings);
+    Ws.start(
+      event.target.elements.variant.value,
+      modeConst.RAV,
+      { settings: JSON.stringify(settings) }
+    );
   };
 
   return (
