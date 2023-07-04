@@ -21,10 +21,15 @@ const LoadSanDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [variant, setVariant] = useState(variantConst.CLASSICAL);
+  const [fields, setFields] = useState({
+    variant: variantConst.CLASSICAL
+  });
 
   const handleVariantChange = (event: Event) => {
-    setVariant(event.target.value);
+    setFields({
+      ...fields,
+      variant: event.target.value
+    });
   };
 
   const handleLoad = (event) => {
@@ -33,9 +38,13 @@ const LoadSanDialog = () => {
     dispatch(nav.setAnalysis());
     let settings = {
       movetext: event.target.elements.san.value,
-      ...(variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+      ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
     };
-    Ws.start(event.target.elements.variant.value, modeConst.SAN, settings);
+    Ws.start(
+      event.target.elements.variant.value,
+      modeConst.SAN,
+      { settings: JSON.stringify(settings) }
+    );
   };
 
   return (
@@ -55,7 +64,7 @@ const LoadSanDialog = () => {
             name="variant"
             label="Variant"
             variant="filled"
-            value={variant}
+            value={fields.variant}
             margin="normal"
             onChange={handleVariantChange}
             >
@@ -70,7 +79,7 @@ const LoadSanDialog = () => {
             </MenuItem>
           </TextField>
           {
-            variant === variantConst.CHESS_960
+            fields.variant === variantConst.CHESS_960
               ? <TextField
                 fullWidth
                 required

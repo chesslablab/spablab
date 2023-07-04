@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import Pgn from 'common/Pgn';
@@ -27,7 +26,7 @@ const StartedButtons = () => {
               Ws.undo();
               Ws.undo();
           }}>
-            Undo move
+            Takeback
           </Button>
         </ButtonGroup>
       );
