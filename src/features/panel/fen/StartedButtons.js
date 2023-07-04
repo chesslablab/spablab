@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import Ws from 'features/ws/Ws';
@@ -21,7 +20,7 @@ const StartedButtons = () => {
             disabled={state.panel.history.back !== 0}
             onClick={() => Ws.undo()}
           >
-            Undo move
+            Takeback
           </Button>
         </ButtonGroup>
       );
