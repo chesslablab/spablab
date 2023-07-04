@@ -70,7 +70,14 @@ const DatabaseResultTable = ({props}) => {
         ECO: item.ECO
       }
     }));
-    Ws.start(variantConst.CLASSICAL, modeConst.SAN, { movetext: item.movetext });
+    const settings = {
+      movetext: item.movetext
+    };
+    Ws.start(
+      variantConst.CLASSICAL,
+      modeConst.SAN,
+      { settings: JSON.stringify(settings) }
+    );
   };
 
   return (
