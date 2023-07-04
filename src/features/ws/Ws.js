@@ -45,6 +45,9 @@ export default class Ws {
           mssg += ` "${settings.movetext}" ${settings.startPos}`;
         }
       } else if (mode === modeConst.RAV) {
+        if (settings.fen) {
+          mssg += ` "${settings.fen}"`;
+        }
         if (variant === variantConst.CLASSICAL) {
           mssg += ` "${settings.movetext}"`;
         } else if (variant === variantConst.CAPABLANCA) {
