@@ -55,7 +55,7 @@ const LoadRavDialog = () => {
     let settings = {
       movetext: event.target.elements.rav.value,
       ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
-      ...(fields.fen && {fen: event.target.elements.fen.value})
+      ...(fields?.fen && {fen: event.target.elements.fen?.value})
     };
     Ws.start(
       event.target.elements.variant.value,

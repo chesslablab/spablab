@@ -30,7 +30,7 @@ export default class Movetext {
           rows.push({
             n: n,
             w: arr[i].split('.')[1],
-            b: arr[i+1] ? arr[i+1] : ''
+            ...(arr[i+1] && {b: arr[i+1]})
           });
         }
       });
@@ -53,6 +53,8 @@ export default class Movetext {
         } else if (string.includes(`${item.n}.${item.w} ${item.b} ${comment}`)) {
           item.b += ` ${comment.replace(/[{}]/g, '')}`;
         } else if (string.includes(`${item.n}...${item.b} ${comment}`)) {
+          item.b += ` ${comment.replace(/[{}]/g, '')}`;
+        } else if (string.includes(`${item.b} ${comment}`)) {
           item.b += ` ${comment.replace(/[{}]/g, '')}`;
         }
       });
