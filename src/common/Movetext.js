@@ -29,7 +29,7 @@ export default class Movetext {
           n += 1;
           rows.push({
             n: n,
-            w: arr[i].split('.')[1],
+            w: arr[i].split('.')[1] ?? arr[i],
             ...(arr[i+1] && {b: arr[i+1]})
           });
         }
