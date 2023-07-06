@@ -22,13 +22,29 @@ const LoadSanDialog = () => {
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
-    variant: variantConst.CLASSICAL
+    position: 'start',
+    variant: variantConst.CLASSICAL,
+    fen: ''
   });
 
   const handleVariantChange = (event: Event) => {
     setFields({
       ...fields,
       variant: event.target.value
+    });
+  };
+
+  const handlePositionChange = (event: Event) => {
+    setFields({
+      ...fields,
+      position: event.target.value
+    });
+  };
+
+  const handleFenChange = (event: Event) => {
+    setFields({
+      ...fields,
+      fen: event.target.value
     });
   };
 
@@ -39,6 +55,7 @@ const LoadSanDialog = () => {
     let settings = {
       movetext: event.target.elements.san.value,
       ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+      ...(fields?.fen && {fen: event.target.elements.fen?.value})
     };
     Ws.start(
       event.target.elements.variant.value,
@@ -87,6 +104,38 @@ const LoadSanDialog = () => {
                 label="Start position"
                 variant="filled"
                 helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+              />
+              : null
+          }
+          <TextField
+            select
+            required
+            fullWidth
+            name="position"
+            label="From position"
+            variant="filled"
+            defaultValue="start"
+            value={fields.position}
+            margin="normal"
+            onChange={handlePositionChange}
+            >
+            <MenuItem key={0} value="start">
+              Start
+            </MenuItem>
+            <MenuItem key={1} value="fen">
+              FEN
+            </MenuItem>
+          </TextField>
+          {
+            fields.position === 'fen'
+              ? <TextField
+                  fullWidth
+                  required
+                  name="fen"
+                  label="Enter a FEN position"
+                  variant="filled"
+                  margin="normal"
+                  onChange={handleFenChange}
               />
               : null
           }
