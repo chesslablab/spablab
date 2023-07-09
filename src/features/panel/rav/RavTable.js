@@ -9,20 +9,23 @@ const styles = {
   table: {
     maxHeight: 362,
     display: 'flex',
-    flexDirection: 'column-reverse'
+    flexDirection: 'column-reverse',
   },
   move: {
     "&:hover": {
-      color: "#ffffff",
-      background: "#3d8cd9 !important",
-      cursor: 'pointer'
+      color: '#ffffff',
+      background: '#3d8cd9',
+      cursor: 'pointer',
     },
   },
   currentMove: {
-    color: "#ffffff !important",
-    background: "#1976d2 !important",
-    fontWeight: 'bold !important'
-  }
+    color: '#ffffff',
+    background: '#1976d2',
+    fontWeight: 'bold',
+  },
+  variationMove: {
+    background: '#e2ded0',
+  },
 };
 
 const RavTable = ({props}) => {
@@ -35,12 +38,27 @@ const RavTable = ({props}) => {
     }
   }, [state.board.pieceGrabbed, state.board.lan]);
 
-  const highlight = (fen) => {
+  const currentMove = (fen) => {
     if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
       return styles.currentMove;
     }
 
     return {};
+  };
+
+  const mainLineMove = (row) => {
+    const move = row.w !== '...'
+      ? `${row.n}.${row.w} ${row.b}`
+      : `${row.n}${row.w}${row.b}`;
+    const firstWord = move.replace(/ .*/,'');
+    if (
+      state.board.movetext.includes(firstWord) ||
+      (/^[1-9][0-9]*\.\.\.(.*)$/.test(firstWord) && !state.ravMode.filtered.includes(`(${firstWord}`))
+    ) {
+      return styles.mainLineMove;
+    }
+
+    return styles.variationMove;
   };
 
   const tableRows = () => {
@@ -61,10 +79,10 @@ const RavTable = ({props}) => {
     });
 
     return rows.map((row, i) => {
-      return <TableRow key={i}>
+      return <TableRow key={i} sx={mainLineMove(row)}>
         <TableCell>{row.n}</TableCell>
         <TableCell
-          sx={[styles.move, highlight(row.wFen)]}
+          sx={[styles.move, currentMove(row.wFen)]}
           onClick={() => {
             if (row.w !== '...') {
               dispatch(panel.goTo({
@@ -76,7 +94,7 @@ const RavTable = ({props}) => {
           {row.w}
         </TableCell>
         <TableCell
-          sx={[styles.move, highlight(row.bFen)]}
+          sx={[styles.move, currentMove(row.bFen)]}
           onClick={() => {
             if (row.b) {
               dispatch(panel.goTo({
