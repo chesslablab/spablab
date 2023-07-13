@@ -583,12 +583,12 @@ export default class Nag {
     },
     {
         "nag": "$138",
-        "meaning": "White has severe time control pressure \/ zeitnot",
+        "meaning": "White has severe time control pressure / zeitnot",
         "symbol": "\u2a01"
     },
     {
         "nag": "$139",
-        "meaning": "Black has severe time control pressure \/ zeitnot",
+        "meaning": "Black has severe time control pressure / zeitnot",
         "symbol": "\u2a01"
     }
   ];
