@@ -42,6 +42,7 @@ export default class Movetext {
   static toCommentedRows = (string) => {
     const filtered = string
       .replace(/(\{.*?\})/g, '')
+      .replace(/\$[1-9][0-9]*/g, '')
       .replace(/  +/g, ' ')
       .replace(/[()]/g, '');
     const rows = Movetext.toRows(filtered);
