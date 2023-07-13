@@ -1,3 +1,5 @@
+import Nag from './Nag.js';
+
 export default class Movetext {
   static toRows = (string) => {
     let n = 1;
@@ -42,19 +44,44 @@ export default class Movetext {
   static toCommentedRows = (string) => {
     const filtered = string
       .replace(/(\{.*?\})/g, '')
+      .replace(/\$[1-9][0-9]*/g, '')
       .replace(/  +/g, ' ')
       .replace(/[()]/g, '');
+
     const rows = Movetext.toRows(filtered);
-    const comments = string.match(/\{(.*?)\}/g);
+
+    const noNags = string
+      .replace(/\$[1-9][0-9]*/g, '')
+      .replace(/  +/g, ' ');
+
+    const noComments = string
+      .replace(/(\{.*?\})/g, '')
+      .replace(/  +/g, ' ');
+
     rows.forEach((item, i) => {
-      comments?.forEach((comment, j) => {
-        if (string.includes(`${item.n}.${item.w} ${comment}`)) {
+      string.match(/\$[1-9][0-9]*/g)?.forEach((nag, j) => {
+        const comment = Nag.comment(nag);
+        if (noComments.includes(`${item.n}.${item.w} ${nag}`)) {
+          item.w += ` ${comment}`;
+        } else if (noComments.includes(`${item.n}.${item.w} ${item.b} ${nag}`)) {
+          item.b += ` ${comment}`;
+        } else if (noComments.includes(`${item.n}...${item.b} ${nag}`)) {
+          item.b += ` ${comment}`;
+        } else if (noComments.includes(`${item.b} ${nag}`)) {
+          item.b += ` ${comment}`;
+        }
+      });
+    });
+
+    rows.forEach((item, i) => {
+      string.match(/\{(.*?)\}/g)?.forEach((comment, j) => {
+        if (noNags.includes(`${item.n}.${item.w?.split(' ')[0]} ${comment}`)) {
           item.w += ` ${comment.replace(/[{}]/g, '')}`;
-        } else if (string.includes(`${item.n}.${item.w} ${item.b} ${comment}`)) {
+        } else if (noNags.includes(`${item.n}.${item.w} ${item.b?.split(' ')[0]} ${comment}`)) {
           item.b += ` ${comment.replace(/[{}]/g, '')}`;
-        } else if (string.includes(`${item.n}...${item.b} ${comment}`)) {
+        } else if (noNags.includes(`${item.n}...${item.b?.split(' ')[0]} ${comment}`)) {
           item.b += ` ${comment.replace(/[{}]/g, '')}`;
-        } else if (string.includes(`${item.b} ${comment}`)) {
+        } else if (noNags.includes(`${item.b?.split(' ')[0]} ${comment}`)) {
           item.b += ` ${comment.replace(/[{}]/g, '')}`;
         }
       });
