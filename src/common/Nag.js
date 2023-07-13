@@ -592,4 +592,13 @@ export default class Nag {
         "symbol": "\u2a01"
     }
   ];
+
+  static comment = (nag) => {
+    const glyph = Nag.glyphs.find(glyph => glyph.nag === nag);
+    if (glyph.symbol) {
+      return glyph.symbol;
+    }
+
+    return glyph.meaning;
+  }
 }

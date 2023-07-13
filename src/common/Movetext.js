@@ -1,3 +1,5 @@
+import Nag from './Nag.js';
+
 export default class Movetext {
   static toRows = (string) => {
     let n = 1;
@@ -58,14 +60,15 @@ export default class Movetext {
 
     rows.forEach((item, i) => {
       string.match(/\$[1-9][0-9]*/g)?.forEach((nag, j) => {
+        const comment = Nag.comment(nag);
         if (noComments.includes(`${item.n}.${item.w} ${nag}`)) {
-          item.w += ` ${nag}`;
+          item.w += ` ${comment}`;
         } else if (noComments.includes(`${item.n}.${item.w} ${item.b} ${nag}`)) {
-          item.b += ` ${nag}`;
+          item.b += ` ${comment}`;
         } else if (noComments.includes(`${item.n}...${item.b} ${nag}`)) {
-          item.b += ` ${nag}`;
+          item.b += ` ${comment}`;
         } else if (noComments.includes(`${item.b} ${nag}`)) {
-          item.b += ` ${nag}`;
+          item.b += ` ${comment}`;
         }
       });
     });
@@ -83,9 +86,6 @@ export default class Movetext {
         }
       });
     });
-
-    // TODO
-    // Replace NAG with symbol and text
 
     return rows;
   }
