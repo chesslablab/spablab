@@ -61,13 +61,10 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    let settings = {};
-    if (fields.fen) {
-      settings.fen = fields.fen;
-    }
-    if (fields.startPos) {
-      settings.startPos = fields.startPos;
-    }
+    const settings = {
+      ...(fields.fen && {fen: fields.fen}),
+      ...(fields.startPos && {startPos: fields.startPos})
+    };
     Ws.inboxCreate(fields.variant, JSON.stringify(settings));
   }
 
