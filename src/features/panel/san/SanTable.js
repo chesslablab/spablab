@@ -7,9 +7,9 @@ import Ws from 'features/ws/Ws';
 
 const styles = {
   table: {
-    maxHeight: 362,
+    maxHeight: 190,
     display: 'flex',
-    flexDirection: 'column-reverse',
+    flexDirection: 'column-reverse'
   },
   move: {
     "&:hover": {
