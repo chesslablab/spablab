@@ -7,9 +7,9 @@ import Ws from 'features/ws/Ws';
 
 const styles = {
   table: {
-    maxHeight: 190,
+    maxHeight: 362,
     display: 'flex',
-    flexDirection: 'column-reverse'
+    flexDirection: 'column-reverse',
   },
   move: {
     "&:hover": {
@@ -23,9 +23,12 @@ const styles = {
     background: '#1976d2',
     fontWeight: 'bold',
   },
+  variationMove: {
+    background: '#e2ded0',
+  },
 };
 
-const SanTable = ({props}) => {
+const RavMovesTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -43,14 +46,27 @@ const SanTable = ({props}) => {
     return {};
   };
 
+  const mainLineMove = (row) => {
+    const move = row.w !== '...'
+      ? `${row.n}.${row.w} ${row.b}`
+      : `${row.n}${row.w}${row.b}`;
+    const firstWord = move.replace(/ .*/,'');
+    if (
+      state.board.movetext.includes(firstWord) ||
+      (/^[1-9][0-9]*\.\.\.(.*)$/.test(firstWord) && !state.ravMode.filtered.includes(`(${firstWord}`))
+    ) {
+      return styles.mainLineMove;
+    }
+
+    return styles.variationMove;
+  };
+
   const description = () => {
-    if (state.sanMode.active) {
-      const comment = Movetext.description(state.sanMode.filtered);
-      if (comment) {
-        return <TableRow>
-          <TableCell colSpan={3}>{comment}</TableCell>
-        </TableRow>;
-      }
+    const comment = Movetext.description(state.ravMode?.breakdown[0]);
+    if (comment) {
+      return <TableRow>
+        <TableCell colSpan={3}>{comment}</TableCell>
+      </TableRow>;
     }
 
     return null;
@@ -58,9 +74,10 @@ const SanTable = ({props}) => {
 
   const moves = () => {
     let j = 1;
-    let rows = state.sanMode.active
-      ? Movetext.toCommentedRows(state.sanMode.filtered)
-      : Movetext.toRows(state.board.movetext);
+    let rows = [];
+    state.ravMode?.breakdown.forEach((breakdown, i) => {
+      rows = [...rows, ...Movetext.toCommentedRows(breakdown)];
+    });
     rows.forEach((row, i) => {
       if (row.w !== '...') {
         row.wFen = j;
@@ -73,7 +90,7 @@ const SanTable = ({props}) => {
     });
 
     return rows.map((row, i) => {
-      return <TableRow key={i}>
+      return <TableRow key={i} sx={mainLineMove(row)}>
         <TableCell>{row.n}</TableCell>
         <TableCell
           sx={[styles.move, currentMove(row.wFen)]}
@@ -99,7 +116,7 @@ const SanTable = ({props}) => {
     });
   };
 
-  if (!state.ravMode.active) {
+  if (state.ravMode.active) {
     return (
       <TableContainer className="noTextSelection" sx={styles.table}>
         <Table stickyHeader size="small" aria-label="Movetext">
@@ -115,4 +132,4 @@ const SanTable = ({props}) => {
   return null;
 }
 
-export default SanTable;
+export default RavMovesTable;

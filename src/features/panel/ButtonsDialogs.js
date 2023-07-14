@@ -1,7 +1,7 @@
 import React from 'react';
 import HeuristicsDialog from 'features/nav/dialog/HeuristicsDialog';
 
-const SanButtonsDialogs = () => {
+const ButtonsDialogs = () => {
   return (
     <>
       <HeuristicsDialog />
@@ -9,4 +9,4 @@ const SanButtonsDialogs = () => {
   );
 }
 
-export default SanButtonsDialogs;
+export default ButtonsDialogs;

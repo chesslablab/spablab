@@ -2,11 +2,11 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import GameTableGmMode from 'features/mode/gm/table/GameTableGmMode';
 import StartedButtons from 'features/panel/gm/StartedButtons';
+import Buttons from 'features/panel/Buttons';
+import ButtonsDialogs from 'features/panel/ButtonsDialogs';
 import History from 'features/panel/History';
+import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
-import SanTable from 'features/panel/san/SanTable';
-import SanButtons from 'features/panel/san/SanButtons';
-import SanButtonsDialogs from 'features/panel/san/SanButtonsDialogs';
 
 const styles = {
   gameBox: {
@@ -35,11 +35,11 @@ const GmPanel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <SanTable />
+            <MovesTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
-          <SanButtons props={props} />
+          <Buttons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12}>
@@ -47,7 +47,7 @@ const GmPanel = ({ props }) => {
         <StartedButtons />
         <OpeningTable />
       </Grid>
-      <SanButtonsDialogs />
+      <ButtonsDialogs />
     </Grid>
   );
 };

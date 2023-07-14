@@ -12,7 +12,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as progressDialog from 'features/progressDialogSlice';
 import Ws from 'features/ws/Ws';
 
-const SanButtons = ({props}) => {
+const Buttons = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -74,7 +74,7 @@ const SanButtons = ({props}) => {
     return (
       <Stack direction="row" spacing={1}>
         <IconButton
-          id="SanButtons-copyMovetext"
+          id="Buttons-copyMovetext"
           disabled={disabled}
           color="primary"
           size="medium"
@@ -85,7 +85,7 @@ const SanButtons = ({props}) => {
           <MoveDownIcon fontSize="inherit" />
         </IconButton>
         <IconButton
-          id="SanButtons-copyFenString"
+          id="Buttons-copyFenString"
           disabled={disabled}
           color="primary"
           size="medium"
@@ -96,7 +96,7 @@ const SanButtons = ({props}) => {
           <WidgetsIcon fontSize="inherit" />
         </IconButton>
         <IconButton
-          id="SanButtons-heuristics"
+          id="Buttons-heuristics"
           disabled={disabled}
           color="primary"
           size="medium"
@@ -110,7 +110,7 @@ const SanButtons = ({props}) => {
           <BarChartIcon fontSize="inherit" />
         </IconButton>
         <IconButton
-          id="SanButtons-downloadImage"
+          id="Buttons-downloadImage"
           disabled={disabled}
           color="primary"
           size="medium"
@@ -121,7 +121,7 @@ const SanButtons = ({props}) => {
           <InsertPhotoIcon fontSize="inherit" />
         </IconButton>
         <IconButton
-          id="SanButtons-downloadVideo"
+          id="Buttons-downloadVideo"
           disabled={disabled}
           color="primary"
           size="medium"
@@ -136,4 +136,4 @@ const SanButtons = ({props}) => {
   }
 }
 
-export default SanButtons;
+export default Buttons;
