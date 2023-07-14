@@ -4,9 +4,9 @@ import GameTableGmMode from 'features/mode/gm/table/GameTableGmMode';
 import StartedButtons from 'features/panel/gm/StartedButtons';
 import History from 'features/panel/History';
 import OpeningTable from 'features/panel/OpeningTable';
-import SanTable from 'features/panel/SanTable';
-import SanButtons from 'features/panel/SanButtons';
-import SanButtonsDialogs from 'features/panel/SanButtonsDialogs';
+import SanTable from 'features/panel/san/SanTable';
+import SanButtons from 'features/panel/san/SanButtons';
+import SanButtonsDialogs from 'features/panel/san/SanButtonsDialogs';
 
 const styles = {
   gameBox: {

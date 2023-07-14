@@ -23,9 +23,6 @@ const styles = {
     background: '#1976d2',
     fontWeight: 'bold',
   },
-  variationMove: {
-    background: '#e2ded0',
-  },
 };
 
 const RavTable = ({props}) => {
@@ -46,23 +43,8 @@ const RavTable = ({props}) => {
     return {};
   };
 
-  const mainLineMove = (row) => {
-    const move = row.w !== '...'
-      ? `${row.n}.${row.w} ${row.b}`
-      : `${row.n}${row.w}${row.b}`;
-    const firstWord = move.replace(/ .*/,'');
-    if (
-      state.board.movetext.includes(firstWord) ||
-      (/^[1-9][0-9]*\.\.\.(.*)$/.test(firstWord) && !state.ravMode.filtered.includes(`(${firstWord}`))
-    ) {
-      return styles.mainLineMove;
-    }
-
-    return styles.variationMove;
-  };
-
   const description = () => {
-    const comment = Movetext.description(state.ravMode?.breakdown[0]);
+    const comment = Movetext.description(state.sanMode.filtered);
     if (comment) {
       return <TableRow>
         <TableCell colSpan={3}>{comment}</TableCell>
@@ -74,10 +56,7 @@ const RavTable = ({props}) => {
 
   const moves = () => {
     let j = 1;
-    let rows = [];
-    state.ravMode?.breakdown.forEach((breakdown, i) => {
-      rows = [...rows, ...Movetext.toCommentedRows(breakdown)];
-    });
+    let rows = Movetext.toCommentedRows(state.sanMode.filtered);
     rows.forEach((row, i) => {
       if (row.w !== '...') {
         row.wFen = j;
@@ -90,7 +69,7 @@ const RavTable = ({props}) => {
     });
 
     return rows.map((row, i) => {
-      return <TableRow key={i} sx={mainLineMove(row)}>
+      return <TableRow key={i}>
         <TableCell>{row.n}</TableCell>
         <TableCell
           sx={[styles.move, currentMove(row.wFen)]}
@@ -116,7 +95,7 @@ const RavTable = ({props}) => {
     });
   };
 
-  if (state.ravMode.active) {
+  if (state.sanMode.active) {
     return (
       <TableContainer className="noTextSelection" sx={styles.table}>
         <Table stickyHeader size="small" aria-label="Movetext">

@@ -3,9 +3,9 @@ import { Grid } from '@mui/material';
 import GameTableSanMode from 'features/mode/san/table/GameTableSanMode';
 import History from 'features/panel/History';
 import OpeningTable from 'features/panel/OpeningTable';
-import SanTable from 'features/panel/SanTable';
-import SanButtons from 'features/panel/SanButtons';
-import SanButtonsDialogs from 'features/panel/SanButtonsDialogs';
+import SanTable from 'features/panel/san/SanTable';
+import SanButtons from 'features/panel/san/SanButtons';
+import SanButtonsDialogs from 'features/panel/san/SanButtonsDialogs';
 import StartedButtons from 'features/panel/san/StartedButtons';
 
 const styles = {
