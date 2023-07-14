@@ -96,9 +96,7 @@ const RavTable = ({props}) => {
           sx={[styles.move, currentMove(row.wFen)]}
           onClick={() => {
             if (row.w !== '...') {
-              dispatch(panel.goTo({
-                back: state.board.fen.length - 1 - row.wFen
-              }));
+              dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.wFen }));
             }
           }}
         >
@@ -108,9 +106,7 @@ const RavTable = ({props}) => {
           sx={[styles.move, currentMove(row.bFen)]}
           onClick={() => {
             if (row.b) {
-              dispatch(panel.goTo({
-                back: state.board.fen.length - 1 - row.bFen
-              }));
+              dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.bFen }));
             }
           }}
         >
