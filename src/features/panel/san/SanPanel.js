@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import GameTableSanMode from 'features/mode/san/table/GameTableSanMode';
-import History from 'features/panel/History';
-import OpeningTable from 'features/panel/OpeningTable';
-import SanMovesTable from 'features/panel/san/SanMovesTable';
-import SanButtons from 'features/panel/san/SanButtons';
-import SanButtonsDialogs from 'features/panel/san/SanButtonsDialogs';
 import StartedButtons from 'features/panel/san/StartedButtons';
+import Buttons from 'features/panel/Buttons';
+import ButtonsDialogs from 'features/panel/ButtonsDialogs';
+import History from 'features/panel/History';
+import MovesTable from 'features/panel/MovesTable';
+import OpeningTable from 'features/panel/OpeningTable';
 
 const styles = {
   gameBox: {
@@ -35,11 +35,11 @@ const SanPanel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <SanMovesTable />
+            <MovesTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
-          <SanButtons props={props} />
+          <Buttons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12}>
@@ -47,7 +47,7 @@ const SanPanel = ({ props }) => {
         <StartedButtons />
         <OpeningTable />
       </Grid>
-      <SanButtonsDialogs />
+      <ButtonsDialogs />
     </Grid>
   );
 };

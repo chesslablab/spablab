@@ -188,7 +188,7 @@ const Nav = ({props}) => {
             handleCloseAnalysis();
           }}
         >
-          <AccountTreeIcon size="small" />&nbsp;RAV Movetext
+          <AccountTreeIcon size="small" />&nbsp;Commented RAV Movetext
         </MenuItem>
         <Divider />
         <MenuItem

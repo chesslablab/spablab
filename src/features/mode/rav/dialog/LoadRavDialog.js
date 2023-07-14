@@ -67,7 +67,7 @@ const LoadRavDialog = () => {
   return (
     <Dialog open={state.ravMode.dialogs.loadRav.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        RAV Movetext
+        Commented RAV Movetext
         <IconButton onClick={() => dispatch(ravMode.loadRavDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
