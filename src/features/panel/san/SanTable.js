@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-const RavTable = ({props}) => {
+const SanTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -44,11 +44,13 @@ const RavTable = ({props}) => {
   };
 
   const description = () => {
-    const comment = Movetext.description(state.sanMode.filtered);
-    if (comment) {
-      return <TableRow>
-        <TableCell colSpan={3}>{comment}</TableCell>
-      </TableRow>;
+    if (state.sanMode.active) {
+      const comment = Movetext.description(state.sanMode.filtered);
+      if (comment) {
+        return <TableRow>
+          <TableCell colSpan={3}>{comment}</TableCell>
+        </TableRow>;
+      }
     }
 
     return null;
@@ -56,7 +58,9 @@ const RavTable = ({props}) => {
 
   const moves = () => {
     let j = 1;
-    let rows = Movetext.toCommentedRows(state.sanMode.filtered);
+    let rows = state.sanMode.active
+      ? Movetext.toCommentedRows(state.sanMode.filtered)
+      : Movetext.toRows(state.board.movetext);
     rows.forEach((row, i) => {
       if (row.w !== '...') {
         row.wFen = j;
@@ -95,7 +99,7 @@ const RavTable = ({props}) => {
     });
   };
 
-  if (state.sanMode.active) {
+  if (!state.ravMode.active) {
     return (
       <TableContainer className="noTextSelection" sx={styles.table}>
         <Table stickyHeader size="small" aria-label="Movetext">
@@ -111,4 +115,4 @@ const RavTable = ({props}) => {
   return null;
 }
 
-export default RavTable;
+export default SanTable;
