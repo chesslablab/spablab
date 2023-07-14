@@ -28,7 +28,7 @@ const styles = {
   },
 };
 
-const RavTable = ({props}) => {
+const RavMovesTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -132,4 +132,4 @@ const RavTable = ({props}) => {
   return null;
 }
 
-export default RavTable;
+export default RavMovesTable;

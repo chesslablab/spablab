@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import History from 'features/panel/History';
 import RavButtons from 'features/panel/rav/RavButtons';
-import RavTable from 'features/panel/rav/RavTable';
+import RavMovesTable from 'features/panel/rav/RavMovesTable';
 
 const styles = {
   gameBox: {
@@ -31,7 +31,7 @@ const RavPanel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <RavTable />
+            <RavMovesTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
