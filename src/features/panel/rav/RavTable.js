@@ -61,7 +61,18 @@ const RavTable = ({props}) => {
     return styles.variationMove;
   };
 
-  const tableRows = () => {
+  const description = () => {
+    const comment = Movetext.description(state.ravMode?.breakdown[0]);
+    if (comment) {
+      return <TableRow>
+        <TableCell colSpan={3}>{comment}</TableCell>
+      </TableRow>;
+    }
+
+    return null;
+  };
+
+  const moves = () => {
     let j = 1;
     let rows = [];
     state.ravMode?.breakdown.forEach((breakdown, i) => {
@@ -114,7 +125,8 @@ const RavTable = ({props}) => {
       <TableContainer className="noTextSelection" sx={styles.table}>
         <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
-            {tableRows()}
+            {description()}
+            {moves()}
           </TableBody>
         </Table>
       </TableContainer>

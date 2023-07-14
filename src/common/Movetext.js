@@ -1,6 +1,15 @@
 import Nag from './Nag.js';
 
 export default class Movetext {
+  static description = (string) => {
+    if (string.startsWith('{')) {
+      let match = string.match(/{([^}]+)}/g)[0];
+      return match.substring(1, match.length - 1);
+    }
+
+    return null;
+  }
+
   static toRows = (string) => {
     let n = 1;
     let rows = [];
