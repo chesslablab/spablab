@@ -7,25 +7,25 @@ import Ws from 'features/ws/Ws';
 
 const styles = {
   table: {
-    maxHeight: 190,
+    maxHeight: 362,
     display: 'flex',
-    flexDirection: 'column-reverse'
+    flexDirection: 'column-reverse',
   },
   move: {
     "&:hover": {
-      color: "#ffffff",
-      background: "#3d8cd9 !important",
-      cursor: 'pointer'
+      color: '#ffffff',
+      background: '#3d8cd9',
+      cursor: 'pointer',
     },
   },
   currentMove: {
-    color: "#ffffff !important",
-    background: "#1976d2 !important",
-    fontWeight: 'bold !important'
-  }
+    color: '#ffffff',
+    background: '#1976d2',
+    fontWeight: 'bold',
+  },
 };
 
-const SanTable = ({props}) => {
+const RavTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -35,62 +35,80 @@ const SanTable = ({props}) => {
     }
   }, [state.board.pieceGrabbed, state.board.lan]);
 
-  const offset = () => {
-    if (state.board?.movetext?.startsWith('1...')) {
-      return 1;
-    }
-
-    return 0;
-  };
-
-  const highlight = (n) => {
-    if (n === state.board.fen.length + state.panel.history.back - 1 + offset()) {
+  const currentMove = (fen) => {
+    if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
       return styles.currentMove;
     }
 
     return {};
   };
 
-  const tableRows = () => {
-    return Movetext.toRows(state.board.movetext)
-      .map((row, i) => (
-        <TableRow key={i}>
-          <TableCell>{i + 1}</TableCell>
-          <TableCell
-            sx={[styles.move, highlight(((i + 1) * 2) - 1)]}
-            onClick={() => dispatch(panel.goTo({
-              back: state.board.fen.length - 1 - (((i + 1) * 2) - 1 - offset()) }
-            ))}
-          >
-            {row.w}
-          </TableCell>
-          <TableCell
-            sx={[styles.move, highlight((i + 1) * 2)]}
-            onClick={() => {
-              const back = state.board.fen.length - 1 - ((i + 1) * 2 - offset());
-              if (back >= 0) {
-                dispatch(panel.goTo({ back: back }));
-              }
-            }}
-          >
-            {row.b}
-          </TableCell>
-        </TableRow>
-      )
-    );
+  const description = () => {
+    const comment = Movetext.description(state.sanMode.filtered);
+    if (comment) {
+      return <TableRow>
+        <TableCell colSpan={3}>{comment}</TableCell>
+      </TableRow>;
+    }
+
+    return null;
   };
 
-  if (!state.ravMode.active) {
+  const moves = () => {
+    let j = 1;
+    let rows = Movetext.toCommentedRows(state.sanMode.filtered);
+    rows.forEach((row, i) => {
+      if (row.w !== '...') {
+        row.wFen = j;
+        j += 1;
+      }
+      if (row.b) {
+        row.bFen = j;
+        j += 1;
+      }
+    });
+
+    return rows.map((row, i) => {
+      return <TableRow key={i}>
+        <TableCell>{row.n}</TableCell>
+        <TableCell
+          sx={[styles.move, currentMove(row.wFen)]}
+          onClick={() => {
+            if (row.w !== '...') {
+              dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.wFen }));
+            }
+          }}
+        >
+          {row.w}
+        </TableCell>
+        <TableCell
+          sx={[styles.move, currentMove(row.bFen)]}
+          onClick={() => {
+            if (row.b) {
+              dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.bFen }));
+            }
+          }}
+        >
+          {row.b}
+        </TableCell>
+      </TableRow>
+    });
+  };
+
+  if (state.sanMode.active) {
     return (
       <TableContainer className="noTextSelection" sx={styles.table}>
         <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
-            {tableRows()}
+            {description()}
+            {moves()}
           </TableBody>
         </Table>
       </TableContainer>
     );
   }
+
+  return null;
 }
 
-export default SanTable;
+export default RavTable;
