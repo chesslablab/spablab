@@ -1,15 +1,15 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import History from 'features/panel/History';
-import OpeningTable from 'features/panel/OpeningTable';
-import SanTable from 'features/panel/san/SanTable';
-import SanButtons from 'features/panel/san/SanButtons';
-import SanButtonsDialogs from 'features/panel/san/SanButtonsDialogs';
 import StartedButtons from 'features/panel/play/StartedButtons';
 import StartedDialogs from 'features/panel/play/StartedDialogs';
 import FinishedButtons from 'features/panel/play/FinishedButtons';
 import FinishedDialogs from 'features/panel/play/FinishedDialogs';
 import Timer from 'features/panel/play/timer/Timer';
+import Buttons from 'features/panel/Buttons';
+import ButtonsDialogs from 'features/panel/ButtonsDialogs';
+import History from 'features/panel/History';
+import MovesTable from 'features/panel/MovesTable';
+import OpeningTable from 'features/panel/OpeningTable';
 
 const styles = {
   gameBox: {
@@ -38,11 +38,11 @@ const PlayPanel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <SanTable />
+            <MovesTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
-          <SanButtons props={props} />
+          <Buttons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12} sx={styles.timer}>
@@ -53,7 +53,7 @@ const PlayPanel = ({ props }) => {
         <FinishedButtons />
         <OpeningTable />
       </Grid>
-      <SanButtonsDialogs />
+      <ButtonsDialogs />
       <StartedDialogs />
       <FinishedDialogs />
     </Grid>
