@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import GameTableSanMode from 'features/mode/san/table/GameTableSanMode';
 import History from 'features/panel/History';
 import OpeningTable from 'features/panel/OpeningTable';
-import SanTable from 'features/panel/san/SanTable';
+import SanMovesTable from 'features/panel/san/SanMovesTable';
 import SanButtons from 'features/panel/san/SanButtons';
 import SanButtonsDialogs from 'features/panel/san/SanButtonsDialogs';
 import StartedButtons from 'features/panel/san/StartedButtons';
@@ -35,7 +35,7 @@ const SanPanel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <SanTable />
+            <SanMovesTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>

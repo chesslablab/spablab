@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-const SanTable = ({props}) => {
+const SanMovesTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -115,4 +115,4 @@ const SanTable = ({props}) => {
   return null;
 }
 
-export default SanTable;
+export default SanMovesTable;
