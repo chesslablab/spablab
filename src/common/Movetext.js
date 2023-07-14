@@ -32,7 +32,7 @@ export default class Movetext {
           rows.push({
             n: n,
             w: arr[i].split('.')[1] ?? arr[i],
-            ...(arr[i+1] && {b: arr[i+1]})
+            ...(arr[i+1] && {b: /^[1-9][0-9]*\.\.\.(.*)/.exec(arr[i+1]) ? arr[i+1].split('...')[1] : arr[i+1]})
           });
         }
       });
