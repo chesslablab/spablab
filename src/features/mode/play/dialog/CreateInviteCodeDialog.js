@@ -94,14 +94,10 @@ const CreateCode = () => {
       color: fields.color === 'rand'
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
         : fields.color,
-      submode: 'friend'
+      submode: 'friend',
+      ...(fields.fen && {fen: fields.fen}),
+      ...(fields.startPos && {fen: fields.startPos})
     };
-    if (fields.fen) {
-      settings.fen = fields.fen;
-    }
-    if (fields.startPos) {
-      settings.startPos = fields.startPos;
-    }
     Ws.start(fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
   }
 
