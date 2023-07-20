@@ -590,6 +590,41 @@ export default class Nag {
         "nag": "$139",
         "meaning": "Black has severe time control pressure / zeitnot",
         "symbol": "\u2a01"
+    },
+    {
+        "nag": "$140",
+        "meaning": "With the idea",
+        "symbol": "\u2206"
+    },
+    {
+        "nag": "$141",
+        "meaning": "Aimed against",
+        "symbol": "\u2207"
+    },
+    {
+        "nag": "$142",
+        "meaning": "Better is",
+        "symbol": "\u2313"
+    },
+    {
+        "nag": "$143",
+        "meaning": "Worse is",
+        "symbol": "<="
+    },
+    {
+        "nag": "$144",
+        "meaning": "Equivalent is",
+        "symbol": "=="
+    },
+    {
+        "nag": "$145",
+        "meaning": "Editorial comment",
+        "symbol": "RR"
+    },
+    {
+        "nag": "$146",
+        "meaning": "Novelty",
+        "symbol": "N"
     }
   ];
 
