@@ -95,8 +95,8 @@ const CreateCode = () => {
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
         : fields.color,
       submode: 'friend',
-      ...(fields.fen && {fen: fields.fen}),
-      ...(fields.startPos && {fen: fields.startPos})
+      ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+      ...(fields?.fen && {fen: event.target.elements.fen?.value})
     };
     Ws.start(fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
   }
