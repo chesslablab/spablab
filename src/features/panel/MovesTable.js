@@ -51,7 +51,11 @@ const MovesTable = ({props}) => {
 
   const moves = () => {
     let j = 1;
-    let rows = Movetext.toRows(state.board.movetext);
+    let rows = Movetext.toRows(
+      state.board.movetext?.replace(/\s?\{[^}]+\}/g, '')
+        .replace(/\s?\$[1-9][0-9]*/g, '')
+        .trim()
+    );
     rows.forEach((row, i) => {
       if (row.w !== '...') {
         row.wFen = j;
