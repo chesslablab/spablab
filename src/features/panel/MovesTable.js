@@ -7,9 +7,15 @@ import Ws from 'features/ws/Ws';
 
 const styles = {
   table: {
-    maxHeight: 190,
+    maxHeight: 193,
     display: 'flex',
     flexDirection: 'column-reverse'
+  },
+  nMove: {
+    background: '#f0f0f0',
+  },
+  moves: {
+    background: '#ffffff',
   },
   move: {
     "&:hover": {
@@ -58,8 +64,8 @@ const MovesTable = ({props}) => {
     });
 
     return rows.map((row, i) => {
-      return <TableRow key={i}>
-        <TableCell>{row.n}</TableCell>
+      return <TableRow key={i} sx={styles.moves}>
+        <TableCell sx={styles.nMove}>{row.n}</TableCell>
         <TableCell
           sx={[styles.move, currentMove(row.wFen)]}
           onClick={() => {

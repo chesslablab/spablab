@@ -7,9 +7,15 @@ import Ws from 'features/ws/Ws';
 
 const styles = {
   table: {
-    maxHeight: 362,
+    maxHeight: 365,
     display: 'flex',
     flexDirection: 'column-reverse',
+  },
+  description: {
+    background: '#ffffff',
+  },
+  nMove: {
+    background: '#f0f0f0',
   },
   move: {
     "&:hover": {
@@ -22,9 +28,6 @@ const styles = {
     color: '#ffffff',
     background: '#1976d2',
     fontWeight: 'bold',
-  },
-  variationMove: {
-    background: '#e2ded0',
   },
 };
 
@@ -46,25 +49,34 @@ const RavMovesTable = ({props}) => {
     return {};
   };
 
-  const mainLineMove = (row) => {
-    const move = row.w !== '...'
-      ? `${row.n}.${row.w} ${row.b}`
-      : `${row.n}${row.w}${row.b}`;
-    const firstWord = move.replace(/ .*/,'');
-    if (
-      state.board.movetext.includes(firstWord) ||
-      (/^[1-9][0-9]*\.\.\.(.*)$/.test(firstWord) && !state.ravMode.filtered.includes(`(${firstWord}`))
-    ) {
-      return styles.mainLineMove;
+  const rgb = (r, g, b) => `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)})`;
+
+  const paint = (rows) => {
+    let colors = [];
+    for (let i = 0; i < rows.length; i++) {
+      const needle = state.ravMode?.breakdown[rows[i].nBreakdown]
+        .replace(/\s?\{[^}]+\}/g, '')
+        .replace(/\s?\$[1-9][0-9]*/g, '')
+        .trim();
+      for (let j = 0; j < state.ravMode?.lines.length; j++) {
+        for (let k = 0; k < state.ravMode?.lines[j].length; k++) {
+          const haystack = Object.keys(state.ravMode?.lines[j][k])[0];
+          if (haystack.includes(needle)) {
+            colors[i] = {
+              background: rgb(255 - (j * 10), 255 - (j * 10), 255 - (j * 10))
+            };
+          }
+        }
+      }
     }
 
-    return styles.variationMove;
+    return colors;
   };
 
   const description = () => {
     const comment = Movetext.description(state.ravMode?.breakdown[0]);
     if (comment) {
-      return <TableRow>
+      return <TableRow sx={styles.description}>
         <TableCell colSpan={3}>{comment}</TableCell>
       </TableRow>;
     }
@@ -76,7 +88,7 @@ const RavMovesTable = ({props}) => {
     let j = 1;
     let rows = [];
     state.ravMode?.breakdown.forEach((breakdown, i) => {
-      rows = [...rows, ...Movetext.toCommentedRows(breakdown)];
+      rows = [...rows, ...Movetext.toCommentedRows(breakdown, i)];
     });
     rows.forEach((row, i) => {
       if (row.w !== '...') {
@@ -90,8 +102,8 @@ const RavMovesTable = ({props}) => {
     });
 
     return rows.map((row, i) => {
-      return <TableRow key={i} sx={mainLineMove(row)}>
-        <TableCell>{row.n}</TableCell>
+      return <TableRow key={i} sx={paint(rows)[i]}>
+        <TableCell sx={styles.nMove}>{row.n}</TableCell>
         <TableCell
           sx={[styles.move, currentMove(row.wFen)]}
           onClick={() => {

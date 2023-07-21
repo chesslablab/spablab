@@ -25,6 +25,7 @@ const ravModeSlice = createSlice({
       state.startPos =  action.payload.startPos;
       state.breakdown =  action.payload.breakdown;
       state.filtered =  action.payload.filtered;
+      state.lines =  action.payload.lines;
     },
     loadRavDialog(state, action) {
       state.dialogs.loadRav = action.payload;
