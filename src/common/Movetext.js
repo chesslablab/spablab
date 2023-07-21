@@ -50,7 +50,7 @@ export default class Movetext {
     return rows;
   }
 
-  static toCommentedRows = (string) => {
+  static toCommentedRows = (string, nBreakdown) => {
     const filtered = string
       .replace(/(\{.*?\})/g, '')
       .replace(/\$[1-9][0-9]*/g, '')
@@ -94,6 +94,10 @@ export default class Movetext {
           item.b += ` ${comment.replace(/[{}]/g, '')}`;
         }
       });
+    });
+
+    rows.forEach(item => {
+      item.nBreakdown = nBreakdown;
     });
 
     return rows;
