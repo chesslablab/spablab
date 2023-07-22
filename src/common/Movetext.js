@@ -59,45 +59,27 @@ export default class Movetext {
 
     const rows = Movetext.toRows(filtered);
 
-    const noNags = string
-      .replace(/\$[1-9][0-9]*/g, '')
-      .replace(/  +/g, ' ');
+    let commented = string;
 
-    const noComments = string
-      .replace(/(\{.*?\})/g, '')
-      .replace(/  +/g, ' ');
-
-    rows.forEach((item, i) => {
-      string.match(/\$[1-9][0-9]*/g)?.forEach((nag, j) => {
-        const comment = Nag.comment(nag);
-        if (noComments.includes(`${item.n}.${item.w} ${nag}`)) {
-          item.w += ` ${comment}`;
-        } else if (noComments.includes(`${item.n}.${item.w} ${item.b} ${nag}`)) {
-          item.b += ` ${comment}`;
-        } else if (noComments.includes(`${item.n}...${item.b} ${nag}`)) {
-          item.b += ` ${comment}`;
-        } else if (noComments.includes(`${item.b} ${nag}`)) {
-          item.b += ` ${comment}`;
-        }
-      });
+    string.match(/\$[1-9][0-9]*/g)?.forEach((nag, i) => {
+      commented = commented.replace(nag, `{${Nag.comment(nag)}}`);
     });
 
-    rows.forEach((item, i) => {
-      string.match(/\{(.*?)\}/g)?.forEach((comment, j) => {
-        if (noNags.includes(`${item.n}.${item.w?.split(' ')[0]} ${comment}`)) {
-          item.w += ` ${comment.replace(/[{}]/g, '')}`;
-        } else if (noNags.includes(`${item.n}.${item.w} ${item.b?.split(' ')[0]} ${comment}`)) {
-          item.b += ` ${comment.replace(/[{}]/g, '')}`;
-        } else if (noNags.includes(`${item.n}...${item.b?.split(' ')[0]} ${comment}`)) {
-          item.b += ` ${comment.replace(/[{}]/g, '')}`;
-        } else if (noNags.includes(`${item.b?.split(' ')[0]} ${comment}`)) {
-          item.b += ` ${comment.replace(/[{}]/g, '')}`;
+    rows.forEach(row => {
+      commented.match(/\{(.*?)\}/g)?.forEach(comment => {
+        if (commented.includes(`${row.n}.${row.w} ${comment}`)) {
+          row.w += ` ${comment}`;
+        } else if (commented.includes(`${row.n}.${row.w} ${row.b} ${comment}`)) {
+          row.b += ` ${comment}`;
+        } else if (commented.includes(`${row.n}...${row.b} ${comment}`)) {
+          row.b += ` ${comment}`;
+        } else if (commented.includes(`${row.b} ${comment}`)) {
+          row.b += ` ${comment}`;
         }
       });
-    });
-
-    rows.forEach(item => {
-      item.nBreakdown = nBreakdown;
+      row.w = row.w.replace(/[{}]/g, '');
+      row.b = row.b?.replace(/[{}]/g, '');
+      row.nBreakdown = nBreakdown;
     });
 
     return rows;
