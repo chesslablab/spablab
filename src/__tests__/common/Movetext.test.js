@@ -125,4 +125,24 @@ describe('openParentheses()', () => {
     const expected = 0;
     expect(Movetext.openParentheses(string)).toEqual(expected);
   });
+  it('is 1', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6 (2...Nf6 3.Nc3';
+    const expected = 1;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
+  it('is 2', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6 (2...Nf6 3.Nc3 (3.Bc4';
+    const expected = 2;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
+  it('is 1', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6 (2...Nf6 3.Nc3 (3.Bc4)';
+    const expected = 1;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
+  it('is 0', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6 (2...Nf6 3.Nc3 (3.Bc4 d5))';
+    const expected = 0;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
 });
