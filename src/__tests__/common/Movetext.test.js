@@ -119,3 +119,11 @@ describe('substring()', () => {
     expect(Movetext.substring(string, -10)).toEqual(expected);
   });
 });
+
+describe('openParentheses()', () => {
+  it('is 0', () => {
+    const string = '1.e4 d5 2.exd5 Qxd5 3.Nc3 Qa5 4.d4 e5 5.dxe5 Nc6 6.Nf3 Bb4 7.Bd2';
+    const expected = 0;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
+});

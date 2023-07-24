@@ -96,4 +96,17 @@ export default class Movetext {
 
     return substring.slice(0, -1);
   }
+
+  static openParentheses = (string) => {
+    let count = 0;
+    for (let i = 0; i < string.length; i++) {
+      if (string[i] === '(') {
+        count += 1;
+      } else if (string[i] === ')') {
+        count -= 1;
+      }
+    }
+
+    return count;
+  }
 }
