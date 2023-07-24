@@ -1,21 +1,21 @@
 import Nag from './Nag.js';
 
 export default class Movetext {
-  static description = (string) => {
-    if (string.startsWith('{')) {
-      let match = string.match(/{([^}]+)}/g)[0];
+  static description = (str) => {
+    if (str.startsWith('{')) {
+      let match = str.match(/{([^}]+)}/g)[0];
       return match.substring(1, match.length - 1);
     }
 
     return null;
   }
 
-  static toRows = (string) => {
+  static toRows = (str) => {
     let n = 1;
     let rows = [];
-    if (string) {
-      const arr = string.split(' ').filter(item => item);
-      if (/^[1-9][0-9]*\.\.\.(.*)/.exec(string)) {
+    if (str) {
+      const arr = str.split(' ').filter(item => item);
+      if (/^[1-9][0-9]*\.\.\.(.*)/.exec(str)) {
         const exploded = arr[0].split('...');
         n = parseInt(exploded[0]);
         rows.push({
@@ -50,8 +50,8 @@ export default class Movetext {
     return rows;
   }
 
-  static toCommentedRows = (string, nBreakdown) => {
-    const filtered = string
+  static toCommentedRows = (str, nBreakdown) => {
+    const filtered = str
       .replace(/(\{.*?\})/g, '')
       .replace(/\$[1-9][0-9]*/g, '')
       .replace(/  +/g, ' ')
@@ -59,9 +59,9 @@ export default class Movetext {
 
     const rows = Movetext.toRows(filtered);
 
-    let commented = string;
+    let commented = str;
 
-    string.match(/\$[1-9][0-9]*/g)?.forEach((nag, i) => {
+    str.match(/\$[1-9][0-9]*/g)?.forEach((nag, i) => {
       commented = commented.replace(nag, `{${Nag.comment(nag)}}`);
     });
 
@@ -85,24 +85,24 @@ export default class Movetext {
     return rows;
   }
 
-  static substring = (string, back) => {
-    let substring = '';
-    const arr = string.split(' ');
+  static substring = (str, back) => {
+    let substr = '';
+    const arr = str.split(' ');
     arr.forEach((item, i) => {
       if (i <= arr.length - 1 + back) {
-        substring += `${item} `;
+        substr += `${item} `;
       }
     });
 
-    return substring.slice(0, -1);
+    return substr.slice(0, -1);
   }
 
-  static openParentheses = (string) => {
+  static openParentheses = (str) => {
     let count = 0;
-    for (let i = 0; i < string.length; i++) {
-      if (string[i] === '(') {
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === '(') {
         count += 1;
-      } else if (string[i] === ')') {
+      } else if (str[i] === ')') {
         count -= 1;
       }
     }
