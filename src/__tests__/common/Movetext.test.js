@@ -33,7 +33,6 @@ describe('toRows()', () => {
       {
         n: 2,
         w: 'Nf3',
-        b: '',
       }
     ];
     expect(Movetext.toRows(string)).toEqual(expected);
