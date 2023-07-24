@@ -51,13 +51,12 @@ export default class Movetext {
   }
 
   static toCommentedRows = (str, nBreakdown) => {
-    const filtered = str
-      .replace(/(\{.*?\})/g, '')
-      .replace(/\$[1-9][0-9]*/g, '')
-      .replace(/  +/g, ' ')
-      .replace(/[()]/g, '');
-
-    const rows = Movetext.toRows(filtered);
+    const rows = Movetext.toRows(
+      str.replace(/(\{.*?\})/g, '')
+        .replace(/\$[1-9][0-9]*/g, '')
+        .replace(/  +/g, ' ')
+        .replace(/[()]/g, '')
+    );
 
     let commented = str;
 
@@ -108,5 +107,22 @@ export default class Movetext {
     }
 
     return count;
+  }
+
+  static rgb = (r, g, b) => `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)})`;
+
+  static haystack = (str) => str.replace(/(\{.*?\})/g, '')
+    .replace(/\s?\$[1-9][0-9]*/g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/\( /g, '(')
+    .replace(/ \)/g, ')')
+    .trim();
+
+  static needles = (rows) => {
+    return rows.map(row =>
+      row.w === '...'
+        ? `${row.n}...${row.b.replace(/ .*/,'') ?? ''}`.trim()
+        : `${row.n}.${row.w.replace(/ .*/,'')} ${row.b?.replace(/ .*/,'') ?? ''}`.trim()
+      );
   }
 }

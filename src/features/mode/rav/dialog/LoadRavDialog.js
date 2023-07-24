@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
+  Alert,
   Button,
   Dialog,
   DialogContent,
@@ -67,12 +68,19 @@ const LoadRavDialog = () => {
   return (
     <Dialog open={state.ravMode.dialogs.loadRav.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
-        Commented RAV Movetext
+        RAV Movetext
         <IconButton onClick={() => dispatch(ravMode.loadRavDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
       <DialogContent>
+        <Alert
+          style={{ marginBottom: 15 }}
+          className="info-alert"
+          severity="info"
+        >
+          Variations and comments will be kept. To remove them, load a SAN Movetext instead.
+        </Alert>
         <form onSubmit={handleLoad}>
           <TextField
             select
