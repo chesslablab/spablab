@@ -1,21 +1,21 @@
 import Nag from './Nag.js';
 
 export default class Movetext {
-  static description = (string) => {
-    if (string.startsWith('{')) {
-      let match = string.match(/{([^}]+)}/g)[0];
+  static description = (str) => {
+    if (str.startsWith('{')) {
+      let match = str.match(/{([^}]+)}/g)[0];
       return match.substring(1, match.length - 1);
     }
 
     return null;
   }
 
-  static toRows = (string) => {
+  static toRows = (str) => {
     let n = 1;
     let rows = [];
-    if (string) {
-      const arr = string.split(' ').filter(item => item);
-      if (/^[1-9][0-9]*\.\.\.(.*)/.exec(string)) {
+    if (str) {
+      const arr = str.split(' ').filter(item => item);
+      if (/^[1-9][0-9]*\.\.\.(.*)/.exec(str)) {
         const exploded = arr[0].split('...');
         n = parseInt(exploded[0]);
         rows.push({
@@ -50,18 +50,17 @@ export default class Movetext {
     return rows;
   }
 
-  static toCommentedRows = (string, nBreakdown) => {
-    const filtered = string
-      .replace(/(\{.*?\})/g, '')
-      .replace(/\$[1-9][0-9]*/g, '')
-      .replace(/  +/g, ' ')
-      .replace(/[()]/g, '');
+  static toCommentedRows = (str, nBreakdown) => {
+    const rows = Movetext.toRows(
+      str.replace(/(\{.*?\})/g, '')
+        .replace(/\$[1-9][0-9]*/g, '')
+        .replace(/  +/g, ' ')
+        .replace(/[()]/g, '')
+    );
 
-    const rows = Movetext.toRows(filtered);
+    let commented = str;
 
-    let commented = string;
-
-    string.match(/\$[1-9][0-9]*/g)?.forEach((nag, i) => {
+    str.match(/\$[1-9][0-9]*/g)?.forEach((nag, i) => {
       commented = commented.replace(nag, `{${Nag.comment(nag)}}`);
     });
 
@@ -85,15 +84,45 @@ export default class Movetext {
     return rows;
   }
 
-  static substring = (string, back) => {
-    let substring = '';
-    const arr = string.split(' ');
+  static substring = (str, back) => {
+    let substr = '';
+    const arr = str.split(' ');
     arr.forEach((item, i) => {
       if (i <= arr.length - 1 + back) {
-        substring += `${item} `;
+        substr += `${item} `;
       }
     });
 
-    return substring.slice(0, -1);
+    return substr.slice(0, -1);
+  }
+
+  static openParentheses = (str) => {
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === '(') {
+        count += 1;
+      } else if (str[i] === ')') {
+        count -= 1;
+      }
+    }
+
+    return count;
+  }
+
+  static rgb = (r, g, b) => `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)})`;
+
+  static haystack = (str) => str.replace(/(\{.*?\})/g, '')
+    .replace(/\s?\$[1-9][0-9]*/g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/\( /g, '(')
+    .replace(/ \)/g, ')')
+    .trim();
+
+  static needles = (rows) => {
+    return rows.map(row =>
+      row.w === '...'
+        ? `${row.n}...${row.b.replace(/ .*/,'') ?? ''}`.trim()
+        : `${row.n}.${row.w.replace(/ .*/,'')} ${row.b?.replace(/ .*/,'') ?? ''}`.trim()
+      );
   }
 }

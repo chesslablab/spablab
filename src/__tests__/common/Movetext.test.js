@@ -33,7 +33,6 @@ describe('toRows()', () => {
       {
         n: 2,
         w: 'Nf3',
-        b: '',
       }
     ];
     expect(Movetext.toRows(string)).toEqual(expected);
@@ -117,5 +116,33 @@ describe('substring()', () => {
     const string = '1.e4 d5 2.exd5 Qxd5 3.Nc3 Qa5 4.d4 e5 5.dxe5 Nc6 6.Nf3 Bb4 7.Bd2';
     const expected = '1.e4 d5 2.exd5';
     expect(Movetext.substring(string, -10)).toEqual(expected);
+  });
+});
+
+describe('openParentheses()', () => {
+  it('is 0', () => {
+    const string = '1.e4 d5 2.exd5 Qxd5 3.Nc3 Qa5 4.d4 e5 5.dxe5 Nc6 6.Nf3 Bb4 7.Bd2';
+    const expected = 0;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
+  it('is 1', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6 (2...Nf6 3.Nc3';
+    const expected = 1;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
+  it('is 2', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6 (2...Nf6 3.Nc3 (3.Bc4';
+    const expected = 2;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
+  it('is 1', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6 (2...Nf6 3.Nc3 (3.Bc4)';
+    const expected = 1;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
+  });
+  it('is 0', () => {
+    const string = '1.e4 e5 2.Nf3 Nc6 (2...Nf6 3.Nc3 (3.Bc4 d5))';
+    const expected = 0;
+    expect(Movetext.openParentheses(string)).toEqual(expected);
   });
 });

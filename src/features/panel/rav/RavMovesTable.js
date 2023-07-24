@@ -49,28 +49,24 @@ const RavMovesTable = ({props}) => {
     return {};
   };
 
-  const rgb = (r, g, b) => `rgb(${Math.floor(r)},${Math.floor(g)},${Math.floor(b)})`;
-
-  const paint = (rows) => {
-    let colors = [];
-    for (let i = 0; i < rows.length; i++) {
-      const needle = state.ravMode?.breakdown[rows[i].nBreakdown]
-        .replace(/\s?\{[^}]+\}/g, '')
-        .replace(/\s?\$[1-9][0-9]*/g, '')
-        .trim();
-      for (let j = 0; j < state.ravMode?.lines.length; j++) {
-        for (let k = 0; k < state.ravMode?.lines[j].length; k++) {
-          const haystack = Object.keys(state.ravMode?.lines[j][k])[0];
-          if (haystack.includes(needle)) {
-            colors[i] = {
-              background: rgb(255 - (j * 10), 255 - (j * 10), 255 - (j * 10))
-            };
-          }
-        }
-      }
+  const level = (rows) => {
+    let haystack = Movetext.haystack(state.ravMode?.filtered);
+    let needles = Movetext.needles(rows, state.ravMode?.breakdown);
+    for (let i = needles.length - 1; i >= 0; i--) {
+      const position = haystack.lastIndexOf(needles[i]);
+      rows[i].level = Movetext.openParentheses(haystack.substring(0, position));
+      haystack = haystack.substring(0, position).slice(0, -1).trim();
     }
 
-    return colors;
+    return rows;
+  };
+
+  const color = (rows) => {
+    return level(rows).map(row => {
+      return {
+        background: Movetext.rgb(255 - (row.level * 10), 255 - (row.level * 10), 255 - (row.level * 10))
+      }
+    });
   };
 
   const description = () => {
@@ -101,8 +97,10 @@ const RavMovesTable = ({props}) => {
       }
     });
 
+    const colors = color(rows);
+
     return rows.map((row, i) => {
-      return <TableRow key={i} sx={paint(rows)[i]}>
+      return <TableRow key={i} sx={colors[i]}>
         <TableCell sx={styles.nMove}>{row.n}</TableCell>
         <TableCell
           sx={[styles.move, currentMove(row.wFen)]}
