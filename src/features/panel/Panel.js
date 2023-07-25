@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import FenPanel from 'features/panel/fen/FenPanel';
-import GmPanel from 'features/panel/gm/GmPanel';
 import PlayPanel from 'features/panel/play/PlayPanel';
 import RavPanel from 'features/panel/rav/RavPanel';
 import SanPanel from 'features/panel/san/SanPanel';
@@ -13,10 +12,6 @@ const Panel = ({ props }) => {
   if (state.fenMode.active) {
     return (
       <FenPanel props={props} />
-    );
-  } else if (state.gmMode.active) {
-    return (
-      <GmPanel props={props} />
     );
   } else if (state.playMode.active) {
     return (

@@ -6,7 +6,6 @@ import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as board from 'features/board/boardSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
-import * as gmMode from 'features/mode/gmModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
@@ -24,8 +23,6 @@ export default class WsEvent {
   static onStart = (data) => dispatch => {
     if (data['/start'].mode === modeConst.FEN) {
       dispatch(WsEvent.onStartFen(data));
-    } else if (data['/start'].mode === modeConst.GM) {
-      dispatch(WsEvent.onStartGm(data));
     } else if (data['/start'].mode === modeConst.SAN) {
       dispatch(WsEvent.onStartSan(data));
     } else if (data['/start'].mode === modeConst.RAV) {
@@ -46,16 +43,6 @@ export default class WsEvent {
         mssg: 'Invalid FEN, please try again with a different one.'
       }));
     }
-  }
-
-  static onStartGm = (data) => dispatch => {
-    dispatch(gmMode.set({
-      variant: variantConst.CLASSICAL,
-      gm: {
-        color: data['/start'].color,
-        movetext: null,
-      },
-    }));
   }
 
   static onStartSan = (data) => dispatch => {
@@ -172,53 +159,6 @@ export default class WsEvent {
             piecePlaced: { event: eventConst.ON_PLAY_LAN }
           }));
         }
-      } else if (store.getState().gmMode.active) {
-        dispatch(infoAlert.close());
-        dispatch(progressDialog.open());
-        fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/grandmaster`, {
-          method: 'POST',
-          body: JSON.stringify({
-            movetext: data['/play_lan'].movetext
-          })
-        }).then(res => {
-          if (res.status === 200) {
-            res.json().then(data => {
-              const game = data[0];
-              dispatch(gmMode.set({
-                variant: variantConst.CLASSICAL,
-                gm: {
-                  color: Pgn.symbol.WHITE,
-                  movetext: game.movetext,
-                },
-              }));
-              dispatch(gmMode.panelTable({
-                open: true,
-                game: {
-                  Event: game.Event,
-                  Site: game.Site,
-                  Date: game.Date,
-                  White: game.White,
-                  Black: game.Black,
-                  'White ELO': game.WhiteElo,
-                  'Black ELO': game.BlackElo,
-                  Result: game.Result,
-                  ECO: game.ECO
-                }
-              }));
-            });
-          } else if (res.status === 204) {
-            dispatch(sanMode.panelTable({ open: false }));
-            dispatch(infoAlert.show({
-              mssg: 'This game was not found in the database, please try again with a different one.'
-            }));
-          }
-        })
-        .catch(error => {
-          dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-        })
-        .finally(() => {
-          dispatch(progressDialog.close());
-        });
       } else if (store.getState().stockfishMode.active) {
         Ws.stockfish();
       }

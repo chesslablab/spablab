@@ -12,8 +12,6 @@ const store = configureStore({
 export const getActiveMode = () => {
   if (store.getState().fenMode.active) {
     return store.getState().fenMode;
-  } else if(store.getState().gmMode.active) {
-    return store.getState().gmMode;
   } else if(store.getState().sanMode.active) {
     return store.getState().sanMode;
   } else if(store.getState().ravMode.active) {

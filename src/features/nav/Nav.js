@@ -15,7 +15,6 @@ import LanguageIcon from '@mui/icons-material/Language';
 import PersonIcon from '@mui/icons-material/Person';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import QuizIcon from '@mui/icons-material/Quiz';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -29,7 +28,6 @@ import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
-import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
@@ -415,17 +413,6 @@ const Nav = ({props}) => {
         open={Boolean(anchorElTraining)}
         onClose={handleCloseTraining}
       >
-        <MenuItem
-          id="Nav-training-MenuItem-guessTheMove"
-          onClick={() => {
-            multiAction.initGui(dispatch);
-            dispatch(nav.setTraining());
-            handleCloseTraining();
-            Ws.start(variantConst.CLASSICAL, modeConst.GM, { color: Pgn.symbol.WHITE });
-          }}
-        >
-          <QuizIcon size="small" />&nbsp;Guess the Move
-        </MenuItem>
         <MenuItem
           id="Nav-training-MenuItem-endgameSkills"
           onClick={() => {
