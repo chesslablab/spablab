@@ -4,7 +4,6 @@ import * as board from 'features/board/boardSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
-import * as gmMode from 'features/mode/gmModeSlice';
 import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
@@ -23,7 +22,6 @@ export default class multiAction {
     dispatch(board.reset());
     // reset modes
     dispatch(fenMode.reset());
-    dispatch(gmMode.reset());
     dispatch(sanMode.reset());
     dispatch(ravMode.reset());
     dispatch(playMode.reset());

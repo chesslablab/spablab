@@ -25,9 +25,7 @@ export default class Ws {
   static start = async (variant, mode, settings = {}) => {
     let mssg = `/start ${variant} ${mode}`;
     if (Object.keys(settings).length > 0) {
-      if (mode === modeConst.GM) {
-        mssg += ` "${settings.color}"`;
-      } else if (mode === modeConst.FEN) {
+      if (mode === modeConst.FEN) {
         mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.SAN) {
         mssg += ` ${JSON.stringify(settings.settings)}`;

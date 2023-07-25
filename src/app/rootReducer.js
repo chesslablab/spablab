@@ -2,7 +2,6 @@ import infoAlertReducer from 'features/alert/infoAlertSlice';
 import warningAlertReducer from 'features/alert/warningAlertSlice';
 import boardReducer from 'features/board/boardSlice';
 import fenModeReducer from 'features/mode/fenModeSlice';
-import gmModeReducer from 'features/mode/gmModeSlice';
 import sanModeReducer from 'features/mode/sanModeSlice';
 import ravModeReducer from 'features/mode/ravModeSlice';
 import playModeReducer from 'features/mode/playModeSlice';
@@ -18,7 +17,6 @@ const rootReducer = {
   warningAlert: warningAlertReducer,
   board: boardReducer,
   fenMode: fenModeReducer,
-  gmMode: gmModeReducer,
   sanMode: sanModeReducer,
   ravMode: ravModeReducer,
   playMode: playModeReducer,
