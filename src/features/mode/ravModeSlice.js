@@ -10,6 +10,15 @@ const initialState = {
     loadRav: {
       open: false,
     },
+    annotatedGames: {
+      open: false,
+    },
+  },
+  tables: {
+    panel: {
+      open: false,
+      game: {},
+    },
   },
 };
 
@@ -28,13 +37,21 @@ const ravModeSlice = createSlice({
     },
     loadRavDialog(state, action) {
       state.dialogs.loadRav = action.payload;
-    }
+    },
+    annotatedGamesDialog(state, action) {
+      state.dialogs.annotatedGames = action.payload;
+    },
+    panelTable(state, action) {
+      state.tables.panel = action.payload;
+    },
   }
 });
 
 export const {
   reset,
   set,
-  loadRavDialog
+  loadRavDialog,
+  annotatedGamesDialog,
+  panelTable
 } = ravModeSlice.actions;
 export default ravModeSlice.reducer;
