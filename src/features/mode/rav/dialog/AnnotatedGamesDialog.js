@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
+  Alert,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -30,6 +31,13 @@ const AnnotatedGamesDialog = ({props}) => {
         </IconButton>
       </DialogTitle>
       <DialogContent>
+        <Alert
+          style={{ marginBottom: 15 }}
+          className="info-alert"
+          severity="info"
+        >
+          More annotated games will soon be available. Stay tuned!
+        </Alert>
         <AnnotatedGamesTable props={{ result: result }} />
       </DialogContent>
     </Dialog>
