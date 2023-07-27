@@ -1,10 +1,10 @@
 ## React Chess
 
-React Chess is "just a chessboard" as lightweight as it can possibly be. It is connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
+React Chess is "just a chessboard", and as lightweight as it can possibly be. It is connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
 
 ### Demo
 
-Check out [this demo](https://www.chesslablab.com/).
+Check out [this demo](https://www.chesslablab.com/) to see it in action.
 
 ### Install and Setup
 
@@ -41,7 +41,7 @@ Create an `.env` file.
 cp .env.example .env
 ```
 
-Install the npm packages.
+Install the `npm` packages.
 
 ```
 npm install
@@ -69,7 +69,7 @@ npm run build
 
 ### License
 
-The MIT License.
+[The MIT License](https://github.com/chesslablab/react-chess/blob/master/LICENSE).
 
 ### Contributions
 
