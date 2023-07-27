@@ -16,7 +16,7 @@ import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as sanMode from 'features/mode/sanModeSlice';
-import DatabaseResultTable from 'features/mode/san/table/DatabaseResultTable.js';
+import SearchGamesTable from 'features/mode/san/table/SearchGamesTable.js';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const filterOptions = createFilterOptions({
@@ -182,7 +182,7 @@ const SearchGamesDialog = ({props}) => {
             Search
           </Button>
         </form>
-        <DatabaseResultTable props={{ result: result }} />
+        <SearchGamesTable props={{ result: result }} />
       </DialogContent>
     </Dialog>
   );

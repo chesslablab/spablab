@@ -50,7 +50,7 @@ const styles = {
   },
 };
 
-const DatabaseResultTable = ({props}) => {
+const SearchGamesTable = ({props}) => {
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {
@@ -128,4 +128,4 @@ const DatabaseResultTable = ({props}) => {
   );
 }
 
-export default DatabaseResultTable;
+export default SearchGamesTable;
