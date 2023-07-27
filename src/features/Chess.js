@@ -9,6 +9,7 @@ import VariantBoard from 'features/board/VariantBoard';
 import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
 import LoadSanDialog from 'features/mode/san/dialog/LoadSanDialog';
 import LoadRavDialog from 'features/mode/rav/dialog/LoadRavDialog';
+import AnnotatedGamesDialog from 'features/mode/san/dialog/AnnotatedGamesDialog';
 import SearchEcoDialog from 'features/mode/san/dialog/SearchEcoDialog';
 import SearchGamesDialog from 'features/mode/san/dialog/SearchGamesDialog';
 import SearchMovetextDialog from 'features/mode/san/dialog/SearchMovetextDialog';
@@ -62,6 +63,7 @@ const Chess = ({ props }) => {
         <EnterInviteCodeDialog />
         <PlayOnlineDialog />
         <SearchGamesDialog props={props} />
+        <AnnotatedGamesDialog props={props} />
         <SearchEcoDialog props={props} />
         <SearchMovetextDialog props={props} />
         <SearchNameDialog props={props} />

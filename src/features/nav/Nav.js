@@ -404,7 +404,7 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-database-MenuItem-searchGames"
           onClick={() => {
-              // TODO ...
+              dispatch(sanMode.annotatedGamesDialog({ open: true }));
               handleCloseDatabase();
           }}
         >
