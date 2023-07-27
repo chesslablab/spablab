@@ -7,8 +7,8 @@ import {
   DialogTitle,
   IconButton
 } from '@mui/material';
-import * as sanMode from 'features/mode/sanModeSlice';
-import AnnotatedGamesTable from 'features/mode/san/table/AnnotatedGamesTable.js';
+import * as ravMode from 'features/mode/ravModeSlice';
+import AnnotatedGamesTable from 'features/mode/rav/table/AnnotatedGamesTable.js';
 
 const AnnotatedGamesDialog = ({props}) => {
   const state = useSelector((state) => state);
@@ -22,10 +22,10 @@ const AnnotatedGamesDialog = ({props}) => {
   }, [annotatedGames]);
 
   return (
-    <Dialog open={state.sanMode.dialogs.annotatedGames.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.ravMode.dialogs.annotatedGames.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Annotated Games
-        <IconButton onClick={() => dispatch(sanMode.annotatedGamesDialog({ open: false }))}>
+        <IconButton onClick={() => dispatch(ravMode.annotatedGamesDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>

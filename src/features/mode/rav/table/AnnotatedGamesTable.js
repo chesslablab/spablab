@@ -10,7 +10,7 @@ import {
   TableRow
 } from '@mui/material';
 import * as modeConst from 'features/mode/modeConst';
-import * as sanMode from 'features/mode/sanModeSlice';
+import * as ravMode from 'features/mode/ravModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
@@ -56,7 +56,7 @@ const AnnotatedGamesTable = ({props}) => {
   const handleLoad = (item) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setDatabase());
-    dispatch(sanMode.panelTable({
+    dispatch(ravMode.panelTable({
       open: true,
       game: {
         Event: item.Event,
@@ -75,7 +75,7 @@ const AnnotatedGamesTable = ({props}) => {
     };
     Ws.start(
       variantConst.CLASSICAL,
-      modeConst.SAN,
+      modeConst.RAV,
       { settings: JSON.stringify(settings) }
     );
   };
