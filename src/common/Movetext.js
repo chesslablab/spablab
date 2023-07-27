@@ -72,8 +72,6 @@ export default class Movetext {
           row.b += ` ${comment}`;
         } else if (commented.includes(`${row.n}...${row.b} ${comment}`)) {
           row.b += ` ${comment}`;
-        } else if (commented.includes(`${row.b} ${comment}`)) {
-          row.b += ` ${comment}`;
         }
       });
       row.w = row.w.replace(/[{}]/g, '');

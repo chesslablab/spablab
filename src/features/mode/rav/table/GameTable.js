@@ -2,16 +2,16 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 
-const GameTableSanMode = ({props}) => {
+const GameTable = ({props}) => {
   const state = useSelector(state => state);
 
-  if (state.sanMode.tables.panel.open) {
+  if (state.ravMode.tables.panel.open) {
     return (
       <TableContainer sx={{ mt: 1.5 }}>
         <Table stickyHeader size="small" aria-label="Chess Openings">
           <TableBody>
             {
-              Object.entries(state.sanMode.tables.panel.game).map(([key, val]) => (
+              Object.entries(state.ravMode.tables.panel.game).map(([key, val]) => (
                 <TableRow key={key}>
                   <TableCell align="right">{key}</TableCell>
                   <TableCell align="left">{val}</TableCell>
@@ -27,4 +27,4 @@ const GameTableSanMode = ({props}) => {
   return null;
 }
 
-export default GameTableSanMode;
+export default GameTable;

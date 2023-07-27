@@ -1,0 +1,14 @@
+[
+  {
+    "Event": "Steinitz - Zukertort World Championship Match",
+    "Site": "New Orleans, LA USA",
+    "Date": "1886",
+    "White": "Johannes Zukertort",
+    "Black": "Wilhelm Steinitz",
+    "WhiteElo": "-",
+    "BlackElo": "-",
+    "Result": "0-1",
+    "ECO": "D50",
+    "movetext": "{ The Queen's Gambit Declined. Notes by Robert James Fischer adapted from a television interview. } 1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.Nf3 O-O 6.c5 { White plays a mistake already; instead it should be played e3, naturally. } 6...b6 7.b4 bxc5 8.dxc5 a5 9.a3 { Now this fantastic move is played; it's the winning move. } 9...d4 { The pawn can't be taken with the knight because of axb4. } 10.Bxf6 gxf6 11.Na4 e5 { This kingside weakness is nothing; the center is easily winning. } 12.b5 Be6 { note how the power of a mobile center will dominate the game. } 13.g3 c6 14.bxc6 Nxc6 15.Bg2 Rb8 { Threatening Bb3. } 16.Qc1 d3 17.e3 e4 18.Nd2 f5 19.O-O Re8 { A very modern move; a quiet positional move. The rook is doing nothing now, but later... } 20.f3 { To break up the center, it's the only chance for White. } 20...Nd4 21.exd4 Qxd4+ 22.Kh1 e3 (22... Qxa4 { note how Black can easily regain material. }) 23.Nc3 Bf6 24.Ndb1 d2 25.Qc2 Bb3 26.Qxf5 d1=Q 27.Nxd1 Bxd1 28.Nc3 e2 29.Raxd1 Qxc3 { and White resigns. The center has prevailed. }"
+  }
+]
