@@ -6,6 +6,7 @@ import BlurOnIcon from '@mui/icons-material/BlurOn';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import GradientIcon from '@mui/icons-material/Gradient';
@@ -398,6 +399,16 @@ const Nav = ({props}) => {
           }}
         >
           <TroubleshootIcon size="small" />&nbsp;Events Stats
+        </MenuItem>
+        <Divider />
+        <MenuItem
+          id="Nav-database-MenuItem-searchGames"
+          onClick={() => {
+              // TODO ...
+              handleCloseDatabase();
+          }}
+        >
+          <EditNoteIcon size="small" />&nbsp;Annotated Games
         </MenuItem>
       </Menu>
       <Button
