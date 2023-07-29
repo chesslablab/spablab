@@ -1,6 +1,6 @@
 ## React Chess
 
-React Chess is "just a chessboard", and as lightweight as it can possibly be. It is connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
+React Chess is "just a chessboard" as lightweight as it can possibly be. It is connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
 
 ### Demo
 
