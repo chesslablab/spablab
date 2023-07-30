@@ -8,6 +8,7 @@ const initialState = {
     opening: {
       rows: [],
     },
+    gameMetadata: {},
   },
 };
 
@@ -17,6 +18,9 @@ const panelSlice = createSlice({
   reducers: {
     openingTable(state, action) {
       state.tables.opening = action.payload;
+    },
+    gameMetadataTable(state, action) {
+      state.tables.gameMetadata = action.payload;
     },
     goTo(state, action) {
       state.history.back = 0 - action.payload.back;
@@ -35,6 +39,7 @@ const panelSlice = createSlice({
 
 export const {
   openingTable,
+  gameMetadataTable,
   goTo,
   goBack,
   goForward,
