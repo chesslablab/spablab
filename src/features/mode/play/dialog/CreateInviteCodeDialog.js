@@ -14,12 +14,12 @@ import {
   Typography
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as modeConst from 'features/mode/modeConst';
 import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
+import SelectColorButtons from 'features/SelectColorButtons';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
