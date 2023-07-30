@@ -10,24 +10,7 @@ import ButtonsDialogs from 'features/panel/ButtonsDialogs';
 import History from 'features/panel/History';
 import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
-
-const styles = {
-  gameBox: {
-    background: '#f6f6f6',
-  },
-  moves: {
-    height: 300,
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'center',
-    background: '#f0f0f0'
-  },
-  timer: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-};
+import styles from 'features/panel/styles';
 
 const PlayPanel = ({ props }) => {
   return (

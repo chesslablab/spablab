@@ -4,24 +4,7 @@ import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';
 import RavButtons from 'features/panel/rav/RavButtons';
 import RavMovesTable from 'features/panel/rav/RavMovesTable';
-
-const styles = {
-  gameBox: {
-    background: '#f6f6f6',
-  },
-  moves: {
-    height: 300,
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'center',
-    background: '#f0f0f0'
-  },
-  timer: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-};
+import styles from 'features/panel/styles';
 
 const RavPanel = ({ props }) => {
   return (
