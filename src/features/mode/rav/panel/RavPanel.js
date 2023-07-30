@@ -1,14 +1,12 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import StartedButtons from 'features/panel/stockfish/StartedButtons';
-import Buttons from 'features/panel/Buttons';
-import ButtonsDialogs from 'features/panel/ButtonsDialogs';
+import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';
-import MovesTable from 'features/panel/MovesTable';
-import OpeningTable from 'features/panel/OpeningTable';
+import RavButtons from 'features/mode/rav/panel/RavButtons';
+import RavMovesTable from 'features/mode/rav/panel/RavMovesTable';
 import styles from 'features/panel/styles';
 
-const StockfishPanel = ({ props }) => {
+const RavPanel = ({ props }) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.gameBox}>
@@ -17,20 +15,18 @@ const StockfishPanel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <MovesTable />
+            <RavMovesTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
-          <Buttons props={props} />
+          <RavButtons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <StartedButtons />
-        <OpeningTable />
+        <GameMetadataTable />
       </Grid>
-      <ButtonsDialogs />
     </Grid>
   );
 };
 
-export default StockfishPanel;
+export default RavPanel;
