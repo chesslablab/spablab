@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import GameTable from 'features/mode/san/table/GameTable';
 import StartedButtons from 'features/panel/san/StartedButtons';
 import Buttons from 'features/panel/Buttons';
 import ButtonsDialogs from 'features/panel/ButtonsDialogs';
@@ -13,7 +12,7 @@ const styles = {
     background: '#f6f6f6',
   },
   moves: {
-    height: 225,
+    height: 397,
   },
   buttons: {
     display: 'flex',
@@ -43,7 +42,6 @@ const SanPanel = ({ props }) => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <GameTable />
         <StartedButtons />
         <OpeningTable />
       </Grid>

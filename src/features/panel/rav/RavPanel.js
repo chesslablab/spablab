@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import GameTable from 'features/mode/rav/table/GameTable';
 import History from 'features/panel/History';
 import RavButtons from 'features/panel/rav/RavButtons';
 import RavMovesTable from 'features/panel/rav/RavMovesTable';
@@ -38,9 +37,6 @@ const RavPanel = ({ props }) => {
         <Grid item xs={12} sx={styles.buttons}>
           <RavButtons props={props} />
         </Grid>
-      </Grid>
-      <Grid item xs={12}>
-        <GameTable />
       </Grid>
     </Grid>
   );

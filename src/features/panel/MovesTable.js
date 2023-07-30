@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
+import GameTable from 'features/mode/san/table/GameTable';
 import * as panel from 'features/panel/panelSlice';
 import Ws from 'features/ws/Ws';
 
 const styles = {
   table: {
-    maxHeight: 193,
+    maxHeight: 365,
     display: 'flex',
     flexDirection: 'column-reverse'
   },
@@ -99,6 +100,7 @@ const MovesTable = ({props}) => {
       <TableContainer className="noTextSelection" sx={styles.table}>
         <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
+            <GameTable />
             {moves()}
           </TableBody>
         </Table>

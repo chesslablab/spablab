@@ -1,27 +1,33 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import { TableCell, TableRow } from '@mui/material';
+
+const styles = {
+  tableRow: {
+    background: '#ffffff',
+  },
+};
 
 const GameTable = ({props}) => {
   const state = useSelector(state => state);
 
   if (state.ravMode.tables.panel.open) {
-    return (
-      <TableContainer sx={{ mt: 1.5 }}>
-        <Table stickyHeader size="small" aria-label="Chess Openings">
-          <TableBody>
-            {
-              Object.entries(state.ravMode.tables.panel.game).map(([key, val]) => (
-                <TableRow key={key}>
-                  <TableCell align="right">{key}</TableCell>
-                  <TableCell align="left">{val}</TableCell>
-                </TableRow>
-              ))
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
+    return <TableRow key={0} sx={styles.tableRow}>
+      <TableCell align="left">
+        {state.ravMode.tables.panel.game.White}<br/>
+        {state.ravMode.tables.panel.game["White ELO"]}
+      </TableCell>
+      <TableCell align="center">
+        {state.ravMode.tables.panel.game.Result}<br/>
+        {state.ravMode.tables.panel.game.Event}<br/>
+        {state.ravMode.tables.panel.game.Site}, {state.ravMode.tables.panel.game.Date}<br/>
+        {state.ravMode.tables.panel.game.ECO}
+      </TableCell>
+      <TableCell align="right">
+        {state.ravMode.tables.panel.game.Black}<br/>
+        {state.ravMode.tables.panel.game["Black ELO"]}
+      </TableCell>
+    </TableRow>;
   }
 
   return null;
