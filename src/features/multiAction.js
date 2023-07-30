@@ -16,7 +16,7 @@ export default class multiAction {
     dispatch(heuristicsBar.reset());
     dispatch(panel.openingTable({ open: false }));
     dispatch(panel.goTo({ back: 0 }));
-    dispatch(sanMode.panelTable({ open: false }));
+    dispatch(panel.gameMetadataTable({}));
     dispatch(infoAlert.close());
     dispatch(warningAlert.close());
     dispatch(board.reset());

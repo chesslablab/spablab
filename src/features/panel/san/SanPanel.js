@@ -1,30 +1,13 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import GameTable from 'features/mode/san/table/GameTable';
 import StartedButtons from 'features/panel/san/StartedButtons';
 import Buttons from 'features/panel/Buttons';
 import ButtonsDialogs from 'features/panel/ButtonsDialogs';
+import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';
 import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
-
-const styles = {
-  gameBox: {
-    background: '#f6f6f6',
-  },
-  moves: {
-    height: 225,
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'center',
-    background: '#f0f0f0'
-  },
-  timer: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-};
+import styles from 'features/panel/styles';
 
 const SanPanel = ({ props }) => {
   return (
@@ -43,9 +26,9 @@ const SanPanel = ({ props }) => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <GameTable />
         <StartedButtons />
         <OpeningTable />
+        <GameMetadataTable />
       </Grid>
       <ButtonsDialogs />
     </Grid>

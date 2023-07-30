@@ -27,12 +27,6 @@ const initialState = {
       open: false,
     },
   },
-  tables: {
-    panel: {
-      open: false,
-      game: {},
-    },
-  },
 };
 
 const sanModeSlice = createSlice({
@@ -61,9 +55,6 @@ const sanModeSlice = createSlice({
     searchNameDialog(state, action) {
       state.dialogs.searchName = action.payload;
     },
-    panelTable(state, action) {
-      state.tables.panel = action.payload;
-    },
     openingTable(state, action) {
       state.tables.opening = action.payload;
     },
@@ -78,7 +69,6 @@ export const {
   searchGamesDialog,
   searchMovetextDialog,
   searchNameDialog,
-  panelTable,
   openingTable
 } = sanModeSlice.actions;
 export default sanModeSlice.reducer;
