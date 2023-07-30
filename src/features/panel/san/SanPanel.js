@@ -3,6 +3,7 @@ import { Grid } from '@mui/material';
 import StartedButtons from 'features/panel/san/StartedButtons';
 import Buttons from 'features/panel/Buttons';
 import ButtonsDialogs from 'features/panel/ButtonsDialogs';
+import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';
 import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
@@ -29,6 +30,7 @@ const SanPanel = ({ props }) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.gameBox}>
+        <GameMetadataTable />
         <Grid item xs={12} sx={styles.moves}>
           <Grid item xs={12} sx={styles.buttons}>
             <History />

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
-import GameMetadataTable from 'features/panel/GameMetadataTable';
 import * as panel from 'features/panel/panelSlice';
 import Ws from 'features/ws/Ws';
 
@@ -132,7 +131,6 @@ const RavMovesTable = ({props}) => {
       <TableContainer className="noTextSelection" sx={styles.table}>
         <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
-            <GameMetadataTable />
             {description()}
             {moves()}
           </TableBody>

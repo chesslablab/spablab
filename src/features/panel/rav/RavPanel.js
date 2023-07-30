@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
+import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';
 import RavButtons from 'features/panel/rav/RavButtons';
 import RavMovesTable from 'features/panel/rav/RavMovesTable';
@@ -26,6 +27,7 @@ const RavPanel = ({ props }) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.gameBox}>
+        <GameMetadataTable />
         <Grid item xs={12} sx={styles.moves}>
           <Grid item xs={12} sx={styles.buttons}>
             <History />
