@@ -12,11 +12,11 @@ import {
   TextField
 } from '@mui/material';
 import Pgn from 'common/Pgn';
-import SelectColorButtons from 'features/mode/SelectColorButtons';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
+import SelectColorButtons from 'features/SelectColorButtons';
 
 const CheckmateSkillsDialog = () => {
   const state = useSelector(state => state);
