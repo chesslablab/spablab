@@ -1,12 +1,15 @@
 import React from 'react';
 import { Grid } from '@mui/material';
+import StartedButtons from 'features/mode/san/panel/StartedButtons';
+import Buttons from 'features/panel/Buttons';
+import ButtonsDialogs from 'features/panel/ButtonsDialogs';
 import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';
-import RavButtons from 'features/panel/rav/RavButtons';
-import RavMovesTable from 'features/panel/rav/RavMovesTable';
+import MovesTable from 'features/panel/MovesTable';
+import OpeningTable from 'features/panel/OpeningTable';
 import styles from 'features/panel/styles';
 
-const RavPanel = ({ props }) => {
+const SanPanel = ({ props }) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.gameBox}>
@@ -15,18 +18,21 @@ const RavPanel = ({ props }) => {
             <History />
           </Grid>
           <Grid item xs={12}>
-            <RavMovesTable />
+            <MovesTable />
           </Grid>
         </Grid>
         <Grid item xs={12} sx={styles.buttons}>
-          <RavButtons props={props} />
+          <Buttons props={props} />
         </Grid>
       </Grid>
       <Grid item xs={12}>
+        <StartedButtons />
+        <OpeningTable />
         <GameMetadataTable />
       </Grid>
+      <ButtonsDialogs />
     </Grid>
   );
 };
 
-export default RavPanel;
+export default SanPanel;

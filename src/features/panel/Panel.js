@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import FenPanel from 'features/panel/fen/FenPanel';
-import PlayPanel from 'features/panel/play/PlayPanel';
-import RavPanel from 'features/panel/rav/RavPanel';
-import SanPanel from 'features/panel/san/SanPanel';
-import StockfishPanel from 'features/panel/stockfish/StockfishPanel';
+import FenPanel from 'features/mode/fen/panel/FenPanel';
+import PlayPanel from 'features/mode/play/panel/PlayPanel';
+import RavPanel from 'features/mode/rav/panel/RavPanel';
+import SanPanel from 'features/mode/san/panel/SanPanel';
+import StockfishPanel from 'features/mode/stockfish/panel/StockfishPanel';
 
 const Panel = ({ props }) => {
   const state = useSelector(state => state);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import StartedButtons from 'features/panel/fen/StartedButtons';
+import StartedButtons from 'features/mode/stockfish/panel/StartedButtons';
 import Buttons from 'features/panel/Buttons';
 import ButtonsDialogs from 'features/panel/ButtonsDialogs';
 import History from 'features/panel/History';
@@ -8,7 +8,7 @@ import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
 import styles from 'features/panel/styles';
 
-const FenPanel = ({ props }) => {
+const StockfishPanel = ({ props }) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.gameBox}>
@@ -33,4 +33,4 @@ const FenPanel = ({ props }) => {
   );
 };
 
-export default FenPanel;
+export default StockfishPanel;
