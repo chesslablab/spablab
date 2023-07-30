@@ -12,7 +12,7 @@ const styles = {
     background: '#f6f6f6',
   },
   moves: {
-    height: 225,
+    height: 397,
   },
   buttons: {
     display: 'flex',
