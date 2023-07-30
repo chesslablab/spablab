@@ -11,7 +11,7 @@ const styles = {
 const GameMetadataTable = ({props}) => {
   const state = useSelector(state => state);
 
-  if (state.panel.tables.gameMetadata) {
+  if (Object.keys(state.panel.tables.gameMetadata).length) {
     return <TableContainer className="noTextSelection" sx={{mt: 1.5}}>
       <Table stickyHeader size="small" aria-label="Movetext">
         <TableBody>
