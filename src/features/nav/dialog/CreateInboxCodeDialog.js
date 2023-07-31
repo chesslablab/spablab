@@ -18,7 +18,7 @@ const CreateInboxCodeDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  return (
+  return
     <Dialog open={state.nav.dialogs.createInboxCode.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Create Inbox
@@ -28,7 +28,6 @@ const CreateInboxCodeDialog = () => {
       </DialogTitle>
       {state.nav.dialogs.createInboxCode.inbox?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
-  );
 }
 
 const CreateCode = () => {
@@ -68,7 +67,7 @@ const CreateCode = () => {
     Ws.inboxCreate(fields.variant, JSON.stringify(settings));
   }
 
-  return (
+  return
     <DialogContent>
       <form onSubmit={handleCreateCode}>
         <TextField
@@ -123,14 +122,13 @@ const CreateCode = () => {
         </Button>
       </form>
     </DialogContent>
-  );
 }
 
 const CopyCode = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  return (
+  return
     <DialogContent>
       <TextField
         fullWidth
@@ -150,7 +148,6 @@ const CopyCode = () => {
         Copy Inbox Code
       </Button>
     </DialogContent>
-  );
 }
 
 export default CreateInboxCodeDialog;
