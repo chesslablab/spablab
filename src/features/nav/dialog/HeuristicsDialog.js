@@ -81,7 +81,7 @@ const HeuristicsDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  return (
+  return
     <Dialog
       fullScreen
       open={state.nav.dialogs.heuristics.open}
@@ -120,7 +120,6 @@ const HeuristicsDialog = () => {
      </Alert>
      <Heuristics />
     </Dialog>
-  );
 };
 
 export default HeuristicsDialog;
