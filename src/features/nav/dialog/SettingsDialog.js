@@ -29,7 +29,7 @@ const SettingsDialog = () => {
     }));
   };
 
-  return (
+  return
     <Dialog open={state.nav.dialogs.settings.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Settings
@@ -69,7 +69,6 @@ const SettingsDialog = () => {
         </Button>
       </DialogContent>
     </Dialog>
-  );
 };
 
 export default SettingsDialog;
