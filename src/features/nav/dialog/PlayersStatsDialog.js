@@ -54,7 +54,7 @@ const PlayersStatsDialog = ({props}) => {
     });
   };
 
-  return (
+  return
     <Dialog open={state.nav.dialogs.playersStats.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Players Stats
@@ -150,7 +150,6 @@ const PlayersStatsDialog = ({props}) => {
         }
       </DialogContent>
     </Dialog>
-  );
 };
 
 export default PlayersStatsDialog;
