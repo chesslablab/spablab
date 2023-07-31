@@ -46,5 +46,17 @@
     "Result": "1/2-1/2",
     "ECO": "C66",
     "movetext": "{ Adapted notes, originally by J. R. Capablanca. } 1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bb5 d6 5.d4 Bd7 6.O-O Be7 7.Re1 exd4 8.Nxd4 O-O 9.Bxc6 bxc6 10.Bg5 h6 11.Bh4 Re8 12.Qd3 Nh7 13.Bxe7 { is an old move, generally played by all the masters.} (13.Bg3 { is the best continuation, however, I believe. }) 13...Rxe7 14.Re3 Qb8 15.b3 { at this point is unnecessary since Black cannot take the pawn. } Qb6 16.Rae1 Rae8 17.Nf3 Qa5 18.Qd2 Ng5 $3 { giving Black the better position. } 19.Nxg5 hxg5 20.h3 Re5 21.Rd1 Bc8 22.Rd3 Qb6 23.Kh2 R8e6 24.Rg3 Rf6 25.Kg1 (25.f3 Qc5) 25...Kf8 26.Na4 Qa5 27.Qxa5 Rxa5 28.Rc3 {is played under the assumption that Black would defend the pawn as follows. } (28...Bd7 29.Nc5 Be8 30.e5) (28.c4 { would have been better for White. }) 28...Bb7 29.f3 Re6 30.Rcd3 Ba6 31.Rd4 f6 32.Rc1 c5 33.Rd2 Bb5 34.Nc3 Bc6 35.a4 Ra6 36.Kf2 Rb6 37.Nd1 Kf7 {Of course, if c4, Ne3.} 38.Ne3 Rb8 39.Rh1 Ree8 40.Rdd1 Rh8 41.g4 $6 (41.Kg3 { would have been better threatening h4. }) 41...Bd7 42.Nd5 Rb7 43.Kg3 Rh4 44.Rd3 Be6 45.c4 Rh8 46.Rc1 Ke8 47.Ne3 Kd7 48.Ng2 Rbb8 49.Re1 Kc6 50.Ne3 Rbe8 51.Rb1 Rh7 52.Rd2 Rb8 53.Rd3 Rbh8 54.Rh1 Kb6 55.Rh2 Kc6 { because Black realizes it may be impossible to go through with the king on the queen's side. As soon as the king goes to b4, White drives it back by checking with the knight at c2. } 56.Rh1 Rb8 57.Rh2 Rf8 58.Rh1 Kd7 59.Rh2 Bf7 60.Nf5 Rfh8 61.Ne3 Ke6 62.Nd5 Rc8 63.Ne3 {and there is no way for Black to breakthrough.} 1/2-1/2"
+  },
+  {
+    "Event": "Lasker - Capablanca World Championship, Rd 4",
+    "Site": "Havana CUB",
+    "Date": "1921",
+    "White": "Jose Raul Capablanca",
+    "Black": "Emanuel Lasker",
+    "WhiteElo": "?",
+    "BlackElo": "?",
+    "Result": "1/2-1/2",
+    "ECO": "D61",
+    "movetext": "{ Adapted notes, originally by J. R. Capablanca. } 1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Qc2 c6 (7...c5 { is the proper move. }) 8.Bd3 (8.O-O-O { would have been a much more energetic way of continuing, but probably White did not want to take the risk of exposing its king to a queen's side attack. }) 8...dxc4 9.Bxc4 Nd5 10.Bxe7 Qxe7 11.O-O Nxc3 12.bxc3 b6 13.Bd3 g6 14.a4 Bb7 15.a5 c5 16.Nd2 { may not have been White's best move yet it is extremely difficult to point out anything better.} e5 { is probably the only move to save the game. It was essential to break up White’s center to create a weakness in White's game. This would compensate Black for its queen side weakness. } 17.Be4 Bxe4 18.Qxe4 Rae8 19.axb6 axb6 20.Ra7 exd4 21.Qc6 (21.Qxe7 { was slightly better but Black had in that case an adequate defense. }) 21...Rd8 22.cxd4 cxd4 23.exd4 (23.Ne4 Nb8 $1) 23...Qf6 24.Qxf6 Nxf6 25.Nf3 Nd5 26.Rb1 f6 27.Kf1 Rf7 28.Rba1 Rdd7 29.Rxd7 Rxd7 30.g3 { and there was no reason to continue the game because neither player had much to do. } 1/2-1/2"
   }
 ]
