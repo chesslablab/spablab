@@ -13,7 +13,7 @@ const History = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  return (
+  return
     <ButtonGroup variant="text" aria-label="History" size="medium">
       <Button
         startIcon={<CachedIcon />}
@@ -49,7 +49,6 @@ const History = () => {
         }}
       />
     </ButtonGroup>
-  );
 }
 
 export default History;
