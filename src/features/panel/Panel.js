@@ -10,25 +10,20 @@ const Panel = ({ props }) => {
   const state = useSelector(state => state);
 
   if (state.fenMode.active) {
-    return (
+    return
       <FenPanel props={props} />
-    );
   } else if (state.playMode.active) {
-    return (
+    return
       <PlayPanel props={props} />
-    );
   } else if (state.ravMode.active) {
-    return (
+    return
       <RavPanel props={props} />
-    );
   } else if (state.sanMode.active) {
-    return (
+    return
       <SanPanel props={props} />
-    );
   } else if (state.stockfishMode.active) {
-    return (
+    return
       <StockfishPanel props={props} />
-    );
   }
 };
 
