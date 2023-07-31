@@ -42,8 +42,6 @@ const HeuristicsBar = () => {
       return dataMax / (dataMax - dataMin);
     };
 
-    const off = gradientOffset();
-
     return (
       <ResponsiveContainer height="20%" width="100%">
         <AreaChart
