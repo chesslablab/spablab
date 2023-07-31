@@ -8,7 +8,7 @@ const OpeningTable = ({props}) => {
 
   if (state.nav?.name !== navConst.DATABASE && state.nav?.name !== navConst.TRAINING) {
     if (state.panel.tables.opening.rows) {
-      return (
+      return
         <TableContainer sx={{ mt: 1.5 }}>
           <Table stickyHeader size="small" aria-label="Chess Openings">
             <TableBody>
@@ -23,7 +23,6 @@ const OpeningTable = ({props}) => {
             </TableBody>
           </Table>
         </TableContainer>
-      );
     }
   }
 
