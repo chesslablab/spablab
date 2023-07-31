@@ -71,7 +71,7 @@ const Buttons = ({props}) => {
   const disabled = !state.board.movetext;
 
   if (!state.ravMode.active) {
-    return (
+    return 
       <Stack direction="row" spacing={1}>
         <IconButton
           id="Buttons-copyMovetext"
@@ -132,7 +132,7 @@ const Buttons = ({props}) => {
           <VideoCameraBackIcon fontSize="inherit" />
         </IconButton>
       </Stack>
-    );
+    
   }
 }
 
