@@ -15,7 +15,7 @@ const OpeningsStatsDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  return (
+  return
     <Dialog open={state.nav.dialogs.openingsStats.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Top 50 Openings
@@ -97,7 +97,6 @@ const OpeningsStatsDialog = ({props}) => {
         </Typography>
       </DialogContent>
     </Dialog>
-  );
 };
 
 export default OpeningsStatsDialog;
