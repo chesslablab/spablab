@@ -52,7 +52,7 @@ const EnterInboxCodeDialog = () => {
     setFields(initialState);
   };
 
-  return (
+  return
     <Dialog open={state.nav.dialogs.enterInboxCode.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Read Inbox
@@ -173,7 +173,6 @@ const EnterInboxCodeDialog = () => {
         }
       </DialogContent>
     </Dialog>
-  );
 };
 
 export default EnterInboxCodeDialog;
