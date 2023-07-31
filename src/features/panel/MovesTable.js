@@ -95,7 +95,7 @@ const MovesTable = ({props}) => {
   };
 
   if (!state.ravMode.active) {
-    return (
+    return
       <TableContainer className="noTextSelection" sx={styles.table}>
         <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
@@ -103,7 +103,6 @@ const MovesTable = ({props}) => {
           </TableBody>
         </Table>
       </TableContainer>
-    );
   }
 
   return null;
