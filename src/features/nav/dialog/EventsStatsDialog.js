@@ -53,7 +53,7 @@ const EventsStatsDialog = ({props}) => {
     });
   };
 
-  return (
+  return
     <Dialog open={state.nav.dialogs.eventsStats.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Events Stats
@@ -136,7 +136,6 @@ const EventsStatsDialog = ({props}) => {
         }
       </DialogContent>
     </Dialog>
-  );
 };
 
 export default EventsStatsDialog;
