@@ -29,20 +29,17 @@ const HeuristicsBar = () => {
       state.heuristicsBar.heuristics.balance
     );
 
-    const gradientOffset = () => {
+    const offset = () => {
       const dataMax = Math.max(...data.map((i) => i.val));
       const dataMin = Math.min(...data.map((i) => i.val));
       if (dataMax <= 0) {
         return 0;
-      }
-      if (dataMin >= 0) {
+      } else if (dataMin >= 0) {
         return 1;
       }
 
       return dataMax / (dataMax - dataMin);
     };
-
-    const off = gradientOffset();
 
     return (
       <ResponsiveContainer height="20%" width="100%">
@@ -57,8 +54,8 @@ const HeuristicsBar = () => {
           <Tooltip />
           <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-              <stop offset={off} stopColor="#e8e8e8" stopOpacity={1} />
-              <stop offset={off} stopColor="#202020" stopOpacity={1} />
+              <stop offset={offset()} stopColor="#e8e8e8" stopOpacity={1} />
+              <stop offset={offset()} stopColor="#202020" stopOpacity={1} />
             </linearGradient>
           </defs>
           <Area
