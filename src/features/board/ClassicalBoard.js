@@ -25,21 +25,21 @@ const ClassicalBoard = ({props}) => {
     sqSize
   ]);
 
-  const handleMove = (payload) => {
-    if (state.board.turn === Piece.color(payload.piece)) {
-      dispatch(board.grabPiece(payload));
-      Ws.legal(payload.sq);
-    } else {
-      dispatch(board.placePiece(payload));
-    }
-  }
-
-  return <Squares props={{
-    className: 'classicalBoard',
-    imgsRef: imgsRef,
-    sqsRef: sqsRef,
-    handleMove: handleMove
-  }}/>;
+  return (
+    <Squares props={{
+      className: 'classicalBoard',
+      imgsRef: imgsRef,
+      sqsRef: sqsRef,
+      handleMove: (payload) => {
+        if (state.board.turn === Piece.color(payload.piece)) {
+          dispatch(board.grabPiece(payload));
+          Ws.legal(payload.sq);
+        } else {
+          dispatch(board.placePiece(payload));
+        }
+      }
+    }} />
+  );
 }
 
 export default ClassicalBoard;
