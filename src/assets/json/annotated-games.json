@@ -82,5 +82,17 @@
     "Result": "1/2-1/2",
     "ECO": "C66",
     "movetext": "{ Adapted notes, originally by J. R. Capablanca. } 1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.O-O d6 5.d4 Bd7 6.Nc3 Be7 7.Re1 exd4 8.Nxd4 O-O 9.Bxc6 bxc6 10.Bg5 Re8 11.Qd3 h6 12.Bh4 Nh7 13.Bxe7 Rxe7 { made this game exactly the same as in round three. } 14.Qc4 { changed the course of the game. } Qe8 15.Re2 (15.Re3 { can also be considered. }) 15...Rb8 16.b3 c5 17.Nf3 Bb5 { is not the best move because it leaves Black with an exceedingly difficult ending. } (17...Ng5 { was the right move to make. }) 18.Nxb5 Qxb5 19.Qxb5 Rxb5 20.Kf1 Ng5 21.Nd2 Ne6 { with the idea of maneuvering the knight to d4. It is essential to force White to play c3 in order to weaken somewhat the defensive strength of its queen's knight's pawn. } 22.c3 f6 23.Nc4 Nf4 { and again this knight is maneuvered. The student would do well to carefully study this ending. } 24.Re3 Ng6 25.Nd2 Rb8 26.g3 a5 27.a4 { explains why Black forced White to play c3. With the white pawn at c2, Black's game would be practically hopeless since White's b pawn would not have to be protected by a piece as is the case now. } Ne5 28.f4 Nd7 29.Ke2 Nb6 30.Kd3 c6 31.Rae1 Kf7 32.Nc4 (32.e5 { would lead to a much more complicated ending. } fxe5 33.fxe5 d5) 32...Nxc4 33.Kxc4 Re6 $3 (33...Ke6 34.Rd3) 34.e5 fxe5 35.fxe5 d5 36.Kxc5 Rxb3 37.c4 { is not the best move but at any rate the game would have been a draw. } (37.Rf1+ { would have been the best move. }) 37...dxc4 38.Re4 { is probably the only way to obtain a sure draw. } c3 39.Rc4 h5 40.Re3 Rb2 41.Rcxc3 Rxh2 42.Kb6 Rb2+ 43.Kxa5 g5 { and neither player tried to win such a game. } 1/2-1/2"
+  },
+  {
+    "Event": "Lasker - Capablanca World Championship, Rd 7",
+    "Site": "Havana CUB",
+    "Date": "1921",
+    "White": "Jose Raul Capablanca",
+    "Black": "Emanuel Lasker",
+    "WhiteElo": "?",
+    "BlackElo": "?",
+    "Result": "1/2-1/2",
+    "ECO": "D63",
+    "movetext": "{ Adapted notes, originally by J. R. Capablanca. } 1.d4 d5 2.Nf3 e6 3.c4 Nf6 4.Bg5 Be7 5.e3 Nbd7 6.Nc3 O-O 7.Rc1 c6 8.Qc2 c5 {is not a recommended move.} 9.Rd1 (9.cxd5 { would have been proper to continue. }) 9...Qa5 10.cxd5 Nxd5 11.Bxe7 Nxe7 12.Bd3 Nf6 13.O-O cxd4 14.Nxd4 (14.exd4 { was the alternative. It would have left, however, to a very difficult game where, in exchange for the attack, White would remain with an isolated queen's pawn; leading at this stage of the match by one point, I did not want to take any risks. }) 14...Bd7 15.Ne4 Ned5 16.Nb3 Qd8 17.Nxf6+ Nxf6 18.Qc5 Qb6 { neutralizes whatever little advantage White might have had. The draw is now insight. } 19.Rc1 Rfc8 20.Qxb6 axb6 21.Rxc8+ Rxc8 22.Rc1 Rxc1+ 23.Nxc1 Kf8 1/2-1/2"
   }
 ]

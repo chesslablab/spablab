@@ -19,18 +19,15 @@ const VariantBoard = ({props}) => {
       ));
   }, [props, dispatch]);
 
-  const variantBoard = () => {
-    const activeMode = Object.values(state).find((val, key) => val.active);
-    if (activeMode?.variant === variantConst.CAPABLANCA) {
-      return <CapablancaBoard props={props} />;
-    } else if (activeMode?.variant === variantConst.CHESS_960) {
-      return <Chess960Board props={props} />;
-    }
+  const activeMode = Object.values(state).find((val, key) => val.active);
 
-    return <ClassicalBoard props={props} />;
+  if (activeMode?.variant === variantConst.CAPABLANCA) {
+    return <CapablancaBoard />;
+  } else if (activeMode?.variant === variantConst.CHESS_960) {
+    return <Chess960Board />;
   }
 
-  return variantBoard();
+  return <ClassicalBoard />;
 }
 
 export default VariantBoard;

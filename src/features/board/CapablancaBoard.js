@@ -5,27 +5,25 @@ import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
-const CapablancaBoard = ({props}) => {
+const CapablancaBoard = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-  const sqsRef = useRef([]);
-  const imgsRef = useRef([]);
 
-  const handleMove = (payload) => {
-    if (state.board.turn === Piece.color(payload.piece)) {
-      dispatch(board.grabPiece(payload));
-      Ws.legal(payload.sq);
-    } else {
-      dispatch(board.placePiece(payload));
-    }
-  }
-
-  return <Squares props={{
-    className: 'capablancaBoard',
-    imgsRef: imgsRef,
-    sqsRef: sqsRef,
-    handleMove: handleMove
-  }}/>;
+  return (
+    <Squares props={{
+      className: 'capablancaBoard',
+      imgsRef:  useRef([]),
+      sqsRef: useRef([]),
+      handleMove: (payload) => {
+        if (state.board.turn === Piece.color(payload.piece)) {
+          dispatch(board.grabPiece(payload));
+          Ws.legal(payload.sq);
+        } else {
+          dispatch(board.placePiece(payload));
+        }
+      }
+    }} />
+  );
 }
 
 export default CapablancaBoard;
