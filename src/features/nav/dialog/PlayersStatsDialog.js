@@ -71,11 +71,7 @@ const PlayersStatsDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="White"
-                options={
-                  state.nav.dialogs.playersStats.autocomplete?.players
-                    ? state.nav.dialogs.playersStats.autocomplete.players.map((option) => option.name)
-                    : []
-                }
+                options={state.nav.dialogs.playersStats.autocomplete?.players ?? []}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
               />
@@ -83,11 +79,7 @@ const PlayersStatsDialog = ({props}) => {
             <Grid item xs={12} md={4}>
               <Autocomplete
                 id="Black"
-                options={
-                  state.nav.dialogs.playersStats.autocomplete?.players
-                    ? state.nav.dialogs.playersStats.autocomplete.players.map((option) => option.name)
-                    : []
-                }
+                options={state.nav.dialogs.playersStats.autocomplete?.players ?? []}
                 filterOptions={filterOptions}
                 renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
               />
