@@ -22,12 +22,12 @@ const VariantBoard = ({props}) => {
   const activeMode = Object.values(state).find((val, key) => val.active);
 
   if (activeMode?.variant === variantConst.CAPABLANCA) {
-    return <CapablancaBoard props={props} />;
+    return <CapablancaBoard />;
   } else if (activeMode?.variant === variantConst.CHESS_960) {
-    return <Chess960Board props={props} />;
+    return <Chess960Board />;
   }
 
-  return <ClassicalBoard props={props} />;
+  return <ClassicalBoard />;
 }
 
 export default VariantBoard;

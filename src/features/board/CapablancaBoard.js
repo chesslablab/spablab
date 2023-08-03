@@ -5,7 +5,7 @@ import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
-const CapablancaBoard = ({props}) => {
+const CapablancaBoard = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 

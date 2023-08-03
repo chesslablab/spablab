@@ -7,7 +7,7 @@ import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
-const ClassicalBoard = ({props}) => {
+const ClassicalBoard = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const maxWidth = {
