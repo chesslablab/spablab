@@ -16,14 +16,13 @@ const CapablancaBoard = ({props}) => {
       sqsRef: useRef([]),
       handleMove: (payload) => {
         if (state.board.turn === Piece.color(payload.piece)) {
-            dispatch(board.grabPiece(payload));
-            Ws.legal(payload.sq);
-          } else {
-            dispatch(board.placePiece(payload));
-          }
+          dispatch(board.grabPiece(payload));
+          Ws.legal(payload.sq);
+        } else {
+          dispatch(board.placePiece(payload));
         }
-      }}
-    />
+      }
+    }} />
   );
 }
 
