@@ -340,7 +340,10 @@ const Nav = ({props}) => {
         </MenuItem>
         <MenuItem
           id="Nav-database-MenuItem-playersStats"
-          onClick={() => dispatch(nav.playersStatsDialog({ open: true }))}
+          onClick={() => {
+            dispatch(nav.playersStatsDialog({ open: true }));
+            handleCloseDatabase();
+          }}
         >
           <QueryStatsIcon size="small" />&nbsp;Players Stats
         </MenuItem>

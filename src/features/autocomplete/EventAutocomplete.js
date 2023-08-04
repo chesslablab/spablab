@@ -31,7 +31,11 @@ const EventAutocomplete = ({props}) => {
           dispatch(progressDialog.close());
         });
     }
-  }, [props, dispatch]);
+  }, [
+    state.eventAutocomplete.data.length,
+    props,
+    dispatch
+  ]);
 
   return (
     <Autocomplete
