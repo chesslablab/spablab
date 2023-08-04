@@ -25,7 +25,7 @@ const WhitePlayerAutocomplete = ({props}) => {
           variant="filled"
           name="White"
           onClick={() => {
-            if (state.eventAutocomplete.data.length === 0) {
+            if (state.playerAutocomplete.data.length === 0) {
               fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete/player`)
                 .then(res => {
                   if (res.status === 200) {

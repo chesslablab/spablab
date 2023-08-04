@@ -310,7 +310,10 @@ const Nav = ({props}) => {
       >
         <MenuItem
           id="Nav-database-MenuItem-searchGames"
-          onClick={() => dispatch(sanMode.searchGamesDialog({ open: true }))}
+          onClick={() => {
+            dispatch(sanMode.searchGamesDialog({ open: true }));
+            handleCloseDatabase();
+          }}
         >
           <TravelExploreIcon size="small" />&nbsp;Search Games
         </MenuItem>
