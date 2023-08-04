@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const eventAutocompleteSlice = createSlice({
-  name: 'autocompleteEvents',
+  name: 'autocompleteEvent',
   initialState,
   reducers: {
     reset: () => initialState,

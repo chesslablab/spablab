@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const playerAutocompleteSlice = createSlice({
-  name: 'autocompletePlayers',
+  name: 'autocompletePlayer',
   initialState,
   reducers: {
     reset: () => initialState,
