@@ -16,6 +16,7 @@ const EventAutocomplete = ({props}) => {
 
   return (
     <Autocomplete
+      loading
       id="Event"
       options={state.eventAutocomplete.data}
       filterOptions={filterOptions}
