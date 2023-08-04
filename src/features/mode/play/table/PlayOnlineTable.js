@@ -67,7 +67,7 @@ const PlayOnlineTable = () => {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={5}>Pending invitations</TableCell>
+              <TableCell align="center" colSpan={5}>Chess room</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
