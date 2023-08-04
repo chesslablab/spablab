@@ -35,7 +35,7 @@ const EventAutocomplete = ({props}) => {
 
   return (
     <Autocomplete
-      loading
+      loading={state.eventAutocomplete.data.length === 0}
       id="Event"
       options={state.eventAutocomplete.data}
       filterOptions={filterOptions}
