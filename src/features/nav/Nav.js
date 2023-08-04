@@ -346,7 +346,10 @@ const Nav = ({props}) => {
         </MenuItem>
         <MenuItem
           id="Nav-database-MenuItem-eventsStats"
-          onClick={() => dispatch(nav.eventsStatsDialog({ open: true }))}
+          onClick={() => {
+            dispatch(nav.eventsStatsDialog({ open: true }));
+            handleCloseDatabase();
+          }}
         >
           <TroubleshootIcon size="small" />&nbsp;Events Stats
         </MenuItem>

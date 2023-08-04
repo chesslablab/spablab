@@ -16,19 +16,21 @@ const EventAutocomplete = ({props}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete/event`)
-      .then(res => {
-        if (res.status === 200) {
-          res.json().then(data => {
-            dispatch(eventAutocomplete.set(data));
-          });
-        } else {
-          dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-        }
-      })
-      .finally(() => {
-        dispatch(progressDialog.close());
-      });
+    if (state.eventAutocomplete.data.length === 0) {
+      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete/event`)
+        .then(res => {
+          if (res.status === 200) {
+            res.json().then(data => {
+              dispatch(eventAutocomplete.set(data));
+            });
+          } else {
+            dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+          }
+        })
+        .finally(() => {
+          dispatch(progressDialog.close());
+        });
+    }
   }, [props, dispatch]);
 
   return (
