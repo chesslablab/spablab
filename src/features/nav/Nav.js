@@ -310,23 +310,7 @@ const Nav = ({props}) => {
       >
         <MenuItem
           id="Nav-database-MenuItem-searchGames"
-          onClick={() => {
-            dispatch(progressDialog.open());
-            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
-              .then(res => {
-                if (res.status === 200) {
-                  res.json().then(data => {
-                    dispatch(sanMode.searchGamesDialog({ open: true, autocomplete: data }));
-                  });
-                } else {
-                  dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-                }
-              })
-              .finally(() => {
-                dispatch(progressDialog.close());
-                handleCloseDatabase();
-              });
-          }}
+          onClick={() => dispatch(sanMode.searchGamesDialog({ open: true }))}
         >
           <TravelExploreIcon size="small" />&nbsp;Search Games
         </MenuItem>
@@ -356,47 +340,13 @@ const Nav = ({props}) => {
         </MenuItem>
         <MenuItem
           id="Nav-database-MenuItem-playersStats"
-          onClick={() => {
-            dispatch(progressDialog.open());
-            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
-              .then(res => {
-                if (res.status === 200) {
-                  res.json().then(data => {
-                    dispatch(nav.playersStatsDialog({ open: true, autocomplete: data }));
-                  });
-                } else {
-                  dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-                }
-              })
-              .finally(() => {
-                dispatch(progressDialog.close());
-                dispatch(nav.playersStatsDialog({ open: true }));
-                handleCloseDatabase();
-              });
-          }}
+          onClick={() => dispatch(nav.playersStatsDialog({ open: true }))}
         >
           <QueryStatsIcon size="small" />&nbsp;Players Stats
         </MenuItem>
         <MenuItem
           id="Nav-database-MenuItem-eventsStats"
-          onClick={() => {
-            dispatch(progressDialog.open());
-            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete`)
-              .then(res => {
-                if (res.status === 200) {
-                  res.json().then(data => {
-                    dispatch(nav.eventsStatsDialog({ open: true, autocomplete: data }));
-                  });
-                } else {
-                  dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-                }
-              })
-              .finally(() => {
-                dispatch(progressDialog.close());
-                dispatch(nav.eventsStatsDialog({ open: true }));
-                handleCloseDatabase();
-              });
-          }}
+          onClick={() => dispatch(nav.eventsStatsDialog({ open: true }))}
         >
           <TroubleshootIcon size="small" />&nbsp;Events Stats
         </MenuItem>
@@ -404,8 +354,8 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-database-MenuItem-searchGames"
           onClick={() => {
-              dispatch(ravMode.annotatedGamesDialog({ open: true }));
-              handleCloseDatabase();
+            dispatch(ravMode.annotatedGamesDialog({ open: true }));
+            handleCloseDatabase();
           }}
         >
           <EditNoteIcon size="small" />&nbsp;Annotated Games
