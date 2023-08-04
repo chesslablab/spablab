@@ -12,16 +12,12 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
+import WhitePlayerAutocomplete from 'features/autocomplete/WhitePlayerAutocomplete.js';
+import BlackPlayerAutocomplete from 'features/autocomplete/BlackPlayerAutocomplete.js';
 import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
-
-const filterOptions = createFilterOptions({
-  matchFrom: 'any',
-  limit: 25,
-});
 
 const PlayersStatsDialog = ({props}) => {
   const state = useSelector((state) => state);
@@ -69,20 +65,10 @@ const PlayersStatsDialog = ({props}) => {
         <form onSubmit={handleViewStats}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <Autocomplete
-                id="White"
-                options={state.nav.dialogs.playersStats.autocomplete?.players ?? []}
-                filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
-              />
+              <WhitePlayerAutocomplete props={props} />
             </Grid>
             <Grid item xs={12} md={4}>
-              <Autocomplete
-                id="Black"
-                options={state.nav.dialogs.playersStats.autocomplete?.players ?? []}
-                filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
-              />
+              <BlackPlayerAutocomplete props={props} />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField

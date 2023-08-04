@@ -14,10 +14,6 @@ const initialState = {
     },
     eventsStats: {
       open: false,
-      autocomplete: {
-        events: [],
-        players: [],
-      },
     },
     heuristics: {
       open: false,
@@ -33,10 +29,6 @@ const initialState = {
     },
     playersStats: {
       open: false,
-      autocomplete: {
-        events: [],
-        players: [],
-      },
     },
     settings: {
       open: false,

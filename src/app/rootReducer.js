@@ -1,5 +1,7 @@
 import infoAlertReducer from 'features/alert/infoAlertSlice';
 import warningAlertReducer from 'features/alert/warningAlertSlice';
+import eventAutocompleteReducer from 'features/autocomplete/eventAutocompleteSlice';
+import playerAutocompleteReducer from 'features/autocomplete/playerAutocompleteSlice';
 import boardReducer from 'features/board/boardSlice';
 import fenModeReducer from 'features/mode/fenModeSlice';
 import sanModeReducer from 'features/mode/sanModeSlice';
@@ -15,6 +17,8 @@ import progressDialogReducer from 'features/progressDialogSlice';
 const rootReducer = {
   infoAlert: infoAlertReducer,
   warningAlert: warningAlertReducer,
+  eventAutocomplete: eventAutocompleteReducer,
+  playerAutocomplete: playerAutocompleteReducer,
   board: boardReducer,
   fenMode: fenModeReducer,
   sanMode: sanModeReducer,
@@ -25,7 +29,7 @@ const rootReducer = {
   panel: panelReducer,
   ws: wsReducer,
   heuristicsBar: heuristicsBarReducer,
-  progressDialog: progressDialogReducer,
+  progressDialog: progressDialogReducer
 };
 
 export default rootReducer;
