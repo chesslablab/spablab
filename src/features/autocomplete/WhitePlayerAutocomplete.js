@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
@@ -14,8 +14,28 @@ const WhitePlayerAutocomplete = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (state.playerAutocomplete.data.length === 0) {
+      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete/player`)
+        .then(res => {
+          if (res.status === 200) {
+            res.json().then(data => {
+              dispatch(playerAutocomplete.set(data));
+            });
+          } else {
+            dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+          }
+        });
+    }
+  }, [
+    state.playerAutocomplete.data.length,
+    props,
+    dispatch
+  ]);
+
   return (
     <Autocomplete
+      loading
       id="White"
       options={state.playerAutocomplete.data}
       filterOptions={filterOptions}
@@ -24,20 +44,6 @@ const WhitePlayerAutocomplete = ({props}) => {
           label="White"
           variant="filled"
           name="White"
-          onClick={() => {
-            if (state.playerAutocomplete.data.length === 0) {
-              fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete/player`)
-                .then(res => {
-                  if (res.status === 200) {
-                    res.json().then(data => {
-                      dispatch(playerAutocomplete.set(data));
-                    });
-                  } else {
-                    dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-                  }
-                });
-            }
-          }}
         />}
     />
   );
