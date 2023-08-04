@@ -12,16 +12,11 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
+import EventAutocomplete from 'features/autocomplete/EventAutocomplete.js';
 import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
-
-const filterOptions = createFilterOptions({
-  matchFrom: 'any',
-  limit: 25,
-});
 
 const EventsStatsDialog = ({props}) => {
   const state = useSelector((state) => state);
@@ -68,12 +63,7 @@ const EventsStatsDialog = ({props}) => {
         <form onSubmit={handleViewStats}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={8}>
-              <Autocomplete
-                id="Event"
-                options={state.nav.dialogs.eventsStats.autocomplete?.events ?? []}
-                filterOptions={filterOptions}
-                renderInput={(params) => <TextField required {...params} label="Event" variant="filled" name="Event" />}
-              />
+              <EventAutocomplete />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
