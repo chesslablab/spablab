@@ -65,10 +65,10 @@ const PlayersStatsDialog = ({props}) => {
         <form onSubmit={handleViewStats}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <WhitePlayerAutocomplete />
+              <WhitePlayerAutocomplete props={props} />
             </Grid>
             <Grid item xs={12} md={4}>
-              <BlackPlayerAutocomplete />
+              <BlackPlayerAutocomplete props={props} />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
