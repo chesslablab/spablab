@@ -90,11 +90,11 @@ const EventsStatsDialog = ({props}) => {
               </TextField>
             </Grid>
           </Grid>
-          <Button
+          <Button sx={{ mt: 2 }}
             fullWidth
-            variant="outlined"
+            size="large"
+            variant="contained"
             type="submit"
-            sx={{ mt: 2 }}
           >
             View Stats
           </Button>

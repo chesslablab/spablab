@@ -66,8 +66,8 @@ const LoadFenDialog = () => {
             label="Variant"
             variant="filled"
             value={fields.variant}
-            margin="normal"
             onChange={handleVariantChange}
+            margin="dense"
           >
             <MenuItem
               id="LoadFenDialog-TextField-variant-MenuItem-classical"
@@ -101,7 +101,8 @@ const LoadFenDialog = () => {
                   label="Start position"
                   variant="filled"
                   helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-              />
+                  margin="dense"
+                />
               : null
           }
           <TextField
@@ -111,14 +112,14 @@ const LoadFenDialog = () => {
             name="fen"
             label="From FEN position"
             variant="filled"
-            margin="normal"
+            margin="dense"
           />
-          <Button
-            id="LoadFenDialog-Button-load"
+          <Button sx={{ mt: 2 }}
             fullWidth
+            size="large"
+            variant="contained"
             type="submit"
-            variant="outlined"
-            sx={{ mt: 2 }}
+            id="LoadFenDialog-Button-load"
           >
             Load
           </Button>

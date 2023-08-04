@@ -79,9 +79,9 @@ const CreateCode = () => {
           label="Variant"
           variant="filled"
           defaultValue={variantConst.CLASSICAL}
-          margin="normal"
           onChange={handleVariantChange}
-          >
+          margin="dense"
+        >
           <MenuItem key={0} value="classical">
             Classical
           </MenuItem>
@@ -95,13 +95,14 @@ const CreateCode = () => {
         {
           fields.variant === variantConst.CHESS_960
             ? <TextField
-              fullWidth
-              required
-              name="startPos"
-              label="Start position"
-              variant="filled"
-              helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-              onChange={handleStartPosChange}
+                fullWidth
+                required
+                name="startPos"
+                label="Start position"
+                variant="filled"
+                helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+                onChange={handleStartPosChange}
+                margin="dense"
             />
             : null
         }
@@ -110,14 +111,14 @@ const CreateCode = () => {
           name="fen"
           label="From FEN position"
           variant="filled"
-          margin="normal"
           onChange={handleFenChange}
+          margin="dense"
         />
-        <Button
+        <Button sx={{ mt: 2 }}
           fullWidth
+          size="large"
+          variant="contained"
           type="submit"
-          variant="outlined"
-          sx={{ mt: 2 }}
         >
           Create Inbox
         </Button>
@@ -134,15 +135,17 @@ const CopyCode = () => {
     <DialogContent>
       <TextField
         fullWidth
+        variant="filled"
         type="text"
         name="sharecode"
         label="Share this code with a friend"
-        margin="normal"
         value={state.nav.dialogs.createInboxCode.inbox.hash}
+        margin="dense"
       />
-      <Button
+      <Button sx={{ mt: 2 }}
         fullWidth
-        variant="outlined"
+        size="large"
+        variant="contained"
         onClick={() => {
           navigator.clipboard.writeText(state.nav.dialogs.createInboxCode.inbox.hash);
           dispatch(nav.createInboxCodeDialog({ open: false }));

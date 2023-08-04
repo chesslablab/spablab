@@ -13,7 +13,7 @@ const BlackPlayerAutocomplete = ({props}) => {
 
   return (
     <Autocomplete
-      loading
+      loading={state.playerAutocomplete.data.length === 0}
       id="Black"
       options={state.playerAutocomplete.data}
       filterOptions={filterOptions}

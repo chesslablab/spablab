@@ -49,14 +49,14 @@ const SearchNameDialog = ({ props }) => {
             name="name"
             label="Name"
             variant="filled"
-            margin="normal"
+            margin="dense"
           />
-          <Button
+          <Button sx={{ mt: 2 }}
             id="SearchNameDialog-Button-search"
             fullWidth
+            size="large"
+            variant="contained"
             type="submit"
-            variant="outlined"
-            sx={{ mt: 2 }}
           >
             Search
           </Button>

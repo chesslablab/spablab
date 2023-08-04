@@ -49,14 +49,14 @@ const EnterInviteCodeDialog = () => {
           name="hash"
           label="Invite code"
           variant="filled"
-          margin="normal"
           onChange={handleHashChange}
+          margin="dense"
         />
-        <Button
+        <Button sx={{ mt: 2 }}
           fullWidth
-          variant="outlined"
+          size="large"
+          variant="contained"
           onClick={() => handlePlay()}
-          sx={{ mt: 2 }}
         >
           Play friend
         </Button>

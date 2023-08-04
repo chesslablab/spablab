@@ -74,8 +74,8 @@ const CheckmateSkillsDialog = () => {
           label="Checkmate"
           variant="filled"
           defaultValue="rand"
-          margin="normal"
           onChange={handleTypeChange}
+          margin="dense"
         >
           <MenuItem key={0} value="rand">
             Random
@@ -99,11 +99,11 @@ const CheckmateSkillsDialog = () => {
         <Grid container justifyContent="center">
           <SelectColorButtons props={fields} />
         </Grid>
-        <Button
+        <Button sx={{ mt: 2 }}
           fullWidth
-          variant="outlined"
+          size="large"
+          variant="contained"
           onClick={() => handleCreateGame()}
-          sx={{ mt: 2 }}
         >
           Create Game
         </Button>

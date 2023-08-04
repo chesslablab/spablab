@@ -90,9 +90,9 @@ const LoadSanDialog = () => {
             label="Variant"
             variant="filled"
             value={fields.variant}
-            margin="normal"
             onChange={handleVariantChange}
-            >
+            margin="dense"
+          >
             <MenuItem key={0} value="classical">
               Classical
             </MenuItem>
@@ -106,12 +106,13 @@ const LoadSanDialog = () => {
           {
             fields.variant === variantConst.CHESS_960
               ? <TextField
-                fullWidth
-                required
-                name="startPos"
-                label="Start position"
-                variant="filled"
-                helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+                  fullWidth
+                  required
+                  name="startPos"
+                  label="Start position"
+                  variant="filled"
+                  helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+                  margin="dense"
               />
               : null
           }
@@ -124,9 +125,9 @@ const LoadSanDialog = () => {
             variant="filled"
             defaultValue="start"
             value={fields.position}
-            margin="normal"
             onChange={handlePositionChange}
-            >
+            margin="dense"
+          >
             <MenuItem key={0} value="start">
               Start
             </MenuItem>
@@ -142,8 +143,8 @@ const LoadSanDialog = () => {
                   name="fen"
                   label="Enter a FEN position"
                   variant="filled"
-                  margin="normal"
                   onChange={handleFenChange}
+                  margin="dense"
               />
               : null
           }
@@ -156,17 +157,17 @@ const LoadSanDialog = () => {
             name="san"
             label="Movetext"
             variant="filled"
-            margin="normal"
             inputProps={{
               spellCheck: false
             }}
+            margin="dense"
           />
-          <Button
-            id="LoadSanDialog-Button-load"
+          <Button sx={{ mt: 2 }}
             fullWidth
+            size="large"
+            variant="contained"
             type="submit"
-            variant="outlined"
-            sx={{ mt: 2 }}
+            id="LoadSanDialog-Button-load"
           >
             Load
           </Button>

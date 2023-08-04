@@ -136,7 +136,6 @@ const SearchGamesDialog = ({props}) => {
                 name="movetext"
                 label="SAN Movetext"
                 variant="filled"
-                margin="normal"
                 inputProps={{
                   spellCheck: false
                 }}
@@ -145,7 +144,8 @@ const SearchGamesDialog = ({props}) => {
           </Grid>
           <Button
             fullWidth
-            variant="outlined"
+            size="large"
+            variant="contained"
             type="submit"
             sx={{ mt: 2 }}
           >

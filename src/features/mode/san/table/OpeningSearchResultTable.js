@@ -30,29 +30,33 @@ const OpeningSearchResultTable = ({props}) => {
     );
   };
 
-  return (
-    <TableContainer sx={{ mt: 1.5 }} component={Paper}>
-      <Table stickyHeader aria-label="simple table">
-        <TableBody>
-          {
-            props.openings.map((item, i) => (
-              <TableRow
-                id={"OpeningSearchResultTable-TableRow-"+i}
-                key={i}
-                hover={true}
-                sx={styles.clickable}
-                onClick={() => handleLoad(item.movetext)}
-              >
-                <TableCell align="right">{item.eco}</TableCell>
-                <TableCell align="right">{item.name}</TableCell>
-                <TableCell align="right">{item.movetext}</TableCell>
-              </TableRow>
-            ))
-          }
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  if (props.openings.length > 0) {
+    return (
+      <TableContainer sx={{ mt: 2.5 }} component={Paper}>
+        <Table stickyHeader aria-label="simple table">
+          <TableBody>
+            {
+              props.openings.map((item, i) => (
+                <TableRow
+                  id={"OpeningSearchResultTable-TableRow-"+i}
+                  key={i}
+                  hover={true}
+                  sx={styles.clickable}
+                  onClick={() => handleLoad(item.movetext)}
+                >
+                  <TableCell align="right">{item.eco}</TableCell>
+                  <TableCell align="right">{item.name}</TableCell>
+                  <TableCell align="right">{item.movetext}</TableCell>
+                </TableRow>
+              ))
+            }
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
+
+  return null;
 }
 
 export default OpeningSearchResultTable;

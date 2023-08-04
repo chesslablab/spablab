@@ -35,7 +35,7 @@ const WhitePlayerAutocomplete = ({props}) => {
 
   return (
     <Autocomplete
-      loading
+      loading={state.playerAutocomplete.data.length === 0}
       id="White"
       options={state.playerAutocomplete.data}
       filterOptions={filterOptions}

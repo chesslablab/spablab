@@ -147,7 +147,7 @@ const PlayComputerDialog = () => {
             variant="filled"
             defaultValue="start"
             value={fields.position}
-            margin="normal"
+            margin="dense"
             onChange={handlePositionChange}
             >
             <MenuItem key={0} value="start">
@@ -165,16 +165,16 @@ const PlayComputerDialog = () => {
                   name="fen"
                   label="Enter a FEN position"
                   variant="filled"
-                  margin="normal"
+                  margin="dense"
                   onChange={handleFenChange}
               />
               : null
           }
-          <Button
+          <Button sx={{ mt: 2 }}
             fullWidth
+            size="large"
+            variant="contained"
             type="submit"
-            variant="outlined"
-            sx={{ mt: 2 }}
           >
             Create Game
           </Button>

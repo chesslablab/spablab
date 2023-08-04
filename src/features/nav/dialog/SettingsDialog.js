@@ -58,12 +58,11 @@ const SettingsDialog = () => {
             />}
           />
         </FormGroup>
-        <Button
+        <Button sx={{ mt: 2 }}
           fullWidth
-          type="submit"
-          variant="outlined"
+          size="large"
+          variant="contained"
           onClick={() => dispatch(nav.settingsDialog({ open: false }))}
-          sx={{ mt: 2 }}
         >
           Accept
         </Button>
