@@ -67,7 +67,7 @@ const PlayOnlineTable = () => {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={5}>Chess room</TableCell>
+              <TableCell align="center" colSpan={5}>Chess games</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -86,7 +86,7 @@ const PlayOnlineTable = () => {
                     : handlePlay(row.hash)
                 }
               >
-                <TableCell align="center">Anonymous</TableCell>
+                <TableCell align="center">Guest</TableCell>
                 <TableCell align="center">{row.min}</TableCell>
                 <TableCell align="center">+{row.increment}</TableCell>
                 <TableCell align="center">
