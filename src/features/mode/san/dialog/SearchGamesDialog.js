@@ -12,17 +12,14 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
+import BlackPlayerAutocomplete from 'features/autocomplete/BlackPlayerAutocomplete.js';
+import EventAutocomplete from 'features/autocomplete/EventAutocomplete.js';
+import WhitePlayerAutocomplete from 'features/autocomplete/WhitePlayerAutocomplete.js';
 import * as sanMode from 'features/mode/sanModeSlice';
 import SearchGamesTable from 'features/mode/san/table/SearchGamesTable.js';
 import * as progressDialog from 'features/progressDialogSlice';
-
-const filterOptions = createFilterOptions({
-  matchFrom: 'any',
-  limit: 25,
-});
 
 const SearchGamesDialog = ({props}) => {
   const state = useSelector((state) => state);
@@ -82,12 +79,7 @@ const SearchGamesDialog = ({props}) => {
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-                <Autocomplete
-                  id="Event"
-                  options={state.sanMode.dialogs.searchGames.autocomplete?.events ?? []}
-                  filterOptions={filterOptions}
-                  renderInput={(params) => <TextField {...params} label="Event" variant="filled" name="Event" />}
-                />
+              <EventAutocomplete props={props} />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
@@ -108,20 +100,10 @@ const SearchGamesDialog = ({props}) => {
               />
             </Grid>
             <Grid item xs={12} md={4}>
-              <Autocomplete
-                id="White"
-                options={state.sanMode.dialogs.searchGames.autocomplete?.players ?? []}
-                filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="White" variant="filled" name="White" />}
-              />
+              <WhitePlayerAutocomplete props={props} />
             </Grid>
             <Grid item xs={12} md={4}>
-              <Autocomplete
-                id="Black"
-                options={state.sanMode.dialogs.searchGames.autocomplete?.players ?? []}
-                filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="Black" variant="filled" name="Black" />}
-              />
+              <BlackPlayerAutocomplete props={props} />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField

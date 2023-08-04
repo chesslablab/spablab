@@ -15,10 +15,6 @@ const initialState = {
     },
     searchGames: {
       open: false,
-      autocomplete: {
-        events: [],
-        players: [],
-      },
     },
     searchMovetext: {
       open: false,
