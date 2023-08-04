@@ -73,14 +73,14 @@ const EnterInboxCodeDialog = () => {
                   name="hash"
                   label="Inbox code"
                   variant="filled"
-                  margin="normal"
                   onChange={handleHashChange}
+                  margin="dense"
                 />
-                <Button
+                <Button sx={{ mt: 2 }}
                   fullWidth
-                  variant="outlined"
+                  size="large"
+                  variant="contained"
                   onClick={() => handleCheckInbox()}
-                  sx={{ mt: 2 }}
                 >
                   Read Inbox
                 </Button>
@@ -108,12 +108,12 @@ const EnterInboxCodeDialog = () => {
                             fullWidth
                             name="fen"
                             variant="filled"
-                            margin="normal"
                             inputProps={{
                               spellCheck: false,
                               readOnly: true
                             }}
                             value={state.nav.dialogs.enterInboxCode.inbox.fen}
+                            margin="dense"
                           />
                         </CardContent>
                       </Card>
@@ -121,7 +121,7 @@ const EnterInboxCodeDialog = () => {
                 }
                 {
                   state.nav.dialogs.enterInboxCode.inbox.movetext
-                    ? <Card sx={{ mt: 2 }}>
+                    ? <Card sx={{ mt: 2, mb: 1 }}>
                         <CardContent>
                           <Button
                             size="small"
@@ -136,12 +136,12 @@ const EnterInboxCodeDialog = () => {
                             fullWidth
                             name="movetext"
                             variant="filled"
-                            margin="normal"
                             inputProps={{
                               spellCheck: false,
                               readOnly: true
                             }}
                             value={state.nav.dialogs.enterInboxCode.inbox.movetext}
+                            margin="dense"
                           />
                         </CardContent>
                       </Card>
@@ -154,17 +154,17 @@ const EnterInboxCodeDialog = () => {
                   name="pgn"
                   label="Your move in PGN format"
                   variant="filled"
-                  margin="normal"
                   inputProps={{
                     spellCheck: false
                   }}
                   onChange={handlePgnChange}
+                  margin="dense"
                 />
-                <Button
+                <Button sx={{ mt: 2 }}
                   fullWidth
-                  variant="outlined"
+                  size="large"
+                  variant="contained"
                   onClick={() => handleSendMove()}
-                  sx={{ mt: 2 }}
                 >
                   Send
                 </Button>

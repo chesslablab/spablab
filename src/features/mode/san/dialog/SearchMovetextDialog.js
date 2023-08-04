@@ -48,13 +48,13 @@ const SearchMovetextDialog = ({ props }) => {
             name="movetext"
             label="Movetext"
             variant="filled"
-            margin="normal"
+            margin="dense"
           />
-          <Button
+          <Button sx={{ mt: 2 }}
             fullWidth
+            size="large"
+            variant="contained"
             type="submit"
-            variant="outlined"
-            sx={{ mt: 2 }}
           >
             Search
           </Button>

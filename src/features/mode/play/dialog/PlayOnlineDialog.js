@@ -82,7 +82,6 @@ const PlayOnlineDialog = () => {
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <PlayOnlineTable />
         <Typography
           id="input-minutes"
           align="center"
@@ -128,8 +127,8 @@ const PlayOnlineDialog = () => {
           label="Variant"
           variant="filled"
           defaultValue={variantConst.CLASSICAL}
-          margin="normal"
           onChange={handleVariantChange}
+          margin="dense"
           >
           <MenuItem key={0} value="classical">
             Classical
@@ -141,14 +140,15 @@ const PlayOnlineDialog = () => {
             Capablanca
           </MenuItem>
         </TextField>
-        <Button
+        <Button sx={{ mt: 2 }}
           fullWidth
-          variant="outlined"
+          size="large"
+          variant="contained"
           onClick={() => handleCreateGame()}
-          sx={{ mt: 2 }}
         >
           Create Game
         </Button>
+        <PlayOnlineTable />
       </DialogContent>
     </Dialog>
   );

@@ -18,7 +18,7 @@ import multiAction from 'features/multiAction';
 
 const styles = {
   tableContainer: {
-    mt: 1,
+    mt: 2,
   },
   eventCell: {
     width: '20%',
@@ -77,52 +77,52 @@ const SearchGamesTable = ({props}) => {
     );
   };
 
-  return (
-    <TableContainer
-      sx={styles.tableContainer}
-      component={Paper}
-    >
-      <Table stickyHeader aria-label="simple table">
-        {
-          props.result.length > 0
-            ? <TableHead>
-                <TableRow>
-                  <TableCell sx={styles.eventCell} align="left">Event</TableCell>
-                  <TableCell sx={styles.yearCell} align="left">Year</TableCell>
-                  <TableCell sx={styles.ecoCell} align="left">ECO</TableCell>
-                  <TableCell sx={styles.whiteCell} align="left">White</TableCell>
-                  <TableCell sx={styles.eloCell} align="left">ELO</TableCell>
-                  <TableCell sx={styles.blackCell} align="left">Black</TableCell>
-                  <TableCell sx={styles.eloCell} align="left">ELO</TableCell>
-                  <TableCell sx={styles.resultCell} align="left">Result</TableCell>
+  if (props.result.length > 0) {
+    return (
+      <TableContainer
+        sx={styles.tableContainer}
+        component={Paper}
+      >
+        <Table stickyHeader aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell sx={styles.eventCell} align="left">Event</TableCell>
+              <TableCell sx={styles.yearCell} align="left">Year</TableCell>
+              <TableCell sx={styles.ecoCell} align="left">ECO</TableCell>
+              <TableCell sx={styles.whiteCell} align="left">White</TableCell>
+              <TableCell sx={styles.eloCell} align="left">ELO</TableCell>
+              <TableCell sx={styles.blackCell} align="left">Black</TableCell>
+              <TableCell sx={styles.eloCell} align="left">ELO</TableCell>
+              <TableCell sx={styles.resultCell} align="left">Result</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              props.result.map((item, i) => (
+                <TableRow
+                  key={i}
+                  hover={true}
+                  sx={styles.clickable}
+                  onClick={() => handleLoad(item)}
+                >
+                  <TableCell sx={styles.eventCell} align="left">{item.Event}</TableCell>
+                  <TableCell sx={styles.yearCell} align="left">{parseInt(item.Date)}</TableCell>
+                  <TableCell sx={styles.ecoCell} align="left">{item.ECO}</TableCell>
+                  <TableCell sx={styles.whiteCell} align="left">{item.White}</TableCell>
+                  <TableCell sx={styles.eloCell} align="left">{item.WhiteElo}</TableCell>
+                  <TableCell sx={styles.blackCell} align="left">{item.Black}</TableCell>
+                  <TableCell sx={styles.eloCell} align="left">{item.BlackElo}</TableCell>
+                  <TableCell sx={styles.resultCell} align="left">{item.Result}</TableCell>
                 </TableRow>
-              </TableHead>
-            : null
-        }
-        <TableBody>
-          {
-            props.result.map((item, i) => (
-              <TableRow
-                key={i}
-                hover={true}
-                sx={styles.clickable}
-                onClick={() => handleLoad(item)}
-              >
-                <TableCell sx={styles.eventCell} align="left">{item.Event}</TableCell>
-                <TableCell sx={styles.yearCell} align="left">{parseInt(item.Date)}</TableCell>
-                <TableCell sx={styles.ecoCell} align="left">{item.ECO}</TableCell>
-                <TableCell sx={styles.whiteCell} align="left">{item.White}</TableCell>
-                <TableCell sx={styles.eloCell} align="left">{item.WhiteElo}</TableCell>
-                <TableCell sx={styles.blackCell} align="left">{item.Black}</TableCell>
-                <TableCell sx={styles.eloCell} align="left">{item.BlackElo}</TableCell>
-                <TableCell sx={styles.resultCell} align="left">{item.Result}</TableCell>
-              </TableRow>
-            ))
-          }
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+              ))
+            }
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
+
+  return null;
 }
 
 export default SearchGamesTable;
