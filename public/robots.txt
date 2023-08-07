@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /about/
 Sitemap: https://www.chesslablab.com/sitemap.xml
