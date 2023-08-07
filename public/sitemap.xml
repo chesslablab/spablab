@@ -8,6 +8,12 @@
     <loc>https://www.chesslablab.com/</loc>
     <changefreq> always </changefreq>
     <priority> 1 </priority>
-    <lastmod>2023-05-01T23:35:33+00:00</lastmod>
+    <lastmod>2023-08-07T12:25:58+0200</lastmod>
+  </url>
+  <url>
+    <loc>https://www.chesslablab.com/help-center/</loc>
+    <changefreq> daily </changefreq>
+    <priority> 0.8 </priority>
+    <lastmod>2023-08-07T12:25:58+0200</lastmod>
   </url>
 </urlset>
