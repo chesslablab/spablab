@@ -58,7 +58,7 @@ const EnterInviteCodeDialog = () => {
           variant="contained"
           onClick={() => handlePlay()}
         >
-          Play friend
+          Play
         </Button>
       </DialogContent>
     </Dialog>
