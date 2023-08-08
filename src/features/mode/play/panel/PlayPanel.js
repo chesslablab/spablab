@@ -10,15 +10,13 @@ import ButtonsDialogs from 'features/panel/ButtonsDialogs';
 import History from 'features/panel/History';
 import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
-import styles from 'features/panel/styles';
+import styles from 'styles/panel/styles';
 
 const PlayPanel = ({ props }) => {
   return (
     <Grid item xs={12} sx={styles.panel}>
       <History />
-      <Grid item xs={12} sx={styles.moves}>
-        <MovesTable />
-      </Grid>
+      <MovesTable />
       <Buttons props={props} />
       <Timer />
       <StartedButtons />

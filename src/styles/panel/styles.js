@@ -29,6 +29,7 @@ const styles = {
     },
   },
   timer: {
+    marginTop: 1.5,
     display: 'flex',
     justifyContent: 'center',
   },
