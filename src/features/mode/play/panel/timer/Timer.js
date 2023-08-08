@@ -11,7 +11,7 @@ const Timer = () => {
   if (state.playMode.active) {
     if (state.playMode.accepted) {
       return (
-        <Box sx={styles.timer}>
+        <Box sx={styles.panel.timer}>
           <WhiteTimer key={`w${state.playMode.timer.w}`} />
           <BlackTimer key={`b${state.playMode.timer.w}`} />
         </Box>

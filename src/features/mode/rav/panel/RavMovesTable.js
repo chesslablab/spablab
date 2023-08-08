@@ -18,7 +18,7 @@ const RavMovesTable = ({props}) => {
 
   const currentMove = (fen) => {
     if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
-      return styles.movesTable.tableCell.currentMove;
+      return styles.panel.movesTable.tableCell.currentMove;
     }
 
     return {};
@@ -47,7 +47,7 @@ const RavMovesTable = ({props}) => {
   const description = () => {
     const comment = Movetext.description(state.ravMode?.breakdown[0]);
     if (comment) {
-      return <TableRow sx={styles.movesTable.tableRow}>
+      return <TableRow sx={styles.panel.movesTable.tableRow}>
         <TableCell colSpan={3}>{comment}</TableCell>
       </TableRow>;
     }
@@ -76,9 +76,9 @@ const RavMovesTable = ({props}) => {
 
     return rows.map((row, i) => {
       return <TableRow key={i} sx={colors[i]}>
-        <TableCell sx={styles.movesTable.tableCell.nMove}>{row.n}</TableCell>
+        <TableCell sx={styles.panel.movesTable.tableCell.nMove}>{row.n}</TableCell>
         <TableCell
-          sx={[styles.movesTable.tableCell, currentMove(row.wFen)]}
+          sx={[styles.panel.movesTable.tableCell, currentMove(row.wFen)]}
           onClick={() => {
             if (row.w !== '...') {
               dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.wFen }));
@@ -88,7 +88,7 @@ const RavMovesTable = ({props}) => {
           {row.w}
         </TableCell>
         <TableCell
-          sx={[styles.movesTable.tableCell, currentMove(row.bFen)]}
+          sx={[styles.panel.movesTable.tableCell, currentMove(row.bFen)]}
           onClick={() => {
             if (row.b) {
               dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.bFen }));
@@ -103,8 +103,8 @@ const RavMovesTable = ({props}) => {
 
   if (state.ravMode.active) {
     return (
-      <TableContainer sx={styles.movesTable.tableContainer} className="noTextSelection">
-        <Table sx={styles.movesTable.table} stickyHeader size="small" aria-label="Movetext">
+      <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
+        <Table sx={styles.panel.movesTable.table} stickyHeader size="small" aria-label="Movetext">
           <TableBody>
             {description()}
             {moves()}

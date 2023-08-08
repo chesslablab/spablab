@@ -1,37 +1,37 @@
 const styles = {
   panel: {
     background: '#f6f6f6',
-  },
-  movesTable: {
-    table: {
-      maxHeight: 300,
-    },
-    tableContainer: {
-      height: 300,
-    },
-    tableCell: {
-      "&:hover": {
-        color: '#ffffff',
-        background: '#3d8cd9',
-        cursor: 'pointer',
+    movesTable: {
+      table: {
+        maxHeight: 300,
       },
-      currentMove: {
-        color: '#ffffff',
-        background: '#1976d2',
-        fontWeight: 'bold',
+      tableContainer: {
+        height: 300,
       },
-      nMove: {
-        background: '#f6f6f6',
+      tableCell: {
+        "&:hover": {
+          color: '#ffffff',
+          background: '#3d8cd9',
+          cursor: 'pointer',
+        },
+        currentMove: {
+          color: '#ffffff',
+          background: '#1976d2',
+          fontWeight: 'bold',
+        },
+        nMove: {
+          background: '#f6f6f6',
+        },
+      },
+      tableRow: {
+        background: '#ffffff',
       },
     },
-    tableRow: {
-      background: '#ffffff',
+    timer: {
+      marginTop: 1.5,
+      display: 'flex',
+      justifyContent: 'center',
     },
-  },
-  timer: {
-    marginTop: 1.5,
-    display: 'flex',
-    justifyContent: 'center',
   },
 };
 
