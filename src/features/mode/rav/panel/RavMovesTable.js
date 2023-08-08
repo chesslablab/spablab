@@ -15,7 +15,7 @@ const styles = {
     background: '#ffffff',
   },
   nMove: {
-    background: '#f0f0f0',
+    background: '#f6f6f6',
   },
   move: {
     "&:hover": {

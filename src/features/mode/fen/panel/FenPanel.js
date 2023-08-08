@@ -11,7 +11,7 @@ import styles from 'features/panel/styles';
 const FenPanel = ({ props }) => {
   return (
     <Grid container>
-      <Grid item xs={12} sx={styles.gameBox}>
+      <Grid item xs={12} sx={styles.panel}>
         <Grid item xs={12} sx={styles.moves}>
           <Grid item xs={12} sx={styles.buttons}>
             <History />

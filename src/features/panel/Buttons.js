@@ -5,7 +5,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { IconButton, Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { getActiveMode } from 'app/store';
 import Movetext from 'common/Movetext';
 import * as variantConst from 'features/mode/variantConst';
@@ -72,65 +72,64 @@ const Buttons = ({props}) => {
 
   if (!state.ravMode.active) {
     return (
-      <Stack direction="row" spacing={1}>
-        <IconButton
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Button
+          size="large"
+          startIcon={<MoveDownIcon />}
           id="Buttons-copyMovetext"
           disabled={disabled}
           color="primary"
-          size="medium"
           title="Copy movetext"
           aria-label="copy"
           onClick={() => navigator.clipboard.writeText(Movetext.substring(state.board.movetext, state.panel.history.back))}
-        >
-          <MoveDownIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton
+        />
+        <Button
+          size="large"
+          startIcon={<WidgetsIcon />}
           id="Buttons-copyFenString"
           disabled={disabled}
           color="primary"
-          size="medium"
           title="Copy FEN string"
           aria-label="fen"
           onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.panel.history.back])}
-        >
-          <WidgetsIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton
+        />
+        <Button
+          size="large"
+          startIcon={<BarChartIcon />}
           id="Buttons-heuristics"
           disabled={disabled}
           color="primary"
-          size="medium"
           title="Heuristics"
           aria-label="heuristics"
           onClick={() => {
             dispatch(progressDialog.open());
             Ws.heuristics(Movetext.substring(state.board.movetext, state.panel.history.back));
           }}
-        >
-          <BarChartIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton
+        />
+        <Button
+          size="large"
+          startIcon={<InsertPhotoIcon />}
           id="Buttons-downloadImage"
           disabled={disabled}
           color="primary"
-          size="medium"
           title="Download Image"
           aria-label="flip"
           onClick={() => handleDownloadImage()}
-        >
-          <InsertPhotoIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton
+        />
+        <Button
+          size="large"
+          startIcon={<VideoCameraBackIcon />}
           id="Buttons-downloadVideo"
           disabled={disabled}
           color="primary"
-          size="medium"
           title="Download Video"
           aria-label="flip"
           onClick={() => handleDownloadMp4()}
-        >
-          <VideoCameraBackIcon fontSize="inherit" />
-        </IconButton>
+        />
       </Stack>
     );
   }

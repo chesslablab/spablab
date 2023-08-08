@@ -12,7 +12,7 @@ const styles = {
     flexDirection: 'column-reverse'
   },
   nMove: {
-    background: '#f0f0f0',
+    background: '#f6f6f6',
   },
   moves: {
     background: '#ffffff',

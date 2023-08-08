@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { IconButton, Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { getActiveMode } from 'app/store';
 
 const RavButtons = ({props}) => {
@@ -33,29 +33,31 @@ const RavButtons = ({props}) => {
 
   if (state.ravMode.active) {
     return (
-      <Stack direction="row" spacing={1}>
-        <IconButton
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Button
+          size="large"
+          startIcon={<WidgetsIcon />}
           id="RavButtons-copyFenString"
           disabled={disabled}
           color="primary"
-          size="medium"
           title="Copy FEN string"
           aria-label="fen"
           onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.panel.history.back])}
-        >
-          <WidgetsIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton
+        />
+        <Button
+          size="large"
+          startIcon={<InsertPhotoIcon />}
           id="RavButtons-downloadImage"
           disabled={disabled}
           color="primary"
-          size="medium"
           title="Download Image"
           aria-label="flip"
           onClick={() => handleDownloadImage()}
-        >
-          <InsertPhotoIcon fontSize="inherit" />
-        </IconButton>
+        />
       </Stack>
     );
   }

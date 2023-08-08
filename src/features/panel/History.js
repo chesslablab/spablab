@@ -5,7 +5,7 @@ import FastForwardIcon from '@mui/icons-material/FastForward';
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import { Button, ButtonGroup } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
 
@@ -14,7 +14,11 @@ const History = () => {
   const dispatch = useDispatch();
 
   return (
-    <ButtonGroup variant="text" aria-label="History" size="medium">
+    <Stack
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+    >
       <Button
         startIcon={<CachedIcon />}
         onClick={() => dispatch(board.flip())}
@@ -48,7 +52,7 @@ const History = () => {
           dispatch(board.browseHistory());
         }}
       />
-    </ButtonGroup>
+    </Stack>
   );
 }
 
