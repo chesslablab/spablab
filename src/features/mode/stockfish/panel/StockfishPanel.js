@@ -10,11 +10,9 @@ import styles from 'features/panel/styles';
 
 const StockfishPanel = ({ props }) => {
   return (
-    <Grid item xs={12} sx={styles.panel}>
+    <Grid sx={styles.panel}>
       <History />
-      <Grid item xs={12} sx={styles.moves}>
-        <MovesTable />
-      </Grid>
+      <MovesTable />
       <Buttons props={props} />
       <StartedButtons />
       <OpeningTable />
