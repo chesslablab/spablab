@@ -14,17 +14,21 @@ import styles from 'styles/panel/styles';
 
 const PlayPanel = ({ props }) => {
   return (
-    <Grid item xs={12} sx={styles.panel}>
-      <History />
-      <MovesTable />
-      <Buttons props={props} />
-      <Timer />
-      <StartedButtons />
-      <FinishedButtons />
-      <OpeningTable />
-      <ButtonsDialogs />
-      <StartedDialogs />
-      <FinishedDialogs />
+    <Grid container>
+      <Grid item xs={12} sx={styles.panel}>
+        <History />
+        <MovesTable />
+        <Buttons props={props} />
+        <ButtonsDialogs />
+      </Grid>
+      <Grid item xs={12}>
+        <Timer />
+        <StartedButtons />
+        <FinishedButtons />
+        <OpeningTable />
+        <StartedDialogs />
+        <FinishedDialogs />
+      </Grid>
     </Grid>
   );
 };

@@ -8,13 +8,13 @@ import styles from 'styles/panel/styles';
 
 const RavPanel = ({ props }) => {
   return (
-    <Grid item xs={12} sx={styles.panel}>
-      <GameMetadataTable />
-      <History />
-      <Grid item xs={12} sx={styles.moves}>
+    <Grid container>
+      <Grid item xs={12} sx={styles.panel}>
+        <GameMetadataTable />
+        <History />
         <RavMovesTable />
+        <RavButtons props={props} />
       </Grid>
-      <RavButtons props={props} />
     </Grid>
   );
 };

@@ -11,16 +11,18 @@ import styles from 'styles/panel/styles';
 
 const SanPanel = ({ props }) => {
   return (
-    <Grid item xs={12} sx={styles.panel}>
-      <GameMetadataTable />
-      <History />
-      <Grid item xs={12} sx={styles.moves}>
+    <Grid container>
+      <Grid item xs={12} sx={styles.panel}>
+        <GameMetadataTable />
+        <History />
         <MovesTable />
+        <Buttons props={props} />
+        <ButtonsDialogs />
       </Grid>
-      <Buttons props={props} />
-      <StartedButtons />
-      <OpeningTable />
-      <ButtonsDialogs />
+      <Grid item xs={12}>
+        <StartedButtons />
+        <OpeningTable />
+      </Grid>
     </Grid>
   );
 };
