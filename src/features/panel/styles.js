@@ -9,6 +9,9 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
   },
+  movesTable: {
+
+  }
 };
 
 export default styles;
