@@ -14,28 +14,16 @@ import styles from 'features/panel/styles';
 
 const PlayPanel = ({ props }) => {
   return (
-    <Grid container>
-      <Grid item xs={12} sx={styles.panel}>
-        <Grid item xs={12} sx={styles.moves}>
-          <Grid item xs={12} sx={styles.buttons}>
-            <History />
-          </Grid>
-          <Grid item xs={12}>
-            <MovesTable />
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sx={styles.buttons}>
-          <Buttons props={props} />
-        </Grid>
+    <Grid item xs={12} sx={styles.panel}>
+      <History />
+      <Grid item xs={12} sx={styles.moves}>
+        <MovesTable />
       </Grid>
-      <Grid item xs={12} sx={styles.timer}>
-        <Timer />
-      </Grid>
-      <Grid item xs={12}>
-        <StartedButtons />
-        <FinishedButtons />
-        <OpeningTable />
-      </Grid>
+      <Buttons props={props} />
+      <Timer />
+      <StartedButtons />
+      <FinishedButtons />
+      <OpeningTable />
       <ButtonsDialogs />
       <StartedDialogs />
       <FinishedDialogs />
