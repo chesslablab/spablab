@@ -104,7 +104,7 @@ const RavMovesTable = ({props}) => {
   if (state.ravMode.active) {
     return (
       <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
-        <Table sx={styles.panel.movesTable.table} stickyHeader size="small" aria-label="Movetext">
+        <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
             {description()}
             {moves()}

@@ -2,11 +2,8 @@ const styles = {
   panel: {
     background: '#f6f6f6',
     movesTable: {
-      table: {
-        maxHeight: 300,
-      },
       tableContainer: {
-        height: 300,
+        height: 368,
       },
       tableCell: {
         "&:hover": {
