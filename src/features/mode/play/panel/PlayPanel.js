@@ -10,35 +10,25 @@ import ButtonsDialogs from 'features/panel/ButtonsDialogs';
 import History from 'features/panel/History';
 import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
-import styles from 'features/panel/styles';
+import styles from 'styles/panel/styles';
 
 const PlayPanel = ({ props }) => {
   return (
     <Grid container>
-      <Grid item xs={12} sx={styles.gameBox}>
-        <Grid item xs={12} sx={styles.moves}>
-          <Grid item xs={12} sx={styles.buttons}>
-            <History />
-          </Grid>
-          <Grid item xs={12}>
-            <MovesTable />
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sx={styles.buttons}>
-          <Buttons props={props} />
-        </Grid>
-      </Grid>
-      <Grid item xs={12} sx={styles.timer}>
-        <Timer />
+      <Grid item xs={12} sx={styles.panel}>
+        <History />
+        <MovesTable />
+        <Buttons props={props} />
+        <ButtonsDialogs />
       </Grid>
       <Grid item xs={12}>
+        <Timer />
         <StartedButtons />
         <FinishedButtons />
         <OpeningTable />
+        <StartedDialogs />
+        <FinishedDialogs />
       </Grid>
-      <ButtonsDialogs />
-      <StartedDialogs />
-      <FinishedDialogs />
     </Grid>
   );
 };

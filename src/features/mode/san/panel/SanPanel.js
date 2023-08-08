@@ -7,30 +7,22 @@ import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';
 import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
-import styles from 'features/panel/styles';
+import styles from 'styles/panel/styles';
 
 const SanPanel = ({ props }) => {
   return (
     <Grid container>
-      <Grid item xs={12} sx={styles.gameBox}>
-        <Grid item xs={12} sx={styles.moves}>
-          <Grid item xs={12} sx={styles.buttons}>
-            <History />
-          </Grid>
-          <Grid item xs={12}>
-            <MovesTable />
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sx={styles.buttons}>
-          <Buttons props={props} />
-        </Grid>
+      <Grid item xs={12} sx={styles.panel}>
+        <GameMetadataTable />
+        <History />
+        <MovesTable />
+        <Buttons props={props} />
+        <ButtonsDialogs />
       </Grid>
       <Grid item xs={12}>
         <StartedButtons />
         <OpeningTable />
-        <GameMetadataTable />
       </Grid>
-      <ButtonsDialogs />
     </Grid>
   );
 };

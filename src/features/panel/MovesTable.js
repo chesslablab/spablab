@@ -3,33 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
 import * as panel from 'features/panel/panelSlice';
+import styles from 'styles/panel/styles';
 import Ws from 'features/ws/Ws';
-
-const styles = {
-  table: {
-    maxHeight: 268,
-    display: 'flex',
-    flexDirection: 'column-reverse'
-  },
-  nMove: {
-    background: '#f0f0f0',
-  },
-  moves: {
-    background: '#ffffff',
-  },
-  move: {
-    "&:hover": {
-      color: '#ffffff',
-      background: '#3d8cd9',
-      cursor: 'pointer',
-    },
-  },
-  currentMove: {
-    color: '#ffffff',
-    background: '#1976d2',
-    fontWeight: 'bold',
-  },
-};
 
 const MovesTable = ({props}) => {
   const state = useSelector(state => state);
@@ -43,7 +18,7 @@ const MovesTable = ({props}) => {
 
   const currentMove = (fen) => {
     if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
-      return styles.currentMove;
+      return styles.panel.movesTable.tableCell.currentMove;
     }
 
     return {};
@@ -68,10 +43,10 @@ const MovesTable = ({props}) => {
     });
 
     return rows.map((row, i) => {
-      return <TableRow key={i} sx={styles.moves}>
-        <TableCell sx={styles.nMove}>{row.n}</TableCell>
+      return <TableRow key={i} sx={styles.panel.movesTable.tableRow}>
+        <TableCell sx={styles.panel.movesTable.tableCell.nMove}>{row.n}</TableCell>
         <TableCell
-          sx={[styles.move, currentMove(row.wFen)]}
+          sx={[styles.panel.movesTable.tableCell, currentMove(row.wFen)]}
           onClick={() => {
             if (row.w !== '...') {
               dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.wFen }));
@@ -81,7 +56,7 @@ const MovesTable = ({props}) => {
           {row.w}
         </TableCell>
         <TableCell
-          sx={[styles.move, currentMove(row.bFen)]}
+          sx={[styles.panel.movesTable.tableCell, currentMove(row.bFen)]}
           onClick={() => {
             if (row.b) {
               dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.bFen }));
@@ -96,7 +71,7 @@ const MovesTable = ({props}) => {
 
   if (!state.ravMode.active) {
     return (
-      <TableContainer className="noTextSelection" sx={styles.table}>
+      <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
         <Table stickyHeader size="small" aria-label="Movetext">
           <TableBody>
             {moves()}
