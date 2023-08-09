@@ -43,14 +43,10 @@ const Buttons = ({props}) => {
       variant: getActiveMode().variant,
       fen: state.board.fen[0],
       movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
-      flip: state.board.flip
+      flip: state.board.flip,
+      ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+      ...(state.fenMode.active) && {fen: state.fenMode.fen}
     };
-    if (getActiveMode().variant === variantConst.CHESS_960) {
-      body.startPos = state.fenMode.startPos;
-    }
-    if (state.fenMode.active) {
-      body.fen = state.fenMode.fen;
-    }
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/mp4`, {
       method: 'POST',
       body: JSON.stringify(body)
