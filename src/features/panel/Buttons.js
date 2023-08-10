@@ -8,9 +8,10 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import { Button, Stack } from "@mui/material";
 import { getActiveMode } from 'app/store';
 import Movetext from 'common/Movetext';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as variantConst from 'features/mode/variantConst';
+import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
-import Ws from 'features/ws/Ws';
 
 const Buttons = ({props}) => {
   const state = useSelector(state => state);
@@ -64,7 +65,31 @@ const Buttons = ({props}) => {
     .finally(() => dispatch(progressDialog.close()));
   }
 
-  const disabled = !state.board.movetext;
+  const handleHeuristics = async () => {
+    dispatch(progressDialog.open());
+    let body = {
+      variant: getActiveMode().variant,
+      movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
+      ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+    };
+    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/heuristics`, {
+      method: 'POST',
+      body: JSON.stringify(body)
+    })
+    .then(res => res.json())
+    .then(res => {
+      dispatch(nav.heuristicsDialog({
+        open: true,
+        heuristics: res
+      }));
+    })
+    .catch(error => {
+      dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+    })
+    .finally(() => {
+      dispatch(progressDialog.close());
+    });
+  }
 
   if (!state.ravMode.active) {
     return (
@@ -77,7 +102,7 @@ const Buttons = ({props}) => {
           size="large"
           startIcon={<MoveDownIcon />}
           id="Buttons-copyMovetext"
-          disabled={disabled}
+          disabled={!state.board.movetext}
           color="primary"
           title="Copy movetext"
           aria-label="copy"
@@ -87,7 +112,7 @@ const Buttons = ({props}) => {
           size="large"
           startIcon={<WidgetsIcon />}
           id="Buttons-copyFenString"
-          disabled={disabled}
+          disabled={!state.board.movetext}
           color="primary"
           title="Copy FEN string"
           aria-label="fen"
@@ -97,20 +122,17 @@ const Buttons = ({props}) => {
           size="large"
           startIcon={<BarChartIcon />}
           id="Buttons-heuristics"
-          disabled={disabled}
+          disabled={!state.board.movetext}
           color="primary"
           title="Heuristics"
           aria-label="heuristics"
-          onClick={() => {
-            dispatch(progressDialog.open());
-            Ws.heuristics(Movetext.substring(state.board.movetext, state.panel.history.back));
-          }}
+          onClick={() => handleHeuristics()}
         />
         <Button
           size="large"
           startIcon={<InsertPhotoIcon />}
           id="Buttons-downloadImage"
-          disabled={disabled}
+          disabled={!state.board.movetext}
           color="primary"
           title="Download Image"
           aria-label="flip"
@@ -120,7 +142,7 @@ const Buttons = ({props}) => {
           size="large"
           startIcon={<VideoCameraBackIcon />}
           id="Buttons-downloadVideo"
-          disabled={disabled}
+          disabled={!state.board.movetext}
           color="primary"
           title="Download Video"
           aria-label="flip"

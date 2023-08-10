@@ -61,10 +61,6 @@ export default class Ws {
     return await store.getState().ws.ws.send(`/legal ${sq}`);
   }
 
-  static heuristics = async (movetext) => {
-    return await store.getState().ws.ws.send(`/heuristics "${movetext}"`);
-  }
-
   static heuristicsBar = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
     const variant = getActiveMode().variant;
