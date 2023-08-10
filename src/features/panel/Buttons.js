@@ -71,6 +71,8 @@ const Buttons = ({props}) => {
       variant: getActiveMode().variant,
       movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
       ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+      ...(state.fenMode.active) && {fen: state.board.fen[0]},
+      ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
     };
     await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/heuristics`, {
       method: 'POST',
