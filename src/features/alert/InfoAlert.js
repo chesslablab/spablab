@@ -20,9 +20,11 @@ const InfoAlert = () => {
         <Alert
           severity="info"
           action={
-            <Button color="inherit" size="small" onClick={handleClose}>
-              OK
-            </Button>
+            state.infoAlert.button
+              ? <Button color="inherit" size="small" onClick={handleClose}>
+                  OK
+                </Button>
+              : null
           }
         >
           {state.infoAlert.mssg}
