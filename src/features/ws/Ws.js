@@ -1,23 +1,40 @@
 import store, { getActiveMode } from 'app/store';
 import Pgn from 'common/Pgn';
+import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as modeConst from 'features/mode/modeConst';
 import WsEventListener from 'features/ws/WsEventListener';
 import * as wsSlice from 'features/ws/wsSlice';
 
 export default class Ws {
   static connect = (props) => dispatch => {
+    dispatch(infoAlert.show({
+      mssg: 'Establishing connection...',
+      button: false
+    }));
     return new Promise((resolve, reject) => {
       const ws = new WebSocket(`${props.ws.prot}://${props.ws.host}:${props.ws.port}`);
+      ws.onopen = () => {
+        dispatch(wsSlice.established({ ws: ws }));
+        dispatch(infoAlert.close());
+        resolve();
+      };
       ws.onmessage = (res) => {
         dispatch(WsEventListener.listen(props, JSON.parse(res.data)));
       };
-      ws.onerror = (err) => {
+      ws.onclose = (err) => {
         dispatch(wsSlice.error());
+        dispatch(warningAlert.show({
+          mssg: 'The connection has been lost, please reload the page.'
+        }));
         reject(err);
       };
-      ws.onopen = () => {
-        dispatch(wsSlice.established({ ws: ws }));
-        resolve();
+      ws.onerror = (err) => {
+        dispatch(wsSlice.error());
+        dispatch(warningAlert.show({
+          mssg: 'The connection has been lost, please reload the page.'
+        }));
+        reject(err);
       };
     });
   }
