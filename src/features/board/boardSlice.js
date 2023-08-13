@@ -13,7 +13,12 @@ const initialState = {
   size: {
     files: 8,
     ranks: 8
-  }
+  },
+  dialogs: {
+    promotion: {
+      open: false,
+    },
+  },
 };
 
 const boardSlice = createSlice({
@@ -125,6 +130,9 @@ const boardSlice = createSlice({
       delete state.lan;
       delete state.pieceGrabbed;
     },
+    promotionDialog(state, action) {
+      state.dialogs.promotion = action.payload;
+    }
   }
 });
 
@@ -140,6 +148,7 @@ export const {
   legal,
   undo,
   validMove,
-  stockfish
+  stockfish,
+  promotionDialog
 } = boardSlice.actions;
 export default boardSlice.reducer;

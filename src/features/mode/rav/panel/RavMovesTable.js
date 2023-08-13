@@ -1,20 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
 import * as panel from 'features/panel/panelSlice';
 import styles from 'styles/panel/styles';
-import Ws from 'features/ws/Ws';
 
 const RavMovesTable = ({props}) => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (state.board.lan && !state.board.pieceGrabbed) {
-      Ws.playLan();
-    }
-  }, [state.board.pieceGrabbed, state.board.lan]);
 
   const currentMove = (fen) => {
     if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
