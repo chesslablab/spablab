@@ -24,6 +24,11 @@ const PawnPromotionDialog = () => {
   const handlePromote = () => {
     // TODO ...
     Ws.playLan(state.board.lan + 'n');
+    dispatch(board.underpromote({
+      turn: state.board.turn,
+      piece: 'n',
+      sq: state.board.lan.slice(-2)
+    }));
     dispatch(board.promotionDialog({ open: false }));
   }
 

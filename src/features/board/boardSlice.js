@@ -132,6 +132,17 @@ const boardSlice = createSlice({
     },
     promotionDialog(state, action) {
       state.dialogs.promotion = action.payload;
+    },
+    underpromote(state, action) {
+      const newFen = JSON.parse(JSON.stringify(state.fen));
+      const i = action.payload.turn === Pgn.symbol.WHITE ? 7 : 0;
+      const j = action.payload.sq.charCodeAt(0) - 97;
+      let toAscii = Ascii.toAscii(newFen[newFen.length - 1].split(' ')[0]);
+      toAscii[i][j] = action.payload.turn === Pgn.symbol.WHITE
+        ? action.payload.piece.toLowerCase()
+        : action.payload.piece.toUpperCase();
+      newFen[newFen.length - 1] = Ascii.toFen(toAscii);
+      state.fen = newFen;
     }
   }
 });
@@ -149,6 +160,7 @@ export const {
   undo,
   validMove,
   stockfish,
-  promotionDialog
+  promotionDialog,
+  underpromote
 } = boardSlice.actions;
 export default boardSlice.reducer;
