@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
 import * as panel from 'features/panel/panelSlice';
-import styles from 'styles/panel/styles';
+import styles from 'styles/panel';
 
 const RavMovesTable = ({props}) => {
   const state = useSelector(state => state);

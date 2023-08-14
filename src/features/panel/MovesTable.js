@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/mate
 import Movetext from 'common/Movetext.js';
 import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
-import styles from 'styles/panel/styles';
+import styles from 'styles/panel';
 import Ws from 'features/ws/Ws';
 
 const MovesTable = ({props}) => {
