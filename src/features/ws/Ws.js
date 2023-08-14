@@ -62,10 +62,14 @@ export default class Ws {
     return await store.getState().ws.ws.send(mssg);
   }
 
-  static playLan = async () => {
+  static playLan = async (lan) => {
     const color = store.getState().board.turn === Pgn.symbol.WHITE
       ? Pgn.symbol.BLACK
       : Pgn.symbol.WHITE;
+
+    if (lan) {
+      return await store.getState().ws.ws.send(`/play_lan ${color} ${lan}`);
+    }
 
     return await store.getState().ws.ws.send(`/play_lan ${color} ${store.getState().board.lan}`);
   }

@@ -1,0 +1,109 @@
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  Avatar,
+  Button,
+  ButtonGroup,
+  Dialog,
+  DialogContent,
+  Grid,
+  IconButton
+} from '@mui/material';
+import bQueen from 'assets/img/pieces/png/150/bQueen.png';
+import bRook from 'assets/img/pieces/png/150/bRook.png';
+import bBishop from 'assets/img/pieces/png/150/bBishop.png';
+import bKnight from 'assets/img/pieces/png/150/bKnight.png';
+import wQueen from 'assets/img/pieces/png/150/wQueen.png';
+import wRook from 'assets/img/pieces/png/150/wRook.png';
+import wBishop from 'assets/img/pieces/png/150/wBishop.png';
+import wKnight from 'assets/img/pieces/png/150/wKnight.png';
+import Pgn from 'common/Pgn';
+import * as board from 'features/board/boardSlice';
+import Ws from 'features/ws/Ws';
+import styles from 'styles/avatar';
+
+const PawnPromotionDialog = ({ props }) => {
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  const [piece, setPiece] = React.useState('Q');
+
+  const handleSelectPiece = (piece) => {
+    setPiece(piece);
+  };
+
+  const handlePromote = (event) => {
+    event.preventDefault();
+    Ws.playLan(state.board.lan + piece);
+    dispatch(board.underpromote({
+      turn: state.board.turn,
+      piece: piece,
+      sq: state.board.lan.slice(-2)
+    }));
+    dispatch(board.promotionDialog({ open: false }));
+    setPiece('Q');
+  }
+
+  return (
+    <Dialog open={state.board.dialogs.promotion.open} maxWidth="sm" fullWidth={true}>
+      <DialogContent>
+        <form onSubmit={handlePromote}>
+          <Grid container justifyContent="center">
+            <ButtonGroup sx={styles.buttonGroup}>
+              <IconButton
+                aria-label="queen"
+                title="Queen"
+                onClick={() => handleSelectPiece('Q')}
+              >
+                <Avatar
+                  src={state.board.turn === Pgn.symbol.BLACK ? wQueen : bQueen}
+                  sx={piece === 'Q' ? styles.avatar.selected : styles.avatar}
+                />
+              </IconButton>
+              <IconButton
+                aria-label="rook"
+                title="Rook"
+                onClick={() => handleSelectPiece('R')}
+              >
+                <Avatar
+                  src={state.board.turn === Pgn.symbol.BLACK ? wRook : bRook}
+                  sx={piece === 'R' ? styles.avatar.selected : styles.avatar}
+                />
+              </IconButton>
+              <IconButton
+                aria-label="bishop"
+                title="Bishop"
+                onClick={() => handleSelectPiece('B')}
+              >
+                <Avatar
+                  src={state.board.turn === Pgn.symbol.BLACK ? wBishop : bBishop}
+                  sx={piece === 'B' ? styles.avatar.selected : styles.avatar}
+                />
+              </IconButton>
+              <IconButton
+                aria-label="knight"
+                title="Knight"
+                onClick={() => handleSelectPiece('N')}
+              >
+                <Avatar
+                  src={state.board.turn === Pgn.symbol.BLACK ? wKnight : bKnight}
+                  sx={piece === 'N' ? styles.avatar.selected : styles.avatar}
+                />
+              </IconButton>
+            </ButtonGroup>
+          </Grid>
+          <Button sx={{ mt: 2 }}
+            fullWidth
+            size="large"
+            variant="contained"
+            type="submit"
+          >
+            Promote
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default PawnPromotionDialog;

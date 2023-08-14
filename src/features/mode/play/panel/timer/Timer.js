@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Box } from '@mui/material';
 import BlackTimer from 'features/mode/play/panel/timer/BlackTimer';
 import WhiteTimer from 'features/mode/play/panel/timer/WhiteTimer';
-import styles from 'styles/panel/styles';
+import styles from 'styles/panel';
 
 const Timer = () => {
   const state = useSelector(state => state);

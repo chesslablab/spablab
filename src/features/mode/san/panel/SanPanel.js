@@ -7,7 +7,7 @@ import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';
 import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
-import styles from 'styles/panel/styles';
+import styles from 'styles/panel';
 
 const SanPanel = ({ props }) => {
   return (
