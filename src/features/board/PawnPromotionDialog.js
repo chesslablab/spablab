@@ -20,22 +20,7 @@ import wKnight from 'assets/img/pieces/png/150/wKnight.png';
 import Pgn from 'common/Pgn';
 import * as board from 'features/board/boardSlice';
 import Ws from 'features/ws/Ws';
-
-const styles = {
-  avatar: {
-    width: 55,
-    height: 55,
-  },
-  buttonGroup: {
-    mt: 1,
-    mb: 1,
-  },
-  selectedAvatar: {
-    width: 55,
-    height: 55,
-    backgroundColor: '#d8d8d8',
-  },
-};
+import styles from 'styles/avatar';
 
 const PawnPromotionDialog = ({ props }) => {
   const state = useSelector(state => state);
@@ -71,7 +56,7 @@ const PawnPromotionDialog = ({ props }) => {
               >
                 <Avatar
                   src={state.board.turn === Pgn.symbol.BLACK ? wQueen : bQueen}
-                  sx={piece === 'Q' ? styles.selectedAvatar : styles.avatar}
+                  sx={piece === 'Q' ? styles.avatar.selected : styles.avatar}
                 />
               </IconButton>
               <IconButton
@@ -81,7 +66,7 @@ const PawnPromotionDialog = ({ props }) => {
               >
                 <Avatar
                   src={state.board.turn === Pgn.symbol.BLACK ? wRook : bRook}
-                  sx={piece === 'R' ? styles.selectedAvatar : styles.avatar}
+                  sx={piece === 'R' ? styles.avatar.selected : styles.avatar}
                 />
               </IconButton>
               <IconButton
@@ -91,7 +76,7 @@ const PawnPromotionDialog = ({ props }) => {
               >
                 <Avatar
                   src={state.board.turn === Pgn.symbol.BLACK ? wBishop : bBishop}
-                  sx={piece === 'B' ? styles.selectedAvatar : styles.avatar}
+                  sx={piece === 'B' ? styles.avatar.selected : styles.avatar}
                 />
               </IconButton>
               <IconButton
@@ -101,7 +86,7 @@ const PawnPromotionDialog = ({ props }) => {
               >
                 <Avatar
                   src={state.board.turn === Pgn.symbol.BLACK ? wKnight : bKnight}
-                  sx={piece === 'N' ? styles.selectedAvatar : styles.avatar}
+                  sx={piece === 'N' ? styles.avatar.selected : styles.avatar}
                 />
               </IconButton>
             </ButtonGroup>
