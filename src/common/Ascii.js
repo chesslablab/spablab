@@ -3,7 +3,7 @@ import Pgn from './Pgn.js';
 export default class Ascii {
   static toFen = (ascii) => {
     let string = '';
-    Ascii.promote(ascii).forEach((rank, i) => {
+    ascii.forEach((rank, i) => {
       string += rank.join('').replace(/\s/g, '');
       string += '/';
     });
@@ -78,13 +78,6 @@ export default class Ascii {
     const j = sq.charAt(0).charCodeAt(0) - 97;
 
     return [i, j];
-  }
-
-  static promote = (ascii) => {
-    ascii[0] = ascii[0].map(item => item === ' P ' ? ' Q ' : item);
-    ascii[ascii.length - 1] = ascii[ascii.length - 1].map(item => item === ' p ' ? ' q ' : item);
-
-    return ascii;
   }
 
   static asciiDiff = (a, b) => {

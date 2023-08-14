@@ -4,22 +4,7 @@ import wKing from 'assets/img/pieces/png/150/wKing.png';
 import wbKing from 'assets/img/pieces/png/150/wbKing.png';
 import bKing from 'assets/img/pieces/png/150/bKing.png';
 import Pgn from 'common/Pgn';
-
-const styles = {
-  avatar: {
-    width: 55,
-    height: 55,
-  },
-  buttonGroup: {
-    mt: 1,
-    mb: 1,
-  },
-  selectedAvatar: {
-    width: 55,
-    height: 55,
-    backgroundColor: '#d8d8d8',
-  },
-};
+import styles from 'styles/avatar';
 
 const SelectColorButtons = ({ props }) => {
   const [color, setColor] = React.useState('rand');
@@ -41,7 +26,7 @@ const SelectColorButtons = ({ props }) => {
       >
         <Avatar
           src={wKing}
-          sx={color === Pgn.symbol.WHITE ? styles.selectedAvatar : styles.avatar}
+          sx={color === Pgn.symbol.WHITE ? styles.avatar.selected : styles.avatar}
         />
       </IconButton>
       <IconButton
@@ -51,7 +36,7 @@ const SelectColorButtons = ({ props }) => {
       >
         <Avatar
           src={wbKing}
-          sx={color === 'rand' ? styles.selectedAvatar : styles.avatar}
+          sx={color === 'rand' ? styles.avatar.selected : styles.avatar}
         />
       </IconButton>
       <IconButton
@@ -61,7 +46,7 @@ const SelectColorButtons = ({ props }) => {
       >
         <Avatar
           src={bKing}
-          sx={color === Pgn.symbol.BLACK ? styles.selectedAvatar : styles.avatar}
+          sx={color === Pgn.symbol.BLACK ? styles.avatar.selected : styles.avatar}
         />
       </IconButton>
     </ButtonGroup>

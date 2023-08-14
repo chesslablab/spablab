@@ -11,7 +11,7 @@ const Squares = ({props}) => {
 
   const filterMove = () => {
     if (state.ravMode.active) {
-      return false; 
+      return false;
     } else if (state.playMode.active) {
       if (
         !state.playMode.accepted ||
@@ -110,14 +110,20 @@ const Squares = ({props}) => {
           }
           onMouseDown={() => {
             if (filterMove()) {
-              payload.piecePlaced = { event: eventConst.ON_MOUSE_DOWN };
+              payload.piecePlaced = {
+                ascii: state.board?.pieceGrabbed?.ascii,
+                event: eventConst.ON_MOUSE_DOWN
+              };
               props.handleMove(payload);
             }
           }}
           onDrop={(ev) => {
             ev.preventDefault();
             if (filterMove()) {
-              payload.piecePlaced = { event: eventConst.ON_DROP };
+              payload.piecePlaced = {
+                ascii: state.board?.pieceGrabbed?.ascii,
+                event: eventConst.ON_DROP
+              };
               props.handleMove(payload);
             }
           }}

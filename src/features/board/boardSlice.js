@@ -13,7 +13,12 @@ const initialState = {
   size: {
     files: 8,
     ranks: 8
-  }
+  },
+  dialogs: {
+    promotion: {
+      open: false,
+    },
+  },
 };
 
 const boardSlice = createSlice({
@@ -125,6 +130,20 @@ const boardSlice = createSlice({
       delete state.lan;
       delete state.pieceGrabbed;
     },
+    promotionDialog(state, action) {
+      state.dialogs.promotion = action.payload;
+    },
+    underpromote(state, action) {
+      const newFen = JSON.parse(JSON.stringify(state.fen));
+      const i = action.payload.turn === Pgn.symbol.WHITE ? 7 : 0;
+      const j = action.payload.sq.charCodeAt(0) - 97;
+      let toAscii = Ascii.toAscii(newFen[newFen.length - 1].split(' ')[0]);
+      toAscii[i][j] = action.payload.turn === Pgn.symbol.WHITE
+        ? action.payload.piece.toLowerCase()
+        : action.payload.piece.toUpperCase();
+      newFen[newFen.length - 1] = Ascii.toFen(toAscii);
+      state.fen = newFen;
+    }
   }
 });
 
@@ -140,6 +159,8 @@ export const {
   legal,
   undo,
   validMove,
-  stockfish
+  stockfish,
+  promotionDialog,
+  underpromote
 } = boardSlice.actions;
 export default boardSlice.reducer;
