@@ -41,6 +41,7 @@ const PawnPromotionDialog = ({ props }) => {
       sq: state.board.lan.slice(-2)
     }));
     dispatch(board.promotionDialog({ open: false }));
+    setPiece('Q');
   }
 
   return (
