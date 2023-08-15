@@ -12,6 +12,7 @@ const initialState = {
     },
     annotatedGames: {
       open: false,
+      rows: [],
     },
   },
 };

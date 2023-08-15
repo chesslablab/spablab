@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Paper,
   Table,
@@ -50,7 +50,8 @@ const styles = {
   },
 };
 
-const AnnotatedGamesTable = ({props}) => {
+const AnnotatedGamesTable = () => {
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {
@@ -84,7 +85,7 @@ const AnnotatedGamesTable = ({props}) => {
     >
       <Table stickyHeader aria-label="simple table">
         {
-          props.result.length > 0
+          state.ravMode.dialogs.annotatedGames.rows?.length > 0
             ? <TableHead>
                 <TableRow>
                   <TableCell sx={styles.eventCell} align="left">Event</TableCell>
@@ -101,7 +102,7 @@ const AnnotatedGamesTable = ({props}) => {
         }
         <TableBody>
           {
-            props.result.map((item, i) => (
+            state.ravMode.dialogs.annotatedGames.rows?.map((item, i) => (
               <TableRow
                 key={i}
                 hover={true}
