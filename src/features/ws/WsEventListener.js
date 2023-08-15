@@ -6,7 +6,7 @@ export default class WsEventListener {
     const mssg = Object.keys(data)[0];
     switch (true) {
       case 'broadcast' === mssg:
-        dispatch(playMode.playOnlineDialog({ rows: data['broadcast']['onlineGames'] }));
+        dispatch(playMode.playOnlineTable(data['broadcast']['onlineGames']));
         break;
       case '/leave' === mssg:
         dispatch(WsEvent.onLeave(data));

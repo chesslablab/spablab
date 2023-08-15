@@ -61,7 +61,7 @@ const PlayOnlineTable = () => {
     dispatch(playMode.playOnlineDialog({ open: false }));
   };
 
-  if (state.playMode.dialogs.playOnline.rows.length > 0) {
+  if (state.playMode.tables.playOnline.length > 0) {
     return (
       <TableContainer sx={{ mt: 3 }} component={Paper}>
         <Table aria-label="simple table">
@@ -71,7 +71,7 @@ const PlayOnlineTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {state.playMode.dialogs.playOnline.rows.map((row, i) => (
+            {state.playMode.tables.playOnline.map((row, i) => (
               <TableRow
                 key={i}
                 selected={true}

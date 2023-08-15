@@ -33,8 +33,10 @@ const initialState = {
     },
     playOnline: {
       open: false,
-      rows: [],
     },
+  },
+  tables: {
+    playOnline: [],
   },
 };
 
@@ -105,10 +107,10 @@ const playModeSlice = createSlice({
       state.dialogs.enterInviteCode = action.payload;
     },
     playOnlineDialog(state, action) {
-      state.dialogs.playOnline = {
-        ...state.dialogs.playOnline,
-        ...action.payload
-      };
+      state.dialogs.playOnline = action.payload;
+    },
+    playOnlineTable(state, action) {
+      state.tables.playOnline = action.payload;
     },
     // timer
     timer(state, action) {
@@ -140,5 +142,6 @@ export const {
   createInviteCodeDialog,
   enterInviteCodeDialog,
   playOnlineDialog,
+  playOnlineTable
 } = playModeSlice.actions;
 export default playModeSlice.reducer;
