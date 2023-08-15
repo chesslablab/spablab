@@ -280,7 +280,8 @@ export default class WsEvent {
   }
 
   static onOnlineGames = (data) => dispatch => {
-    dispatch(playMode.playOnlineDialog({ open: true, rows: data['/online_games'] }));
+    dispatch(playMode.playOnlineDialog({ open: true }));
+    dispatch(playMode.playOnlineTable(data['/online_games']));
   }
 
   static onInbox = (data) => dispatch => {
