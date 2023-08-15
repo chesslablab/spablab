@@ -12,8 +12,10 @@ const initialState = {
     },
     annotatedGames: {
       open: false,
-      rows: [],
     },
+  },
+  tables: {
+    annotatedGames: [],
   },
 };
 
@@ -36,6 +38,9 @@ const ravModeSlice = createSlice({
     annotatedGamesDialog(state, action) {
       state.dialogs.annotatedGames = action.payload;
     },
+    annotatedGamesTable(state, action) {
+      state.tables.annotatedGames = action.payload;
+    },
   }
 });
 
@@ -43,6 +48,7 @@ export const {
   reset,
   set,
   loadRavDialog,
-  annotatedGamesDialog
+  annotatedGamesDialog,
+  annotatedGamesTable
 } = ravModeSlice.actions;
 export default ravModeSlice.reducer;

@@ -367,7 +367,8 @@ const Nav = ({props}) => {
             fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/annotations/games`)
               .then(res => res.json())
               .then(res => {
-                dispatch(ravMode.annotatedGamesDialog({ open: true, rows: res.games }));
+                dispatch(ravMode.annotatedGamesDialog({ open: true }));
+                dispatch(ravMode.annotatedGamesTable(res.games));
               })
               .catch(error => {
                 dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));

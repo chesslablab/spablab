@@ -85,7 +85,7 @@ const AnnotatedGamesTable = () => {
     >
       <Table stickyHeader aria-label="simple table">
         {
-          state.ravMode.dialogs.annotatedGames.rows?.length > 0
+          state.ravMode.tables.annotatedGames.length > 0
             ? <TableHead>
                 <TableRow>
                   <TableCell sx={styles.eventCell} align="left">Event</TableCell>
@@ -102,7 +102,7 @@ const AnnotatedGamesTable = () => {
         }
         <TableBody>
           {
-            state.ravMode.dialogs.annotatedGames.rows?.map((item, i) => (
+            state.ravMode.tables.annotatedGames.map((item, i) => (
               <TableRow
                 key={i}
                 hover={true}
