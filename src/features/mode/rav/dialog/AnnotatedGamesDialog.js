@@ -31,7 +31,7 @@ const AnnotatedGamesDialog = ({props}) => {
         >
           More annotated games will soon be available. Stay tuned!
         </Alert>
-        <AnnotatedGamesTable />
+        <AnnotatedGamesTable props={props} />
       </DialogContent>
     </Dialog>
   );
