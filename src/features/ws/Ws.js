@@ -46,8 +46,6 @@ export default class Ws {
         mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.SAN) {
         mssg += ` ${JSON.stringify(settings.settings)}`;
-      } else if (mode === modeConst.RAV) {
-        mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.PLAY) {
         mssg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {

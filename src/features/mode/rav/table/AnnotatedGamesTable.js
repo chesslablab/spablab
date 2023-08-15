@@ -9,12 +9,14 @@ import {
   TableHead,
   TableRow
 } from '@mui/material';
-import * as modeConst from 'features/mode/modeConst';
-import * as panel from 'features/panel/panelSlice';
+import * as warningAlert from 'features/alert/warningAlertSlice';
+import * as board from 'features/board/boardSlice';
+import * as ravMode from 'features/mode/ravModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
+import * as panel from 'features/panel/panelSlice';
 import multiAction from 'features/multiAction';
+import * as progressDialog from 'features/progressDialogSlice';
 
 const styles = {
   tableContainer: {
@@ -50,7 +52,7 @@ const styles = {
   },
 };
 
-const AnnotatedGamesTable = () => {
+const AnnotatedGamesTable = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -68,14 +70,25 @@ const AnnotatedGamesTable = () => {
       Result: item.Result,
       ECO: item.ECO
     }));
-    const settings = {
-      movetext: item.movetext
-    };
-    Ws.start(
-      variantConst.CLASSICAL,
-      modeConst.RAV,
-      { settings: JSON.stringify(settings) }
-    );
+    dispatch(progressDialog.open());
+    fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/play/rav`, {
+      method: 'POST',
+      body: JSON.stringify({
+        variant: variantConst.CLASSICAL,
+        movetext: item.movetext
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      dispatch(board.startPgn(res));
+      dispatch(ravMode.set(res));
+    })
+    .catch(error => {
+      dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+    })
+    .finally(() => {
+      dispatch(progressDialog.close());
+    });
   };
 
   return (
