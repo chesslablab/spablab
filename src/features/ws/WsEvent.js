@@ -8,7 +8,6 @@ import * as board from 'features/board/boardSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as sanMode from 'features/mode/sanModeSlice';
-import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
@@ -25,8 +24,6 @@ export default class WsEvent {
       dispatch(WsEvent.onStartFen(data));
     } else if (data['/start'].mode === modeConst.SAN) {
       dispatch(WsEvent.onStartSan(data));
-    } else if (data['/start'].mode === modeConst.RAV) {
-      dispatch(WsEvent.onStartRav(data));
     } else if (data['/start'].mode === modeConst.PLAY) {
       dispatch(WsEvent.onStartPlay(data));
     } else if (data['/start'].mode === modeConst.STOCKFISH) {
@@ -53,17 +50,6 @@ export default class WsEvent {
     } else {
       dispatch(warningAlert.show({
         mssg: 'Invalid SAN movetext, please try again with a different one.'
-      }));
-    }
-  }
-
-  static onStartRav = (data) => dispatch => {
-    if (data['/start'].movetext) {
-      dispatch(board.startPgn(data['/start']));
-      dispatch(ravMode.set(data['/start']));
-    } else {
-      dispatch(warningAlert.show({
-        mssg: 'Invalid RAV movetext, please try again with a different one.'
       }));
     }
   }
@@ -280,7 +266,8 @@ export default class WsEvent {
   }
 
   static onOnlineGames = (data) => dispatch => {
-    dispatch(playMode.playOnlineDialog({ open: true, rows: data['/online_games'] }));
+    dispatch(playMode.playOnlineDialog({ open: true }));
+    dispatch(playMode.playOnlineTable(data['/online_games']));
   }
 
   static onInbox = (data) => dispatch => {

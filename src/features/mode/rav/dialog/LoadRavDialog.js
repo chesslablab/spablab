@@ -11,14 +11,15 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
+import * as warningAlert from 'features/alert/warningAlertSlice';
+import * as board from 'features/board/boardSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
-import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
+import * as progressDialog from 'features/progressDialogSlice';
 
-const LoadRavDialog = () => {
+const LoadRavDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -53,16 +54,27 @@ const LoadRavDialog = () => {
     event.preventDefault();
     multiAction.initGui(dispatch);
     dispatch(nav.setAnalysis());
-    let settings = {
-      movetext: event.target.elements.rav.value,
-      ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
-      ...(fields?.fen && {fen: event.target.elements.fen?.value})
-    };
-    Ws.start(
-      event.target.elements.variant.value,
-      modeConst.RAV,
-      { settings: JSON.stringify(settings) }
-    );
+    dispatch(progressDialog.open());
+    fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/play/rav`, {
+      method: 'POST',
+      body: JSON.stringify({
+        variant: fields.variant,
+        movetext: event.target.elements.rav.value,
+        ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+        ...(fields?.fen && {fen: event.target.elements.fen?.value})
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      dispatch(board.startPgn(res));
+      dispatch(ravMode.set(res));
+    })
+    .catch(error => {
+      dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+    })
+    .finally(() => {
+      dispatch(progressDialog.close());
+    });
   };
 
   return (

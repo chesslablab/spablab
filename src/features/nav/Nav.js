@@ -363,8 +363,20 @@ const Nav = ({props}) => {
         <MenuItem
           id="Nav-database-MenuItem-searchGames"
           onClick={() => {
-            dispatch(ravMode.annotatedGamesDialog({ open: true }));
-            handleCloseDatabase();
+            dispatch(progressDialog.open());
+            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/annotations/games`)
+              .then(res => res.json())
+              .then(res => {
+                dispatch(ravMode.annotatedGamesDialog({ open: true }));
+                dispatch(ravMode.annotatedGamesTable(res.games));
+              })
+              .catch(error => {
+                dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+              })
+              .finally(() => {
+                dispatch(progressDialog.close());
+                handleCloseDatabase();
+              });
           }}
         >
           <EditNoteIcon size="small" />&nbsp;Annotated Games

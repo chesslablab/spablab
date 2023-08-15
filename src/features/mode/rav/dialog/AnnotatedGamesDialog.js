@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -14,13 +14,6 @@ import AnnotatedGamesTable from 'features/mode/rav/table/AnnotatedGamesTable.js'
 const AnnotatedGamesDialog = ({props}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [result, setResult] = useState([]);
-
-  const annotatedGames = require('assets/json/annotated-games.json');
-
-  useEffect(() => {
-    setResult(annotatedGames);
-  }, [annotatedGames]);
 
   return (
     <Dialog open={state.ravMode.dialogs.annotatedGames.open} maxWidth="md" fullWidth={true}>
@@ -38,7 +31,7 @@ const AnnotatedGamesDialog = ({props}) => {
         >
           More annotated games will soon be available. Stay tuned!
         </Alert>
-        <AnnotatedGamesTable props={{ result: result }} />
+        <AnnotatedGamesTable props={props} />
       </DialogContent>
     </Dialog>
   );
