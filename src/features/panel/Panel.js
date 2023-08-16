@@ -19,7 +19,7 @@ const Panel = ({ props }) => {
     );
   } else if (state.ravMode.active) {
     return (
-      <RavPanel props={props} />
+      <RavPanel />
     );
   } else if (state.sanMode.active) {
     return (
