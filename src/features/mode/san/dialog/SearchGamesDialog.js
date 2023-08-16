@@ -79,7 +79,7 @@ const SearchGamesDialog = ({props}) => {
         <form onSubmit={handleSearch}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <EventAutocomplete props={props} />
+              <EventAutocomplete />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField

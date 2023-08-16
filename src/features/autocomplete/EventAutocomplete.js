@@ -10,13 +10,13 @@ const filterOptions = createFilterOptions({
   limit: 25,
 });
 
-const EventAutocomplete = ({props}) => {
+const EventAutocomplete = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (state.eventAutocomplete.data.length === 0) {
-      fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/autocomplete/event`)
+      fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/event`)
         .then(res => {
           if (res.status === 200) {
             res.json().then(data => {
@@ -29,7 +29,6 @@ const EventAutocomplete = ({props}) => {
     }
   }, [
     state.eventAutocomplete.data.length,
-    props,
     dispatch
   ]);
 
