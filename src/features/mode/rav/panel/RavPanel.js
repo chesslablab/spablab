@@ -6,14 +6,14 @@ import RavButtons from 'features/mode/rav/panel/RavButtons';
 import RavMovesTable from 'features/mode/rav/panel/RavMovesTable';
 import styles from 'styles/panel';
 
-const RavPanel = ({ props }) => {
+const RavPanel = () => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.panel}>
         <GameMetadataTable />
         <History />
         <RavMovesTable />
-        <RavButtons props={props} />
+        <RavButtons />
       </Grid>
     </Grid>
   );

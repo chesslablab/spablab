@@ -19,7 +19,7 @@ import * as nav from 'features/nav/navSlice';
 import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
-const LoadRavDialog = ({props}) => {
+const LoadRavDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -55,7 +55,7 @@ const LoadRavDialog = ({props}) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setAnalysis());
     dispatch(progressDialog.open());
-    fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/play/rav`, {
+    fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/play/rav`, {
       method: 'POST',
       body: JSON.stringify({
         variant: fields.variant,

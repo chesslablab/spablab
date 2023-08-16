@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-const GameMetadataTable = ({props}) => {
+const GameMetadataTable = () => {
   const state = useSelector(state => state);
 
   if (Object.keys(state.panel.tables.gameMetadata).length) {

@@ -22,7 +22,7 @@ import * as board from 'features/board/boardSlice';
 import Ws from 'features/ws/Ws';
 import styles from 'styles/avatar';
 
-const PawnPromotionDialog = ({ props }) => {
+const PawnPromotionDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 

@@ -8,13 +8,13 @@ import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
 import styles from 'styles/panel';
 
-const StockfishPanel = ({ props }) => {
+const StockfishPanel = () => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.panel}>
         <History />
         <MovesTable />
-        <Buttons props={props} />
+        <Buttons />
         <ButtonsDialogs />
       </Grid>
       <Grid item xs={12}>

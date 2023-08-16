@@ -5,7 +5,7 @@ import Movetext from 'common/Movetext.js';
 import * as panel from 'features/panel/panelSlice';
 import styles from 'styles/panel';
 
-const RavMovesTable = ({props}) => {
+const RavMovesTable = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
