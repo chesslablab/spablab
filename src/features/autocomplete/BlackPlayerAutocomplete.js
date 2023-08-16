@@ -8,7 +8,7 @@ const filterOptions = createFilterOptions({
   limit: 25,
 });
 
-const BlackPlayerAutocomplete = ({props}) => {
+const BlackPlayerAutocomplete = () => {
   const state = useSelector((state) => state);
 
   return (
