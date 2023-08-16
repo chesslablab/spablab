@@ -14,7 +14,7 @@ const StockfishPanel = ({ props }) => {
       <Grid item xs={12} sx={styles.panel}>
         <History />
         <MovesTable />
-        <Buttons props={props} />
+        <Buttons />
         <ButtonsDialogs />
       </Grid>
       <Grid item xs={12}>

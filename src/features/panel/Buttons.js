@@ -13,7 +13,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
-const Buttons = ({props}) => {
+const Buttons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ const Buttons = ({props}) => {
       variant: getActiveMode().variant,
       flip: state.board.flip
     };
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/image`, {
+    await fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
       body: JSON.stringify(body)
     }).then(res => res.blob())
@@ -48,7 +48,7 @@ const Buttons = ({props}) => {
       ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
       ...(state.fenMode.active) && {fen: state.fenMode.fen}
     };
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/mp4`, {
+    await fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
       method: 'POST',
       body: JSON.stringify(body)
     })
@@ -74,7 +74,7 @@ const Buttons = ({props}) => {
       ...(state.fenMode.active) && {fen: state.board.fen[0]},
       ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
     };
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/heuristics`, {
+    await fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
       method: 'POST',
       body: JSON.stringify(body)
     })

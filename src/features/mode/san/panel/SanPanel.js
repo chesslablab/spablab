@@ -16,7 +16,7 @@ const SanPanel = ({ props }) => {
         <GameMetadataTable />
         <History />
         <MovesTable />
-        <Buttons props={props} />
+        <Buttons />
         <ButtonsDialogs />
       </Grid>
       <Grid item xs={12}>
