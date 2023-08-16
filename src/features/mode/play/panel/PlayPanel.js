@@ -1,9 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import StartedButtons from 'features/mode/play/panel/StartedButtons';
-import StartedDialogs from 'features/mode/play/panel/StartedDialogs';
 import FinishedButtons from 'features/mode/play/panel/FinishedButtons';
-import FinishedDialogs from 'features/mode/play/panel/FinishedDialogs';
 import Timer from 'features/mode/play/panel/timer/Timer';
 import Buttons from 'features/panel/Buttons';
 import ButtonsDialogs from 'features/panel/ButtonsDialogs';
@@ -26,8 +24,6 @@ const PlayPanel = () => {
         <StartedButtons />
         <FinishedButtons />
         <OpeningTable />
-        <StartedDialogs />
-        <FinishedDialogs />
       </Grid>
     </Grid>
   );
