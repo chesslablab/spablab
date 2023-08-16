@@ -23,7 +23,7 @@ const SearchMovetextDialog = () => {
     event.preventDefault();
     const openings = Opening.byMovetext(event.target.elements.movetext.value);
     setOpenings(openings);
-    if (openings.length === 0) {
+    if (!openings) {
       dispatch(sanMode.searchMovetextDialog({ open: false }));
       dispatch(infoAlert.show({ mssg: 'No results were found. Please try again.' }));
     }
@@ -59,7 +59,7 @@ const SearchMovetextDialog = () => {
             Search
           </Button>
         </form>
-        <OpeningSearchResultTable props={{ openings: openings }} />
+        { openings ? <OpeningSearchResultTable props={{ openings: openings }} /> : null }
       </DialogContent>
     </Dialog>
   );
