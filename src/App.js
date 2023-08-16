@@ -20,13 +20,8 @@ import SearchNameDialog from 'features/mode/san/dialog/SearchNameDialog';
 import CheckmateSkillsDialog from 'features/mode/stockfish/dialog/CheckmateSkillsDialog';
 import EndgameSkillsDialog from 'features/mode/stockfish/dialog/EndgameSkillsDialog';
 import PlayComputerDialog from 'features/mode/stockfish/dialog/PlayComputerDialog';
-import CreateInboxCodeDialog from 'features/nav/dialog/CreateInboxCodeDialog';
-import EnterInboxCodeDialog from 'features/nav/dialog/EnterInboxCodeDialog';
-import EventsStatsDialog from 'features/nav/dialog/EventsStatsDialog';
-import OpeningsStatsDialog from 'features/nav/dialog/OpeningsStatsDialog';
-import PlayersStatsDialog from 'features/nav/dialog/PlayersStatsDialog';
-import SettingsDialog from 'features/nav/dialog/SettingsDialog';
 import Nav from 'features/nav/Nav';
+import NavDialogs from 'features/nav/NavDialogs';
 import Panel from 'features/panel/Panel';
 import HeuristicsBar from 'features/HeuristicsBar';
 import ProgressDialog from 'features/ProgressDialog';
@@ -39,6 +34,7 @@ const App = () => {
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Nav />
+            <NavDialogs />
           </Grid>
           <Grid item xs={12} md={2}>
           </Grid>
@@ -55,9 +51,6 @@ const App = () => {
         <LoadFenDialog />
         <LoadSanDialog />
         <LoadRavDialog />
-        <OpeningsStatsDialog />
-        <PlayersStatsDialog />
-        <EventsStatsDialog />
         <PlayComputerDialog />
         <CreateInviteCodeDialog />
         <EnterInviteCodeDialog />
@@ -69,9 +62,6 @@ const App = () => {
         <SearchNameDialog />
         <CheckmateSkillsDialog />
         <EndgameSkillsDialog />
-        <CreateInboxCodeDialog />
-        <EnterInboxCodeDialog />
-        <SettingsDialog />
         <ProgressDialog />
         <InfoAlert />
         <WarningAlert />
