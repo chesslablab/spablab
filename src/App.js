@@ -9,11 +9,7 @@ import VariantBoard from 'features/board/VariantBoard';
 import ModeFenDialogs from 'features/mode/fen/FenDialogs';
 import ModePlayDialogs from 'features/mode/play/PlayDialogs';
 import ModeRavDialogs from 'features/mode/rav/RavDialogs';
-import LoadSanDialog from 'features/mode/san/dialog/LoadSanDialog';
-import SearchEcoDialog from 'features/mode/san/dialog/SearchEcoDialog';
-import SearchGamesDialog from 'features/mode/san/dialog/SearchGamesDialog';
-import SearchMovetextDialog from 'features/mode/san/dialog/SearchMovetextDialog';
-import SearchNameDialog from 'features/mode/san/dialog/SearchNameDialog';
+import ModeSanDialogs from 'features/mode/san/SanDialogs';
 import CheckmateSkillsDialog from 'features/mode/stockfish/dialog/CheckmateSkillsDialog';
 import EndgameSkillsDialog from 'features/mode/stockfish/dialog/EndgameSkillsDialog';
 import PlayComputerDialog from 'features/mode/stockfish/dialog/PlayComputerDialog';
@@ -48,12 +44,8 @@ const App = () => {
         <ModeFenDialogs />
         <ModePlayDialogs />
         <ModeRavDialogs />
-        <LoadSanDialog />
+        <ModeSanDialogs />
         <PlayComputerDialog />
-        <SearchGamesDialog />
-        <SearchEcoDialog />
-        <SearchMovetextDialog />
-        <SearchNameDialog />
         <CheckmateSkillsDialog />
         <EndgameSkillsDialog />
         <ProgressDialog />
