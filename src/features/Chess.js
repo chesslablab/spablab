@@ -32,7 +32,7 @@ import HeuristicsBar from 'features/HeuristicsBar';
 import ProgressDialog from 'features/ProgressDialog';
 import theme from 'styles/theme.js';
 
-const Chess = ({ props }) => {
+const Chess = () => {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
@@ -43,11 +43,11 @@ const Chess = ({ props }) => {
           <Grid item xs={12} md={2}>
           </Grid>
           <Grid item xs={12} md={4}>
-            <VariantBoard props={props} />
+            <VariantBoard />
             <HeuristicsBar />
           </Grid>
           <Grid item xs={12} md={4}>
-            <Panel props={props} />
+            <Panel />
           </Grid>
           <Grid item xs={12} md={2}>
           </Grid>
@@ -63,10 +63,10 @@ const Chess = ({ props }) => {
         <EnterInviteCodeDialog />
         <PlayOnlineDialog />
         <SearchGamesDialog />
-        <AnnotatedGamesDialog props={props} />
-        <SearchEcoDialog props={props} />
-        <SearchMovetextDialog props={props} />
-        <SearchNameDialog props={props} />
+        <AnnotatedGamesDialog />
+        <SearchEcoDialog />
+        <SearchMovetextDialog />
+        <SearchNameDialog />
         <CheckmateSkillsDialog />
         <EndgameSkillsDialog />
         <CreateInboxCodeDialog />

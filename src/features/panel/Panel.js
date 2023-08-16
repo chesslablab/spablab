@@ -6,16 +6,16 @@ import RavPanel from 'features/mode/rav/panel/RavPanel';
 import SanPanel from 'features/mode/san/panel/SanPanel';
 import StockfishPanel from 'features/mode/stockfish/panel/StockfishPanel';
 
-const Panel = ({ props }) => {
+const Panel = () => {
   const state = useSelector(state => state);
 
   if (state.fenMode.active) {
     return (
-      <FenPanel props={props} />
+      <FenPanel />
     );
   } else if (state.playMode.active) {
     return (
-      <PlayPanel props={props} />
+      <PlayPanel/>
     );
   } else if (state.ravMode.active) {
     return (
@@ -23,11 +23,11 @@ const Panel = ({ props }) => {
     );
   } else if (state.sanMode.active) {
     return (
-      <SanPanel props={props} />
+      <SanPanel />
     );
   } else if (state.stockfishMode.active) {
     return (
-      <StockfishPanel props={props} />
+      <StockfishPanel />
     );
   }
 };

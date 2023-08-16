@@ -7,7 +7,7 @@ import * as panel from 'features/panel/panelSlice';
 import styles from 'styles/panel';
 import Ws from 'features/ws/Ws';
 
-const MovesTable = ({props}) => {
+const MovesTable = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 

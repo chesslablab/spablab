@@ -14,7 +14,7 @@ import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as sanMode from 'features/mode/sanModeSlice';
 import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
 
-const SearchMovetextDialog = ({ props }) => {
+const SearchMovetextDialog = () => {
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();

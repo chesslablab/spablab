@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import * as nav from 'features/nav/navSlice';
 
-const OpeningsStatsDialog = ({props}) => {
+const OpeningsStatsDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 

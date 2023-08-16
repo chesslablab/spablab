@@ -12,7 +12,7 @@ import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
 import styles from 'styles/panel';
 
-const PlayPanel = ({ props }) => {
+const PlayPanel = () => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.panel}>
