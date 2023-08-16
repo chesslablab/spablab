@@ -6,7 +6,7 @@ import store from 'app/store';
 import InfoAlert from 'features/alert/InfoAlert.js';
 import WarningAlert from 'features/alert/WarningAlert.js';
 import VariantBoard from 'features/board/VariantBoard';
-import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
+import ModeFenDialogs from 'features/mode/fen/FenDialogs';
 import CreateInviteCodeDialog from 'features/mode/play/dialog/CreateInviteCodeDialog';
 import EnterInviteCodeDialog from 'features/mode/play/dialog/EnterInviteCodeDialog';
 import PlayOnlineDialog from 'features/mode/play/dialog/PlayOnlineDialog';
@@ -48,7 +48,7 @@ const App = () => {
           <Grid item xs={12} md={2}>
           </Grid>
         </Grid>
-        <LoadFenDialog />
+        <ModeFenDialogs />
         <LoadSanDialog />
         <LoadRavDialog />
         <PlayComputerDialog />
