@@ -56,7 +56,7 @@ const Chess = ({ props }) => {
         <LoadSanDialog />
         <LoadRavDialog />
         <OpeningsStatsDialog />
-        <PlayersStatsDialog props={props} />
+        <PlayersStatsDialog />
         <EventsStatsDialog />
         <PlayComputerDialog />
         <CreateInviteCodeDialog />
