@@ -18,14 +18,13 @@ const Buttons = () => {
   const dispatch = useDispatch();
 
   const handleDownloadImage = async () => {
-    let body = {
-      fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
-      variant: getActiveMode().variant,
-      flip: state.board.flip
-    };
     await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
+        variant: getActiveMode().variant,
+        flip: state.board.flip
+      })
     }).then(res => res.blob())
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
@@ -40,17 +39,16 @@ const Buttons = () => {
 
   const handleDownloadMp4 = async () => {
     dispatch(progressDialog.open());
-    let body = {
-      variant: getActiveMode().variant,
-      fen: state.board.fen[0],
-      movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
-      flip: state.board.flip,
-      ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
-      ...(state.fenMode.active) && {fen: state.fenMode.fen}
-    };
     await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
       method: 'POST',
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        variant: getActiveMode().variant,
+        fen: state.board.fen[0],
+        movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
+        flip: state.board.flip,
+        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+        ...(state.fenMode.active) && {fen: state.fenMode.fen}
+      })
     })
     .then(res => res.blob())
     .then(blob => {
@@ -67,16 +65,15 @@ const Buttons = () => {
 
   const handleHeuristics = async () => {
     dispatch(progressDialog.open());
-    let body = {
-      variant: getActiveMode().variant,
-      movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
-      ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
-      ...(state.fenMode.active) && {fen: state.board.fen[0]},
-      ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
-    };
     await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
       method: 'POST',
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        variant: getActiveMode().variant,
+        movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
+        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+        ...(state.fenMode.active) && {fen: state.board.fen[0]},
+        ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
+      })
     })
     .then(res => res.json())
     .then(res => {

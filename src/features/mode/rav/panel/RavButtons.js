@@ -9,14 +9,13 @@ const RavButtons = () => {
   const state = useSelector(state => state);
 
   const handleDownloadImage = async () => {
-    let body = {
-      fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
-      variant: getActiveMode().variant,
-      flip: state.board.flip
-    };
     await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
+        variant: getActiveMode().variant,
+        flip: state.board.flip
+      })
     }).then(res => res.blob())
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
