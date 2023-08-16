@@ -1,4 +1,3 @@
-import React from 'react';
 import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
 
 const NavDialogs = () => {

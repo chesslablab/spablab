@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 import StartedButtons from 'features/mode/play/panel/StartedButtons';
 import FinishedButtons from 'features/mode/play/panel/FinishedButtons';

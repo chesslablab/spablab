@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import CloseIcon from '@mui/icons-material/Close';
@@ -21,7 +21,7 @@ import * as progressDialog from 'features/progressDialogSlice';
 const EventsStatsDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [result, setResult] = React.useState([]);
+  const [result, setResult] = useState([]);
 
   const handleViewStats = async (event) => {
     event.preventDefault();

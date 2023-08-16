@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';

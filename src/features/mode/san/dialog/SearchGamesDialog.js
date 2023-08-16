@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -24,7 +24,7 @@ import * as progressDialog from 'features/progressDialogSlice';
 const SearchGamesDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [result, setResult] = React.useState([]);
+  const [result, setResult] = useState([]);
 
   const handleSearch = async (event) => {
     event.preventDefault();

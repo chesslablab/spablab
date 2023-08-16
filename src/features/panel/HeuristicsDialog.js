@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Legend, LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 import {
@@ -73,7 +73,7 @@ const Heuristics = () => {
   return null;
 }
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 

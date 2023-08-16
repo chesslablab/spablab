@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -34,7 +34,7 @@ const PlayOnlineDialog = () => {
     variant: variantConst.CLASSICAL,
   };
 
-  const [fields, setFields] = React.useState(initialState);
+  const [fields, setFields] = useState(initialState);
 
   const handleMinutesChange = (event: Event) => {
     setFields({

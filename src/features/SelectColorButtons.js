@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Avatar, ButtonGroup, IconButton } from '@mui/material';
 import wKing from 'assets/img/pieces/png/150/wKing.png';
 import wbKing from 'assets/img/pieces/png/150/wbKing.png';
@@ -7,13 +7,13 @@ import Pgn from 'common/Pgn';
 import styles from 'styles/avatar';
 
 const SelectColorButtons = ({ props }) => {
-  const [color, setColor] = React.useState('rand');
+  const [color, setColor] = useState('rand');
 
   const handleSelectColor = (color) => {
     setColor(color);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     props.color = color;
   }, [props, color]);
 

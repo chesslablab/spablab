@@ -1,4 +1,3 @@
-import React from 'react';
 import CheckmateSkillsDialog from 'features/mode/stockfish/dialog/CheckmateSkillsDialog';
 import EndgameSkillsDialog from 'features/mode/stockfish/dialog/EndgameSkillsDialog';
 import PlayComputerDialog from 'features/mode/stockfish/dialog/PlayComputerDialog';

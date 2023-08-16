@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CapablancaBoard from 'features/board/CapablancaBoard';
 import Chess960Board from 'features/board/Chess960Board';

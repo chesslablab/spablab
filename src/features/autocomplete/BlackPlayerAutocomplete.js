@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';

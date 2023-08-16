@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 import GameMetadataTable from 'features/panel/GameMetadataTable';
 import History from 'features/panel/History';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import WidgetsIcon from '@mui/icons-material/Widgets';

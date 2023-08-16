@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 import StartedButtons from 'features/mode/stockfish/panel/StartedButtons';
 import Buttons from 'features/panel/Buttons';

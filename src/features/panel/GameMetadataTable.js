@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 

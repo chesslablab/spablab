@@ -1,4 +1,3 @@
-import React from 'react';
 import CreateInboxCodeDialog from 'features/nav/dialog/CreateInboxCodeDialog';
 import EnterInboxCodeDialog from 'features/nav/dialog/EnterInboxCodeDialog';
 import EventsStatsDialog from 'features/nav/dialog/EventsStatsDialog';
