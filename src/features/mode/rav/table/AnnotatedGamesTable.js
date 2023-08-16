@@ -71,7 +71,7 @@ const AnnotatedGamesTable = () => {
       ECO: item.ECO
     }));
     dispatch(progressDialog.open());
-    fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/play/rav`, {
+    fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/play/rav`, {
       method: 'POST',
       body: JSON.stringify({
         variant: variantConst.CLASSICAL,

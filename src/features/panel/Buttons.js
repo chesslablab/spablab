@@ -23,7 +23,7 @@ const Buttons = () => {
       variant: getActiveMode().variant,
       flip: state.board.flip
     };
-    await fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
+    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
       body: JSON.stringify(body)
     }).then(res => res.blob())
@@ -48,7 +48,7 @@ const Buttons = () => {
       ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
       ...(state.fenMode.active) && {fen: state.fenMode.fen}
     };
-    await fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
+    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
       method: 'POST',
       body: JSON.stringify(body)
     })
@@ -74,7 +74,7 @@ const Buttons = () => {
       ...(state.fenMode.active) && {fen: state.board.fen[0]},
       ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
     };
-    await fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
+    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
       method: 'POST',
       body: JSON.stringify(body)
     })

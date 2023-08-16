@@ -14,7 +14,7 @@ const RavButtons = () => {
       variant: getActiveMode().variant,
       flip: state.board.flip
     };
-    await fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
+    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
       body: JSON.stringify(body)
     }).then(res => res.blob())

@@ -16,7 +16,7 @@ const EventAutocomplete = () => {
 
   useEffect(() => {
     if (state.eventAutocomplete.data.length === 0) {
-      fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/event`)
+      fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/event`)
         .then(res => {
           if (res.status === 200) {
             res.json().then(data => {

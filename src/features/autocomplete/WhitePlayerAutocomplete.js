@@ -16,7 +16,7 @@ const WhitePlayerAutocomplete = () => {
 
   useEffect(() => {
     if (state.playerAutocomplete.data.length === 0) {
-      fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/player`)
+      fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/player`)
         .then(res => {
           if (res.status === 200) {
             res.json().then(data => {

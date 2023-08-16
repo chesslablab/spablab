@@ -322,7 +322,7 @@ const Nav = () => {
           id="Nav-database-MenuItem-topOpenings"
           onClick={() => {
             dispatch(progressDialog.open());
-            fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`)
+            fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`)
               .then(res => {
                 if (res.status === 200) {
                   res.json().then(data => {
@@ -364,7 +364,7 @@ const Nav = () => {
           id="Nav-database-MenuItem-searchGames"
           onClick={() => {
             dispatch(progressDialog.open());
-            fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`)
+            fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`)
               .then(res => res.json())
               .then(res => {
                 dispatch(ravMode.annotatedGamesDialog({ open: true }));
