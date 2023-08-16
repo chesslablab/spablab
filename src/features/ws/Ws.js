@@ -7,20 +7,20 @@ import WsEventListener from 'features/ws/WsEventListener';
 import * as wsSlice from 'features/ws/wsSlice';
 
 export default class Ws {
-  static connect = (props) => dispatch => {
+  static connect = () => dispatch => {
     dispatch(infoAlert.show({
       mssg: 'Establishing connection...',
       button: false
     }));
     return new Promise((resolve, reject) => {
-      const ws = new WebSocket(`${props.ws.prot}://${props.ws.host}:${props.ws.port}`);
+      const ws = new WebSocket(`${process.env.REACT_APP_WS_PROT}://${process.env.REACT_APP_WS_HOST}:${process.env.REACT_APP_WS_PORT}`);
       ws.onopen = () => {
         dispatch(wsSlice.established({ ws: ws }));
         dispatch(infoAlert.close());
         resolve();
       };
       ws.onmessage = (res) => {
-        dispatch(WsEventListener.listen(props, JSON.parse(res.data)));
+        dispatch(WsEventListener.listen(JSON.parse(res.data)));
       };
       ws.onclose = (err) => {
         dispatch(wsSlice.error());
