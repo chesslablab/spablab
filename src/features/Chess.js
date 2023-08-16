@@ -38,7 +38,7 @@ const Chess = ({ props }) => {
       <Provider store={store}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Nav props={props} />
+            <Nav />
           </Grid>
           <Grid item xs={12} md={2}>
           </Grid>
