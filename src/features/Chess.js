@@ -62,7 +62,7 @@ const Chess = ({ props }) => {
         <CreateInviteCodeDialog />
         <EnterInviteCodeDialog />
         <PlayOnlineDialog />
-        <SearchGamesDialog props={props} />
+        <SearchGamesDialog />
         <AnnotatedGamesDialog props={props} />
         <SearchEcoDialog props={props} />
         <SearchMovetextDialog props={props} />

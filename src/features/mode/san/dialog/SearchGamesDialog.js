@@ -21,7 +21,7 @@ import * as sanMode from 'features/mode/sanModeSlice';
 import SearchGamesTable from 'features/mode/san/table/SearchGamesTable.js';
 import * as progressDialog from 'features/progressDialogSlice';
 
-const SearchGamesDialog = ({props}) => {
+const SearchGamesDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const [result, setResult] = React.useState([]);
@@ -29,7 +29,7 @@ const SearchGamesDialog = ({props}) => {
   const handleSearch = async (event) => {
     event.preventDefault();
     dispatch(progressDialog.open());
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/search`, {
+    await fetch(`${process.env.REACT_APP_API_PROT}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/search`, {
       method: 'POST',
       body: JSON.stringify({
         [event.target.elements.Event.name]: event.target.elements.Event.value,
