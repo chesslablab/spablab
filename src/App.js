@@ -8,8 +8,7 @@ import WarningAlert from 'features/alert/WarningAlert.js';
 import VariantBoard from 'features/board/VariantBoard';
 import ModeFenDialogs from 'features/mode/fen/FenDialogs';
 import ModePlayDialogs from 'features/mode/play/PlayDialogs';
-import AnnotatedGamesDialog from 'features/mode/rav/dialog/AnnotatedGamesDialog';
-import LoadRavDialog from 'features/mode/rav/dialog/LoadRavDialog';
+import ModeRavDialogs from 'features/mode/rav/RavDialogs';
 import LoadSanDialog from 'features/mode/san/dialog/LoadSanDialog';
 import SearchEcoDialog from 'features/mode/san/dialog/SearchEcoDialog';
 import SearchGamesDialog from 'features/mode/san/dialog/SearchGamesDialog';
@@ -48,11 +47,10 @@ const App = () => {
         </Grid>
         <ModeFenDialogs />
         <ModePlayDialogs />
+        <ModeRavDialogs />
         <LoadSanDialog />
-        <LoadRavDialog />
         <PlayComputerDialog />
         <SearchGamesDialog />
-        <AnnotatedGamesDialog />
         <SearchEcoDialog />
         <SearchMovetextDialog />
         <SearchNameDialog />
