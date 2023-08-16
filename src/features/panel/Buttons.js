@@ -10,7 +10,7 @@ import { getActiveMode } from 'app/store';
 import Movetext from 'common/Movetext';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as variantConst from 'features/mode/variantConst';
-import * as nav from 'features/nav/navSlice';
+import * as panel from 'features/panel/panelSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const Buttons = () => {
@@ -77,7 +77,7 @@ const Buttons = () => {
     })
     .then(res => res.json())
     .then(res => {
-      dispatch(nav.heuristicsDialog({
+      dispatch(panel.heuristicsDialog({
         open: true,
         heuristics: res
       }));
