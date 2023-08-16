@@ -100,7 +100,7 @@ const SearchGamesDialog = ({props}) => {
               />
             </Grid>
             <Grid item xs={12} md={4}>
-              <WhitePlayerAutocomplete props={props} />
+              <WhitePlayerAutocomplete />
             </Grid>
             <Grid item xs={12} md={4}>
               <BlackPlayerAutocomplete props={props} />
