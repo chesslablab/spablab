@@ -10,9 +10,7 @@ import ModeFenDialogs from 'features/mode/fen/FenDialogs';
 import ModePlayDialogs from 'features/mode/play/PlayDialogs';
 import ModeRavDialogs from 'features/mode/rav/RavDialogs';
 import ModeSanDialogs from 'features/mode/san/SanDialogs';
-import CheckmateSkillsDialog from 'features/mode/stockfish/dialog/CheckmateSkillsDialog';
-import EndgameSkillsDialog from 'features/mode/stockfish/dialog/EndgameSkillsDialog';
-import PlayComputerDialog from 'features/mode/stockfish/dialog/PlayComputerDialog';
+import ModeStockfishDialogs from 'features/mode/stockfish/StockfishDialogs';
 import Nav from 'features/nav/Nav';
 import NavDialogs from 'features/nav/NavDialogs';
 import Panel from 'features/panel/Panel';
@@ -45,9 +43,8 @@ const App = () => {
         <ModePlayDialogs />
         <ModeRavDialogs />
         <ModeSanDialogs />
-        <PlayComputerDialog />
-        <CheckmateSkillsDialog />
-        <EndgameSkillsDialog />
+        <ModeSanDialogs />
+        <ModeStockfishDialogs />
         <ProgressDialog />
         <InfoAlert />
         <WarningAlert />
