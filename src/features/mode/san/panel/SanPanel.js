@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 import StartedButtons from 'features/mode/san/panel/StartedButtons';
 import Buttons from 'features/panel/Buttons';
@@ -9,14 +8,14 @@ import MovesTable from 'features/panel/MovesTable';
 import OpeningTable from 'features/panel/OpeningTable';
 import styles from 'styles/panel';
 
-const SanPanel = ({ props }) => {
+const SanPanel = () => {
   return (
     <Grid container>
       <Grid item xs={12} sx={styles.panel}>
         <GameMetadataTable />
         <History />
         <MovesTable />
-        <Buttons props={props} />
+        <Buttons />
         <ButtonsDialogs />
       </Grid>
       <Grid item xs={12}>

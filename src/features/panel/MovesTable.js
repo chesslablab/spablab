@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
@@ -7,7 +7,7 @@ import * as panel from 'features/panel/panelSlice';
 import styles from 'styles/panel';
 import Ws from 'features/ws/Ws';
 
-const MovesTable = ({props}) => {
+const MovesTable = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 

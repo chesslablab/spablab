@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -13,7 +13,7 @@ import Opening from 'common/Opening.js';
 import * as sanMode from 'features/mode/sanModeSlice';
 import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
 
-const SearchEcoDialog = ({ props }) => {
+const SearchEcoDialog = () => {
   const state = useSelector(state => state);
   const [openings, setOpenings] = useState([]);
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
@@ -44,7 +44,7 @@ import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
-const Nav = ({props}) => {
+const Nav = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -322,7 +322,7 @@ const Nav = ({props}) => {
           id="Nav-database-MenuItem-topOpenings"
           onClick={() => {
             dispatch(progressDialog.open());
-            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/stats/opening`)
+            fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`)
               .then(res => {
                 if (res.status === 200) {
                   res.json().then(data => {
@@ -364,7 +364,7 @@ const Nav = ({props}) => {
           id="Nav-database-MenuItem-searchGames"
           onClick={() => {
             dispatch(progressDialog.open());
-            fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/annotations/games`)
+            fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`)
               .then(res => res.json())
               .then(res => {
                 dispatch(ravMode.annotatedGamesDialog({ open: true }));

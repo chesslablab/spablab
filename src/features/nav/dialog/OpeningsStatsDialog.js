@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,7 +10,7 @@ import {
 } from '@mui/material';
 import * as nav from 'features/nav/navSlice';
 
-const OpeningsStatsDialog = ({props}) => {
+const OpeningsStatsDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 

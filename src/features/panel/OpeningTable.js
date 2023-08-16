@@ -1,9 +1,8 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 
-const OpeningTable = ({props}) => {
+const OpeningTable = () => {
   const state = useSelector(state => state);
 
   if (state.nav?.name !== navConst.DATABASE && state.nav?.name !== navConst.TRAINING) {

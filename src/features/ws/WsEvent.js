@@ -135,7 +135,7 @@ export default class WsEvent {
     }
   }
 
-  static onPlayLan = (props, data) => dispatch => {
+  static onPlayLan = (data) => dispatch => {
     if (data['/play_lan'].fen) {
       dispatch(board.validMove(data['/play_lan']));
       if (store.getState().playMode.active) {

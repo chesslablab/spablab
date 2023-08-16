@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import CloseIcon from '@mui/icons-material/Close';
@@ -19,15 +19,15 @@ import BlackPlayerAutocomplete from 'features/autocomplete/BlackPlayerAutocomple
 import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
-const PlayersStatsDialog = ({props}) => {
+const PlayersStatsDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [result, setResult] = React.useState([]);
+  const [result, setResult] = useState([]);
 
   const handleViewStats = async (event) => {
     event.preventDefault();
     dispatch(progressDialog.open());
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/stats/player`, {
+    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/player`, {
       method: 'POST',
       body: JSON.stringify({
         [event.target.elements.White.name]: event.target.elements.White.value,
@@ -65,10 +65,10 @@ const PlayersStatsDialog = ({props}) => {
         <form onSubmit={handleViewStats}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <WhitePlayerAutocomplete props={props} />
+              <WhitePlayerAutocomplete />
             </Grid>
             <Grid item xs={12} md={4}>
-              <BlackPlayerAutocomplete props={props} />
+              <BlackPlayerAutocomplete />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField

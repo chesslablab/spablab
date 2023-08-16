@@ -15,10 +15,6 @@ const initialState = {
     eventsStats: {
       open: false,
     },
-    heuristics: {
-      open: false,
-      heuristics: null,
-    },
     openingsStats: {
       open: false,
       stats: {
@@ -66,9 +62,6 @@ const navSlice = createSlice({
     eventsStatsDialog(state, action) {
       state.dialogs.eventsStats = action.payload;
     },
-    heuristicsDialog(state, action) {
-      state.dialogs.heuristics = action.payload;
-    },
     openingsStatsDialog(state, action) {
       state.dialogs.openingsStats = action.payload;
     },
@@ -96,7 +89,6 @@ export const {
   createInboxCodeDialog,
   enterInboxCodeDialog,
   eventsStatsDialog,
-  heuristicsDialog,
   openingsStatsDialog,
   playersStatsDialog,
   settingsDialog,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';

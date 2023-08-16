@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Avatar,
@@ -22,11 +22,11 @@ import * as board from 'features/board/boardSlice';
 import Ws from 'features/ws/Ws';
 import styles from 'styles/avatar';
 
-const PawnPromotionDialog = ({ props }) => {
+const PawnPromotionDialog = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [piece, setPiece] = React.useState('Q');
+  const [piece, setPiece] = useState('Q');
 
   const handleSelectPiece = (piece) => {
     setPiece(piece);

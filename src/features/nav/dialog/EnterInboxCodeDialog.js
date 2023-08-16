@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -24,7 +24,7 @@ const EnterInboxCodeDialog = () => {
     pgn: ''
   };
 
-  const [fields, setFields] = React.useState(initialState);
+  const [fields, setFields] = useState(initialState);
 
   const dispatch = useDispatch();
 

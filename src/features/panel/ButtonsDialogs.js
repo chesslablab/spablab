@@ -1,5 +1,4 @@
-import React from 'react';
-import HeuristicsDialog from 'features/nav/dialog/HeuristicsDialog';
+import HeuristicsDialog from 'features/panel/HeuristicsDialog';
 
 const ButtonsDialogs = () => {
   return (

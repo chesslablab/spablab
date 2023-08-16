@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
@@ -8,7 +7,7 @@ const filterOptions = createFilterOptions({
   limit: 25,
 });
 
-const BlackPlayerAutocomplete = ({props}) => {
+const BlackPlayerAutocomplete = () => {
   const state = useSelector((state) => state);
 
   return (

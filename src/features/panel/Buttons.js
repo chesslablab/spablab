@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
@@ -10,22 +9,21 @@ import { getActiveMode } from 'app/store';
 import Movetext from 'common/Movetext';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as variantConst from 'features/mode/variantConst';
-import * as nav from 'features/nav/navSlice';
+import * as panel from 'features/panel/panelSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
-const Buttons = ({props}) => {
+const Buttons = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   const handleDownloadImage = async () => {
-    let body = {
-      fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
-      variant: getActiveMode().variant,
-      flip: state.board.flip
-    };
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/image`, {
+    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
+        variant: getActiveMode().variant,
+        flip: state.board.flip
+      })
     }).then(res => res.blob())
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
@@ -40,17 +38,16 @@ const Buttons = ({props}) => {
 
   const handleDownloadMp4 = async () => {
     dispatch(progressDialog.open());
-    let body = {
-      variant: getActiveMode().variant,
-      fen: state.board.fen[0],
-      movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
-      flip: state.board.flip,
-      ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
-      ...(state.fenMode.active) && {fen: state.fenMode.fen}
-    };
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/download/mp4`, {
+    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
       method: 'POST',
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        variant: getActiveMode().variant,
+        fen: state.board.fen[0],
+        movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
+        flip: state.board.flip,
+        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+        ...(state.fenMode.active) && {fen: state.fenMode.fen}
+      })
     })
     .then(res => res.blob())
     .then(blob => {
@@ -67,20 +64,19 @@ const Buttons = ({props}) => {
 
   const handleHeuristics = async () => {
     dispatch(progressDialog.open());
-    let body = {
-      variant: getActiveMode().variant,
-      movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
-      ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
-      ...(state.fenMode.active) && {fen: state.board.fen[0]},
-      ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
-    };
-    await fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/heuristics`, {
+    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
       method: 'POST',
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        variant: getActiveMode().variant,
+        movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
+        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+        ...(state.fenMode.active) && {fen: state.board.fen[0]},
+        ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
+      })
     })
     .then(res => res.json())
     .then(res => {
-      dispatch(nav.heuristicsDialog({
+      dispatch(panel.heuristicsDialog({
         open: true,
         heuristics: res
       }));

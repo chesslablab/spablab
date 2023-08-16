@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Paper,
@@ -52,7 +51,7 @@ const styles = {
   },
 };
 
-const AnnotatedGamesTable = ({props}) => {
+const AnnotatedGamesTable = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -71,7 +70,7 @@ const AnnotatedGamesTable = ({props}) => {
       ECO: item.ECO
     }));
     dispatch(progressDialog.open());
-    fetch(`${props.api.prot}://${props.api.host}:${props.api.port}/api/play/rav`, {
+    fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/play/rav`, {
       method: 'POST',
       body: JSON.stringify({
         variant: variantConst.CLASSICAL,

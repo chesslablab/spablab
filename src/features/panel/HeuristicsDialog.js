@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Legend, LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 import {
@@ -14,7 +14,7 @@ import {
 } from '@mui/material/';
 import html2canvas from 'html2canvas';
 import CloseIcon from '@mui/icons-material/Close';
-import * as nav from 'features/nav/navSlice';
+import * as panel from 'features/panel/panelSlice';
 
 const handleDownloadImage = async () => {
   const heuristics = document.getElementsByClassName('heuristic-picture')[0];
@@ -52,10 +52,10 @@ const charts = (data) => {
 
 const Heuristics = () => {
   const state = useSelector(state => state);
-  if (state.nav.dialogs.heuristics.heuristics) {
-    const data = initData(state.nav.dialogs.heuristics.heuristics.evalNames);
-    state.nav.dialogs.heuristics.heuristics.balance.forEach((item, i) => {
-      state.nav.dialogs.heuristics.heuristics.evalNames.forEach((evalName, j) => {
+  if (state.panel.dialogs.heuristics.heuristics) {
+    const data = initData(state.panel.dialogs.heuristics.heuristics.evalNames);
+    state.panel.dialogs.heuristics.heuristics.balance.forEach((item, i) => {
+      state.panel.dialogs.heuristics.heuristics.evalNames.forEach((evalName, j) => {
         data[evalName].push({
           [evalName]: item[j]
         });
@@ -73,7 +73,7 @@ const Heuristics = () => {
   return null;
 }
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -84,8 +84,8 @@ const HeuristicsDialog = () => {
   return (
     <Dialog
       fullScreen
-      open={state.nav.dialogs.heuristics.open}
-      onClose={() => dispatch(nav.heuristicsDialog({ open: false }))}
+      open={state.panel.dialogs.heuristics.open}
+      onClose={() => dispatch(panel.heuristicsDialog({ open: false }))}
       TransitionComponent={Transition}
     >
       <AppBar sx={{ position: 'relative' }}>
@@ -93,7 +93,7 @@ const HeuristicsDialog = () => {
          <IconButton
            edge="start"
            color="inherit"
-           onClick={() => dispatch(nav.heuristicsDialog({ open: false }))}
+           onClick={() => dispatch(panel.heuristicsDialog({ open: false }))}
            aria-label="close"
          >
            <CloseIcon />
@@ -104,7 +104,7 @@ const HeuristicsDialog = () => {
          <Button color="inherit" onClick={() => handleDownloadImage()}>
            Download
          </Button>
-         <Button autoFocus color="inherit" onClick={() => dispatch(nav.heuristicsDialog({ open: false }))}>
+         <Button autoFocus color="inherit" onClick={() => dispatch(panel.heuristicsDialog({ open: false }))}>
            Close
          </Button>
        </Toolbar>

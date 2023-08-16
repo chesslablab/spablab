@@ -2,7 +2,7 @@ import * as playMode from 'features/mode/playModeSlice';
 import WsEvent from 'features/ws/WsEvent';
 
 export default class WsEventListener {
-  static listen = (props, data) => dispatch => {
+  static listen = (data) => dispatch => {
     const mssg = Object.keys(data)[0];
     switch (true) {
       case 'broadcast' === mssg:
@@ -24,7 +24,7 @@ export default class WsEventListener {
         dispatch(WsEvent.onAccept(data));
         break;
       case '/play_lan' === mssg:
-        dispatch(WsEvent.onPlayLan(props, data));
+        dispatch(WsEvent.onPlayLan(data));
         break;
       case '/legal' === mssg:
         dispatch(WsEvent.onLegal(data));

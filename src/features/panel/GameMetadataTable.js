@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 
@@ -12,7 +11,7 @@ const styles = {
   },
 };
 
-const GameMetadataTable = ({props}) => {
+const GameMetadataTable = () => {
   const state = useSelector(state => state);
 
   if (Object.keys(state.panel.tables.gameMetadata).length) {

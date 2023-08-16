@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
@@ -11,7 +10,7 @@ import {
 import * as ravMode from 'features/mode/ravModeSlice';
 import AnnotatedGamesTable from 'features/mode/rav/table/AnnotatedGamesTable.js';
 
-const AnnotatedGamesDialog = ({props}) => {
+const AnnotatedGamesDialog = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -31,7 +30,7 @@ const AnnotatedGamesDialog = ({props}) => {
         >
           More annotated games will soon be available. Stay tuned!
         </Alert>
-        <AnnotatedGamesTable props={props} />
+        <AnnotatedGamesTable />
       </DialogContent>
     </Dialog>
   );

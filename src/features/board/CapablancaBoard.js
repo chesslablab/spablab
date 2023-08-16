@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Piece from 'common/Piece';
 import * as board from 'features/board/boardSlice';

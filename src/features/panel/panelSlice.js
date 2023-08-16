@@ -10,6 +10,12 @@ const initialState = {
     },
     gameMetadata: {},
   },
+  dialogs: {
+    heuristics: {
+      open: false,
+      heuristics: null,
+    },
+  },
 };
 
 const panelSlice = createSlice({
@@ -34,6 +40,9 @@ const panelSlice = createSlice({
     goToEnd(state) {
       state.history.back = 0;
     },
+    heuristicsDialog(state, action) {
+      state.dialogs.heuristics = action.payload;
+    },
   }
 });
 
@@ -43,6 +52,7 @@ export const {
   goTo,
   goBack,
   goForward,
-  goToEnd
+  goToEnd,
+  heuristicsDialog
 } = panelSlice.actions;
 export default panelSlice.reducer;
