@@ -4,8 +4,8 @@ const initialState = {
   heuristics: null
 };
 
-const heuristicsBarSlice = createSlice({
-  name: 'heuristicsBar',
+const heuristicsSlice = createSlice({
+  name: 'heuristics',
   initialState,
   reducers: {
     reset: () => initialState,
@@ -18,5 +18,5 @@ const heuristicsBarSlice = createSlice({
 export const {
   reset,
   set
-} = heuristicsBarSlice.actions;
-export default heuristicsBarSlice.reducer;
+} = heuristicsSlice.actions;
+export default heuristicsSlice.reducer;

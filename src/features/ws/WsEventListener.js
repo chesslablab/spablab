@@ -29,8 +29,8 @@ export default class WsEventListener {
       case '/legal' === mssg:
         dispatch(WsEvent.onLegal(data));
         break;
-      case '/heuristics_bar' === mssg:
-        dispatch(WsEvent.onHeuristicsBar(data));
+      case '/heuristics' === mssg:
+        dispatch(WsEvent.onHeuristics(data));
         break;
       case '/online_games' === mssg:
         dispatch(WsEvent.onOnlineGames(data));

@@ -1,5 +1,5 @@
 import Opening from 'common/Opening.js';
-import * as heuristicsBar from 'features/heuristicsBarSlice';
+import * as heuristics from 'features/heuristicsSlice';
 import * as positionEval from 'features/positionEvalSlice';
 import * as board from 'features/board/boardSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
@@ -14,7 +14,7 @@ import * as panel from 'features/panel/panelSlice';
 
 export default class multiAction {
   static initGui = (dispatch) => {
-    dispatch(heuristicsBar.reset());
+    dispatch(heuristics.reset());
     dispatch(positionEval.reset());
     dispatch(panel.openingTable({ open: false }));
     dispatch(panel.goTo({ back: 0 }));

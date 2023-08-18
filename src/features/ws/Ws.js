@@ -80,12 +80,12 @@ export default class Ws {
     return await store.getState().ws.ws.send(`/legal ${sq}`);
   }
 
-  static heuristicsBar = async () => {
+  static heuristics = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
     const variant = getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.heuristics === 'on') {
-      return await store.getState().ws.ws.send(`/heuristics_bar "${fen}" ${variant}`);
+      return await store.getState().ws.ws.send(`/heuristics "${fen}" ${variant}`);
     }
   }
 
