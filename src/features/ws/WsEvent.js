@@ -16,6 +16,7 @@ import Ws from 'features/ws/Ws';
 import * as eventConst from 'features/eventConst';
 import * as heuristicsBar from 'features/heuristicsBarSlice';
 import multiAction from 'features/multiAction';
+import * as positionEval from 'features/positionEvalSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
@@ -150,6 +151,7 @@ export default class WsEvent {
       }
       multiAction.openingByMovetext(dispatch, data['/play_lan']);
       Ws.heuristicsBar();
+      Ws.stockfishEval();
     }
   }
 
@@ -263,6 +265,10 @@ export default class WsEvent {
       Ws.heuristicsBar();
       multiAction.openingByMovetext(dispatch, data['/stockfish']);
     }
+  }
+
+  static onStockfishEval = (data) => dispatch => {
+    dispatch(positionEval.set(data['/stockfish_eval']));
   }
 
   static onOnlineGames = (data) => dispatch => {

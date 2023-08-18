@@ -30,6 +30,7 @@ const initialState = {
       open: false,
       fields: {
         pieceAnimation: 'on',
+        eval: 'off',
         heuristics: 'off',
       },
     },
