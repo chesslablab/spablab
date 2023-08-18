@@ -126,6 +126,14 @@ export default class Ws {
     return await store.getState().ws.ws.send(`/stockfish "${options}" "${params}"`);
   }
 
+  static stockfishEval = async () => {
+    const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
+
+    if (store.getState().nav.dialogs.settings.fields.eval === 'on') {
+      return await store.getState().ws.ws.send(`/stockfish_eval "${fen}"`);
+    }
+  }
+
   static onlineGames = async () => {
     return await store.getState().ws.ws.send('/online_games');
   }

@@ -49,7 +49,7 @@ export default class Nag {
     },
     {
         "nag": "$10",
-        "meaning": "drawish position",
+        "meaning": "Equal position",
         "symbol": "="
     },
     {
