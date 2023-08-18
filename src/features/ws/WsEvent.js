@@ -151,8 +151,7 @@ export default class WsEvent {
       }
       multiAction.openingByMovetext(dispatch, data['/play_lan']);
       Ws.heuristics();
-      // TODO
-      // Ws.stockfishEval();
+      Ws.stockfishEval();
     }
   }
 
