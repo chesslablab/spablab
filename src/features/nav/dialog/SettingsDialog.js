@@ -54,7 +54,7 @@ const SettingsDialog = () => {
             />}
           />
           <FormControlLabel
-            label="Display evaluation while playing"
+            label="Display computer evaluation while playing"
             control={<Checkbox
               name="eval"
               checked={state.nav.dialogs.settings.fields.eval === 'on'}
@@ -63,7 +63,7 @@ const SettingsDialog = () => {
             />}
           />
           <FormControlLabel
-            label="Display heuristics while playing"
+            label="Display chess heuristics while playing"
             control={<Checkbox
               name="heuristics"
               checked={state.nav.dialogs.settings.fields.heuristics === 'on'}
