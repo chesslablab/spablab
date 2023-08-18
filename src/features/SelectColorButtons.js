@@ -9,10 +9,6 @@ import styles from 'styles/avatar';
 const SelectColorButtons = ({ props }) => {
   const [color, setColor] = useState('rand');
 
-  const handleSelectColor = (color) => {
-    setColor(color);
-  };
-
   useEffect(() => {
     props.color = color;
   }, [props, color]);
@@ -22,7 +18,7 @@ const SelectColorButtons = ({ props }) => {
       <IconButton
         aria-label="white"
         title="White"
-        onClick={() => handleSelectColor(Pgn.symbol.WHITE)}
+        onClick={() => setColor(Pgn.symbol.WHITE)}
       >
         <Avatar
           src={wKing}
@@ -32,7 +28,7 @@ const SelectColorButtons = ({ props }) => {
       <IconButton
         aria-label="random"
         title="Random"
-        onClick={() => handleSelectColor('rand')}
+        onClick={() => setColor('rand')}
       >
         <Avatar
           src={wbKing}
@@ -42,7 +38,7 @@ const SelectColorButtons = ({ props }) => {
       <IconButton
         aria-label="black"
         title="Black"
-        onClick={() => handleSelectColor(Pgn.symbol.BLACK)}
+        onClick={() => setColor(Pgn.symbol.BLACK)}
       >
         <Avatar
           src={bKing}
