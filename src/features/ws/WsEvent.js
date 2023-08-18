@@ -14,8 +14,9 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import * as eventConst from 'features/eventConst';
-import * as heuristicsBar from 'features/heuristicsBarSlice';
+import * as heuristics from 'features/heuristicsSlice';
 import multiAction from 'features/multiAction';
+import * as positionEval from 'features/positionEvalSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
 export default class WsEvent {
@@ -149,7 +150,8 @@ export default class WsEvent {
         Ws.stockfish();
       }
       multiAction.openingByMovetext(dispatch, data['/play_lan']);
-      Ws.heuristicsBar();
+      Ws.heuristics();
+      Ws.stockfishEval();
     }
   }
 
@@ -157,12 +159,12 @@ export default class WsEvent {
     if (data['/undo']) {
       dispatch(board.undo(data['/undo']));
       multiAction.openingByMovetext(dispatch, data['/undo']);
-      Ws.heuristicsBar();
+      Ws.heuristics();
     }
   }
 
-  static onHeuristicsBar = (data) => dispatch => {
-    dispatch(heuristicsBar.set(data['/heuristics_bar']));
+  static onHeuristics = (data) => dispatch => {
+    dispatch(heuristics.set(data['/heuristics']));
   }
 
   static onTakeback = (data) => dispatch => {
@@ -260,9 +262,13 @@ export default class WsEvent {
         ...data['/stockfish'],
         piecePlaced: { event: eventConst.ON_STOCKFISH }
       }));
-      Ws.heuristicsBar();
+      Ws.heuristics();
       multiAction.openingByMovetext(dispatch, data['/stockfish']);
     }
+  }
+
+  static onStockfishEval = (data) => dispatch => {
+    dispatch(positionEval.set(data['/stockfish_eval']));
   }
 
   static onOnlineGames = (data) => dispatch => {

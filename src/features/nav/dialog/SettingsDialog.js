@@ -22,6 +22,12 @@ const SettingsDialog = () => {
     }));
   };
 
+  const handleEvalChange = (event: Event) => {
+    dispatch(nav.settingsDialogSet({
+      eval: event.target.value === 'on' ? 'off' : 'on'
+    }));
+  };
+
   const handleHeuristicsChange = (event: Event) => {
     dispatch(nav.settingsDialogSet({
       heuristics: event.target.value === 'on' ? 'off' : 'on'
@@ -48,7 +54,16 @@ const SettingsDialog = () => {
             />}
           />
           <FormControlLabel
-            label="Show heuristics while playing"
+            label="Display computer evaluation while playing"
+            control={<Checkbox
+              name="eval"
+              checked={state.nav.dialogs.settings.fields.eval === 'on'}
+              value={state.nav.dialogs.settings.fields.eval}
+              onChange={handleEvalChange}
+            />}
+          />
+          <FormControlLabel
+            label="Display chess heuristics while playing"
             control={<Checkbox
               name="heuristics"
               checked={state.nav.dialogs.settings.fields.heuristics === 'on'}

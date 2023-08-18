@@ -17,15 +17,15 @@ const initData = (evalNames, balance) => {
   return data;
 };
 
-const HeuristicsBar = () => {
+const Heuristics = () => {
   const state = useSelector(state => state);
   if (
     state.nav.dialogs.settings.fields.heuristics === 'on' &&
-    state.heuristicsBar.heuristics
+    state.heuristics.heuristics
   ) {
     const data = initData(
-      state.heuristicsBar.heuristics.evalNames,
-      state.heuristicsBar.heuristics.balance
+      state.heuristics.heuristics.evalNames,
+      state.heuristics.heuristics.balance
     );
 
     const offset = () => {
@@ -73,4 +73,4 @@ const HeuristicsBar = () => {
   return null;
 }
 
-export default HeuristicsBar;
+export default Heuristics;

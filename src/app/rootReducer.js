@@ -11,7 +11,8 @@ import stockfishModeReducer from 'features/mode/stockfishModeSlice';
 import navReducer from 'features/nav/navSlice';
 import panelReducer from 'features/panel/panelSlice';
 import wsReducer from 'features/ws/wsSlice';
-import heuristicsBarReducer from 'features/heuristicsBarSlice';
+import heuristicsReducer from 'features/heuristicsSlice';
+import positionEvalReducer from 'features/positionEvalSlice';
 import progressDialogReducer from 'features/progressDialogSlice';
 
 const rootReducer = {
@@ -28,7 +29,8 @@ const rootReducer = {
   nav: navReducer,
   panel: panelReducer,
   ws: wsReducer,
-  heuristicsBar: heuristicsBarReducer,
+  heuristics: heuristicsReducer,
+  positionEval: positionEvalReducer,
   progressDialog: progressDialogReducer
 };
 

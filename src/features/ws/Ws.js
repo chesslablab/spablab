@@ -80,12 +80,12 @@ export default class Ws {
     return await store.getState().ws.ws.send(`/legal ${sq}`);
   }
 
-  static heuristicsBar = async () => {
+  static heuristics = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
     const variant = getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.heuristics === 'on') {
-      return await store.getState().ws.ws.send(`/heuristics_bar "${fen}" ${variant}`);
+      return await store.getState().ws.ws.send(`/heuristics "${fen}" ${variant}`);
     }
   }
 
@@ -124,6 +124,14 @@ export default class Ws {
     const params = JSON.stringify(store.getState().stockfishMode.computer.params).replace(/"/g, '\\"');
 
     return await store.getState().ws.ws.send(`/stockfish "${options}" "${params}"`);
+  }
+
+  static stockfishEval = async () => {
+    const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
+
+    if (store.getState().nav.dialogs.settings.fields.eval === 'on') {
+      return await store.getState().ws.ws.send(`/stockfish_eval "${fen}"`);
+    }
   }
 
   static onlineGames = async () => {

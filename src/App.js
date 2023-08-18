@@ -14,7 +14,8 @@ import ModeStockfishDialogs from 'features/mode/stockfish/StockfishDialogs';
 import Nav from 'features/nav/Nav';
 import NavDialogs from 'features/nav/NavDialogs';
 import Panel from 'features/panel/Panel';
-import HeuristicsBar from 'features/HeuristicsBar';
+import Heuristics from 'features/Heuristics';
+import PositionEval from 'features/PositionEval';
 import ProgressDialog from 'features/ProgressDialog';
 import theme from 'styles/theme.js';
 
@@ -31,7 +32,8 @@ const App = () => {
           </Grid>
           <Grid item xs={12} md={4}>
             <VariantBoard />
-            <HeuristicsBar />
+            <PositionEval />
+            <Heuristics />
           </Grid>
           <Grid item xs={12} md={4}>
             <Panel />

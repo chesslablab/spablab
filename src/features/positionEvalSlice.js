@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  heuristics: null
+  eval: {}
 };
 
-const heuristicsBarSlice = createSlice({
-  name: 'heuristicsBar',
+const positionEvalSlice = createSlice({
+  name: 'positionEval',
   initialState,
   reducers: {
     reset: () => initialState,
     set(state, action) {
-      state.heuristics = action.payload;
+      state.eval = action.payload;
     }
   }
 });
@@ -18,5 +18,5 @@ const heuristicsBarSlice = createSlice({
 export const {
   reset,
   set
-} = heuristicsBarSlice.actions;
-export default heuristicsBarSlice.reducer;
+} = positionEvalSlice.actions;
+export default positionEvalSlice.reducer;

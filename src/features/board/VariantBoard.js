@@ -16,27 +16,19 @@ const VariantBoard = () => {
     dispatch(Ws.connect()).then(() => Ws.start(variantConst.CLASSICAL, modeConst.FEN));
   }, [dispatch]);
 
-  const activeMode = Object.values(state).find((val, key) => val.active);
-
-  if (activeMode?.variant === variantConst.CAPABLANCA) {
-    return (
-      <>
-        <CapablancaBoard />
-        <PawnPromotionDialog />
-      </>
-    );
-  } else if (activeMode?.variant === variantConst.CHESS_960) {
-    return (
-      <>
-        <Chess960Board />
-        <PawnPromotionDialog />
-      </>
-    );
+  let board;
+  const active = Object.values(state).find((val, key) => val.active);
+  if (active?.variant === variantConst.CAPABLANCA) {
+    board = <CapablancaBoard />;
+  } else if (active?.variant === variantConst.CHESS_960) {
+    board = <Chess960Board />;
+  } else {
+    board = <ClassicalBoard />;
   }
 
   return (
     <>
-      <ClassicalBoard />
+      {board}
       <PawnPromotionDialog />
     </>
   );
