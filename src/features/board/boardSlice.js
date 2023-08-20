@@ -8,7 +8,7 @@ const initialState = {
   isCheck: false,
   isMate: false,
   isStalemate: false,
-  fen: ['rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'],
+  fen: [Ascii.initialFen()],
   flip: Pgn.symbol.WHITE,
   size: {
     files: 8,

@@ -1,6 +1,10 @@
 import Pgn from './Pgn.js';
 
 export default class Ascii {
+  static initialFen = () => {
+    return 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -';
+  }
+
   static toFen = (ascii) => {
     let string = '';
     ascii.forEach((rank, i) => {
