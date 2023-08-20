@@ -137,11 +137,13 @@ const boardSlice = createSlice({
       const newFen = JSON.parse(JSON.stringify(state.fen));
       const i = action.payload.turn === Pgn.symbol.WHITE ? 7 : 0;
       const j = action.payload.sq.charCodeAt(0) - 97;
-      let toAscii = Ascii.toAscii(newFen[newFen.length - 1].split(' ')[0]);
+      let last = newFen[newFen.length - 1].split(' ');
+      let toAscii = Ascii.toAscii(last[0]);
       toAscii[i][j] = action.payload.turn === Pgn.symbol.WHITE
         ? action.payload.piece.toLowerCase()
         : action.payload.piece.toUpperCase();
-      newFen[newFen.length - 1] = Ascii.toFen(toAscii);
+      last.shift();
+      newFen[newFen.length - 1] = `${Ascii.toFen(toAscii)} ${last.join(' ')}`;
       state.fen = newFen;
     }
   }
