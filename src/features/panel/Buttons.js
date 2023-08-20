@@ -110,7 +110,6 @@ const Buttons = () => {
           size="large"
           startIcon={<WidgetsIcon />}
           id="Buttons-copyFenString"
-          disabled={!state.board.movetext}
           color="primary"
           title="Copy FEN string"
           aria-label="fen"
@@ -130,7 +129,6 @@ const Buttons = () => {
           size="large"
           startIcon={<InsertPhotoIcon />}
           id="Buttons-downloadImage"
-          disabled={!state.board.movetext}
           color="primary"
           title="Download Image"
           aria-label="flip"
