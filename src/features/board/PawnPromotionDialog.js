@@ -93,6 +93,7 @@ const PawnPromotionDialog = () => {
             </ButtonGroup>
           </Grid>
           <Button sx={{ mt: 2 }}
+            id="PawnPromotionDialog-Button-promote"
             fullWidth
             size="large"
             variant="contained"
