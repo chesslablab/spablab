@@ -1,17 +1,35 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { TextField, Typography } from '@mui/material';
-import * as captcha from 'features/captchaSlice';
 
-const Captcha = () => {
-  const state = useSelector(state => state);
-  const dispatch = useDispatch();
+const Captcha = ({ props }) => {
+  const [captchaCode, setCaptchaCode] = useState('');
+
+  const [captchaTextField, setCaptchaTextField] = useState('');
 
   useEffect(() => {
-    dispatch(captcha.init());
-  }, [
-    dispatch
-  ]);
+    setCaptchaCode(genCode(8))
+  }, []);
+
+  useEffect(() => {
+    props.captchaCode = captchaCode;
+    props.captchaTextField = captchaTextField;
+  }, [props, captchaCode, captchaTextField]);
+
+  const genCode = (length) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+      counter += 1;
+    }
+
+    return result;
+  };
+
+  const handleCaptchaChange = (event: Event) => {
+    setCaptchaTextField(event.target.value);
+  };
 
   return <>
     <Typography
@@ -23,15 +41,15 @@ const Captcha = () => {
       }}
       align="center"
     >
-     {state.captcha.text}
+     {captchaCode}
     </Typography>
     <TextField
       fullWidth
-      name="captcha"
       label="Enter the CAPTCHA code"
       helperText="Verify that you're a human"
       variant="filled"
       required
+      onChange={handleCaptchaChange}
     />
   </>;
 }

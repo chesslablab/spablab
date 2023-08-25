@@ -36,7 +36,7 @@ const CreateCode = () => {
   const [fields, setFields] = useState({
     variant: variantConst.CLASSICAL,
     fen: '',
-    startPos: '',
+    startPos: ''
   });
 
   const handleVariantChange = (event: Event) => {
@@ -62,6 +62,7 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
+    // TODO
     const settings = {
       ...(fields.fen && {fen: fields.fen}),
       ...(fields.startPos && {startPos: fields.startPos})
@@ -115,7 +116,7 @@ const CreateCode = () => {
           onChange={handleFenChange}
           margin="dense"
         />
-        <Captcha />
+        <Captcha props={fields} />
         <Button sx={{ mt: 2 }}
           fullWidth
           size="large"
