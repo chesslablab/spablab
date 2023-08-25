@@ -13,6 +13,7 @@ import {
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
+import Captcha from 'features/Captcha';
 
 const CreateInboxCodeDialog = () => {
   const state = useSelector(state => state);
@@ -114,6 +115,7 @@ const CreateCode = () => {
           onChange={handleFenChange}
           margin="dense"
         />
+        <Captcha />
         <Button sx={{ mt: 2 }}
           fullWidth
           size="large"

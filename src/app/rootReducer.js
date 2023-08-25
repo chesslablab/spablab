@@ -14,6 +14,7 @@ import wsReducer from 'features/ws/wsSlice';
 import heuristicsReducer from 'features/heuristicsSlice';
 import positionEvalReducer from 'features/positionEvalSlice';
 import progressDialogReducer from 'features/progressDialogSlice';
+import captchaReducer from 'features/captchaSlice';
 
 const rootReducer = {
   infoAlert: infoAlertReducer,
@@ -31,7 +32,8 @@ const rootReducer = {
   ws: wsReducer,
   heuristics: heuristicsReducer,
   positionEval: positionEvalReducer,
-  progressDialog: progressDialogReducer
+  progressDialog: progressDialogReducer,
+  captcha: captchaReducer
 };
 
 export default rootReducer;
