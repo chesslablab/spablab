@@ -10,9 +10,11 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
+import Captcha from 'features/Captcha';
 
 const CreateInboxCodeDialog = () => {
   const state = useSelector(state => state);
@@ -35,8 +37,10 @@ const CreateCode = () => {
   const [fields, setFields] = useState({
     variant: variantConst.CLASSICAL,
     fen: '',
-    startPos: '',
+    startPos: ''
   });
+
+  const dispatch = useDispatch();
 
   const handleVariantChange = (event: Event) => {
     setFields({
@@ -61,11 +65,18 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    const settings = {
-      ...(fields.fen && {fen: fields.fen}),
-      ...(fields.startPos && {startPos: fields.startPos})
-    };
-    Ws.inboxCreate(fields.variant, JSON.stringify(settings));
+    if (fields.captchaCode.toLowerCase() !== fields.captchaTextField.toLowerCase()) {
+      dispatch(nav.createInboxCodeDialog({ open: false }));
+      dispatch(warningAlert.show({
+        mssg: 'The CAPTCHA is not valid, please try again.'
+      }));
+    } else {
+      const settings = {
+        ...(fields.fen && {fen: fields.fen}),
+        ...(fields.startPos && {startPos: fields.startPos})
+      };
+      Ws.inboxCreate(fields.variant, JSON.stringify(settings));
+    }
   }
 
   return (
@@ -114,6 +125,7 @@ const CreateCode = () => {
           onChange={handleFenChange}
           margin="dense"
         />
+        <Captcha props={fields} />
         <Button sx={{ mt: 2 }}
           fullWidth
           size="large"
