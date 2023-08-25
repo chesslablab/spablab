@@ -7,7 +7,7 @@ const Captcha = ({ props }) => {
   const [captchaTextField, setCaptchaTextField] = useState('');
 
   useEffect(() => {
-    setCaptchaCode(genCode(8))
+    setCaptchaCode(genCode(6))
   }, []);
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const Captcha = ({ props }) => {
         mb: 1,
       }}
       align="center"
+      variant="h6"
     >
      {captchaCode}
     </Typography>

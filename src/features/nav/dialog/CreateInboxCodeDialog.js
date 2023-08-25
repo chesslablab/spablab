@@ -10,6 +10,7 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
+import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
@@ -39,6 +40,8 @@ const CreateCode = () => {
     startPos: ''
   });
 
+  const dispatch = useDispatch();
+
   const handleVariantChange = (event: Event) => {
     setFields({
       ...fields,
@@ -62,12 +65,18 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    // TODO
-    const settings = {
-      ...(fields.fen && {fen: fields.fen}),
-      ...(fields.startPos && {startPos: fields.startPos})
-    };
-    Ws.inboxCreate(fields.variant, JSON.stringify(settings));
+    if (fields.captchaCode.toLowerCase() !== fields.captchaTextField.toLowerCase()) {
+      dispatch(nav.createInboxCodeDialog({ open: false }));
+      dispatch(warningAlert.show({
+        mssg: 'The CAPTCHA is not valid, please try again.'
+      }));
+    } else {
+      const settings = {
+        ...(fields.fen && {fen: fields.fen}),
+        ...(fields.startPos && {startPos: fields.startPos})
+      };
+      Ws.inboxCreate(fields.variant, JSON.stringify(settings));
+    }
   }
 
   return (
