@@ -65,7 +65,7 @@ const CreateCode = () => {
 
   const handleCreateCode = (event) => {
     event.preventDefault();
-    if (fields.captchaCode.toLowerCase() !== fields.captchaTextField.toLowerCase()) {
+    if (fields.code.toLowerCase() !== fields.solution.toLowerCase()) {
       dispatch(nav.createInboxCodeDialog({ open: false }));
       dispatch(warningAlert.show({
         mssg: 'The CAPTCHA is not valid, please try again.'
