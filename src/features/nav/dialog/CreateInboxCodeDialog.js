@@ -10,7 +10,7 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import * as warningAlert from 'features/alert/warningAlertSlice';
+import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
@@ -67,8 +67,8 @@ const CreateCode = () => {
     event.preventDefault();
     if (fields.code.toLowerCase() !== fields.solution.toLowerCase()) {
       dispatch(nav.createInboxCodeDialog({ open: false }));
-      dispatch(warningAlert.show({
-        mssg: 'The CAPTCHA is not valid, please try again.'
+      dispatch(infoAlert.show({
+        mssg: 'The CAPTCHA is not valid, please try again with a different one.'
       }));
     } else {
       const settings = {
