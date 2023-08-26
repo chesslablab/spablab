@@ -64,9 +64,6 @@ const EnterInboxCodeDialog = () => {
         {
           !state.nav.dialogs.enterInboxCode.inbox
             ? <FormGroup>
-                <Alert severity="info">
-                  Correspondence inboxes will automatically be deleted in 30 days. Have a nice game!
-                </Alert>
                 <TextField
                   fullWidth
                   required
