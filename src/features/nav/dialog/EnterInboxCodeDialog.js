@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
-  Alert,
   Button,
   Card,
   CardContent,
@@ -64,9 +63,6 @@ const EnterInboxCodeDialog = () => {
         {
           !state.nav.dialogs.enterInboxCode.inbox
             ? <FormGroup>
-                <Alert severity="info">
-                  Correspondence inboxes will automatically be deleted in 30 days. Have a nice game!
-                </Alert>
                 <TextField
                   fullWidth
                   required
