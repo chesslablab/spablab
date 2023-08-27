@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import { TextField, Typography } from '@mui/material';
 
 const Captcha = ({ props }) => {
-  const [captchaCode, setCaptchaCode] = useState('');
+  const [code, setCode] = useState('');
 
-  const [captchaTextField, setCaptchaTextField] = useState('');
+  const [solution, setSolution] = useState('');
 
   useEffect(() => {
-    setCaptchaCode(genCode(6))
+    setCode(genCode(6))
   }, []);
 
   useEffect(() => {
-    props.captchaCode = captchaCode;
-    props.captchaTextField = captchaTextField;
-  }, [props, captchaCode, captchaTextField]);
+    props.code = code;
+    props.solution = solution;
+  }, [props, code, solution]);
 
   const genCode = (length) => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -28,7 +28,7 @@ const Captcha = ({ props }) => {
   };
 
   const handleCaptchaChange = (event: Event) => {
-    setCaptchaTextField(event.target.value);
+    setSolution(event.target.value);
   };
 
   return <>
@@ -42,7 +42,7 @@ const Captcha = ({ props }) => {
       align="center"
       variant="h6"
     >
-     {captchaCode}
+     {code}
     </Typography>
     <TextField
       fullWidth
