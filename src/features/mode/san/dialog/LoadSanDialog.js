@@ -20,6 +20,7 @@ import multiAction from 'features/multiAction';
 
 const LoadSanDialog = () => {
   const state = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({

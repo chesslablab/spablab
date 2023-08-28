@@ -6,6 +6,7 @@ import Ws from 'features/ws/Ws';
 
 const AcceptTakebackDialog = () => {
   const state = useSelector((state) => state);
+  
   const dispatch = useDispatch();
 
   const handleTakebackAccept = (event) => {

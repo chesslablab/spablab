@@ -21,7 +21,9 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 const PlayersStatsDialog = () => {
   const state = useSelector((state) => state);
+
   const dispatch = useDispatch();
+  
   const [result, setResult] = useState([]);
 
   const handleViewStats = async (event) => {

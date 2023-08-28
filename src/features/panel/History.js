@@ -10,6 +10,7 @@ import * as panel from 'features/panel/panelSlice';
 
 const History = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   return (

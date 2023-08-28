@@ -15,8 +15,10 @@ import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResul
 
 const SearchEcoDialog = () => {
   const state = useSelector(state => state);
-  const [openings, setOpenings] = useState([]);
+
   const dispatch = useDispatch();
+
+  const [openings, setOpenings] = useState([]);
 
   const handleChange = (event) => {
     event.preventDefault();

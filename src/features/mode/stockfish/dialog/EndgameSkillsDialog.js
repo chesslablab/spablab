@@ -20,6 +20,7 @@ import SelectColorButtons from 'features/SelectColorButtons';
 
 const EndgameSkillsDialog = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   const endgameTypes = ['P'];

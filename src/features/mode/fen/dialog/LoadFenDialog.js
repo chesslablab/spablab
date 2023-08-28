@@ -19,6 +19,7 @@ import multiAction from 'features/multiAction';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
+  
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({

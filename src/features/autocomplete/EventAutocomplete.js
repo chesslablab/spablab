@@ -12,6 +12,7 @@ const filterOptions = createFilterOptions({
 
 const EventAutocomplete = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {

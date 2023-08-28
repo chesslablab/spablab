@@ -12,6 +12,7 @@ import AnnotatedGamesTable from 'features/mode/rav/table/AnnotatedGamesTable.js'
 
 const AnnotatedGamesDialog = () => {
   const state = useSelector((state) => state);
+  
   const dispatch = useDispatch();
 
   return (

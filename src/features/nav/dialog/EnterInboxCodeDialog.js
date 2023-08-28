@@ -18,14 +18,14 @@ import Ws from 'features/ws/Ws';
 const EnterInboxCodeDialog = () => {
   const state = useSelector(state => state);
 
+  const dispatch = useDispatch();
+
   const initialState = {
     hash: '',
     pgn: ''
   };
 
   const [fields, setFields] = useState(initialState);
-
-  const dispatch = useDispatch();
 
   const handleCheckInbox = () => {
     Ws.inboxRead(fields.hash);
@@ -86,7 +86,7 @@ const EnterInboxCodeDialog = () => {
         {
           state.nav.dialogs.enterInboxCode.inbox
             ? <FormGroup>
-               
+
                 {
                   state.nav.dialogs.enterInboxCode.inbox.fen
                     ? <Card sx={{ mt: 2 }}>

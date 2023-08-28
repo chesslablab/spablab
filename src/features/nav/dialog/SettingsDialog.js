@@ -14,6 +14,7 @@ import * as nav from 'features/nav/navSlice';
 
 const SettingsDialog = () => {
   const state = useSelector((state) => state);
+  
   const dispatch = useDispatch();
 
   const handleAnimationChange = (event: Event) => {

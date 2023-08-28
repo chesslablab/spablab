@@ -15,6 +15,7 @@ import Ws from 'features/ws/Ws';
 
 const EnterInviteCodeDialog = () => {
   const state = useSelector((state) => state);
+  
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({

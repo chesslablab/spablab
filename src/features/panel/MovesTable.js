@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
@@ -9,7 +9,14 @@ import Ws from 'features/ws/Ws';
 
 const MovesTable = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
+
+  const movesTable = useRef(null);
+
+  useEffect(() => {
+    movesTable.current.scrollIntoView({ block: 'end' });
+  });
 
   useEffect(() => {
     if (state.board.lan && !state.board.pieceGrabbed) {
@@ -91,7 +98,7 @@ const MovesTable = () => {
     return (
       <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
         <Table stickyHeader size="small" aria-label="Movetext">
-          <TableBody>
+          <TableBody ref={movesTable}>
             {moves()}
           </TableBody>
         </Table>
