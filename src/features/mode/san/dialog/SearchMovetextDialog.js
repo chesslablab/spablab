@@ -17,9 +17,9 @@ import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResul
 const SearchMovetextDialog = () => {
   const state = useSelector(state => state);
 
-  const [openings, setOpenings] = useState([]);
-
   const dispatch = useDispatch();
+
+  const [openings, setOpenings] = useState([]);
 
   const handleSearch = (event) => {
     event.preventDefault();
