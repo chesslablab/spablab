@@ -11,10 +11,10 @@ const MovesTable = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const el = useRef(null);
+  const movesTable = useRef(null);
 
   useEffect(() => {
-    el.current.scrollIntoView({ block: 'end' });
+    movesTable.current.scrollIntoView({ block: 'end' });
   });
 
   useEffect(() => {
@@ -97,7 +97,7 @@ const MovesTable = () => {
     return (
       <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
         <Table stickyHeader size="small" aria-label="Movetext">
-          <TableBody id={'el'} ref={el}>
+          <TableBody ref={movesTable}>
             {moves()}
           </TableBody>
         </Table>
