@@ -6,6 +6,7 @@ import Ws from 'features/ws/Ws';
 
 const AcceptDrawDialog = () => {
   const state = useSelector((state) => state);
+  
   const dispatch = useDispatch();
 
   const handleDrawAccept = (event) => {

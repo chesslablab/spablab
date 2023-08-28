@@ -18,6 +18,7 @@ import Captcha from 'features/Captcha';
 
 const CreateInboxCodeDialog = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   return (

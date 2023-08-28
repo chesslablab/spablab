@@ -20,6 +20,7 @@ import SelectColorButtons from 'features/SelectColorButtons';
 
 const CheckmateSkillsDialog = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   const checkmateTypes = ['QR,R', 'Q', 'R', 'BB', 'BN'];

@@ -12,6 +12,7 @@ import * as nav from 'features/nav/navSlice';
 
 const OpeningsStatsDialog = () => {
   const state = useSelector((state) => state);
+  
   const dispatch = useDispatch();
 
   return (

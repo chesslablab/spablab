@@ -20,13 +20,14 @@ import multiAction from 'features/multiAction';
 
 const LoadSanDialog = () => {
   const state = useSelector((state) => state);
-  const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
     position: 'start',
     variant: variantConst.CLASSICAL,
     fen: ''
   });
+
+  const dispatch = useDispatch();
 
   const handleVariantChange = (event: Event) => {
     setFields({

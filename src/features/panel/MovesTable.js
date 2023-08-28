@@ -9,6 +9,7 @@ import Ws from 'features/ws/Ws';
 
 const MovesTable = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   const movesTable = useRef(null);

@@ -3,6 +3,7 @@ import Pgn from 'common/Pgn';
 
 const AlgebraicNotation = ({props}) => {
   const state = useSelector(state => state);
+  
   const spans = [];
 
   if (props.i === state.board.size.ranks - 1 && state.board.flip === Pgn.symbol.WHITE) {

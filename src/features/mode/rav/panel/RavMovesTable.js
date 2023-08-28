@@ -6,6 +6,7 @@ import styles from 'styles/panel';
 
 const RavMovesTable = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   const currentMove = (fen) => {

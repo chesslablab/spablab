@@ -4,6 +4,7 @@ import * as infoAlert from 'features/alert/infoAlertSlice';
 
 const InfoAlert = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   const handleClose = () => {

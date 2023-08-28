@@ -24,6 +24,7 @@ import styles from 'styles/avatar';
 
 const PawnPromotionDialog = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   const [piece, setPiece] = useState('Q');

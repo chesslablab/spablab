@@ -7,6 +7,7 @@ import Ws from 'features/ws/Ws';
 
 const CapablancaBoard = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   return (

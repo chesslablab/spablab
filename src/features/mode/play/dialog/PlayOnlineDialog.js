@@ -25,6 +25,7 @@ import SelectColorButtons from 'features/SelectColorButtons';
 
 const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
+  
   const dispatch = useDispatch();
 
   const initialState = {

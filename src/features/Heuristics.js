@@ -19,6 +19,7 @@ const initData = (evalNames, balance) => {
 
 const Heuristics = () => {
   const state = useSelector(state => state);
+  
   if (
     state.nav.dialogs.settings.fields.heuristics === 'on' &&
     state.heuristics.heuristics

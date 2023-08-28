@@ -14,6 +14,7 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 const Buttons = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   const handleDownloadImage = async () => {

@@ -18,12 +18,15 @@ import * as panel from 'features/panel/panelSlice';
 
 const handleDownloadImage = async () => {
   const heuristics = document.getElementsByClassName('heuristic-picture')[0];
+
   const canvas = await html2canvas(heuristics, {
     logging: false,
     width: heuristics.clientWidth,
     height: heuristics.clientHeight
   });
+
   const a = document.createElement('a');
+  
   a.href = canvas.toDataURL('image/png', 1);
   a.download = "heuristics.png";
   a.click();

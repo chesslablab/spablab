@@ -23,8 +23,10 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 const SearchGamesDialog = () => {
   const state = useSelector((state) => state);
-  const dispatch = useDispatch();
+
   const [result, setResult] = useState([]);
+
+  const dispatch = useDispatch();
 
   const handleSearch = async (event) => {
     event.preventDefault();

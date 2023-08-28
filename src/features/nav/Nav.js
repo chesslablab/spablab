@@ -46,13 +46,19 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 const Nav = () => {
   const state = useSelector(state => state);
+
   const dispatch = useDispatch();
 
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
+
   const [anchorElPlay, setAnchorElPlay] = useState(null);
+
   const [anchorElDatabase, setAnchorElDatabase] = useState(null);
+
   const [anchorElTraining, setAnchorElTraining] = useState(null);
+
   const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
+
   const [anchorElInbox, setAnchorElInbox] = useState(null);
 
   const matches = useMediaQuery("(min-width:900px)");

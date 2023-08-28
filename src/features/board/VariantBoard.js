@@ -10,14 +10,16 @@ import Ws from 'features/ws/Ws';
 
 const VariantBoard = () => {
   const state = useSelector(state => state);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(Ws.connect()).then(() => Ws.start(variantConst.CLASSICAL, modeConst.FEN));
   }, [dispatch]);
 
-  let board;
   const active = Object.values(state).find((val, key) => val.active);
+
+  let board;
   if (active?.variant === variantConst.CAPABLANCA) {
     board = <CapablancaBoard />;
   } else if (active?.variant === variantConst.CHESS_960) {

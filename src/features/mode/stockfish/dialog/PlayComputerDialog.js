@@ -24,6 +24,7 @@ import SelectColorButtons from 'features/SelectColorButtons';
 
 const PlayComputerDialog = () => {
   const state = useSelector(state => state);
+  
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({

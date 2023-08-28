@@ -9,13 +9,18 @@ import Ws from 'features/ws/Ws';
 
 const ClassicalBoard = () => {
   const state = useSelector(state => state);
+
   const dispatch = useDispatch();
+
   const maxWidth = {
     '600': useMediaQuery("(max-width:600px)"),
     '900': useMediaQuery("(max-width:900px)")
   };
+
   const sqSize = maxWidth['600'] ? 12 : maxWidth['900'] ? 10 : 4;
+  
   const sqsRef = useRef([]);
+
   const imgsRef = useRef([]);
 
   useEffect(() => {
