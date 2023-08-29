@@ -28,6 +28,8 @@ import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
 import * as navConst from 'features/nav/navConst';
@@ -49,6 +51,10 @@ const Nav = () => {
 
   const dispatch = useDispatch();
 
+  const maxWidth = {
+    '900': useMediaQuery("(max-width:900px)"),
+  };
+
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
 
   const [anchorElPlay, setAnchorElPlay] = useState(null);
@@ -61,8 +67,11 @@ const Nav = () => {
 
   const [anchorElInbox, setAnchorElInbox] = useState(null);
 
-  const matches = useMediaQuery("(min-width:900px)");
+  const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
 
+  const handleHamburgerClick = () => {
+    setHamburgerMenu(!hamburgerMenuOpen);
+  }
   const handleCloseAnalysis = () => {
     setAnchorElAnalysis(null);
   };
@@ -121,348 +130,357 @@ const Nav = () => {
     !state.board.isStalemate;
 
   return (
-    <ButtonGroup
-      orientation={matches ? "horizontal" : "vertical"}
-      variant="text"
-      aria-label="Main Menu"
-      fullWidth={true}
-      disabled={disabled}
-      sx={{ borderTop: "1px solid #1976d280", borderBottom: "1px solid #1976d280", borderRadius: 0 }}
-    >
-      <Button
-        id="Nav-analysisBoard"
-        sx={{ borderRadius: 0 }}
-        variant={state.nav.name === navConst.ANALYSIS ? "contained" : "text"}
-        startIcon={<TuneIcon />}
-        onClick={handleClickAnalysis}
-      >
-        Analysis Board
+    <>
+      <Button sx={{ display: `${maxWidth['900'] ? "block" : "none"}` }}
+        onClick={handleHamburgerClick} > {hamburgerMenuOpen ? <CloseIcon sx={{fontSize: 40}} /> : <MenuIcon sx={{fontSize: 40}} />}
       </Button>
-      <Menu
-        anchorEl={anchorElAnalysis}
-        open={Boolean(anchorElAnalysis)}
-        onClose={handleCloseAnalysis}
+      <ButtonGroup
+        orientation={maxWidth['900'] ? "vertical" : "horizontal"}
+        variant="text"
+        aria-label="Main Menu"
+        fullWidth={true}
+        disabled={disabled}
+        sx={{
+          borderTop: "1px solid #1976d280",
+          borderBottom: "1px solid #1976d280",
+          borderRadius: 0,
+          display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`
+        }}
       >
-        <MenuItem
-          id="Nav-analysisBoard-MenuItem-startClassical"
-          onClick={() => {
-            multiAction.initGui(dispatch);
-            dispatch(nav.setAnalysis());
-            handleCloseAnalysis();
-            Ws.start(variantConst.CLASSICAL, modeConst.FEN);
-          }}
+        <Button
+          id="Nav-analysisBoard"
+          sx={{ borderRadius: 0 }}
+          variant={state.nav.name === navConst.ANALYSIS ? "contained" : "text"}
+          startIcon={<TuneIcon />}
+          onClick={handleClickAnalysis}
         >
-          <RestartAltIcon size="small" />&nbsp;Start Classical
-        </MenuItem>
-        <MenuItem
-          id="Nav-analysisBoard-MenuItem-startFischerRandom960"
-          onClick={() => {
-            multiAction.initGui(dispatch);
-            dispatch(nav.setAnalysis());
-            handleCloseAnalysis();
-            Ws.start(variantConst.CHESS_960, modeConst.FEN);
-          }}
+          Analysis Board
+        </Button>
+        <Menu
+          anchorEl={anchorElAnalysis}
+          open={Boolean(anchorElAnalysis)}
+          onClose={handleCloseAnalysis}
         >
-          <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
-        </MenuItem>
-        <MenuItem
-          id="Nav-analysisBoard-MenuItem-startCapablanca"
-          onClick={() => {
-            multiAction.initGui(dispatch);
-            dispatch(nav.setAnalysis());
-            handleCloseAnalysis();
-            Ws.start(variantConst.CAPABLANCA, modeConst.FEN);
-          }}
+          <MenuItem
+            id="Nav-analysisBoard-MenuItem-startClassical"
+            onClick={() => {
+              multiAction.initGui(dispatch);
+              dispatch(nav.setAnalysis());
+              handleCloseAnalysis();
+              Ws.start(variantConst.CLASSICAL, modeConst.FEN);
+            }}
+          >
+            <RestartAltIcon size="small" />&nbsp;Start Classical
+          </MenuItem>
+          <MenuItem
+            id="Nav-analysisBoard-MenuItem-startFischerRandom960"
+            onClick={() => {
+              multiAction.initGui(dispatch);
+              dispatch(nav.setAnalysis());
+              handleCloseAnalysis();
+              Ws.start(variantConst.CHESS_960, modeConst.FEN);
+            }}
+          >
+            <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
+          </MenuItem>
+          <MenuItem
+            id="Nav-analysisBoard-MenuItem-startCapablanca"
+            onClick={() => {
+              multiAction.initGui(dispatch);
+              dispatch(nav.setAnalysis());
+              handleCloseAnalysis();
+              Ws.start(variantConst.CAPABLANCA, modeConst.FEN);
+            }}
+          >
+            <BlurOnIcon size="small" />&nbsp;Start Capablanca
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            id="Nav-analysisBoard-MenuItem-sanMovetext"
+            onClick={() => {
+              dispatch(sanMode.loadSanDialog({ open: true }));
+              handleCloseAnalysis();
+            }}
+          >
+            <MoveDownIcon size="small" />&nbsp;SAN Movetext
+          </MenuItem>
+          <MenuItem
+            id="Nav-analysisBoard-MenuItem-ravMovetext"
+            onClick={() => {
+              dispatch(ravMode.loadRavDialog({ open: true }));
+              handleCloseAnalysis();
+            }}
+          >
+            <AccountTreeIcon size="small" />&nbsp;RAV Movetext
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            id="Nav-analysisBoard-MenuItem-fenString"
+            onClick={() => {
+              dispatch(fenMode.loadFenDialog({ open: true }));
+              handleCloseAnalysis();
+            }}
+          >
+            <WidgetsIcon size="small" />&nbsp;FEN String
+          </MenuItem>
+        </Menu>
+        <Button
+          id="Nav-play"
+          variant={state.nav.name === navConst.PLAY ? "contained" : "text"}
+          startIcon={<GradientIcon />}
+          onClick={handleClickPlay}
         >
-          <BlurOnIcon size="small" />&nbsp;Start Capablanca
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          id="Nav-analysisBoard-MenuItem-sanMovetext"
-          onClick={() => {
-            dispatch(sanMode.loadSanDialog({ open: true }));
-            handleCloseAnalysis();
-          }}
+          Play
+        </Button>
+        <Menu
+          anchorEl={anchorElPlay}
+          open={Boolean(anchorElPlay)}
+          onClose={handleClosePlay}
         >
-          <MoveDownIcon size="small" />&nbsp;SAN Movetext
-        </MenuItem>
-        <MenuItem
-          id="Nav-analysisBoard-MenuItem-ravMovetext"
-          onClick={() => {
-            dispatch(ravMode.loadRavDialog({ open: true }));
-            handleCloseAnalysis();
-          }}
+          <MenuItem
+            id="Nav-play-MenuItem-computer"
+            onClick={() => {
+              dispatch(stockfishMode.playComputerDialog({ open: true }));
+              handleClosePlay();
+            }}
+          >
+            <SmartToyIcon size="small" />&nbsp;Play Computer
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            id="Nav-play-MenuItem-friend"
+            onClick={() => {
+              dispatch(playMode.set({ play: {} }));
+              dispatch(playMode.createInviteCodeDialog({ open: true }));
+              handleClosePlay();
+            }}
+          >
+            <PersonIcon size="small" />&nbsp;Play a Friend
+          </MenuItem>
+          <MenuItem
+            id="Nav-play-MenuItem-enter-invite-code"
+            onClick={() => {
+              dispatch(playMode.enterInviteCodeDialog({ open: true }));
+              handleClosePlay();
+            }}
+          >
+            <KeyboardIcon size="small" />&nbsp;Enter Invite Code
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            id="Nav-play-MenuItem-online"
+            onClick={() => {
+              Ws.onlineGames();
+              dispatch(playMode.playOnlineDialog({ open: true }));
+              handleClosePlay();
+            }}
+          >
+            <LanguageIcon size="small" />&nbsp;Play Online
+          </MenuItem>
+        </Menu>
+        <Button
+          id="Nav-openingSearch"
+          variant={state.nav.name === navConst.OPENING_SEARCH ? "contained" : "text"}
+          startIcon={<SearchIcon />}
+          onClick={handleClickOpeningSearch}
         >
-          <AccountTreeIcon size="small" />&nbsp;RAV Movetext
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          id="Nav-analysisBoard-MenuItem-fenString"
-          onClick={() => {
-            dispatch(fenMode.loadFenDialog({ open: true }));
-            handleCloseAnalysis();
-          }}
+          Opening Search
+        </Button>
+        <Menu
+          anchorEl={anchorElOpeningSearch}
+          open={Boolean(anchorElOpeningSearch)}
+          onClose={handleCloseOpeningSearch}
         >
-          <WidgetsIcon size="small" />&nbsp;FEN String
-        </MenuItem>
-      </Menu>
-      <Button
-        id="Nav-play"
-        variant={state.nav.name === navConst.PLAY ? "contained" : "text"}
-        startIcon={<GradientIcon />}
-        onClick={handleClickPlay}
-      >
-        Play
-      </Button>
-      <Menu
-        anchorEl={anchorElPlay}
-        open={Boolean(anchorElPlay)}
-        onClose={handleClosePlay}
-      >
-        <MenuItem
-          id="Nav-play-MenuItem-computer"
-          onClick={() => {
-            dispatch(stockfishMode.playComputerDialog({ open: true }));
-            handleClosePlay();
-          }}
+          <MenuItem
+            id="Nav-openingSearch-MenuItem-ecoCode"
+            onClick={() => {
+              dispatch(sanMode.searchEcoDialog({ open: true }));
+              handleCloseOpeningSearch();
+            }}
+          >
+            <BookIcon size="small" />&nbsp;ECO Code
+          </MenuItem>
+          <MenuItem
+            id="Nav-openingSearch-MenuItem-sanMovetext"
+            onClick={() => {
+              dispatch(sanMode.searchMovetextDialog({ open: true }));
+              handleCloseOpeningSearch();
+            }
+            }>
+            <MoveDownIcon size="small" />&nbsp;SAN Movetext
+          </MenuItem>
+          <MenuItem
+            id="Nav-openingSearch-MenuItem-name"
+            onClick={() => {
+              dispatch(sanMode.searchNameDialog({ open: true }));
+              handleCloseOpeningSearch();
+            }}
+          >
+            <SpellcheckIcon size="small" />&nbsp;Name
+          </MenuItem>
+        </Menu>
+        <Button
+          id="Nav-database"
+          variant={state.nav.name === navConst.DATABASE ? "contained" : "text"}
+          startIcon={<StorageIcon />}
+          onClick={handleClickDatabase}
         >
-          <SmartToyIcon size="small" />&nbsp;Play Computer
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          id="Nav-play-MenuItem-friend"
-          onClick={() => {
-            dispatch(playMode.set({ play: {} }));
-            dispatch(playMode.createInviteCodeDialog({ open: true }));
-            handleClosePlay();
-          }}
+          Database
+        </Button>
+        <Menu
+          anchorEl={anchorElDatabase}
+          open={Boolean(anchorElDatabase)}
+          onClose={handleCloseDatabase}
         >
-          <PersonIcon size="small" />&nbsp;Play a Friend
-        </MenuItem>
-        <MenuItem
-          id="Nav-play-MenuItem-enter-invite-code"
-          onClick={() => {
-            dispatch(playMode.enterInviteCodeDialog({ open: true }));
-            handleClosePlay();
-          }}
-        >
-          <KeyboardIcon size="small" />&nbsp;Enter Invite Code
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          id="Nav-play-MenuItem-online"
-          onClick={() => {
-            Ws.onlineGames();
-            dispatch(playMode.playOnlineDialog({ open: true }));
-            handleClosePlay();
-          }}
-        >
-          <LanguageIcon size="small" />&nbsp;Play Online
-        </MenuItem>
-      </Menu>
-      <Button
-        id="Nav-openingSearch"
-        variant={state.nav.name === navConst.OPENING_SEARCH ? "contained" : "text"}
-        startIcon={<SearchIcon />}
-        onClick={handleClickOpeningSearch}
-      >
-        Opening Search
-      </Button>
-      <Menu
-        anchorEl={anchorElOpeningSearch}
-        open={Boolean(anchorElOpeningSearch)}
-        onClose={handleCloseOpeningSearch}
-      >
-        <MenuItem
-          id="Nav-openingSearch-MenuItem-ecoCode"
-          onClick={() => {
-            dispatch(sanMode.searchEcoDialog({ open: true }));
-            handleCloseOpeningSearch();
-          }}
-        >
-          <BookIcon size="small" />&nbsp;ECO Code
-        </MenuItem>
-        <MenuItem
-          id="Nav-openingSearch-MenuItem-sanMovetext"
-          onClick={() => {
-            dispatch(sanMode.searchMovetextDialog({ open: true }));
-            handleCloseOpeningSearch();
-          }
-        }>
-          <MoveDownIcon size="small" />&nbsp;SAN Movetext
-        </MenuItem>
-        <MenuItem
-          id="Nav-openingSearch-MenuItem-name"
-          onClick={() => {
-            dispatch(sanMode.searchNameDialog({ open: true }));
-            handleCloseOpeningSearch();
-          }}
-        >
-          <SpellcheckIcon size="small" />&nbsp;Name
-        </MenuItem>
-      </Menu>
-      <Button
-        id="Nav-database"
-        variant={state.nav.name === navConst.DATABASE ? "contained" : "text"}
-        startIcon={<StorageIcon />}
-        onClick={handleClickDatabase}
-      >
-        Database
-      </Button>
-      <Menu
-        anchorEl={anchorElDatabase}
-        open={Boolean(anchorElDatabase)}
-        onClose={handleCloseDatabase}
-      >
-        <MenuItem
-          id="Nav-database-MenuItem-searchGames"
-          onClick={() => {
-            dispatch(sanMode.searchGamesDialog({ open: true }));
-            handleCloseDatabase();
-          }}
-        >
-          <TravelExploreIcon size="small" />&nbsp;Search Games
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          id="Nav-database-MenuItem-topOpenings"
-          onClick={() => {
-            dispatch(progressDialog.open());
-            fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`)
-              .then(res => {
-                if (res.status === 200) {
-                  res.json().then(data => {
-                    dispatch(nav.openingsStatsDialog({ open: true, stats: data }));
-                  });
-                } else {
+          <MenuItem
+            id="Nav-database-MenuItem-searchGames"
+            onClick={() => {
+              dispatch(sanMode.searchGamesDialog({ open: true }));
+              handleCloseDatabase();
+            }}
+          >
+            <TravelExploreIcon size="small" />&nbsp;Search Games
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            id="Nav-database-MenuItem-topOpenings"
+            onClick={() => {
+              dispatch(progressDialog.open());
+              fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`)
+                .then(res => {
+                  if (res.status === 200) {
+                    res.json().then(data => {
+                      dispatch(nav.openingsStatsDialog({ open: true, stats: data }));
+                    });
+                  } else {
+                    dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+                  }
+                })
+                .finally(() => {
+                  dispatch(progressDialog.close());
+                  dispatch(nav.openingsStatsDialog({ open: true }));
+                  handleCloseDatabase();
+                });
+            }}
+          >
+            <AutoGraphIcon size="small" />&nbsp;Top 50 Openings
+          </MenuItem>
+          <MenuItem
+            id="Nav-database-MenuItem-playersStats"
+            onClick={() => {
+              dispatch(nav.playersStatsDialog({ open: true }));
+              handleCloseDatabase();
+            }}
+          >
+            <QueryStatsIcon size="small" />&nbsp;Players Stats
+          </MenuItem>
+          <MenuItem
+            id="Nav-database-MenuItem-eventsStats"
+            onClick={() => {
+              dispatch(nav.eventsStatsDialog({ open: true }));
+              handleCloseDatabase();
+            }}
+          >
+            <TroubleshootIcon size="small" />&nbsp;Events Stats
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            id="Nav-database-MenuItem-searchGames"
+            onClick={() => {
+              dispatch(progressDialog.open());
+              fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`)
+                .then(res => res.json())
+                .then(res => {
+                  dispatch(ravMode.annotatedGamesDialog({ open: true }));
+                  dispatch(ravMode.annotatedGamesTable(res.games));
+                })
+                .catch(error => {
                   dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-                }
-              })
-              .finally(() => {
-                dispatch(progressDialog.close());
-                dispatch(nav.openingsStatsDialog({ open: true }));
-                handleCloseDatabase();
-              });
-          }}
+                })
+                .finally(() => {
+                  dispatch(progressDialog.close());
+                  handleCloseDatabase();
+                });
+            }}
+          >
+            <EditNoteIcon size="small" />&nbsp;Annotated Games
+          </MenuItem>
+        </Menu>
+        <Button
+          id="Nav-training"
+          variant={state.nav.name === navConst.TRAINING ? "contained" : "text"}
+          startIcon={<PsychologyIcon />}
+          onClick={handleClickTraining}
         >
-          <AutoGraphIcon size="small" />&nbsp;Top 50 Openings
-        </MenuItem>
-        <MenuItem
-          id="Nav-database-MenuItem-playersStats"
-          onClick={() => {
-            dispatch(nav.playersStatsDialog({ open: true }));
-            handleCloseDatabase();
-          }}
+          Training
+        </Button>
+        <Menu
+          anchorEl={anchorElTraining}
+          open={Boolean(anchorElTraining)}
+          onClose={handleCloseTraining}
         >
-          <QueryStatsIcon size="small" />&nbsp;Players Stats
-        </MenuItem>
-        <MenuItem
-          id="Nav-database-MenuItem-eventsStats"
-          onClick={() => {
-            dispatch(nav.eventsStatsDialog({ open: true }));
-            handleCloseDatabase();
-          }}
+          <MenuItem
+            id="Nav-training-MenuItem-endgameSkills"
+            onClick={() => {
+              dispatch(stockfishMode.endgameSkillsDialog({ open: true }));
+              handleCloseTraining();
+            }}
+          >
+            <ExtensionIcon size="small" />&nbsp;Endgame Skills
+          </MenuItem>
+          <MenuItem
+            id="Nav-training-MenuItem-checkmateSkills"
+            onClick={() => {
+              dispatch(stockfishMode.checkmateSkillsDialog({ open: true }));
+              handleCloseTraining();
+            }}
+          >
+            <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
+          </MenuItem>
+        </Menu>
+        <Button
+          id="Nav-inbox"
+          variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
+          startIcon={<EmailIcon />}
+          onClick={handleClickInbox}
         >
-          <TroubleshootIcon size="small" />&nbsp;Events Stats
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          id="Nav-database-MenuItem-searchGames"
-          onClick={() => {
-            dispatch(progressDialog.open());
-            fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`)
-              .then(res => res.json())
-              .then(res => {
-                dispatch(ravMode.annotatedGamesDialog({ open: true }));
-                dispatch(ravMode.annotatedGamesTable(res.games));
-              })
-              .catch(error => {
-                dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-              })
-              .finally(() => {
-                dispatch(progressDialog.close());
-                handleCloseDatabase();
-              });
-          }}
+          Inbox
+        </Button>
+        <Menu
+          anchorEl={anchorElInbox}
+          open={Boolean(anchorElInbox)}
+          onClose={handleCloseInbox}
         >
-          <EditNoteIcon size="small" />&nbsp;Annotated Games
-        </MenuItem>
-      </Menu>
-      <Button
-        id="Nav-training"
-        variant={state.nav.name === navConst.TRAINING ? "contained" : "text"}
-        startIcon={<PsychologyIcon />}
-        onClick={handleClickTraining}
-      >
-        Training
-      </Button>
-      <Menu
-        anchorEl={anchorElTraining}
-        open={Boolean(anchorElTraining)}
-        onClose={handleCloseTraining}
-      >
-        <MenuItem
-          id="Nav-training-MenuItem-endgameSkills"
-          onClick={() => {
-            dispatch(stockfishMode.endgameSkillsDialog({ open: true }));
-            handleCloseTraining();
-          }}
+          <MenuItem
+            id="Nav-inbox-MenuItem-inviteFriend"
+            onClick={() => {
+              dispatch(nav.createInboxCodeDialog({ open: true }));
+              handleCloseInbox();
+            }}
+          >
+            <ContactMailIcon size="small" />&nbsp;Create Inbox
+          </MenuItem>
+          <MenuItem
+            id="Nav-training-MenuItem-endgameSkills"
+            onClick={() => {
+              dispatch(nav.enterInboxCodeDialog({ open: true }));
+              handleCloseInbox();
+            }}
+          >
+            <InboxIcon size="small" />&nbsp;Read Inbox
+          </MenuItem>
+        </Menu>
+        <Button
+          id="Nav-settings"
+          sx={{ borderRadius: 0 }}
+          variant={state.nav.name === navConst.SETTINGS ? "contained" : "text"}
+          startIcon={<SettingsIcon />}
+          onClick={() => dispatch(nav.settingsDialog({ open: true }))}
         >
-          <ExtensionIcon size="small" />&nbsp;Endgame Skills
-        </MenuItem>
-        <MenuItem
-          id="Nav-training-MenuItem-checkmateSkills"
-          onClick={() => {
-            dispatch(stockfishMode.checkmateSkillsDialog({ open: true }));
-            handleCloseTraining();
-          }}
-        >
-          <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
-        </MenuItem>
-      </Menu>
-      <Button
-        id="Nav-inbox"
-        variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
-        startIcon={<EmailIcon />}
-        onClick={handleClickInbox}
-      >
-        Inbox
-      </Button>
-      <Menu
-        anchorEl={anchorElInbox}
-        open={Boolean(anchorElInbox)}
-        onClose={handleCloseInbox}
-      >
-        <MenuItem
-          id="Nav-inbox-MenuItem-inviteFriend"
-          onClick={() => {
-            dispatch(nav.createInboxCodeDialog({ open: true }));
-            handleCloseInbox();
-          }}
-        >
-          <ContactMailIcon size="small" />&nbsp;Create Inbox
-        </MenuItem>
-        <MenuItem
-          id="Nav-training-MenuItem-endgameSkills"
-          onClick={() => {
-            dispatch(nav.enterInboxCodeDialog({ open: false }));
-            dispatch(nav.enterInboxCodeDialog({ open: true }));
-            handleCloseInbox();
-          }}
-        >
-          <InboxIcon size="small" />&nbsp;Read Inbox
-        </MenuItem>
-      </Menu>
-      <Button
-        id="Nav-settings"
-        sx={{ borderRadius: 0 }}
-        variant={state.nav.name === navConst.SETTINGS ? "contained" : "text"}
-        startIcon={<SettingsIcon />}
-        onClick={() => dispatch(nav.settingsDialog({ open: true }))}
-      >
-        Settings
-      </Button>
-    </ButtonGroup>
+          Settings
+        </Button>
+      </ButtonGroup>
+    </>
   );
 }
 
