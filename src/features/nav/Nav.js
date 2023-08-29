@@ -51,6 +51,10 @@ const Nav = () => {
 
   const dispatch = useDispatch();
 
+  const maxWidth = {
+    '900': useMediaQuery("(max-width:900px)"),
+  };
+
   const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
 
   const [anchorElPlay, setAnchorElPlay] = useState(null);
@@ -65,11 +69,8 @@ const Nav = () => {
 
   const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
 
-  const matches = useMediaQuery("(min-width:900px)");
-  const mobileScreen = useMediaQuery("(max-width:600px)")
-
   const handleHamburgerClick = () => {
-    setHamburgerMenu(!hamburgerMenuOpen)
+    setHamburgerMenu(!hamburgerMenuOpen);
   }
   const handleCloseAnalysis = () => {
     setAnchorElAnalysis(null);
@@ -130,21 +131,21 @@ const Nav = () => {
 
   return (
     <>
-      <Button
-        sx={{ float: "right", display: `${mobileScreen ? "block" : "none"}` }}
-        onClick={handleHamburgerClick} >
-        {hamburgerMenuOpen?<CloseIcon/>:<MenuIcon/>}
+      <Button sx={{ display: `${maxWidth['900'] ? "block" : "none"}` }}
+        onClick={handleHamburgerClick} > {hamburgerMenuOpen ? <CloseIcon sx={{fontSize: 40}} /> : <MenuIcon sx={{fontSize: 40}} />}
       </Button>
       <ButtonGroup
-        orientation={matches ? "horizontal" : "vertical"}
+        orientation={maxWidth['900'] ? "vertical" : "horizontal"}
         variant="text"
         aria-label="Main Menu"
         fullWidth={true}
         disabled={disabled}
-        sx={{ borderTop: "1px solid #1976d280", borderBottom: "1px solid #1976d280", 
-        borderRadius: 0, 
-        display: `${mobileScreen ? (hamburgerMenuOpen? "flex":"none") : "flex"}`
-      }}
+        sx={{
+          borderTop: "1px solid #1976d280",
+          borderBottom: "1px solid #1976d280",
+          borderRadius: 0,
+          display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`
+        }}
       >
         <Button
           id="Nav-analysisBoard"
@@ -462,7 +463,6 @@ const Nav = () => {
           <MenuItem
             id="Nav-training-MenuItem-endgameSkills"
             onClick={() => {
-              dispatch(nav.enterInboxCodeDialog({ open: false }));
               dispatch(nav.enterInboxCodeDialog({ open: true }));
               handleCloseInbox();
             }}
