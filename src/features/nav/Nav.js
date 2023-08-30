@@ -7,16 +7,11 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
-import GradientIcon from '@mui/icons-material/Gradient';
 import InboxIcon from '@mui/icons-material/Inbox';
-import KeyboardIcon from '@mui/icons-material/Keyboard';
-import LanguageIcon from '@mui/icons-material/Language';
-import PersonIcon from '@mui/icons-material/Person';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
@@ -27,14 +22,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
 import AnalysisBoard from 'features/nav/AnalysisBoard';
+import Play from 'features/nav/Play';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
-import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
-import Ws from 'features/ws/Ws';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const Nav = () => {
@@ -45,8 +39,6 @@ const Nav = () => {
   const maxWidth = {
     '900': useMediaQuery("(max-width:900px)"),
   };
-
-  const [anchorElPlay, setAnchorElPlay] = useState(null);
 
   const [anchorElDatabase, setAnchorElDatabase] = useState(null);
 
@@ -62,10 +54,6 @@ const Nav = () => {
     setHamburgerMenu(!hamburgerMenuOpen);
   }
 
-  const handleClosePlay = () => {
-    setAnchorElPlay(null);
-  };
-
   const handleCloseDatabase = () => {
     setAnchorElDatabase(null);
   };
@@ -80,10 +68,6 @@ const Nav = () => {
 
   const handleCloseInbox = () => {
     setAnchorElInbox(null);
-  };
-
-  const handleClickPlay = (event) => {
-    setAnchorElPlay(event.currentTarget);
   };
 
   const handleClickDatabase = (event) => {
@@ -130,60 +114,7 @@ const Nav = () => {
         }}
       >
         <AnalysisBoard />
-        <Button
-          id="Nav-play"
-          variant={state.nav.name === navConst.PLAY ? "contained" : "text"}
-          startIcon={<GradientIcon />}
-          onClick={handleClickPlay}
-        >
-          Play
-        </Button>
-        <Menu
-          anchorEl={anchorElPlay}
-          open={Boolean(anchorElPlay)}
-          onClose={handleClosePlay}
-        >
-          <MenuItem
-            id="Nav-play-MenuItem-computer"
-            onClick={() => {
-              dispatch(stockfishMode.playComputerDialog({ open: true }));
-              handleClosePlay();
-            }}
-          >
-            <SmartToyIcon size="small" />&nbsp;Play Computer
-          </MenuItem>
-          <Divider />
-          <MenuItem
-            id="Nav-play-MenuItem-friend"
-            onClick={() => {
-              dispatch(playMode.set({ play: {} }));
-              dispatch(playMode.createInviteCodeDialog({ open: true }));
-              handleClosePlay();
-            }}
-          >
-            <PersonIcon size="small" />&nbsp;Play a Friend
-          </MenuItem>
-          <MenuItem
-            id="Nav-play-MenuItem-enter-invite-code"
-            onClick={() => {
-              dispatch(playMode.enterInviteCodeDialog({ open: true }));
-              handleClosePlay();
-            }}
-          >
-            <KeyboardIcon size="small" />&nbsp;Enter Invite Code
-          </MenuItem>
-          <Divider />
-          <MenuItem
-            id="Nav-play-MenuItem-online"
-            onClick={() => {
-              Ws.onlineGames();
-              dispatch(playMode.playOnlineDialog({ open: true }));
-              handleClosePlay();
-            }}
-          >
-            <LanguageIcon size="small" />&nbsp;Play Online
-          </MenuItem>
-        </Menu>
+        <Play />
         <Button
           id="Nav-openingSearch"
           variant={state.nav.name === navConst.OPENING_SEARCH ? "contained" : "text"}
