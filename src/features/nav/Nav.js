@@ -1,32 +1,23 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
-import EditNoteIcon from '@mui/icons-material/EditNote';
 import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import InboxIcon from '@mui/icons-material/Inbox';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import SettingsIcon from '@mui/icons-material/Settings';
-import StorageIcon from '@mui/icons-material/Storage';
-import TravelExploreIcon from '@mui/icons-material/TravelExplore';
-import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
 import AnalysisBoard from 'features/nav/AnalysisBoard';
 import Play from 'features/nav/Play';
 import OpeningSearch from 'features/nav/OpeningSearch';
+import Database from 'features/nav/Database';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
-import * as warningAlert from 'features/alert/warningAlertSlice';
-import * as sanMode from 'features/mode/sanModeSlice';
-import * as ravMode from 'features/mode/ravModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
-import * as progressDialog from 'features/progressDialogSlice';
 
 const Nav = () => {
   const state = useSelector(state => state);
@@ -36,8 +27,6 @@ const Nav = () => {
   const maxWidth = {
     '900': useMediaQuery("(max-width:900px)"),
   };
-
-  const [anchorElDatabase, setAnchorElDatabase] = useState(null);
 
   const [anchorElTraining, setAnchorElTraining] = useState(null);
 
@@ -49,20 +38,12 @@ const Nav = () => {
     setHamburgerMenu(!hamburgerMenuOpen);
   }
 
-  const handleCloseDatabase = () => {
-    setAnchorElDatabase(null);
-  };
-
   const handleCloseTraining = () => {
     setAnchorElTraining(null);
   };
 
   const handleCloseInbox = () => {
     setAnchorElInbox(null);
-  };
-
-  const handleClickDatabase = (event) => {
-    setAnchorElDatabase(event.currentTarget);
   };
 
   const handleClickTraining = (event) => {
@@ -103,93 +84,7 @@ const Nav = () => {
         <AnalysisBoard />
         <Play />
         <OpeningSearch />
-        <Button
-          id="Nav-database"
-          variant={state.nav.name === navConst.DATABASE ? "contained" : "text"}
-          startIcon={<StorageIcon />}
-          onClick={handleClickDatabase}
-        >
-          Database
-        </Button>
-        <Menu
-          anchorEl={anchorElDatabase}
-          open={Boolean(anchorElDatabase)}
-          onClose={handleCloseDatabase}
-        >
-          <MenuItem
-            id="Nav-database-MenuItem-searchGames"
-            onClick={() => {
-              dispatch(sanMode.searchGamesDialog({ open: true }));
-              handleCloseDatabase();
-            }}
-          >
-            <TravelExploreIcon size="small" />&nbsp;Search Games
-          </MenuItem>
-          <Divider />
-          <MenuItem
-            id="Nav-database-MenuItem-topOpenings"
-            onClick={() => {
-              dispatch(progressDialog.open());
-              fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`)
-                .then(res => {
-                  if (res.status === 200) {
-                    res.json().then(data => {
-                      dispatch(nav.openingsStatsDialog({ open: true, stats: data }));
-                    });
-                  } else {
-                    dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-                  }
-                })
-                .finally(() => {
-                  dispatch(progressDialog.close());
-                  dispatch(nav.openingsStatsDialog({ open: true }));
-                  handleCloseDatabase();
-                });
-            }}
-          >
-            <AutoGraphIcon size="small" />&nbsp;Top 50 Openings
-          </MenuItem>
-          <MenuItem
-            id="Nav-database-MenuItem-playersStats"
-            onClick={() => {
-              dispatch(nav.playersStatsDialog({ open: true }));
-              handleCloseDatabase();
-            }}
-          >
-            <QueryStatsIcon size="small" />&nbsp;Players Stats
-          </MenuItem>
-          <MenuItem
-            id="Nav-database-MenuItem-eventsStats"
-            onClick={() => {
-              dispatch(nav.eventsStatsDialog({ open: true }));
-              handleCloseDatabase();
-            }}
-          >
-            <TroubleshootIcon size="small" />&nbsp;Events Stats
-          </MenuItem>
-          <Divider />
-          <MenuItem
-            id="Nav-database-MenuItem-searchGames"
-            onClick={() => {
-              dispatch(progressDialog.open());
-              fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`)
-                .then(res => res.json())
-                .then(res => {
-                  dispatch(ravMode.annotatedGamesDialog({ open: true }));
-                  dispatch(ravMode.annotatedGamesTable(res.games));
-                })
-                .catch(error => {
-                  dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-                })
-                .finally(() => {
-                  dispatch(progressDialog.close());
-                  handleCloseDatabase();
-                });
-            }}
-          >
-            <EditNoteIcon size="small" />&nbsp;Annotated Games
-          </MenuItem>
-        </Menu>
+        <Database />
         <Button
           id="Nav-training"
           variant={state.nav.name === navConst.TRAINING ? "contained" : "text"}

@@ -13,14 +13,14 @@ const OpeningSearch = () => {
 
   const dispatch = useDispatch();
 
-  const [anchorElPlay, setAnchorElPlay] = useState(null);
+  const [anchorOpeningSearch, setAnchorOpeningSearch] = useState(null);
 
   const handleCloseOpeningSearch = () => {
-    setAnchorElPlay(null);
+    setAnchorOpeningSearch(null);
   };
 
   const handleClickOpeningSearch = (event) => {
-    setAnchorElPlay(event.currentTarget);
+    setAnchorOpeningSearch(event.currentTarget);
   };
 
   return (
@@ -36,8 +36,8 @@ const OpeningSearch = () => {
         Opening Search
       </Button>
       <Menu
-        anchorEl={anchorElPlay}
-        open={Boolean(anchorElPlay)}
+        anchorEl={anchorOpeningSearch}
+        open={Boolean(anchorOpeningSearch)}
         onClose={handleCloseOpeningSearch}
       >
         <MenuItem
