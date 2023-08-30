@@ -41,8 +41,6 @@ const Nav = () => {
 
   const [anchorElTraining, setAnchorElTraining] = useState(null);
 
-  const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
-
   const [anchorElInbox, setAnchorElInbox] = useState(null);
 
   const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
