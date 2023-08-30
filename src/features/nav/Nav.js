@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import EmailIcon from '@mui/icons-material/Email';
-import ExtensionIcon from '@mui/icons-material/Extension';
 import InboxIcon from '@mui/icons-material/Inbox';
-import PsychologyIcon from '@mui/icons-material/Psychology';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -15,9 +12,9 @@ import AnalysisBoard from 'features/nav/AnalysisBoard';
 import Play from 'features/nav/Play';
 import OpeningSearch from 'features/nav/OpeningSearch';
 import Database from 'features/nav/Database';
+import Training from 'features/nav/Training';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
-import * as stockfishMode from 'features/mode/stockfishModeSlice';
 
 const Nav = () => {
   const state = useSelector(state => state);
@@ -28,8 +25,6 @@ const Nav = () => {
     '900': useMediaQuery("(max-width:900px)"),
   };
 
-  const [anchorElTraining, setAnchorElTraining] = useState(null);
-
   const [anchorElInbox, setAnchorElInbox] = useState(null);
 
   const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
@@ -38,18 +33,10 @@ const Nav = () => {
     setHamburgerMenu(!hamburgerMenuOpen);
   }
 
-  const handleCloseTraining = () => {
-    setAnchorElTraining(null);
-  };
-
   const handleCloseInbox = () => {
     setAnchorElInbox(null);
   };
-
-  const handleClickTraining = (event) => {
-    setAnchorElTraining(event.currentTarget);
-  };
-
+  
   const handleClickInbox = (event) => {
     setAnchorElInbox(event.currentTarget);
   };
@@ -85,38 +72,7 @@ const Nav = () => {
         <Play />
         <OpeningSearch />
         <Database />
-        <Button
-          id="Nav-training"
-          variant={state.nav.name === navConst.TRAINING ? "contained" : "text"}
-          startIcon={<PsychologyIcon />}
-          onClick={handleClickTraining}
-        >
-          Training
-        </Button>
-        <Menu
-          anchorEl={anchorElTraining}
-          open={Boolean(anchorElTraining)}
-          onClose={handleCloseTraining}
-        >
-          <MenuItem
-            id="Nav-training-MenuItem-endgameSkills"
-            onClick={() => {
-              dispatch(stockfishMode.endgameSkillsDialog({ open: true }));
-              handleCloseTraining();
-            }}
-          >
-            <ExtensionIcon size="small" />&nbsp;Endgame Skills
-          </MenuItem>
-          <MenuItem
-            id="Nav-training-MenuItem-checkmateSkills"
-            onClick={() => {
-              dispatch(stockfishMode.checkmateSkillsDialog({ open: true }));
-              handleCloseTraining();
-            }}
-          >
-            <CheckBoxIcon size="small" />&nbsp;Checkmate Skills
-          </MenuItem>
-        </Menu>
+        <Training />
         <Button
           id="Nav-inbox"
           variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
