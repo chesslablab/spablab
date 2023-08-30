@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
-import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -10,19 +9,17 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import InboxIcon from '@mui/icons-material/Inbox';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
-import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
-import MoveDownIcon from '@mui/icons-material/MoveDown';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
 import AnalysisBoard from 'features/nav/AnalysisBoard';
 import Play from 'features/nav/Play';
+import OpeningSearch from 'features/nav/OpeningSearch';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
@@ -44,8 +41,6 @@ const Nav = () => {
 
   const [anchorElTraining, setAnchorElTraining] = useState(null);
 
-  const [anchorElOpeningSearch, setAnchorElOpeningSearch] = useState(null);
-
   const [anchorElInbox, setAnchorElInbox] = useState(null);
 
   const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
@@ -62,10 +57,6 @@ const Nav = () => {
     setAnchorElTraining(null);
   };
 
-  const handleCloseOpeningSearch = () => {
-    setAnchorElOpeningSearch(null);
-  };
-
   const handleCloseInbox = () => {
     setAnchorElInbox(null);
   };
@@ -76,10 +67,6 @@ const Nav = () => {
 
   const handleClickTraining = (event) => {
     setAnchorElTraining(event.currentTarget);
-  };
-
-  const handleClickOpeningSearch = (event) => {
-    setAnchorElOpeningSearch(event.currentTarget);
   };
 
   const handleClickInbox = (event) => {
@@ -115,47 +102,7 @@ const Nav = () => {
       >
         <AnalysisBoard />
         <Play />
-        <Button
-          id="Nav-openingSearch"
-          variant={state.nav.name === navConst.OPENING_SEARCH ? "contained" : "text"}
-          startIcon={<SearchIcon />}
-          onClick={handleClickOpeningSearch}
-        >
-          Opening Search
-        </Button>
-        <Menu
-          anchorEl={anchorElOpeningSearch}
-          open={Boolean(anchorElOpeningSearch)}
-          onClose={handleCloseOpeningSearch}
-        >
-          <MenuItem
-            id="Nav-openingSearch-MenuItem-ecoCode"
-            onClick={() => {
-              dispatch(sanMode.searchEcoDialog({ open: true }));
-              handleCloseOpeningSearch();
-            }}
-          >
-            <BookIcon size="small" />&nbsp;ECO Code
-          </MenuItem>
-          <MenuItem
-            id="Nav-openingSearch-MenuItem-sanMovetext"
-            onClick={() => {
-              dispatch(sanMode.searchMovetextDialog({ open: true }));
-              handleCloseOpeningSearch();
-            }
-            }>
-            <MoveDownIcon size="small" />&nbsp;SAN Movetext
-          </MenuItem>
-          <MenuItem
-            id="Nav-openingSearch-MenuItem-name"
-            onClick={() => {
-              dispatch(sanMode.searchNameDialog({ open: true }));
-              handleCloseOpeningSearch();
-            }}
-          >
-            <SpellcheckIcon size="small" />&nbsp;Name
-          </MenuItem>
-        </Menu>
+        <OpeningSearch />
         <Button
           id="Nav-database"
           variant={state.nav.name === navConst.DATABASE ? "contained" : "text"}
