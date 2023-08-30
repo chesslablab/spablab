@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
-import BlurOnIcon from '@mui/icons-material/BlurOn';
 import BookIcon from '@mui/icons-material/Book';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -16,34 +14,27 @@ import LanguageIcon from '@mui/icons-material/Language';
 import PersonIcon from '@mui/icons-material/Person';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import StorageIcon from '@mui/icons-material/Storage';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
-import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
-import WidgetsIcon from '@mui/icons-material/Widgets';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, Divider, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
+import AnalysisBoard from 'features/nav/AnalysisBoard';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
-import * as fenMode from 'features/mode/fenModeSlice';
-import * as modeConst from 'features/mode/modeConst';
 import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
-import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
-import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const Nav = () => {
@@ -54,8 +45,6 @@ const Nav = () => {
   const maxWidth = {
     '900': useMediaQuery("(max-width:900px)"),
   };
-
-  const [anchorElAnalysis, setAnchorElAnalysis] = useState(null);
 
   const [anchorElPlay, setAnchorElPlay] = useState(null);
 
@@ -72,9 +61,6 @@ const Nav = () => {
   const handleHamburgerClick = () => {
     setHamburgerMenu(!hamburgerMenuOpen);
   }
-  const handleCloseAnalysis = () => {
-    setAnchorElAnalysis(null);
-  };
 
   const handleClosePlay = () => {
     setAnchorElPlay(null);
@@ -94,10 +80,6 @@ const Nav = () => {
 
   const handleCloseInbox = () => {
     setAnchorElInbox(null);
-  };
-
-  const handleClickAnalysis = (event) => {
-    setAnchorElAnalysis(event.currentTarget);
   };
 
   const handleClickPlay = (event) => {
@@ -147,83 +129,7 @@ const Nav = () => {
           display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`
         }}
       >
-        <Button
-          id="Nav-analysisBoard"
-          sx={{ borderRadius: 0 }}
-          variant={state.nav.name === navConst.ANALYSIS ? "contained" : "text"}
-          startIcon={<TuneIcon />}
-          onClick={handleClickAnalysis}
-        >
-          Analysis Board
-        </Button>
-        <Menu
-          anchorEl={anchorElAnalysis}
-          open={Boolean(anchorElAnalysis)}
-          onClose={handleCloseAnalysis}
-        >
-          <MenuItem
-            id="Nav-analysisBoard-MenuItem-startClassical"
-            onClick={() => {
-              multiAction.initGui(dispatch);
-              dispatch(nav.setAnalysis());
-              handleCloseAnalysis();
-              Ws.start(variantConst.CLASSICAL, modeConst.FEN);
-            }}
-          >
-            <RestartAltIcon size="small" />&nbsp;Start Classical
-          </MenuItem>
-          <MenuItem
-            id="Nav-analysisBoard-MenuItem-startFischerRandom960"
-            onClick={() => {
-              multiAction.initGui(dispatch);
-              dispatch(nav.setAnalysis());
-              handleCloseAnalysis();
-              Ws.start(variantConst.CHESS_960, modeConst.FEN);
-            }}
-          >
-            <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
-          </MenuItem>
-          <MenuItem
-            id="Nav-analysisBoard-MenuItem-startCapablanca"
-            onClick={() => {
-              multiAction.initGui(dispatch);
-              dispatch(nav.setAnalysis());
-              handleCloseAnalysis();
-              Ws.start(variantConst.CAPABLANCA, modeConst.FEN);
-            }}
-          >
-            <BlurOnIcon size="small" />&nbsp;Start Capablanca
-          </MenuItem>
-          <Divider />
-          <MenuItem
-            id="Nav-analysisBoard-MenuItem-sanMovetext"
-            onClick={() => {
-              dispatch(sanMode.loadSanDialog({ open: true }));
-              handleCloseAnalysis();
-            }}
-          >
-            <MoveDownIcon size="small" />&nbsp;SAN Movetext
-          </MenuItem>
-          <MenuItem
-            id="Nav-analysisBoard-MenuItem-ravMovetext"
-            onClick={() => {
-              dispatch(ravMode.loadRavDialog({ open: true }));
-              handleCloseAnalysis();
-            }}
-          >
-            <AccountTreeIcon size="small" />&nbsp;RAV Movetext
-          </MenuItem>
-          <Divider />
-          <MenuItem
-            id="Nav-analysisBoard-MenuItem-fenString"
-            onClick={() => {
-              dispatch(fenMode.loadFenDialog({ open: true }));
-              handleCloseAnalysis();
-            }}
-          >
-            <WidgetsIcon size="small" />&nbsp;FEN String
-          </MenuItem>
-        </Menu>
+        <AnalysisBoard />
         <Button
           id="Nav-play"
           variant={state.nav.name === navConst.PLAY ? "contained" : "text"}
