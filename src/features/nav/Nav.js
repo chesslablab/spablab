@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
-import EmailIcon from '@mui/icons-material/Email';
-import InboxIcon from '@mui/icons-material/Inbox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, ButtonGroup, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import { Button, ButtonGroup, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
 import AnalysisBoard from 'features/nav/AnalysisBoard';
 import Play from 'features/nav/Play';
@@ -15,6 +12,7 @@ import Database from 'features/nav/Database';
 import Training from 'features/nav/Training';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
+import Inbox from './dialog/Inbox';
 
 const Nav = () => {
   const state = useSelector(state => state);
@@ -25,7 +23,6 @@ const Nav = () => {
     '900': useMediaQuery("(max-width:900px)"),
   };
 
-  const [anchorElInbox, setAnchorElInbox] = useState(null);
 
   const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
 
@@ -33,13 +30,7 @@ const Nav = () => {
     setHamburgerMenu(!hamburgerMenuOpen);
   }
 
-  const handleCloseInbox = () => {
-    setAnchorElInbox(null);
-  };
   
-  const handleClickInbox = (event) => {
-    setAnchorElInbox(event.currentTarget);
-  };
 
   const disabled = state.playMode.active &&
     state.playMode.accepted &&
@@ -73,38 +64,7 @@ const Nav = () => {
         <OpeningSearch />
         <Database />
         <Training />
-        <Button
-          id="Nav-inbox"
-          variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
-          startIcon={<EmailIcon />}
-          onClick={handleClickInbox}
-        >
-          Inbox
-        </Button>
-        <Menu
-          anchorEl={anchorElInbox}
-          open={Boolean(anchorElInbox)}
-          onClose={handleCloseInbox}
-        >
-          <MenuItem
-            id="Nav-inbox-MenuItem-inviteFriend"
-            onClick={() => {
-              dispatch(nav.createInboxCodeDialog({ open: true }));
-              handleCloseInbox();
-            }}
-          >
-            <ContactMailIcon size="small" />&nbsp;Create Inbox
-          </MenuItem>
-          <MenuItem
-            id="Nav-training-MenuItem-endgameSkills"
-            onClick={() => {
-              dispatch(nav.enterInboxCodeDialog({ open: true }));
-              handleCloseInbox();
-            }}
-          >
-            <InboxIcon size="small" />&nbsp;Read Inbox
-          </MenuItem>
-        </Menu>
+        <Inbox/>
         <Button
           id="Nav-settings"
           sx={{ borderRadius: 0 }}
