@@ -12,7 +12,7 @@ import Database from 'features/nav/Database';
 import Training from 'features/nav/Training';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
-import Inbox from './dialog/Inbox';
+import Inbox from './Inbox';
 
 const Nav = () => {
   const state = useSelector(state => state);
