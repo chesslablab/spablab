@@ -9,7 +9,7 @@ import Ws from 'features/ws/Ws';
 
 const MovesTable = () => {
   const state = useSelector(state => state);
-  
+
   const dispatch = useDispatch();
 
   const movesTable = useRef(null);
@@ -22,14 +22,16 @@ const MovesTable = () => {
     if (state.board.lan && !state.board.pieceGrabbed) {
       const from = state.board.lan?.charAt(1);
       const to = state.board.lan?.charAt(3);
-      if (from === '7' && to === '8') {
-        if (state.board.piecePlaced?.ascii === ' P ') {
-          dispatch(board.promotionDialog({ open: true }));
-        }
-      } else if (from === '2' && to === '1') {
-        if (state.board.piecePlaced?.ascii === ' p ') {
-          dispatch(board.promotionDialog({ open: true }));
-        }
+      if (
+        from === '7' && to === '8' &&
+        state.board.piecePlaced?.ascii === ' P '
+      ) {
+        dispatch(board.promotionDialog({ open: true }));
+      } else if (
+        from === '2' && to === '1' &&
+        state.board.piecePlaced?.ascii === ' p '
+      ) {
+        dispatch(board.promotionDialog({ open: true }));
       } else {
         Ws.playLan();
       }
