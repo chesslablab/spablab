@@ -20,17 +20,16 @@ const GameMetadataTable = () => {
         <TableBody>
           <TableRow key={0} sx={styles.tableRow}>
             <TableCell align="left" sx={styles.tableCell}>
-              {state.panel.tables.gameMetadata.White}<br/>
+              <b>{state.panel.tables.gameMetadata.White}</b><br/>
               {state.panel.tables.gameMetadata["White ELO"]}
             </TableCell>
             <TableCell align="center" sx={styles.tableCell}>
-              {state.panel.tables.gameMetadata.Result}<br/>
-              {state.panel.tables.gameMetadata.Event}<br/>
-              {state.panel.tables.gameMetadata.Site}, {state.panel.tables.gameMetadata.Date}<br/>
-              {state.panel.tables.gameMetadata.ECO}
+              <b>{state.panel.tables.gameMetadata.Result}</b><br/>
+              {state.panel.tables.gameMetadata.Event},  Rd {state.panel.tables.gameMetadata.Round}<br/>
+              {state.panel.tables.gameMetadata.Site}, {state.panel.tables.gameMetadata.Date}, {state.panel.tables.gameMetadata.ECO}
             </TableCell>
             <TableCell align="right" sx={styles.tableCell}>
-              {state.panel.tables.gameMetadata.Black}<br/>
+              <b>{state.panel.tables.gameMetadata.Black}</b><br/>
               {state.panel.tables.gameMetadata["Black ELO"]}
             </TableCell>
           </TableRow>
