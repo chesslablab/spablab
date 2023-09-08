@@ -24,6 +24,9 @@ const styles = {
   eventCell: {
     width: '20%',
   },
+  roundCell: {
+    width: '10%',
+  },
   yearCell: {
     width: '5%',
   },
@@ -42,9 +45,6 @@ const styles = {
   resultCell: {
     width: '10%',
   },
-  actionCell: {
-    width: '10%',
-  },
   clickable: {
     cursor: 'pointer',
     backgroundColor: '#ececec',
@@ -60,6 +60,7 @@ const AnnotatedGamesTable = () => {
     dispatch(nav.setDatabase());
     dispatch(panel.gameMetadataTable({
       Event: item.Event,
+      Round: item.Round,
       Site: item.Site,
       Date: item.Date,
       White: item.White,
@@ -101,6 +102,7 @@ const AnnotatedGamesTable = () => {
             ? <TableHead>
                 <TableRow>
                   <TableCell sx={styles.eventCell} align="left">Event</TableCell>
+                  <TableCell sx={styles.roundCell} align="left">Round</TableCell>
                   <TableCell sx={styles.yearCell} align="left">Year</TableCell>
                   <TableCell sx={styles.ecoCell} align="left">ECO</TableCell>
                   <TableCell sx={styles.whiteCell} align="left">White</TableCell>
@@ -122,6 +124,7 @@ const AnnotatedGamesTable = () => {
                 onClick={() => handleLoad(item)}
               >
                 <TableCell sx={styles.eventCell} align="left">{item.Event}</TableCell>
+                <TableCell sx={styles.roundCell} align="left">{item.Round}</TableCell>
                 <TableCell sx={styles.yearCell} align="left">{parseInt(item.Date)}</TableCell>
                 <TableCell sx={styles.ecoCell} align="left">{item.ECO}</TableCell>
                 <TableCell sx={styles.whiteCell} align="left">{item.White}</TableCell>
