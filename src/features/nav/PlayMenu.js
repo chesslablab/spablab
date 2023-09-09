@@ -11,7 +11,7 @@ import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import Ws from 'features/ws/Ws';
 
-const Play = () => {
+const PlayMenu = () => {
   const state = useSelector(state => state);
 
   const dispatch = useDispatch();
@@ -87,4 +87,4 @@ const Play = () => {
   );
 }
 
-export default Play;
+export default PlayMenu;

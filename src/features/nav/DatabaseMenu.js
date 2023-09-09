@@ -14,7 +14,7 @@ import * as progressDialog from "features/progressDialogSlice";
 import * as navConst from "features/nav/navConst";
 import * as nav from "features/nav/navSlice";
 
-const Database = () => {
+const DatabaseMenu = () => {
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -142,4 +142,4 @@ const Database = () => {
   );
 };
 
-export default Database;
+export default DatabaseMenu;
