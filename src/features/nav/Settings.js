@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
-const Settings = () => {
+const SettingsMenu = () => {
     const state = useSelector(state => state);
 
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const Settings = () => {
         <>
             <Button
                 id="Nav-settings"
-                sx={{ borderRadius: 0 }}
+                sx={{ borderRadius: 0,  'justify-content': 'flex-start'}}
                 variant={state.nav.name === navConst.SETTINGS ? "contained" : "text"}
                 startIcon={<SettingsIcon />}
                 onClick={() => dispatch(nav.settingsDialog({ open: true }))}
@@ -25,4 +25,4 @@ const Settings = () => {
     )
 }
 
-export default Settings
+export default SettingsMenu;

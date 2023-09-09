@@ -7,7 +7,7 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import * as navConst from "features/nav/navConst";
 import * as stockfishMode from "features/mode/stockfishModeSlice";
 
-const Training = () => {
+const TrainingMenu = () => {
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -62,4 +62,4 @@ const Training = () => {
   );
 };
 
-export default Training;
+export default TrainingMenu;

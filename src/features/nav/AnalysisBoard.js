@@ -18,7 +18,7 @@ import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
-const AnalysisBoard = () => {
+const AnalysisBoardMenu = () => {
   const state = useSelector(state => state);
 
   const dispatch = useDispatch();
@@ -116,4 +116,4 @@ const AnalysisBoard = () => {
   );
 }
 
-export default AnalysisBoard;
+export default AnalysisBoardMenu;

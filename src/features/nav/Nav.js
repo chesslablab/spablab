@@ -4,13 +4,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
-import AnalysisBoard from 'features/nav/AnalysisBoard';
-import Play from 'features/nav/Play';
-import OpeningSearch from 'features/nav/OpeningSearch';
-import Database from 'features/nav/Database';
-import Training from 'features/nav/Training';
-import Inbox from './Inbox';
-import Settings from './Settings';
+import AnalysisBoardMenu from 'features/nav/AnalysisBoard';
+import PlayMenu from 'features/nav/Play';
+import OpeningSearchMenu from 'features/nav/OpeningSearch';
+import DatabaseMenu from 'features/nav/Database';
+import TrainingMenu from 'features/nav/Training';
+import InboxMenu from './Inbox';
+import SettingsMenu from './Settings';
 
 const Nav = () => {
   const state = useSelector(state => state);
@@ -55,13 +55,13 @@ const Nav = () => {
           display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`
         }}
       >
-        <AnalysisBoard />
-        <Play />
-        <OpeningSearch />
-        <Database />
-        <Training />
-        <Inbox />
-        <Settings />
+        <AnalysisBoardMenu />
+        <PlayMenu />
+        <OpeningSearchMenu />
+        <DatabaseMenu />
+        <TrainingMenu />
+        <InboxMenu />
+        <SettingsMenu />
       </ButtonGroup>
     </>
   );
