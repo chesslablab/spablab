@@ -187,6 +187,35 @@ img,
     grid-template-columns: repeat(10, [col] 9vw);
     grid-template-rows: repeat(8, [row] 9vw);
   }
+
+  #Nav-analysisBoard {
+    justify-content: flex-start;
+  }
+
+  #Nav-play {
+    justify-content: flex-start;
+  }
+
+  #Nav-openingSearch {
+    justify-content: flex-start;
+  }
+
+  #Nav-database {
+    justify-content: flex-start;
+  }
+
+  #Nav-training {
+    justify-content: flex-start;
+  }
+
+  #Nav-inbox {
+    justify-content: flex-start;
+  }
+
+  #Nav-settings {
+    justify-content: flex-start;
+  }
+
 }
 
 @media (max-width: 600px) {
