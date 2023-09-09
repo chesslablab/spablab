@@ -26,6 +26,7 @@ const Inbox = () => {
         <>
             <Button
                 id="Nav-inbox"
+                sx={{ justifyContent: 'flex-start' }}
                 variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
                 startIcon={<EmailIcon />}
                 onClick={handleClickInbox}

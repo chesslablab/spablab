@@ -30,6 +30,7 @@ const Play = () => {
     <>
       <Button
         id="Nav-play"
+        sx={{ justifyContent: 'flex-start' }}
         variant={state.nav.name === navConst.PLAY ? "contained" : "text"}
         startIcon={<GradientIcon />}
         onClick={handleClickPlay}
