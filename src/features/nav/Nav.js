@@ -4,13 +4,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
-import AnalysisBoardMenu from 'features/nav/AnalysisBoard';
-import PlayMenu from 'features/nav/Play';
-import OpeningSearchMenu from 'features/nav/OpeningSearch';
-import DatabaseMenu from 'features/nav/Database';
-import TrainingMenu from 'features/nav/Training';
-import InboxMenu from './Inbox';
-import SettingsMenu from './Settings';
+import AnalysisBoardMenu from 'features/nav/AnalysisBoardMenu';
+import PlayMenu from 'features/nav/PlayMenu';
+import OpeningSearchMenu from 'features/nav/OpeningSearchMenu';
+import DatabaseMenu from 'features/nav/DatabaseMenu';
+import TrainingMenu from 'features/nav/TrainingMenu';
+import InboxMenu from './InboxMenu';
+import SettingsMenu from './SettingsMenu';
 
 const Nav = () => {
   const state = useSelector(state => state);
@@ -19,14 +19,11 @@ const Nav = () => {
     '900': useMediaQuery("(max-width:900px)"),
   };
 
-
   const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
 
   const handleHamburgerClick = () => {
     setHamburgerMenu(!hamburgerMenuOpen);
   }
-
-
 
   const disabled = state.playMode.active &&
     state.playMode.accepted &&

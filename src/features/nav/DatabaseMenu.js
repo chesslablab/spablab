@@ -33,6 +33,7 @@ const DatabaseMenu = () => {
     <>
       <Button
         id="Nav-database"
+        sx={{ justifyContent: 'flex-start' }}
         variant={state.nav.name === navConst.DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
         onClick={handleClickDatabase}

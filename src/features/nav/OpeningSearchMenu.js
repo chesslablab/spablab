@@ -27,6 +27,7 @@ const OpeningSearchMenu = () => {
     <>
       <Button
         id="Nav-openingSearch"
+        sx={{ justifyContent: 'flex-start' }}
         variant={
           state.nav.name === navConst.OPENING_SEARCH ? "contained" : "text"
         }

@@ -37,7 +37,7 @@ const AnalysisBoardMenu = () => {
     <>
       <Button
         id="Nav-analysisBoard"
-        sx={{ borderRadius: 0 }}
+        sx={{ borderRadius: 0, justifyContent: 'flex-start' }}
         variant={state.nav.name === navConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
