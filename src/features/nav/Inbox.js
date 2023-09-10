@@ -8,7 +8,7 @@ import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 
 
-const Inbox = () => {
+const InboxMenu = () => {
     const state = useSelector((state) => state);
 
     const dispatch = useDispatch();
@@ -61,4 +61,4 @@ const Inbox = () => {
     )
 }
 
-export default Inbox
+export default InboxMenu;
