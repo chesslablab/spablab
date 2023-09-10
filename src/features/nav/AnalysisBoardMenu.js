@@ -18,7 +18,7 @@ import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
-const AnalysisBoard = () => {
+const AnalysisBoardMenu = () => {
   const state = useSelector(state => state);
 
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const AnalysisBoard = () => {
     <>
       <Button
         id="Nav-analysisBoard"
-        sx={{ borderRadius: 0 }}
+        sx={{ borderRadius: 0, justifyContent: 'flex-start' }}
         variant={state.nav.name === navConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
@@ -116,4 +116,4 @@ const AnalysisBoard = () => {
   );
 }
 
-export default AnalysisBoard;
+export default AnalysisBoardMenu;
