@@ -7,59 +7,58 @@ import { Button, Menu, MenuItem } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 
-
 const InboxMenu = () => {
-    const state = useSelector((state) => state);
+  const state = useSelector((state) => state);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [anchorElInbox, setAnchorElInbox] = useState(null);
+  const [anchorElInbox, setAnchorElInbox] = useState(null);
 
-    const handleCloseInbox = () => {
-        setAnchorElInbox(null);
-    };
+  const handleCloseInbox = () => {
+    setAnchorElInbox(null);
+  };
 
-    const handleClickInbox = (event) => {
-        setAnchorElInbox(event.currentTarget);
-    };
-    return (
-        <>
-            <Button
-                id="Nav-inbox"
-                sx={{ justifyContent: 'flex-start' }}
-                variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
-                startIcon={<EmailIcon />}
-                onClick={handleClickInbox}
-            >
-                Inbox
-            </Button>
-            <Menu
-                anchorEl={anchorElInbox}
-                open={Boolean(anchorElInbox)}
-                onClose={handleCloseInbox}
-            >
-                <MenuItem
-                    id="Nav-inbox-MenuItem-inviteFriend"
-                    onClick={() => {
-                        dispatch(nav.createInboxCodeDialog({ open: true }));
-                        handleCloseInbox();
-                    }}
-                >
-                    <ContactMailIcon size="small" />&nbsp;Create Inbox
-                </MenuItem>
-                <MenuItem
-                    id="Nav-training-MenuItem-endgameSkills"
-                    onClick={() => {
-                        dispatch(nav.enterInboxCodeDialog({ open: true }));
-                        handleCloseInbox();
-                    }}
-                >
-                    <InboxIcon size="small" />&nbsp;Read Inbox
-                </MenuItem>
-            </Menu>
+  const handleClickInbox = (event) => {
+    setAnchorElInbox(event.currentTarget);
+  };
 
-        </>
-    )
+  return (
+    <>
+      <Button
+        id="Nav-inbox"
+        sx={{ justifyContent: 'flex-start' }}
+        variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
+        startIcon={<EmailIcon />}
+        onClick={handleClickInbox}
+      >
+        Inbox
+      </Button>
+      <Menu
+        anchorEl={anchorElInbox}
+        open={Boolean(anchorElInbox)}
+        onClose={handleCloseInbox}
+      >
+        <MenuItem
+          id="Nav-inbox-MenuItem-inviteFriend"
+          onClick={() => {
+            dispatch(nav.createInboxCodeDialog({ open: true }));
+            handleCloseInbox();
+          }}
+        >
+          <ContactMailIcon size="small" />&nbsp;Create Inbox
+        </MenuItem>
+        <MenuItem
+          id="Nav-training-MenuItem-endgameSkills"
+          onClick={() => {
+            dispatch(nav.enterInboxCodeDialog({ open: true }));
+            handleCloseInbox();
+          }}
+        >
+          <InboxIcon size="small" />&nbsp;Read Inbox
+        </MenuItem>
+      </Menu>
+    </>
+  );
 }
 
-export default InboxMenu
+export default InboxMenu;

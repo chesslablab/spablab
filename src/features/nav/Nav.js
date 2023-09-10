@@ -19,14 +19,11 @@ const Nav = () => {
     '900': useMediaQuery("(max-width:900px)"),
   };
 
-
   const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
 
   const handleHamburgerClick = () => {
     setHamburgerMenu(!hamburgerMenuOpen);
   }
-
-
 
   const disabled = state.playMode.active &&
     state.playMode.accepted &&
