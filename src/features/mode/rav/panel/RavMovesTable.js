@@ -3,11 +3,17 @@ import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/mate
 import Movetext from 'common/Movetext.js';
 import * as panel from 'features/panel/panelSlice';
 import styles from 'styles/panel';
+import { useEffect, useRef } from 'react';
 
 const RavMovesTable = () => {
   const state = useSelector(state => state);
   
   const dispatch = useDispatch();
+  const movesTable = useRef(null);
+
+  useEffect(() => {
+    movesTable.current.scrollIntoView({ block: 'end' });
+  });
 
   const currentMove = (fen) => {
     if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
@@ -98,7 +104,7 @@ const RavMovesTable = () => {
     return (
       <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
         <Table stickyHeader size="small" aria-label="Movetext">
-          <TableBody>
+          <TableBody ref={movesTable}>
             {description()}
             {moves()}
           </TableBody>
