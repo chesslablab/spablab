@@ -12,7 +12,6 @@ import { Button, Divider, Menu, MenuItem } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
-import * as imgUploadMode from 'features/mode/ImageUploadSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
@@ -116,7 +115,7 @@ const AnalysisBoardMenu = () => {
         <Divider />
         <MenuItem
           onClick={() => {
-            dispatch(imgUploadMode.loadImgDialog({ open: true }));
+            dispatch(fenMode.loadImageDialog({ open: true }));
             handleCloseAnalysis();
           }}
         >

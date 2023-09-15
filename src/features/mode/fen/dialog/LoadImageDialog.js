@@ -5,20 +5,21 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { useDispatch, useSelector } from 'react-redux';
-import * as imgUploadMode from 'features/mode/ImageUploadSlice';
+import * as fenMode from 'features/mode/fenModeSlice';
 
 export default function LoadImageDialog() {
   const state = useSelector((state) => state);
-   const dispatch = useDispatch();
+
+  const dispatch = useDispatch();
 
   const handleClose = () => {
-    dispatch(imgUploadMode.loadImgDialog({ open: false }));
+    dispatch(fenMode.loadImageDialog({ open: false }))
   };
 
   return (
     <div>
       <Dialog
-        open={state.imgUploadMode.dialog.open}
+        open={state.fenMode.dialogs.loadImage.open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

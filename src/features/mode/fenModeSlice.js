@@ -10,6 +10,9 @@ const initialState = {
     loadFen: {
       open: false,
     },
+    loadImage: {
+      open: false,
+    },
   },
 };
 
@@ -27,12 +30,16 @@ const fenModeSlice = createSlice({
     loadFenDialog(state, action) {
       state.dialogs.loadFen = action.payload;
     },
+    loadImageDialog(state, action) {
+      state.dialogs.loadImage = action.payload;
+    },
   }
 });
 
 export const {
   reset,
   set,
-  loadFenDialog
+  loadFenDialog,
+  loadImageDialog
 } = fenModeSlice.actions;
 export default fenModeSlice.reducer;
