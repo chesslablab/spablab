@@ -1,4 +1,3 @@
-import React from 'react';
 import { Provider } from 'react-redux';
 import { Grid } from '@mui/material';
 import { ThemeProvider } from "@mui/material/styles";
@@ -10,7 +9,6 @@ import ModeFenDialogs from 'features/mode/fen/FenDialogs';
 import ModePlayDialogs from 'features/mode/play/PlayDialogs';
 import ModeRavDialogs from 'features/mode/rav/RavDialogs';
 import ModeSanDialogs from 'features/mode/san/SanDialogs';
-import ImageUploadDialog from 'features/mode/upload/dialog/UploadImageDialog';
 import ModeStockfishDialogs from 'features/mode/stockfish/StockfishDialogs';
 import Nav from 'features/nav/Nav';
 import NavDialogs from 'features/nav/NavDialogs';
@@ -43,7 +41,6 @@ const App = () => {
           </Grid>
         </Grid>
         <ModeFenDialogs />
-        <ImageUploadDialog />
         <ModePlayDialogs />
         <ModeRavDialogs />
         <ModeSanDialogs />
