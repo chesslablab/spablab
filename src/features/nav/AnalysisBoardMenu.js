@@ -113,6 +113,7 @@ const AnalysisBoardMenu = () => {
         >
           <WidgetsIcon size="small" />&nbsp;FEN String
         </MenuItem>
+        <Divider />
         <MenuItem
           onClick={() => {
             dispatch(imgUploadMode.loadImgDialog({ open: true }));
