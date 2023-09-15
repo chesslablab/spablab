@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import { useDispatch, useSelector } from 'react-redux';
 import * as imgUploadMode from 'features/mode/ImageUploadSlice';
 
-export default function UploadImageDialog() {
+export default function LoadImageDialog() {
   const state = useSelector((state) => state);
    const dispatch = useDispatch();
 
