@@ -6,6 +6,7 @@ import boardReducer from 'features/board/boardSlice';
 import fenModeReducer from 'features/mode/fenModeSlice';
 import sanModeReducer from 'features/mode/sanModeSlice';
 import ravModeReducer from 'features/mode/ravModeSlice';
+import imgUploadModeReducer from 'features/mode/ImageUploadSlice';
 import playModeReducer from 'features/mode/playModeSlice';
 import stockfishModeReducer from 'features/mode/stockfishModeSlice';
 import navReducer from 'features/nav/navSlice';
@@ -22,6 +23,7 @@ const rootReducer = {
   playerAutocomplete: playerAutocompleteReducer,
   board: boardReducer,
   fenMode: fenModeReducer,
+  imgUploadMode: imgUploadModeReducer,
   sanMode: sanModeReducer,
   ravMode: ravModeReducer,
   playMode: playModeReducer,

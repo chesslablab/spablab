@@ -7,10 +7,12 @@ import ShuffleIcon from '@mui/icons-material/Shuffle';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
+import UploadIcon from '@mui/icons-material/Upload';
 import { Button, Divider, Menu, MenuItem } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 import * as fenMode from 'features/mode/fenModeSlice';
+import * as imgUploadMode from 'features/mode/ImageUploadSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
@@ -110,6 +112,14 @@ const AnalysisBoardMenu = () => {
           }}
         >
           <WidgetsIcon size="small" />&nbsp;FEN String
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            dispatch(imgUploadMode.loadImgDialog({ open: true }));
+            handleCloseAnalysis();
+          }}
+        >
+          <UploadIcon size="small" />&nbsp;Import Image
         </MenuItem>
       </Menu>
     </>
