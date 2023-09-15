@@ -1,4 +1,3 @@
-import React from 'react';
 import { Provider } from 'react-redux';
 import { Grid } from '@mui/material';
 import { ThemeProvider } from "@mui/material/styles";
