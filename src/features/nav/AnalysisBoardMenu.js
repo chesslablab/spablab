@@ -7,6 +7,7 @@ import ShuffleIcon from '@mui/icons-material/Shuffle';
 import TuneIcon from '@mui/icons-material/Tune';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import WidgetsIcon from '@mui/icons-material/Widgets';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import { Button, Divider, Menu, MenuItem } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
@@ -110,6 +111,15 @@ const AnalysisBoardMenu = () => {
           }}
         >
           <WidgetsIcon size="small" />&nbsp;FEN String
+        </MenuItem>
+        <Divider />
+        <MenuItem
+          onClick={() => {
+            dispatch(fenMode.loadImageDialog({ open: true }));
+            handleCloseAnalysis();
+          }}
+        >
+          <InsertPhotoIcon size="small" />&nbsp;Import Image
         </MenuItem>
       </Menu>
     </>

@@ -1,11 +1,13 @@
 import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
+import LoadImageDialog from 'features/mode/fen/dialog/LoadImageDialog';
 
-const NavDialogs = () => {
+const FenDialogs = () => {
   return (
     <>
       <LoadFenDialog />
+      <LoadImageDialog />
     </>
   );
 }
 
-export default NavDialogs;
+export default FenDialogs;
