@@ -7,9 +7,7 @@ const BoardSlider = () => {
   const sliderRef = useRef(document.documentElement);
 
   const handleChange = (e, val) => {
-    console.log(sliderValue);
     setSliderValue(val);
-    console.log(val);
     sliderRef.current.style.setProperty("--slider-value", val);
   };
 
