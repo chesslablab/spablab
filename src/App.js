@@ -27,9 +27,7 @@ const App = () => {
             <Nav />
             <NavDialogs />
           </Grid>
-          <Grid item xs={12} md={2}>
-          </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={5}>
             <VariantBoard />
             <PositionEval />
             <Heuristics />
@@ -37,7 +35,7 @@ const App = () => {
           <Grid item xs={12} md={4}>
             <Panel />
           </Grid>
-          <Grid item xs={12} md={2}>
+          <Grid item xs={12} md={3}>
           </Grid>
         </Grid>
         <ModeFenDialogs />
