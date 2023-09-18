@@ -12,19 +12,17 @@ const BoardSlider = () => {
   };
 
   return (
-    <>
-      <Slider
-        aria-label="Volume"
-        value={sliderValue}
-        onChange={handleChange}
-        min={30}
-        max={100}
-        className="slider"
-        sx={{
-            marginTop: '10px'
-        }}
-      />
-    </>
+    <Slider
+      aria-label="Volume"
+      value={sliderValue}
+      onChange={handleChange}
+      min={30}
+      max={100}
+      className="slider"
+      sx={{
+          marginTop: '10px'
+      }}
+    />
   );
 };
 
