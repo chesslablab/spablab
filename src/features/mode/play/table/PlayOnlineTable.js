@@ -62,11 +62,11 @@ const PlayOnlineTable = () => {
 
   if (state.playMode.tables.playOnline.length > 0) {
     return (
-      <TableContainer sx={{ mt: 3 }} component={Paper}>
+      <TableContainer sx={{ mb: 3 }} component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={5}>Chess games</TableCell>
+              <TableCell align="center" colSpan={5}>Chess players</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

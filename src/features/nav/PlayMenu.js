@@ -43,6 +43,17 @@ const PlayMenu = () => {
         onClose={handleClosePlay}
       >
         <MenuItem
+          id="Nav-play-MenuItem-online"
+          onClick={() => {
+            Ws.onlineGames();
+            dispatch(playMode.playOnlineDialog({ open: true }));
+            handleClosePlay();
+          }}
+        >
+          <LanguageIcon size="small" />&nbsp;Play Online
+        </MenuItem>
+        <Divider />
+        <MenuItem
           id="Nav-play-MenuItem-computer"
           onClick={() => {
             dispatch(stockfishMode.playComputerDialog({ open: true }));
@@ -70,17 +81,6 @@ const PlayMenu = () => {
           }}
         >
           <KeyboardIcon size="small" />&nbsp;Enter Invite Code
-        </MenuItem>
-        <Divider />
-        <MenuItem
-          id="Nav-play-MenuItem-online"
-          onClick={() => {
-            Ws.onlineGames();
-            dispatch(playMode.playOnlineDialog({ open: true }));
-            handleClosePlay();
-          }}
-        >
-          <LanguageIcon size="small" />&nbsp;Play Online
         </MenuItem>
       </Menu>
     </>

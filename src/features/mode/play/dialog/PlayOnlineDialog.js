@@ -25,7 +25,7 @@ import SelectColorButtons from 'features/SelectColorButtons';
 
 const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
-  
+
   const dispatch = useDispatch();
 
   const initialState = {
@@ -83,6 +83,7 @@ const PlayOnlineDialog = () => {
         </IconButton>
       </DialogTitle>
       <DialogContent>
+        <PlayOnlineTable />
         <Typography
           id="input-minutes"
           align="center"
@@ -149,7 +150,6 @@ const PlayOnlineDialog = () => {
         >
           Create Game
         </Button>
-        <PlayOnlineTable />
       </DialogContent>
     </Dialog>
   );

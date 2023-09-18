@@ -40,22 +40,19 @@ const Nav = () => {
         onClick={handleHamburgerClick} > {hamburgerMenuOpen ? <CloseIcon sx={{ fontSize: 40 }} /> : <MenuIcon sx={{ fontSize: 40 }} />}
       </Button>
       <ButtonGroup
-        orientation={maxWidth['900'] ? "vertical" : "horizontal"}
+        orientation="vertical"
         variant="text"
         aria-label="Main Menu"
         fullWidth={true}
         disabled={disabled}
         sx={{
-          borderTop: "1px solid #1976d280",
-          borderBottom: "1px solid #1976d280",
-          borderRadius: 0,
           display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`
         }}
       >
-        <AnalysisBoardMenu />
         <PlayMenu />
-        <OpeningSearchMenu />
+        <AnalysisBoardMenu />
         <DatabaseMenu />
+        <OpeningSearchMenu />
         <TrainingMenu />
         <InboxMenu />
         <SettingsMenu />

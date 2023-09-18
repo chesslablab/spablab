@@ -23,21 +23,17 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Grid container spacing={1}>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={2}>
             <Nav />
             <NavDialogs />
           </Grid>
-          <Grid item xs={12} md={2}>
-          </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={5}>
             <VariantBoard />
             <PositionEval />
             <Heuristics />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={5}>
             <Panel />
-          </Grid>
-          <Grid item xs={12} md={2}>
           </Grid>
         </Grid>
         <ModeFenDialogs />
