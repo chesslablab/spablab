@@ -7,6 +7,7 @@ import PawnPromotionDialog from 'features/board/PawnPromotionDialog';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
+import ResizeSlider from './ResizeSlider';
 
 const VariantBoard = () => {
   const state = useSelector(state => state);
@@ -31,6 +32,7 @@ const VariantBoard = () => {
   return (
     <>
       {board}
+      <ResizeSlider />
       <PawnPromotionDialog />
     </>
   );
