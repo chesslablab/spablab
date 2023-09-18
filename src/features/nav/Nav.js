@@ -49,8 +49,8 @@ const Nav = () => {
           display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`
         }}
       >
-        <PlayMenu />
         <AnalysisBoardMenu />
+        <PlayMenu />
         <DatabaseMenu />
         <OpeningSearchMenu />
         <TrainingMenu />
