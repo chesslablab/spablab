@@ -1,7 +1,7 @@
 import Slider from "@mui/material/Slider";
 import { useRef, useState } from "react";
 
-const BoardSlider = () => {
+const ResizeSlider = () => {
   const [sliderValue, setSliderValue] = useState(100);
 
   const sliderRef = useRef(document.documentElement);
@@ -26,4 +26,4 @@ const BoardSlider = () => {
   );
 };
 
-export default BoardSlider;
+export default ResizeSlider;
