@@ -26,7 +26,7 @@ const InboxMenu = () => {
     <>
       <Button
         id="Nav-inbox"
-        sx={{ justifyContent: 'flex-start' }}
+        sx={{ pl: 2, justifyContent: 'flex-start' }}
         variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
         startIcon={<EmailIcon />}
         onClick={handleClickInbox}

@@ -26,7 +26,7 @@ const TrainingMenu = () => {
     <>
       <Button
         id="Nav-training"
-        sx={{ justifyContent: 'flex-start' }}
+        sx={{ pl: 2, justifyContent: 'flex-start' }}
         variant={state.nav.name === navConst.TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}

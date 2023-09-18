@@ -13,7 +13,7 @@ const SettingsMenu = () => {
     <>
       <Button
         id="Nav-settings"
-        sx={{ borderRadius: 0, justifyContent: 'flex-start' }}
+        sx={{ pl: 2, borderRadius: 0, justifyContent: 'flex-start' }}
         variant={state.nav.name === navConst.SETTINGS ? "contained" : "text"}
         startIcon={<SettingsIcon />}
         onClick={() => dispatch(nav.settingsDialog({ open: true }))}
