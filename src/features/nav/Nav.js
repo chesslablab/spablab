@@ -51,8 +51,8 @@ const Nav = () => {
       >
         <PlayMenu />
         <AnalysisBoardMenu />
-        <OpeningSearchMenu />
         <DatabaseMenu />
+        <OpeningSearchMenu />
         <TrainingMenu />
         <InboxMenu />
         <SettingsMenu />
