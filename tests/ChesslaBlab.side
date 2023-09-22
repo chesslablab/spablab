@@ -1376,6 +1376,20 @@
       "target": "css=.b6",
       "targets": [],
       "value": ""
+    }, {
+      "id": "4fc987de-9501-4713-93b5-96401ee0252a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.e1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cbd85e37-94de-4d66-a06a-ee29935ab134",
+      "comment": "",
+      "command": "click",
+      "target": "css=.g1",
+      "targets": [],
+      "value": ""
     }]
   }],
   "suites": [{
