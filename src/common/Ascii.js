@@ -154,16 +154,14 @@ export default class Ascii {
   static longAlgebraicNotation = (a, b) => {
     const diff = Ascii.asciiDiff(a, b);
     let sorted = [];
-    if (diff.length === 4) {
-      // castling
-      const from = diff.find(item => item.from === ' K ' || item.from === ' k ');
-      const to = diff.find(item => item.to === ' K ' || item.to === ' k ');
+    let from = diff.find(item => item.from === ' K ' || item.from === ' k ');
+    let to = diff.find(item => item.to === ' K ' || item.to === ' k ');
+    if (from && to) { // castling
       sorted.push(from.sq);
       sorted.push(to.sq);
-    } else if (diff.length === 3) {
-      // en passant
-      const from = diff.find(item => item.from === ' P ' || item.from === ' p ');
-      const to = diff.find(item => item.to === ' P ' || item.to === ' p ');
+    } else if (diff.length === 3) { // en passant
+      from = diff.find(item => item.from === ' P ' || item.from === ' p ');
+      to = diff.find(item => item.to === ' P ' || item.to === ' p ');
       sorted.push(from.sq);
       sorted.push(to.sq);
     } else if (diff[0].to === ' . ') {
