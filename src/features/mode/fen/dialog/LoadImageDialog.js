@@ -26,7 +26,7 @@ export default function LoadImageDialog() {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-          Soon available, please be patient!
+            <input accept=".jpeg,.jpg,.png,.gif" type="file" />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
