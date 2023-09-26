@@ -25,9 +25,10 @@ export default function LoadImageDialog() {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-          Soon available, please be patient!
+          <DialogContentText sx={{pb:1}} id="alert-dialog-description">
+            Soon available, please be patient!
           </DialogContentText>
+          <input accept=".jpeg,.jpg,.png,.gif" type="file" />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} autoFocus>
