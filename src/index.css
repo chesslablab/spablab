@@ -205,7 +205,7 @@ img,
     display: none !important;
   }
   .capablancaBoard {
-    grid-template-columns: repeat(10, [col] 9vw);
-    grid-template-rows: repeat(8, [row] 9vw);
+    grid-template-columns: repeat(10, [col] 8vw);
+    grid-template-rows: repeat(8, [row] 8vw);
   }
 }
