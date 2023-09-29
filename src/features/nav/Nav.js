@@ -16,7 +16,8 @@ const Nav = () => {
   const state = useSelector(state => state);
 
   const maxWidth = {
-    '900': useMediaQuery("(max-width:900px)"),
+    '600': useMediaQuery("(max-width:600px)"),
+    '900': useMediaQuery("(max-width:900px)")
   };
 
   const [hamburgerMenuOpen, setHamburgerMenu] = useState(false)
@@ -40,13 +41,14 @@ const Nav = () => {
         onClick={handleHamburgerClick} > {hamburgerMenuOpen ? <CloseIcon sx={{ fontSize: 40 }} /> : <MenuIcon sx={{ fontSize: 40 }} />}
       </Button>
       <ButtonGroup
-        orientation="vertical"
+        orientation={maxWidth['900'] ? "vertical" : "horizontal"}
         variant="text"
         aria-label="Main Menu"
         fullWidth={true}
         disabled={disabled}
         sx={{
-          display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`
+          display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`,
+          border: "1px solid #1976d280"
         }}
       >
         <AnalysisBoardMenu />
