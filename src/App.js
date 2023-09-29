@@ -35,6 +35,9 @@ const App = () => {
           <Grid item xs={12} md={4}>
             <Panel />
           </Grid>
+          <Grid item xs={12} md={3}>
+            <iframe title="ChesslaBlab Chat" src="https://web.libera.chat/gamja/#chesslablab"></iframe>
+          </Grid>
         </Grid>
         <ModeFenDialogs />
         <ModePlayDialogs />

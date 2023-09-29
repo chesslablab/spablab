@@ -1,3 +1,10 @@
+iframe {
+  border: 0;
+  width: 100%;
+  width: -webkit-fill-available;
+  height: 482px;
+}
+
 :root{
   --slider-value: 100;
 }
