@@ -48,7 +48,8 @@ const Nav = () => {
         disabled={disabled}
         sx={{
           display: `${maxWidth['900'] ? (hamburgerMenuOpen ? "flex" : "none") : "flex"}`,
-          border: "1px solid #1976d280"
+          border: "1px solid #1976d280",
+          borderRadius: 0
         }}
       >
         <AnalysisBoardMenu />
