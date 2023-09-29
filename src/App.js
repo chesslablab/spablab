@@ -23,7 +23,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Grid container spacing={1}>
-          <Grid item xs={12} md={2}>
+          <Grid item xs={12}>
             <Nav />
             <NavDialogs />
           </Grid>
