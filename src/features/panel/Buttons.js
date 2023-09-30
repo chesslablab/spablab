@@ -4,7 +4,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { Button, Stack } from "@mui/material";
+import { IconButton, Stack } from "@mui/material";
 import { getActiveMode } from 'app/store';
 import Movetext from 'common/Movetext';
 import * as warningAlert from 'features/alert/warningAlertSlice';
@@ -14,7 +14,7 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 const Buttons = () => {
   const state = useSelector(state => state);
-  
+
   const dispatch = useDispatch();
 
   const handleDownloadImage = async () => {
@@ -97,54 +97,59 @@ const Buttons = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Button
+        <IconButton
           size="large"
-          startIcon={<MoveDownIcon />}
           id="Buttons-copyMovetext"
           disabled={!state.board.movetext}
           color="primary"
           title="Copy movetext"
           aria-label="copy"
           onClick={() => navigator.clipboard.writeText(Movetext.substring(state.board.movetext, state.panel.history.back))}
-        />
-        <Button
+        >
+          <MoveDownIcon />
+        </IconButton>
+        <IconButton
           size="large"
-          startIcon={<WidgetsIcon />}
           id="Buttons-copyFenString"
           color="primary"
           title="Copy FEN string"
           aria-label="fen"
           onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.panel.history.back])}
-        />
-        <Button
+        >
+          <WidgetsIcon />
+        </IconButton>
+        <IconButton
           size="large"
-          startIcon={<BarChartIcon />}
           id="Buttons-heuristics"
           disabled={!state.board.movetext}
           color="primary"
           title="Heuristics"
           aria-label="heuristics"
           onClick={() => handleHeuristics()}
-        />
-        <Button
+        >
+          <BarChartIcon />
+        </IconButton>
+        <IconButton
           size="large"
-          startIcon={<InsertPhotoIcon />}
           id="Buttons-downloadImage"
           color="primary"
           title="Download Image"
           aria-label="flip"
           onClick={() => handleDownloadImage()}
-        />
-        <Button
+        >
+          <InsertPhotoIcon />
+        </IconButton>
+        <IconButton
           size="large"
-          startIcon={<VideoCameraBackIcon />}
           id="Buttons-downloadVideo"
           disabled={!state.board.movetext}
           color="primary"
           title="Download Video"
           aria-label="flip"
           onClick={() => handleDownloadMp4()}
-        />
+        >
+          <VideoCameraBackIcon />
+        </IconButton>
       </Stack>
     );
   }
