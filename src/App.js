@@ -22,11 +22,13 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Grid container spacing={1}>
+        <Grid container>
           <Grid item xs={12}>
             <Nav />
             <NavDialogs />
-          </Grid>
+        </Grid>
+        </Grid>
+        <Grid container sx={{p: 1}} spacing={2}>
           <Grid item xs={12} md={5}>
             <VariantBoard />
             <PositionEval />
