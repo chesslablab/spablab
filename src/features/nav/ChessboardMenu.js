@@ -19,7 +19,7 @@ import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
-const AnalysisMenu = () => {
+const ChessboardMenu = () => {
   const state = useSelector(state => state);
 
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const AnalysisMenu = () => {
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
       >
-        Analysis
+        Chessboard
       </Button>
       <Menu
         anchorEl={anchorElAnalysis}
@@ -126,4 +126,4 @@ const AnalysisMenu = () => {
   );
 }
 
-export default AnalysisMenu;
+export default ChessboardMenu;
