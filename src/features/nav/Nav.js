@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
-import AnalysisMenu from 'features/nav/AnalysisMenu';
+import ChessboardMenu from 'features/nav/ChessboardMenu';
 import PlayMenu from 'features/nav/PlayMenu';
 import OpeningsMenu from 'features/nav/OpeningsMenu';
 import DatabaseMenu from 'features/nav/DatabaseMenu';
@@ -51,7 +51,7 @@ const Nav = () => {
           borderRadius: 0
         }}
       >
-        <AnalysisMenu />
+        <ChessboardMenu />
         <PlayMenu />
         <DatabaseMenu />
         <OpeningsMenu />
