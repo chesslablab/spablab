@@ -4,9 +4,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, useMediaQuery } from '@mui/material';
 import Wording from 'common/Wording';
-import AnalysisBoardMenu from 'features/nav/AnalysisBoardMenu';
+import AnalysisMenu from 'features/nav/AnalysisMenu';
 import PlayMenu from 'features/nav/PlayMenu';
-import OpeningSearchMenu from 'features/nav/OpeningSearchMenu';
+import OpeningsMenu from 'features/nav/OpeningsMenu';
 import DatabaseMenu from 'features/nav/DatabaseMenu';
 import TrainingMenu from 'features/nav/TrainingMenu';
 import InboxMenu from './InboxMenu';
@@ -51,10 +51,10 @@ const Nav = () => {
           borderRadius: 0
         }}
       >
-        <AnalysisBoardMenu />
+        <AnalysisMenu />
         <PlayMenu />
         <DatabaseMenu />
-        <OpeningSearchMenu />
+        <OpeningsMenu />
         <TrainingMenu />
         <InboxMenu />
         <SettingsMenu />
