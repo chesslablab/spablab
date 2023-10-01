@@ -8,7 +8,7 @@ import { Button, Menu, MenuItem } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as sanMode from 'features/mode/sanModeSlice';
 
-const OpeningSearchMenu = () => {
+const OpeningsMenu = () => {
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const OpeningSearchMenu = () => {
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >
-        Opening Search
+        Openings
       </Button>
       <Menu
         anchorEl={anchorOpeningSearch}
@@ -76,4 +76,4 @@ const OpeningSearchMenu = () => {
   );
 };
 
-export default OpeningSearchMenu;
+export default OpeningsMenu;
