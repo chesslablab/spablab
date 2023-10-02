@@ -55,4 +55,12 @@ const Captcha = ({ props }) => {
   </>;
 }
 
+  jQuery('#nrx_result').bind("paste",function(e) {
+      e.preventDefault();
+  }); 
+
+ jQuery('#nrx_Captcha').bind("copy",function(e) {
+    e.preventDefault();
+  });
+
 export default Captcha;
