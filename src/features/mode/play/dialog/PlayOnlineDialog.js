@@ -136,7 +136,7 @@ const PlayOnlineDialog = () => {
             Classical
           </MenuItem>
           <MenuItem key={1} value="960">
-            Fischer Random 960
+            Fischer Random
           </MenuItem>
           <MenuItem key={2} value="capablanca">
             Capablanca

@@ -70,7 +70,7 @@ const ChessboardMenu = () => {
             Ws.start(variantConst.CHESS_960, modeConst.FEN);
           }}
         >
-          <ShuffleIcon size="small" />&nbsp;Start Fischer Random 960
+          <ShuffleIcon size="small" />&nbsp;Start Fischer Random
         </MenuItem>
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startCapablanca"
