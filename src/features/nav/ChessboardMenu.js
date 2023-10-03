@@ -59,7 +59,7 @@ const ChessboardMenu = () => {
             Ws.start(variantConst.CLASSICAL, modeConst.FEN);
           }}
         >
-          <RestartAltIcon size="small" />&nbsp;Start Classical
+          <RestartAltIcon size="small" />&nbsp;Classical
         </MenuItem>
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startFischerRandom960"
@@ -70,7 +70,7 @@ const ChessboardMenu = () => {
             Ws.start(variantConst.CHESS_960, modeConst.FEN);
           }}
         >
-          <ShuffleIcon size="small" />&nbsp;Start Fischer Random
+          <ShuffleIcon size="small" />&nbsp;Fischer Random
         </MenuItem>
         <MenuItem
           id="Nav-analysisBoard-MenuItem-startCapablanca"
@@ -81,7 +81,7 @@ const ChessboardMenu = () => {
             Ws.start(variantConst.CAPABLANCA, modeConst.FEN);
           }}
         >
-          <BlurOnIcon size="small" />&nbsp;Start Capablanca
+          <BlurOnIcon size="small" />&nbsp;Capablanca
         </MenuItem>
         <Divider />
         <MenuItem
