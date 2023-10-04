@@ -39,6 +39,14 @@ const boardSlice = createSlice({
           files: 10,
           ranks: 8
         };
+      } else if (action.payload.variant === variantConst.CAPABLANCA_FISCHER) {
+        const fen = action.payload.fen.split(' ');
+        state.fen = [action.payload.fen];
+        state.turn = fen[1];
+        state.size = {
+          files: 10,
+          ranks: 8
+        };
       } else {
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];

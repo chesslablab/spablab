@@ -141,6 +141,9 @@ const PlayOnlineDialog = () => {
           <MenuItem key={2} value="capablanca">
             Capablanca
           </MenuItem>
+          <MenuItem key={3} value="capablanca-fischer">
+            Capablanca-Fischer
+          </MenuItem>
         </TextField>
         <Button sx={{ mt: 2 }}
           fullWidth

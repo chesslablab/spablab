@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CapablancaBoard from 'features/board/CapablancaBoard';
+import CapablancaFischerBoard from 'features/board/CapablancaFischerBoard';
 import Chess960Board from 'features/board/Chess960Board';
 import ClassicalBoard from 'features/board/ClassicalBoard';
 import PawnPromotionDialog from 'features/board/PawnPromotionDialog';
@@ -23,6 +24,8 @@ const VariantBoard = () => {
   let board;
   if (active?.variant === variantConst.CAPABLANCA) {
     board = <CapablancaBoard />;
+  } else if (active?.variant === variantConst.CAPABLANCA_FISCHER) {
+    board = <CapablancaFischerBoard />;
   } else if (active?.variant === variantConst.CHESS_960) {
     board = <Chess960Board />;
   } else {
