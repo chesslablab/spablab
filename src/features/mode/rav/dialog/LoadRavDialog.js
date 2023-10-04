@@ -21,7 +21,7 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 const LoadRavDialog = () => {
   const state = useSelector((state) => state);
-  
+
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
@@ -62,6 +62,7 @@ const LoadRavDialog = () => {
         variant: fields.variant,
         movetext: event.target.elements.rav.value,
         ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+        ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
         ...(fields?.fen && {fen: event.target.elements.fen?.value})
       })
     })
@@ -115,6 +116,9 @@ const LoadRavDialog = () => {
             <MenuItem key={2} value="capablanca">
               Capablanca
             </MenuItem>
+            <MenuItem key={3} value="capablanca-fischer">
+              Capablanca-Fischer
+            </MenuItem>
           </TextField>
           {
             fields.variant === variantConst.CHESS_960
@@ -125,6 +129,19 @@ const LoadRavDialog = () => {
                   label="Start position"
                   variant="filled"
                   helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+                  margin="dense"
+              />
+              : null
+          }
+          {
+            fields.variant === variantConst.CAPABLANCA_FISCHER
+              ? <TextField
+                  fullWidth
+                  required
+                  name="startPos"
+                  label="Start position"
+                  variant="filled"
+                  helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
                   margin="dense"
               />
               : null
