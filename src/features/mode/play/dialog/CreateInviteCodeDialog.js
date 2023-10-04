@@ -23,7 +23,7 @@ import SelectColorButtons from 'features/SelectColorButtons';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
-  
+
   const dispatch = useDispatch();
 
   return (
@@ -97,6 +97,7 @@ const CreateCode = () => {
         : fields.color,
       submode: 'friend',
       ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+      ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
       ...(fields?.fen && {fen: event.target.elements.fen?.value})
     };
     Ws.start(fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
@@ -162,6 +163,9 @@ const CreateCode = () => {
           <MenuItem key={2} value="capablanca">
             Capablanca
           </MenuItem>
+          <MenuItem key={3} value="capablanca-fischer">
+            Capablanca-Fischer
+          </MenuItem>
         </TextField>
         {
           fields.variant === variantConst.CHESS_960
@@ -172,6 +176,20 @@ const CreateCode = () => {
                 name="startPos"
                 label="Start position"
                 helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+                onChange={handleStartPosChange}
+                margin="dense"
+            />
+            : null
+        }
+        {
+          fields.variant === variantConst.CAPABLANCA_FISCHER
+            ? <TextField
+                fullWidth
+                required
+                variant="filled"
+                name="startPos"
+                label="Start position"
+                helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
                 onChange={handleStartPosChange}
                 margin="dense"
             />
