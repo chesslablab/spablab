@@ -18,7 +18,7 @@ import Captcha from 'features/Captcha';
 
 const CreateInboxCodeDialog = () => {
   const state = useSelector(state => state);
-  
+
   const dispatch = useDispatch();
 
   return (
@@ -103,6 +103,9 @@ const CreateCode = () => {
           <MenuItem key={2} value="capablanca">
             Capablanca
           </MenuItem>
+          <MenuItem key={3} value="capablanca-fischer">
+            Capablanca-Fischer
+          </MenuItem>
         </TextField>
         {
           fields.variant === variantConst.CHESS_960
@@ -113,6 +116,20 @@ const CreateCode = () => {
                 label="Start position"
                 variant="filled"
                 helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+                onChange={handleStartPosChange}
+                margin="dense"
+            />
+            : null
+        }
+        {
+          fields.variant === variantConst.CAPABLANCA_FISCHER
+            ? <TextField
+                fullWidth
+                required
+                name="startPos"
+                label="Start position"
+                variant="filled"
+                helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
                 onChange={handleStartPosChange}
                 margin="dense"
             />

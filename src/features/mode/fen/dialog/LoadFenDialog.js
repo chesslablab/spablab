@@ -19,7 +19,7 @@ import multiAction from 'features/multiAction';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
-  
+
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
@@ -40,6 +40,7 @@ const LoadFenDialog = () => {
     let settings = {
       fen: event.target.elements.fen.value,
       ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+      ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
     };
     Ws.start(
       event.target.elements.variant.value,
@@ -91,6 +92,9 @@ const LoadFenDialog = () => {
             >
               Capablanca
             </MenuItem>
+            <MenuItem key={3} value="capablanca-fischer">
+              Capablanca-Fischer
+            </MenuItem>
           </TextField>
           {
             fields.variant === variantConst.CHESS_960
@@ -104,6 +108,20 @@ const LoadFenDialog = () => {
                   helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
                   margin="dense"
                 />
+              : null
+          }
+          {
+            fields.variant === variantConst.CAPABLANCA_FISCHER
+              ? <TextField
+                  id="LoadFenDialog-TextField-startPos"
+                  fullWidth
+                  required
+                  name="startPos"
+                  label="Start position"
+                  variant="filled"
+                  helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
+                  margin="dense"
+              />
               : null
           }
           <TextField

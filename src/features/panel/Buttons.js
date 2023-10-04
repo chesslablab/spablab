@@ -47,6 +47,7 @@ const Buttons = () => {
         movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
         flip: state.board.flip,
         ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+        ...(getActiveMode().variant === variantConst.CAPABLANCA_FISCHER) && {startPos: state.fenMode.startPos},
         ...(state.fenMode.active) && {fen: state.fenMode.fen}
       })
     })
@@ -71,6 +72,7 @@ const Buttons = () => {
         variant: getActiveMode().variant,
         movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
         ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
+        ...(getActiveMode().variant === variantConst.CAPABLANCA_FISCHER) && {startPos: state.fenMode.startPos},
         ...(state.fenMode.active) && {fen: state.board.fen[0]},
         ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
       })

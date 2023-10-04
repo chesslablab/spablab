@@ -83,6 +83,17 @@ const ChessboardMenu = () => {
         >
           <BlurOnIcon size="small" />&nbsp;Capablanca
         </MenuItem>
+        <MenuItem
+          id="Nav-analysisBoard-MenuItem-startCapablancaFischer"
+          onClick={() => {
+            multiAction.initGui(dispatch);
+            dispatch(nav.setAnalysis());
+            handleCloseAnalysis();
+            Ws.start(variantConst.CAPABLANCA_FISCHER, modeConst.FEN);
+          }}
+        >
+          <BlurOnIcon size="small" />&nbsp;Capablanca-Fischer
+        </MenuItem>
         <Divider />
         <MenuItem
           id="Nav-analysisBoard-MenuItem-sanMovetext"
