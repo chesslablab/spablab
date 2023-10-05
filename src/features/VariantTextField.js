@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { MenuItem, TextField } from '@mui/material';
 import * as variantConst from 'features/mode/variantConst';
 
-const SelectVariantTextField = ({ props }) => {
+const VariantTextField = ({ props }) => {
   const [variant, setVariant] = useState('classical');
 
   const [startPos, setStartPos] = useState('');
@@ -99,4 +99,4 @@ const SelectVariantTextField = ({ props }) => {
   );
 }
 
-export default SelectVariantTextField;
+export default VariantTextField;

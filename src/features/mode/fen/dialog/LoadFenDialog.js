@@ -15,7 +15,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import SelectVariantTextField from 'features/SelectVariantTextField';
+import VariantTextField from 'features/VariantTextField';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
@@ -61,7 +61,7 @@ const LoadFenDialog = () => {
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleLoad}>
-          <SelectVariantTextField props={fields} />
+          <VariantTextField props={fields} />
           <TextField
             id="LoadFenDialog-TextField-fen"
             fullWidth
