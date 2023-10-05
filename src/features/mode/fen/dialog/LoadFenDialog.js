@@ -24,8 +24,8 @@ const LoadFenDialog = () => {
 
   const [fields, setFields] = useState({
     variant: variantConst.CLASSICAL,
-    startPos: null,
-    fen: null,
+    startPos: '',
+    fen: '',
   });
 
   const handleFenChange = (event: Event) => {
