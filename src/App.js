@@ -16,6 +16,7 @@ import Panel from 'features/panel/Panel';
 import Heuristics from 'features/Heuristics';
 import PositionEval from 'features/PositionEval';
 import ProgressDialog from 'features/ProgressDialog';
+import MoveSounds from 'features/sound/MoveSounds';
 import theme from 'styles/theme.js';
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
         <ProgressDialog />
         <InfoAlert />
         <WarningAlert />
+        <MoveSounds />
       </Provider>
     </ThemeProvider>
   );
