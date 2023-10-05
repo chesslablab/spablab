@@ -16,15 +16,10 @@ a:hover {
   background-color: rgba(25, 118, 210, 0.04);
 }
 
-nav,
 footer {
   padding: 1rem 0rem 1.25rem 0.75rem;
   font-size: .9rem;
   height: 1rem;
-}
-
-nav {
-  background-color: #ffffff;
 }
 
 footer {
@@ -32,7 +27,6 @@ footer {
   margin-top: 2rem;
 }
 
-nav a,
 footer a {
   padding: 0.5rem;
   font-weight: 500;
