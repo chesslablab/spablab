@@ -8,13 +8,13 @@ const filterOptions = createFilterOptions({
 });
 
 const BlackPlayerAutocomplete = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.playerAutocomplete);
 
   return (
     <Autocomplete
-      loading={state.playerAutocomplete.data.length === 0}
+      loading={state.data.length === 0}
       id="Black"
-      options={state.playerAutocomplete.data}
+      options={state.data}
       filterOptions={filterOptions}
       renderInput={(params) =>
         <TextField {...params}

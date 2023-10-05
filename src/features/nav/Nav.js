@@ -13,7 +13,9 @@ import InboxMenu from './InboxMenu';
 import SettingsMenu from './SettingsMenu';
 
 const Nav = () => {
-  const state = useSelector(state => state);
+  const stateBoard = useSelector(state => state.board);
+
+  const statePlayMode = useSelector(state => state.playMode);
 
   const maxWidth = {
     '600': useMediaQuery("(max-width:600px)"),
@@ -26,14 +28,14 @@ const Nav = () => {
     setHamburgerMenu(!hamburgerMenuOpen);
   }
 
-  const disabled = state.playMode.active &&
-    state.playMode.accepted &&
-    (!state.playMode.draw || state.playMode.draw === Wording.verb.PROPOSE.toLowerCase()) &&
-    !state.playMode.resign &&
-    !state.playMode.leave &&
-    !state.playMode.timeOut &&
-    !state.board.isMate &&
-    !state.board.isStalemate;
+  const disabled = statePlayMode.active &&
+    statePlayMode.accepted &&
+    (!statePlayMode.draw || statePlayMode.draw === Wording.verb.PROPOSE.toLowerCase()) &&
+    !statePlayMode.resign &&
+    !statePlayMode.leave &&
+    !statePlayMode.timeOut &&
+    !stateBoard.isMate &&
+    !stateBoard.isStalemate;
 
   return (
     <>

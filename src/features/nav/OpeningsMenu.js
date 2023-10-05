@@ -9,7 +9,7 @@ import * as navConst from 'features/nav/navConst';
 import * as sanMode from 'features/mode/sanModeSlice';
 
 const OpeningsMenu = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -28,9 +28,7 @@ const OpeningsMenu = () => {
       <Button
         id="Nav-openingSearch"
         sx={{ pl: 2, justifyContent: 'flex-start' }}
-        variant={
-          state.nav.name === navConst.OPENING_SEARCH ? "contained" : "text"
-        }
+        variant={state.name === navConst.OPENING_SEARCH ? "contained" : "text"}
         startIcon={<SearchIcon />}
         onClick={handleClickOpeningSearch}
       >

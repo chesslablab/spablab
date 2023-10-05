@@ -8,22 +8,24 @@ import styles from 'styles/panel';
 import Ws from 'features/ws/Ws';
 
 const MovesTable = () => {
-  const state = useSelector(state => state);
+  const stateBoard = useSelector(state => state.board);
+
+  const statePanel = useSelector(state => state.panel);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (state.board.lan && !state.board.pieceGrabbed) {
-      const from = state.board.lan?.charAt(1);
-      const to = state.board.lan?.charAt(3);
+    if (stateBoard.lan && !stateBoard.pieceGrabbed) {
+      const from = stateBoard.lan?.charAt(1);
+      const to = stateBoard.lan?.charAt(3);
       if (
         from === '7' && to === '8' &&
-        state.board.piecePlaced?.ascii === ' P '
+        stateBoard.piecePlaced?.ascii === ' P '
       ) {
         dispatch(board.promotionDialog({ open: true }));
       } else if (
         from === '2' && to === '1' &&
-        state.board.piecePlaced?.ascii === ' p '
+        stateBoard.piecePlaced?.ascii === ' p '
       ) {
         dispatch(board.promotionDialog({ open: true }));
       } else {
@@ -31,14 +33,14 @@ const MovesTable = () => {
       }
     }
   }, [
-    state.board.pieceGrabbed,
-    state.board.lan,
-    state.board.piecePlaced?.ascii,
+    stateBoard.pieceGrabbed,
+    stateBoard.lan,
+    stateBoard.piecePlaced?.ascii,
     dispatch
   ]);
 
   const currentMove = (fen) => {
-    if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
+    if (stateBoard.fen.length - 1 + statePanel.history.back === fen ) {
       return styles.panel.movesTable.tableCell.currentMove;
     }
 
@@ -48,7 +50,7 @@ const MovesTable = () => {
   const moves = () => {
     let j = 1;
     let rows = Movetext.toRows(
-      state.board.movetext?.replace(/\s?\{[^}]+\}/g, '')
+      stateBoard.movetext?.replace(/\s?\{[^}]+\}/g, '')
         .replace(/\s?\$[1-9][0-9]*/g, '')
         .trim()
     );
@@ -70,7 +72,7 @@ const MovesTable = () => {
           sx={[styles.panel.movesTable.tableCell, currentMove(row.wFen)]}
           onClick={() => {
             if (row.w !== '...') {
-              dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.wFen }));
+              dispatch(panel.goTo({ back: stateBoard.fen.length - 1 - row.wFen }));
             }
           }}
         >
@@ -80,7 +82,7 @@ const MovesTable = () => {
           sx={[styles.panel.movesTable.tableCell, currentMove(row.bFen)]}
           onClick={() => {
             if (row.b) {
-              dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.bFen }));
+              dispatch(panel.goTo({ back: stateBoard.fen.length - 1 - row.bFen }));
             }
           }}
         >
@@ -90,19 +92,15 @@ const MovesTable = () => {
     });
   };
 
-  if (!state.ravMode.active) {
-    return (
-      <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
-        <Table stickyHeader size="small" aria-label="Movetext">
-          <TableBody>
-            {moves()}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
-  }
-
-  return null;
+  return (
+    <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
+      <Table stickyHeader size="small" aria-label="Movetext">
+        <TableBody>
+          {moves()}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 }
 
 export default MovesTable;

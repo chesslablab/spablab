@@ -11,12 +11,12 @@ const filterOptions = createFilterOptions({
 });
 
 const WhitePlayerAutocomplete = () => {
-  const state = useSelector((state) => state);
-  
+  const state = useSelector(state => state.playerAutocomplete);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (state.playerAutocomplete.data.length === 0) {
+    if (state.data.length === 0) {
       fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/player`)
         .then(res => {
           if (res.status === 200) {
@@ -29,15 +29,15 @@ const WhitePlayerAutocomplete = () => {
         });
     }
   }, [
-    state.playerAutocomplete.data.length,
+    state.data.length,
     dispatch
   ]);
 
   return (
     <Autocomplete
-      loading={state.playerAutocomplete.data.length === 0}
+      loading={state.data.length === 0}
       id="White"
-      options={state.playerAutocomplete.data}
+      options={state.data}
       filterOptions={filterOptions}
       renderInput={(params) =>
         <TextField {...params}

@@ -13,8 +13,8 @@ import {
 import * as nav from 'features/nav/navSlice';
 
 const SettingsDialog = () => {
-  const state = useSelector((state) => state);
-  
+  const state = useSelector(state => state.nav);
+
   const dispatch = useDispatch();
 
   const handleAnimationChange = (event: Event) => {
@@ -36,7 +36,7 @@ const SettingsDialog = () => {
   };
 
   return (
-    <Dialog open={state.nav.dialogs.settings.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.settings.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Settings
         <IconButton onClick={() => dispatch(nav.settingsDialog({ open: false }))}>
@@ -49,8 +49,8 @@ const SettingsDialog = () => {
             label="Animate the chess pieces while playing"
             control={<Checkbox
               name="pieceAnimation"
-              checked={state.nav.dialogs.settings.fields.pieceAnimation === 'on'}
-              value={state.nav.dialogs.settings.fields.pieceAnimation}
+              checked={state.dialogs.settings.fields.pieceAnimation === 'on'}
+              value={state.dialogs.settings.fields.pieceAnimation}
               onChange={handleAnimationChange}
             />}
           />
@@ -58,8 +58,8 @@ const SettingsDialog = () => {
             label="Display computer evaluation while playing"
             control={<Checkbox
               name="eval"
-              checked={state.nav.dialogs.settings.fields.eval === 'on'}
-              value={state.nav.dialogs.settings.fields.eval}
+              checked={state.dialogs.settings.fields.eval === 'on'}
+              value={state.dialogs.settings.fields.eval}
               onChange={handleEvalChange}
             />}
           />
@@ -67,8 +67,8 @@ const SettingsDialog = () => {
             label="Display chess heuristics while playing"
             control={<Checkbox
               name="heuristics"
-              checked={state.nav.dialogs.settings.fields.heuristics === 'on'}
-              value={state.nav.dialogs.settings.fields.heuristics}
+              checked={state.dialogs.settings.fields.heuristics === 'on'}
+              value={state.dialogs.settings.fields.heuristics}
               onChange={handleHeuristicsChange}
             />}
           />

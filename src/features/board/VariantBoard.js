@@ -11,7 +11,15 @@ import Ws from 'features/ws/Ws';
 import ResizeSlider from './ResizeSlider';
 
 const VariantBoard = () => {
-  const state = useSelector(state => state);
+  const stateFenMode = useSelector(state => state.fenMode);
+
+  const stateSanMode = useSelector(state => state.sanMode);
+
+  const stateRavMode = useSelector(state => state.ravMode);
+
+  const statePlayMode = useSelector(state => state.playMode);
+
+  const stateStockfishMode = useSelector(state => state.stockfishMode);
 
   const dispatch = useDispatch();
 
@@ -19,7 +27,18 @@ const VariantBoard = () => {
     dispatch(Ws.connect()).then(() => Ws.start(variantConst.CLASSICAL, modeConst.FEN));
   }, [dispatch]);
 
-  const active = Object.values(state).find((val, key) => val.active);
+  let active;
+  if (stateFenMode.active) {
+    active = stateFenMode;
+  } else if (stateSanMode.active) {
+    active = stateSanMode;
+  } else if (stateRavMode.active) {
+    active = stateRavMode;
+  } else if (statePlayMode.active) {
+    active = statePlayMode;
+  } else if (stateStockfishMode.active) {
+    active = stateStockfishMode;
+  }
 
   let board;
   if (active?.variant === variantConst.CAPABLANCA) {

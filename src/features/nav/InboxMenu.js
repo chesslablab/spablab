@@ -8,7 +8,7 @@ import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 
 const InboxMenu = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ const InboxMenu = () => {
       <Button
         id="Nav-inbox"
         sx={{ pl: 2, justifyContent: 'flex-start' }}
-        variant={state.nav.name === navConst.INBOX ? "contained" : "text"}
+        variant={state.name === navConst.INBOX ? "contained" : "text"}
         startIcon={<EmailIcon />}
         onClick={handleClickInbox}
       >

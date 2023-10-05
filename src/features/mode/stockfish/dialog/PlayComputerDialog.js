@@ -23,8 +23,8 @@ import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
 
 const PlayComputerDialog = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.stockfishMode);
+
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
@@ -105,7 +105,7 @@ const PlayComputerDialog = () => {
   }
 
   return (
-    <Dialog open={state.stockfishMode.dialogs.playComputer.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.playComputer.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play Computer
         <IconButton onClick={() => dispatch(stockfishMode.playComputerDialog({ open: false }))}>

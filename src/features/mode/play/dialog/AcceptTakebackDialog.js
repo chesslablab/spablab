@@ -5,8 +5,8 @@ import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
 const AcceptTakebackDialog = () => {
-  const state = useSelector((state) => state);
-  
+  const state = useSelector(state => state.playMode);
+
   const dispatch = useDispatch();
 
   const handleTakebackAccept = (event) => {
@@ -18,7 +18,7 @@ const AcceptTakebackDialog = () => {
 
   return (
     <Dialog
-      open={state.playMode.dialogs.acceptTakeback.open}
+      open={state.dialogs.acceptTakeback.open}
       maxWidth="xs"
       fullWidth={true}
     >

@@ -6,10 +6,14 @@ import Wording from 'common/Wording.js';
 import * as playMode from 'features/mode/playModeSlice';
 
 const BlackTimer = () => {
-  const state = useSelector(state => state);
+  const stateBoard = useSelector(state => state.board);
+
+  const statePlayMode = useSelector(state => state.playMode);
+
   const dispatch = useDispatch();
 
-  const [count, setCount] = useState(state.playMode.timer.b);
+  const [count, setCount] = useState(statePlayMode.timer.b);
+
   const [intervalId, setIntervalId] = useState(0);
 
   const counter = useCallback(() => setInterval(() => {
@@ -19,51 +23,51 @@ const BlackTimer = () => {
   ]);
 
   useEffect(() => {
-    setCount(prevCount => prevCount - state.playMode.play.jwt_decoded.increment);
+    setCount(prevCount => prevCount - statePlayMode.play.jwt_decoded.increment);
   }, [
-    state.playMode.play.jwt_decoded.increment,
+    statePlayMode.play.jwt_decoded.increment,
   ]);
 
   useEffect(() => {
-    if (state.board.turn === Pgn.symbol.BLACK) {
+    if (stateBoard.turn === Pgn.symbol.BLACK) {
       setIntervalId(counter());
     }
   }, [
-    state.board.turn,
+    stateBoard.turn,
     counter,
   ]);
 
   useEffect(() => {
-    if (state.board.turn === Pgn.symbol.WHITE) {
+    if (stateBoard.turn === Pgn.symbol.WHITE) {
       clearInterval(intervalId);
-      setCount(prevCount => prevCount + state.playMode.play.jwt_decoded.increment);
+      setCount(prevCount => prevCount + statePlayMode.play.jwt_decoded.increment);
     }
   }, [
-    state.board.turn,
+    stateBoard.turn,
     intervalId,
-    state.playMode.play.jwt_decoded.increment,
+    statePlayMode.play.jwt_decoded.increment,
   ]);
 
   useEffect(() => {
     if (
       count <= 0 ||
-      state.board.isMate ||
-      state.board.isStalemate ||
-      state.playMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
-      state.playMode.resign ||
-      state.playMode.leave
+      stateBoard.isMate ||
+      stateBoard.isStalemate ||
+      statePlayMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
+      statePlayMode.resign ||
+      statePlayMode.leave
     ) {
       clearInterval(intervalId);
       dispatch(playMode.timeOut());
     }
   }, [
     count,
-    state.board.isMate,
-    state.board.isStalemate,
-    state.playMode.draw,
-    state.playMode.resign,
-    state.playMode.leave,
-    state.playMode.play.jwt_decoded.min,
+    stateBoard.isMate,
+    stateBoard.isStalemate,
+    statePlayMode.draw,
+    statePlayMode.resign,
+    statePlayMode.leave,
+    statePlayMode.play.jwt_decoded.min,
     intervalId,
     dispatch,
   ]);

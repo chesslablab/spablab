@@ -19,8 +19,8 @@ import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
 
 const EndgameSkillsDialog = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.stockfishMode);
+
   const dispatch = useDispatch();
 
   const endgameTypes = ['P'];
@@ -59,7 +59,7 @@ const EndgameSkillsDialog = () => {
   };
 
   return (
-    <Dialog open={state.stockfishMode.dialogs.endgameSkills.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.endgameSkills.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Endgame skills
         <IconButton onClick={() => dispatch(stockfishMode.endgameSkillsDialog({ open: false }))}>

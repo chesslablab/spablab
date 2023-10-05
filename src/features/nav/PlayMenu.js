@@ -12,7 +12,7 @@ import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import Ws from 'features/ws/Ws';
 
 const PlayMenu = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const PlayMenu = () => {
       <Button
         id="Nav-play"
         sx={{ pl: 2, justifyContent: 'flex-start' }}
-        variant={state.nav.name === navConst.PLAY ? "contained" : "text"}
+        variant={state.name === navConst.PLAY ? "contained" : "text"}
         startIcon={<GradientIcon />}
         onClick={handleClickPlay}
       >

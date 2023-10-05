@@ -6,7 +6,7 @@ import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
 const CapablancaFischerBoard = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.board);
 
   const dispatch = useDispatch();
 
@@ -16,10 +16,10 @@ const CapablancaFischerBoard = () => {
       imgsRef:  useRef([]),
       sqsRef: useRef([]),
       handleMove: (payload) => {
-        if (state.board.turn === Piece.color(payload.piece)) {
+        if (state.turn === Piece.color(payload.piece)) {
           // allow the king to be dropped into the castling rook
-          if (state.board.pieceGrabbed?.fen) {
-            if (Object.keys(state.board.pieceGrabbed.fen).includes(payload.sq)) {
+          if (state.pieceGrabbed?.fen) {
+            if (Object.keys(state.pieceGrabbed.fen).includes(payload.sq)) {
               dispatch(board.placePiece(payload));
             } else {
               dispatch(board.grabPiece(payload));
