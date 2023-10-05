@@ -6,6 +6,7 @@ import { getActiveMode } from 'app/store';
 
 const RavButtons = () => {
   const stateBoard = useSelector(state => state.board);
+  
   const statePanel = useSelector(state => state.panel);
 
   const handleDownloadImage = async () => {

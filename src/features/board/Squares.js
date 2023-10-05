@@ -7,8 +7,11 @@ import * as eventConst from 'features/eventConst';
 
 const Squares = ({props}) => {
   const statePlayMode = useSelector(state => state.playMode);
+
   const stateRavMode = useSelector(state => state.ravMode);
+
   const stateBoard = useSelector(state => state.board);
+
   const statePanel = useSelector(state => state.panel);
 
   const filterMove = () => {

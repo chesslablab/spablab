@@ -14,8 +14,11 @@ import * as progressDialog from 'features/progressDialogSlice';
 
 const Buttons = () => {
   const stateBoard = useSelector(state => state.board);
+
   const statePanel = useSelector(state => state.panel);
+
   const stateFenMode = useSelector(state => state.fenMode);
+
   const stateStockfishMode = useSelector(state => state.stockfishMode);
 
   const dispatch = useDispatch();
