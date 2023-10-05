@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
@@ -92,7 +93,7 @@ const ChessboardMenu = () => {
             Ws.start(variantConst.CAPABLANCA_FISCHER, modeConst.FEN);
           }}
         >
-          <BlurOnIcon size="small" />&nbsp;Capablanca-Fischer
+          <AllInclusiveIcon size="small" />&nbsp;Capablanca-Fischer
         </MenuItem>
         <Divider />
         <MenuItem

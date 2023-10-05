@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
@@ -44,6 +45,8 @@ const VariantIcon = ({props}) => {
     return <ShuffleIcon />;
   } else if (props.variant === variantConst.CAPABLANCA) {
     return <BlurOnIcon />;
+  } else if (props.variant === variantConst.CAPABLANCA_FISCHER) {
+    return <AllInclusiveIcon />;
   }
 
   return null;
