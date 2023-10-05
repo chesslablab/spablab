@@ -29,7 +29,7 @@ const VariantTextField = ({ props }) => {
           name="startPos"
           label="Start position"
           variant="filled"
-          helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+          helperText="Example: RNBQKBNR"
           value={startPos}
           onChange={handleStartPosChange}
           margin="dense"
@@ -44,7 +44,7 @@ const VariantTextField = ({ props }) => {
           name="startPos"
           label="Start position"
           variant="filled"
-          helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
+          helperText="Example: ARNBQKBNRC"
           value={startPos}
           onChange={handleStartPosChange}
           margin="dense"

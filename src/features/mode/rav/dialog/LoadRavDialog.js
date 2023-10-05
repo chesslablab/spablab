@@ -128,7 +128,7 @@ const LoadRavDialog = () => {
                   name="startPos"
                   label="Start position"
                   variant="filled"
-                  helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+                  helperText="Example: RNBQKBNR"
                   margin="dense"
               />
               : null
@@ -141,7 +141,7 @@ const LoadRavDialog = () => {
                   name="startPos"
                   label="Start position"
                   variant="filled"
-                  helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
+                  helperText="Example: ARNBQKBNRC"
                   margin="dense"
               />
               : null
