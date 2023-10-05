@@ -26,7 +26,7 @@ const handleDownloadImage = async () => {
   });
 
   const a = document.createElement('a');
-  
+
   a.href = canvas.toDataURL('image/png', 1);
   a.download = "heuristics.png";
   a.click();
@@ -54,11 +54,11 @@ const charts = (data) => {
 };
 
 const Heuristics = () => {
-  const state = useSelector(state => state);
-  if (state.panel.dialogs.heuristics.heuristics) {
-    const data = initData(state.panel.dialogs.heuristics.heuristics.evalNames);
-    state.panel.dialogs.heuristics.heuristics.balance.forEach((item, i) => {
-      state.panel.dialogs.heuristics.heuristics.evalNames.forEach((evalName, j) => {
+  const state = useSelector(state => state.panel);
+  if (state.dialogs.heuristics.heuristics) {
+    const data = initData(state.dialogs.heuristics.heuristics.evalNames);
+    state.dialogs.heuristics.heuristics.balance.forEach((item, i) => {
+      state.dialogs.heuristics.heuristics.evalNames.forEach((evalName, j) => {
         data[evalName].push({
           [evalName]: item[j]
         });
@@ -81,13 +81,13 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 const HeuristicsDialog = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.panel);
   const dispatch = useDispatch();
 
   return (
     <Dialog
       fullScreen
-      open={state.panel.dialogs.heuristics.open}
+      open={state.dialogs.heuristics.open}
       onClose={() => dispatch(panel.heuristicsDialog({ open: false }))}
       TransitionComponent={Transition}
     >

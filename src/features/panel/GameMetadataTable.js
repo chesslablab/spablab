@@ -12,25 +12,25 @@ const styles = {
 };
 
 const GameMetadataTable = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.panel);
 
-  if (Object.keys(state.panel.tables.gameMetadata).length) {
+  if (Object.keys(state.tables.gameMetadata).length) {
     return <TableContainer className="noTextSelection">
       <Table stickyHeader size="small" aria-label="Movetext">
         <TableBody>
           <TableRow key={0} sx={styles.tableRow}>
             <TableCell align="left" sx={styles.tableCell}>
-              <b>{state.panel.tables.gameMetadata.White}</b><br/>
-              {state.panel.tables.gameMetadata["White ELO"]}
+              <b>{state.tables.gameMetadata.White}</b><br/>
+              {state.tables.gameMetadata["White ELO"]}
             </TableCell>
             <TableCell align="center" sx={styles.tableCell}>
-              <b>{state.panel.tables.gameMetadata.Result}</b><br/>
-              {state.panel.tables.gameMetadata.Event},  Rd {state.panel.tables.gameMetadata.Round}<br/>
-              {state.panel.tables.gameMetadata.Site}, {state.panel.tables.gameMetadata.Date}, {state.panel.tables.gameMetadata.ECO}
+              <b>{state.tables.gameMetadata.Result}</b><br/>
+              {state.tables.gameMetadata.Event},  Rd {state.tables.gameMetadata.Round}<br/>
+              {state.tables.gameMetadata.Site}, {state.tables.gameMetadata.Date}, {state.tables.gameMetadata.ECO}
             </TableCell>
             <TableCell align="right" sx={styles.tableCell}>
-              <b>{state.panel.tables.gameMetadata.Black}</b><br/>
-              {state.panel.tables.gameMetadata["Black ELO"]}
+              <b>{state.tables.gameMetadata.Black}</b><br/>
+              {state.tables.gameMetadata["Black ELO"]}
             </TableCell>
           </TableRow>
         </TableBody>
