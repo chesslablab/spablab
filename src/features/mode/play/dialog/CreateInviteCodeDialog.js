@@ -152,7 +152,8 @@ const CreateCode = () => {
 }
 
 const CopyCode = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.playMode);
+  
   const dispatch = useDispatch();
 
   return (
