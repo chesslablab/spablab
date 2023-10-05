@@ -7,7 +7,6 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
-  MenuItem,
   TextField
 } from '@mui/material';
 import * as fenMode from 'features/mode/fenModeSlice';
@@ -16,6 +15,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
+import VariantTextField from 'features/VariantTextField';
 
 const LoadFenDialog = () => {
   const state = useSelector((state) => state);
@@ -23,13 +23,15 @@ const LoadFenDialog = () => {
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
-    variant: variantConst.CLASSICAL
+    variant: variantConst.CLASSICAL,
+    startPos: '',
+    fen: '',
   });
 
-  const handleVariantChange = (event: Event) => {
+  const handleFenChange = (event: Event) => {
     setFields({
       ...fields,
-      variant: event.target.value
+      fen: event.target.value
     });
   };
 
@@ -59,71 +61,7 @@ const LoadFenDialog = () => {
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleLoad}>
-          <TextField
-            id="LoadFenDialog-TextField-variant"
-            select
-            required
-            fullWidth
-            name="variant"
-            label="Variant"
-            variant="filled"
-            value={fields.variant}
-            onChange={handleVariantChange}
-            margin="dense"
-          >
-            <MenuItem
-              id="LoadFenDialog-TextField-variant-MenuItem-classical"
-              key={0}
-              value="classical"
-            >
-              Classical
-            </MenuItem>
-            <MenuItem
-              id="LoadFenDialog-TextField-variant-MenuItem-960"
-              key={1}
-              value="960"
-            >
-              Fischer Random
-            </MenuItem>
-            <MenuItem
-              id="LoadFenDialog-TextField-variant-MenuItem-capablanca"
-              key={2}
-              value="capablanca"
-            >
-              Capablanca
-            </MenuItem>
-            <MenuItem key={3} value="capablanca-fischer">
-              Capablanca-Fischer
-            </MenuItem>
-          </TextField>
-          {
-            fields.variant === variantConst.CHESS_960
-              ? <TextField
-                  id="LoadFenDialog-TextField-startPos"
-                  fullWidth
-                  required
-                  name="startPos"
-                  label="Start position"
-                  variant="filled"
-                  helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-                  margin="dense"
-                />
-              : null
-          }
-          {
-            fields.variant === variantConst.CAPABLANCA_FISCHER
-              ? <TextField
-                  id="LoadFenDialog-TextField-startPos"
-                  fullWidth
-                  required
-                  name="startPos"
-                  label="Start position"
-                  variant="filled"
-                  helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
-                  margin="dense"
-              />
-              : null
-          }
+          <VariantTextField props={fields} />
           <TextField
             id="LoadFenDialog-TextField-fen"
             fullWidth
@@ -131,6 +69,7 @@ const LoadFenDialog = () => {
             name="fen"
             label="From FEN position"
             variant="filled"
+            onChange={handleFenChange}
             margin="dense"
           />
           <Button sx={{ mt: 2 }}
