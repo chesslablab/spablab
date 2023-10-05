@@ -16,7 +16,7 @@ import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import SelectColorButtons from 'features/SelectColorButtons';
+import SelectColorButtonGroup from 'features/SelectColorButtonGroup';
 
 const EndgameSkillsDialog = () => {
   const state = useSelector(state => state);
@@ -86,7 +86,7 @@ const EndgameSkillsDialog = () => {
           </MenuItem>
         </TextField>
         <Grid container justifyContent="center">
-          <SelectColorButtons props={fields} />
+          <SelectColorButtonGroup props={fields} />
         </Grid>
         <Button sx={{ mt: 2 }}
           fullWidth

@@ -21,7 +21,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import SelectColorButtons from 'features/SelectColorButtons';
+import SelectColorButtonGroup from 'features/SelectColorButtonGroup';
 
 const PlayOnlineDialog = () => {
   const state = useSelector((state) => state);
@@ -119,7 +119,7 @@ const PlayOnlineDialog = () => {
           onChange={handleIncrementChange}
         />
         <Grid container justifyContent="center">
-          <SelectColorButtons props={fields} />
+          <SelectColorButtonGroup props={fields} />
         </Grid>
         <TextField
           select
