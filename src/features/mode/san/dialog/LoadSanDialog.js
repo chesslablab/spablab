@@ -20,7 +20,7 @@ import multiAction from 'features/multiAction';
 import VariantTextField from 'features/VariantTextField';
 
 const LoadSanDialog = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.sanMode);
 
   const dispatch = useDispatch();
 
@@ -63,7 +63,7 @@ const LoadSanDialog = () => {
   };
 
   return (
-    <Dialog open={state.sanMode.dialogs.loadSan.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.loadSan.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         SAN Movetext
         <IconButton onClick={() => dispatch(sanMode.loadSanDialog({ open: false }))}>

@@ -15,7 +15,7 @@ import * as sanMode from 'features/mode/sanModeSlice';
 import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
 
 const SearchNameDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.sanMode);
 
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const SearchNameDialog = () => {
   }
 
   return (
-    <Dialog open={state.sanMode.dialogs.searchName.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.dialogs.searchName.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Name
         <IconButton onClick={() => {
