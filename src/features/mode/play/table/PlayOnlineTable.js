@@ -53,7 +53,7 @@ const VariantIcon = ({props}) => {
 }
 
 const PlayOnlineTable = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.playMode);
   const dispatch = useDispatch();
 
   const handlePlay = (hash) => {
@@ -63,7 +63,7 @@ const PlayOnlineTable = () => {
     dispatch(playMode.playOnlineDialog({ open: false }));
   };
 
-  if (state.playMode.tables.playOnline.length > 0) {
+  if (state.tables.playOnline.length > 0) {
     return (
       <TableContainer sx={{ mb: 3 }} component={Paper}>
         <Table aria-label="simple table">
@@ -73,20 +73,12 @@ const PlayOnlineTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {state.playMode.tables.playOnline.map((row, i) => (
+            {state.tables.playOnline.map((row, i) => (
               <TableRow
                 key={i}
                 selected={true}
-                sx={
-                  state.playMode.play?.hash === row.hash
-                    ? styles.disabled
-                    : styles.clickable
-                }
-                onClick={() =>
-                  state.playMode.play?.hash === row.hash
-                    ? null
-                    : handlePlay(row.hash)
-                }
+                sx={state.play?.hash === row.hash ? styles.disabled : styles.clickable}
+                onClick={() => state.play?.hash === row.hash ? null : handlePlay(row.hash)}
               >
                 <TableCell align="center">Guest</TableCell>
                 <TableCell align="center">{row.min}</TableCell>
