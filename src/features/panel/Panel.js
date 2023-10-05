@@ -6,25 +6,33 @@ import SanPanel from 'features/mode/san/panel/SanPanel';
 import StockfishPanel from 'features/mode/stockfish/panel/StockfishPanel';
 
 const Panel = () => {
-  const state = useSelector(state => state);
+  const stateFenMode = useSelector(state => state.fenMode);
 
-  if (state.fenMode.active) {
+  const statePlayMode = useSelector(state => state.playMode);
+
+  const stateRavMode = useSelector(state => state.ravMode);
+
+  const stateSanMode = useSelector(state => state.sanMode);
+
+  const stateStockfishMode = useSelector(state => state.stockfishMode);
+
+  if (stateFenMode.active) {
     return (
       <FenPanel />
     );
-  } else if (state.playMode.active) {
+  } else if (statePlayMode.active) {
     return (
       <PlayPanel/>
     );
-  } else if (state.ravMode.active) {
+  } else if (stateRavMode.active) {
     return (
       <RavPanel />
     );
-  } else if (state.sanMode.active) {
+  } else if (stateSanMode.active) {
     return (
       <SanPanel />
     );
-  } else if (state.stockfishMode.active) {
+  } else if (stateStockfishMode.active) {
     return (
       <StockfishPanel />
     );
