@@ -13,7 +13,13 @@ import * as panel from 'features/panel/panelSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const Buttons = () => {
-  const state = useSelector(state => state);
+  const stateBoard = useSelector(state => state.board);
+
+  const statePanel = useSelector(state => state.panel);
+
+  const stateFenMode = useSelector(state => state.fenMode);
+
+  const stateStockfishMode = useSelector(state => state.stockfishMode);
 
   const dispatch = useDispatch();
 
@@ -21,9 +27,9 @@ const Buttons = () => {
     await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
       body: JSON.stringify({
-        fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
+        fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
         variant: getActiveMode().variant,
-        flip: state.board.flip
+        flip: stateBoard.flip
       })
     }).then(res => res.blob())
       .then(blob => {
@@ -43,12 +49,12 @@ const Buttons = () => {
       method: 'POST',
       body: JSON.stringify({
         variant: getActiveMode().variant,
-        fen: state.board.fen[0],
-        movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
-        flip: state.board.flip,
-        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
-        ...(getActiveMode().variant === variantConst.CAPABLANCA_FISCHER) && {startPos: state.fenMode.startPos},
-        ...(state.fenMode.active) && {fen: state.fenMode.fen}
+        fen: stateBoard.fen[0],
+        movetext: Movetext.substring(stateBoard.movetext, statePanel.history.back),
+        flip: stateBoard.flip,
+        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: stateFenMode.startPos},
+        ...(getActiveMode().variant === variantConst.CAPABLANCA_FISCHER) && {startPos: stateFenMode.startPos},
+        ...(stateFenMode.active) && {fen: stateFenMode.fen}
       })
     })
     .then(res => res.blob())
@@ -70,11 +76,11 @@ const Buttons = () => {
       method: 'POST',
       body: JSON.stringify({
         variant: getActiveMode().variant,
-        movetext: Movetext.substring(state.board.movetext, state.panel.history.back),
-        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: state.fenMode.startPos},
-        ...(getActiveMode().variant === variantConst.CAPABLANCA_FISCHER) && {startPos: state.fenMode.startPos},
-        ...(state.fenMode.active) && {fen: state.board.fen[0]},
-        ...(state.stockfishMode.active) && {fen: state.board.fen[0]}
+        movetext: Movetext.substring(stateBoard.movetext, statePanel.history.back),
+        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: stateFenMode.startPos},
+        ...(getActiveMode().variant === variantConst.CAPABLANCA_FISCHER) && {startPos: stateFenMode.startPos},
+        ...(stateFenMode.active) && {fen: stateBoard.fen[0]},
+        ...(stateStockfishMode.active) && {fen: stateBoard.fen[0]}
       })
     })
     .then(res => res.json())
@@ -92,69 +98,67 @@ const Buttons = () => {
     });
   }
 
-  if (!state.ravMode.active) {
-    return (
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
+  return (
+    <Stack
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <IconButton
+        size="large"
+        id="Buttons-copyMovetext"
+        disabled={!stateBoard.movetext}
+        color="primary"
+        title="Copy movetext"
+        aria-label="copy"
+        onClick={() => navigator.clipboard.writeText(Movetext.substring(stateBoard.movetext, statePanel.history.back))}
       >
-        <IconButton
-          size="large"
-          id="Buttons-copyMovetext"
-          disabled={!state.board.movetext}
-          color="primary"
-          title="Copy movetext"
-          aria-label="copy"
-          onClick={() => navigator.clipboard.writeText(Movetext.substring(state.board.movetext, state.panel.history.back))}
-        >
-          <MoveDownIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="Buttons-copyFenString"
-          color="primary"
-          title="Copy FEN string"
-          aria-label="fen"
-          onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.panel.history.back])}
-        >
-          <WidgetsIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="Buttons-heuristics"
-          disabled={!state.board.movetext}
-          color="primary"
-          title="Heuristics"
-          aria-label="heuristics"
-          onClick={() => handleHeuristics()}
-        >
-          <BarChartIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="Buttons-downloadImage"
-          color="primary"
-          title="Download Image"
-          aria-label="flip"
-          onClick={() => handleDownloadImage()}
-        >
-          <InsertPhotoIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="Buttons-downloadVideo"
-          disabled={!state.board.movetext}
-          color="primary"
-          title="Download Video"
-          aria-label="flip"
-          onClick={() => handleDownloadMp4()}
-        >
-          <VideoCameraBackIcon />
-        </IconButton>
-      </Stack>
-    );
-  }
+        <MoveDownIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="Buttons-copyFenString"
+        color="primary"
+        title="Copy FEN string"
+        aria-label="fen"
+        onClick={() => navigator.clipboard.writeText(stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back])}
+      >
+        <WidgetsIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="Buttons-heuristics"
+        disabled={!stateBoard.movetext}
+        color="primary"
+        title="Heuristics"
+        aria-label="heuristics"
+        onClick={() => handleHeuristics()}
+      >
+        <BarChartIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="Buttons-downloadImage"
+        color="primary"
+        title="Download Image"
+        aria-label="flip"
+        onClick={() => handleDownloadImage()}
+      >
+        <InsertPhotoIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="Buttons-downloadVideo"
+        disabled={!stateBoard.movetext}
+        color="primary"
+        title="Download Video"
+        aria-label="flip"
+        onClick={() => handleDownloadMp4()}
+      >
+        <VideoCameraBackIcon />
+      </IconButton>
+    </Stack>
+  );
 }
 
 export default Buttons;

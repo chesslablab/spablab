@@ -5,8 +5,8 @@ import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
 const AcceptDrawDialog = () => {
-  const state = useSelector((state) => state);
-  
+  const state = useSelector(state => state.playMode);
+
   const dispatch = useDispatch();
 
   const handleDrawAccept = (event) => {
@@ -22,7 +22,7 @@ const AcceptDrawDialog = () => {
   };
 
   return (
-    <Dialog open={state.playMode.dialogs.acceptDraw.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.acceptDraw.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>A draw is being offered</DialogTitle>
       <DialogContent>
         <form onSubmit={handleDrawAccept}>

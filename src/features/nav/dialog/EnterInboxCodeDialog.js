@@ -16,7 +16,7 @@ import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 
 const EnterInboxCodeDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -52,7 +52,7 @@ const EnterInboxCodeDialog = () => {
   };
 
   return (
-    <Dialog open={state.nav.dialogs.enterInboxCode.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.dialogs.enterInboxCode.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Read Inbox
         <IconButton onClick={() => dispatch(nav.enterInboxCodeDialog({ open: false }))}>
@@ -61,7 +61,7 @@ const EnterInboxCodeDialog = () => {
       </DialogTitle>
       <DialogContent>
         {
-          !state.nav.dialogs.enterInboxCode.inbox
+          !state.dialogs.enterInboxCode.inbox
             ? <FormGroup>
                 <TextField
                   fullWidth
@@ -84,16 +84,16 @@ const EnterInboxCodeDialog = () => {
           : null
         }
         {
-          state.nav.dialogs.enterInboxCode.inbox
+          state.dialogs.enterInboxCode.inbox
             ? <FormGroup>
 
                 {
-                  state.nav.dialogs.enterInboxCode.inbox.fen
+                  state.dialogs.enterInboxCode.inbox.fen
                     ? <Card sx={{ mt: 2 }}>
                         <CardContent>
                           <Button
                             size="small"
-                            onClick={() => navigator.clipboard.writeText(state.nav.dialogs.enterInboxCode.inbox.fen)}
+                            onClick={() => navigator.clipboard.writeText(state.dialogs.enterInboxCode.inbox.fen)}
                           >
                             Copy FEN String
                           </Button>
@@ -106,7 +106,7 @@ const EnterInboxCodeDialog = () => {
                               spellCheck: false,
                               readOnly: true
                             }}
-                            value={state.nav.dialogs.enterInboxCode.inbox.fen}
+                            value={state.dialogs.enterInboxCode.inbox.fen}
                             margin="dense"
                           />
                         </CardContent>
@@ -114,12 +114,12 @@ const EnterInboxCodeDialog = () => {
                     : null
                 }
                 {
-                  state.nav.dialogs.enterInboxCode.inbox.movetext
+                  state.dialogs.enterInboxCode.inbox.movetext
                     ? <Card sx={{ mt: 2, mb: 1 }}>
                         <CardContent>
                           <Button
                             size="small"
-                            onClick={() => navigator.clipboard.writeText(state.nav.dialogs.enterInboxCode.inbox.movetext)}
+                            onClick={() => navigator.clipboard.writeText(state.dialogs.enterInboxCode.inbox.movetext)}
                           >
                             Copy SAN Movetext
                           </Button>
@@ -134,7 +134,7 @@ const EnterInboxCodeDialog = () => {
                               spellCheck: false,
                               readOnly: true
                             }}
-                            value={state.nav.dialogs.enterInboxCode.inbox.movetext}
+                            value={state.dialogs.enterInboxCode.inbox.movetext}
                             margin="dense"
                           />
                         </CardContent>

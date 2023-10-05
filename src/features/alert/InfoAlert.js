@@ -3,31 +3,31 @@ import { Alert, Backdrop, Button } from '@mui/material';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 
 const InfoAlert = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.infoAlert);
+
   const dispatch = useDispatch();
 
   const handleClose = () => {
     dispatch(infoAlert.close());
   };
 
-  if (state.infoAlert.open) {
+  if (state.open) {
     return (
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={state.infoAlert.open}
+        open={state.open}
       >
         <Alert
           severity="info"
           action={
-            state.infoAlert.button
+            state.button
               ? <Button color="inherit" size="small" onClick={handleClose}>
                   OK
                 </Button>
               : null
           }
         >
-          {state.infoAlert.mssg}
+          {state.mssg}
         </Alert>
       </Backdrop>
     );

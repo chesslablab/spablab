@@ -6,17 +6,19 @@ import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
 const FinishedButtons = () => {
-  const state = useSelector(state => state);
+  const stateBoard = useSelector(state => state.board);
+
+  const statePlayMode = useSelector(state => state.playMode);
+
   const dispatch = useDispatch();
 
-  const enabled = state.board.isMate ||
-    state.board.isStalemate ||
-    state.playMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
-    state.playMode.resign === Wording.verb.ACCEPT.toLowerCase() ||
-    state.playMode.timeOut;
+  const enabled = stateBoard.isMate ||
+    stateBoard.isStalemate ||
+    statePlayMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
+    statePlayMode.resign === Wording.verb.ACCEPT.toLowerCase() ||
+    statePlayMode.timeOut;
 
-  if (state.playMode.active) {
-    if (state.playMode.accepted) {
+    if (statePlayMode.accepted) {
       return (
         <ButtonGroup
           sx={{ mt: 1.5 }}
@@ -38,9 +40,8 @@ const FinishedButtons = () => {
         </ButtonGroup>
       );
     }
-  }
 
-  return null;
+    return null;
 }
 
 export default FinishedButtons;

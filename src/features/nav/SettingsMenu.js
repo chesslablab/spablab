@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as nav from 'features/nav/navSlice';
 const SettingsMenu = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -14,7 +14,7 @@ const SettingsMenu = () => {
       <Button
         id="Nav-settings"
         sx={{ pl: 2, borderRadius: 0, justifyContent: 'flex-start' }}
-        variant={state.nav.name === navConst.SETTINGS ? "contained" : "text"}
+        variant={state.name === navConst.SETTINGS ? "contained" : "text"}
         startIcon={<SettingsIcon />}
         onClick={() => dispatch(nav.settingsDialog({ open: true }))}
       >

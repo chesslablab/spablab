@@ -21,7 +21,7 @@ import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
 const ChessboardMenu = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -40,7 +40,7 @@ const ChessboardMenu = () => {
       <Button
         id="Nav-analysisBoard"
         sx={{ pl: 2, borderRadius: 0,justifyContent: 'flex-start' }}
-        variant={state.nav.name === navConst.ANALYSIS ? "contained" : "text"}
+        variant={state.name === navConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
       >

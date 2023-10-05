@@ -6,8 +6,8 @@ import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
 const CapablancaBoard = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.board);
+
   const dispatch = useDispatch();
 
   return (
@@ -16,7 +16,7 @@ const CapablancaBoard = () => {
       imgsRef:  useRef([]),
       sqsRef: useRef([]),
       handleMove: (payload) => {
-        if (state.board.turn === Piece.color(payload.piece)) {
+        if (state.turn === Piece.color(payload.piece)) {
           dispatch(board.grabPiece(payload));
           Ws.legal(payload.sq);
         } else {

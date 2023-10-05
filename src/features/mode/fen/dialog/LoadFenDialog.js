@@ -18,7 +18,7 @@ import multiAction from 'features/multiAction';
 import VariantTextField from 'features/VariantTextField';
 
 const LoadFenDialog = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.fenMode);
 
   const dispatch = useDispatch();
 
@@ -52,7 +52,7 @@ const LoadFenDialog = () => {
   };
 
   return (
-    <Dialog open={state.fenMode.dialogs.loadFen.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.loadFen.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         FEN String
         <IconButton onClick={() => dispatch(fenMode.loadFenDialog({ open: false }))}>

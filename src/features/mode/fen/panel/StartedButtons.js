@@ -3,28 +3,28 @@ import { Button, ButtonGroup } from '@mui/material/';
 import Ws from 'features/ws/Ws';
 
 const StartedButtons = () => {
-  const state = useSelector(state => state);
+  const stateBoard = useSelector(state => state.board);
 
-  if (state.fenMode.active) {
-    if (state.board.movetext) {
-      return (
-        <ButtonGroup
-          sx={{ mt: 1.5 }}
-          size="small"
-          aria-label="Game Buttons"
-          orientation="vertical"
-          fullWidth={true}
+  const statePanel = useSelector(state => state.panel);
+
+  if (stateBoard.movetext) {
+    return (
+      <ButtonGroup
+        sx={{ mt: 1.5 }}
+        size="small"
+        aria-label="Game Buttons"
+        orientation="vertical"
+        fullWidth={true}
+      >
+        <Button
+          id="StartedButtons-Button-undoMove"
+          disabled={statePanel.history.back !== 0}
+          onClick={() => Ws.undo()}
         >
-          <Button
-            id="StartedButtons-Button-undoMove"
-            disabled={state.panel.history.back !== 0}
-            onClick={() => Ws.undo()}
-          >
-            Takeback
-          </Button>
-        </ButtonGroup>
-      );
-    }
+          Takeback
+        </Button>
+      </ButtonGroup>
+    );
   }
 
   return null;

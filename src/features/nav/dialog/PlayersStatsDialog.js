@@ -20,10 +20,10 @@ import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const PlayersStatsDialog = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
-  
+
   const [result, setResult] = useState([]);
 
   const handleViewStats = async (event) => {
@@ -53,7 +53,7 @@ const PlayersStatsDialog = () => {
   };
 
   return (
-    <Dialog open={state.nav.dialogs.playersStats.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.dialogs.playersStats.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Players Stats
         <IconButton onClick={() => {

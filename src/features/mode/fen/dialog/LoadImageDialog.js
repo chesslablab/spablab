@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as fenMode from 'features/mode/fenModeSlice';
 
 export default function LoadImageDialog() {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.fenMode);
 
   const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ export default function LoadImageDialog() {
   return (
     <div>
       <Dialog
-        open={state.fenMode.dialogs.loadImage.open}
+        open={state.dialogs.loadImage.open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

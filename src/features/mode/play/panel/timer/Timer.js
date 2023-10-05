@@ -5,14 +5,14 @@ import WhiteTimer from 'features/mode/play/panel/timer/WhiteTimer';
 import styles from 'styles/panel';
 
 const Timer = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.playMode);
 
-  if (state.playMode.active) {
-    if (state.playMode.accepted) {
+  if (state.active) {
+    if (state.accepted) {
       return (
         <Box sx={styles.panel.timer}>
-          <WhiteTimer key={`w${state.playMode.timer.w}`} />
-          <BlackTimer key={`b${state.playMode.timer.w}`} />
+          <WhiteTimer key={`w${state.timer.w}`} />
+          <BlackTimer key={`b${state.timer.w}`} />
         </Box>
       );
     }

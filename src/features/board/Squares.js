@@ -6,34 +6,40 @@ import AlgebraicNotation from 'features/board/AlgebraicNotation';
 import * as eventConst from 'features/eventConst';
 
 const Squares = ({props}) => {
-  const state = useSelector(state => state);
+  const statePlayMode = useSelector(state => state.playMode);
+
+  const stateRavMode = useSelector(state => state.ravMode);
+
+  const stateBoard = useSelector(state => state.board);
+
+  const statePanel = useSelector(state => state.panel);
 
   const filterMove = () => {
-    if (state.ravMode.active) {
+    if (stateRavMode.active) {
       return false;
-    } else if (state.playMode.active) {
+    } else if (statePlayMode.active) {
       if (
-        !state.playMode.accepted ||
-        state.board.isMate ||
-        state.board.isStalemate ||
-        state.playMode.draw ||
-        state.playMode.resign ||
-        state.playMode.leave ||
-        state.playMode.timeOut ||
-        state.panel.history.back !== 0
+        !statePlayMode.accepted ||
+        stateBoard.isMate ||
+        stateBoard.isStalemate ||
+        statePlayMode.draw ||
+        statePlayMode.resign ||
+        statePlayMode.leave ||
+        statePlayMode.timeOut ||
+        statePanel.history.back !== 0
       ) {
         return false;
       }
-      if (state.playMode.accepted) {
-        if (state.board.turn !== state.playMode.play.color) {
+      if (statePlayMode.accepted) {
+        if (stateBoard.turn !== statePlayMode.play.color) {
           return false;
         }
       }
     } else {
       if (
-        state.board.isMate ||
-        state.board.isStalemate ||
-        state.panel.history.back !== 0
+        stateBoard.isMate ||
+        stateBoard.isStalemate ||
+        statePanel.history.back !== 0
       ) {
         return false;
       }
@@ -43,52 +49,48 @@ const Squares = ({props}) => {
   }
 
   const sqs = () => {
-    const fen = state.board.fen[state.board.fen.length - 1 + state.panel.history.back].split(' ');
+    const fen = stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back].split(' ');
     const ascii = Ascii.toAscii(fen[0]);
     return Ascii.flip(
-      state.board.flip,
+      stateBoard.flip,
       ascii
     ).map((rank, i) => {
       return rank.map((piece, j) => {
         let payload = { piece: piece };
         let isLegal, isSelected, isCheck = '';
         let color = (i + j) % 2 !== 0 ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-        state.board.flip === Pgn.symbol.WHITE
+        stateBoard.flip === Pgn.symbol.WHITE
           ? payload = {
               ...payload,
               i: i,
               j: j,
-              sq: Ascii.fromIndexToAlgebraic(
-                i,
-                j,
-                state.board.size
-              )
+              sq: Ascii.fromIndexToAlgebraic(i, j, stateBoard.size)
             }
           : payload = {
             ...payload,
-            i: state.board.size.ranks - 1 - i,
-            j: state.board.size.files - 1 - j,
+            i: stateBoard.size.ranks - 1 - i,
+            j: stateBoard.size.files - 1 - j,
             sq: Ascii.fromIndexToAlgebraic(
-              state.board.size.ranks - 1 - i,
-              state.board.size.files - 1 - j,
-              state.board.size
+              stateBoard.size.ranks - 1 - i,
+              stateBoard.size.files - 1 - j,
+              stateBoard.size
             )
           };
-        if (state.board.pieceGrabbed) {
-          if (state.board.pieceGrabbed.sq === payload.sq) {
+        if (stateBoard.pieceGrabbed) {
+          if (stateBoard.pieceGrabbed.sq === payload.sq) {
             isSelected = 'isSelected';
           }
-          if (state.board.pieceGrabbed.fen) {
-            if (Object.keys(state.board.pieceGrabbed.fen).includes(payload.sq)) {
+          if (stateBoard.pieceGrabbed.fen) {
+            if (Object.keys(stateBoard.pieceGrabbed.fen).includes(payload.sq)) {
               isLegal = 'isLegal';
             }
           }
-        } else if (state.board.isCheck) {
-          if (state.board.turn === Pgn.symbol.WHITE) {
+        } else if (stateBoard.isCheck) {
+          if (stateBoard.turn === Pgn.symbol.WHITE) {
             if (piece === ' K ') {
               isCheck = 'isCheck';
             }
-          } else if (state.board.turn === Pgn.symbol.BLACK) {
+          } else if (stateBoard.turn === Pgn.symbol.BLACK) {
             if (piece === ' k ') {
               isCheck = 'isCheck';
             }
@@ -110,7 +112,7 @@ const Squares = ({props}) => {
           onMouseDown={() => {
             if (filterMove()) {
               payload.piecePlaced = {
-                ascii: state.board?.pieceGrabbed?.ascii,
+                ascii: stateBoard?.pieceGrabbed?.ascii,
                 event: eventConst.ON_MOUSE_DOWN
               };
               props.handleMove(payload);
@@ -120,7 +122,7 @@ const Squares = ({props}) => {
             ev.preventDefault();
             if (filterMove()) {
               payload.piecePlaced = {
-                ascii: state.board?.pieceGrabbed?.ascii,
+                ascii: stateBoard?.pieceGrabbed?.ascii,
                 event: eventConst.ON_DROP
               };
               props.handleMove(payload);
@@ -139,7 +141,7 @@ const Squares = ({props}) => {
                     alt={Piece.unicode[piece].char}
                     ref={el => props.imgsRef.current[payload.sq] = el}
                     src={Piece.unicode[piece].char}
-                    draggable={Piece.color(piece) === state.board.turn ? true : false}
+                    draggable={Piece.color(piece) === stateBoard.turn ? true : false}
                     onDragStart={() => {
                       if (filterMove()) {
                         payload.piecePlaced = { event: eventConst.ON_DRAG_START };
@@ -156,7 +158,7 @@ const Squares = ({props}) => {
   }
 
   return (
-    <div className={[props.className, state.panel.history.back !== 0 ? 'past' : 'present'].join(' ')}>
+    <div className={[props.className, statePanel.history.back !== 0 ? 'past' : 'present'].join(' ')}>
       {sqs()}
     </div>
   );

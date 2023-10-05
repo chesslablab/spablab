@@ -5,15 +5,17 @@ import { IconButton, Stack } from "@mui/material";
 import { getActiveMode } from 'app/store';
 
 const RavButtons = () => {
-  const state = useSelector(state => state);
+  const stateBoard = useSelector(state => state.board);
+  
+  const statePanel = useSelector(state => state.panel);
 
   const handleDownloadImage = async () => {
     await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
       body: JSON.stringify({
-        fen: state.board.fen[state.board.fen.length - 1 + state.panel.history.back],
+        fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
         variant: getActiveMode().variant,
-        flip: state.board.flip
+        flip: stateBoard.flip
       })
     }).then(res => res.blob())
       .then(blob => {
@@ -27,40 +29,38 @@ const RavButtons = () => {
       });
   }
 
-  const disabled = !state.board.movetext;
+  const disabled = !stateBoard.movetext;
 
-  if (state.ravMode.active) {
-    return (
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
+  return (
+    <Stack
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <IconButton
+        size="large"
+        id="RavButtons-copyFenString"
+        disabled={disabled}
+        color="primary"
+        title="Copy FEN string"
+        aria-label="fen"
+        onClick={() => navigator.clipboard.writeText(stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back])}
       >
-        <IconButton
-          size="large"
-          id="RavButtons-copyFenString"
-          disabled={disabled}
-          color="primary"
-          title="Copy FEN string"
-          aria-label="fen"
-          onClick={() => navigator.clipboard.writeText(state.board.fen[state.board.fen.length - 1 + state.panel.history.back])}
-        >
-          <WidgetsIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="RavButtons-downloadImage"
-          disabled={disabled}
-          color="primary"
-          title="Download Image"
-          aria-label="flip"
-          onClick={() => handleDownloadImage()}
-        >
-          <InsertPhotoIcon />
-        </IconButton>
-      </Stack>
-    );
-  }
+        <WidgetsIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="RavButtons-downloadImage"
+        disabled={disabled}
+        color="primary"
+        title="Download Image"
+        aria-label="flip"
+        onClick={() => handleDownloadImage()}
+      >
+        <InsertPhotoIcon />
+      </IconButton>
+    </Stack>
+  );
 }
 
 export default RavButtons;

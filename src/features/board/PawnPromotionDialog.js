@@ -23,8 +23,8 @@ import Ws from 'features/ws/Ws';
 import styles from 'styles/avatar';
 
 const PawnPromotionDialog = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.board);
+
   const dispatch = useDispatch();
 
   const [piece, setPiece] = useState('Q');
@@ -35,18 +35,18 @@ const PawnPromotionDialog = () => {
 
   const handlePromote = (event) => {
     event.preventDefault();
-    Ws.playLan(state.board.lan + piece);
+    Ws.playLan(state.lan + piece);
     dispatch(board.underpromote({
-      turn: state.board.turn,
+      turn: state.turn,
       piece: piece,
-      sq: state.board.lan.slice(-2)
+      sq: state.lan.slice(-2)
     }));
     dispatch(board.promotionDialog({ open: false }));
     setPiece('Q');
   }
 
   return (
-    <Dialog open={state.board.dialogs.promotion.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.dialogs.promotion.open} maxWidth="sm" fullWidth={true}>
       <DialogContent>
         <form onSubmit={handlePromote}>
           <Grid container justifyContent="center">
@@ -57,7 +57,7 @@ const PawnPromotionDialog = () => {
                 onClick={() => handleSelectPiece('Q')}
               >
                 <Avatar
-                  src={state.board.turn === Pgn.symbol.BLACK ? wQueen : bQueen}
+                  src={state.turn === Pgn.symbol.BLACK ? wQueen : bQueen}
                   sx={piece === 'Q' ? styles.avatar.selected : styles.avatar}
                 />
               </IconButton>
@@ -67,7 +67,7 @@ const PawnPromotionDialog = () => {
                 onClick={() => handleSelectPiece('R')}
               >
                 <Avatar
-                  src={state.board.turn === Pgn.symbol.BLACK ? wRook : bRook}
+                  src={state.turn === Pgn.symbol.BLACK ? wRook : bRook}
                   sx={piece === 'R' ? styles.avatar.selected : styles.avatar}
                 />
               </IconButton>
@@ -77,7 +77,7 @@ const PawnPromotionDialog = () => {
                 onClick={() => handleSelectPiece('B')}
               >
                 <Avatar
-                  src={state.board.turn === Pgn.symbol.BLACK ? wBishop : bBishop}
+                  src={state.turn === Pgn.symbol.BLACK ? wBishop : bBishop}
                   sx={piece === 'B' ? styles.avatar.selected : styles.avatar}
                 />
               </IconButton>
@@ -87,7 +87,7 @@ const PawnPromotionDialog = () => {
                 onClick={() => handleSelectPiece('N')}
               >
                 <Avatar
-                  src={state.board.turn === Pgn.symbol.BLACK ? wKnight : bKnight}
+                  src={state.turn === Pgn.symbol.BLACK ? wKnight : bKnight}
                   sx={piece === 'N' ? styles.avatar.selected : styles.avatar}
                 />
               </IconButton>
