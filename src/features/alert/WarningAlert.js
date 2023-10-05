@@ -6,8 +6,8 @@ import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
 const WarningAlert = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.warningAlert);
+
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -15,11 +15,11 @@ const WarningAlert = () => {
     Ws.start(variantConst.CLASSICAL, modeConst.FEN);
   };
 
-  if (state.warningAlert.open) {
+  if (state.open) {
     return (
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={state.warningAlert.open}
+        open={state.open}
       >
         <Alert
           severity="warning"
@@ -29,7 +29,7 @@ const WarningAlert = () => {
             </Button>
           }
         >
-          {state.warningAlert.mssg}
+          {state.mssg}
         </Alert>
       </Backdrop>
     );
