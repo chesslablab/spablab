@@ -8,7 +8,6 @@ import {
   DialogTitle,
   Grid,
   IconButton,
-  MenuItem,
   Slider,
   TextField,
   Typography
@@ -20,6 +19,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import ColorButtonGroup from 'features/ColorButtonGroup';
+import VariantTextField from 'features/VariantTextField';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
@@ -43,12 +43,12 @@ const CreateCode = () => {
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
+    variant: variantConst.CLASSICAL,
+    startPos: '',
+    fen: '',
     minutes: 5,
     increment: 3,
     color: 'rand',
-    variant: variantConst.CLASSICAL,
-    fen: '',
-    startPos: '',
   });
 
   const handleMinutesChange = (event: Event) => {
@@ -65,24 +65,10 @@ const CreateCode = () => {
     });
   };
 
-  const handleVariantChange = (event: Event) => {
-    setFields({
-      ...fields,
-      variant: event.target.value
-    });
-  };
-
   const handleFenChange = (event: Event) => {
     setFields({
       ...fields,
       fen: event.target.value
-    });
-  };
-
-  const handleStartPosChange = (event: Event) => {
-    setFields({
-      ...fields,
-      startPos: event.target.value
     });
   };
 
@@ -143,58 +129,7 @@ const CreateCode = () => {
         <Grid container justifyContent="center">
           <ColorButtonGroup props={fields} />
         </Grid>
-        <TextField
-          select
-          required
-          fullWidth
-          name="variant"
-          label="Variant"
-          variant="filled"
-          defaultValue={variantConst.CLASSICAL}
-          onChange={handleVariantChange}
-          margin="dense"
-        >
-          <MenuItem key={0} value="classical">
-            Classical
-          </MenuItem>
-          <MenuItem key={1} value="960">
-            Fischer Random
-          </MenuItem>
-          <MenuItem key={2} value="capablanca">
-            Capablanca
-          </MenuItem>
-          <MenuItem key={3} value="capablanca-fischer">
-            Capablanca-Fischer
-          </MenuItem>
-        </TextField>
-        {
-          fields.variant === variantConst.CHESS_960
-            ? <TextField
-                fullWidth
-                required
-                variant="filled"
-                name="startPos"
-                label="Start position"
-                helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-                onChange={handleStartPosChange}
-                margin="dense"
-            />
-            : null
-        }
-        {
-          fields.variant === variantConst.CAPABLANCA_FISCHER
-            ? <TextField
-                fullWidth
-                required
-                variant="filled"
-                name="startPos"
-                label="Start position"
-                helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
-                onChange={handleStartPosChange}
-                margin="dense"
-            />
-            : null
-        }
+        <VariantTextField props={fields} />
         <TextField
           fullWidth
           variant="filled"
