@@ -9,8 +9,10 @@ import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
 
 const History = () => {
-  const state = useSelector(state => state);
-  
+  const stateBoard = useSelector(state => state.board);
+
+  const statePanel = useSelector(state => state.panel);
+
   const dispatch = useDispatch();
 
   return (
@@ -25,12 +27,12 @@ const History = () => {
       />
       <Button
         startIcon={<FastRewindIcon />}
-        disabled={state.board.fen.length - 1 - Math.abs(state.panel.history.back) === 0}
-        onClick={() => dispatch(panel.goTo({ back: state.board.fen.length - 1 }))}
+        disabled={stateBoard.fen.length - 1 - Math.abs(statePanel.history.back) === 0}
+        onClick={() => dispatch(panel.goTo({ back: stateBoard.fen.length - 1 }))}
       />
       <Button
         startIcon={<SkipPreviousIcon />}
-        disabled={state.board.fen.length - 1 - Math.abs(state.panel.history.back) === 0}
+        disabled={stateBoard.fen.length - 1 - Math.abs(statePanel.history.back) === 0}
         onClick={() => {
           dispatch(panel.goBack());
           dispatch(board.browseHistory());
@@ -38,7 +40,7 @@ const History = () => {
       />
       <Button
         startIcon={<SkipNextIcon />}
-        disabled={state.panel.history.back === 0}
+        disabled={statePanel.history.back === 0}
         onClick={() => {
           dispatch(panel.goForward());
           dispatch(board.browseHistory());
@@ -46,7 +48,7 @@ const History = () => {
       />
       <Button
         startIcon={<FastForwardIcon />}
-        disabled={state.panel.history.back === 0}
+        disabled={statePanel.history.back === 0}
         onClick={() => {
           dispatch(panel.goToEnd());
           dispatch(board.browseHistory());
