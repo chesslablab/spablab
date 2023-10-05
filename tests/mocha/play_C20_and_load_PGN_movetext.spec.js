@@ -26,7 +26,7 @@ describe("Play C20 and load the PGN movetext", function () {
       .sendKeys("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6");
     {
       const element = await driver.findElement(
-        By.id("LoadFenDialog-TextField-variant")
+        By.id("TextField-variant")
       );
       await driver
         .actions({ bridge: true })
@@ -35,10 +35,10 @@ describe("Play C20 and load the PGN movetext", function () {
         .perform();
     }
     await driver
-      .findElement(By.id("LoadFenDialog-TextField-variant-MenuItem-960"))
+      .findElement(By.id("TextField-variant-MenuItem-960"))
       .click();
     await driver
-      .findElement(By.id("LoadFenDialog-TextField-startPos"))
+      .findElement(By.id("Variant-TextField-startPos"))
       .sendKeys("RNBQKBNR");
     await driver.findElement(By.id("LoadFenDialog-Button-load")).click();
     await driver.findElement(By.css(".e2 > img")).click();

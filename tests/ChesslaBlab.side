@@ -528,7 +528,7 @@
       "id": "09130493-6fcf-4122-9e0b-e110dc293991",
       "comment": "",
       "command": "mouseDown",
-      "target": "id=LoadFenDialog-TextField-variant",
+      "target": "id=TextField-variant",
       "targets": [
         ["id=:rp:", "id"],
         ["css=#\\3Arp\\3A", "css:finder"],
@@ -540,7 +540,7 @@
       "id": "157fd250-4baf-4491-8c85-f5374515b5b3",
       "comment": "",
       "command": "click",
-      "target": "id=LoadFenDialog-TextField-variant-MenuItem-960",
+      "target": "id=TextField-variant-MenuItem-960",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(2)", "css:finder"],
         ["xpath=//div[@id='menu-variant']/div[3]/ul/li[2]", "xpath:idRelative"],
@@ -552,7 +552,7 @@
       "id": "efc5e986-20ff-4eab-9b7f-a6a88894dcdc",
       "comment": "",
       "command": "type",
-      "target": "id=LoadFenDialog-TextField-startPos",
+      "target": "id=Variant-TextField-startPos",
       "targets": [
         ["id=:rr:", "id"],
         ["name=startPos", "name"],
@@ -1255,7 +1255,7 @@
       "id": "ddac19b9-4d44-4f58-98ed-2cd6f9c248ea",
       "comment": "",
       "command": "mouseDown",
-      "target": "id=LoadFenDialog-TextField-variant",
+      "target": "id=TextField-variant",
       "targets": [
         ["id=:rp:", "id"],
         ["css=#\\3Arp\\3A", "css:finder"],
@@ -1267,7 +1267,7 @@
       "id": "8b72f91a-ab05-4f9a-b945-5dc9ca792ff6",
       "comment": "",
       "command": "click",
-      "target": "id=LoadFenDialog-TextField-variant-MenuItem-960",
+      "target": "id=TextField-variant-MenuItem-960",
       "targets": [
         ["css=.MuiMenuItem-root:nth-child(2)", "css:finder"],
         ["xpath=//div[@id='menu-variant']/div[3]/ul/li[2]", "xpath:idRelative"],
@@ -1279,7 +1279,7 @@
       "id": "96787326-e397-4b7d-bb35-30b92339a7e9",
       "comment": "",
       "command": "type",
-      "target": "id=LoadFenDialog-TextField-startPos",
+      "target": "id=Variant-TextField-startPos",
       "targets": [
         ["id=:rr:", "id"],
         ["name=startPos", "name"],

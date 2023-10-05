@@ -23,7 +23,7 @@ const VariantTextField = ({ props }) => {
     if (variant === variantConst.CHESS_960) {
       return (
         <TextField
-          id="LoadFenDialog-TextField-startPos"
+          id="Variant-TextField-startPos"
           fullWidth
           required
           name="startPos"
@@ -38,7 +38,7 @@ const VariantTextField = ({ props }) => {
     } else if (variant === variantConst.CAPABLANCA_FISCHER) {
       return (
         <TextField
-          id="LoadFenDialog-TextField-startPos"
+          id="Variant-TextField-startPos"
           fullWidth
           required
           name="startPos"
@@ -90,7 +90,11 @@ const VariantTextField = ({ props }) => {
         >
           Capablanca
         </MenuItem>
-        <MenuItem key={3} value="capablanca-fischer">
+        <MenuItem
+          id="TextField-variant-MenuItem-capablanca-fischer"
+          key={3}
+          value="capablanca-fischer"
+        >
           Capablanca-Fischer
         </MenuItem>
       </TextField>
