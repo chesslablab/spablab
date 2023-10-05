@@ -5,7 +5,7 @@ import * as variantConst from 'features/mode/variantConst';
 const SelectVariantTextField = ({ props }) => {
   const [variant, setVariant] = useState('classical');
 
-  const [startPos, setStartPos] = useState(null);
+  const [startPos, setStartPos] = useState('');
 
   useEffect(() => {
     props.variant = variant;
@@ -18,6 +18,42 @@ const SelectVariantTextField = ({ props }) => {
   const handleStartPosChange = (event: Event) => {
     setStartPos(event.target.value);
   };
+
+  const StartPositionTextField = () => {
+    if (variant === variantConst.CHESS_960) {
+      return (
+        <TextField
+          id="LoadFenDialog-TextField-startPos"
+          fullWidth
+          required
+          name="startPos"
+          label="Start position"
+          variant="filled"
+          helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
+          value={startPos}
+          onChange={handleStartPosChange}
+          margin="dense"
+        />
+      );
+    } else if (variant === variantConst.CAPABLANCA_FISCHER) {
+      return (
+        <TextField
+          id="LoadFenDialog-TextField-startPos"
+          fullWidth
+          required
+          name="startPos"
+          label="Start position"
+          variant="filled"
+          helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
+          value={startPos}
+          onChange={handleStartPosChange}
+          margin="dense"
+        />
+      );
+    }
+
+    return null;
+  }
 
   return (
     <>
@@ -58,38 +94,7 @@ const SelectVariantTextField = ({ props }) => {
           Capablanca-Fischer
         </MenuItem>
       </TextField>
-      {
-        variant === variantConst.CHESS_960
-          ? <TextField
-              id="LoadFenDialog-TextField-startPos"
-              fullWidth
-              required
-              name="startPos"
-              label="Start position"
-              variant="filled"
-              helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-              value={startPos}
-              onChange={handleStartPosChange}
-              margin="dense"
-            />
-          : null
-      }
-      {
-        variant === variantConst.CAPABLANCA_FISCHER
-          ? <TextField
-              id="LoadFenDialog-TextField-startPos"
-              fullWidth
-              required
-              name="startPos"
-              label="Start position"
-              variant="filled"
-              helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
-              value={startPos}
-              onChange={handleStartPosChange}
-              margin="dense"
-          />
-          : null
-      }
+      <StartPositionTextField />
     </>
   );
 }
