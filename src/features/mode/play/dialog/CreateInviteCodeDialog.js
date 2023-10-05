@@ -22,19 +22,19 @@ import ColorButtonGroup from 'features/ColorButtonGroup';
 import VariantTextField from 'features/VariantTextField';
 
 const CreateInviteCodeDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.playMode);
 
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.playMode.dialogs.createInviteCode.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.createInviteCode.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play a Friend
         <IconButton onClick={() => dispatch(playMode.createInviteCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.playMode.play?.hash ? <CopyCode /> : <CreateCode />}
+      {state.play?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
@@ -163,7 +163,7 @@ const CopyCode = () => {
         type="text"
         name="sharecode"
         label="Share this code with a friend"
-        value={state.playMode.play.hash}
+        value={state.play.hash}
         margin="dense"
       />
       <Button sx={{ mt: 2 }}
@@ -171,7 +171,7 @@ const CopyCode = () => {
         size="large"
         variant="contained"
         onClick={() => {
-          navigator.clipboard.writeText(state.playMode.play.hash);
+          navigator.clipboard.writeText(state.play.hash);
           dispatch(playMode.createInviteCodeDialog({ open: false }));
       }}>
         Copy and Play
