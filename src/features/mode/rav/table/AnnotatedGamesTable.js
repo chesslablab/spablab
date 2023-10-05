@@ -52,7 +52,8 @@ const styles = {
 };
 
 const AnnotatedGamesTable = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.ravMode);
+
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {
@@ -98,7 +99,7 @@ const AnnotatedGamesTable = () => {
     >
       <Table stickyHeader aria-label="simple table">
         {
-          state.ravMode.tables.annotatedGames.length > 0
+          state.tables.annotatedGames.length > 0
             ? <TableHead>
                 <TableRow>
                   <TableCell sx={styles.eventCell} align="left">Event</TableCell>
@@ -116,7 +117,7 @@ const AnnotatedGamesTable = () => {
         }
         <TableBody>
           {
-            state.ravMode.tables.annotatedGames.map((item, i) => (
+            state.tables.annotatedGames.map((item, i) => (
               <TableRow
                 key={i}
                 hover={true}
