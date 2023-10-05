@@ -17,19 +17,19 @@ import Captcha from 'features/Captcha';
 import VariantTextField from 'features/VariantTextField';
 
 const CreateInboxCodeDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.nav.dialogs.createInboxCode.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.dialogs.createInboxCode.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Create Inbox
         <IconButton onClick={() => dispatch(nav.createInboxCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.nav.dialogs.createInboxCode.inbox?.hash ? <CopyCode /> : <CreateCode />}
+      {state.dialogs.createInboxCode.inbox?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
@@ -104,7 +104,7 @@ const CopyCode = () => {
         type="text"
         name="sharecode"
         label="Share this code with a friend"
-        value={state.nav.dialogs.createInboxCode.inbox.hash}
+        value={state.dialogs.createInboxCode.inbox.hash}
         margin="dense"
       />
       <Button sx={{ mt: 2 }}
@@ -112,7 +112,7 @@ const CopyCode = () => {
         size="large"
         variant="contained"
         onClick={() => {
-          navigator.clipboard.writeText(state.nav.dialogs.createInboxCode.inbox.hash);
+          navigator.clipboard.writeText(state.dialogs.createInboxCode.inbox.hash);
           dispatch(nav.createInboxCodeDialog({ open: false }));
       }}>
         Copy Inbox Code

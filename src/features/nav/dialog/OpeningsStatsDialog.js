@@ -11,12 +11,12 @@ import {
 import * as nav from 'features/nav/navSlice';
 
 const OpeningsStatsDialog = () => {
-  const state = useSelector((state) => state);
-  
+  const state = useSelector(state => state.nav);
+
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.nav.dialogs.openingsStats.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.dialogs.openingsStats.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Top 50 Openings
         <IconButton onClick={() => dispatch(nav.openingsStatsDialog({ open: false }))}>
@@ -28,7 +28,7 @@ const OpeningsStatsDialog = () => {
           <BarChart
             width={500}
             height={300}
-            data={state.nav.dialogs.openingsStats.stats?.winRateForWhite}
+            data={state.dialogs.openingsStats.stats?.winRateForWhite}
             margin={{
               right: 30,
               left: 20,
@@ -51,7 +51,7 @@ const OpeningsStatsDialog = () => {
           <BarChart
             width={500}
             height={300}
-            data={state.nav.dialogs.openingsStats.stats?.winRateForBlack}
+            data={state.dialogs.openingsStats.stats?.winRateForBlack}
             margin={{
               top: 30,
               right: 30,
@@ -75,7 +75,7 @@ const OpeningsStatsDialog = () => {
           <BarChart
             width={500}
             height={300}
-            data={state.nav.dialogs.openingsStats.stats?.drawRate}
+            data={state.dialogs.openingsStats.stats?.drawRate}
             margin={{
               top: 30,
               right: 30,
