@@ -15,7 +15,7 @@ import * as navConst from "features/nav/navConst";
 import * as nav from "features/nav/navSlice";
 
 const DatabaseMenu = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ const DatabaseMenu = () => {
       <Button
         id="Nav-database"
         sx={{ pl: 2, justifyContent: 'flex-start' }}
-        variant={state.nav.name === navConst.DATABASE ? "contained" : "text"}
+        variant={state.name === navConst.DATABASE ? "contained" : "text"}
         startIcon={<StorageIcon />}
         onClick={handleClickDatabase}
       >
