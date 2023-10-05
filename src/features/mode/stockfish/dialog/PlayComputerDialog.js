@@ -20,7 +20,7 @@ import * as nav from 'features/nav/navSlice';
 import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import SelectColorButtonGroup from 'features/SelectColorButtonGroup';
+import ColorButtonGroup from 'features/ColorButtonGroup';
 
 const PlayComputerDialog = () => {
   const state = useSelector(state => state);
@@ -135,7 +135,7 @@ const PlayComputerDialog = () => {
           {
             fields.position === 'start'
               ? <Grid container justifyContent="center">
-                <SelectColorButtonGroup props={fields} />
+                <ColorButtonGroup props={fields} />
               </Grid>
               : null
           }

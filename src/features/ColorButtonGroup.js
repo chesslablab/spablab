@@ -6,7 +6,7 @@ import bKing from 'assets/img/pieces/png/150/bKing.png';
 import Pgn from 'common/Pgn';
 import styles from 'styles/avatar';
 
-const SelectColorButtonGroup = ({ props }) => {
+const ColorButtonGroup = ({ props }) => {
   const [color, setColor] = useState('rand');
 
   useEffect(() => {
@@ -49,4 +49,4 @@ const SelectColorButtonGroup = ({ props }) => {
   );
 }
 
-export default SelectColorButtonGroup;
+export default ColorButtonGroup;

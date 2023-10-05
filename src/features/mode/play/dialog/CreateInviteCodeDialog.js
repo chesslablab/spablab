@@ -19,7 +19,7 @@ import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
-import SelectColorButtonGroup from 'features/SelectColorButtonGroup';
+import ColorButtonGroup from 'features/ColorButtonGroup';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state);
@@ -141,7 +141,7 @@ const CreateCode = () => {
           onChange={handleIncrementChange}
         />
         <Grid container justifyContent="center">
-          <SelectColorButtonGroup props={fields} />
+          <ColorButtonGroup props={fields} />
         </Grid>
         <TextField
           select
