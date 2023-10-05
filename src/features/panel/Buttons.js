@@ -17,7 +17,6 @@ const Buttons = () => {
   const statePanel = useSelector(state => state.panel);
   const stateFenMode = useSelector(state => state.fenMode);
   const stateStockfishMode = useSelector(state => state.stockfishMode);
-  const stateRavMode = useSelector(state => state.ravMode);
 
   const dispatch = useDispatch();
 
@@ -96,69 +95,67 @@ const Buttons = () => {
     });
   }
 
-  if (!stateRavMode.active) {
-    return (
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
+  return (
+    <Stack
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <IconButton
+        size="large"
+        id="Buttons-copyMovetext"
+        disabled={!stateBoard.movetext}
+        color="primary"
+        title="Copy movetext"
+        aria-label="copy"
+        onClick={() => navigator.clipboard.writeText(Movetext.substring(stateBoard.movetext, statePanel.history.back))}
       >
-        <IconButton
-          size="large"
-          id="Buttons-copyMovetext"
-          disabled={!stateBoard.movetext}
-          color="primary"
-          title="Copy movetext"
-          aria-label="copy"
-          onClick={() => navigator.clipboard.writeText(Movetext.substring(stateBoard.movetext, statePanel.history.back))}
-        >
-          <MoveDownIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="Buttons-copyFenString"
-          color="primary"
-          title="Copy FEN string"
-          aria-label="fen"
-          onClick={() => navigator.clipboard.writeText(stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back])}
-        >
-          <WidgetsIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="Buttons-heuristics"
-          disabled={!stateBoard.movetext}
-          color="primary"
-          title="Heuristics"
-          aria-label="heuristics"
-          onClick={() => handleHeuristics()}
-        >
-          <BarChartIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="Buttons-downloadImage"
-          color="primary"
-          title="Download Image"
-          aria-label="flip"
-          onClick={() => handleDownloadImage()}
-        >
-          <InsertPhotoIcon />
-        </IconButton>
-        <IconButton
-          size="large"
-          id="Buttons-downloadVideo"
-          disabled={!stateBoard.movetext}
-          color="primary"
-          title="Download Video"
-          aria-label="flip"
-          onClick={() => handleDownloadMp4()}
-        >
-          <VideoCameraBackIcon />
-        </IconButton>
-      </Stack>
-    );
-  }
+        <MoveDownIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="Buttons-copyFenString"
+        color="primary"
+        title="Copy FEN string"
+        aria-label="fen"
+        onClick={() => navigator.clipboard.writeText(stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back])}
+      >
+        <WidgetsIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="Buttons-heuristics"
+        disabled={!stateBoard.movetext}
+        color="primary"
+        title="Heuristics"
+        aria-label="heuristics"
+        onClick={() => handleHeuristics()}
+      >
+        <BarChartIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="Buttons-downloadImage"
+        color="primary"
+        title="Download Image"
+        aria-label="flip"
+        onClick={() => handleDownloadImage()}
+      >
+        <InsertPhotoIcon />
+      </IconButton>
+      <IconButton
+        size="large"
+        id="Buttons-downloadVideo"
+        disabled={!stateBoard.movetext}
+        color="primary"
+        title="Download Video"
+        aria-label="flip"
+        onClick={() => handleDownloadMp4()}
+      >
+        <VideoCameraBackIcon />
+      </IconButton>
+    </Stack>
+  );
 }
 
 export default Buttons;
