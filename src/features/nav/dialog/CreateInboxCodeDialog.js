@@ -93,7 +93,8 @@ const CreateCode = () => {
 }
 
 const CopyCode = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.nav);
+
   const dispatch = useDispatch();
 
   return (
