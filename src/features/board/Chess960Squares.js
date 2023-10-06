@@ -1,20 +1,40 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from '@mui/material';
+import Animation from 'common/Animation';
 import Piece from 'common/Piece';
 import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
-const CapablancaFischerBoard = () => {
+const Chess960Squares = () => {
   const state = useSelector(state => state.board);
 
   const dispatch = useDispatch();
 
+  const maxWidth = {
+    '600': useMediaQuery("(max-width:600px)"),
+    '900': useMediaQuery("(max-width:900px)")
+  };
+
+  const sqSize = maxWidth['600'] ? 12 : maxWidth['900'] ? 10 : 4;
+
+  const sqsRef = useRef([]);
+
+  const imgsRef = useRef([]);
+
+  useEffect(() => {
+    new Animation(sqSize, imgsRef, sqsRef).piece();
+  }, [
+    state.fen,
+    sqSize
+  ]);
+
   return (
     <Squares props={{
-      className: 'capablancaBoard',
-      imgsRef:  useRef([]),
-      sqsRef: useRef([]),
+      className: 'classicalSquares',
+      imgsRef: imgsRef,
+      sqsRef: sqsRef,
       handleMove: (payload) => {
         if (state.turn === Piece.color(payload.piece)) {
           // allow the king to be dropped into the castling rook
@@ -37,4 +57,4 @@ const CapablancaFischerBoard = () => {
   );
 }
 
-export default CapablancaFischerBoard;
+export default Chess960Squares;
