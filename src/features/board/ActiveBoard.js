@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CapablancaBoard from 'features/board/CapablancaBoard';
-import CapablancaFischerBoard from 'features/board/CapablancaFischerBoard';
-import Chess960Board from 'features/board/Chess960Board';
-import ClassicalBoard from 'features/board/ClassicalBoard';
-import PawnPromotionDialog from 'features/board/PawnPromotionDialog';
+import CapablancaSquares from 'features/board/CapablancaSquares';
+import CapablancaFischerSquares from 'features/board/CapablancaFischerSquares';
+import Chess960Squares from 'features/board/Chess960Squares';
+import ClassicalSquares from 'features/board/ClassicalSquares';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
-import ResizeSlider from './ResizeSlider';
 
-const VariantBoard = () => {
+const ActiveBoard = () => {
   const stateActiveMode = useSelector(state => Object.values(state).find((val, key) => val.active));
 
   const dispatch = useDispatch();
@@ -19,24 +17,15 @@ const VariantBoard = () => {
     dispatch(Ws.connect()).then(() => Ws.start(variantConst.CLASSICAL, modeConst.FEN));
   }, [dispatch]);
 
-  let board;
   if (stateActiveMode?.variant === variantConst.CAPABLANCA) {
-    board = <CapablancaBoard />;
+    return <CapablancaSquares />;
   } else if (stateActiveMode?.variant === variantConst.CAPABLANCA_FISCHER) {
-    board = <CapablancaFischerBoard />;
+    return <CapablancaFischerSquares />;
   } else if (stateActiveMode?.variant === variantConst.CHESS_960) {
-    board = <Chess960Board />;
-  } else {
-    board = <ClassicalBoard />;
+    return <Chess960Squares />;
   }
 
-  return (
-    <>
-      {board}
-      <ResizeSlider />
-      <PawnPromotionDialog />
-    </>
-  );
+  return <ClassicalSquares />;
 }
 
-export default VariantBoard;
+export default ActiveBoard;
