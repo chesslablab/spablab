@@ -1,20 +1,22 @@
 import { useEffect } from 'react';
-import captureAudio from 'assets/mp3/capture.mp3';
-import checkAudio from 'assets/mp3/check.mp3';
 import { useSelector } from 'react-redux';
 import { checkCapture } from 'utils/general.utils';
+
+import { MOVE_SOUND_ID, MOVE_SOUND_NODES } from './moveSounds.constants';
 
 const MoveSounds = () => {
   const isCheck = useSelector(state => state.board.isCheck);
   const moveText = useSelector(state => state.board.movetext);
 
   useEffect(() => {
+    let soundId = MOVE_SOUND_ID.MOVE;
     if (isCheck) {
-      (new Audio(checkAudio)).play();
+      soundId = MOVE_SOUND_ID.CHECK;
     } else if (checkCapture(moveText)) {
-      (new Audio(captureAudio)).play();
+      soundId = MOVE_SOUND_ID.CAPTURE;
     }
-  }, [moveText, isCheck]);
+    if (soundId) MOVE_SOUND_NODES[soundId].play(); 
+  }, [isCheck, moveText]);
 
   return null;
 }
