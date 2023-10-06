@@ -11,15 +11,7 @@ import Ws from 'features/ws/Ws';
 import ResizeSlider from './ResizeSlider';
 
 const VariantBoard = () => {
-  const stateFenMode = useSelector(state => state.fenMode);
-
-  const stateSanMode = useSelector(state => state.sanMode);
-
-  const stateRavMode = useSelector(state => state.ravMode);
-
-  const statePlayMode = useSelector(state => state.playMode);
-
-  const stateStockfishMode = useSelector(state => state.stockfishMode);
+  const stateActiveMode = useSelector(state => Object.values(state).find((val, key) => val.active));
 
   const dispatch = useDispatch();
 
@@ -27,25 +19,12 @@ const VariantBoard = () => {
     dispatch(Ws.connect()).then(() => Ws.start(variantConst.CLASSICAL, modeConst.FEN));
   }, [dispatch]);
 
-  let active;
-  if (stateFenMode.active) {
-    active = stateFenMode;
-  } else if (stateSanMode.active) {
-    active = stateSanMode;
-  } else if (stateRavMode.active) {
-    active = stateRavMode;
-  } else if (statePlayMode.active) {
-    active = statePlayMode;
-  } else if (stateStockfishMode.active) {
-    active = stateStockfishMode;
-  }
-
   let board;
-  if (active?.variant === variantConst.CAPABLANCA) {
+  if (stateActiveMode?.variant === variantConst.CAPABLANCA) {
     board = <CapablancaBoard />;
-  } else if (active?.variant === variantConst.CAPABLANCA_FISCHER) {
+  } else if (stateActiveMode?.variant === variantConst.CAPABLANCA_FISCHER) {
     board = <CapablancaFischerBoard />;
-  } else if (active?.variant === variantConst.CHESS_960) {
+  } else if (stateActiveMode?.variant === variantConst.CHESS_960) {
     board = <Chess960Board />;
   } else {
     board = <ClassicalBoard />;
