@@ -5,8 +5,8 @@ import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
 const AcceptRematchDialog = () => {
-  const state = useSelector((state) => state);
-  
+  const state = useSelector(state => state.playMode);
+
   const dispatch = useDispatch();
 
   const handleRematchAccept = (event) => {
@@ -23,7 +23,7 @@ const AcceptRematchDialog = () => {
   };
 
   return (
-    <Dialog open={state.playMode.dialogs.acceptRematch.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.acceptRematch.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>A rematch is being offered</DialogTitle>
       <DialogContent>
         <form onSubmit={handleRematchAccept}>

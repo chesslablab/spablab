@@ -3,17 +3,25 @@ import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/mate
 import Ascii from 'common/Ascii';
 
 const OpeningTable = () => {
-  const state = useSelector(state => state);
+  const stateFenMode = useSelector(state => state.fenMode);
 
-  if (state.fenMode.active || state.sanMode.active || state.stockfishMode.active) {
-    if (state.board.fen[0] === Ascii.initialFen()) {
-      if (state.panel.tables.opening.rows) {
+  const stateSanMode = useSelector(state => state.sanMode);
+
+  const stateStockfishMode = useSelector(state => state.stockfishMode);
+
+  const stateBoard = useSelector(state => state.board);
+
+  const statePanel = useSelector(state => state.panel);
+
+  if (stateFenMode.active || stateSanMode.active || stateStockfishMode.active) {
+    if (stateBoard.fen[0] === Ascii.initialFen()) {
+      if (statePanel.tables.opening.rows) {
         return (
           <TableContainer sx={{ mt: 1.5 }}>
             <Table stickyHeader size="small" aria-label="Chess Openings">
               <TableBody>
                 {
-                  state.panel.tables.opening.rows.map((item, i) => (
+                  statePanel.tables.opening.rows.map((item, i) => (
                     <TableRow key={i}>
                       <TableCell align="left">{item.eco}</TableCell>
                       <TableCell align="left">{item.name}</TableCell>

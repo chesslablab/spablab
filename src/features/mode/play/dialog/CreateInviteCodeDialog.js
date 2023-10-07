@@ -8,7 +8,6 @@ import {
   DialogTitle,
   Grid,
   IconButton,
-  MenuItem,
   Slider,
   TextField,
   Typography
@@ -19,22 +18,23 @@ import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
-import SelectColorButtons from 'features/SelectColorButtons';
+import ColorButtonGroup from 'features/ColorButtonGroup';
+import VariantTextField from 'features/VariantTextField';
 
 const CreateInviteCodeDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.playMode);
 
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.playMode.dialogs.createInviteCode.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.createInviteCode.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play a Friend
         <IconButton onClick={() => dispatch(playMode.createInviteCodeDialog({ open: false }))}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      {state.playMode.play?.hash ? <CopyCode /> : <CreateCode />}
+      {state.play?.hash ? <CopyCode /> : <CreateCode />}
     </Dialog>
   );
 }
@@ -43,12 +43,12 @@ const CreateCode = () => {
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
+    variant: variantConst.CLASSICAL,
+    startPos: '',
+    fen: '',
     minutes: 5,
     increment: 3,
     color: 'rand',
-    variant: variantConst.CLASSICAL,
-    fen: '',
-    startPos: '',
   });
 
   const handleMinutesChange = (event: Event) => {
@@ -65,24 +65,10 @@ const CreateCode = () => {
     });
   };
 
-  const handleVariantChange = (event: Event) => {
-    setFields({
-      ...fields,
-      variant: event.target.value
-    });
-  };
-
   const handleFenChange = (event: Event) => {
     setFields({
       ...fields,
       fen: event.target.value
-    });
-  };
-
-  const handleStartPosChange = (event: Event) => {
-    setFields({
-      ...fields,
-      startPos: event.target.value
     });
   };
 
@@ -141,60 +127,9 @@ const CreateCode = () => {
           onChange={handleIncrementChange}
         />
         <Grid container justifyContent="center">
-          <SelectColorButtons props={fields} />
+          <ColorButtonGroup props={fields} />
         </Grid>
-        <TextField
-          select
-          required
-          fullWidth
-          name="variant"
-          label="Variant"
-          variant="filled"
-          defaultValue={variantConst.CLASSICAL}
-          onChange={handleVariantChange}
-          margin="dense"
-        >
-          <MenuItem key={0} value="classical">
-            Classical
-          </MenuItem>
-          <MenuItem key={1} value="960">
-            Fischer Random
-          </MenuItem>
-          <MenuItem key={2} value="capablanca">
-            Capablanca
-          </MenuItem>
-          <MenuItem key={3} value="capablanca-fischer">
-            Capablanca-Fischer
-          </MenuItem>
-        </TextField>
-        {
-          fields.variant === variantConst.CHESS_960
-            ? <TextField
-                fullWidth
-                required
-                variant="filled"
-                name="startPos"
-                label="Start position"
-                helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-                onChange={handleStartPosChange}
-                margin="dense"
-            />
-            : null
-        }
-        {
-          fields.variant === variantConst.CAPABLANCA_FISCHER
-            ? <TextField
-                fullWidth
-                required
-                variant="filled"
-                name="startPos"
-                label="Start position"
-                helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
-                onChange={handleStartPosChange}
-                margin="dense"
-            />
-            : null
-        }
+        <VariantTextField props={fields} />
         <TextField
           fullWidth
           variant="filled"
@@ -217,7 +152,8 @@ const CreateCode = () => {
 }
 
 const CopyCode = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.playMode);
+  
   const dispatch = useDispatch();
 
   return (
@@ -228,7 +164,7 @@ const CopyCode = () => {
         type="text"
         name="sharecode"
         label="Share this code with a friend"
-        value={state.playMode.play.hash}
+        value={state.play.hash}
         margin="dense"
       />
       <Button sx={{ mt: 2 }}
@@ -236,7 +172,7 @@ const CopyCode = () => {
         size="large"
         variant="contained"
         onClick={() => {
-          navigator.clipboard.writeText(state.playMode.play.hash);
+          navigator.clipboard.writeText(state.play.hash);
           dispatch(playMode.createInviteCodeDialog({ open: false }));
       }}>
         Copy and Play

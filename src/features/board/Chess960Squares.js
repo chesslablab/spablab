@@ -7,8 +7,8 @@ import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
-const Chess960Board = () => {
-  const state = useSelector(state => state);
+const Chess960Squares = () => {
+  const state = useSelector(state => state.board);
 
   const dispatch = useDispatch();
 
@@ -26,20 +26,20 @@ const Chess960Board = () => {
   useEffect(() => {
     new Animation(sqSize, imgsRef, sqsRef).piece();
   }, [
-    state.board.fen,
+    state.fen,
     sqSize
   ]);
 
   return (
     <Squares props={{
-      className: 'classicalBoard',
+      className: 'classicalSquares',
       imgsRef: imgsRef,
       sqsRef: sqsRef,
       handleMove: (payload) => {
-        if (state.board.turn === Piece.color(payload.piece)) {
+        if (state.turn === Piece.color(payload.piece)) {
           // allow the king to be dropped into the castling rook
-          if (state.board.pieceGrabbed?.fen) {
-            if (Object.keys(state.board.pieceGrabbed.fen).includes(payload.sq)) {
+          if (state.pieceGrabbed?.fen) {
+            if (Object.keys(state.pieceGrabbed.fen).includes(payload.sq)) {
               dispatch(board.placePiece(payload));
             } else {
               dispatch(board.grabPiece(payload));
@@ -57,4 +57,4 @@ const Chess960Board = () => {
   );
 }
 
-export default Chess960Board;
+export default Chess960Squares;

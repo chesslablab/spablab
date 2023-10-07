@@ -21,10 +21,10 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import SelectColorButtons from 'features/SelectColorButtons';
+import ColorButtonGroup from 'features/ColorButtonGroup';
 
 const PlayOnlineDialog = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.playMode);
 
   const dispatch = useDispatch();
 
@@ -75,7 +75,7 @@ const PlayOnlineDialog = () => {
   }
 
   return (
-    <Dialog open={state.playMode.dialogs.playOnline.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.dialogs.playOnline.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         Play Online
         <IconButton onClick={() => dispatch(playMode.playOnlineDialog({ open: false }))}>
@@ -119,7 +119,7 @@ const PlayOnlineDialog = () => {
           onChange={handleIncrementChange}
         />
         <Grid container justifyContent="center">
-          <SelectColorButtons props={fields} />
+          <ColorButtonGroup props={fields} />
         </Grid>
         <TextField
           select

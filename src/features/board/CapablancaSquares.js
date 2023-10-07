@@ -5,18 +5,18 @@ import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
-const CapablancaBoard = () => {
-  const state = useSelector(state => state);
-  
+const CapablancaSquares = () => {
+  const state = useSelector(state => state.board);
+
   const dispatch = useDispatch();
 
   return (
     <Squares props={{
-      className: 'capablancaBoard',
+      className: 'capablancaSquares',
       imgsRef:  useRef([]),
       sqsRef: useRef([]),
       handleMove: (payload) => {
-        if (state.board.turn === Piece.color(payload.piece)) {
+        if (state.turn === Piece.color(payload.piece)) {
           dispatch(board.grabPiece(payload));
           Ws.legal(payload.sq);
         } else {
@@ -27,4 +27,4 @@ const CapablancaBoard = () => {
   );
 }
 
-export default CapablancaBoard;
+export default CapablancaSquares;

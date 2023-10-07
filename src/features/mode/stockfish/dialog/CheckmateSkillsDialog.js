@@ -16,11 +16,11 @@ import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import SelectColorButtons from 'features/SelectColorButtons';
+import ColorButtonGroup from 'features/ColorButtonGroup';
 
 const CheckmateSkillsDialog = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.stockfishMode);
+
   const dispatch = useDispatch();
 
   const checkmateTypes = ['QR,R', 'Q', 'R', 'BB', 'BN'];
@@ -59,7 +59,7 @@ const CheckmateSkillsDialog = () => {
   };
 
   return (
-    <Dialog open={state.stockfishMode.dialogs.checkmateSkills.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.checkmateSkills.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Checkmate skills
         <IconButton onClick={() => dispatch(stockfishMode.checkmateSkillsDialog({ open: false }))}>
@@ -98,7 +98,7 @@ const CheckmateSkillsDialog = () => {
           </MenuItem>
         </TextField>
         <Grid container justifyContent="center">
-          <SelectColorButtons props={fields} />
+          <ColorButtonGroup props={fields} />
         </Grid>
         <Button sx={{ mt: 2 }}
           fullWidth

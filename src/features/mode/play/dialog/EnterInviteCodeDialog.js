@@ -14,8 +14,8 @@ import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 
 const EnterInviteCodeDialog = () => {
-  const state = useSelector((state) => state);
-  
+  const state = useSelector(state => state.playMode);
+
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
@@ -36,7 +36,7 @@ const EnterInviteCodeDialog = () => {
   };
 
   return (
-    <Dialog open={state.playMode.dialogs.enterInviteCode.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.enterInviteCode.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Enter Invite Code
         <IconButton onClick={() => dispatch(playMode.enterInviteCodeDialog({ open: false }))}>

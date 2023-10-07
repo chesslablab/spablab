@@ -11,12 +11,12 @@ const filterOptions = createFilterOptions({
 });
 
 const EventAutocomplete = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.eventAutocomplete);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (state.eventAutocomplete.data.length === 0) {
+    if (state.data.length === 0) {
       fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/event`)
         .then(res => {
           if (res.status === 200) {
@@ -29,15 +29,15 @@ const EventAutocomplete = () => {
         });
     }
   }, [
-    state.eventAutocomplete.data.length,
+    state.data.length,
     dispatch
   ]);
 
   return (
     <Autocomplete
-      loading={state.eventAutocomplete.data.length === 0}
+      loading={state.data.length === 0}
       id="Event"
-      options={state.eventAutocomplete.data}
+      options={state.data}
       filterOptions={filterOptions}
       renderInput={(params) =>
         <TextField {...params}

@@ -18,15 +18,17 @@ const initData = (evalNames, balance) => {
 };
 
 const Heuristics = () => {
-  const state = useSelector(state => state);
-  
+  const stateNav = useSelector(state => state.nav);
+
+  const stateHeuristics = useSelector(state => state.heuristics);
+
   if (
-    state.nav.dialogs.settings.fields.heuristics === 'on' &&
-    state.heuristics.heuristics
+    stateNav.dialogs.settings.fields.heuristics === 'on' &&
+    stateHeuristics.heuristics
   ) {
     const data = initData(
-      state.heuristics.heuristics.evalNames,
-      state.heuristics.heuristics.balance
+      stateHeuristics.heuristics.evalNames,
+      stateHeuristics.heuristics.balance
     );
 
     const offset = () => {

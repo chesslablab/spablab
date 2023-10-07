@@ -22,7 +22,7 @@ import SearchGamesTable from 'features/mode/san/table/SearchGamesTable.js';
 import * as progressDialog from 'features/progressDialogSlice';
 
 const SearchGamesDialog = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.sanMode);
 
   const dispatch = useDispatch();
 
@@ -63,7 +63,7 @@ const SearchGamesDialog = () => {
   };
 
   return (
-    <Dialog open={state.sanMode.dialogs.searchGames.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.dialogs.searchGames.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Search Games
         <IconButton onClick={() => dispatch(sanMode.searchGamesDialog({ open: false }))}>

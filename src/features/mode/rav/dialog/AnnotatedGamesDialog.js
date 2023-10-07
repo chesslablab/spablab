@@ -11,12 +11,12 @@ import * as ravMode from 'features/mode/ravModeSlice';
 import AnnotatedGamesTable from 'features/mode/rav/table/AnnotatedGamesTable.js';
 
 const AnnotatedGamesDialog = () => {
-  const state = useSelector((state) => state);
-  
+  const state = useSelector(state => state.ravMode);
+
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.ravMode.dialogs.annotatedGames.open} maxWidth="md" fullWidth={true}>
+    <Dialog open={state.dialogs.annotatedGames.open} maxWidth="md" fullWidth={true}>
       <DialogTitle>
         Annotated Games
         <IconButton onClick={() => dispatch(ravMode.annotatedGamesDialog({ open: false }))}>

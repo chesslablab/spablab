@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
@@ -20,7 +21,7 @@ import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 
 const ChessboardMenu = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -39,7 +40,7 @@ const ChessboardMenu = () => {
       <Button
         id="Nav-analysisBoard"
         sx={{ pl: 2, borderRadius: 0,justifyContent: 'flex-start' }}
-        variant={state.nav.name === navConst.ANALYSIS ? "contained" : "text"}
+        variant={state.name === navConst.ANALYSIS ? "contained" : "text"}
         startIcon={<TuneIcon />}
         onClick={handleClickAnalysis}
       >
@@ -92,7 +93,7 @@ const ChessboardMenu = () => {
             Ws.start(variantConst.CAPABLANCA_FISCHER, modeConst.FEN);
           }}
         >
-          <BlurOnIcon size="small" />&nbsp;Capablanca-Fischer
+          <AllInclusiveIcon size="small" />&nbsp;Capablanca-Fischer
         </MenuItem>
         <Divider />
         <MenuItem

@@ -25,7 +25,7 @@ describe("Play A73", function () {
       .sendKeys("rnbqkbrn/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBRN w KQkq -");
     {
       const element = await driver.findElement(
-        By.id("LoadFenDialog-TextField-variant")
+        By.id("TextField-variant")
       );
       await driver
         .actions({ bridge: true })
@@ -34,10 +34,10 @@ describe("Play A73", function () {
         .perform();
     }
     await driver
-      .findElement(By.id("LoadFenDialog-TextField-variant-MenuItem-960"))
+      .findElement(By.id("TextField-variant-MenuItem-960"))
       .click();
     await driver
-      .findElement(By.id("LoadFenDialog-TextField-startPos"))
+      .findElement(By.id("Variant-TextField-startPos"))
       .sendKeys("RNBQKBRN");
     await driver.findElement(By.id("LoadFenDialog-Button-load")).click();
     await driver.findElement(By.css(".d2 > img")).click();

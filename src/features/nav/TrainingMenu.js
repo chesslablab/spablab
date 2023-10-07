@@ -8,7 +8,7 @@ import * as navConst from "features/nav/navConst";
 import * as stockfishMode from "features/mode/stockfishModeSlice";
 
 const TrainingMenu = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.nav);
 
   const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ const TrainingMenu = () => {
       <Button
         id="Nav-training"
         sx={{ pl: 2, justifyContent: 'flex-start' }}
-        variant={state.nav.name === navConst.TRAINING ? "contained" : "text"}
+        variant={state.name === navConst.TRAINING ? "contained" : "text"}
         startIcon={<PsychologyIcon />}
         onClick={handleClickTraining}
       >

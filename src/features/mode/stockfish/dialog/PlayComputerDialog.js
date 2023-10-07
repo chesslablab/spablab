@@ -20,11 +20,11 @@ import * as nav from 'features/nav/navSlice';
 import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
-import SelectColorButtons from 'features/SelectColorButtons';
+import ColorButtonGroup from 'features/ColorButtonGroup';
 
 const PlayComputerDialog = () => {
-  const state = useSelector(state => state);
-  
+  const state = useSelector(state => state.stockfishMode);
+
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
@@ -105,7 +105,7 @@ const PlayComputerDialog = () => {
   }
 
   return (
-    <Dialog open={state.stockfishMode.dialogs.playComputer.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.playComputer.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         Play Computer
         <IconButton onClick={() => dispatch(stockfishMode.playComputerDialog({ open: false }))}>
@@ -135,7 +135,7 @@ const PlayComputerDialog = () => {
           {
             fields.position === 'start'
               ? <Grid container justifyContent="center">
-                <SelectColorButtons props={fields} />
+                <ColorButtonGroup props={fields} />
               </Grid>
               : null
           }

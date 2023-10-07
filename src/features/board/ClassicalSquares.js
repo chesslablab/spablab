@@ -7,8 +7,8 @@ import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
 
-const ClassicalBoard = () => {
-  const state = useSelector(state => state);
+const ClassicalSquares = () => {
+  const state = useSelector(state => state.board);
 
   const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ const ClassicalBoard = () => {
   };
 
   const sqSize = maxWidth['600'] ? 12 : maxWidth['900'] ? 10 : 4;
-  
+
   const sqsRef = useRef([]);
 
   const imgsRef = useRef([]);
@@ -26,17 +26,17 @@ const ClassicalBoard = () => {
   useEffect(() => {
     new Animation(sqSize, imgsRef, sqsRef).piece();
   }, [
-    state.board.fen,
+    state.fen,
     sqSize
   ]);
 
   return (
     <Squares props={{
-      className: 'classicalBoard',
+      className: 'classicalSquares',
       imgsRef: imgsRef,
       sqsRef: sqsRef,
       handleMove: (payload) => {
-        if (state.board.turn === Piece.color(payload.piece)) {
+        if (state.turn === Piece.color(payload.piece)) {
           dispatch(board.grabPiece(payload));
           Ws.legal(payload.sq);
         } else {
@@ -47,4 +47,4 @@ const ClassicalBoard = () => {
   );
 }
 
-export default ClassicalBoard;
+export default ClassicalSquares;

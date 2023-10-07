@@ -17,24 +17,19 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
+import VariantTextField from 'features/VariantTextField';
 
 const LoadSanDialog = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state.sanMode);
 
   const dispatch = useDispatch();
 
   const [fields, setFields] = useState({
     position: 'start',
     variant: variantConst.CLASSICAL,
-    fen: ''
+    startPos: '',
+    fen: '',
   });
-
-  const handleVariantChange = (event: Event) => {
-    setFields({
-      ...fields,
-      variant: event.target.value
-    });
-  };
 
   const handlePositionChange = (event: Event) => {
     setFields({
@@ -68,7 +63,7 @@ const LoadSanDialog = () => {
   };
 
   return (
-    <Dialog open={state.sanMode.dialogs.loadSan.open} maxWidth="xs" fullWidth={true}>
+    <Dialog open={state.dialogs.loadSan.open} maxWidth="xs" fullWidth={true}>
       <DialogTitle>
         SAN Movetext
         <IconButton onClick={() => dispatch(sanMode.loadSanDialog({ open: false }))}>
@@ -84,56 +79,7 @@ const LoadSanDialog = () => {
           Variations and comments will be removed. To keep them, load a RAV Movetext instead.
         </Alert>
         <form onSubmit={handleLoad}>
-          <TextField
-            select
-            required
-            fullWidth
-            name="variant"
-            label="Variant"
-            variant="filled"
-            value={fields.variant}
-            onChange={handleVariantChange}
-            margin="dense"
-          >
-            <MenuItem key={0} value="classical">
-              Classical
-            </MenuItem>
-            <MenuItem key={1} value="960">
-              Fischer Random
-            </MenuItem>
-            <MenuItem key={2} value="capablanca">
-              Capablanca
-            </MenuItem>
-            <MenuItem key={3} value="capablanca-fischer">
-              Capablanca-Fischer
-            </MenuItem>
-          </TextField>
-          {
-            fields.variant === variantConst.CHESS_960
-              ? <TextField
-                  fullWidth
-                  required
-                  name="startPos"
-                  label="Start position"
-                  variant="filled"
-                  helperText="Examples: RNBQKBNR, RBBKRQNN, NRKNBBQR, etc."
-                  margin="dense"
-              />
-              : null
-          }
-          {
-            fields.variant === variantConst.CAPABLANCA_FISCHER
-              ? <TextField
-                  fullWidth
-                  required
-                  name="startPos"
-                  label="Start position"
-                  variant="filled"
-                  helperText="Examples: ARNBQKBNRC, RABBKRQNCN, NRCKNBBQAR, etc."
-                  margin="dense"
-              />
-              : null
-          }
+          <VariantTextField props={fields} />
           <TextField
             select
             required

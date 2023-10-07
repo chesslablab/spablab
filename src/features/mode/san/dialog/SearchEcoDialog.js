@@ -14,7 +14,7 @@ import * as sanMode from 'features/mode/sanModeSlice';
 import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
 
 const SearchEcoDialog = () => {
-  const state = useSelector(state => state);
+  const state = useSelector(state => state.sanMode);
 
   const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ const SearchEcoDialog = () => {
   }
 
   return (
-    <Dialog open={state.sanMode.dialogs.searchEco.open} maxWidth="sm" fullWidth={true}>
+    <Dialog open={state.dialogs.searchEco.open} maxWidth="sm" fullWidth={true}>
       <DialogTitle>
         ECO Code
         <IconButton onClick={() => {

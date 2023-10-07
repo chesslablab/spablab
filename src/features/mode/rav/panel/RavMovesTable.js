@@ -5,12 +5,16 @@ import * as panel from 'features/panel/panelSlice';
 import styles from 'styles/panel';
 
 const RavMovesTable = () => {
-  const state = useSelector(state => state);
+  const stateBoard = useSelector(state => state.board);
+
+  const statePanel = useSelector(state => state.panel);
+
+  const stateRavMode = useSelector(state => state.ravMode);
 
   const dispatch = useDispatch();
 
   const currentMove = (fen) => {
-    if (state.board.fen.length - 1 + state.panel.history.back === fen ) {
+    if (stateBoard.fen.length - 1 + statePanel.history.back === fen ) {
       return styles.panel.movesTable.tableCell.currentMove;
     }
 
@@ -18,8 +22,8 @@ const RavMovesTable = () => {
   };
 
   const level = (rows) => {
-    let haystack = Movetext.haystack(state.ravMode?.filtered);
-    let needles = Movetext.needles(rows, state.ravMode?.breakdown);
+    let haystack = Movetext.haystack(stateRavMode?.filtered);
+    let needles = Movetext.needles(rows, stateRavMode?.breakdown);
     for (let i = needles.length - 1; i >= 0; i--) {
       const position = haystack.lastIndexOf(needles[i]);
       rows[i].level = Movetext.openParentheses(haystack.substring(0, position));
@@ -38,7 +42,7 @@ const RavMovesTable = () => {
   };
 
   const description = () => {
-    const comment = Movetext.description(state.ravMode?.breakdown[0]);
+    const comment = Movetext.description(stateRavMode?.breakdown[0]);
     if (comment) {
       return <TableRow sx={styles.panel.movesTable.tableRow}>
         <TableCell colSpan={3}>{comment}</TableCell>
@@ -51,7 +55,7 @@ const RavMovesTable = () => {
   const moves = () => {
     let j = 1;
     let rows = [];
-    state.ravMode?.breakdown.forEach((breakdown, i) => {
+    stateRavMode?.breakdown.forEach((breakdown, i) => {
       rows = [...rows, ...Movetext.toCommentedRows(breakdown, i)];
     });
     rows.forEach((row, i) => {
@@ -74,7 +78,7 @@ const RavMovesTable = () => {
           sx={[styles.panel.movesTable.tableCell, currentMove(row.wFen)]}
           onClick={() => {
             if (row.w !== '...') {
-              dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.wFen }));
+              dispatch(panel.goTo({ back: stateBoard.fen.length - 1 - row.wFen }));
             }
           }}
         >
@@ -84,7 +88,7 @@ const RavMovesTable = () => {
           sx={[styles.panel.movesTable.tableCell, currentMove(row.bFen)]}
           onClick={() => {
             if (row.b) {
-              dispatch(panel.goTo({ back: state.board.fen.length - 1 - row.bFen }));
+              dispatch(panel.goTo({ back: stateBoard.fen.length - 1 - row.bFen }));
             }
           }}
         >
@@ -94,20 +98,16 @@ const RavMovesTable = () => {
     });
   };
 
-  if (state.ravMode.active) {
-    return (
-      <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
-        <Table stickyHeader size="small" aria-label="Movetext">
-          <TableBody>
-            {description()}
-            {moves()}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
-  }
-
-  return null;
+  return (
+    <TableContainer sx={styles.panel.movesTable.tableContainer} className="noTextSelection">
+      <Table stickyHeader size="small" aria-label="Movetext">
+        <TableBody>
+          {description()}
+          {moves()}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 }
 
 export default RavMovesTable;
