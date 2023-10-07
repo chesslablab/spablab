@@ -14,8 +14,8 @@ const Sound = () => {
     return lastSplitEl;
   }
 
-  const checkCapture = moveText => {
-    const lastMove = getLastBySplit(moveText, ' ');
+  const isCapture = movetext => {
+    const lastMove = getLastBySplit(movetext, ' ');
     const lastMoveName = getLastBySplit(lastMove, '.');
 
     return lastMoveName?.[1] === 'x';
@@ -24,7 +24,7 @@ const Sound = () => {
   useEffect(() => {
     if (stateBoard.isCheck) {
       new Audio(checkAudio).play();
-    } else if (checkCapture(stateBoard.movetext)) {
+    } else if (isCapture(stateBoard.movetext)) {
       new Audio(captureAudio).play();
     } else {
       new Audio(moveAudio).play();
