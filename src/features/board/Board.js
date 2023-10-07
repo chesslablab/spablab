@@ -1,6 +1,7 @@
 import ActiveBoard from 'features/board/ActiveBoard';
 import PawnPromotionDialog from 'features/board/PawnPromotionDialog';
-import ResizeSlider from './ResizeSlider';
+import ResizeSlider from 'features/board/ResizeSlider';
+import Sounds from 'features/board/Sounds';
 
 const Board = () => {
   return (
@@ -8,6 +9,7 @@ const Board = () => {
       <ActiveBoard />
       <ResizeSlider />
       <PawnPromotionDialog />
+      <Sounds />
     </>
   );
 }
