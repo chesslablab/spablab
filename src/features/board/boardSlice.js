@@ -5,6 +5,7 @@ import * as variantConst from 'features/mode/variantConst';
 
 const initialState = {
   turn: Pgn.symbol.WHITE,
+  isCapture: false,
   isCheck: false,
   isMate: false,
   isStalemate: false,
@@ -104,6 +105,7 @@ const boardSlice = createSlice({
       newFen.splice(-1);
       state.fen = newFen;
       state.turn = action.payload.turn;
+      state.isCapture = action.payload.isCapture;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.isStalemate = action.payload.isStalemate;
@@ -113,6 +115,7 @@ const boardSlice = createSlice({
       delete state.piecePlaced;
     },
     validMove(state, action) {
+      state.isCapture = action.payload.isCapture;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.isStalemate = action.payload.isStalemate;
@@ -130,6 +133,7 @@ const boardSlice = createSlice({
       newFen.push(action.payload.fen);
       state.fen = newFen;
       state.turn = action.payload.turn;
+      state.isCapture = action.payload.isCapture;
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.isStalemate = action.payload.isStalemate;

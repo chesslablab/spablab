@@ -7,29 +7,16 @@ import moveAudio from 'assets/mp3/move.mp3';
 const BoardAudio = () => {
   const stateBoard = useSelector(state => state.board);
 
-  const getLastBySplit = (data, del) => {
-    const splitData = data?.split(del) || [];
-    const lastSplitEl = splitData[splitData.length - 1];
-
-    return lastSplitEl;
-  }
-
-  const isCapture = movetext => {
-    const lastMove = getLastBySplit(movetext, ' ');
-    const lastMoveName = getLastBySplit(lastMove, '.');
-
-    return lastMoveName?.[1] === 'x';
-  }
-
   useEffect(() => {
     if (stateBoard.isCheck) {
       new Audio(checkAudio).play();
-    } else if (isCapture(stateBoard.movetext)) {
+    } else if (stateBoard.isCapture) {
       new Audio(captureAudio).play();
     } else {
       new Audio(moveAudio).play();
     }
   }, [
+    stateBoard.isCatpure,
     stateBoard.isCheck,
     stateBoard.movetext
   ]);
