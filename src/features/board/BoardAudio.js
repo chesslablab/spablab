@@ -4,7 +4,7 @@ import captureAudio from 'assets/mp3/capture.mp3';
 import checkAudio from 'assets/mp3/check.mp3';
 import moveAudio from 'assets/mp3/move.mp3';
 
-const Sound = () => {
+const BoardAudio = () => {
   const stateBoard = useSelector(state => state.board);
 
   const getLastBySplit = (data, del) => {
@@ -35,4 +35,4 @@ const Sound = () => {
   ]);
 }
 
-export default Sound;
+export default BoardAudio;
