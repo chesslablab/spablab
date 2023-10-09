@@ -16,7 +16,7 @@ const BoardAudio = () => {
       new Audio(moveAudio).play();
     }
   }, [
-    stateBoard.isCatpure,
+    stateBoard.isCapture,
     stateBoard.isCheck,
     stateBoard.movetext
   ]);
