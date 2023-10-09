@@ -9,11 +9,11 @@ const BoardAudio = () => {
 
   useEffect(() => {
     if (stateBoard.isCheck) {
-      new Audio(checkAudio).play();
+      new Audio(checkAudio).play().catch(error => {});
     } else if (stateBoard.isCapture) {
-      new Audio(captureAudio).play();
+      new Audio(captureAudio).play().catch(error => {});
     } else {
-      new Audio(moveAudio).play();
+      new Audio(moveAudio).play().catch(error => {});
     }
   }, [
     stateBoard.isCapture,
