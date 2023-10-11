@@ -1,7 +1,4 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
-const webdriver = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
-const chromedriver = require('chromedriver');
 const { getDriver, stopDriver } = require('./helpers'); // You'll need to implement these helper functions to start and stop the WebDriver.
 
 describe('Undo castling in a Fischer Random game', () => {

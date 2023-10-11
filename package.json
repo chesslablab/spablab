@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.10",
     "@reduxjs/toolkit": "^1.9.5",
+    "chromedriver": "^117.0.3",
     "html2canvas": "^1.4.1",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.22.20",
     "@cfaester/enzyme-adapter-react-18": "^0.7.1",
     "enzyme": "^3.11.0"
   }
