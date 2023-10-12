@@ -185,14 +185,14 @@ export default class WsEvent {
   }
 
   static onDraw = (data) => dispatch => {
-    if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
+    if (data['/draw'].action === Wording.verb.PROPOSE.toLowerCase()) {
       if (!store.getState().playMode.draw) {
         dispatch(playMode.acceptDrawDialog({ open: true }));
       }
-    } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
+    } else if (data['/draw'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptDraw());
       dispatch(infoAlert.show({ mssg: 'Draw offer accepted.' }));
-    } else if (data['/draw'] === Wording.verb.DECLINE.toLowerCase()) {
+    } else if (data['/draw'].action === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineDraw());
       dispatch(infoAlert.show({ mssg: 'Draw offer declined.' }));
     }
