@@ -206,14 +206,14 @@ export default class WsEvent {
   }
 
   static onRematch = (data) => dispatch => {
-    if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
+    if (data['/rematch'].action === Wording.verb.PROPOSE.toLowerCase()) {
       if (!store.getState().playMode.rematch) {
         dispatch(playMode.acceptRematchDialog({ open: true }));
       }
-    } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
+    } else if (data['/rematch'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptRematch());
       Ws.restart();
-    } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
+    } else if (data['/rematch'].action === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineRematch());
       dispatch(infoAlert.show({ mssg: 'Rematch declined.' }));
     }
