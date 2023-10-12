@@ -168,17 +168,17 @@ export default class WsEvent {
   }
 
   static onTakeback = (data) => dispatch => {
-    if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
+    if (data['/takeback'].action === Wording.verb.PROPOSE.toLowerCase()) {
       if (
         !store.getState().playMode.takeback ||
         store.getState().playMode.takeback ===  Wording.verb.DECLINE.toLowerCase()
       ) {
         dispatch(playMode.acceptTakebackDialog({ open: true }));
       }
-    } else if (data['/takeback'] === Wording.verb.ACCEPT.toLowerCase()) {
+    } else if (data['/takeback'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptTakeback());
       dispatch(infoAlert.show({ mssg: 'Takeback accepted.' }));
-    } else if (data['/takeback'] === Wording.verb.DECLINE.toLowerCase()) {
+    } else if (data['/takeback'].action === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineTakeback());
       dispatch(infoAlert.show({ mssg: 'Takeback declined.' }));
     }
