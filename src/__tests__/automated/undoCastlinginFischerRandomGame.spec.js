@@ -15,8 +15,7 @@ describe('Undo castling in a Fischer Random game', () => {
   it('Undo castling in a Fischer Random game', async () => {
     await driver.get("https://www.chesslablab.com:9443/");
     await driver.manage().window().setRect({ width: 1366, height: 742 });
-
-    await driver.findElement(By.id("Nav-analysisBoard")).click();
+    await driver.wait(until.elementLocated(By.id("Nav-analysisBoard"))).click();
     await driver.findElement(By.id("Nav-analysisBoard-MenuItem-fenString")).click();
     await driver.findElement(By.id("LoadFenDialog-TextField-fen")).click();
     await driver.findElement(By.id("LoadFenDialog-TextField-fen")).sendKeys("qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -");
