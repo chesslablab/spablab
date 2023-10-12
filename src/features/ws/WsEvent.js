@@ -220,7 +220,7 @@ export default class WsEvent {
   }
 
   static onLeave = (data) => dispatch => {
-    if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
+    if (data['/leave'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptLeave());
       dispatch(infoAlert.show({ mssg: 'Your opponent left the game.' }));
     }
