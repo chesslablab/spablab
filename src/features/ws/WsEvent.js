@@ -199,7 +199,7 @@ export default class WsEvent {
   }
 
   static onResign = (data) => dispatch => {
-    if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
+    if (data['/resign'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptResign());
       dispatch(infoAlert.show({ mssg: 'Chess game resigned.' }));
     }
