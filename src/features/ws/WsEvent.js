@@ -168,59 +168,59 @@ export default class WsEvent {
   }
 
   static onTakeback = (data) => dispatch => {
-    if (data['/takeback'] === Wording.verb.PROPOSE.toLowerCase()) {
+    if (data['/takeback'].action === Wording.verb.PROPOSE.toLowerCase()) {
       if (
         !store.getState().playMode.takeback ||
         store.getState().playMode.takeback ===  Wording.verb.DECLINE.toLowerCase()
       ) {
         dispatch(playMode.acceptTakebackDialog({ open: true }));
       }
-    } else if (data['/takeback'] === Wording.verb.ACCEPT.toLowerCase()) {
+    } else if (data['/takeback'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptTakeback());
       dispatch(infoAlert.show({ mssg: 'Takeback accepted.' }));
-    } else if (data['/takeback'] === Wording.verb.DECLINE.toLowerCase()) {
+    } else if (data['/takeback'].action === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineTakeback());
       dispatch(infoAlert.show({ mssg: 'Takeback declined.' }));
     }
   }
 
   static onDraw = (data) => dispatch => {
-    if (data['/draw'] === Wording.verb.PROPOSE.toLowerCase()) {
+    if (data['/draw'].action === Wording.verb.PROPOSE.toLowerCase()) {
       if (!store.getState().playMode.draw) {
         dispatch(playMode.acceptDrawDialog({ open: true }));
       }
-    } else if (data['/draw'] === Wording.verb.ACCEPT.toLowerCase()) {
+    } else if (data['/draw'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptDraw());
       dispatch(infoAlert.show({ mssg: 'Draw offer accepted.' }));
-    } else if (data['/draw'] === Wording.verb.DECLINE.toLowerCase()) {
+    } else if (data['/draw'].action === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineDraw());
       dispatch(infoAlert.show({ mssg: 'Draw offer declined.' }));
     }
   }
 
   static onResign = (data) => dispatch => {
-    if (data['/resign'] === Wording.verb.ACCEPT.toLowerCase()) {
+    if (data['/resign'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptResign());
       dispatch(infoAlert.show({ mssg: 'Chess game resigned.' }));
     }
   }
 
   static onRematch = (data) => dispatch => {
-    if (data['/rematch'] === Wording.verb.PROPOSE.toLowerCase()) {
+    if (data['/rematch'].action === Wording.verb.PROPOSE.toLowerCase()) {
       if (!store.getState().playMode.rematch) {
         dispatch(playMode.acceptRematchDialog({ open: true }));
       }
-    } else if (data['/rematch'] === Wording.verb.ACCEPT.toLowerCase()) {
+    } else if (data['/rematch'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptRematch());
       Ws.restart();
-    } else if (data['/rematch'] === Wording.verb.DECLINE.toLowerCase()) {
+    } else if (data['/rematch'].action === Wording.verb.DECLINE.toLowerCase()) {
       dispatch(playMode.declineRematch());
       dispatch(infoAlert.show({ mssg: 'Rematch declined.' }));
     }
   }
 
   static onLeave = (data) => dispatch => {
-    if (data['/leave'] === Wording.verb.ACCEPT.toLowerCase()) {
+    if (data['/leave'].action === Wording.verb.ACCEPT.toLowerCase()) {
       dispatch(playMode.acceptLeave());
       dispatch(infoAlert.show({ mssg: 'Your opponent left the game.' }));
     }

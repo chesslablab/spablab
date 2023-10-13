@@ -2,7 +2,7 @@
 const { Builder, By, Key, until } = require('selenium-webdriver')
 const assert = require('assert')
 
-describe('test1', function() {
+describe('Search A08 and continue the game', function() {
   this.timeout(30000)
   let driver
   let vars
@@ -13,40 +13,25 @@ describe('test1', function() {
   afterEach(async function() {
     await driver.quit();
   })
-  it('test1', async function() {
-    await driver.get("https://www.chesslablab.com/")
-    await driver.manage().window().setRect({ width: 1374, height: 816 })
+  it('Search A08 and continue the game', async function() {
+    await driver.get("https://www.chesslablab.com:9443/")
+    await driver.manage().window().setRect({ width: 1366, height: 742 })
     await driver.findElement(By.id("Nav-openingSearch")).click()
-    await driver.findElement(By.id("Nav-openingSearch-MenuItem-ecoCode")).click()
-    await driver.findElement(By.css("body")).click()
-    await driver.findElement(By.css(".MuiMenuItem-root:nth-child(2)")).click()
-    {
-      const element = await driver.findElement(By.css(".MuiDialog-root:nth-child(7) .MuiDialogContent-root"))
-      await driver.actions({ bridge: true }).moveToElement(element).clickAndHold().perform()
-    }
-    {
-      const element = await driver.findElement(By.css(".MuiDialog-root:nth-child(7) .MuiDialogContent-root"))
-      await driver.actions({ bridge: true }).moveToElement(element).perform()
-    }
-    {
-      const element = await driver.findElement(By.css(".MuiDialog-root:nth-child(7) .MuiDialogContent-root"))
-      await driver.actions({ bridge: true }).moveToElement(element).release().perform()
-    }
-    await driver.findElement(By.css("#OpeningSearchResultTable-TableRow-254 > .MuiTableCell-root:nth-child(2)")).click()
-    {
-      const dragged = await driver.findElement(By.css(".d5 > img"))
-      const dropped = await driver.findElement(By.css(".e4 > img"))
-      await driver.actions({ bridge: true }).dragAndDrop(dragged, dropped).perform()
-    }
-    {
-      const dragged = await driver.findElement(By.css(".d2 > img"))
-      const dropped = await driver.findElement(By.css(".e4 > img"))
-      await driver.actions({ bridge: true }).dragAndDrop(dragged, dropped).perform()
-    }
-    {
-      const dragged = await driver.findElement(By.css(".f6 > img"))
-      const dropped = await driver.findElement(By.css(".e4 > img"))
-      await driver.actions({ bridge: true }).dragAndDrop(dragged, dropped).perform()
-    }
+    await driver.findElement(By.id("Nav-openingSearch-MenuItem-name")).click()
+    await driver.findElement(By.id("SearchNameDialog-TextField-name")).sendKeys("sicilian variation")
+    await driver.findElement(By.id("SearchNameDialog-Button-search")).click()
+    await driver.findElement(By.id("OpeningSearchResultTable-TableRow-1")).click()
+    await driver.findElement(By.css(".d5 > img")).click()
+    await driver.findElement(By.css(".e4")).click()
+    await driver.findElement(By.css(".d3 > img")).click()
+    await driver.findElement(By.css(".e4")).click()
+    await driver.findElement(By.css(".f6 > img")).click()
+    await driver.findElement(By.css(".e4")).click()
+    await driver.findElement(By.css(".d2 > img")).click()
+    await driver.findElement(By.css(".e4")).click()
+    await driver.findElement(By.css(".d8 > img")).click()
+    await driver.findElement(By.css(".d1")).click()
+    await driver.findElement(By.css(".e1 > img")).click()
+    await driver.findElement(By.css(".d1")).click()
   })
 })
