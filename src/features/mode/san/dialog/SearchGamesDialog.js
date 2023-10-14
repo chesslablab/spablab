@@ -13,7 +13,6 @@ import {
   TextField
 } from '@mui/material';
 import * as infoAlert from 'features/alert/infoAlertSlice';
-import * as warningAlert from 'features/alert/warningAlertSlice';
 import BlackPlayerAutocomplete from 'features/autocomplete/BlackPlayerAutocomplete.js';
 import EventAutocomplete from 'features/autocomplete/EventAutocomplete.js';
 import WhitePlayerAutocomplete from 'features/autocomplete/WhitePlayerAutocomplete.js';
