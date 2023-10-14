@@ -51,14 +51,11 @@ const SearchGamesDialog = () => {
       } else if (res.status === 204) {
         dispatch(sanMode.searchGamesDialog({ open: false }));
         dispatch(infoAlert.show({ mssg: 'No results were found, please try again.' }));
-      } else if (res.status === 205) {
-        dispatch(sanMode.searchGamesDialog({ open: false }));
-        dispatch(infoAlert.show({ mssg: 'Please enter at least one search term.' }));
       }
     })
     .catch(error => {
       dispatch(sanMode.searchGamesDialog({ open: false }));
-      dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+      dispatch(infoAlert.show({ mssg: 'Please enter at least one search term.' }));
     })
     .finally(() => {
       dispatch(progressDialog.close());
