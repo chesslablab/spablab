@@ -94,10 +94,10 @@ const HelpDialog = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">
+                This website is embedding an IRC webchat provided by Libera Chat.
                 IRC stands for Internet Relay Chat. It is a decentralized chat
                 protocol meaning there is no central server, company or authority
-                controlling the network. This website is embedding an IRC webchat
-                provided by Libera Chat.
+                controlling the network.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -176,9 +176,9 @@ const HelpDialog = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">
-                Click on <b>Database &gt; Search Games</b> and enter some search
-                criteria. Studying games from titled FIDE players is definitely
-                a great way to improve your game.
+                Studying games from titled FIDE players is definitely a great
+                way to improve your game. Click on <b>Database &gt; Search Games</b> and
+                enter some search criteria.
               </Typography>
             </AccordionDetails>
           </Accordion>
