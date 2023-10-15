@@ -34,6 +34,9 @@ const initialState = {
         heuristics: 'off',
       },
     },
+    help: {
+      open: false,
+    },
   },
 };
 
@@ -78,6 +81,9 @@ const navSlice = createSlice({
         ...action.payload
       };
     },
+    helpDialog(state, action) {
+      state.dialogs.help = action.payload;
+    },
   },
 });
 
@@ -93,6 +99,7 @@ export const {
   openingsStatsDialog,
   playersStatsDialog,
   settingsDialog,
-  settingsDialogSet
+  settingsDialogSet,
+  helpDialog
 } = navSlice.actions;
 export default navSlice.reducer;
