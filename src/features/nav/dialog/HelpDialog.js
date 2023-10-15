@@ -176,9 +176,27 @@ const HelpDialog = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">
-                Studying games from titled FIDE players is definitely a great
-                way to improve your game. Click on <b>Database &gt; Search Games</b> and
-                enter some search criteria.
+                Click on <b>Database &gt; Search Games</b>. Studying games from
+                titled FIDE players is definitely a great way to improve your
+                game.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel8a-content"
+              id="panel8a-header"
+            >
+              <Typography>What are annotated games?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography variant="body2">
+                Click on <b>Database &gt; Annotated Games</b>. Annotated games
+                are games with comments that help understand what is going on
+                the chessboard. They usually include variations showing the
+                development of the game in selected positions that require an
+                in-depth understanding.
               </Typography>
             </AccordionDetails>
           </Accordion>
