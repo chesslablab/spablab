@@ -216,6 +216,24 @@ const HelpDialog = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel10a-content"
+              id="panel10a-header"
+            >
+              <Typography>What is SAN?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography variant="body2">
+                SAN stands for Standard Algebraic Notation. It is a human-readable
+                text format that allows chess players to read and write chess
+                games in Portable Game Notation (PGN) format. A SAN movetext is
+                basically the same thing as a RAV movetext with the only
+                difference that it doesn't include variations.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </div>
       </div>
     </Dialog>
