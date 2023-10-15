@@ -78,7 +78,7 @@ const HelpDialog = () => {
               <Typography>Does this website use cookies?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 No, it allows to learn and play chess online without being tracked.
                 It does not use cookies other than technical cookies because it
                 does not collect user data for its purposes, not even nicknames
@@ -98,7 +98,7 @@ const HelpDialog = () => {
               <Typography>What is IRC?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 This website is embedding an IRC webchat provided by Libera Chat.
                 IRC stands for Internet Relay Chat. It is a decentralized chat
                 protocol meaning there is no central server, company or authority
@@ -115,7 +115,7 @@ const HelpDialog = () => {
               <Typography>What is Libera Chat?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 Libera Chat is a non-profit organisation based in Sweden operating
                 the Libera Chat IRC network and the website libera.chat. It
                 provides a community platform for free and open-source software
@@ -167,7 +167,7 @@ const HelpDialog = () => {
               <Typography>What is correspondence chess?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 Correspondence chess allows people to play one another not
                 necessarily sitting in front of the board at the same time.
                 ChesslaBlab allows to play correspondence chess with easy-to-use
@@ -187,7 +187,7 @@ const HelpDialog = () => {
               <Typography>How many chess games are in the database?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 There are about one million games in the database.
               </Typography>
             </AccordionDetails>
@@ -201,7 +201,7 @@ const HelpDialog = () => {
               <Typography>Can I improve my chess skills using the database?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 Click on <b>Database &gt; Search Games</b>. Studying games from
                 titled FIDE players is definitely a great way to improve your
                 game.
@@ -217,7 +217,7 @@ const HelpDialog = () => {
               <Typography>What are annotated games?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 Click on <b>Database &gt; Annotated Games</b>. Annotated games
                 are games with comments that help understand what is going on
                 the chessboard. They usually include variations showing the
@@ -235,7 +235,7 @@ const HelpDialog = () => {
               <Typography>What is RAV?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 RAV stands for Recursive Annotation Variation. It is the standard
                 format for annotated chess games.
               </Typography>
@@ -250,7 +250,7 @@ const HelpDialog = () => {
               <Typography>What is SAN?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 SAN stands for Standard Algebraic Notation. It is a human-readable
                 text format that allows chess players to read and write chess
                 games in Portable Game Notation (PGN) format. A SAN movetext is
@@ -268,14 +268,13 @@ const HelpDialog = () => {
               <Typography>What are heuristics in chess?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
+              <Typography>
                 If you ask a chess pro why a chess move is good, they'll probably
                 give you a bunch of reasons, many of them intuitive, about why
                 they made that decision. Heuristics are quick, mental shortcuts
                 that we humans use to make decisions and solve problems in our
-                daily lives. While far from being perfect, heuristics are helpful
-                approximations that help the brain save energy and manage
-                cognitive load.
+                daily lives. While far from being perfect, heuristics are
+                approximations that help manage cognitive load.
               </Typography>
             </AccordionDetails>
           </Accordion>
