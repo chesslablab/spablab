@@ -58,7 +58,7 @@ const HelpDialog = () => {
           severity="info"
         >
           <AlertTitle>Did we miss something?</AlertTitle>
-          Please let us know by either <a href="https://github.com/chesslablab/react-chess/issues" target="_blank" rel="noreferrer">raising an issue</a> on
+          The Frequently Asked Questions are currently being documented. Please let us know if we missed something by either <a href="https://github.com/chesslablab/react-chess/issues" target="_blank" rel="noreferrer">raising an issue</a> on
           a GitHub repository or by <a href="https://github.com/orgs/chesslablab/discussions" target="_blank" rel="noreferrer">opening a discussion</a>.
           Your feedback is very much appreciated.
           Thank you!
