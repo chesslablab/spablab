@@ -201,6 +201,21 @@ const HelpDialog = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel9a-content"
+              id="panel9a-header"
+            >
+              <Typography>What is RAV?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography variant="body2">
+                RAV stands for Recursive Annotation Variation. It is the standard
+                format for annotated chess games.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </div>
       </div>
     </Dialog>
