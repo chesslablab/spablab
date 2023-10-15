@@ -11,6 +11,10 @@ import {
   Dialog,
   IconButton,
   Link,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   Toolbar,
   Typography,
   Slide
@@ -128,8 +132,29 @@ const HelpDialog = () => {
               <Typography>What are the chess variants available for playing?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body2">
-                Classical, Fischer Random Chess, Capablanca and Capablanca-Fischer.
+              <Typography>
+                <List>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Classical" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Fischer Random Chess" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Capablanca" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemText primary="Capablanca-Fischer" />
+                    </ListItemButton>
+                  </ListItem>
+                </List>
               </Typography>
             </AccordionDetails>
           </Accordion>
