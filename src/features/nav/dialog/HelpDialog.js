@@ -73,7 +73,7 @@ const HelpDialog = () => {
               <Typography>Does this website use cookies?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="body2">
                 No, it allows to learn and play chess online without being tracked.
                 It does not use cookies other than technical cookies because it
                 does not collect user data for its purposes, not even nicknames
@@ -93,7 +93,7 @@ const HelpDialog = () => {
               <Typography>What is IRC?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="body2">
                 IRC stands for Internet Relay Chat. It is a decentralized chat
                 protocol meaning there is no central server, company or authority
                 controlling the network. This website is embedding an IRC webchat
@@ -110,7 +110,7 @@ const HelpDialog = () => {
               <Typography>What is Libera Chat?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="body2">
                 Libera Chat is a non-profit organisation based in Sweden operating
                 the Libera Chat IRC network and the website libera.chat. It
                 provides a community platform for free and open-source software
@@ -127,7 +127,7 @@ const HelpDialog = () => {
               <Typography>What are the chess variants available for playing?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="body2">
                 Classical, Fischer Random Chess, Capablanca and Capablanca-Fischer.
               </Typography>
             </AccordionDetails>
@@ -141,7 +141,7 @@ const HelpDialog = () => {
               <Typography>What is correspondence chess?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="body2">
                 Correspondence chess allows people to play one another not
                 necessarily sitting in front of the board at the same time.
                 ChesslaBlab allows to play correspondence chess with easy-to-use
@@ -161,7 +161,7 @@ const HelpDialog = () => {
               <Typography>How many chess games are in the database?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="body2">
                 There are about one million games in the database.
               </Typography>
             </AccordionDetails>
@@ -175,7 +175,7 @@ const HelpDialog = () => {
               <Typography>Can I improve my chess skills using the database?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="body2">
                 Click on <b>Database &gt; Search Games</b> and enter some search
                 criteria. Studying games from titled FIDE players is definitely
                 a great way to improve your game.
