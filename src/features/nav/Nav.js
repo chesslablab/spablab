@@ -11,6 +11,7 @@ import DatabaseMenu from 'features/nav/DatabaseMenu';
 import TrainingMenu from 'features/nav/TrainingMenu';
 import InboxMenu from './InboxMenu';
 import SettingsMenu from './SettingsMenu';
+import HelpMenu from './HelpMenu';
 
 const Nav = () => {
   const stateBoard = useSelector(state => state.board);
@@ -60,6 +61,7 @@ const Nav = () => {
         <TrainingMenu />
         <InboxMenu />
         <SettingsMenu />
+        <HelpMenu />
       </ButtonGroup>
     </>
   );

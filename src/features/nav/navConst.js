@@ -5,6 +5,7 @@ const PLAY = 'play';
 const TRAINING = 'training';
 const OPENING_SEARCH = 'opening search';
 const SETTINGS = 'settings';
+const HELP = 'help';
 
 export {
   ANALYSIS,
@@ -13,5 +14,6 @@ export {
   PLAY,
   TRAINING,
   OPENING_SEARCH,
-  SETTINGS
+  SETTINGS,
+  HELP
 };
