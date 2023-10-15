@@ -101,6 +101,23 @@ const HelpDialog = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3a-content"
+              id="panel3a-header"
+            >
+              <Typography>What is Libera Chat?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Libera Chat is a non-profit organisation based in Sweden operating
+                the Libera Chat IRC network and the website libera.chat. It
+                provides a community platform for free and open-source software
+                and peer directed projects.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </div>
       </div>
     </Dialog>
