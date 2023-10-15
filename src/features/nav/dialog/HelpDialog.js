@@ -234,6 +234,26 @@ const HelpDialog = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel11a-content"
+              id="panel11a-header"
+            >
+              <Typography>What are heuristics in chess?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography variant="body2">
+                If you ask a chess pro why a chess move is good, they'll probably
+                give you a bunch of reasons, many of them intuitive, about why
+                they made that decision. Heuristics are quick, mental shortcuts
+                that we humans use to make decisions and solve problems in our
+                daily lives. While far from being perfect, heuristics are helpful
+                approximations that help the brain save energy and manage
+                cognitive load.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </div>
       </div>
     </Dialog>
