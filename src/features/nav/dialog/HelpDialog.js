@@ -10,6 +10,7 @@ import {
   Button,
   Dialog,
   IconButton,
+  Link,
   Toolbar,
   Typography,
   Slide
@@ -58,8 +59,8 @@ const HelpDialog = () => {
           severity="info"
         >
           <AlertTitle>Did we miss something?</AlertTitle>
-          The Frequently Asked Questions are currently being documented. Please let us know if we missed something by either <a href="https://github.com/chesslablab/react-chess/issues" target="_blank" rel="noreferrer">raising an issue</a> on
-          a GitHub repository or by <a href="https://github.com/orgs/chesslablab/discussions" target="_blank" rel="noreferrer">opening a discussion</a>.
+          The Frequently Asked Questions are currently being documented. Please let us know if we missed something by either <Link href="https://github.com/chesslablab/react-chess/issues" target="_blank" rel="noreferrer">raising an issue</Link> on
+          a GitHub repository or by <Link href="https://github.com/orgs/chesslablab/discussions" target="_blank" rel="noreferrer">opening a discussion</Link>.
           Your feedback is very much appreciated.
           Thank you!
         </Alert>
