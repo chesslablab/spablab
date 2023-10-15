@@ -118,6 +118,70 @@ const HelpDialog = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel4a-content"
+              id="panel4a-header"
+            >
+              <Typography>What are the chess variants available for playing?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Classical, Fischer Random Chess, Capablanca and Capablanca-Fischer.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel5a-content"
+              id="panel5a-header"
+            >
+              <Typography>What is correspondence chess?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Correspondence chess allows people to play one another not
+                necessarily sitting in front of the board at the same time.
+                ChesslaBlab allows to play correspondence chess with easy-to-use
+                shared inboxes. Both players can send a move to a shared
+                correspondence inbox which will automatically be deleted after
+                thirty days from the last move that was made.
+                Have a nice game!
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel6a-content"
+              id="panel6a-header"
+            >
+              <Typography>How many chess games are in the database?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                There are about one million games in the database.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel7a-content"
+              id="panel7a-header"
+            >
+              <Typography>Can I improve my chess skills using the database?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Click on <b>Database &gt; Search Games</b> and enter some search
+                criteria. Studying games from titled FIDE players is definitely
+                a great way to improve your game.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </div>
       </div>
     </Dialog>
