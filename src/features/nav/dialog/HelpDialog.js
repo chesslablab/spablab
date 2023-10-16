@@ -58,17 +58,7 @@ const HelpDialog = () => {
         </Toolbar>
       </AppBar>
       <div style={{ margin: 15 }}>
-        <Alert
-          className="info-alert"
-          severity="info"
-        >
-          <AlertTitle>Did we miss something?</AlertTitle>
-          The Frequently Asked Questions are currently being documented. Please let us know if we missed something by either <Link href="https://github.com/chesslablab/react-chess/issues" target="_blank" rel="noreferrer">raising an issue</Link> on
-          a GitHub repository or by <Link href="https://github.com/orgs/chesslablab/discussions" target="_blank" rel="noreferrer">opening a discussion</Link>.
-          Your feedback is very much appreciated.
-          Thank you!
-        </Alert>
-        <div style={{ marginTop: 15 }}>
+        <div>
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -181,20 +171,6 @@ const HelpDialog = () => {
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel6a-content"
-              id="panel6a-header"
-            >
-              <Typography>How many chess games are in the database?</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                There are about one million games in the database.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
               aria-controls="panel7a-content"
               id="panel7a-header"
             >
@@ -205,6 +181,20 @@ const HelpDialog = () => {
                 Click on <b>Database &gt; Search Games</b>. Studying games from
                 titled FIDE players is definitely a great way to improve your
                 game.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel6a-content"
+              id="panel6a-header"
+            >
+              <Typography>How many chess games are in the database?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                There are about one million games in the database.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -278,6 +268,17 @@ const HelpDialog = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
+          <Alert
+            className="info-alert"
+            severity="info"
+            style={{ marginTop: 15 }}
+          >
+            <AlertTitle>Did we miss something?</AlertTitle>
+            The Frequently Asked Questions are currently being documented. Please let us know if we missed something by either <Link href="https://github.com/chesslablab/react-chess/issues" target="_blank" rel="noreferrer">raising an issue</Link> on
+            a GitHub repository or by <Link href="https://github.com/orgs/chesslablab/discussions" target="_blank" rel="noreferrer">opening a discussion</Link>.
+            Your feedback is very much appreciated.
+            Thank you!
+          </Alert>
         </div>
       </div>
     </Dialog>
