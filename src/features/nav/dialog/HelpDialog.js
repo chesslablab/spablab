@@ -69,9 +69,8 @@ const HelpDialog = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                No, it allows to learn and play chess online without being tracked.
-                It does not use cookies other than technical cookies because it
-                does not collect user data for its purposes, not even nicknames
+                No, it does not use cookies other than technical cookies because
+                it does not collect user data for its purposes, not even nicknames
                 or chess games. Besides, it is open-source, and can be used and
                 extended by developers to create amazing chess web apps. A bunch
                 of public chess repos ranging from React and JavaScript to PHP are
