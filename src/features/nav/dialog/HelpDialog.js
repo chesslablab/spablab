@@ -121,30 +121,28 @@ const HelpDialog = () => {
               <Typography>What are the chess variants available for playing?</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
-                <List>
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Classical" />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Fischer Random Chess" />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Capablanca" />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemText primary="Capablanca-Fischer" />
-                    </ListItemButton>
-                  </ListItem>
-                </List>
-              </Typography>
+              <List>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemText primary="Classical" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemText primary="Fischer Random Chess" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemText primary="Capablanca" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemText primary="Capablanca-Fischer" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
             </AccordionDetails>
           </Accordion>
           <Accordion>
