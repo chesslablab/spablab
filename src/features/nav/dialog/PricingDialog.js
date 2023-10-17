@@ -85,7 +85,7 @@ const PricingDialog = () => {
               </Typography>
               <FormControlLabel
                 control={<Checkbox onClick={() => setStudentRequest(!studentRequest)} />}
-                label="I agree to be kept up to date with this promotion according to the legal notice below."
+                label="I agree to be kept up to date with this promotion according to the Privacy Policy below."
                 componentsProps={{ typography: { variant: 'body2' } }}
               />
             </CardContent>
@@ -116,7 +116,7 @@ const PricingDialog = () => {
               </Typography>
               <FormControlLabel
                 control={<Checkbox onClick={() => setManagerRequest(!managerRequest)} />}
-                label="I agree to be kept up to date with this promotion according to the legal notice below."
+                label="I agree to be kept up to date with this promotion according to the Privacy Policy below."
                 componentsProps={{ typography: { variant: 'body2' } }}
               />
             </CardContent>
@@ -147,7 +147,7 @@ const PricingDialog = () => {
               </Typography>
               <FormControlLabel
                 control={<Checkbox onClick={() => setSponsorRequest(!sponsorRequest)} />}
-                label="I agree to be kept up to date with this promotion according to the legal notice below."
+                label="I agree to be kept up to date with this promotion according to the Privacy Policy below."
                 componentsProps={{ typography: { variant: 'body2' } }}
               />
             </CardContent>
