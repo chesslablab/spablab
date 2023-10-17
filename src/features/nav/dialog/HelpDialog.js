@@ -59,6 +59,17 @@ const HelpDialog = () => {
       </AppBar>
       <div style={{ margin: 15 }}>
         <div>
+          <Alert
+            className="info-alert"
+            severity="info"
+            style={{ marginBottom: 15 }}
+          >
+            <AlertTitle>Did we miss something?</AlertTitle>
+            The Frequently Asked Questions are currently being documented. Please let us know if we missed something by either <Link href="https://github.com/chesslablab/react-chess/issues" target="_blank" rel="noreferrer">raising an issue</Link> on
+            a GitHub repository or by <Link href="https://github.com/orgs/chesslablab/discussions" target="_blank" rel="noreferrer">opening a discussion</Link>.
+            Your feedback is very much appreciated.
+            Thank you!
+          </Alert>
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -265,17 +276,6 @@ const HelpDialog = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Alert
-            className="info-alert"
-            severity="info"
-            style={{ marginTop: 15 }}
-          >
-            <AlertTitle>Did we miss something?</AlertTitle>
-            The Frequently Asked Questions are currently being documented. Please let us know if we missed something by either <Link href="https://github.com/chesslablab/react-chess/issues" target="_blank" rel="noreferrer">raising an issue</Link> on
-            a GitHub repository or by <Link href="https://github.com/orgs/chesslablab/discussions" target="_blank" rel="noreferrer">opening a discussion</Link>.
-            Your feedback is very much appreciated.
-            Thank you!
-          </Alert>
         </div>
       </div>
     </Dialog>
