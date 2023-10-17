@@ -11,6 +11,7 @@ import DatabaseMenu from 'features/nav/DatabaseMenu';
 import TrainingMenu from 'features/nav/TrainingMenu';
 import InboxMenu from './InboxMenu';
 import SettingsMenu from './SettingsMenu';
+import PricingMenu from './PricingMenu';
 import HelpMenu from './HelpMenu';
 
 const Nav = () => {
@@ -61,6 +62,7 @@ const Nav = () => {
         <TrainingMenu />
         <InboxMenu />
         <SettingsMenu />
+        <PricingMenu />
         <HelpMenu />
       </ButtonGroup>
     </>

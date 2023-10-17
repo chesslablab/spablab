@@ -14,7 +14,7 @@ const HelpMenu = () => {
     <Button
       id="Nav-help"
       sx={{ pl: 2, borderRadius: 0, justifyContent: 'flex-start' }}
-      variant={state.name === navConst.SETTINGS ? "contained" : "text"}
+      variant={state.name === navConst.HELP ? "contained" : "text"}
       startIcon={<HelpIcon />}
       onClick={() => dispatch(nav.helpDialog({ open: true }))}
     >
