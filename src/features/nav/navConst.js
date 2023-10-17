@@ -6,6 +6,7 @@ const TRAINING = 'training';
 const OPENING_SEARCH = 'opening search';
 const SETTINGS = 'settings';
 const HELP = 'help';
+const PRICING = 'pricing';
 
 export {
   ANALYSIS,
@@ -15,5 +16,6 @@ export {
   TRAINING,
   OPENING_SEARCH,
   SETTINGS,
-  HELP
+  HELP,
+  PRICING
 };
