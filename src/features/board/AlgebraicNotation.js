@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import Pgn from 'common/Pgn';
 
-const AlgebraicNotation = ({props}) => {
+const AlgebraicNotation = ({ props }) => {
   const state = useSelector(state => state.board);
 
   const spans = [];

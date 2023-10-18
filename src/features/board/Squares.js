@@ -5,7 +5,7 @@ import Piece from 'common/Piece';
 import AlgebraicNotation from 'features/board/AlgebraicNotation';
 import * as eventConst from 'features/eventConst';
 
-const Squares = ({props}) => {
+const Squares = ({ props }) => {
   const statePlayMode = useSelector(state => state.playMode);
 
   const stateRavMode = useSelector(state => state.ravMode);

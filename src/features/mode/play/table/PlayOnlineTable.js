@@ -38,7 +38,7 @@ const styles = {
   },
 };
 
-const VariantIcon = ({props}) => {
+const VariantIcon = ({ props }) => {
   if (props.variant === variantConst.CLASSICAL) {
     return <RestartAltIcon />;
   } else if (props.variant === variantConst.CHESS_960) {

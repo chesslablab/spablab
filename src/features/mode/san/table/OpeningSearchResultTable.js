@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-const OpeningSearchResultTable = ({props}) => {
+const OpeningSearchResultTable = ({ props }) => {
   const dispatch = useDispatch();
 
   const handleLoad = (movetext) => {

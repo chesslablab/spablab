@@ -49,7 +49,7 @@ const styles = {
   },
 };
 
-const SearchGamesTable = ({props}) => {
+const SearchGamesTable = ({ props }) => {
   const dispatch = useDispatch();
 
   const handleLoad = (item) => {
