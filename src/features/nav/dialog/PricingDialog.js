@@ -27,6 +27,8 @@ const Transition = forwardRef(function Transition(props, ref) {
 const PricingDialog = () => {
   const state = useSelector(state => state.nav);
 
+  const [newsletterRequest, setNewsletterRequest] = useState(true);
+
   const [bootcampRequest, setBootcampRequest] = useState(true);
 
   const [managerRequest, setManagerRequest] = useState(true);
@@ -69,16 +71,48 @@ const PricingDialog = () => {
             Choose the subscription plan that suits you best
           </Typography>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
+          <Card>
+            <CardContent>
+              <Typography variant="h5" component="div" align="center" gutterBottom>
+                Newsletter
+              </Typography>
+              <Typography variant="body1" color="text.secondary" align="center" gutterBottom>
+                Taking your first steps with software development and don't
+                know where to start? Don't be shy, and ask questions! Subscribe to
+                ChesslaBlab's interactive newsletter today.
+              </Typography>
+              <Typography sx={{ m: 3 }} variant="h4" component="div" align="center">
+                €25 <Chip label="Month" />
+              </Typography>
+              <FormControlLabel
+                control={<Checkbox onClick={() => setNewsletterRequest(!newsletterRequest)} />}
+                label="I have read the privacy policy and agree to be kept up to date with this promotion."
+                componentsProps={{ typography: { variant: 'body2' } }}
+              />
+            </CardContent>
+            <CardActions>
+              <Button
+                fullWidth
+                variant="contained"
+                href={`mailto:${process.env.REACT_APP_LEGAL_INFO_EMAIL}?subject=Newsletter subscription request`}
+                disabled={newsletterRequest}
+              >
+                Request Info
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={3}>
           <Card>
             <CardContent>
               <Typography variant="h5" component="div" align="center" gutterBottom>
                 Bootcamp
               </Typography>
               <Typography variant="body1" color="text.secondary" align="center" gutterBottom>
-                Intended for students who want to improve their development skills.
-                Solve online chess issues on GitHub while being mentored at the
-                same time.
+                Looking to solve issues on GitHub while being mentored at the same
+                time? ChesslaBlab's software development bootcamp is intended
+                for students who want to learn by doing.
               </Typography>
               <Typography sx={{ m: 3 }} variant="h4" component="div" align="center">
                 €95 <Chip label="Month" />
@@ -101,7 +135,7 @@ const PricingDialog = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <Card>
             <CardContent>
               <Typography variant="h5" component="div" align="center" gutterBottom>
@@ -132,7 +166,7 @@ const PricingDialog = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <Card>
             <CardContent>
               <Typography variant="h5" component="div" align="center" gutterBottom>
