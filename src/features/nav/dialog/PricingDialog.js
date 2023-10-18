@@ -27,7 +27,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 const PricingDialog = () => {
   const state = useSelector(state => state.nav);
 
-  const [studentRequest, setStudentRequest] = useState(true);
+  const [bootcampRequest, setBootcampRequest] = useState(true);
 
   const [managerRequest, setManagerRequest] = useState(true);
 
@@ -73,7 +73,7 @@ const PricingDialog = () => {
           <Card>
             <CardContent>
               <Typography variant="h5" component="div" align="center" gutterBottom>
-                Student
+                Bootcamp
               </Typography>
               <Typography variant="body1" color="text.secondary" align="center" gutterBottom>
                 Intended for students who want to improve their development skills.
@@ -84,7 +84,7 @@ const PricingDialog = () => {
                 €95 <Chip label="Month" />
               </Typography>
               <FormControlLabel
-                control={<Checkbox onClick={() => setStudentRequest(!studentRequest)} />}
+                control={<Checkbox onClick={() => setBootcampRequest(!bootcampRequest)} />}
                 label="I have read the privacy policy and agree to be kept up to date with this promotion."
                 componentsProps={{ typography: { variant: 'body2' } }}
               />
@@ -93,8 +93,8 @@ const PricingDialog = () => {
               <Button
                 fullWidth
                 variant="contained"
-                href={`mailto:${process.env.REACT_APP_LEGAL_INFO_EMAIL}?subject=Student subscription request`}
-                disabled={studentRequest}
+                href={`mailto:${process.env.REACT_APP_LEGAL_INFO_EMAIL}?subject=Bootcamp subscription request`}
+                disabled={bootcampRequest}
               >
                 Request Info
               </Button>
