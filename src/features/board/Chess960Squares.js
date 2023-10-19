@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import Animation from 'common/Animation';
-import Piece from 'common/Piece';
+import * as SvgPiece from 'features/board/piece/SvgPiece';
 import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
@@ -36,7 +36,7 @@ const Chess960Squares = () => {
       imgsRef: imgsRef,
       sqsRef: sqsRef,
       handleMove: (payload) => {
-        if (state.turn === Piece.color(payload.piece)) {
+        if (state.turn === SvgPiece.color(payload.piece)) {
           // allow the king to be dropped into the castling rook
           if (state.pieceGrabbed?.fen) {
             if (Object.keys(state.pieceGrabbed.fen).includes(payload.sq)) {

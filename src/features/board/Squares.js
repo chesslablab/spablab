@@ -3,6 +3,7 @@ import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
 import Piece from 'common/Piece';
 import AlgebraicNotation from 'features/board/AlgebraicNotation';
+import * as SvgPiece from 'features/board/piece/SvgPiece';
 import * as eventConst from 'features/eventConst';
 
 const Squares = ({ props }) => {
@@ -141,7 +142,7 @@ const Squares = ({ props }) => {
                     alt={Piece.unicode[piece].char}
                     ref={el => props.imgsRef.current[payload.sq] = el}
                     src={Piece.unicode[piece].char}
-                    draggable={Piece.color(piece) === stateBoard.turn ? true : false}
+                    draggable={SvgPiece.color(piece) === stateBoard.turn ? true : false}
                     onDragStart={() => {
                       if (filterMove()) {
                         payload.piecePlaced = { event: eventConst.ON_DRAG_START };

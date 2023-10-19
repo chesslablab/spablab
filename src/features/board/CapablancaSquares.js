@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Piece from 'common/Piece';
+import * as SvgPiece from 'features/board/piece/SvgPiece';
 import * as board from 'features/board/boardSlice';
 import Squares from 'features/board/Squares';
 import Ws from 'features/ws/Ws';
@@ -16,7 +16,7 @@ const CapablancaSquares = () => {
       imgsRef:  useRef([]),
       sqsRef: useRef([]),
       handleMove: (payload) => {
-        if (state.turn === Piece.color(payload.piece)) {
+        if (state.turn === SvgPiece.color(payload.piece)) {
           dispatch(board.grabPiece(payload));
           Ws.legal(payload.sq);
         } else {
