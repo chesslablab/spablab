@@ -1,12 +1,34 @@
 import SvgBlackArchbishop from 'features/board/piece/SvgBlackArchbishop';
 import SvgBlackBishop from 'features/board/piece/SvgBlackBishop';
 import SvgBlackChancellor from 'features/board/piece/SvgBlackChancellor';
+import SvgBlackKing from 'features/board/piece/SvgBlackKing';
+import SvgBlackKnight from 'features/board/piece/SvgBlackKnight';
 
-export const SvgPiece = () => {
+export const Svg = ({ props }) => {
+  if (props.unicode === ' a ') {
+    return (
+      <SvgBlackArchbishop />
+    );
+  } else if (props.unicode === ' b ') {
+    return (
+      <SvgBlackBishop />
+    );
+  } else if (props.unicode === ' c ') {
+    return (
+      <SvgBlackChancellor />
+    );
+  } else if (props.unicode === ' k ') {
+    return (
+      <SvgBlackKing />
+    );
+  } else if (props.unicode === ' n ') {
+    return (
+      <SvgBlackKnight />
+    );
+  }
 
-  return (
-    <SvgBlackBishop />
-  );
+
+  return null;
 }
 
 export const color = (piece) => {
