@@ -1,9 +1,27 @@
-import { Ascii, ClassicalBoard, color } from 'react-board';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  Ascii,
+  CapablancaBoard,
+  CapablancaFischerBoard,
+  ClassicalBoard,
+  Chess960Board,
+  color
+} from 'react-board';
+import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import Pgn from 'common/Pgn';
-import { useState } from 'react';
+import Ws from 'features/ws/Ws';
 
 export const Board = () => {
+  const stateActiveMode = useSelector(state => Object.values(state).find((val, key) => val.active));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(Ws.connect()).then(() => Ws.start(variantConst.CLASSICAL, modeConst.FEN));
+  }, [dispatch]);
+
   const initialState = {
     variant: variantConst.CLASSICAL,
     turn: Pgn.symbol.WHITE,
@@ -63,6 +81,32 @@ export const Board = () => {
       placePiece(payload);
     }
   };
+
+  if (stateActiveMode?.variant === variantConst.CAPABLANCA) {
+    return (
+      <CapablancaBoard
+        props={state}
+        filterMove={filterMove}
+        handleMove={handleMove}
+      />
+    );
+  } else if (stateActiveMode?.variant === variantConst.CAPABLANCA_FISCHER) {
+    return (
+      <CapablancaFischerBoard
+        props={state}
+        filterMove={filterMove}
+        handleMove={handleMove}
+      />
+    );
+  } else if (stateActiveMode?.variant === variantConst.CHESS_960) {
+    return (
+      <Chess960Board
+        props={state}
+        filterMove={filterMove}
+        handleMove={handleMove}
+      />
+    );
+  }
 
   return (
     <ClassicalBoard
