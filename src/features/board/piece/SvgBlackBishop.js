@@ -1,4 +1,4 @@
-const BlackBishop = (props) => (
+const SvgBlackBishop = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={45} height={45} {...props}>
     <g
       style={{
@@ -38,4 +38,4 @@ const BlackBishop = (props) => (
   </svg>
 );
 
-export default BlackBishop;
+export default SvgBlackBishop;

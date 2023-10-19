@@ -1,4 +1,4 @@
-const BlackArchbishop = (props) => (
+const SvgBlackArchbishop = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={45} height={45} {...props}>
     <path
       fillRule="evenodd"
@@ -52,4 +52,4 @@ const BlackArchbishop = (props) => (
   </svg>
 );
 
-export default BlackArchbishop;
+export default SvgBlackArchbishop;
