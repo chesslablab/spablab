@@ -1,9 +1,8 @@
-import { ClassicalBoard } from 'react-board';
+import { ClassicalBoard, color } from 'react-board';
 import * as variantConst from 'features/mode/variantConst';
 import Pgn from 'common/Pgn';
 import Ascii from 'common/Ascii';
 import { useState } from 'react';
-import Piece from 'common/Piece';
 
 export const Board = () => {
   const initialState = {
@@ -59,7 +58,7 @@ export const Board = () => {
   };
 
   const handleMove = (payload) => {
-    if (state.turn === Piece.color(payload.piece)) {
+    if (state.turn === color(payload.piece)) {
       grabPiece(payload);
     } else {
       placePiece(payload);
