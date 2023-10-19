@@ -29,21 +29,19 @@ export const Board = () => {
     return true;
   };
 
-  const handleMove = (payload) => {
-    if (stateBoard.turn === color(payload.piece)) {
-      dispatch(board.grabPiece(payload));
-      Ws.legal(payload.sq);
-    } else {
-      dispatch(board.placePiece(payload));
-    }
-  };
-
   if (stateActiveMode?.variant === variantConst.CAPABLANCA) {
     return (
       <CapablancaBoard
         props={stateBoard}
         filterMove={filterMove}
-        handleMove={handleMove}
+        handleMove={(payload) => {
+          if (stateBoard.turn === color(payload.piece)) {
+            dispatch(board.grabPiece(payload));
+            Ws.legal(payload.sq);
+          } else {
+            dispatch(board.placePiece(payload));
+          }
+        }}
       />
     );
   } else if (stateActiveMode?.variant === variantConst.CAPABLANCA_FISCHER) {
@@ -51,7 +49,24 @@ export const Board = () => {
       <CapablancaFischerBoard
         props={stateBoard}
         filterMove={filterMove}
-        handleMove={handleMove}
+        handleMove={(payload) => {
+          if (stateBoard.turn === color(payload.piece)) {
+            // allow the king to be dropped into the castling rook
+            if (stateBoard.pieceGrabbed?.fen) {
+              if (Object.keys(stateBoard.pieceGrabbed.fen).includes(payload.sq)) {
+                dispatch(board.placePiece(payload));
+              } else {
+                dispatch(board.grabPiece(payload));
+                Ws.legal(payload.sq);
+              }
+            } else {
+              dispatch(board.grabPiece(payload));
+              Ws.legal(payload.sq);
+            }
+          } else {
+            dispatch(board.placePiece(payload));
+          }
+        }}
       />
     );
   } else if (stateActiveMode?.variant === variantConst.CHESS_960) {
@@ -59,7 +74,24 @@ export const Board = () => {
       <Chess960Board
         props={stateBoard}
         filterMove={filterMove}
-        handleMove={handleMove}
+        handleMove={(payload) => {
+          if (stateBoard.turn === color(payload.piece)) {
+            // allow the king to be dropped into the castling rook
+            if (stateBoard.pieceGrabbed?.fen) {
+              if (Object.keys(stateBoard.pieceGrabbed.fen).includes(payload.sq)) {
+                dispatch(board.placePiece(payload));
+              } else {
+                dispatch(board.grabPiece(payload));
+                Ws.legal(payload.sq);
+              }
+            } else {
+              dispatch(board.grabPiece(payload));
+              Ws.legal(payload.sq);
+            }
+          } else {
+            dispatch(board.placePiece(payload));
+          }
+        }}
       />
     );
   }
@@ -68,7 +100,14 @@ export const Board = () => {
     <ClassicalBoard
       props={stateBoard}
       filterMove={filterMove}
-      handleMove={handleMove}
+      handleMove={(payload) => {
+        if (stateBoard.turn === color(payload.piece)) {
+          dispatch(board.grabPiece(payload));
+          Ws.legal(payload.sq);
+        } else {
+          dispatch(board.placePiece(payload));
+        }
+      }}
     />
   );
 }
