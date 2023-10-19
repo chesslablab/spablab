@@ -1,5 +1,5 @@
+import { Ascii } from 'react-board';
 import store from 'app/store';
-import Ascii from 'common/Ascii';
 import * as eventConst from 'features/eventConst';
 
 export default class Animation {

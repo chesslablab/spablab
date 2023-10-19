@@ -1,5 +1,5 @@
+import { Ascii } from 'react-board';
 import { createSlice } from '@reduxjs/toolkit';
-import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
 import * as variantConst from 'features/mode/variantConst';
 

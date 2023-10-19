@@ -1,7 +1,6 @@
-import { ClassicalBoard, color } from 'react-board';
+import { Ascii, ClassicalBoard, color } from 'react-board';
 import * as variantConst from 'features/mode/variantConst';
 import Pgn from 'common/Pgn';
-import Ascii from 'common/Ascii';
 import { useState } from 'react';
 
 export const Board = () => {
