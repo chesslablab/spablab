@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import store from 'app/store';
 import InfoAlert from 'features/alert/InfoAlert.js';
 import WarningAlert from 'features/alert/WarningAlert.js';
-import { Board } from 'features/board/Board';
+import Board from 'features/board/Board';
 import ModeFenDialogs from 'features/mode/fen/FenDialogs';
 import ModePlayDialogs from 'features/mode/play/PlayDialogs';
 import ModeRavDialogs from 'features/mode/rav/RavDialogs';
