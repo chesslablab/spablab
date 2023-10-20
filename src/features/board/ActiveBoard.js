@@ -13,6 +13,10 @@ import Ws from 'features/ws/Ws';
 const ActiveBoard = () => {
   const stateActiveMode = useSelector(state => Object.values(state).find((val, key) => val.active));
 
+  const stateRavMode = useSelector(state => state.ravMode);
+
+  const statePlayMode = useSelector(state => state.playMode);
+
   const stateBoard = useSelector(state => state.board);
 
   const statePanel = useSelector(state => state.panel);
@@ -24,10 +28,38 @@ const ActiveBoard = () => {
   }, [dispatch]);
 
   const filterMove = () => {
-    // TODO
+    if (stateRavMode.active) {
+      return false;
+    } else if (statePlayMode.active) {
+      if (
+        !statePlayMode.accepted ||
+        stateBoard.isMate ||
+        stateBoard.isStalemate ||
+        statePlayMode.draw ||
+        statePlayMode.resign ||
+        statePlayMode.leave ||
+        statePlayMode.timeOut ||
+        statePanel.history.back !== 0
+      ) {
+        return false;
+      }
+      if (statePlayMode.accepted) {
+        if (stateBoard.turn !== statePlayMode.play.color) {
+          return false;
+        }
+      }
+    } else {
+      if (
+        stateBoard.isMate ||
+        stateBoard.isStalemate ||
+        statePanel.history.back !== 0
+      ) {
+        return false;
+      }
+    }
 
     return true;
-  };
+  }
 
   if (stateActiveMode?.variant === variantConst.CAPABLANCA) {
     return (
