@@ -15,6 +15,8 @@ export const Board = () => {
 
   const stateBoard = useSelector(state => state.board);
 
+  const statePanel = useSelector(state => state.panel);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +33,7 @@ export const Board = () => {
     return (
       <CapablancaBoard
         stateBoard={stateBoard}
+        goBack={statePanel.history.back}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -46,6 +49,7 @@ export const Board = () => {
     return (
       <CapablancaBoard
         stateBoard={stateBoard}
+        goBack={statePanel.history.back}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -71,6 +75,7 @@ export const Board = () => {
     return (
       <ClassicalBoard
         stateBoard={stateBoard}
+        goBack={statePanel.history.back}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -97,6 +102,7 @@ export const Board = () => {
   return (
     <ClassicalBoard
       stateBoard={stateBoard}
+      goBack={statePanel.history.back}
       filterMove={filterMove}
       handleMove={(payload) => {
         if (stateBoard.turn === color(payload.piece)) {
