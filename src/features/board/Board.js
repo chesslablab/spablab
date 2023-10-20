@@ -30,7 +30,7 @@ export const Board = () => {
   if (stateActiveMode?.variant === variantConst.CAPABLANCA) {
     return (
       <CapablancaBoard
-        props={stateBoard}
+        stateBoard={stateBoard}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -45,7 +45,7 @@ export const Board = () => {
   } else if (stateActiveMode?.variant === variantConst.CAPABLANCA_FISCHER) {
     return (
       <CapablancaBoard
-        props={stateBoard}
+        stateBoard={stateBoard}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -70,7 +70,7 @@ export const Board = () => {
   } else if (stateActiveMode?.variant === variantConst.CHESS_960) {
     return (
       <ClassicalBoard
-        props={stateBoard}
+        stateBoard={stateBoard}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -96,7 +96,7 @@ export const Board = () => {
 
   return (
     <ClassicalBoard
-      props={stateBoard}
+      stateBoard={stateBoard}
       filterMove={filterMove}
       handleMove={(payload) => {
         if (stateBoard.turn === color(payload.piece)) {
