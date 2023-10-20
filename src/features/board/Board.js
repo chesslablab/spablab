@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   CapablancaBoard,
-  CapablancaFischerBoard,
   ClassicalBoard,
-  Chess960Board,
   color
 } from 'react-board';
 import * as board from 'features/board/boardSlice';
@@ -46,7 +44,7 @@ export const Board = () => {
     );
   } else if (stateActiveMode?.variant === variantConst.CAPABLANCA_FISCHER) {
     return (
-      <CapablancaFischerBoard
+      <CapablancaBoard
         props={stateBoard}
         filterMove={filterMove}
         handleMove={(payload) => {
@@ -71,7 +69,7 @@ export const Board = () => {
     );
   } else if (stateActiveMode?.variant === variantConst.CHESS_960) {
     return (
-      <Chess960Board
+      <ClassicalBoard
         props={stateBoard}
         filterMove={filterMove}
         handleMove={(payload) => {
