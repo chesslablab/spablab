@@ -62,9 +62,8 @@ const boardSlice = createSlice({
     flip(state) {
       state.flip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     },
-    playLan(state, action) {
+    playLan(state) {
       state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      state.piecePlaced = action.payload.piecePlaced;
     },
     grabPiece(state, action) {
       const fen = state.fen[state.fen.length - 1].split(' ');
@@ -137,7 +136,6 @@ const boardSlice = createSlice({
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.isStalemate = action.payload.isStalemate;
-      state.piecePlaced = action.payload.piecePlaced;
       state.movetext = action.payload.movetext;
       delete state.lan;
       delete state.pieceGrabbed;

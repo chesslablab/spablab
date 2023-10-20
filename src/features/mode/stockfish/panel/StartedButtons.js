@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import Pgn from 'common/Pgn';
 import Ws from 'features/ws/Ws';
-import * as eventConst from 'features/eventConst';
 
 const StartedButtons = () => {
   const stateBoard = useSelector(state => state.board);
@@ -21,8 +20,7 @@ const StartedButtons = () => {
         <Button
           disabled={
             (statePanel.history.back !== 0) ||
-            (stateBoard.turn === Pgn.symbol.BLACK && stateBoard.fen.length === 2) ||
-            stateBoard.piecePlaced?.event === eventConst.ON_MOUSE_DOWN
+            (stateBoard.turn === Pgn.symbol.BLACK && stateBoard.fen.length === 2)
           }
           onClick={() => {
             Ws.undo();
