@@ -5,10 +5,6 @@ iframe {
   height: 482px;
 }
 
-:root{
-  --slider-value: 100;
-}
-
 .classicalSquares {
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
