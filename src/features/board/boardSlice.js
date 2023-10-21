@@ -11,10 +11,6 @@ const initialState = {
   isStalemate: false,
   fen: [Ascii.initialFen()],
   flip: Pgn.symbol.WHITE,
-  size: {
-    files: 8,
-    ranks: 8
-  },
   dialogs: {
     promotion: {
       open: false,
@@ -36,18 +32,10 @@ const boardSlice = createSlice({
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];
         state.turn = fen[1];
-        state.size = {
-          files: 10,
-          ranks: 8
-        };
       } else if (action.payload.variant === variantConst.CAPABLANCA_FISCHER) {
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];
         state.turn = fen[1];
-        state.size = {
-          files: 10,
-          ranks: 8
-        };
       } else {
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];
