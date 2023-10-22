@@ -1,4 +1,4 @@
-import { Ascii } from 'react-board';
+import { Ascii } from '@chesslablab/react-board';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 
