@@ -1,6 +1,6 @@
 ## React Chess
 
-React Chess is a lightweight chessboard connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
+React Chess is a chess application connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
 
 ### Demo
 
