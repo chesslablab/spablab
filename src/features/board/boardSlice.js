@@ -1,5 +1,5 @@
+import { Ascii } from '@chesslablab/react-board';
 import { createSlice } from '@reduxjs/toolkit';
-import Ascii from 'common/Ascii';
 import Pgn from 'common/Pgn';
 import * as variantConst from 'features/mode/variantConst';
 
@@ -11,10 +11,6 @@ const initialState = {
   isStalemate: false,
   fen: [Ascii.initialFen()],
   flip: Pgn.symbol.WHITE,
-  size: {
-    files: 8,
-    ranks: 8
-  },
   dialogs: {
     promotion: {
       open: false,
@@ -36,18 +32,10 @@ const boardSlice = createSlice({
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];
         state.turn = fen[1];
-        state.size = {
-          files: 10,
-          ranks: 8
-        };
       } else if (action.payload.variant === variantConst.CAPABLANCA_FISCHER) {
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];
         state.turn = fen[1];
-        state.size = {
-          files: 10,
-          ranks: 8
-        };
       } else {
         const fen = action.payload.fen.split(' ');
         state.fen = [action.payload.fen];
@@ -62,9 +50,8 @@ const boardSlice = createSlice({
     flip(state) {
       state.flip = state.flip === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
     },
-    playLan(state, action) {
+    playLan(state) {
       state.turn = state.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
-      state.piecePlaced = action.payload.piecePlaced;
     },
     grabPiece(state, action) {
       const fen = state.fen[state.fen.length - 1].split(' ');
@@ -137,7 +124,6 @@ const boardSlice = createSlice({
       state.isCheck = action.payload.isCheck;
       state.isMate = action.payload.isMate;
       state.isStalemate = action.payload.isStalemate;
-      state.piecePlaced = action.payload.piecePlaced;
       state.movetext = action.payload.movetext;
       delete state.lan;
       delete state.pieceGrabbed;

@@ -1,6 +1,6 @@
+import { Ascii } from '@chesslablab/react-board';
 import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import Ascii from 'common/Ascii';
 
 const OpeningTable = () => {
   const stateFenMode = useSelector(state => state.fenMode);

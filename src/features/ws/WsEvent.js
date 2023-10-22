@@ -13,7 +13,6 @@ import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
-import * as eventConst from 'features/eventConst';
 import * as heuristics from 'features/heuristicsSlice';
 import multiAction from 'features/multiAction';
 import * as positionEval from 'features/positionEvalSlice';
@@ -142,9 +141,7 @@ export default class WsEvent {
       if (store.getState().playMode.active) {
         dispatch(playMode.timer(data['/play_lan'].timer));
         if (store.getState().playMode.play.color === data['/play_lan'].turn) {
-          dispatch(board.playLan({
-            piecePlaced: { event: eventConst.ON_PLAY_LAN }
-          }));
+          dispatch(board.playLan());
         }
       } else if (store.getState().stockfishMode.active) {
         Ws.stockfish();
@@ -258,10 +255,7 @@ export default class WsEvent {
 
   static onStockfish = (data) => dispatch => {
     if (data['/stockfish']) {
-      dispatch(board.stockfish({
-        ...data['/stockfish'],
-        piecePlaced: { event: eventConst.ON_STOCKFISH }
-      }));
+      dispatch(board.stockfish(data['/stockfish']));
       Ws.heuristics();
       multiAction.openingByMovetext(dispatch, data['/stockfish']);
     }
