@@ -71,19 +71,19 @@ const PricingDialog = () => {
             Choose a monthly plan
           </Typography>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <Card sx={{ backgroundColor: '#fff1e4' }}>
+        <Grid item xs={12} md={4}>
+          <Card sx={{ backgroundColor: '#ffeddb' }}>
             <CardContent>
               <Typography sx={{ color: '#d18b47', fontWeight: 'bold' }} variant="h5" component="div" align="center" gutterBottom>
                 Newsletter
               </Typography>
               <Typography variant="body1" color="text.secondary" align="center" gutterBottom>
-                Taking your first steps with software development and don't
-                know where to start? Don't be shy, and ask questions! Subscribe to
-                ChesslaBlab's interactive newsletter today.
+                Subscribe to the newsletter and get exclusive content! Don't be
+                shy, and ask questions. Be the first to know about updates while
+                supporting ChesslaBlab open source repos.
               </Typography>
               <Typography sx={{ m: 3 }} variant="h4" component="div" align="center">
-                €25 <Chip label="Month" />
+                €15 <Chip label="Month" />
               </Typography>
               <FormControlLabel
                 control={<Checkbox onClick={() => setNewsletterRequest(!newsletterRequest)} />}
@@ -103,39 +103,7 @@ const PricingDialog = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <Card sx={{ backgroundColor: '#ffeddb' }}>
-            <CardContent>
-              <Typography sx={{ color: '#d18b47', fontWeight: 'bold' }} variant="h5" component="div" align="center" gutterBottom>
-                Bootcamp
-              </Typography>
-              <Typography variant="body1" color="text.secondary" align="center" gutterBottom>
-                Looking to solve issues on GitHub while being mentored at the same
-                time? ChesslaBlab's software development bootcamp is intended
-                for students who want to learn by doing.
-              </Typography>
-              <Typography sx={{ m: 3 }} variant="h4" component="div" align="center">
-                €95 <Chip label="Month" />
-              </Typography>
-              <FormControlLabel
-                control={<Checkbox onClick={() => setBootcampRequest(!bootcampRequest)} />}
-                label="I have read the privacy policy and agree to be kept up to date with this promotion."
-                componentsProps={{ typography: { variant: 'body2' } }}
-              />
-            </CardContent>
-            <CardActions>
-              <Button
-                fullWidth
-                variant="contained"
-                href={`mailto:${process.env.REACT_APP_LEGAL_INFO_EMAIL}?subject=Bootcamp subscription request`}
-                disabled={bootcampRequest}
-              >
-                Request Info
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={4}>
           <Card sx={{ backgroundColor: '#ffe9d2' }}>
             <CardContent>
               <Typography sx={{ color: '#d18b47', fontWeight: 'bold' }} variant="h5" component="div" align="center" gutterBottom>
@@ -143,7 +111,7 @@ const PricingDialog = () => {
               </Typography>
               <Typography variant="body1" color="text.secondary" align="center" gutterBottom>
                 Aimed at chess companies and entrepreneurial individuals taking
-                on business opportunities in the online chess industry.
+                on open source business opportunities in the online chess industry.
               </Typography>
               <Typography sx={{ m: 3 }} variant="h4" component="div" align="center">
                 €295 <Chip label="Month" />
@@ -166,15 +134,16 @@ const PricingDialog = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={4}>
           <Card sx={{ backgroundColor: '#ffe4ca' }}>
             <CardContent>
               <Typography sx={{ color: '#d18b47', fontWeight: 'bold' }} variant="h5" component="div" align="center" gutterBottom>
                 Sponsor
               </Typography>
               <Typography variant="body1" color="text.secondary" align="center" gutterBottom>
-                Display your logo on this website as well as in ChesslaBlab's GitHub
-                repos. Shout-out on social media recognizing your sponsorship.
+                Display your logo on this website as well as in the GitHub
+                repos while supporting open source chess. Shout-out on social
+                media recognizing your sponsorship.
               </Typography>
               <Typography sx={{ m: 3 }} variant="h4" component="div" align="center">
                 €495 <Chip label="Month" />
