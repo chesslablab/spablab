@@ -29,8 +29,6 @@ const PricingDialog = () => {
 
   const [newsletterRequest, setNewsletterRequest] = useState(true);
 
-  const [bootcampRequest, setBootcampRequest] = useState(true);
-
   const [managerRequest, setManagerRequest] = useState(true);
 
   const [sponsorRequest, setSponsorRequest] = useState(true);
