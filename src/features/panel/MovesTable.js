@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import Movetext from 'common/Movetext.js';
-import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
 import styles from 'styles/panel';
-import Ws from 'features/ws/Ws';
 
 const MovesTable = () => {
   const stateBoard = useSelector(state => state.board);
@@ -13,31 +10,6 @@ const MovesTable = () => {
   const statePanel = useSelector(state => state.panel);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (stateBoard.lan && !stateBoard.pieceGrabbed) {
-      const from = stateBoard.lan?.charAt(1);
-      const to = stateBoard.lan?.charAt(3);
-      if (
-        from === '7' && to === '8' &&
-        stateBoard.piecePlaced?.ascii === ' P '
-      ) {
-        dispatch(board.promotionDialog({ open: true }));
-      } else if (
-        from === '2' && to === '1' &&
-        stateBoard.piecePlaced?.ascii === ' p '
-      ) {
-        dispatch(board.promotionDialog({ open: true }));
-      } else {
-        Ws.playLan();
-      }
-    }
-  }, [
-    stateBoard.pieceGrabbed,
-    stateBoard.lan,
-    stateBoard.piecePlaced?.ascii,
-    dispatch
-  ]);
 
   const currentMove = (fen) => {
     if (stateBoard.fen.length - 1 + statePanel.history.back === fen ) {

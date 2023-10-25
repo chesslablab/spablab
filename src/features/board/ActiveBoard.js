@@ -27,6 +27,31 @@ const ActiveBoard = () => {
     dispatch(Ws.connect()).then(() => Ws.start(variantConst.CLASSICAL, modeConst.FEN));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (stateBoard.lan && !stateBoard.pieceGrabbed) {
+      const from = stateBoard.lan?.charAt(1);
+      const to = stateBoard.lan?.charAt(3);
+      if (
+        from === '7' && to === '8' &&
+        stateBoard.piecePlaced?.ascii === ' P '
+      ) {
+        dispatch(board.promotionDialog({ open: true }));
+      } else if (
+        from === '2' && to === '1' &&
+        stateBoard.piecePlaced?.ascii === ' p '
+      ) {
+        dispatch(board.promotionDialog({ open: true }));
+      } else {
+        Ws.playLan();
+      }
+    }
+  }, [
+    stateBoard.pieceGrabbed,
+    stateBoard.lan,
+    stateBoard.piecePlaced?.ascii,
+    dispatch
+  ]);
+
   const filterMove = () => {
     if (stateRavMode.active) {
       return false;
