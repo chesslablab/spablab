@@ -4,7 +4,7 @@ import {
   CapablancaBoard,
   ClassicalBoard,
   color
-} from '@chesslablab/react-board';
+} from '@chesslablab/reactblab';
 import * as board from 'features/board/boardSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';

@@ -1,4 +1,4 @@
-import { Ascii } from '@chesslablab/react-board';
+import { Ascii } from '@chesslablab/reactblab';
 import { createSlice } from '@reduxjs/toolkit';
 import Pgn from 'common/Pgn';
 import * as variantConst from 'features/mode/variantConst';

@@ -3,7 +3,7 @@
   "version": "1.2.21",
   "private": true,
   "dependencies": {
-    "@chesslablab/react-board": "^0.2",
+    "@chesslablab/reactblab": "^0.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.9",
