@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
-import Movetext from 'common/Movetext.js';
+import { Movetext } from '@chesslablab/reactblab';
 import * as panel from 'features/panel/panelSlice';
 import styles from 'styles/panel';
 
