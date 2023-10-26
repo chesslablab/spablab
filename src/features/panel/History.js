@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import CachedIcon from '@mui/icons-material/Cached';
 import FastForwardIcon from '@mui/icons-material/FastForward';
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
@@ -21,10 +20,6 @@ const History = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Button
-        startIcon={<CachedIcon />}
-        onClick={() => dispatch(board.flip())}
-      />
       <Button
         startIcon={<FastRewindIcon />}
         disabled={stateBoard.fen.length - 1 - Math.abs(statePanel.history.back) === 0}

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import CachedIcon from '@mui/icons-material/Cached';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
@@ -8,6 +9,7 @@ import { IconButton, Stack } from "@mui/material";
 import { getActiveMode } from 'app/store';
 import Movetext from 'common/Movetext';
 import * as warningAlert from 'features/alert/warningAlertSlice';
+import * as board from 'features/board/boardSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as panel from 'features/panel/panelSlice';
 import * as progressDialog from 'features/progressDialogSlice';
@@ -103,9 +105,20 @@ const Buttons = () => {
       direction="row"
       justifyContent="center"
       alignItems="center"
+      spacing={2}
     >
       <IconButton
-        size="large"
+        size="small"
+        id="Buttons-flip"
+        color="primary"
+        title="Flip board"
+        aria-label="flip"
+        onClick={() => dispatch(board.flip())}
+      >
+        <CachedIcon />
+      </IconButton>
+      <IconButton
+        size="small"
         id="Buttons-copyMovetext"
         disabled={!stateBoard.movetext}
         color="primary"
@@ -116,7 +129,7 @@ const Buttons = () => {
         <MoveDownIcon />
       </IconButton>
       <IconButton
-        size="large"
+        size="small"
         id="Buttons-copyFenString"
         color="primary"
         title="Copy FEN string"
@@ -126,7 +139,7 @@ const Buttons = () => {
         <WidgetsIcon />
       </IconButton>
       <IconButton
-        size="large"
+        size="small"
         id="Buttons-heuristics"
         disabled={!stateBoard.movetext}
         color="primary"
@@ -137,7 +150,7 @@ const Buttons = () => {
         <BarChartIcon />
       </IconButton>
       <IconButton
-        size="large"
+        size="small"
         id="Buttons-downloadImage"
         color="primary"
         title="Download Image"
@@ -147,7 +160,7 @@ const Buttons = () => {
         <InsertPhotoIcon />
       </IconButton>
       <IconButton
-        size="large"
+        size="small"
         id="Buttons-downloadVideo"
         disabled={!stateBoard.movetext}
         color="primary"
