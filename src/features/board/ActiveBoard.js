@@ -89,8 +89,12 @@ const ActiveBoard = () => {
   if (stateActiveMode?.variant === variantConst.CAPABLANCA) {
     return (
       <CapablancaBoard
-        stateBoard={stateBoard}
-        goBack={statePanel.history.back}
+        stateBoard={{
+          fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
+          isCheck: stateBoard.isCheck,
+          pieceGrabbed: stateBoard.pieceGrabbed,
+          flip: stateBoard.flip,
+        }}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -105,8 +109,12 @@ const ActiveBoard = () => {
   } else if (stateActiveMode?.variant === variantConst.CAPABLANCA_FISCHER) {
     return (
       <CapablancaBoard
-        stateBoard={stateBoard}
-        goBack={statePanel.history.back}
+        stateBoard={{
+          fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
+          isCheck: stateBoard.isCheck,
+          pieceGrabbed: stateBoard.pieceGrabbed,
+          flip: stateBoard.flip,
+        }}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -131,8 +139,12 @@ const ActiveBoard = () => {
   } else if (stateActiveMode?.variant === variantConst.CHESS_960) {
     return (
       <ClassicalBoard
-        stateBoard={stateBoard}
-        goBack={statePanel.history.back}
+        stateBoard={{
+          fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
+          isCheck: stateBoard.isCheck,
+          pieceGrabbed: stateBoard.pieceGrabbed,
+          flip: stateBoard.flip,
+        }}
         filterMove={filterMove}
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
@@ -158,8 +170,12 @@ const ActiveBoard = () => {
 
   return (
     <ClassicalBoard
-      stateBoard={stateBoard}
-      goBack={statePanel.history.back}
+      stateBoard={{
+        fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
+        isCheck: stateBoard.isCheck,
+        pieceGrabbed: stateBoard.pieceGrabbed,
+        flip: stateBoard.flip,
+      }}
       filterMove={filterMove}
       handleMove={(payload) => {
         if (stateBoard.turn === color(payload.piece)) {
