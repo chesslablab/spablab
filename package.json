@@ -3,6 +3,7 @@
   "version": "1.2.21",
   "private": true,
   "dependencies": {
+    "@chesslablab/reactblab": "^0.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.9",
@@ -22,10 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "link:lib-self": "cd /home/standard/projects/@chesslablab/reactblab && npm link",
-    "link:lib-react": "cd /home/standard/projects/@chesslablab/reactblab && sudo npm link /home/standard/projects/react-chess/node_modules/react /home/standard/projects/react-chess/node_modules/react-dom",
-    "link:app-to-lib": "npm link @chesslablab/reactblab"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
