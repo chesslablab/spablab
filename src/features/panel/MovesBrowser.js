@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { MovesTable } from '@chesslablab/reactblab';
-import History from 'features/panel/History';
+import { HistoryButtons, MovesTable } from '@chesslablab/reactblab';
+import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
 
 const MovesBrowser = () => {
@@ -12,17 +12,37 @@ const MovesBrowser = () => {
 
   return (
     <>
-    <History />
-    <MovesTable
-      stateMovesTable={{
-        back: statePanel.history.back,
-        movetext: stateBoard.movetext,
-        fen: stateBoard.fen,
-      }}
-      onCellClick={(payload) => {
-        dispatch(panel.goTo(payload));
-      }}
-    />
+      <HistoryButtons
+        stateHistoryButtons={{
+          back: statePanel.history.back,
+          fen: stateBoard.fen,
+        }}
+        onFastRewindClick={() => {
+          dispatch(panel.goTo({ back: stateBoard.fen.length - 1 }));
+        }}
+        onSkipPreviousClick={() => {
+          dispatch(panel.goBack());
+          dispatch(board.browseHistory());
+        }}
+        onSkipNextClick={() => {
+          dispatch(panel.goForward());
+          dispatch(board.browseHistory());
+        }}
+        onFastForwardClick={() => {
+          dispatch(panel.goToEnd());
+          dispatch(board.browseHistory());
+        }}
+      />
+      <MovesTable
+        stateMovesTable={{
+          back: statePanel.history.back,
+          movetext: stateBoard.movetext,
+          fen: stateBoard.fen,
+        }}
+        onCellClick={(payload) => {
+          dispatch(panel.goTo(payload));
+        }}
+      />
     </>
   );
 }
