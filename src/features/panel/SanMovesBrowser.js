@@ -3,7 +3,7 @@ import { HistoryButtons, SanMovesTable } from '@chesslablab/reactblab';
 import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
 
-const MovesBrowser = () => {
+const SanMovesBrowser = () => {
   const stateBoard = useSelector(state => state.board);
 
   const statePanel = useSelector(state => state.panel);
@@ -47,4 +47,4 @@ const MovesBrowser = () => {
   );
 }
 
-export default MovesBrowser;
+export default SanMovesBrowser;
