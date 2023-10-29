@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import GameMetadataTable from 'features/panel/GameMetadataTable';
 import RavButtons from 'features/mode/rav/panel/RavButtons';
-import RavMovesTable from 'features/mode/rav/panel/RavMovesTable';
+import RavMovesBrowser from 'features/mode/rav/panel/RavMovesBrowser';
 import styles from 'styles/panel';
 
 const RavPanel = () => {
@@ -9,7 +9,7 @@ const RavPanel = () => {
     <Grid container>
       <Grid item xs={12} sx={styles.panel}>
         <GameMetadataTable />
-        <RavMovesTable />
+        <RavMovesBrowser />
         <RavButtons />
       </Grid>
     </Grid>
