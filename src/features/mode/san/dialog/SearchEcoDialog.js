@@ -9,7 +9,7 @@ import {
   MenuItem,
   TextField
 } from '@mui/material';
-import Opening from 'common/Opening.js';
+import { Opening } from '@chesslablab/reactblab';
 import * as sanMode from 'features/mode/sanModeSlice';
 import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
 

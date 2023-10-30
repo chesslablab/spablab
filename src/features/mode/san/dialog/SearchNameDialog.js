@@ -9,7 +9,7 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
-import Opening from 'common/Opening.js';
+import { Opening } from '@chesslablab/reactblab';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as sanMode from 'features/mode/sanModeSlice';
 import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
