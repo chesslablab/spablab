@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { HistoryButtons, SanMovesTable } from '@chesslablab/reactblab';
+import { HistoryButtons, OpeningTable, SanMovesTable } from '@chesslablab/reactblab';
 import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
 
@@ -41,6 +41,12 @@ const SanMovesBrowser = () => {
         }}
         onCellClick={(payload) => {
           dispatch(panel.goTo(payload));
+        }}
+      />
+      <OpeningTable
+        stateOpeningTable={{
+          opening: statePanel.tables.opening,
+          fen: stateBoard.fen,
         }}
       />
     </>

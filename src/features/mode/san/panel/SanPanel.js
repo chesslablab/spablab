@@ -3,7 +3,6 @@ import StartedButtons from 'features/mode/san/panel/StartedButtons';
 import Buttons from 'features/panel/Buttons';
 import ButtonsDialogs from 'features/panel/ButtonsDialogs';
 import GameMetadataTable from 'features/panel/GameMetadataTable';
-import OpeningTable from 'features/panel/OpeningTable';
 import SanMovesBrowser from 'features/panel/SanMovesBrowser';
 import styles from 'styles/panel';
 
@@ -13,12 +12,11 @@ const SanPanel = () => {
       <Grid item xs={12} sx={styles.panel}>
         <GameMetadataTable />
         <SanMovesBrowser />
-        <Buttons />
-        <ButtonsDialogs />
       </Grid>
       <Grid item xs={12}>
+        <Buttons />
+        <ButtonsDialogs />
         <StartedButtons />
-        <OpeningTable />
       </Grid>
     </Grid>
   );

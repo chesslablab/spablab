@@ -1,4 +1,4 @@
-import Opening from 'common/Opening.js';
+import { Opening } from '@chesslablab/reactblab';
 import * as heuristics from 'features/heuristicsSlice';
 import * as positionEval from 'features/positionEvalSlice';
 import * as board from 'features/board/boardSlice';

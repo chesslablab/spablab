@@ -106,6 +106,7 @@ const Buttons = () => {
       justifyContent="center"
       alignItems="center"
       spacing={2}
+      sx={{ mt: 1.5 }}
     >
       <IconButton
         size="small"
