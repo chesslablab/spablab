@@ -8,7 +8,7 @@ const initialState = {
     opening: {
       rows: [],
     },
-    gameMetadata: {},
+    movesMetadata: {},
   },
   dialogs: {
     heuristics: {
@@ -25,8 +25,8 @@ const panelSlice = createSlice({
     openingTable(state, action) {
       state.tables.opening = action.payload;
     },
-    gameMetadataTable(state, action) {
-      state.tables.gameMetadata = action.payload;
+    movesMetadataTable(state, action) {
+      state.tables.movesMetadata = action.payload;
     },
     goTo(state, action) {
       state.history.back = 0 - action.payload.back;
@@ -48,7 +48,7 @@ const panelSlice = createSlice({
 
 export const {
   openingTable,
-  gameMetadataTable,
+  movesMetadataTable,
   goTo,
   goBack,
   goForward,

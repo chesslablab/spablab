@@ -55,7 +55,7 @@ const SearchGamesTable = ({ props }) => {
   const handleLoad = (item) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setDatabase());
-    dispatch(panel.gameMetadataTable({
+    dispatch(panel.movesMetadataTable({
       Event: item.Event,
       Site: item.Site,
       Date: item.Date,
