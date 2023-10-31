@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { HistoryButtons, OpeningTable, SanMovesTable } from '@chesslablab/reactblab';
+import { HistoryButtons, MovesMetadataTable, OpeningTable, SanMovesTable } from '@chesslablab/reactblab';
 import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
 
@@ -31,6 +31,11 @@ const SanMovesBrowser = () => {
         onFastForwardClick={() => {
           dispatch(panel.goToEnd());
           dispatch(board.browseHistory());
+        }}
+      />
+      <MovesMetadataTable
+        stateMovesMetadataTable={{
+          metadata: statePanel.tables.gameMetadata,
         }}
       />
       <SanMovesTable
