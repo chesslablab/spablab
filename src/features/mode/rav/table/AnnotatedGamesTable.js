@@ -59,7 +59,7 @@ const AnnotatedGamesTable = () => {
   const handleLoad = (item) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setDatabase());
-    dispatch(panel.gameMetadataTable({
+    dispatch(panel.movesMetadataTable({
       Event: item.Event,
       Round: item.Round,
       Site: item.Site,

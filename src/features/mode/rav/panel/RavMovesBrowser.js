@@ -37,7 +37,7 @@ const RavMovesBrowser = () => {
       />
       <MovesMetadataTable
         stateMovesMetadataTable={{
-          metadata: statePanel.tables.gameMetadata,
+          metadata: statePanel.tables.movesMetadata,
         }}
       />
       <RavMovesTable

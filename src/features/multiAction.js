@@ -18,7 +18,7 @@ export default class multiAction {
     dispatch(positionEval.reset());
     dispatch(panel.openingTable({ open: false }));
     dispatch(panel.goTo({ back: 0 }));
-    dispatch(panel.gameMetadataTable({}));
+    dispatch(panel.movesMetadataTable({}));
     dispatch(infoAlert.close());
     dispatch(warningAlert.close());
     dispatch(board.reset());
