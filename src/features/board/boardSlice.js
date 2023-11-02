@@ -85,7 +85,7 @@ const boardSlice = createSlice({
       delete state.piecePlaced;
     },
     legal(state, action) {
-      state.pieceGrabbed.fen = action.payload?.fen;
+      state.pieceGrabbed.fen = action.payload.fen;
     },
     undo(state, action) {
       const newFen = JSON.parse(JSON.stringify(state.fen));
