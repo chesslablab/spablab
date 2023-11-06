@@ -53,25 +53,25 @@ const SanMovesBrowser = () => {
       {
         maxWidth['900']
           ? <SanMovesInline
-            stateSanMovesInline={{
-              back: statePanel.history.back,
-              movetext: stateBoard.movetext,
-              fen: stateBoard.fen,
-            }}
-            onSpanClick={(payload) => {
-              dispatch(panel.goTo(payload));
-            }}
-          />
+              stateSanMovesInline={{
+                back: statePanel.history.back,
+                movetext: stateBoard.movetext,
+                fen: stateBoard.fen,
+              }}
+              onSpanClick={(payload) => {
+                dispatch(panel.goTo(payload));
+              }}
+            />
           : <SanMovesTable
-            stateSanMovesTable={{
-              back: statePanel.history.back,
-              movetext: stateBoard.movetext,
-              fen: stateBoard.fen,
-            }}
-            onCellClick={(payload) => {
-              dispatch(panel.goTo(payload));
-            }}
-          />
+              stateSanMovesTable={{
+                back: statePanel.history.back,
+                movetext: stateBoard.movetext,
+                fen: stateBoard.fen,
+              }}
+              onCellClick={(payload) => {
+                dispatch(panel.goTo(payload));
+              }}
+            />
       }
       <OpeningTable
         stateOpeningTable={{
