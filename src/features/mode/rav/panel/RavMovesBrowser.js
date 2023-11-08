@@ -1,9 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { HistoryButtons, MovesMetadataTable, RavMovesTable } from '@chesslablab/reactblab';
+import {
+  HistoryButtons,
+  MovesMetadataTable,
+  RavMovesInline,
+  RavMovesTable
+} from '@chesslablab/reactblab';
+import { useMediaQuery } from '@mui/material';
 import * as board from 'features/board/boardSlice';
 import * as panel from 'features/panel/panelSlice';
 
 const RavMovesBrowser = () => {
+  const maxWidth = {
+    '600': useMediaQuery("(max-width:600px)"),
+    '900': useMediaQuery("(max-width:900px)")
+  };
+
   const stateBoard = useSelector(state => state.board);
 
   const statePanel = useSelector(state => state.panel);
@@ -40,17 +51,31 @@ const RavMovesBrowser = () => {
           metadata: statePanel.tables.movesMetadata,
         }}
       />
-      <RavMovesTable
-        stateRavMovesTable={{
-          back: statePanel.history.back,
-          fen: stateBoard.fen,
-          filtered: stateRavMode.filtered,
-          breakdown: stateRavMode.breakdown,
-        }}
-        onCellClick={(payload) => {
-          dispatch(panel.goTo(payload));
-        }}
-      />
+      {
+        maxWidth['900']
+          ? <RavMovesInline
+              stateRavMovesInline={{
+                back: statePanel.history.back,
+                fen: stateBoard.fen,
+                filtered: stateRavMode.filtered,
+                breakdown: stateRavMode.breakdown,
+              }}
+              onSpanClick={(payload) => {
+                dispatch(panel.goTo(payload));
+              }}
+            />
+          : <RavMovesTable
+              stateRavMovesTable={{
+                back: statePanel.history.back,
+                fen: stateBoard.fen,
+                filtered: stateRavMode.filtered,
+                breakdown: stateRavMode.breakdown,
+              }}
+              onCellClick={(payload) => {
+                dispatch(panel.goTo(payload));
+              }}
+            />
+      }
     </>
   );
 }
