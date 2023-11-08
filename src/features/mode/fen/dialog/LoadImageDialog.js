@@ -25,7 +25,7 @@ export default function LoadImageDialog() {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
-          <DialogContentText sx={{pb:1}} id="alert-dialog-description">
+          <DialogContentText sx={{ pb: 1 }} id="alert-dialog-description">
             Soon available, please be patient!
           </DialogContentText>
           <input accept=".jpeg,.jpg,.png,.gif" type="file" />

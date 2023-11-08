@@ -26,7 +26,7 @@ const App = () => {
           <Nav />
           <NavDialogs />
         </Grid>
-        <Grid container sx={{p: 2}} spacing={2}>
+        <Grid container sx={{ p: 2 }} spacing={2}>
           <Grid item xs={12} md={5}>
             <Board />
             <PositionEval />

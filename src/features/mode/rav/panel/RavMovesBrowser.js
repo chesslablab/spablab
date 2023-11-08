@@ -53,7 +53,7 @@ const RavMovesBrowser = () => {
       />
       {
         maxWidth['900']
-          ? <div style={{backgroundColor: '#ffffff'}}>
+          ? <div style={{ backgroundColor: '#ffffff' }}>
               <RavMovesInline
                 stateRavMovesInline={{
                   back: statePanel.history.back,
