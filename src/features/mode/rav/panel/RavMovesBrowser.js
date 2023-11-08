@@ -53,17 +53,19 @@ const RavMovesBrowser = () => {
       />
       {
         maxWidth['900']
-          ? <RavMovesInline
-              stateRavMovesInline={{
-                back: statePanel.history.back,
-                fen: stateBoard.fen,
-                filtered: stateRavMode.filtered,
-                breakdown: stateRavMode.breakdown,
-              }}
-              onSpanClick={(payload) => {
-                dispatch(panel.goTo(payload));
-              }}
-            />
+          ? <div style={{backgroundColor: '#ffffff'}}>
+              <RavMovesInline
+                stateRavMovesInline={{
+                  back: statePanel.history.back,
+                  fen: stateBoard.fen,
+                  filtered: stateRavMode.filtered,
+                  breakdown: stateRavMode.breakdown,
+                }}
+                onSpanClick={(payload) => {
+                  dispatch(panel.goTo(payload));
+                }}
+              />
+            </div>
           : <RavMovesTable
               stateRavMovesTable={{
                 back: statePanel.history.back,
