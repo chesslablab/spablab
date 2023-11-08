@@ -6,7 +6,7 @@ import { getActiveMode } from 'app/store';
 
 const RavButtons = () => {
   const stateBoard = useSelector(state => state.board);
-  
+
   const statePanel = useSelector(state => state.panel);
 
   const handleDownloadImage = async () => {
@@ -36,9 +36,11 @@ const RavButtons = () => {
       direction="row"
       justifyContent="center"
       alignItems="center"
+      spacing={2}
+      sx={{ mt: 1.5 }}
     >
       <IconButton
-        size="large"
+        size="small"
         id="RavButtons-copyFenString"
         disabled={disabled}
         color="primary"
@@ -49,7 +51,7 @@ const RavButtons = () => {
         <WidgetsIcon />
       </IconButton>
       <IconButton
-        size="large"
+        size="small"
         id="RavButtons-downloadImage"
         disabled={disabled}
         color="primary"

@@ -8,6 +8,8 @@ const RavPanel = () => {
     <Grid container>
       <Grid item xs={12} sx={styles.panel}>
         <RavMovesBrowser />
+      </Grid>
+      <Grid item xs={12}>
         <RavButtons />
       </Grid>
     </Grid>
