@@ -52,16 +52,18 @@ const SanMovesBrowser = () => {
       />
       {
         maxWidth['900']
-          ? <SanMovesInline
-              stateSanMovesInline={{
-                back: statePanel.history.back,
-                movetext: stateBoard.movetext,
-                fen: stateBoard.fen,
-              }}
-              onSpanClick={(payload) => {
-                dispatch(panel.goTo(payload));
-              }}
-            />
+          ? <div style={{backgroundColor: '#ffffff'}}>
+              <SanMovesInline
+                stateSanMovesInline={{
+                  back: statePanel.history.back,
+                  movetext: stateBoard.movetext,
+                  fen: stateBoard.fen,
+                }}
+                onSpanClick={(payload) => {
+                  dispatch(panel.goTo(payload));
+                }}
+              />
+            </div>
           : <SanMovesTable
               stateSanMovesTable={{
                 back: statePanel.history.back,
