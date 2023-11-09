@@ -37,9 +37,6 @@ const initialState = {
     help: {
       open: false,
     },
-    pricing: {
-      open: false,
-    },
   },
 };
 
@@ -87,9 +84,6 @@ const navSlice = createSlice({
     helpDialog(state, action) {
       state.dialogs.help = action.payload;
     },
-    pricingDialog(state, action) {
-      state.dialogs.pricing = action.payload;
-    },
   },
 });
 
@@ -106,7 +100,6 @@ export const {
   playersStatsDialog,
   settingsDialog,
   settingsDialogSet,
-  helpDialog,
-  pricingDialog
+  helpDialog
 } = navSlice.actions;
 export default navSlice.reducer;

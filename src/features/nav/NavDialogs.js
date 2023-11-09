@@ -4,7 +4,6 @@ import EventsStatsDialog from 'features/nav/dialog/EventsStatsDialog';
 import OpeningsStatsDialog from 'features/nav/dialog/OpeningsStatsDialog';
 import PlayersStatsDialog from 'features/nav/dialog/PlayersStatsDialog';
 import SettingsDialog from 'features/nav/dialog/SettingsDialog';
-import PricingDialog from 'features/nav/dialog/PricingDialog';
 import HelpDialog from 'features/nav/dialog/HelpDialog';
 
 const NavDialogs = () => {
@@ -16,7 +15,6 @@ const NavDialogs = () => {
       <OpeningsStatsDialog />
       <PlayersStatsDialog />
       <SettingsDialog />
-      <PricingDialog />
       <HelpDialog />
     </>
   );
