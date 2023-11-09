@@ -84,5 +84,5 @@ describe('Play A73', function() {
     await driver.findElement(By.css(".e1 > svg")).click();
     await driver.sleep(1000);
     await driver.findElement(By.css(".g1")).click();
-  })
-})
+  });
+});

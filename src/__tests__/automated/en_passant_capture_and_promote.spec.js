@@ -66,5 +66,5 @@ describe('En passant capture and promote', function() {
     await driver.findElement(By.css(".h8 > svg")).click();
     await driver.sleep(1000);
     await driver.findElement(By.css(".f8 > svg")).click();
-  })
-})
+  });
+});
