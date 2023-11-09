@@ -970,7 +970,7 @@
       "id": "c9847cae-3888-4b0a-9530-1db26ed9790d",
       "comment": "",
       "command": "click",
-      "target": "css=.h2 > img",
+      "target": "css=.h2 > svg",
       "targets": [
         ["css=.h2 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg'])[8]", "xpath:img"],
@@ -993,7 +993,7 @@
       "id": "9d71b3eb-2d7d-43dc-951c-390a2e07395d",
       "comment": "",
       "command": "click",
-      "target": "css=.a7 > img",
+      "target": "css=.a7 > svg",
       "targets": [
         ["css=.a7 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg']", "xpath:img"],
@@ -1016,7 +1016,7 @@
       "id": "848be0e2-ebeb-44c3-9960-6172204c0ace",
       "comment": "",
       "command": "click",
-      "target": "css=.h4 > img",
+      "target": "css=.h4 > svg",
       "targets": [
         ["css=.h4 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg']", "xpath:img"],
@@ -1039,7 +1039,7 @@
       "id": "26cf1486-34f2-4292-8b9a-62540b98a577",
       "comment": "",
       "command": "click",
-      "target": "css=.g7 > img",
+      "target": "css=.g7 > svg",
       "targets": [
         ["css=.g7 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[6]", "xpath:img"],
@@ -1062,7 +1062,7 @@
       "id": "527ff8b1-5a1f-485a-bbd1-d26e2dd2feff",
       "comment": "",
       "command": "click",
-      "target": "css=.h5 > img",
+      "target": "css=.h5 > svg",
       "targets": [
         ["css=.h5 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg']", "xpath:img"],
@@ -1085,7 +1085,7 @@
       "id": "8182d7f8-9c57-4c12-a7dd-61ac2b53d32f",
       "comment": "",
       "command": "click",
-      "target": "css=.a5 > img",
+      "target": "css=.a5 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -1099,21 +1099,21 @@
       "id": "41e075ff-1ce8-4d46-9c12-45e5d4a42ea5",
       "comment": "",
       "command": "click",
-      "target": "css=.g6 > img",
+      "target": "css=.g6 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "480767f8-b1fa-4546-ab41-c26a87201f56",
       "comment": "",
       "command": "click",
-      "target": "css=.h7 > img",
+      "target": "css=.h7 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "645203f3-ceed-44c8-ba20-3fda6d68c73e",
       "comment": "",
       "command": "click",
-      "target": "css=.a4 > img",
+      "target": "css=.a4 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -1127,14 +1127,14 @@
       "id": "8eb826cb-252d-4006-94ef-284e3e2bbf94",
       "comment": "",
       "command": "click",
-      "target": "css=.h7 > img",
+      "target": "css=.h7 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "34124367-fa3e-4803-b0c4-0e78ba7ceccd",
       "comment": "",
       "command": "click",
-      "target": "css=.g8 > img",
+      "target": "css=.g8 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -1148,42 +1148,42 @@
       "id": "f2121ac2-3862-492c-be3e-98d5b6b402b5",
       "comment": "",
       "command": "click",
-      "target": "css=.a3 > img",
+      "target": "css=.a3 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "1582099c-bb98-4fb6-bc51-27a32a0dba91",
       "comment": "",
       "command": "click",
-      "target": "css=.b2 > img",
+      "target": "css=.b2 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "948dfdc4-43e5-4d68-bd31-dfb8905e6db6",
       "comment": "",
       "command": "click",
-      "target": "css=.g8 > img",
+      "target": "css=.g8 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "81a41c11-ac6a-4005-8992-832eed54de1d",
       "comment": "",
       "command": "click",
-      "target": "css=.f8 > img",
+      "target": "css=.f8 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "9af5f29a-6e72-4596-a739-b11daf63d1f4",
       "comment": "",
       "command": "click",
-      "target": "css=.h8 > img",
+      "target": "css=.h8 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "27b4e7e3-d337-45db-be73-18faf8ac9381",
       "comment": "",
       "command": "click",
-      "target": "css=.f8 > img",
+      "target": "css=.f8 > svg",
       "targets": [],
       "value": ""
     }]
