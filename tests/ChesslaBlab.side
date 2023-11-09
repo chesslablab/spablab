@@ -24,7 +24,7 @@
       "id": "8ebde1da-5767-4bd7-82f7-fb2c41b631a8",
       "comment": "",
       "command": "click",
-      "target": "css=.e2 > img",
+      "target": "css=.e2 > svg",
       "targets": [
         ["css=.e2 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg'])[5]", "xpath:img"],
@@ -47,7 +47,7 @@
       "id": "effc14fa-1f51-4e12-880c-1fe7a0b711e7",
       "comment": "",
       "command": "click",
-      "target": "css=.e7 > img",
+      "target": "css=.e7 > svg",
       "targets": [
         ["css=.e7 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[5]", "xpath:img"],
@@ -70,7 +70,7 @@
       "id": "268c78fb-c941-429b-9f49-a4fb406e932e",
       "comment": "",
       "command": "click",
-      "target": "css=.g1 > img",
+      "target": "css=.g1 > svg",
       "targets": [
         ["css=.g1 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wKnight.145b8796b11b8d78677d2b1f52bba7ef.svg'])[2]", "xpath:img"],
@@ -93,7 +93,7 @@
       "id": "cbda82bc-4ab1-4986-8383-178b06ed1c14",
       "comment": "",
       "command": "click",
-      "target": "css=.b8 > img",
+      "target": "css=.b8 > svg",
       "targets": [
         ["css=.b8 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bKnight.d714eeb4f02e045451775bdfc8c015a3.svg']", "xpath:img"],
@@ -116,7 +116,7 @@
       "id": "5afef84b-dbaf-4917-9863-015efe4b0203",
       "comment": "",
       "command": "click",
-      "target": "css=.f1 > img",
+      "target": "css=.f1 > svg",
       "targets": [
         ["css=.f1 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wBishop.8333f40f6a469e7e580228139685c4a6.svg'])[2]", "xpath:img"],
