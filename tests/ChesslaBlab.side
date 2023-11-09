@@ -1304,7 +1304,7 @@
       "id": "24a6b1f8-331c-472e-8d20-182ec4949b88",
       "comment": "",
       "command": "click",
-      "target": "css=.e2 > img",
+      "target": "css=.e2 > svg",
       "targets": [
         ["css=.f1 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/wKing.3f959aab36df6290a8e0f17c7d242c19.svg']", "xpath:img"],
@@ -1328,7 +1328,7 @@
       "id": "32931464-b513-4e08-9f90-f857c74a058f",
       "comment": "",
       "command": "click",
-      "target": "css=.b8 > img",
+      "target": "css=.b8 > svg",
       "targets": [
         ["css=.f8 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bKing.6c8cc8fabe5215cc854dec67ee7781fd.svg']", "xpath:img"],
@@ -1352,7 +1352,7 @@
       "id": "a7e30655-86c3-4383-9328-c6926fc1e797",
       "comment": "",
       "command": "click",
-      "target": "css=.f1 > img",
+      "target": "css=.f1 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -1366,7 +1366,7 @@
       "id": "4946010a-85c3-4aca-a885-68f31e73d510",
       "comment": "",
       "command": "click",
-      "target": "css=.b7 > img",
+      "target": "css=.b7 > svg",
       "targets": [],
       "value": ""
     }, {
