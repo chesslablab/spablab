@@ -1,5 +1,5 @@
-const { Builder, By, Key, until } = require('selenium-webdriver')
-const assert = require('assert')
+const { Builder, By, Key, until } = require('selenium-webdriver');
+const assert = require('assert');
 
 describe('Play A73', function() {
   jest.setTimeout(60000);
