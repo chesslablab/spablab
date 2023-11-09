@@ -24,7 +24,7 @@
       "id": "8ebde1da-5767-4bd7-82f7-fb2c41b631a8",
       "comment": "",
       "command": "click",
-      "target": "css=.e2 > img",
+      "target": "css=.e2 > svg",
       "targets": [
         ["css=.e2 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg'])[5]", "xpath:img"],
@@ -47,7 +47,7 @@
       "id": "effc14fa-1f51-4e12-880c-1fe7a0b711e7",
       "comment": "",
       "command": "click",
-      "target": "css=.e7 > img",
+      "target": "css=.e7 > svg",
       "targets": [
         ["css=.e7 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[5]", "xpath:img"],
@@ -70,7 +70,7 @@
       "id": "268c78fb-c941-429b-9f49-a4fb406e932e",
       "comment": "",
       "command": "click",
-      "target": "css=.g1 > img",
+      "target": "css=.g1 > svg",
       "targets": [
         ["css=.g1 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wKnight.145b8796b11b8d78677d2b1f52bba7ef.svg'])[2]", "xpath:img"],
@@ -93,7 +93,7 @@
       "id": "cbda82bc-4ab1-4986-8383-178b06ed1c14",
       "comment": "",
       "command": "click",
-      "target": "css=.b8 > img",
+      "target": "css=.b8 > svg",
       "targets": [
         ["css=.b8 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bKnight.d714eeb4f02e045451775bdfc8c015a3.svg']", "xpath:img"],
@@ -116,7 +116,7 @@
       "id": "5afef84b-dbaf-4917-9863-015efe4b0203",
       "comment": "",
       "command": "click",
-      "target": "css=.f1 > img",
+      "target": "css=.f1 > svg",
       "targets": [
         ["css=.f1 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wBishop.8333f40f6a469e7e580228139685c4a6.svg'])[2]", "xpath:img"],
@@ -157,7 +157,7 @@
       "id": "233d328e-2d9a-4ab6-929f-613da6bd97ad",
       "comment": "",
       "command": "click",
-      "target": "css=.e2 > img",
+      "target": "css=.e2 > svg",
       "targets": [
         ["css=.e2 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg'])[5]", "xpath:img"],
@@ -180,7 +180,7 @@
       "id": "180ff43a-81a6-45bf-abd0-e56f6b44b9c9",
       "comment": "",
       "command": "click",
-      "target": "css=.e7 > img",
+      "target": "css=.e7 > svg",
       "targets": [
         ["css=.e7 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[5]", "xpath:img"],
@@ -257,7 +257,7 @@
       "id": "db0b6072-62fd-440c-9a66-d47b12d70c56",
       "comment": "",
       "command": "click",
-      "target": "css=.g1 > img",
+      "target": "css=.g1 > svg",
       "targets": [
         ["css=.g1 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wKnight.145b8796b11b8d78677d2b1f52bba7ef.svg'])[2]", "xpath:img"],
@@ -280,7 +280,7 @@
       "id": "553fa356-1cb1-46c1-b247-123cbca17af1",
       "comment": "",
       "command": "click",
-      "target": "css=.b8 > img",
+      "target": "css=.b8 > svg",
       "targets": [
         ["css=.b8 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bKnight.d714eeb4f02e045451775bdfc8c015a3.svg']", "xpath:img"],
@@ -369,7 +369,7 @@
       "id": "cd150631-d51f-48b3-9c72-7a1fc5f657ed",
       "comment": "",
       "command": "click",
-      "target": "css=.d5 > img",
+      "target": "css=.d5 > svg",
       "targets": [
         ["css=.d5 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[8]", "xpath:img"],
@@ -393,7 +393,7 @@
       "id": "c1f51399-e530-4422-96d6-a515f7576a16",
       "comment": "",
       "command": "click",
-      "target": "css=.d3 > img",
+      "target": "css=.d3 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -407,7 +407,7 @@
       "id": "081866fd-c266-4957-aee6-d7f4fe431d48",
       "comment": "",
       "command": "click",
-      "target": "css=.f6 > img",
+      "target": "css=.f6 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -421,7 +421,7 @@
       "id": "dea04794-2877-4cc0-861c-3811f39a5497",
       "comment": "",
       "command": "click",
-      "target": "css=.d2 > img",
+      "target": "css=.d2 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -435,7 +435,7 @@
       "id": "a7f2c7bf-22d1-4039-82b0-c9537c4650c2",
       "comment": "",
       "command": "click",
-      "target": "css=.d8 > img",
+      "target": "css=.d8 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -449,7 +449,7 @@
       "id": "766d1174-1964-45e5-86de-1c3b973af4ee",
       "comment": "",
       "command": "click",
-      "target": "css=.e1 > img",
+      "target": "css=.e1 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -577,7 +577,7 @@
       "id": "261c17bb-f1b7-4657-a1f8-58cb91d38c9d",
       "comment": "",
       "command": "click",
-      "target": "css=.f1 > img",
+      "target": "css=.f1 > svg",
       "targets": [
         ["css=.f1 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/wKing.3f959aab36df6290a8e0f17c7d242c19.svg']", "xpath:img"],
@@ -601,7 +601,7 @@
       "id": "8949b8c1-5efe-4ebc-979d-91b1f22b5a4c",
       "comment": "",
       "command": "click",
-      "target": "css=.f8 > img",
+      "target": "css=.f8 > svg",
       "targets": [
         ["css=.f8 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bKing.6c8cc8fabe5215cc854dec67ee7781fd.svg']", "xpath:img"],
@@ -669,7 +669,7 @@
       "id": "2c26eaa8-926b-4e2f-bd34-af16db0d4ca9",
       "comment": "",
       "command": "click",
-      "target": "css=.d2 > img",
+      "target": "css=.d2 > svg",
       "targets": [
         ["css=.e2 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg'])[5]", "xpath:img"],
@@ -692,7 +692,7 @@
       "id": "522ed02b-2899-4e1d-a71d-9f420b2cf021",
       "comment": "",
       "command": "click",
-      "target": "css=.g8 > img",
+      "target": "css=.g8 > svg",
       "targets": [
         ["css=.e7 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[5]", "xpath:img"],
@@ -715,7 +715,7 @@
       "id": "a51eb727-4b1e-43b5-bb3a-95311f77a20e",
       "comment": "",
       "command": "click",
-      "target": "css=.c2 > img",
+      "target": "css=.c2 > svg",
       "targets": [
         ["css=.g1 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wKnight.145b8796b11b8d78677d2b1f52bba7ef.svg'])[2]", "xpath:img"],
@@ -738,7 +738,7 @@
       "id": "05f1f886-2d39-4d8b-8f98-7546099dd53d",
       "comment": "",
       "command": "click",
-      "target": "css=.c7 > img",
+      "target": "css=.c7 > svg",
       "targets": [
         ["css=.b8 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bKnight.d714eeb4f02e045451775bdfc8c015a3.svg']", "xpath:img"],
@@ -761,7 +761,7 @@
       "id": "18c8ecb5-9f33-4e63-bf9b-1deb972a5820",
       "comment": "",
       "command": "click",
-      "target": "css=.d4 > img",
+      "target": "css=.d4 > svg",
       "targets": [
         ["css=.f1 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wBishop.8333f40f6a469e7e580228139685c4a6.svg'])[2]", "xpath:img"],
@@ -784,7 +784,7 @@
       "id": "0104198e-b958-4324-87fe-e08aa25d03fc",
       "comment": "",
       "command": "click",
-      "target": "css=.e7 > img",
+      "target": "css=.e7 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -798,7 +798,7 @@
       "id": "6f15b92d-d397-4541-be45-dfe5781334e3",
       "comment": "",
       "command": "click",
-      "target": "css=.b1 > img",
+      "target": "css=.b1 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -812,7 +812,7 @@
       "id": "e1c0ba9b-1923-43bf-8b05-0004c64cadc7",
       "comment": "",
       "command": "click",
-      "target": "css=.e6 > img",
+      "target": "css=.e6 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -826,7 +826,7 @@
       "id": "eb3cea12-12ba-4c1d-9200-66c632cd90ee",
       "comment": "",
       "command": "click",
-      "target": "css=.c4 > img",
+      "target": "css=.c4 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -840,7 +840,7 @@
       "id": "3ab9310a-d981-43d1-b572-ad83dac96084",
       "comment": "",
       "command": "click",
-      "target": "css=.d7 > img",
+      "target": "css=.d7 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -854,7 +854,7 @@
       "id": "427e6f67-1cda-4452-abd5-c7fcf00fbeee",
       "comment": "",
       "command": "click",
-      "target": "css=.e2 > img",
+      "target": "css=.e2 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -868,7 +868,7 @@
       "id": "822bac3f-e64f-4222-90ed-4fca3f9e2a03",
       "comment": "",
       "command": "click",
-      "target": "css=.g7 > img",
+      "target": "css=.g7 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -882,7 +882,7 @@
       "id": "611be294-21cf-4c70-b889-bb6a0990ed4f",
       "comment": "",
       "command": "click",
-      "target": "css=.g1 > img",
+      "target": "css=.g1 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -896,7 +896,7 @@
       "id": "0c2cbb1a-d888-4f68-a47d-1c3ff84e0f8a",
       "comment": "",
       "command": "click",
-      "target": "css=.f8 > img",
+      "target": "css=.f8 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -910,7 +910,7 @@
       "id": "508c4753-a87e-4ab1-97f1-f4486ca7d34e",
       "comment": "",
       "command": "click",
-      "target": "css=.f1 > img",
+      "target": "css=.f1 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -924,7 +924,7 @@
       "id": "a543651e-68c1-43fe-bccc-f09f2b4f8740",
       "comment": "",
       "command": "click",
-      "target": "css=.e8 > img",
+      "target": "css=.e8 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -938,7 +938,7 @@
       "id": "6a0fee5c-af2d-4200-9f2a-893ad9435943",
       "comment": "",
       "command": "click",
-      "target": "css=.e1 > img",
+      "target": "css=.e1 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -970,7 +970,7 @@
       "id": "c9847cae-3888-4b0a-9530-1db26ed9790d",
       "comment": "",
       "command": "click",
-      "target": "css=.h2 > img",
+      "target": "css=.h2 > svg",
       "targets": [
         ["css=.h2 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg'])[8]", "xpath:img"],
@@ -993,7 +993,7 @@
       "id": "9d71b3eb-2d7d-43dc-951c-390a2e07395d",
       "comment": "",
       "command": "click",
-      "target": "css=.a7 > img",
+      "target": "css=.a7 > svg",
       "targets": [
         ["css=.a7 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg']", "xpath:img"],
@@ -1016,7 +1016,7 @@
       "id": "848be0e2-ebeb-44c3-9960-6172204c0ace",
       "comment": "",
       "command": "click",
-      "target": "css=.h4 > img",
+      "target": "css=.h4 > svg",
       "targets": [
         ["css=.h4 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg']", "xpath:img"],
@@ -1039,7 +1039,7 @@
       "id": "26cf1486-34f2-4292-8b9a-62540b98a577",
       "comment": "",
       "command": "click",
-      "target": "css=.g7 > img",
+      "target": "css=.g7 > svg",
       "targets": [
         ["css=.g7 > img", "css:finder"],
         ["xpath=(//img[@alt='/static/media/bPawn.be5d44ca5ee868885d216188996e3a00.svg'])[6]", "xpath:img"],
@@ -1062,7 +1062,7 @@
       "id": "527ff8b1-5a1f-485a-bbd1-d26e2dd2feff",
       "comment": "",
       "command": "click",
-      "target": "css=.h5 > img",
+      "target": "css=.h5 > svg",
       "targets": [
         ["css=.h5 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/wPawn.50273cc6d86861932d0a01c38274009a.svg']", "xpath:img"],
@@ -1085,7 +1085,7 @@
       "id": "8182d7f8-9c57-4c12-a7dd-61ac2b53d32f",
       "comment": "",
       "command": "click",
-      "target": "css=.a5 > img",
+      "target": "css=.a5 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -1099,21 +1099,21 @@
       "id": "41e075ff-1ce8-4d46-9c12-45e5d4a42ea5",
       "comment": "",
       "command": "click",
-      "target": "css=.g6 > img",
+      "target": "css=.g6 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "480767f8-b1fa-4546-ab41-c26a87201f56",
       "comment": "",
       "command": "click",
-      "target": "css=.h7 > img",
+      "target": "css=.h7 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "645203f3-ceed-44c8-ba20-3fda6d68c73e",
       "comment": "",
       "command": "click",
-      "target": "css=.a4 > img",
+      "target": "css=.a4 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -1127,14 +1127,14 @@
       "id": "8eb826cb-252d-4006-94ef-284e3e2bbf94",
       "comment": "",
       "command": "click",
-      "target": "css=.h7 > img",
+      "target": "css=.h7 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "34124367-fa3e-4803-b0c4-0e78ba7ceccd",
       "comment": "",
       "command": "click",
-      "target": "css=.g8 > img",
+      "target": "css=.g8 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -1148,42 +1148,42 @@
       "id": "f2121ac2-3862-492c-be3e-98d5b6b402b5",
       "comment": "",
       "command": "click",
-      "target": "css=.a3 > img",
+      "target": "css=.a3 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "1582099c-bb98-4fb6-bc51-27a32a0dba91",
       "comment": "",
       "command": "click",
-      "target": "css=.b2 > img",
+      "target": "css=.b2 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "948dfdc4-43e5-4d68-bd31-dfb8905e6db6",
       "comment": "",
       "command": "click",
-      "target": "css=.g8 > img",
+      "target": "css=.g8 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "81a41c11-ac6a-4005-8992-832eed54de1d",
       "comment": "",
       "command": "click",
-      "target": "css=.f8 > img",
+      "target": "css=.f8 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "9af5f29a-6e72-4596-a739-b11daf63d1f4",
       "comment": "",
       "command": "click",
-      "target": "css=.h8 > img",
+      "target": "css=.h8 > svg",
       "targets": [],
       "value": ""
     }, {
       "id": "27b4e7e3-d337-45db-be73-18faf8ac9381",
       "comment": "",
       "command": "click",
-      "target": "css=.f8 > img",
+      "target": "css=.f8 > svg",
       "targets": [],
       "value": ""
     }]
@@ -1304,7 +1304,7 @@
       "id": "24a6b1f8-331c-472e-8d20-182ec4949b88",
       "comment": "",
       "command": "click",
-      "target": "css=.e2 > img",
+      "target": "css=.e2 > svg",
       "targets": [
         ["css=.f1 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/wKing.3f959aab36df6290a8e0f17c7d242c19.svg']", "xpath:img"],
@@ -1328,7 +1328,7 @@
       "id": "32931464-b513-4e08-9f90-f857c74a058f",
       "comment": "",
       "command": "click",
-      "target": "css=.b8 > img",
+      "target": "css=.b8 > svg",
       "targets": [
         ["css=.f8 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bKing.6c8cc8fabe5215cc854dec67ee7781fd.svg']", "xpath:img"],
@@ -1352,7 +1352,7 @@
       "id": "a7e30655-86c3-4383-9328-c6926fc1e797",
       "comment": "",
       "command": "click",
-      "target": "css=.f1 > img",
+      "target": "css=.f1 > svg",
       "targets": [],
       "value": ""
     }, {
@@ -1366,7 +1366,7 @@
       "id": "4946010a-85c3-4aca-a885-68f31e73d510",
       "comment": "",
       "command": "click",
-      "target": "css=.b7 > img",
+      "target": "css=.b7 > svg",
       "targets": [],
       "value": ""
     }, {
