@@ -577,7 +577,7 @@
       "id": "261c17bb-f1b7-4657-a1f8-58cb91d38c9d",
       "comment": "",
       "command": "click",
-      "target": "css=.f1 > img",
+      "target": "css=.f1 > svg",
       "targets": [
         ["css=.f1 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/wKing.3f959aab36df6290a8e0f17c7d242c19.svg']", "xpath:img"],
@@ -601,7 +601,7 @@
       "id": "8949b8c1-5efe-4ebc-979d-91b1f22b5a4c",
       "comment": "",
       "command": "click",
-      "target": "css=.f8 > img",
+      "target": "css=.f8 > svg",
       "targets": [
         ["css=.f8 > img", "css:finder"],
         ["xpath=//img[@alt='/static/media/bKing.6c8cc8fabe5215cc854dec67ee7781fd.svg']", "xpath:img"],
