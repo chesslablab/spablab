@@ -2,10 +2,6 @@
 
 React Chess is a chess application to learn and play chess online connected to this [chess server](https://github.com/chesslablab/chess-server) as well as to this [chess api](https://github.com/chesslablab/chess-api).
 
-### Demo
-
-Check out [this demo](https://www.chesslablab.com/) to see it in action.
-
 ### Install and Setup
 
 Create an `.env` file.
