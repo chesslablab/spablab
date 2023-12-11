@@ -13,7 +13,7 @@ export default class Ws {
       button: false
     }));
     return new Promise((resolve, reject) => {
-      const ws = new WebSocket(`wss://${process.env.REACT_APP_WS_HOST}:${process.env.REACT_APP_WS_PORT}`);
+      const ws = new WebSocket(`${process.env.REACT_APP_WS_SCHEME}://${process.env.REACT_APP_WS_HOST}:${process.env.REACT_APP_WS_PORT}`);
       ws.onopen = () => {
         dispatch(wsSlice.established({ ws: ws }));
         dispatch(infoAlert.close());
