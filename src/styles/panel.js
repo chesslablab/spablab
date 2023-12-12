@@ -1,7 +1,6 @@
 const styles = {
   panel: {
-    backgroundColor: '#f6f6f6',
-    border: '1px solid #e0e0e0',
+    border: '1px solid rgba(25, 118, 210, 0.5)',
     timer: {
       marginTop: 1.5,
       display: 'flex',

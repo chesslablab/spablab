@@ -8,8 +8,7 @@ import multiAction from 'features/multiAction';
 
 const styles = {
   clickable: {
-    cursor: 'pointer',
-    backgroundColor: '#ececec',
+    cursor: 'pointer'
   },
 };
 

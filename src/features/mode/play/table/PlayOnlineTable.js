@@ -24,17 +24,13 @@ import Ws from 'features/ws/Ws';
 const styles = {
   disabled: {
     cursor: 'default',
-    '& td': {
-      color: '#737373',
-      backgroundColor: '#ececec',
-    },
+    '& td': {},
     '& img': {
       opacity: 0.5,
     },
   },
   clickable: {
     cursor: 'pointer',
-    backgroundColor: '#ececec',
   },
 };
 

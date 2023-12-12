@@ -1,3 +1,7 @@
+:root {
+  color-scheme: light dark;
+}
+
 iframe {
   border: 0;
   width: 100%;

@@ -4,8 +4,7 @@ const styles = {
     height: 55,
     selected: {
       width: 55,
-      height: 55,
-      backgroundColor: '#ececec',
+      height: 55
     },
   },
   buttonGroup: {

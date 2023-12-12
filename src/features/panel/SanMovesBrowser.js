@@ -52,7 +52,7 @@ const SanMovesBrowser = () => {
       />
       {
         maxWidth['900']
-          ? <div style={{ backgroundColor: '#ffffff' }}>
+          ? <div>
               <SanMovesInline
                 stateSanMovesInline={{
                   back: statePanel.history.back,
