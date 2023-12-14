@@ -2,7 +2,8 @@ iframe {
   border: 0;
   width: 100%;
   width: -webkit-fill-available;
-  height: 482px;
+  min-height: 482px;
+  height: 100%;
 }
 
 .noTextSelection {

@@ -16,6 +16,7 @@ import Panel from 'features/panel/Panel';
 import Heuristics from 'features/Heuristics';
 import PositionEval from 'features/PositionEval';
 import ProgressDialog from 'features/ProgressDialog';
+import Iframe from 'features/Iframe';
 import theme from 'styles/theme.js';
 
 const App = () => {
@@ -36,7 +37,7 @@ const App = () => {
             <Panel />
           </Grid>
           <Grid item xs={12} md={3}>
-            <iframe title="ChesslaBlab Chat" src="https://web.libera.chat/gamja/#chesslablab"></iframe>
+            <Iframe title={process.env.REACT_APP_IFRAME_CHAT_TITLE} src={process.env.REACT_APP_IFRAME_CHAT_SRC} />
           </Grid>
         </Grid>
         <ModeFenDialogs />
