@@ -16,6 +16,7 @@ import Panel from 'features/panel/Panel';
 import Heuristics from 'features/Heuristics';
 import PositionEval from 'features/PositionEval';
 import ProgressDialog from 'features/ProgressDialog';
+import PlayOnlineTable from 'features/mode/play/table/PlayOnlineTable';
 import theme from 'styles/theme.js';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
             <Panel />
           </Grid>
           <Grid item xs={12} md={3}>
+            <PlayOnlineTable />
             <iframe title="ChesslaBlab Chat" src="https://web.libera.chat/gamja/#chesslablab"></iframe>
           </Grid>
         </Grid>
