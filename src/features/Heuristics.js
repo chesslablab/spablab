@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-const initData = (evalNames, balance) => {
+const initData = (names, balance) => {
   let data = [];
 
-  evalNames.forEach((item, i) => {
+  names.forEach((item, i) => {
     if (balance[i] !== 0) {
       data.push({ name: item, val: balance[i] });
     }
@@ -27,7 +27,7 @@ const Heuristics = () => {
     stateHeuristics.heuristics
   ) {
     const data = initData(
-      stateHeuristics.heuristics.evalNames,
+      stateHeuristics.heuristics.names,
       stateHeuristics.heuristics.balance
     );
 

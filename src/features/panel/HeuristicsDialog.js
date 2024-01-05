@@ -33,9 +33,9 @@ const handleDownloadImage = async () => {
   a.remove();
 };
 
-const initData = (evalNames) => {
+const initData = (names) => {
   let data = {};
-  evalNames.forEach(item => data[item] = []);
+  names.forEach(item => data[item] = []);
   return data;
 };
 
@@ -56,9 +56,9 @@ const charts = (data) => {
 const Heuristics = () => {
   const state = useSelector(state => state.panel);
   if (state.dialogs.heuristics.heuristics) {
-    const data = initData(state.dialogs.heuristics.heuristics.evalNames);
+    const data = initData(state.dialogs.heuristics.heuristics.names);
     state.dialogs.heuristics.heuristics.balance.forEach((item, i) => {
-      state.dialogs.heuristics.heuristics.evalNames.forEach((evalName, j) => {
+      state.dialogs.heuristics.heuristics.names.forEach((evalName, j) => {
         data[evalName].push({
           [evalName]: item[j]
         });
