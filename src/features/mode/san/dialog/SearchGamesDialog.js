@@ -30,7 +30,7 @@ const SearchGamesDialog = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     dispatch(progressDialog.open());
-    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/search`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/search`, {
       method: 'POST',
       body: JSON.stringify({
         [event.target.elements.Event.name]: event.target.elements.Event.value,
