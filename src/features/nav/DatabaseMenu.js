@@ -61,7 +61,7 @@ const DatabaseMenu = () => {
           onClick={() => {
             dispatch(progressDialog.open());
             fetch(
-              `https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`
+              `${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`
             )
               .then((res) => {
                 if (res.status === 200) {
@@ -114,7 +114,7 @@ const DatabaseMenu = () => {
           onClick={() => {
             dispatch(progressDialog.open());
             fetch(
-              `https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`
+              `${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`
             )
               .then((res) => res.json())
               .then((res) => {

@@ -26,7 +26,7 @@ const Buttons = () => {
   const dispatch = useDispatch();
 
   const handleDownloadImage = async () => {
-    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
       body: JSON.stringify({
         fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
@@ -47,7 +47,7 @@ const Buttons = () => {
 
   const handleDownloadMp4 = async () => {
     dispatch(progressDialog.open());
-    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
       method: 'POST',
       body: JSON.stringify({
         variant: getActiveMode().variant,
@@ -74,7 +74,7 @@ const Buttons = () => {
 
   const handleHeuristics = async () => {
     dispatch(progressDialog.open());
-    await fetch(`https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
       method: 'POST',
       body: JSON.stringify({
         variant: getActiveMode().variant,
