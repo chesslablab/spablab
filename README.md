@@ -45,3 +45,9 @@ npm run build
 See the [contributing guidelines](https://github.com/chesslablab/redux-chess/blob/master/CONTRIBUTING.md).
 
 Happy learning and coding!
+
+<a href="https://github.com/chesslablab/react-chess/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=chesslablab/react-chess" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
