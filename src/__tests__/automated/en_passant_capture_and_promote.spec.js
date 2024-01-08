@@ -16,7 +16,7 @@ describe('En passant capture and promote', function() {
   });
 
   it('En passant capture and promote', async function() {
-    await driver.get("https://www.chesslablab.com:9443/");
+    await driver.get("https://www.reactchess.net:9443/");
     await driver.wait(until.elementLocated(By.css(".h2 > svg"))).click();
     await driver.sleep(1000);
     await driver.findElement(By.css(".h4")).click();
