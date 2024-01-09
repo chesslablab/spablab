@@ -19,7 +19,7 @@ npm install
 Add the following entry to your `/etc/hosts` file.
 
 ```
-127.0.0.1       www.reactchess.net
+127.0.0.1       reactchess.net
 ```
 
 Start the app.

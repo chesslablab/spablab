@@ -16,7 +16,7 @@ describe('Play C50', function() {
   });
 
   it('Play C50', async function() {
-    await driver.get("https://www.reactchess.net:9443/");
+    await driver.get("https://reactchess.net:9443/");
     await driver.wait(until.elementLocated(By.css(".e2 > svg"))).click();
     await driver.sleep(1000);
     await driver.findElement(By.css(".e4")).click()

@@ -16,7 +16,7 @@ describe('Play A73', function() {
   });
 
   it('Play A73', async function() {
-    await driver.get("https://www.reactchess.net:9443/");
+    await driver.get("https://reactchess.net:9443/");
     await driver.wait(until.elementLocated(By.css(".d2 > svg"))).click();
     await driver.sleep(1000);
     await driver.findElement(By.css(".d4")).click();
