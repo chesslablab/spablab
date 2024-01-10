@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .noTextSelection {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
