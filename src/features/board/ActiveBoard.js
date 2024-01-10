@@ -105,7 +105,7 @@ const ActiveBoard = () => {
           }
         }}
         styleBoard={{
-          sqSize: 3.1
+          sqSize: 3.95
         }}
       />
     );
@@ -138,7 +138,7 @@ const ActiveBoard = () => {
           }
         }}
         styleBoard={{
-          sqSize: 3.1
+          sqSize: 3.95
         }}
       />
     );
@@ -171,7 +171,7 @@ const ActiveBoard = () => {
           }
         }}
         styleBoard={{
-          sqSize: 3.85
+          sqSize: 4.9
         }}
       />
     );
@@ -195,7 +195,7 @@ const ActiveBoard = () => {
         }
       }}
       styleBoard={{
-        sqSize: 3.85
+        sqSize: 4.9
       }}
     />
   );
