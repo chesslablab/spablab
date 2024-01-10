@@ -16,7 +16,6 @@ import Panel from 'features/panel/Panel';
 import Heuristics from 'features/Heuristics';
 import PositionEval from 'features/PositionEval';
 import ProgressDialog from 'features/ProgressDialog';
-import Iframe from 'features/Iframe';
 import theme from 'styles/theme.js';
 
 const App = () => {
@@ -28,7 +27,10 @@ const App = () => {
           <NavDialogs />
         </Grid>
         <Grid container sx={{ p: 2 }} spacing={2}>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={2}>
+          </Grid>
+          <Grid item xs={12} md={4}>
+          <Panel />
             <Board />
             <PositionEval />
             <Heuristics />
@@ -36,8 +38,7 @@ const App = () => {
           <Grid item xs={12} md={4}>
             <Panel />
           </Grid>
-          <Grid item xs={12} md={3}>
-            <Iframe title={process.env.REACT_APP_IFRAME_CHAT_TITLE} src={process.env.REACT_APP_IFRAME_CHAT_SRC} />
+          <Grid item xs={12} md={2}>
           </Grid>
         </Grid>
         <ModeFenDialogs />
