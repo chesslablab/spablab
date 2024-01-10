@@ -104,6 +104,9 @@ const ActiveBoard = () => {
             dispatch(board.placePiece(payload));
           }
         }}
+        styleBoard={{
+          sqSize: 3.1
+        }}
       />
     );
   } else if (stateActiveMode?.variant === variantConst.CAPABLANCA_FISCHER) {
@@ -133,6 +136,9 @@ const ActiveBoard = () => {
           } else {
             dispatch(board.placePiece(payload));
           }
+        }}
+        styleBoard={{
+          sqSize: 3.1
         }}
       />
     );
@@ -164,6 +170,9 @@ const ActiveBoard = () => {
             dispatch(board.placePiece(payload));
           }
         }}
+        styleBoard={{
+          sqSize: 3.85
+        }}
       />
     );
   }
@@ -184,6 +193,9 @@ const ActiveBoard = () => {
         } else {
           dispatch(board.placePiece(payload));
         }
+      }}
+      styleBoard={{
+        sqSize: 3.85
       }}
     />
   );
