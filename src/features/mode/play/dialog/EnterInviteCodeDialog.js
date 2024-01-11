@@ -12,6 +12,7 @@ import {
 import * as playMode from 'features/mode/playModeSlice';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
+import styles from 'styles/dialog';
 
 const EnterInviteCodeDialog = () => {
   const state = useSelector(state => state.playMode);
@@ -36,7 +37,12 @@ const EnterInviteCodeDialog = () => {
   };
 
   return (
-    <Dialog open={state.dialogs.enterInviteCode.open} maxWidth="xs" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.enterInviteCode.open}
+      maxWidth="xs"
+      fullWidth={true}
+    >
       <DialogTitle>
         Enter Invite Code
         <IconButton onClick={() => dispatch(playMode.enterInviteCodeDialog({ open: false }))}>

@@ -21,6 +21,7 @@ import * as variantConst from 'features/mode/variantConst';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
+import styles from 'styles/dialog';
 
 const PlayComputerDialog = () => {
   const state = useSelector(state => state.stockfishMode);
@@ -105,7 +106,12 @@ const PlayComputerDialog = () => {
   }
 
   return (
-    <Dialog open={state.dialogs.playComputer.open} maxWidth="xs" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.playComputer.open}
+      maxWidth="xs"
+      fullWidth={true}
+    >
       <DialogTitle>
         Play Computer
         <IconButton onClick={() => dispatch(stockfishMode.playComputerDialog({ open: false }))}>

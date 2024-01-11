@@ -9,6 +9,7 @@ import {
   Typography
 } from '@mui/material';
 import * as nav from 'features/nav/navSlice';
+import styles from 'styles/dialog';
 
 const OpeningsStatsDialog = () => {
   const state = useSelector(state => state.nav);
@@ -16,7 +17,12 @@ const OpeningsStatsDialog = () => {
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.dialogs.openingsStats.open} maxWidth="md" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.openingsStats.open}
+      maxWidth="md"
+      fullWidth={true}
+    >
       <DialogTitle>
         Top 50 Openings
         <IconButton onClick={() => dispatch(nav.openingsStatsDialog({ open: false }))}>

@@ -22,6 +22,7 @@ import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
+import styles from 'styles/dialog';
 
 const PlayOnlineDialog = () => {
   const state = useSelector(state => state.playMode);
@@ -75,7 +76,12 @@ const PlayOnlineDialog = () => {
   }
 
   return (
-    <Dialog open={state.dialogs.playOnline.open} maxWidth="sm" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.playOnline.open}
+      maxWidth="sm"
+      fullWidth={true}
+    >
       <DialogTitle>
         Play Online
         <IconButton onClick={() => dispatch(playMode.playOnlineDialog({ open: false }))}>

@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { useDispatch, useSelector } from 'react-redux';
 import * as fenMode from 'features/mode/fenModeSlice';
+import styles from 'styles/dialog';
 
 export default function LoadImageDialog() {
   const state = useSelector(state => state.fenMode);
@@ -19,6 +20,7 @@ export default function LoadImageDialog() {
   return (
     <div>
       <Dialog
+        sx={styles.dialog}
         open={state.dialogs.loadImage.open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"

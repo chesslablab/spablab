@@ -16,6 +16,7 @@ import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import VariantTextField from 'features/VariantTextField';
+import styles from 'styles/dialog';
 
 const LoadFenDialog = () => {
   const state = useSelector(state => state.fenMode);
@@ -52,7 +53,12 @@ const LoadFenDialog = () => {
   };
 
   return (
-    <Dialog open={state.dialogs.loadFen.open} maxWidth="xs" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.loadFen.open}
+      maxWidth="xs"
+      fullWidth={true}
+    >
       <DialogTitle>
         FEN String
         <IconButton onClick={() => dispatch(fenMode.loadFenDialog({ open: false }))}>

@@ -13,6 +13,7 @@ import { Opening } from '@chesslablab/reactblab';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as sanMode from 'features/mode/sanModeSlice';
 import OpeningSearchResultTable from 'features/mode/san/table/OpeningSearchResultTable.js';
+import styles from 'styles/dialog';
 
 const SearchNameDialog = () => {
   const state = useSelector(state => state.sanMode);
@@ -32,7 +33,12 @@ const SearchNameDialog = () => {
   }
 
   return (
-    <Dialog open={state.dialogs.searchName.open} maxWidth="sm" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.searchName.open}
+      maxWidth="sm"
+      fullWidth={true}
+    >
       <DialogTitle>
         Name
         <IconButton onClick={() => {

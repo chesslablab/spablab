@@ -17,6 +17,7 @@ import * as warningAlert from 'features/alert/warningAlertSlice';
 import EventAutocomplete from 'features/autocomplete/EventAutocomplete.js';
 import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
+import styles from 'styles/dialog';
 
 const EventsStatsDialog = () => {
   const state = useSelector(state => state.nav);
@@ -51,7 +52,12 @@ const EventsStatsDialog = () => {
   };
 
   return (
-    <Dialog open={state.dialogs.eventsStats.open} maxWidth="md" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.eventsStats.open}
+      maxWidth="md"
+      fullWidth={true}
+    >
       <DialogTitle>
         Events Stats
         <IconButton onClick={() => {

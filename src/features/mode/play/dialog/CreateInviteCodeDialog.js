@@ -20,6 +20,7 @@ import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import ColorButtonGroup from 'features/ColorButtonGroup';
 import VariantTextField from 'features/VariantTextField';
+import styles from 'styles/dialog';
 
 const CreateInviteCodeDialog = () => {
   const state = useSelector(state => state.playMode);
@@ -27,7 +28,12 @@ const CreateInviteCodeDialog = () => {
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.dialogs.createInviteCode.open} maxWidth="xs" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.createInviteCode.open}
+      maxWidth="xs"
+      fullWidth={true}
+    >
       <DialogTitle>
         Play a Friend
         <IconButton onClick={() => dispatch(playMode.createInviteCodeDialog({ open: false }))}>
@@ -153,7 +159,7 @@ const CreateCode = () => {
 
 const CopyCode = () => {
   const state = useSelector(state => state.playMode);
-  
+
   const dispatch = useDispatch();
 
   return (

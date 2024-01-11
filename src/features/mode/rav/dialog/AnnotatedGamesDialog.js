@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import * as ravMode from 'features/mode/ravModeSlice';
 import AnnotatedGamesTable from 'features/mode/rav/table/AnnotatedGamesTable.js';
+import styles from 'styles/dialog';
 
 const AnnotatedGamesDialog = () => {
   const state = useSelector(state => state.ravMode);
@@ -16,7 +17,12 @@ const AnnotatedGamesDialog = () => {
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.dialogs.annotatedGames.open} maxWidth="md" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.annotatedGames.open}
+      maxWidth="md"
+      fullWidth={true}
+    >
       <DialogTitle>
         Annotated Games
         <IconButton onClick={() => dispatch(ravMode.annotatedGamesDialog({ open: false }))}>

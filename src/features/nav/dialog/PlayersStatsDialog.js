@@ -18,6 +18,7 @@ import WhitePlayerAutocomplete from 'features/autocomplete/WhitePlayerAutocomple
 import BlackPlayerAutocomplete from 'features/autocomplete/BlackPlayerAutocomplete.js';
 import * as nav from 'features/nav/navSlice';
 import * as progressDialog from 'features/progressDialogSlice';
+import styles from 'styles/dialog';
 
 const PlayersStatsDialog = () => {
   const state = useSelector(state => state.nav);
@@ -53,7 +54,12 @@ const PlayersStatsDialog = () => {
   };
 
   return (
-    <Dialog open={state.dialogs.playersStats.open} maxWidth="md" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.playersStats.open}
+      maxWidth="md"
+      fullWidth={true}
+    >
       <DialogTitle>
         Players Stats
         <IconButton onClick={() => {

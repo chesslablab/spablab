@@ -15,6 +15,7 @@ import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import Captcha from 'features/Captcha';
 import VariantTextField from 'features/VariantTextField';
+import styles from 'styles/dialog';
 
 const CreateInboxCodeDialog = () => {
   const state = useSelector(state => state.nav);
@@ -22,7 +23,12 @@ const CreateInboxCodeDialog = () => {
   const dispatch = useDispatch();
 
   return (
-    <Dialog open={state.dialogs.createInboxCode.open} maxWidth="sm" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.createInboxCode.open}
+      maxWidth="sm"
+      fullWidth={true}
+    >
       <DialogTitle>
         Create Inbox
         <IconButton onClick={() => dispatch(nav.createInboxCodeDialog({ open: false }))}>

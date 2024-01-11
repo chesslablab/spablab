@@ -19,6 +19,7 @@ import * as nav from 'features/nav/navSlice';
 import multiAction from 'features/multiAction';
 import * as progressDialog from 'features/progressDialogSlice';
 import VariantTextField from 'features/VariantTextField';
+import styles from 'styles/dialog';
 
 const LoadRavDialog = () => {
   const state = useSelector(state => state.ravMode);
@@ -75,7 +76,12 @@ const LoadRavDialog = () => {
   };
 
   return (
-    <Dialog open={state.dialogs.loadRav.open} maxWidth="xs" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.loadRav.open}
+      maxWidth="xs"
+      fullWidth={true}
+    >
       <DialogTitle>
         RAV Movetext
         <IconButton onClick={() => dispatch(ravMode.loadRavDialog({ open: false }))}>

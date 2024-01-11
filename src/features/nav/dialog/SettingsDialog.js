@@ -11,6 +11,7 @@ import {
   IconButton
 } from '@mui/material';
 import * as nav from 'features/nav/navSlice';
+import styles from 'styles/dialog';
 
 const SettingsDialog = () => {
   const state = useSelector(state => state.nav);
@@ -36,7 +37,12 @@ const SettingsDialog = () => {
   };
 
   return (
-    <Dialog open={state.dialogs.settings.open} maxWidth="xs" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.settings.open}
+      maxWidth="xs"
+      fullWidth={true}
+    >
       <DialogTitle>
         Settings
         <IconButton onClick={() => dispatch(nav.settingsDialog({ open: false }))}>

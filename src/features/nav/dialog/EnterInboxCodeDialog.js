@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
+import styles from 'styles/dialog';
 
 const EnterInboxCodeDialog = () => {
   const state = useSelector(state => state.nav);
@@ -52,7 +53,12 @@ const EnterInboxCodeDialog = () => {
   };
 
   return (
-    <Dialog open={state.dialogs.enterInboxCode.open} maxWidth="sm" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.enterInboxCode.open}
+      maxWidth="sm"
+      fullWidth={true}
+    >
       <DialogTitle>
         Read Inbox
         <IconButton onClick={() => dispatch(nav.enterInboxCodeDialog({ open: false }))}>

@@ -19,6 +19,7 @@ import WhitePlayerAutocomplete from 'features/autocomplete/WhitePlayerAutocomple
 import * as sanMode from 'features/mode/sanModeSlice';
 import SearchGamesTable from 'features/mode/san/table/SearchGamesTable.js';
 import * as progressDialog from 'features/progressDialogSlice';
+import styles from 'styles/dialog';
 
 const SearchGamesDialog = () => {
   const state = useSelector(state => state.sanMode);
@@ -62,7 +63,12 @@ const SearchGamesDialog = () => {
   };
 
   return (
-    <Dialog open={state.dialogs.searchGames.open} maxWidth="md" fullWidth={true}>
+    <Dialog
+      sx={styles.dialog}
+      open={state.dialogs.searchGames.open}
+      maxWidth="md"
+      fullWidth={true}
+    >
       <DialogTitle>
         Search Games
         <IconButton onClick={() => dispatch(sanMode.searchGamesDialog({ open: false }))}>
