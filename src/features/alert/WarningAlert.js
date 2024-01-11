@@ -18,7 +18,12 @@ const WarningAlert = () => {
   if (state.open) {
     return (
       <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          color: '#fff',
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          alignItems: 'flex-start',
+          pt: 4,
+        }}
         open={state.open}
       >
         <Alert
