@@ -122,7 +122,7 @@ export default function Buttons() {
         </ListItemIcon>
         <ListItemText
           primaryTypographyProps={{ fontSize: '0.9rem' }}
-          primary="Actions"
+          primary="Game Actions"
         />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
