@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AddIcon from '@mui/icons-material/Add';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CachedIcon from '@mui/icons-material/Cached';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
-import { IconButton, Stack } from "@mui/material";
+import { List, ListItemButton, ListItemIcon, ListItemText, Collapse} from '@mui/material';
 import { Movetext } from '@chesslablab/reactblab';
 import { getActiveMode } from 'app/store';
 import * as warningAlert from 'features/alert/warningAlertSlice';
@@ -14,7 +18,7 @@ import * as variantConst from 'features/mode/variantConst';
 import * as panel from 'features/panel/panelSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 
-const Buttons = () => {
+export default function Buttons() {
   const stateBoard = useSelector(state => state.board);
 
   const statePanel = useSelector(state => state.panel);
@@ -24,6 +28,12 @@ const Buttons = () => {
   const stateStockfishMode = useSelector(state => state.stockfishMode);
 
   const dispatch = useDispatch();
+
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   const handleDownloadImage = async () => {
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
@@ -101,78 +111,91 @@ const Buttons = () => {
   }
 
   return (
-    <Stack
-      direction="row"
-      justifyContent="center"
-      alignItems="center"
-      spacing={2}
-      sx={{ mt: 1.5 }}
+    <List
+      sx={{ width: '100%', bgcolor: 'background.paper' }}
+      component="nav"
+      aria-labelledby="nested-list-subheader"
     >
-      <IconButton
-        size="small"
-        id="Buttons-flip"
-        color="primary"
-        title="Flip board"
-        aria-label="flip"
-        onClick={() => dispatch(board.flip())}
-      >
-        <CachedIcon />
-      </IconButton>
-      <IconButton
-        size="small"
-        id="Buttons-copyMovetext"
-        disabled={!stateBoard.movetext}
-        color="primary"
-        title="Copy movetext"
-        aria-label="copy"
-        onClick={() => navigator.clipboard.writeText(Movetext.substring(stateBoard.movetext, statePanel.history.back))}
-      >
-        <MoveDownIcon />
-      </IconButton>
-      <IconButton
-        size="small"
-        id="Buttons-copyFenString"
-        color="primary"
-        title="Copy FEN string"
-        aria-label="fen"
-        onClick={() => navigator.clipboard.writeText(stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back])}
-      >
-        <WidgetsIcon />
-      </IconButton>
-      <IconButton
-        size="small"
-        id="Buttons-heuristics"
-        disabled={!stateBoard.movetext}
-        color="primary"
-        title="Heuristics"
-        aria-label="heuristics"
-        onClick={() => handleHeuristics()}
-      >
-        <BarChartIcon />
-      </IconButton>
-      <IconButton
-        size="small"
-        id="Buttons-downloadImage"
-        color="primary"
-        title="Download Image"
-        aria-label="flip"
-        onClick={() => handleDownloadImage()}
-      >
-        <InsertPhotoIcon />
-      </IconButton>
-      <IconButton
-        size="small"
-        id="Buttons-downloadVideo"
-        disabled={!stateBoard.movetext}
-        color="primary"
-        title="Download Video"
-        aria-label="flip"
-        onClick={() => handleDownloadMp4()}
-      >
-        <VideoCameraBackIcon />
-      </IconButton>
-    </Stack>
+      <ListItemButton onClick={handleClick}>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText
+          primaryTypographyProps={{ fontSize: '0.9rem' }}
+          primary="Actions"
+        />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemButton
+            onClick={() => dispatch(board.flip())}
+          >
+            <ListItemIcon>
+              <CachedIcon />
+            </ListItemIcon>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: '0.9rem' }}
+              primary="Flip Board"
+            />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => navigator.clipboard.writeText(Movetext.substring(stateBoard.movetext, statePanel.history.back))}
+          >
+            <ListItemIcon>
+              <MoveDownIcon />
+            </ListItemIcon>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: '0.9rem' }}
+              primary="Copy Movetext"
+            />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => navigator.clipboard.writeText(stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back])}
+          >
+            <ListItemIcon>
+              <WidgetsIcon />
+            </ListItemIcon>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: '0.9rem' }}
+              primary="Copy FEN string"
+            />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => handleHeuristics()}
+          >
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: '0.9rem' }}
+              primary="Heuristics"
+            />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => handleDownloadImage()}
+          >
+            <ListItemIcon>
+              <InsertPhotoIcon />
+            </ListItemIcon>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: '0.9rem' }}
+              primary="Download Image"
+            />
+          </ListItemButton>
+          <ListItemButton
+            onClick={() => handleDownloadMp4()}
+          >
+            <ListItemIcon>
+              <VideoCameraBackIcon />
+            </ListItemIcon>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: '0.9rem' }}
+              primary="Download Video"
+            />
+          </ListItemButton>
+        </List>
+      </Collapse>
+    </List>
   );
 }
-
-export default Buttons;
