@@ -11,7 +11,6 @@ const StartedButtons = () => {
   if (stateBoard.movetext) {
     return (
       <ButtonGroup
-        sx={{ mt: 1.5 }}
         size="small"
         aria-label="Game Buttons"
         orientation="vertical"
