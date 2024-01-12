@@ -140,6 +140,7 @@ export default function Buttons() {
             />
           </ListItemButton>
           <ListItemButton
+            disabled={!stateBoard.movetext}
             onClick={() => navigator.clipboard.writeText(Movetext.substring(stateBoard.movetext, statePanel.history.back))}
           >
             <ListItemIcon>
@@ -162,6 +163,7 @@ export default function Buttons() {
             />
           </ListItemButton>
           <ListItemButton
+            disabled={!stateBoard.movetext}
             onClick={() => handleHeuristics()}
           >
             <ListItemIcon>
@@ -184,6 +186,7 @@ export default function Buttons() {
             />
           </ListItemButton>
           <ListItemButton
+            disabled={!stateBoard.movetext}
             onClick={() => handleDownloadMp4()}
           >
             <ListItemIcon>
