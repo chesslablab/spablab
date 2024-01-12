@@ -112,11 +112,11 @@ export default function Buttons() {
 
   return (
     <List
-      sx={{ width: '100%', bgcolor: 'background.paper' }}
+      sx={{ width: '100%', bgcolor: 'background.paper', pt: 0 }}
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton disableRipple onClick={handleClick}>
         <ListItemIcon>
           <AddIcon />
         </ListItemIcon>

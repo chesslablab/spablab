@@ -25,33 +25,40 @@ const StartedButtons = () => {
       <ButtonGroup
         sx={{ mt: 1.5 }}
         size="small"
+        variant="text"
         aria-label="Game Buttons"
         orientation="vertical"
         fullWidth={true}
         disabled={disabled}
       >
-        <Button onClick={() => {
-          dispatch(infoAlert.show({
-            mssg: 'Waiting for the opponent to accept or decline.'
-          }));
-          dispatch(playMode.proposeTakeback());
-          Ws.takeback(Wording.verb.PROPOSE.toLowerCase());
-        }}>
+        <Button
+          onClick={() => {
+            dispatch(infoAlert.show({
+              mssg: 'Waiting for the opponent to accept or decline.'
+            }));
+            dispatch(playMode.proposeTakeback());
+            Ws.takeback(Wording.verb.PROPOSE.toLowerCase());
+          }}
+        >
           Propose a takeback
         </Button>
-        <Button onClick={() => {
-          dispatch(infoAlert.show({
-            mssg: 'Waiting for the opponent to accept or decline.'
-          }));
-          dispatch(playMode.proposeDraw());
-          Ws.draw(Wording.verb.PROPOSE.toLowerCase());
-        }}>
+        <Button
+          onClick={() => {
+            dispatch(infoAlert.show({
+              mssg: 'Waiting for the opponent to accept or decline.'
+            }));
+            dispatch(playMode.proposeDraw());
+            Ws.draw(Wording.verb.PROPOSE.toLowerCase());
+          }}
+        >
           Offer draw
         </Button>
-        <Button onClick={() => {
-          Ws.resign(Wording.verb.ACCEPT.toLowerCase());
-          dispatch(playMode.acceptResign());
-        }}>
+        <Button
+          onClick={() => {
+            Ws.resign(Wording.verb.ACCEPT.toLowerCase());
+            dispatch(playMode.acceptResign());
+          }}
+        >
           Resign
         </Button>
       </ButtonGroup>

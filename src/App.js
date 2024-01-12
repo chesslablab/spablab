@@ -32,10 +32,8 @@ const App = () => {
             <PositionEval />
             <Heuristics />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={7}>
             <Panel />
-          </Grid>
-          <Grid item xs={12} md={2}>
           </Grid>
         </Grid>
         <ModeFenDialogs />

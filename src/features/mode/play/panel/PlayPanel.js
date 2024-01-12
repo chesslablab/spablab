@@ -10,15 +10,15 @@ import styles from 'styles/panel';
 const PlayPanel = () => {
   return (
     <Grid container>
-      <Grid item xs={12} sx={styles.panel}>
+      <Grid item xs={12} md={7} sx={styles.panel}>
         <SanMovesBrowser />
-      </Grid>
-      <Grid item xs={12}>
-        <Buttons />
-        <ButtonsDialogs />
         <Timer />
         <StartedButtons />
         <FinishedButtons />
+      </Grid>
+      <Grid item xs={12} md={5}>
+        <Buttons />
+        <ButtonsDialogs />
       </Grid>
     </Grid>
   );

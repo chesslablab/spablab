@@ -11,6 +11,7 @@ const StartedButtons = () => {
     return (
       <ButtonGroup
         size="small"
+        variant="text"
         aria-label="Game Buttons"
         orientation="vertical"
         fullWidth={true}

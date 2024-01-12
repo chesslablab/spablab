@@ -1,7 +1,7 @@
 const styles = {
   panel: {
     backgroundColor: '#f6f6f6',
-    border: '1px solid #e0e0e0',
+    border: '1px solid #f6f6f6',
     timer: {
       display: 'flex',
       justifyContent: 'center',

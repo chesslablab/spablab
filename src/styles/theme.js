@@ -18,6 +18,15 @@ const theme = createTheme({
         },
       },
     },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: 'transparent',
+          },
+        },
+      },
+    },
   },
   typography: {
     fontFamily: [

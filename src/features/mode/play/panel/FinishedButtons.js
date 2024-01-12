@@ -22,19 +22,22 @@ const FinishedButtons = () => {
       return (
         <ButtonGroup
           sx={{ mt: 1.5 }}
+          variant="text"
           orientation="vertical"
           size="small"
           aria-label="Game Over"
           fullWidth={true}
           disabled={!enabled}
         >
-          <Button onClick={() => {
-            dispatch(infoAlert.show({
-              mssg: 'Waiting for the opponent to accept or decline.'
-            }));
-            dispatch(playMode.proposeRematch());
-            Ws.rematch(Wording.verb.PROPOSE.toLowerCase());
-          }}>
+          <Button
+            onClick={() => {
+              dispatch(infoAlert.show({
+                mssg: 'Waiting for the opponent to accept or decline.'
+              }));
+              dispatch(playMode.proposeRematch());
+              Ws.rematch(Wording.verb.PROPOSE.toLowerCase());
+            }}
+          >
             Offer Rematch
           </Button>
         </ButtonGroup>
