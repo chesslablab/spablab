@@ -33,9 +33,19 @@ const handleDownloadImage = async () => {
   a.remove();
 };
 
-const initData = (names) => {
+const initData = (heuristics) => {
   let data = {};
-  names.forEach(item => data[item] = []);
+  for (let i = 0; i < heuristics.names.length; i++) {
+    for (let j = 0; j < heuristics.balance[i].length; j++) {
+      if (!(heuristics.names[i] in data)) {
+        data[heuristics.names[i]] = [];
+      }
+      data[heuristics.names[i]].push({
+        [heuristics.names[i]]: heuristics.balance[i][j]
+      });
+    }
+  }
+
   return data;
 };
 
@@ -56,20 +66,12 @@ const charts = (data) => {
 const Heuristics = () => {
   const state = useSelector(state => state.panel);
   if (state.dialogs.heuristics.heuristics) {
-    const data = initData(state.dialogs.heuristics.heuristics.names);
-    state.dialogs.heuristics.heuristics.balance.forEach((item, i) => {
-      state.dialogs.heuristics.heuristics.names.forEach((evalName, j) => {
-        data[evalName].push({
-          [evalName]: item[j]
-        });
-      });
-    });
     return <Grid
       className="heuristic-picture"
       container
       spacing={3}
     >
-      {charts(data)}
+      {charts(initData(state.dialogs.heuristics.heuristics))}
     </Grid>;
   }
 
