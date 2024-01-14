@@ -9,6 +9,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import WidgetsIcon from '@mui/icons-material/Widgets';
+import CommentIcon from '@mui/icons-material/Comment';
 import { List, ListItemButton, ListItemIcon, ListItemText, Collapse} from '@mui/material';
 import { Movetext } from '@chesslablab/reactblab';
 import { getActiveMode } from 'app/store';
@@ -195,6 +196,15 @@ export default function Buttons() {
             <ListItemText
               primaryTypographyProps={{ fontSize: '0.9rem' }}
               primary="Download Video"
+            />
+          </ListItemButton>
+          <ListItemButton disabled>
+            <ListItemIcon>
+              <CommentIcon />
+            </ListItemIcon>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: '0.9rem' }}
+              primary="Explain Position"
             />
           </ListItemButton>
         </List>
