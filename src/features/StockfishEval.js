@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 
-const PositionEval = () => {
+const StockfishEval = () => {
   const stateNav = useSelector(state => state.nav);
 
-  const statePositionEval = useSelector(state => state.positionEval);
+  const stateStockfishEval = useSelector(state => state.stockfishEval);
 
   if (stateNav.dialogs.settings.fields.eval === 'on') {
     return (
@@ -13,7 +13,7 @@ const PositionEval = () => {
         align="center"
         variant="body2"
       >
-        {statePositionEval.eval?.meaning}
+        {stateStockfishEval.eval?.meaning}
       </Typography>
     );
   }
@@ -21,4 +21,4 @@ const PositionEval = () => {
   return null;
 }
 
-export default PositionEval;
+export default StockfishEval;

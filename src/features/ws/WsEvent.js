@@ -15,7 +15,7 @@ import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import * as heuristics from 'features/heuristicsSlice';
 import multiAction from 'features/multiAction';
-import * as positionEval from 'features/positionEvalSlice';
+import * as stockfishEval from 'features/stockfishEvalSlice';
 import * as progressDialog from 'features/progressDialogSlice';
 import * as tutorFen from 'features/tutorFenSlice';
 
@@ -261,13 +261,14 @@ export default class WsEvent {
     if (data['/stockfish']) {
       dispatch(board.stockfish(data['/stockfish']));
       Ws.heuristics();
+      Ws.stockfishEval();
       Ws.tutorFen();
       multiAction.openingByMovetext(dispatch, data['/stockfish']);
     }
   }
 
   static onStockfishEval = (data) => dispatch => {
-    dispatch(positionEval.set(data['/stockfish_eval']));
+    dispatch(stockfishEval.set(data['/stockfish_eval']));
   }
 
   static onTutorFen = (data) => dispatch => {

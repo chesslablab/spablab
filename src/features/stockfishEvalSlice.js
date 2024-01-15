@@ -4,8 +4,8 @@ const initialState = {
   eval: {}
 };
 
-const positionEvalSlice = createSlice({
-  name: 'positionEval',
+const stockfishEvalSlice = createSlice({
+  name: 'stockfishEval',
   initialState,
   reducers: {
     reset: () => initialState,
@@ -18,5 +18,5 @@ const positionEvalSlice = createSlice({
 export const {
   reset,
   set
-} = positionEvalSlice.actions;
-export default positionEvalSlice.reducer;
+} = stockfishEvalSlice.actions;
+export default stockfishEvalSlice.reducer;

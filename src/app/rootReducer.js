@@ -12,8 +12,8 @@ import navReducer from 'features/nav/navSlice';
 import panelReducer from 'features/panel/panelSlice';
 import wsReducer from 'features/ws/wsSlice';
 import heuristicsReducer from 'features/heuristicsSlice';
-import positionEvalReducer from 'features/positionEvalSlice';
 import progressDialogReducer from 'features/progressDialogSlice';
+import stockfishEvalReducer from 'features/stockfishEvalSlice';
 import tutorFenReducer from 'features/tutorFenSlice';
 
 const rootReducer = {
@@ -31,8 +31,8 @@ const rootReducer = {
   panel: panelReducer,
   ws: wsReducer,
   heuristics: heuristicsReducer,
-  positionEval: positionEvalReducer,
   progressDialog: progressDialogReducer,
+  stockfishEval: stockfishEvalReducer,
   tutorFen: tutorFenReducer
 };
 
