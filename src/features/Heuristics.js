@@ -44,12 +44,14 @@ const Heuristics = () => {
     };
 
     return (
-      <ResponsiveContainer height="20%" width="100%">
+      <ResponsiveContainer height="25%" width="100%">
         <AreaChart
           data={data}
           margin={{
             top: 15,
-            bottom: 5,
+            left: 15,
+            right: 15,
+            bottom: 15,
           }}
         >
           <XAxis dataKey="name" hide={true} />

@@ -13,8 +13,6 @@ import ModeStockfishDialogs from 'features/mode/stockfish/StockfishDialogs';
 import Nav from 'features/nav/Nav';
 import NavDialogs from 'features/nav/NavDialogs';
 import Panel from 'features/panel/Panel';
-import Heuristics from 'features/Heuristics';
-import PositionEval from 'features/PositionEval';
 import ProgressDialog from 'features/ProgressDialog';
 import theme from 'styles/theme.js';
 
@@ -29,8 +27,6 @@ const App = () => {
         <Grid container sx={{ p: 2 }} spacing={2}>
           <Grid item xs={12} md={5}>
             <Board />
-            <PositionEval />
-            <Heuristics />
           </Grid>
           <Grid item xs={12} md={7}>
             <Panel />

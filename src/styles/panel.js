@@ -7,6 +7,9 @@ const styles = {
       justifyContent: 'center',
     },
   },
+  info: {
+    height: '25rem',
+  },
 };
 
 export default styles;
