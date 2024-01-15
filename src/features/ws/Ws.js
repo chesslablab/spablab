@@ -138,13 +138,13 @@ export default class Ws {
   static tutorFen = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
     const variant = getActiveMode().variant;
-    let startPos = '';
+    let command = `/tutor_fen "${variant}" "${fen}"`;
     if (variant === variantConst.CHESS_960 || variant === variantConst.CAPABLANCA_FISCHER) {
-      startPos = store.getState().fenMode.startPos;
+      command += ` ${store.getState().fenMode.startPos}`;
     }
 
     if (store.getState().nav.dialogs.settings.fields.explanation === 'on') {
-      return await store.getState().ws.ws.send(`/tutor_fen "${variant}" "${fen}" "${startPos}"`);
+      return await store.getState().ws.ws.send(command);
     }
   }
 
