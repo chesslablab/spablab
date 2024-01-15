@@ -9,12 +9,12 @@ const SanPanel = () => {
   return (
     <Grid container>
       <Grid item xs={12} md={7} sx={styles.panel}>
+        <Buttons />
+        <ButtonsDialogs />
         <SanMovesBrowser />
         <StartedButtons />
       </Grid>
       <Grid item xs={12} md={5}>
-        <Buttons />
-        <ButtonsDialogs />
       </Grid>
     </Grid>
   );

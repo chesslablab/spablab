@@ -117,12 +117,14 @@ export default function BasicMenu() {
   return (
     <div>
       <Button
+        sx={{ borderRadius: 0 }}
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         startIcon={<AddIcon />}
+        fullWidth={true}
       >
         Game Actions
       </Button>
@@ -214,6 +216,7 @@ export default function BasicMenu() {
           />
         </MenuItem>
         <MenuItem
+          disabled={!stateBoard.movetext}
           onClick={() => {
             // TODO
         }}>
