@@ -14,6 +14,7 @@ import wsReducer from 'features/ws/wsSlice';
 import heuristicsReducer from 'features/heuristicsSlice';
 import positionEvalReducer from 'features/positionEvalSlice';
 import progressDialogReducer from 'features/progressDialogSlice';
+import tutorFenReducer from 'features/tutorFenSlice';
 
 const rootReducer = {
   infoAlert: infoAlertReducer,
@@ -31,7 +32,8 @@ const rootReducer = {
   ws: wsReducer,
   heuristics: heuristicsReducer,
   positionEval: positionEvalReducer,
-  progressDialog: progressDialogReducer
+  progressDialog: progressDialogReducer,
+  tutorFen: tutorFenReducer
 };
 
 export default rootReducer;

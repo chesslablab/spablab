@@ -3,6 +3,7 @@ import Pgn from 'common/Pgn';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as modeConst from 'features/mode/modeConst';
+import * as variantConst from 'features/mode/variantConst';
 import WsEventListener from 'features/ws/WsEventListener';
 import * as wsSlice from 'features/ws/wsSlice';
 
@@ -131,6 +132,19 @@ export default class Ws {
 
     if (store.getState().nav.dialogs.settings.fields.eval === 'on') {
       return await store.getState().ws.ws.send(`/stockfish_eval "${fen}"`);
+    }
+  }
+
+  static tutorFen = async () => {
+    const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
+    const variant = getActiveMode().variant;
+    let startPos = '';
+    if (variant === variantConst.CHESS_960 || variant === variantConst.CAPABLANCA_FISCHER) {
+      startPos = store.getState().fenMode.startPos;
+    }
+
+    if (store.getState().nav.dialogs.settings.fields.explanation === 'on') {
+      return await store.getState().ws.ws.send(`/tutor_fen "${variant}" "${fen}" "${startPos}"`);
     }
   }
 

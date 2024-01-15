@@ -32,6 +32,7 @@ const initialState = {
         pieceAnimation: 'on',
         eval: 'off',
         heuristics: 'off',
+        explanation: 'off',
       },
     },
     help: {

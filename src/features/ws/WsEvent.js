@@ -17,6 +17,7 @@ import * as heuristics from 'features/heuristicsSlice';
 import multiAction from 'features/multiAction';
 import * as positionEval from 'features/positionEvalSlice';
 import * as progressDialog from 'features/progressDialogSlice';
+import * as tutorFen from 'features/tutorFenSlice';
 
 export default class WsEvent {
   static onStart = (data) => dispatch => {
@@ -149,6 +150,7 @@ export default class WsEvent {
       multiAction.openingByMovetext(dispatch, data['/play_lan']);
       Ws.heuristics();
       Ws.stockfishEval();
+      Ws.tutorFen();
     }
   }
 
@@ -157,6 +159,8 @@ export default class WsEvent {
       dispatch(board.undo(data['/undo']));
       multiAction.openingByMovetext(dispatch, data['/undo']);
       Ws.heuristics();
+      Ws.stockfishEval();
+      Ws.tutorFen();
     }
   }
 
@@ -257,12 +261,17 @@ export default class WsEvent {
     if (data['/stockfish']) {
       dispatch(board.stockfish(data['/stockfish']));
       Ws.heuristics();
+      Ws.tutorFen();
       multiAction.openingByMovetext(dispatch, data['/stockfish']);
     }
   }
 
   static onStockfishEval = (data) => dispatch => {
     dispatch(positionEval.set(data['/stockfish_eval']));
+  }
+
+  static onTutorFen = (data) => dispatch => {
+    dispatch(tutorFen.set(data['/tutor_fen']));
   }
 
   static onOnlineGames = (data) => dispatch => {

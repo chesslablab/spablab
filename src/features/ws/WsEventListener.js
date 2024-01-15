@@ -56,6 +56,9 @@ export default class WsEventListener {
       case '/stockfish_eval' === mssg:
         dispatch(WsEvent.onStockfishEval(data));
         break;
+      case '/tutor_fen' === mssg:
+        dispatch(WsEvent.onTutorFen(data));
+        break;
       case '/inbox' === mssg:
         dispatch(WsEvent.onInbox(data));
         break;

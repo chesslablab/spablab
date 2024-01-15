@@ -1,19 +1,18 @@
 import { useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 
-const PositionEval = () => {
+const TutorFen = () => {
   const stateNav = useSelector(state => state.nav);
 
-  const statePositionEval = useSelector(state => state.positionEval);
+  const stateTutorFen = useSelector(state => state.tutorFen);
 
   if (stateNav.dialogs.settings.fields.eval === 'on') {
     return (
       <Typography
-        sx={{ mt: 1, fontWeight: 'bold' }}
-        align="center"
+        sx={{m: 2}}
         variant="body2"
       >
-        {statePositionEval.eval?.meaning}
+        {stateTutorFen.explanation}
       </Typography>
     );
   }
@@ -21,4 +20,4 @@ const PositionEval = () => {
   return null;
 }
 
-export default PositionEval;
+export default TutorFen;

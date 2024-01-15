@@ -36,6 +36,12 @@ const SettingsDialog = () => {
     }));
   };
 
+  const handleExplanationChange = (event: Event) => {
+    dispatch(nav.settingsDialogSet({
+      explanation: event.target.value === 'on' ? 'off' : 'on'
+    }));
+  };
+
   return (
     <Dialog
       sx={styles.dialog}
@@ -76,6 +82,15 @@ const SettingsDialog = () => {
               checked={state.dialogs.settings.fields.heuristics === 'on'}
               value={state.dialogs.settings.fields.heuristics}
               onChange={handleHeuristicsChange}
+            />}
+          />
+          <FormControlLabel
+            label="Explain the chess position while playing"
+            control={<Checkbox
+              name="explanation"
+              checked={state.dialogs.settings.fields.explanation === 'on'}
+              value={state.dialogs.settings.fields.explanation}
+              onChange={handleExplanationChange}
             />}
           />
         </FormGroup>
