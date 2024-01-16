@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CachedIcon from '@mui/icons-material/Cached';
-import CommentIcon from '@mui/icons-material/Comment';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
@@ -213,19 +212,6 @@ export default function BasicMenu() {
           <ListItemText
             primaryTypographyProps={{ fontSize: '0.9rem' }}
             primary="Download Video"
-          />
-        </MenuItem>
-        <MenuItem
-          disabled={!stateBoard.movetext}
-          onClick={() => {
-            // TODO
-        }}>
-          <ListItemIcon>
-            <CommentIcon />
-          </ListItemIcon>
-          <ListItemText
-            primaryTypographyProps={{ fontSize: '0.9rem' }}
-            primary="Explain Position"
           />
         </MenuItem>
       </Menu>
