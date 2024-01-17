@@ -18,7 +18,7 @@ const TutorFen = () => {
             Heuristic explanation
           </Typography>
           <Typography variant="body2">
-            {stateTutorFen.explanation ? stateTutorFen.explanation : hint}.
+            {stateTutorFen.explanation ? stateTutorFen.explanation : hint}
           </Typography>
         </CardContent>
       </Card>
