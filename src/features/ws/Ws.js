@@ -129,9 +129,10 @@ export default class Ws {
 
   static stockfishEval = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
+    const variant = getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.eval === 'on') {
-      return await store.getState().ws.ws.send(`/stockfish_eval "${fen}"`);
+      return await store.getState().ws.ws.send(`/stockfish_eval "${fen}" ${variant}`);
     }
   }
 
