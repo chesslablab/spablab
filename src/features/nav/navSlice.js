@@ -45,7 +45,10 @@ const navSlice = createSlice({
   name: 'nav',
   initialState,
   reducers: {
-    setAnalysis: () => initialState,
+    setAnalysis: (state) => {
+      const newDialogSettings = JSON.parse(JSON.stringify(state.dialogs.settings));
+      state.dialogs.settings = newDialogSettings;
+    },
     setPlay: (state) => {
       state.name = navConst.PLAY;
     },

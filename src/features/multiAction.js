@@ -1,6 +1,7 @@
 import { Opening } from '@chesslablab/reactblab';
 import * as heuristics from 'features/heuristicsSlice';
 import * as stockfishEval from 'features/stockfishEvalSlice';
+import * as tutorFen from 'features/tutorFenSlice';
 import * as board from 'features/board/boardSlice';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
@@ -16,6 +17,7 @@ export default class multiAction {
   static initGui = (dispatch) => {
     dispatch(heuristics.reset());
     dispatch(stockfishEval.reset());
+    dispatch(tutorFen.reset());
     dispatch(panel.openingTable({ open: false }));
     dispatch(panel.goTo({ back: 0 }));
     dispatch(panel.movesMetadataTable({}));
