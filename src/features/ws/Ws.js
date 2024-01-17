@@ -138,7 +138,7 @@ export default class Ws {
   static tutorFen = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
     const variant = getActiveMode().variant;
-    let command = `/tutor_fen "${variant}" "${fen}"`;
+    let command = `/tutor_fen "${fen}" ${variant}`;
     if (variant === variantConst.CHESS_960 || variant === variantConst.CAPABLANCA_FISCHER) {
       command += ` ${store.getState().fenMode.startPos}`;
     }
