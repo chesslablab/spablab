@@ -8,7 +8,7 @@ const StockfishEval = () => {
 
   const stateStockfishEval = useSelector(state => state.stockfishEval);
 
-  const hint = 'Please make a move to get a computer evaluation';
+  const hint = 'Please make a move for a computer evaluation';
 
   if (stateNav.dialogs.settings.fields.eval === 'on') {
     return (
