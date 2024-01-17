@@ -76,21 +76,21 @@ const SettingsDialog = () => {
             />}
           />
           <FormControlLabel
-            label="Display chess heuristics while playing"
-            control={<Checkbox
-              name="heuristics"
-              checked={state.dialogs.settings.fields.heuristics === 'on'}
-              value={state.dialogs.settings.fields.heuristics}
-              onChange={handleHeuristicsChange}
-            />}
-          />
-          <FormControlLabel
             label="Explain the chess position while playing"
             control={<Checkbox
               name="explanation"
               checked={state.dialogs.settings.fields.explanation === 'on'}
               value={state.dialogs.settings.fields.explanation}
               onChange={handleExplanationChange}
+            />}
+          />
+          <FormControlLabel
+            label="Display chess heuristics while playing"
+            control={<Checkbox
+              name="heuristics"
+              checked={state.dialogs.settings.fields.heuristics === 'on'}
+              value={state.dialogs.settings.fields.heuristics}
+              onChange={handleHeuristicsChange}
             />}
           />
         </FormGroup>

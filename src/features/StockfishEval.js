@@ -1,20 +1,27 @@
 import { useSelector } from 'react-redux';
-import { Typography } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 const StockfishEval = () => {
   const stateNav = useSelector(state => state.nav);
 
   const stateStockfishEval = useSelector(state => state.stockfishEval);
 
+  const hint = 'Please make a move to get a computer evaluation';
+
   if (stateNav.dialogs.settings.fields.eval === 'on') {
     return (
-      <Typography
-        sx={{ mt: 1, fontWeight: 'bold' }}
-        align="center"
-        variant="body2"
-      >
-        {stateStockfishEval.eval?.meaning}
-      </Typography>
+      <Card sx={{ ml: 2, mr: 2, mb: 2 }}>
+        <CardContent>
+          <Typography variant="subtitle1" gutterBottom>
+            Computer evaluation
+          </Typography>
+          <Typography variant="body2">
+            {stateStockfishEval.eval?.meaning ? stateStockfishEval.eval?.meaning : hint}.
+          </Typography>
+        </CardContent>
+      </Card>
     );
   }
 

@@ -6,6 +6,7 @@ const styles = {
       display: 'flex',
       justifyContent: 'center',
     },
+    marginBottom: '1rem',
   },
   info: {
     height: '25rem',
