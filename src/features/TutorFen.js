@@ -8,7 +8,7 @@ const TutorFen = () => {
 
   const stateTutorFen = useSelector(state => state.tutorFen);
 
-  const hint = 'Please make a move for an heuristic explanation';
+  const hint = 'Please make a move for an heuristic explanation.';
 
   if (stateNav.dialogs.settings.fields.explanation === 'on') {
     return (
