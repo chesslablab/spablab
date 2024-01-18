@@ -14,7 +14,7 @@ const TutorFen = () => {
     return (
       <Card sx={{ ml: 2, mr: 2, mb: 2 }}>
         <CardContent>
-          <Typography variant="subtitle1" gutterBottom>
+          <Typography variant="subtitle2" gutterBottom>
             Heuristic explanation
           </Typography>
           <Typography variant="body2">
