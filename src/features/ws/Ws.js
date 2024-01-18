@@ -3,7 +3,6 @@ import Pgn from 'common/Pgn';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as modeConst from 'features/mode/modeConst';
-import * as variantConst from 'features/mode/variantConst';
 import WsEventListener from 'features/ws/WsEventListener';
 import * as wsSlice from 'features/ws/wsSlice';
 
@@ -139,13 +138,9 @@ export default class Ws {
   static tutorFen = async () => {
     const fen = store.getState().board.fen[store.getState().board.fen.length - 1];
     const variant = getActiveMode().variant;
-    let command = `/tutor_fen "${fen}" ${variant}`;
-    if (variant === variantConst.CHESS_960 || variant === variantConst.CAPABLANCA_FISCHER) {
-      command += ` ${store.getState().fenMode.startPos}`;
-    }
 
     if (store.getState().nav.dialogs.settings.fields.explanation === 'on') {
-      return await store.getState().ws.ws.send(command);
+      return await store.getState().ws.ws.send(`/tutor_fen "${fen}" ${variant}`);
     }
   }
 
