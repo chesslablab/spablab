@@ -11,7 +11,6 @@ import * as sanMode from 'features/mode/sanModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
-import * as nav from 'features/nav/navSlice';
 import Ws from 'features/ws/Ws';
 import * as heuristics from 'features/heuristicsSlice';
 import multiAction from 'features/multiAction';
@@ -282,19 +281,7 @@ export default class WsEvent {
 
   static onInbox = (data) => dispatch => {
     dispatch(progressDialog.close());
-    if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
-      if (data['/inbox'].inbox) {
-        dispatch(nav.enterInboxCodeDialog({
-          open: true,
-          inbox: data['/inbox'].inbox,
-        }));
-      } else {
-        dispatch(nav.enterInboxCodeDialog({ open: false }));
-        dispatch(infoAlert.show({
-          mssg: data['/inbox'].message,
-        }));
-      }
-    } else if (data['/inbox'].action === Wording.verb.REPLY.toLowerCase()) {
+    if (data['/inbox'].action === Wording.verb.REPLY.toLowerCase()) {
       dispatch(infoAlert.show({
         mssg: data['/inbox'].message,
       }));
