@@ -14,7 +14,6 @@ import {
 } from '@mui/material';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
 import * as progressDialog from 'features/progressDialogSlice';
 import styles from 'styles/dialog';
 
@@ -73,10 +72,27 @@ const EnterInboxCodeDialog = () => {
     });
   };
 
-  const handleSendMove = () => {
+  const handleSendMove = async () => {
     dispatch(nav.enterInboxCodeDialog({ open: false }));
-    Ws.inboxReply(fields.hash, fields.pgn);
-    setFields(initialState);
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/reply`, {
+      method: 'POST',
+      body: JSON.stringify({
+        hash: fields.hash,
+        pgn: fields.pgn
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      dispatch(infoAlert.show({
+        mssg: res.message,
+      }));
+    })
+    .catch(error => {
+
+    })
+    .finally(() => {
+      setFields(initialState);
+    });
   };
 
   return (

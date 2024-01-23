@@ -15,7 +15,6 @@ import Ws from 'features/ws/Ws';
 import * as heuristics from 'features/heuristicsSlice';
 import multiAction from 'features/multiAction';
 import * as stockfishEval from 'features/stockfishEvalSlice';
-import * as progressDialog from 'features/progressDialogSlice';
 import * as tutorFen from 'features/tutorFenSlice';
 
 export default class WsEvent {
@@ -277,15 +276,6 @@ export default class WsEvent {
   static onOnlineGames = (data) => dispatch => {
     dispatch(playMode.playOnlineDialog({ open: true }));
     dispatch(playMode.playOnlineTable(data['/online_games']));
-  }
-
-  static onInbox = (data) => dispatch => {
-    dispatch(progressDialog.close());
-    if (data['/inbox'].action === Wording.verb.REPLY.toLowerCase()) {
-      dispatch(infoAlert.show({
-        mssg: data['/inbox'].message,
-      }));
-    }
   }
 
   static onError = (data) => dispatch => {
