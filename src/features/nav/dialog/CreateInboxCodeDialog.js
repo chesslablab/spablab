@@ -64,15 +64,15 @@ const CreateCode = () => {
         mssg: 'The CAPTCHA is not valid, please try again with a different one.'
       }));
     } else {
-      const settings = {
-        ...(fields.fen && {fen: fields.fen}),
-        ...(fields.startPos && {startPos: fields.startPos})
-      };
       await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/create`, {
         method: 'POST',
         body: JSON.stringify({
           variant: fields.variant,
-          settings: settings
+          settings: {
+            ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+            ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
+            ...(fields?.fen && {fen: event.target.elements.fen?.value})
+          }
         })
       })
       .then(res => res.json())
