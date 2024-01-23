@@ -59,9 +59,6 @@ export default class WsEventListener {
       case '/tutor_fen' === mssg:
         dispatch(WsEvent.onTutorFen(data));
         break;
-      case '/inbox' === mssg:
-        dispatch(WsEvent.onInbox(data));
-        break;
       case 'error' === mssg:
         dispatch(WsEvent.onError(data));
         break;

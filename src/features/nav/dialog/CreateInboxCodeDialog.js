@@ -12,8 +12,8 @@ import {
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
 import Captcha from 'features/Captcha';
+import * as progressDialog from 'features/progressDialogSlice';
 import VariantTextField from 'features/VariantTextField';
 import styles from 'styles/dialog';
 
@@ -56,7 +56,7 @@ const CreateCode = () => {
     });
   };
 
-  const handleCreateCode = (event) => {
+  const handleCreateCode = async (event) => {
     event.preventDefault();
     if (fields.code.toLowerCase() !== fields.solution.toLowerCase()) {
       dispatch(nav.createInboxCodeDialog({ open: false }));
@@ -64,11 +64,39 @@ const CreateCode = () => {
         mssg: 'The CAPTCHA is not valid, please try again with a different one.'
       }));
     } else {
-      const settings = {
-        ...(fields.fen && {fen: fields.fen}),
-        ...(fields.startPos && {startPos: fields.startPos})
-      };
-      Ws.inboxCreate(fields.variant, JSON.stringify(settings));
+      await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/create`, {
+        method: 'POST',
+        body: JSON.stringify({
+          variant: fields.variant,
+          settings: {
+            ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+            ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
+            ...(fields?.fen && {fen: event.target.elements.fen?.value})
+          }
+        })
+      })
+      .then(res => res.json())
+      .then(res => {
+        if (res.hash) {
+          dispatch(nav.createInboxCodeDialog({
+            open: true,
+            inbox: {
+              hash: res.hash,
+            },
+          }));
+        } else {
+          dispatch(nav.createInboxCodeDialog({ open: false }));
+          dispatch(infoAlert.show({
+            mssg: res.message,
+          }));
+        }
+      })
+      .catch(error => {
+
+      })
+      .finally(() => {
+        dispatch(progressDialog.close());
+      });
     }
   }
 

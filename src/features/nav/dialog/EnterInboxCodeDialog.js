@@ -12,8 +12,9 @@ import {
   IconButton,
   TextField
 } from '@mui/material';
+import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
+import * as progressDialog from 'features/progressDialogSlice';
 import styles from 'styles/dialog';
 
 const EnterInboxCodeDialog = () => {
@@ -28,8 +29,33 @@ const EnterInboxCodeDialog = () => {
 
   const [fields, setFields] = useState(initialState);
 
-  const handleCheckInbox = () => {
-    Ws.inboxRead(fields.hash);
+  const handleCheckInbox = async () => {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/read`, {
+      method: 'POST',
+      body: JSON.stringify({
+        hash: fields.hash
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.hash) {
+        dispatch(nav.enterInboxCodeDialog({
+          open: true,
+          inbox: res,
+        }));
+      } else {
+        dispatch(nav.enterInboxCodeDialog({ open: false }));
+        dispatch(infoAlert.show({
+          mssg: res.message,
+        }));
+      }
+    })
+    .catch(error => {
+
+    })
+    .finally(() => {
+      dispatch(progressDialog.close());
+    });
   };
 
   const handleHashChange = (event: Event) => {
@@ -46,10 +72,27 @@ const EnterInboxCodeDialog = () => {
     });
   };
 
-  const handleSendMove = () => {
+  const handleSendMove = async () => {
     dispatch(nav.enterInboxCodeDialog({ open: false }));
-    Ws.inboxReply(fields.hash, fields.pgn);
-    setFields(initialState);
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/reply`, {
+      method: 'POST',
+      body: JSON.stringify({
+        hash: fields.hash,
+        pgn: fields.pgn
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      dispatch(infoAlert.show({
+        mssg: res.message,
+      }));
+    })
+    .catch(error => {
+
+    })
+    .finally(() => {
+      setFields(initialState);
+    });
   };
 
   return (

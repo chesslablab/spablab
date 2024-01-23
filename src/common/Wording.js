@@ -4,7 +4,5 @@ export default class Wording {
     CREATE: 'CREATE',
     DECLINE: 'DECLINE',
     PROPOSE: 'PROPOSE',
-    READ: 'READ',
-    REPLY: 'REPLY',
   };
 }

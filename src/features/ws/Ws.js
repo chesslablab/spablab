@@ -147,16 +147,4 @@ export default class Ws {
   static onlineGames = async () => {
     return await store.getState().ws.ws.send('/online_games');
   }
-
-  static inboxCreate = async (variant, settings) => {
-    return await store.getState().ws.ws.send(`/inbox create ${variant} ${JSON.stringify(settings)}`);
-  }
-
-  static inboxRead = async (hash) => {
-    return await store.getState().ws.ws.send(`/inbox read ${hash}`);
-  }
-
-  static inboxReply = async (hash, pgn) => {
-    return await store.getState().ws.ws.send(`/inbox reply ${hash} "${pgn}"`);
-  }
 }
