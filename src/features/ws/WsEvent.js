@@ -282,21 +282,7 @@ export default class WsEvent {
 
   static onInbox = (data) => dispatch => {
     dispatch(progressDialog.close());
-    if (data['/inbox'].action === Wording.verb.CREATE.toLowerCase()) {
-      if (data['/inbox'].hash) {
-        dispatch(nav.createInboxCodeDialog({
-          open: true,
-          inbox: {
-            hash: data['/inbox'].hash,
-          },
-        }));
-      } else {
-        dispatch(nav.createInboxCodeDialog({ open: false }));
-        dispatch(infoAlert.show({
-          mssg: data['/inbox'].message,
-        }));
-      }
-    } else if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
+    if (data['/inbox'].action === Wording.verb.READ.toLowerCase()) {
       if (data['/inbox'].inbox) {
         dispatch(nav.enterInboxCodeDialog({
           open: true,
