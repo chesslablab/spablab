@@ -2,7 +2,7 @@
   "id": "4144d5e2-a14b-4d1b-b08c-fd5f5a035e27",
   "version": "2.0",
   "name": "ChesslaBlab",
-  "url": "https://reactchess.net:9443",
+  "url": "https://ui.chesslablab.net:9443",
   "tests": [{
     "id": "e04aef97-5032-4a14-8426-dadc9300e672",
     "name": "Play C50",
@@ -1400,6 +1400,6 @@
     "timeout": 300,
     "tests": []
   }],
-  "urls": ["https://reactchess.net:9443/"],
+  "urls": ["https://ui.chesslablab.net:9443/"],
   "plugins": []
 }
