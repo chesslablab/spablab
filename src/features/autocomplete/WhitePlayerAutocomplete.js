@@ -17,16 +17,21 @@ const WhitePlayerAutocomplete = () => {
 
   useEffect(() => {
     if (state.data.length === 0) {
-      fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/player`)
-        .then(res => {
-          if (res.status === 200) {
-            res.json().then(data => {
-              dispatch(playerAutocomplete.set(data));
-            });
-          } else {
-            dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
-          }
-        });
+      fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/player`, {
+        method: 'GET',
+        headers: {
+          'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+        }
+      })
+      .then(res => {
+        if (res.status === 200) {
+          res.json().then(data => {
+            dispatch(playerAutocomplete.set(data));
+          });
+        } else {
+          dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+        }
+      });
     }
   }, [
     state.data.length,

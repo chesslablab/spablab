@@ -60,29 +60,32 @@ const DatabaseMenu = () => {
           id="Nav-database-MenuItem-topOpenings"
           onClick={() => {
             dispatch(progressDialog.open());
-            fetch(
-              `${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`
-            )
-              .then((res) => {
-                if (res.status === 200) {
-                  res.json().then((data) => {
-                    dispatch(
-                      nav.openingsStatsDialog({ open: true, stats: data })
-                    );
-                  });
-                } else {
+            fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`, {
+              method: 'GET',
+              headers: {
+                'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+              }
+            })
+            .then((res) => {
+              if (res.status === 200) {
+                res.json().then((data) => {
                   dispatch(
-                    warningAlert.show({
-                      mssg: "Whoops! Something went wrong, please try again.",
-                    })
+                    nav.openingsStatsDialog({ open: true, stats: data })
                   );
-                }
-              })
-              .finally(() => {
-                dispatch(progressDialog.close());
-                dispatch(nav.openingsStatsDialog({ open: true }));
-                handleCloseDatabase();
-              });
+                });
+              } else {
+                dispatch(
+                  warningAlert.show({
+                    mssg: "Whoops! Something went wrong, please try again.",
+                  })
+                );
+              }
+            })
+            .finally(() => {
+              dispatch(progressDialog.close());
+              dispatch(nav.openingsStatsDialog({ open: true }));
+              handleCloseDatabase();
+            });
           }}
         >
           <AutoGraphIcon size="small" />
@@ -113,25 +116,28 @@ const DatabaseMenu = () => {
           id="Nav-database-MenuItem-searchGames"
           onClick={() => {
             dispatch(progressDialog.open());
-            fetch(
-              `${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`
-            )
-              .then((res) => res.json())
-              .then((res) => {
-                dispatch(ravMode.annotatedGamesDialog({ open: true }));
-                dispatch(ravMode.annotatedGamesTable(res.games));
-              })
-              .catch((error) => {
-                dispatch(
-                  warningAlert.show({
-                    mssg: "Whoops! Something went wrong, please try again.",
-                  })
-                );
-              })
-              .finally(() => {
-                dispatch(progressDialog.close());
-                handleCloseDatabase();
-              });
+            fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`, {
+              method: 'GET',
+              headers: {
+                'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+              }
+            })
+            .then((res) => res.json())
+            .then((res) => {
+              dispatch(ravMode.annotatedGamesDialog({ open: true }));
+              dispatch(ravMode.annotatedGamesTable(res.games));
+            })
+            .catch((error) => {
+              dispatch(
+                warningAlert.show({
+                  mssg: "Whoops! Something went wrong, please try again.",
+                })
+              );
+            })
+            .finally(() => {
+              dispatch(progressDialog.close());
+              handleCloseDatabase();
+            });
           }}
         >
           <EditNoteIcon size="small" />

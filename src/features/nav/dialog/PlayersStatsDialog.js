@@ -32,12 +32,16 @@ const PlayersStatsDialog = () => {
     dispatch(progressDialog.open());
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/player`, {
       method: 'POST',
+      headers: {
+        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+      },
       body: JSON.stringify({
         [event.target.elements.White.name]: event.target.elements.White.value,
         [event.target.elements.Black.name]: event.target.elements.Black.value,
         [event.target.elements.Result.name]: event.target.elements.Result.value
       })
-    }).then(res => {
+    })
+    .then(res => {
       dispatch(progressDialog.close());
       if (res.status === 200) {
         res.json().then(data => {

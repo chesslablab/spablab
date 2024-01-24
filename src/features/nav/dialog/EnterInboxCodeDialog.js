@@ -32,6 +32,9 @@ const EnterInboxCodeDialog = () => {
   const handleCheckInbox = async () => {
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/read`, {
       method: 'POST',
+      headers: {
+        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+      },
       body: JSON.stringify({
         hash: fields.hash
       })
@@ -76,6 +79,9 @@ const EnterInboxCodeDialog = () => {
     dispatch(nav.enterInboxCodeDialog({ open: false }));
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/reply`, {
       method: 'POST',
+      headers: {
+        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+      },
       body: JSON.stringify({
         hash: fields.hash,
         pgn: fields.pgn
