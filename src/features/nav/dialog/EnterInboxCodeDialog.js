@@ -30,7 +30,7 @@ const EnterInboxCodeDialog = () => {
   const [fields, setFields] = useState(initialState);
 
   const handleCheckInbox = async () => {
-    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/read`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/inbox/read`, {
       method: 'POST',
       headers: {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
@@ -77,7 +77,7 @@ const EnterInboxCodeDialog = () => {
 
   const handleSendMove = async () => {
     dispatch(nav.enterInboxCodeDialog({ open: false }));
-    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/reply`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/inbox/reply`, {
       method: 'POST',
       headers: {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`

@@ -30,7 +30,7 @@ const PlayersStatsDialog = () => {
   const handleViewStats = async (event) => {
     event.preventDefault();
     dispatch(progressDialog.open());
-    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/player`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/stats/player`, {
       method: 'POST',
       headers: {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`

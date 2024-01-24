@@ -60,7 +60,7 @@ const DatabaseMenu = () => {
           id="Nav-database-MenuItem-topOpenings"
           onClick={() => {
             dispatch(progressDialog.open());
-            fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`, {
+            fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/stats/opening`, {
               method: 'GET',
               headers: {
                 'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
@@ -116,7 +116,7 @@ const DatabaseMenu = () => {
           id="Nav-database-MenuItem-searchGames"
           onClick={() => {
             dispatch(progressDialog.open());
-            fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`, {
+            fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/annotations/games`, {
               method: 'GET',
               headers: {
                 'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
