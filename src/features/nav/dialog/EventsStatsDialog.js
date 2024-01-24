@@ -38,7 +38,8 @@ const EventsStatsDialog = () => {
         [event.target.elements.Event.name]: event.target.elements.Event.value,
         [event.target.elements.Result.name]: event.target.elements.Result.value
       })
-    }).then(res => {
+    })
+    .then(res => {
       dispatch(progressDialog.close());
       if (res.status === 200) {
         res.json().then(data => {

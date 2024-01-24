@@ -40,7 +40,8 @@ const PlayersStatsDialog = () => {
         [event.target.elements.Black.name]: event.target.elements.Black.value,
         [event.target.elements.Result.name]: event.target.elements.Result.value
       })
-    }).then(res => {
+    })
+    .then(res => {
       dispatch(progressDialog.close());
       if (res.status === 200) {
         res.json().then(data => {
