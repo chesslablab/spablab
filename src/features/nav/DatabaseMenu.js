@@ -63,7 +63,7 @@ const DatabaseMenu = () => {
             fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/opening`, {
               method: 'GET',
               headers: {
-                'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+                'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
               }
             })
             .then((res) => {
@@ -119,7 +119,7 @@ const DatabaseMenu = () => {
             fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/annotations/games`, {
               method: 'GET',
               headers: {
-                'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+                'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
               }
             })
             .then((res) => res.json())

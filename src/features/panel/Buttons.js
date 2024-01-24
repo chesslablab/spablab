@@ -42,7 +42,7 @@ export default function BasicMenu() {
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
       headers: {
-        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+        'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
       },
       body: JSON.stringify({
         fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
@@ -67,7 +67,7 @@ export default function BasicMenu() {
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
       method: 'POST',
       headers: {
-        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+        'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
       },
       body: JSON.stringify({
         variant: getActiveMode().variant,
@@ -97,7 +97,7 @@ export default function BasicMenu() {
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
       method: 'POST',
       headers: {
-        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+        'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
       },
       body: JSON.stringify({
         variant: getActiveMode().variant,

@@ -33,7 +33,7 @@ const PlayersStatsDialog = () => {
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/stats/player`, {
       method: 'POST',
       headers: {
-        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+        'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
       },
       body: JSON.stringify({
         [event.target.elements.White.name]: event.target.elements.White.value,

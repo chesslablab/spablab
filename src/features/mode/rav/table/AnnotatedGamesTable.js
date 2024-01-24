@@ -75,7 +75,7 @@ const AnnotatedGamesTable = () => {
     fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/play/rav`, {
       method: 'POST',
       headers: {
-        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+        'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
       },
       body: JSON.stringify({
         variant: variantConst.CLASSICAL,
