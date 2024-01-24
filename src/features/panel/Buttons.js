@@ -39,7 +39,7 @@ export default function BasicMenu() {
   };
 
   const handleDownloadImage = async () => {
-    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/download/image`, {
       method: 'POST',
       headers: {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
@@ -64,7 +64,7 @@ export default function BasicMenu() {
 
   const handleDownloadMp4 = async () => {
     dispatch(progressDialog.open());
-    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/download/mp4`, {
       method: 'POST',
       headers: {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
@@ -94,7 +94,7 @@ export default function BasicMenu() {
 
   const handleHeuristics = async () => {
     dispatch(progressDialog.open());
-    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/heuristics`, {
       method: 'POST',
       headers: {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`

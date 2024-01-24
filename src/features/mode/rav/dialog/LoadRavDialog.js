@@ -52,7 +52,7 @@ const LoadRavDialog = () => {
     multiAction.initGui(dispatch);
     dispatch(nav.setAnalysis());
     dispatch(progressDialog.open());
-    fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/play/rav`, {
+    fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/play/rav`, {
       method: 'POST',
       headers: {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`

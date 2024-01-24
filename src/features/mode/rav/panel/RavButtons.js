@@ -10,7 +10,7 @@ const RavButtons = () => {
   const statePanel = useSelector(state => state.panel);
 
   const handleDownloadImage = async () => {
-    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
+    await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/download/image`, {
       method: 'POST',
       headers: {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`

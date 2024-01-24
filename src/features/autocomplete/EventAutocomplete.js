@@ -17,7 +17,7 @@ const EventAutocomplete = () => {
 
   useEffect(() => {
     if (state.data.length === 0) {
-      fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/autocomplete/event`, {
+      fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/autocomplete/event`, {
         method: 'GET',
         headers: {
           'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
