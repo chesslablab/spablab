@@ -41,6 +41,9 @@ export default function BasicMenu() {
   const handleDownloadImage = async () => {
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/image`, {
       method: 'POST',
+      headers: {
+        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+      },
       body: JSON.stringify({
         fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
         variant: getActiveMode().variant,
@@ -62,6 +65,9 @@ export default function BasicMenu() {
     dispatch(progressDialog.open());
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/download/mp4`, {
       method: 'POST',
+      headers: {
+        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+      },
       body: JSON.stringify({
         variant: getActiveMode().variant,
         fen: stateBoard.fen[0],
@@ -89,6 +95,9 @@ export default function BasicMenu() {
     dispatch(progressDialog.open());
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/heuristics`, {
       method: 'POST',
+      headers: {
+        'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+      },
       body: JSON.stringify({
         variant: getActiveMode().variant,
         movetext: Movetext.substring(stateBoard.movetext, statePanel.history.back),

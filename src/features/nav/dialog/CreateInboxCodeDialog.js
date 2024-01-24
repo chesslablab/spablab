@@ -66,6 +66,9 @@ const CreateCode = () => {
     } else {
       await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/api/inbox/create`, {
         method: 'POST',
+        headers: {
+          'X-Api-Key': `${process.env.REACT_APP_CHESS_API_KEY}`
+        },
         body: JSON.stringify({
           variant: fields.variant,
           settings: {
