@@ -23,7 +23,7 @@ npm install
 Add the following entry to your `/etc/hosts` file.
 
 ```
-127.0.0.1       ui.chesslablab.net
+127.0.0.1       ui.chesslablab.org
 ```
 
 Start the app.
