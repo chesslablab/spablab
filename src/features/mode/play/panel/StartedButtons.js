@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
-import Wording from 'common/Wording';
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
@@ -14,9 +14,9 @@ const StartedButtons = () => {
 
   const disabled = stateBoard.isMate ||
     stateBoard.isStalemate ||
-    statePlayMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
-    statePlayMode.takeback === Wording.verb.PROPOSE.toLowerCase() ||
-    statePlayMode.resign === Wording.verb.ACCEPT.toLowerCase() ||
+    statePlayMode.draw === actionConst.ACCEPT ||
+    statePlayMode.takeback === actionConst.PROPOSE ||
+    statePlayMode.resign === actionConst.ACCEPT ||
     statePlayMode.leave ||
     statePlayMode.timeOut;
 
@@ -37,7 +37,7 @@ const StartedButtons = () => {
               mssg: 'Waiting for the opponent to accept or decline.'
             }));
             dispatch(playMode.proposeTakeback());
-            Ws.takeback(Wording.verb.PROPOSE.toLowerCase());
+            Ws.takeback(actionConst.PROPOSE);
           }}
         >
           Propose a takeback
@@ -48,14 +48,14 @@ const StartedButtons = () => {
               mssg: 'Waiting for the opponent to accept or decline.'
             }));
             dispatch(playMode.proposeDraw());
-            Ws.draw(Wording.verb.PROPOSE.toLowerCase());
+            Ws.draw(actionConst.PROPOSE);
           }}
         >
           Offer draw
         </Button>
         <Button
           onClick={() => {
-            Ws.resign(Wording.verb.ACCEPT.toLowerCase());
+            Ws.resign(actionConst.ACCEPT);
             dispatch(playMode.acceptResign());
           }}
         >

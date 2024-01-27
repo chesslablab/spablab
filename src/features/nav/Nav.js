@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, ButtonGroup, useMediaQuery } from '@mui/material';
-import Wording from 'common/Wording';
+import * as actionConst from 'features/mode/actionConst';
 import ChessboardMenu from 'features/nav/ChessboardMenu';
 import PlayMenu from 'features/nav/PlayMenu';
 import OpeningsMenu from 'features/nav/OpeningsMenu';
@@ -31,7 +31,7 @@ const Nav = () => {
 
   const disabled = statePlayMode.active &&
     statePlayMode.accepted &&
-    (!statePlayMode.draw || statePlayMode.draw === Wording.verb.PROPOSE.toLowerCase()) &&
+    (!statePlayMode.draw || statePlayMode.draw === actionConst.PROPOSE) &&
     !statePlayMode.resign &&
     !statePlayMode.leave &&
     !statePlayMode.timeOut &&

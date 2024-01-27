@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import Wording from 'common/Wording.js';
+import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
@@ -11,13 +11,13 @@ const AcceptDrawDialog = () => {
 
   const handleDrawAccept = (event) => {
     event.preventDefault();
-    Ws.draw(Wording.verb.ACCEPT.toLowerCase());
+    Ws.draw(actionConst.ACCEPT);
     dispatch(playMode.acceptDrawDialog({ open: false }));
   };
 
   const handleDrawDecline = (event) => {
     event.preventDefault();
-    Ws.draw(Wording.verb.DECLINE.toLowerCase());
+    Ws.draw(actionConst.DECLINE);
     dispatch(playMode.acceptDrawDialog({ open: false }));
   };
 

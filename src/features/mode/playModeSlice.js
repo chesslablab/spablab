@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Wording from 'common/Wording.js';
+import * as actionConst from 'features/mode/actionConst';
 import * as variantConst from 'features/mode/variantConst';
 
 const initialState = {
@@ -61,34 +61,34 @@ const playModeSlice = createSlice({
       state.takeback = null;
     },
     declineTakeback(state) {
-      state.takeback = Wording.verb.DECLINE.toLowerCase();
+      state.takeback = actionConst.DECLINE;
     },
     proposeTakeback(state) {
-      state.takeback = Wording.verb.PROPOSE.toLowerCase();
+      state.takeback = actionConst.PROPOSE;
     },
     acceptDraw(state) {
-      state.draw = Wording.verb.ACCEPT.toLowerCase();
+      state.draw = actionConst.ACCEPT;
     },
     declineDraw(state) {
       state.draw = null;
     },
     proposeDraw(state) {
-      state.draw = Wording.verb.PROPOSE.toLowerCase();
+      state.draw = actionConst.PROPOSE;
     },
     acceptResign(state) {
-      state.resign = Wording.verb.ACCEPT.toLowerCase();
+      state.resign = actionConst.ACCEPT;
     },
     acceptRematch(state) {
-      state.rematch = Wording.verb.ACCEPT.toLowerCase();
+      state.rematch = actionConst.ACCEPT;
     },
     declineRematch(state) {
       state.rematch = null;
     },
     proposeRematch(state) {
-      state.rematch = Wording.verb.PROPOSE.toLowerCase();
+      state.rematch = actionConst.PROPOSE;
     },
     acceptLeave(state) {
-      state.leave = Wording.verb.ACCEPT.toLowerCase();
+      state.leave = actionConst.ACCEPT;
     },
     // dialogs
     acceptDrawDialog(state, action) {

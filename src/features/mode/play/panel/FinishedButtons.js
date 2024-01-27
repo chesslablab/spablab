@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from '@mui/material/';
-import Wording from "common/Wording.js";
 import * as infoAlert from 'features/alert/infoAlertSlice';
+import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
@@ -14,8 +14,8 @@ const FinishedButtons = () => {
 
   const enabled = stateBoard.isMate ||
     stateBoard.isStalemate ||
-    statePlayMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
-    statePlayMode.resign === Wording.verb.ACCEPT.toLowerCase() ||
+    statePlayMode.draw === actionConst.ACCEPT ||
+    statePlayMode.resign === actionConst.ACCEPT ||
     statePlayMode.timeOut;
 
     if (statePlayMode.accepted) {
@@ -35,7 +35,7 @@ const FinishedButtons = () => {
                 mssg: 'Waiting for the opponent to accept or decline.'
               }));
               dispatch(playMode.proposeRematch());
-              Ws.rematch(Wording.verb.PROPOSE.toLowerCase());
+              Ws.rematch(actionConst.PROPOSE);
             }}
           >
             Offer Rematch

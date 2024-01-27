@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import Wording from 'common/Wording.js';
+import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
 import Ws from 'features/ws/Ws';
 
@@ -11,7 +11,7 @@ const AcceptTakebackDialog = () => {
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    Ws.takeback(Wording.verb.ACCEPT.toLowerCase());
+    Ws.takeback(actionConst.ACCEPT);
     Ws.undo();
     dispatch(playMode.acceptTakebackDialog({ open: false }));
   };
@@ -28,7 +28,7 @@ const AcceptTakebackDialog = () => {
           <DialogActions>
             <Button type="submit">Accept</Button>
             <Button onClick={() => {
-              Ws.takeback(Wording.verb.DECLINE.toLowerCase());
+              Ws.takeback(actionConst.DECLINE);
               dispatch(playMode.acceptTakebackDialog({ open: false }));
             }}>
               Decline

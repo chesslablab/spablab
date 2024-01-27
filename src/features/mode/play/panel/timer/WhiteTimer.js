@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Pgn } from '@chesslablab/reactblab';
 import { Box } from '@mui/material';
-import Wording from 'common/Wording.js';
+import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
 
 const WhiteTimer = () => {
@@ -47,7 +47,7 @@ const WhiteTimer = () => {
       count <= 0 ||
       stateBoard.isMate ||
       stateBoard.isStalemate ||
-      statePlayMode.draw === Wording.verb.ACCEPT.toLowerCase() ||
+      statePlayMode.draw === actionConst.ACCEPT ||
       statePlayMode.resign ||
       statePlayMode.leave
     ) {
