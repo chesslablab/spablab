@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Pgn } from '@chesslablab/reactblab';
 import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
@@ -13,7 +14,6 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import Pgn from 'common/Pgn';
 import * as modeConst from 'features/mode/modeConst';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';

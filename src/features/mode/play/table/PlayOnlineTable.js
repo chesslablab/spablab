@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Pgn } from '@chesslablab/reactblab';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import BlurOnIcon from '@mui/icons-material/BlurOn';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
@@ -15,7 +16,6 @@ import {
 } from '@mui/material';
 import wKing from 'assets/img/pieces/png/150/wKing.png';
 import bKing from 'assets/img/pieces/png/150/bKing.png';
-import Pgn from 'common/Pgn';
 import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';

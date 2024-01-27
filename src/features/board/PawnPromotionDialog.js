@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Pgn } from '@chesslablab/reactblab';
 import {
   Avatar,
   Button,
@@ -17,7 +18,6 @@ import wQueen from 'assets/img/pieces/png/150/wQueen.png';
 import wRook from 'assets/img/pieces/png/150/wRook.png';
 import wBishop from 'assets/img/pieces/png/150/wBishop.png';
 import wKnight from 'assets/img/pieces/png/150/wKnight.png';
-import Pgn from 'common/Pgn';
 import * as board from 'features/board/boardSlice';
 import Ws from 'features/ws/Ws';
 import styles from 'styles/avatar';

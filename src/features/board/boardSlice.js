@@ -1,6 +1,5 @@
-import { Ascii } from '@chesslablab/reactblab';
+import { Ascii, Pgn } from '@chesslablab/reactblab';
 import { createSlice } from '@reduxjs/toolkit';
-import Pgn from 'common/Pgn';
 import * as variantConst from 'features/mode/variantConst';
 
 const initialState = {

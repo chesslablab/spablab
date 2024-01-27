@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
+import { Pgn } from '@chesslablab/reactblab';
 import { Button, ButtonGroup } from '@mui/material/';
-import Pgn from 'common/Pgn';
 import Ws from 'features/ws/Ws';
 
 const StartedButtons = () => {

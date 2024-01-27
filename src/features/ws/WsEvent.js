@@ -1,6 +1,6 @@
+import { Pgn } from '@chesslablab/reactblab';
 import jwt_decode from "jwt-decode";
 import store from 'app/store';
-import Pgn from 'common/Pgn';
 import Wording from 'common/Wording';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';

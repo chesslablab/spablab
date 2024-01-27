@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Pgn } from '@chesslablab/reactblab';
 import { Box } from '@mui/material';
-import Pgn from 'common/Pgn';
 import Wording from 'common/Wording.js';
 import * as playMode from 'features/mode/playModeSlice';
 

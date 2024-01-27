@@ -1,5 +1,5 @@
+import { Pgn } from '@chesslablab/reactblab';
 import store, { getActiveMode } from 'app/store';
-import Pgn from 'common/Pgn';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as modeConst from 'features/mode/modeConst';
