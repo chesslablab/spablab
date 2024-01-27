@@ -30,9 +30,9 @@ const initialState = {
       open: false,
       fields: {
         pieceAnimation: 'on',
-        eval: 'on',
-        heuristics: 'on',
-        explanation: 'on',
+        eval: 'off',
+        heuristics: 'off',
+        explanation: 'off',
       },
     },
     help: {
