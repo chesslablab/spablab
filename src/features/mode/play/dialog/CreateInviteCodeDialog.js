@@ -57,21 +57,21 @@ const CreateCode = () => {
     color: 'rand',
   });
 
-  const handleMinutesChange = (event: Event) => {
+  const handleMinutesChange = (event) => {
     setFields({
       ...fields,
       minutes: event.target.value
     });
   };
 
-  const handleIncrementChange = (event: Event) => {
+  const handleIncrementChange = (event) => {
     setFields({
       ...fields,
       increment: event.target.value
     });
   };
 
-  const handleFenChange = (event: Event) => {
+  const handleFenChange = (event) => {
     setFields({
       ...fields,
       fen: event.target.value

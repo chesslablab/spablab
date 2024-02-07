@@ -23,7 +23,7 @@ const EnterInviteCodeDialog = () => {
     hash: ''
   });
 
-  const handleHashChange = (event: Event) => {
+  const handleHashChange = (event) => {
     setFields({
       hash: event.target.value
     });

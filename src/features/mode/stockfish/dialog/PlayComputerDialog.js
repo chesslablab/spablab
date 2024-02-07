@@ -60,21 +60,21 @@ const PlayComputerDialog = () => {
     }));
   };
 
-  const handlePositionChange = (event: Event) => {
+  const handlePositionChange = (event) => {
     setFields({
       ...fields,
       position: event.target.value
     });
   };
 
-  const handleLevelChange = (event: Event) => {
+  const handleLevelChange = (event) => {
     setFields({
       ...fields,
       level: event.target.value
     });
   };
 
-  const handleFenChange = (event: Event) => {
+  const handleFenChange = (event) => {
     setFields({
       ...fields,
       fen: event.target.value

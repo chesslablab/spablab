@@ -18,25 +18,25 @@ const SettingsDialog = () => {
 
   const dispatch = useDispatch();
 
-  const handleAnimationChange = (event: Event) => {
+  const handleAnimationChange = (event) => {
     dispatch(nav.settingsDialogSet({
       pieceAnimation: event.target.value === 'on' ? 'off' : 'on'
     }));
   };
 
-  const handleEvalChange = (event: Event) => {
+  const handleEvalChange = (event) => {
     dispatch(nav.settingsDialogSet({
       eval: event.target.value === 'on' ? 'off' : 'on'
     }));
   };
 
-  const handleHeuristicsChange = (event: Event) => {
+  const handleHeuristicsChange = (event) => {
     dispatch(nav.settingsDialogSet({
       heuristics: event.target.value === 'on' ? 'off' : 'on'
     }));
   };
 
-  const handleExplanationChange = (event: Event) => {
+  const handleExplanationChange = (event) => {
     dispatch(nav.settingsDialogSet({
       explanation: event.target.value === 'on' ? 'off' : 'on'
     }));

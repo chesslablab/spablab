@@ -27,7 +27,7 @@ const Captcha = ({ props }) => {
     return result;
   };
 
-  const handleCaptchaChange = (event: Event) => {
+  const handleCaptchaChange = (event) => {
     setSolution(event.target.value);
   };
 

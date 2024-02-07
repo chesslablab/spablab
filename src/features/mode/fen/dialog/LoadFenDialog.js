@@ -29,7 +29,7 @@ const LoadFenDialog = () => {
     fen: '',
   });
 
-  const handleFenChange = (event: Event) => {
+  const handleFenChange = (event) => {
     setFields({
       ...fields,
       fen: event.target.value

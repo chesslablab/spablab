@@ -11,11 +11,11 @@ const VariantTextField = ({ props }) => {
     props.variant = variant;
   }, [props, variant]);
 
-  const handleVariantChange = (event: Event) => {
+  const handleVariantChange = (event) => {
     setVariant(event.target.value);
   };
 
-  const handleStartPosChange = (event: Event) => {
+  const handleStartPosChange = (event) => {
     setStartPos(event.target.value);
   };
 
