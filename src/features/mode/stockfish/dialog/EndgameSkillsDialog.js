@@ -52,7 +52,7 @@ const EndgameSkillsDialog = () => {
     Ws.randomizer(color, items);
   };
 
-  const handleTypeChange = (event: Event) => {
+  const handleTypeChange = (event) => {
     setFields({
       color: fields.color,
       items: event.target.value

@@ -61,14 +61,14 @@ const EnterInboxCodeDialog = () => {
     });
   };
 
-  const handleHashChange = (event: Event) => {
+  const handleHashChange = (event) => {
     setFields({
       ...fields,
       hash: event.target.value
     });
   };
 
-  const handlePgnChange = (event: Event) => {
+  const handlePgnChange = (event) => {
     setFields({
       ...fields,
       pgn: event.target.value

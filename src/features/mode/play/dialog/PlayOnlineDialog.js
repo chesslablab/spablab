@@ -38,21 +38,21 @@ const PlayOnlineDialog = () => {
 
   const [fields, setFields] = useState(initialState);
 
-  const handleMinutesChange = (event: Event) => {
+  const handleMinutesChange = (event) => {
     setFields({
       ...fields,
       minutes: event.target.value
     });
   };
 
-  const handleIncrementChange = (event: Event) => {
+  const handleIncrementChange = (event) => {
     setFields({
       ...fields,
       increment: event.target.value
     });
   };
 
-  const handleVariantChange = (event: Event) => {
+  const handleVariantChange = (event) => {
     setFields({
       ...fields,
       variant: event.target.value
