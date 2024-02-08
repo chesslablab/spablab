@@ -61,7 +61,7 @@ const CreateCode = () => {
     if (fields.code.toLowerCase() !== fields.solution.toLowerCase()) {
       dispatch(nav.createInboxCodeDialog({ open: false }));
       dispatch(infoAlert.show({
-        mssg: 'The CAPTCHA is not valid, please try again with a different one.'
+        msg: 'The CAPTCHA is not valid, please try again with a different one.'
       }));
     } else {
       await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/inbox/create`, {
@@ -90,7 +90,7 @@ const CreateCode = () => {
         } else {
           dispatch(nav.createInboxCodeDialog({ open: false }));
           dispatch(infoAlert.show({
-            mssg: res.message,
+            msg: res.message,
           }));
         }
       })

@@ -28,7 +28,7 @@ const SearchNameDialog = () => {
     setOpenings(openings);
     if (openings.length === 0) {
       dispatch(sanMode.searchNameDialog({ open: false }));
-      dispatch(infoAlert.show({ mssg: 'No results were found. Please try again.' }));
+      dispatch(infoAlert.show({ msg: 'No results were found. Please try again.' }));
     }
   }
 

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  mssg: null,
+  msg: null,
   open: false,
   button: false,
 };
@@ -13,7 +13,7 @@ const infoAlertSlice = createSlice({
     close: () => initialState,
     show(state, action) {
       state.open = true;
-      state.mssg = action.payload.mssg;
+      state.msg = action.payload.msg;
       state.button = action.payload.button ?? true;
     }
   }

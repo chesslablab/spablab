@@ -28,7 +28,7 @@ const SearchMovetextDialog = () => {
     setOpenings(openings);
     if (!openings) {
       dispatch(sanMode.searchMovetextDialog({ open: false }));
-      dispatch(infoAlert.show({ mssg: 'No results were found. Please try again.' }));
+      dispatch(infoAlert.show({ msg: 'No results were found. Please try again.' }));
     }
   }
 

@@ -34,7 +34,7 @@ const InfoAlert = () => {
               : null
           }
         >
-          {state.mssg}
+          {state.msg}
         </Alert>
       </Backdrop>
     );

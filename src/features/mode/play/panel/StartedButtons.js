@@ -34,7 +34,7 @@ const StartedButtons = () => {
         <Button
           onClick={() => {
             dispatch(infoAlert.show({
-              mssg: 'Waiting for the opponent to accept or decline.'
+              msg: 'Waiting for the opponent to accept or decline.'
             }));
             dispatch(playMode.proposeTakeback());
             Ws.takeback(actionConst.PROPOSE);
@@ -45,7 +45,7 @@ const StartedButtons = () => {
         <Button
           onClick={() => {
             dispatch(infoAlert.show({
-              mssg: 'Waiting for the opponent to accept or decline.'
+              msg: 'Waiting for the opponent to accept or decline.'
             }));
             dispatch(playMode.proposeDraw());
             Ws.draw(actionConst.PROPOSE);

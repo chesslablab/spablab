@@ -10,7 +10,7 @@ export default class Ws {
 
   static connect = () => dispatch => {
     dispatch(infoAlert.show({
-      mssg: 'Establishing connection...',
+      msg: 'Establishing connection...',
       button: false
     }));
     return new Promise((resolve, reject) => {
@@ -24,13 +24,13 @@ export default class Ws {
       };
       Ws.ws.onclose = (err) => {
         dispatch(warningAlert.show({
-          mssg: 'The connection has been lost, please reload the page.'
+          msg: 'The connection has been lost, please reload the page.'
         }));
         reject(err);
       };
       Ws.ws.onerror = (err) => {
         dispatch(warningAlert.show({
-          mssg: 'The connection has been lost, please reload the page.'
+          msg: 'The connection has been lost, please reload the page.'
         }));
         reject(err);
       };
@@ -38,24 +38,24 @@ export default class Ws {
   }
 
   static start = async (variant, mode, settings = {}) => {
-    let mssg = `/start ${variant} ${mode}`;
+    let msg = `/start ${variant} ${mode}`;
     if (Object.keys(settings).length > 0) {
       if (mode === modeConst.FEN) {
-        mssg += ` ${JSON.stringify(settings.settings)}`;
+        msg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.SAN) {
-        mssg += ` ${JSON.stringify(settings.settings)}`;
+        msg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.PLAY) {
-        mssg += ` ${JSON.stringify(settings.settings)}`;
+        msg += ` ${JSON.stringify(settings.settings)}`;
       } else if (mode === modeConst.STOCKFISH) {
         if (settings.hasOwnProperty('color')) {
-          mssg += ` ${settings.color}`;
+          msg += ` ${settings.color}`;
         } else if (settings.hasOwnProperty('fen')) {
-          mssg += ` "${settings.fen}"`;
+          msg += ` "${settings.fen}"`;
         }
       }
     }
 
-    return await Ws.ws.send(mssg);
+    return await Ws.ws.send(msg);
   }
 
   static playLan = async (lan) => {

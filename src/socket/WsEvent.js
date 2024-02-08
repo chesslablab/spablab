@@ -36,7 +36,7 @@ export default class WsEvent {
       dispatch(fenMode.set(data['/start']));
     } else {
       dispatch(warningAlert.show({
-        mssg: 'Invalid FEN, please try again with a different one.'
+        msg: 'Invalid FEN, please try again with a different one.'
       }));
     }
   }
@@ -48,7 +48,7 @@ export default class WsEvent {
       multiAction.openingByMovetext(dispatch, data['/start']);
     } else {
       dispatch(warningAlert.show({
-        mssg: 'Invalid SAN movetext, please try again with a different one.'
+        msg: 'Invalid SAN movetext, please try again with a different one.'
       }));
     }
   }
@@ -73,10 +73,10 @@ export default class WsEvent {
       if (jwtDecoded.color === Pgn.symbol.BLACK) {
         dispatch(board.flip());
       }
-      dispatch(infoAlert.show({ mssg: 'Waiting for player to join...' }));
+      dispatch(infoAlert.show({ msg: 'Waiting for player to join...' }));
     } else {
       dispatch(warningAlert.show({
-        mssg: 'Invalid FEN, please try again with a different one.'
+        msg: 'Invalid FEN, please try again with a different one.'
       }));
     }
   }
@@ -123,7 +123,7 @@ export default class WsEvent {
       }
     } else {
       dispatch(warningAlert.show({
-        mssg: 'Invalid invite code, please try again with a different one.'
+        msg: 'Invalid invite code, please try again with a different one.'
       }));
     }
   }
@@ -176,10 +176,10 @@ export default class WsEvent {
       }
     } else if (data['/takeback'].action === actionConst.ACCEPT) {
       dispatch(playMode.acceptTakeback());
-      dispatch(infoAlert.show({ mssg: 'Takeback accepted.' }));
+      dispatch(infoAlert.show({ msg: 'Takeback accepted.' }));
     } else if (data['/takeback'].action === actionConst.DECLINE) {
       dispatch(playMode.declineTakeback());
-      dispatch(infoAlert.show({ mssg: 'Takeback declined.' }));
+      dispatch(infoAlert.show({ msg: 'Takeback declined.' }));
     }
   }
 
@@ -190,17 +190,17 @@ export default class WsEvent {
       }
     } else if (data['/draw'].action === actionConst.ACCEPT) {
       dispatch(playMode.acceptDraw());
-      dispatch(infoAlert.show({ mssg: 'Draw offer accepted.' }));
+      dispatch(infoAlert.show({ msg: 'Draw offer accepted.' }));
     } else if (data['/draw'].action === actionConst.DECLINE) {
       dispatch(playMode.declineDraw());
-      dispatch(infoAlert.show({ mssg: 'Draw offer declined.' }));
+      dispatch(infoAlert.show({ msg: 'Draw offer declined.' }));
     }
   }
 
   static onResign = (data) => dispatch => {
     if (data['/resign'].action === actionConst.ACCEPT) {
       dispatch(playMode.acceptResign());
-      dispatch(infoAlert.show({ mssg: 'Chess game resigned.' }));
+      dispatch(infoAlert.show({ msg: 'Chess game resigned.' }));
     }
   }
 
@@ -214,14 +214,14 @@ export default class WsEvent {
       Ws.restart();
     } else if (data['/rematch'].action === actionConst.DECLINE) {
       dispatch(playMode.declineRematch());
-      dispatch(infoAlert.show({ mssg: 'Rematch declined.' }));
+      dispatch(infoAlert.show({ msg: 'Rematch declined.' }));
     }
   }
 
   static onLeave = (data) => dispatch => {
     if (data['/leave'].action === actionConst.ACCEPT) {
       dispatch(playMode.acceptLeave());
-      dispatch(infoAlert.show({ mssg: 'Your opponent left the game.' }));
+      dispatch(infoAlert.show({ msg: 'Your opponent left the game.' }));
     }
   }
 
@@ -251,7 +251,7 @@ export default class WsEvent {
         { fen: data['/randomizer'].fen }
       );
     } else {
-      dispatch(warningAlert.show({ mssg: 'Whoops! A random chess position could not be loaded.' }));
+      dispatch(warningAlert.show({ msg: 'Whoops! A random chess position could not be loaded.' }));
     }
   }
 
@@ -281,7 +281,7 @@ export default class WsEvent {
   static onError = (data) => dispatch => {
     if (data['error']) {
       dispatch(warningAlert.show({
-        mssg: 'Whoops! Something went wrong.'
+        msg: 'Whoops! Something went wrong.'
       }));
     }
   }

@@ -34,7 +34,7 @@ const WarningAlert = () => {
             </Button>
           }
         >
-          {state.mssg}
+          {state.msg}
         </Alert>
       </Backdrop>
     );

@@ -29,7 +29,7 @@ const WhitePlayerAutocomplete = () => {
             dispatch(playerAutocomplete.set(data));
           });
         } else {
-          dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+          dispatch(warningAlert.show({ msg: 'Whoops! Something went wrong, please try again.' }));
         }
       });
     }

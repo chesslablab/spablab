@@ -71,7 +71,7 @@ const LoadRavDialog = () => {
       dispatch(ravMode.set(res));
     })
     .catch(error => {
-      dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+      dispatch(warningAlert.show({ msg: 'Whoops! Something went wrong, please try again.' }));
     })
     .finally(() => {
       dispatch(progressDialog.close());

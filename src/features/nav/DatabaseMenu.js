@@ -76,7 +76,7 @@ const DatabaseMenu = () => {
               } else {
                 dispatch(
                   warningAlert.show({
-                    mssg: "Whoops! Something went wrong, please try again.",
+                    msg: "Whoops! Something went wrong, please try again.",
                   })
                 );
               }
@@ -130,7 +130,7 @@ const DatabaseMenu = () => {
             .catch((error) => {
               dispatch(
                 warningAlert.show({
-                  mssg: "Whoops! Something went wrong, please try again.",
+                  msg: "Whoops! Something went wrong, please try again.",
                 })
               );
             })

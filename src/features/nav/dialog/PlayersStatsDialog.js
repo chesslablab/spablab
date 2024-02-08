@@ -49,10 +49,10 @@ const PlayersStatsDialog = () => {
         });
       } else if (res.status === 204) {
         dispatch(nav.playersStatsDialog({ open: false }));
-        dispatch(infoAlert.show({ mssg: 'No results were found, please try again.' }));
+        dispatch(infoAlert.show({ msg: 'No results were found, please try again.' }));
       } else {
         dispatch(nav.playersStatsDialog({ open: false }));
-        dispatch(warningAlert.show({ mssg: 'Whoops! Something went wrong, please try again.' }));
+        dispatch(warningAlert.show({ msg: 'Whoops! Something went wrong, please try again.' }));
       }
     });
   };

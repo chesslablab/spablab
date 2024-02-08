@@ -49,7 +49,7 @@ const EnterInboxCodeDialog = () => {
       } else {
         dispatch(nav.enterInboxCodeDialog({ open: false }));
         dispatch(infoAlert.show({
-          mssg: res.message,
+          msg: res.message,
         }));
       }
     })
@@ -90,7 +90,7 @@ const EnterInboxCodeDialog = () => {
     .then(res => res.json())
     .then(res => {
       dispatch(infoAlert.show({
-        mssg: res.message,
+        msg: res.message,
       }));
     })
     .catch(error => {
