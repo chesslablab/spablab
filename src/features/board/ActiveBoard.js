@@ -8,7 +8,7 @@ import {
 import * as board from 'features/board/boardSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
-import Ws from 'features/ws/Ws';
+import Ws from 'socket/Ws';
 
 const ActiveBoard = () => {
   const stateActiveMode = useSelector(state => Object.values(state).find((val, key) => val.active));

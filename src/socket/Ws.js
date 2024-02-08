@@ -3,7 +3,7 @@ import store, { getActiveMode } from 'app/store';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as modeConst from 'features/mode/modeConst';
-import WsEventListener from 'features/ws/WsEventListener';
+import WsEventListener from 'socket/WsEventListener';
 
 export default class Ws {
   static ws;

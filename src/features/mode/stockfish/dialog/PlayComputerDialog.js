@@ -18,9 +18,9 @@ import * as modeConst from 'features/mode/modeConst';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
 import * as variantConst from 'features/mode/variantConst';
-import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
+import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const PlayComputerDialog = () => {

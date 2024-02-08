@@ -17,9 +17,9 @@ import * as modeConst from 'features/mode/modeConst';
 import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
 import ColorButtonGroup from 'features/ColorButtonGroup';
 import VariantTextField from 'features/VariantTextField';
+import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const CreateInviteCodeDialog = () => {

@@ -11,11 +11,11 @@ import * as sanMode from 'features/mode/sanModeSlice';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as variantConst from 'features/mode/variantConst';
-import Ws from 'features/ws/Ws';
 import * as heuristics from 'features/heuristicsSlice';
 import multiAction from 'features/multiAction';
 import * as stockfishEval from 'features/stockfishEvalSlice';
 import * as tutorFen from 'features/tutorFenSlice';
+import Ws from 'socket/Ws';
 
 export default class WsEvent {
   static onStart = (data) => dispatch => {

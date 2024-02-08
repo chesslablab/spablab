@@ -17,8 +17,8 @@ import * as modeConst from 'features/mode/modeConst';
 import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
 import * as variantConst from 'features/mode/variantConst';
-import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
+import Ws from 'socket/Ws';
 
 const ChessboardMenu = () => {
   const state = useSelector(state => state.nav);

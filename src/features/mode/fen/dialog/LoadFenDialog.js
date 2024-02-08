@@ -13,9 +13,9 @@ import * as fenMode from 'features/mode/fenModeSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import VariantTextField from 'features/VariantTextField';
+import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const LoadFenDialog = () => {

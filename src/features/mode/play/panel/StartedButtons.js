@@ -3,7 +3,7 @@ import { Button, ButtonGroup } from '@mui/material/';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
-import Ws from 'features/ws/Ws';
+import Ws from 'socket/Ws';
 
 const StartedButtons = () => {
   const stateBoard = useSelector(state => state.board);

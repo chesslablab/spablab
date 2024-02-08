@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Pgn } from '@chesslablab/reactblab';
 import { Button, ButtonGroup } from '@mui/material/';
-import Ws from 'features/ws/Ws';
+import Ws from 'socket/Ws';
 
 const StartedButtons = () => {
   const stateBoard = useSelector(state => state.board);
