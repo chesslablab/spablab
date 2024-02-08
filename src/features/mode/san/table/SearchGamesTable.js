@@ -12,8 +12,8 @@ import * as modeConst from 'features/mode/modeConst';
 import * as panel from 'features/panel/panelSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
+import Ws from 'socket/Ws';
 
 const styles = {
   tableContainer: {

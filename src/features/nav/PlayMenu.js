@@ -9,7 +9,7 @@ import { Button, Divider, Menu, MenuItem } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
-import Ws from 'features/ws/Ws';
+import Ws from 'socket/Ws';
 
 const PlayMenu = () => {
   const state = useSelector(state => state.nav);

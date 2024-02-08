@@ -14,9 +14,9 @@ import {
 } from '@mui/material';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
+import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const CheckmateSkillsDialog = () => {

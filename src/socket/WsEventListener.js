@@ -1,5 +1,5 @@
 import * as playMode from 'features/mode/playModeSlice';
-import WsEvent from 'features/ws/WsEvent';
+import WsEvent from 'socket/WsEvent';
 
 export default class WsEventListener {
   static listen = (data) => dispatch => {

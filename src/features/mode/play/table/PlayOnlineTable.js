@@ -19,7 +19,7 @@ import bKing from 'assets/img/pieces/png/150/bKing.png';
 import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
+import Ws from 'socket/Ws';
 
 const styles = {
   disabled: {

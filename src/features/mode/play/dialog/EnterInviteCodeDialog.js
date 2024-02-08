@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import * as playMode from 'features/mode/playModeSlice';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'features/ws/Ws';
+import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const EnterInviteCodeDialog = () => {

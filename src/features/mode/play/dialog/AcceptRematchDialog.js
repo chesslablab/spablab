@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
-import Ws from 'features/ws/Ws';
+import Ws from 'socket/Ws';
 
 const AcceptRematchDialog = () => {
   const state = useSelector(state => state.playMode);

@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Alert, Backdrop, Button } from '@mui/material';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
-import Ws from 'features/ws/Ws';
 import multiAction from 'features/multiAction';
+import Ws from 'socket/Ws';
 
 const WarningAlert = () => {
   const state = useSelector(state => state.warningAlert);
