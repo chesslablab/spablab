@@ -4,33 +4,31 @@ import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as modeConst from 'features/mode/modeConst';
 import WsEventListener from 'features/ws/WsEventListener';
-import * as wsSlice from 'features/ws/wsSlice';
 
 export default class Ws {
+  static ws;
+
   static connect = () => dispatch => {
     dispatch(infoAlert.show({
       mssg: 'Establishing connection...',
       button: false
     }));
     return new Promise((resolve, reject) => {
-      const ws = new WebSocket(`${process.env.REACT_APP_WS_SCHEME}://${process.env.REACT_APP_WS_HOST}:${process.env.REACT_APP_WS_PORT}`);
-      ws.onopen = () => {
-        dispatch(wsSlice.established({ ws: ws }));
+      Ws.ws = new WebSocket(`${process.env.REACT_APP_WS_SCHEME}://${process.env.REACT_APP_WS_HOST}:${process.env.REACT_APP_WS_PORT}`);
+      Ws.ws.onopen = () => {
         dispatch(infoAlert.close());
         resolve();
       };
-      ws.onmessage = (res) => {
+      Ws.ws.onmessage = (res) => {
         dispatch(WsEventListener.listen(JSON.parse(res.data)));
       };
-      ws.onclose = (err) => {
-        dispatch(wsSlice.error());
+      Ws.ws.onclose = (err) => {
         dispatch(warningAlert.show({
           mssg: 'The connection has been lost, please reload the page.'
         }));
         reject(err);
       };
-      ws.onerror = (err) => {
-        dispatch(wsSlice.error());
+      Ws.ws.onerror = (err) => {
         dispatch(warningAlert.show({
           mssg: 'The connection has been lost, please reload the page.'
         }));
@@ -57,7 +55,7 @@ export default class Ws {
       }
     }
 
-    return await store.getState().ws.ws.send(mssg);
+    return await Ws.ws.send(mssg);
   }
 
   static playLan = async (lan) => {
@@ -66,18 +64,18 @@ export default class Ws {
       : Pgn.symbol.WHITE;
 
     if (lan) {
-      return await store.getState().ws.ws.send(`/play_lan ${color} ${lan}`);
+      return await Ws.ws.send(`/play_lan ${color} ${lan}`);
     }
 
-    return await store.getState().ws.ws.send(`/play_lan ${color} ${store.getState().board.lan}`);
+    return await Ws.ws.send(`/play_lan ${color} ${store.getState().board.lan}`);
   }
 
   static accept = async (hash) => {
-    return await store.getState().ws.ws.send(`/accept ${hash}`);
+    return await Ws.ws.send(`/accept ${hash}`);
   }
 
   static legal = async (sq) => {
-    return await store.getState().ws.ws.send(`/legal ${sq}`);
+    return await Ws.ws.send(`/legal ${sq}`);
   }
 
   static heuristics = async () => {
@@ -85,45 +83,45 @@ export default class Ws {
     const variant = getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.heuristics === 'on') {
-      return await store.getState().ws.ws.send(`/heuristics "${fen}" ${variant}`);
+      return await Ws.ws.send(`/heuristics "${fen}" ${variant}`);
     }
   }
 
   static takeback = async (action) => {
-    return await store.getState().ws.ws.send(`/takeback ${action}`);
+    return await Ws.ws.send(`/takeback ${action}`);
   }
 
   static draw = async (action) => {
-    return await store.getState().ws.ws.send(`/draw ${action}`);
+    return await Ws.ws.send(`/draw ${action}`);
   }
 
   static undo = async () => {
-    return await store.getState().ws.ws.send(`/undo`);
+    return await Ws.ws.send(`/undo`);
   }
 
   static resign = async (action) => {
-    return await store.getState().ws.ws.send(`/resign ${action}`);
+    return await Ws.ws.send(`/resign ${action}`);
   }
 
   static rematch = async (action) => {
-    return await store.getState().ws.ws.send(`/rematch ${action}`);
+    return await Ws.ws.send(`/rematch ${action}`);
   }
 
   static restart = async () => {
-    return await store.getState().ws.ws.send(`/restart ${store.getState().playMode.play.hash}`);
+    return await Ws.ws.send(`/restart ${store.getState().playMode.play.hash}`);
   }
 
   static randomizer = async (color, items) => {
     items = JSON.stringify(items).replace(/"/g, '\\"');
 
-    return await store.getState().ws.ws.send(`/randomizer ${color} "${items}"`);
+    return await Ws.ws.send(`/randomizer ${color} "${items}"`);
   }
 
   static stockfish = async () => {
     const options = JSON.stringify(store.getState().stockfishMode.computer.options).replace(/"/g, '\\"');
     const params = JSON.stringify(store.getState().stockfishMode.computer.params).replace(/"/g, '\\"');
 
-    return await store.getState().ws.ws.send(`/stockfish "${options}" "${params}"`);
+    return await Ws.ws.send(`/stockfish "${options}" "${params}"`);
   }
 
   static stockfishEval = async () => {
@@ -131,7 +129,7 @@ export default class Ws {
     const variant = getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.eval === 'on') {
-      return await store.getState().ws.ws.send(`/stockfish_eval "${fen}" ${variant}`);
+      return await Ws.ws.send(`/stockfish_eval "${fen}" ${variant}`);
     }
   }
 
@@ -140,11 +138,11 @@ export default class Ws {
     const variant = getActiveMode().variant;
 
     if (store.getState().nav.dialogs.settings.fields.explanation === 'on') {
-      return await store.getState().ws.ws.send(`/tutor_fen "${fen}" ${variant}`);
+      return await Ws.ws.send(`/tutor_fen "${fen}" ${variant}`);
     }
   }
 
   static onlineGames = async () => {
-    return await store.getState().ws.ws.send('/online_games');
+    return await Ws.ws.send('/online_games');
   }
 }
