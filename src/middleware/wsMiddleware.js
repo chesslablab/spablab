@@ -1,17 +1,17 @@
 import { Pgn } from '@chesslablab/reactblab';
 import * as modeConst from 'features/mode/modeConst';
 
-const socketMiddleware = (socket) => (params) => (next) => (action) => {
+const wsMiddleware = (socket) => (params) => (next) => (action) => {
   const { dispatch, getState } = params;
   const { type } = action;
 
   let stateActiveMode;
 
   switch (type) {
-    case 'socket/connect':
+    case 'ws/connect':
       return socket.connect(dispatch, getState);
 
-    case 'socket/start':
+    case 'ws/start':
       let msg = `/start ${action.payload.variant} ${action.payload.mode}`;
       if (Object.keys(action.payload.settings).length > 0) {
         if (action.payload.mode === modeConst.FEN) {
@@ -31,11 +31,11 @@ const socketMiddleware = (socket) => (params) => (next) => (action) => {
       socket.send(msg);
       break;
 
-    case 'socket/legal':
+    case 'ws/legal':
       socket.send(`/legal ${action.payload}`);
       break;
 
-    case 'socket/play_lan':
+    case 'ws/play_lan':
       const color = getState().board.turn === Pgn.symbol.WHITE ? Pgn.symbol.BLACK : Pgn.symbol.WHITE;
       if (action.payload) {
         socket.send(`/play_lan ${color} ${action.payload}`);
@@ -43,66 +43,66 @@ const socketMiddleware = (socket) => (params) => (next) => (action) => {
       socket.send(`/play_lan ${color} ${getState().board.lan}`);
       break;
 
-    case 'socket/heuristics':
+    case 'ws/heuristics':
       const active = Object.values(getState()).find((val, key) => val.active);
       if (getState().nav.dialogs.settings.fields.heuristics === 'on') {
         socket.send(`/heuristics "${getState().board.fen[getState().board.fen.length - 1]}" ${active.variant}`);
       }
       break;
 
-    case 'socket/undo':
+    case 'ws/undo':
       socket.send(`/undo`);
       break;
 
-    case 'socket/takeback':
+    case 'ws/takeback':
       socket.send(`/takeback ${action.payload}`);
       break;
 
-    case 'socket/stockfish':
+    case 'ws/stockfish':
       const options = JSON.stringify(getState().stockfishMode.computer.options).replace(/"/g, '\\"');
       const params = JSON.stringify(getState().stockfishMode.computer.params).replace(/"/g, '\\"');
       socket.send(`/stockfish "${options}" "${params}"`);
       break;
 
-    case 'socket/stockfish_eval':
+    case 'ws/stockfish_eval':
       stateActiveMode = Object.values(getState()).find((val, key) => val.active);
       if (getState().nav.dialogs.settings.fields.eval === 'on') {
         socket.send(`/stockfish_eval "${getState().board.fen[getState().board.fen.length - 1]}" ${stateActiveMode.variant}`);
       }
       break;
 
-    case 'socket/tutor_fen':
+    case 'ws/tutor_fen':
       stateActiveMode = Object.values(getState()).find((val, key) => val.active);
       if (getState().nav.dialogs.settings.fields.explanation === 'on') {
         socket.send(`/tutor_fen "${getState().board.fen[getState().board.fen.length - 1]}" ${stateActiveMode.variant}`);
       }
       break;
 
-    case 'socket/accept':
+    case 'ws/accept':
       socket.send(`/accept ${action.payload}`);
       break;
 
-    case 'socket/draw':
+    case 'ws/draw':
       socket.send(`/draw ${action.payload}`);
       break;
 
-    case 'socket/resign':
+    case 'ws/resign':
       socket.send(`/resign ${action.payload}`);
       break;
 
-    case 'socket/rematch':
+    case 'ws/rematch':
       socket.send(`/rematch ${action.payload}`);
       break;
 
-    case 'socket/restart':
+    case 'ws/restart':
       socket.send(`/restart ${getState().playMode.play.hash}`);
       break;
 
-    case 'socket/online_games':
+    case 'ws/online_games':
       socket.send('/online_games');
       break;
 
-    case 'socket/randomizer':
+    case 'ws/randomizer':
       socket.send(`/randomizer ${action.payload.color} "${JSON.stringify(action.payload.items).replace(/"/g, '\\"')}"`);
       break;
 
@@ -113,4 +113,4 @@ const socketMiddleware = (socket) => (params) => (next) => (action) => {
   return next(action);
 }
 
-export default socketMiddleware;
+export default wsMiddleware;

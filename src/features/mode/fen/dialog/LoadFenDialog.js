@@ -40,7 +40,7 @@ const LoadFenDialog = () => {
     multiAction.initGui(dispatch);
     dispatch(nav.setAnalysis());
     dispatch({
-      type: 'socket/start',
+      type: 'ws/start',
       payload: {
         variant: event.target.elements.variant.value,
         mode: modeConst.FEN,

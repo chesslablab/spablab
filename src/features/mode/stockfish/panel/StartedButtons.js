@@ -24,8 +24,8 @@ const StartedButtons = () => {
             (stateBoard.turn === Pgn.symbol.BLACK && stateBoard.fen.length === 2)
           }
           onClick={() => {
-            dispatch({ type: 'socket/undo' });
-            dispatch({ type: 'socket/undo' });
+            dispatch({ type: 'ws/undo' });
+            dispatch({ type: 'ws/undo' });
         }}>
           Takeback
         </Button>

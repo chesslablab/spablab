@@ -44,7 +44,7 @@ const PlayMenu = () => {
         <MenuItem
           id="Nav-play-MenuItem-online"
           onClick={() => {
-            dispatch({ type: 'socket/online_games' });
+            dispatch({ type: 'ws/online_games' });
             dispatch(playMode.playOnlineDialog({ open: true }));
             handleClosePlay();
           }}

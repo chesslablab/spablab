@@ -11,7 +11,7 @@ const AcceptDrawDialog = () => {
   const handleDrawAccept = (event) => {
     event.preventDefault();
     dispatch({
-      type: 'socket/draw',
+      type: 'ws/draw',
       payload: actionConst.ACCEPT,
     });
     dispatch(playMode.acceptDrawDialog({ open: false }));
@@ -20,7 +20,7 @@ const AcceptDrawDialog = () => {
   const handleDrawDecline = (event) => {
     event.preventDefault();
     dispatch({
-      type: 'socket/draw',
+      type: 'ws/draw',
       payload: actionConst.DECLINE,
     });
     dispatch(playMode.acceptDrawDialog({ open: false }));

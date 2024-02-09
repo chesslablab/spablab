@@ -12,7 +12,7 @@ const WarningAlert = () => {
   const handleClose = () => {
     multiAction.initGui(dispatch);
     dispatch({
-      type: 'socket/start',
+      type: 'ws/start',
       payload: {
         variant: variantConst.CLASSICAL,
         mode: modeConst.FEN,

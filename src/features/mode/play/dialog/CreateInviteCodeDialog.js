@@ -81,7 +81,7 @@ const CreateCode = () => {
     event.preventDefault();
     dispatch(nav.setPlay());
     dispatch({
-      type: 'socket/start',
+      type: 'ws/start',
       payload: {
         variant: fields.variant,
         mode: modeConst.PLAY,

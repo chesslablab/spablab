@@ -11,10 +11,10 @@ const AcceptTakebackDialog = () => {
   const handleTakebackAccept = (event) => {
     event.preventDefault();
     dispatch({
-      type: 'socket/takeback',
+      type: 'ws/takeback',
       payload: actionConst.ACCEPT,
     });
-    dispatch({ type: 'socket/undo' })
+    dispatch({ type: 'ws/undo' })
     dispatch(playMode.acceptTakebackDialog({ open: false }));
   };
 
@@ -31,7 +31,7 @@ const AcceptTakebackDialog = () => {
             <Button type="submit">Accept</Button>
             <Button onClick={() => {
               dispatch({
-                type: 'socket/takeback',
+                type: 'ws/takeback',
                 payload: actionConst.DECLINE,
               });
               dispatch(playMode.acceptTakebackDialog({ open: false }));

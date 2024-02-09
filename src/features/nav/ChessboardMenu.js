@@ -57,7 +57,7 @@ const ChessboardMenu = () => {
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
             dispatch({
-              type: 'socket/start',
+              type: 'ws/start',
               payload: {
                 variant: variantConst.CLASSICAL,
                 mode: modeConst.FEN,
@@ -75,7 +75,7 @@ const ChessboardMenu = () => {
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
             dispatch({
-              type: 'socket/start',
+              type: 'ws/start',
               payload: {
                 variant: variantConst.CHESS_960,
                 mode: modeConst.FEN,
@@ -93,7 +93,7 @@ const ChessboardMenu = () => {
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
             dispatch({
-              type: 'socket/start',
+              type: 'ws/start',
               payload: {
                 variant: variantConst.CAPABLANCA,
                 mode: modeConst.FEN,
@@ -111,7 +111,7 @@ const ChessboardMenu = () => {
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
             dispatch({
-              type: 'socket/start',
+              type: 'ws/start',
               payload: {
                 variant: variantConst.CAPABLANCA_FISCHER,
                 mode: modeConst.FEN,

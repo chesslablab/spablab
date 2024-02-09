@@ -35,7 +35,7 @@ const FinishedButtons = () => {
               }));
               dispatch(playMode.proposeRematch());
               dispatch({
-                type: 'socket/rematch',
+                type: 'ws/rematch',
                 payload: actionConst.PROPOSE,
               });
             }}

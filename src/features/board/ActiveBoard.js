@@ -23,9 +23,9 @@ const ActiveBoard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'socket/connect' }).then(() => {
+    dispatch({ type: 'ws/connect' }).then(() => {
       dispatch({
-        type: 'socket/start',
+        type: 'ws/start',
         payload: {
           variant: variantConst.CLASSICAL,
           mode: modeConst.FEN,
@@ -50,7 +50,7 @@ const ActiveBoard = () => {
       ) {
         dispatch(board.promotionDialog({ open: true }));
       } else {
-        dispatch({ type: 'socket/play_lan' });
+        dispatch({ type: 'ws/play_lan' });
       }
     }
   }, [
@@ -108,7 +108,7 @@ const ActiveBoard = () => {
           if (stateBoard.turn === color(payload.piece)) {
             dispatch(board.grabPiece(payload));
             dispatch({
-              type: 'socket/legal',
+              type: 'ws/legal',
               payload: payload.sq,
             });
           } else {
@@ -139,14 +139,14 @@ const ActiveBoard = () => {
               } else {
                 dispatch(board.grabPiece(payload));
                 dispatch({
-                  type: 'socket/legal',
+                  type: 'ws/legal',
                   payload: payload.sq,
                 });
               }
             } else {
               dispatch(board.grabPiece(payload));
               dispatch({
-                type: 'socket/legal',
+                type: 'ws/legal',
                 payload: payload.sq,
               });
             }
@@ -178,14 +178,14 @@ const ActiveBoard = () => {
               } else {
                 dispatch(board.grabPiece(payload));
                 dispatch({
-                  type: 'socket/legal',
+                  type: 'ws/legal',
                   payload: payload.sq,
                 });
               }
             } else {
               dispatch(board.grabPiece(payload));
               dispatch({
-                type: 'socket/legal',
+                type: 'ws/legal',
                 payload: payload.sq,
               });
             }
@@ -213,7 +213,7 @@ const ActiveBoard = () => {
         if (stateBoard.turn === color(payload.piece)) {
           dispatch(board.grabPiece(payload));
           dispatch({
-            type: 'socket/legal',
+            type: 'ws/legal',
             payload: payload.sq,
           });
         } else {

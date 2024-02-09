@@ -58,7 +58,7 @@ const PlayOnlineTable = () => {
   const handlePlay = (hash) => {
     dispatch(nav.setPlay());
     dispatch({
-      type: 'socket/accept',
+      type: 'ws/accept',
       payload: hash,
     });
     dispatch(playMode.reset());

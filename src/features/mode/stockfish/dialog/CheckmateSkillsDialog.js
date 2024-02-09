@@ -49,7 +49,7 @@ const CheckmateSkillsDialog = () => {
     multiAction.initGui(dispatch);
     dispatch(nav.setTraining());
     dispatch({
-      type: 'socket/randomizer',
+      type: 'ws/randomizer',
       payload: {
         color: color,
         items: items,

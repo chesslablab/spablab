@@ -11,17 +11,17 @@ const AcceptRematchDialog = () => {
   const handleRematchAccept = (event) => {
     event.preventDefault();
     dispatch({
-      type: 'socket/rematch',
+      type: 'ws/rematch',
       payload: actionConst.ACCEPT,
     });
     dispatch(playMode.acceptRematchDialog({ open: false }));
-    dispatch({ type: 'socket/restart' });
+    dispatch({ type: 'ws/restart' });
   };
 
   const handleRematchDecline = (event) => {
     event.preventDefault();
     dispatch({
-      type: 'socket/rematch',
+      type: 'ws/rematch',
       payload: actionConst.DECLINE,
     });
     dispatch(playMode.acceptRematchDialog({ open: false }));

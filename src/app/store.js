@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
-import Socket from 'middleware/Socket';
-import socketMiddleware from 'middleware/socketMiddleware';
+import Ws from 'middleware/Ws';
+import wsMiddleware from 'middleware/wsMiddleware';
 
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(socketMiddleware(new Socket()))
+    }).concat(wsMiddleware(new Ws()))
 });
 
 export const getActiveMode = () => {

@@ -19,7 +19,7 @@ const OpeningSearchResultTable = ({ props }) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setOpeningSearch());
     dispatch({
-      type: 'socket/start',
+      type: 'ws/start',
       payload: {
         variant: variantConst.CLASSICAL,
         mode: modeConst.SAN,

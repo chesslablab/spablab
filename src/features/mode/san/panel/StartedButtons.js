@@ -20,7 +20,7 @@ const StartedButtons = () => {
         <Button
           id="StartedButtons-Button-undoMove"
           disabled={statePanel.history.back !== 0}
-          onClick={() => dispatch({ type: 'socket/undo' })}
+          onClick={() => dispatch({ type: 'ws/undo' })}
         >
           Takeback
         </Button>

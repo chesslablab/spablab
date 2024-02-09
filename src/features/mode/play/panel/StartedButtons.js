@@ -37,7 +37,7 @@ const StartedButtons = () => {
             }));
             dispatch(playMode.proposeTakeback());
             dispatch({
-              type: 'socket/takeback',
+              type: 'ws/takeback',
               payload: actionConst.PROPOSE,
             });
           }}
@@ -51,7 +51,7 @@ const StartedButtons = () => {
             }));
             dispatch(playMode.proposeDraw());
             dispatch({
-              type: 'socket/draw',
+              type: 'ws/draw',
               payload: actionConst.PROPOSE,
             });
           }}
@@ -61,7 +61,7 @@ const StartedButtons = () => {
         <Button
           onClick={() => {
             dispatch({
-              type: 'socket/resign',
+              type: 'ws/resign',
               payload: actionConst.ACCEPT,
             });
             dispatch(playMode.acceptResign());

@@ -35,7 +35,7 @@ const PawnPromotionDialog = () => {
   const handlePromote = (event) => {
     event.preventDefault();
     dispatch({
-      type: 'socket/play_lan',
+      type: 'ws/play_lan',
       payload: state.lan + piece,
     });
     dispatch(board.underpromote({

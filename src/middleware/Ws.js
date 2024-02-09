@@ -15,7 +15,7 @@ import multiAction from 'features/multiAction';
 import * as stockfishEval from 'features/stockfishEvalSlice';
 import * as tutorFen from 'features/tutorFenSlice';
 
-export default class Socket {
+export default class Ws {
   constructor() {
     this.socket = null
   }
@@ -104,7 +104,7 @@ export default class Socket {
               } else {
                 if (data['/start'].color === Pgn.symbol.BLACK) {
                   dispatch(board.flip());
-                  dispatch({ type: 'socket/stockfish' });
+                  dispatch({ type: 'ws/stockfish' });
                 }
               }
             }
@@ -119,9 +119,9 @@ export default class Socket {
           case '/stockfish' === msg:
             if (data['/stockfish']) {
               dispatch(board.stockfish(data['/stockfish']));
-              dispatch({ type: 'socket/heuristics' });
-              dispatch({ type: 'socket/stockfish_eval' });
-              dispatch({ type: 'socket/tutor_fen' });
+              dispatch({ type: 'ws/heuristics' });
+              dispatch({ type: 'ws/stockfish_eval' });
+              dispatch({ type: 'ws/tutor_fen' });
               multiAction.openingByMovetext(dispatch, data['/stockfish']);
             }
             break;
@@ -147,12 +147,12 @@ export default class Socket {
                   dispatch(board.playLan());
                 }
               } else if (getState().stockfishMode.active) {
-                dispatch({ type: 'socket/stockfish' });
+                dispatch({ type: 'ws/stockfish' });
               }
               multiAction.openingByMovetext(dispatch, data['/play_lan']);
-              dispatch({ type: 'socket/heuristics' });
-              dispatch({ type: 'socket/stockfish_eval' });
-              dispatch({ type: 'socket/tutor_fen' });
+              dispatch({ type: 'ws/heuristics' });
+              dispatch({ type: 'ws/stockfish_eval' });
+              dispatch({ type: 'ws/tutor_fen' });
             }
             break;
 
@@ -160,9 +160,9 @@ export default class Socket {
             if (data['/undo']) {
               dispatch(board.undo(data['/undo']));
               multiAction.openingByMovetext(dispatch, data['/undo']);
-              dispatch({ type: 'socket/heuristics' });
-              dispatch({ type: 'socket/stockfish_eval' });
-              dispatch({ type: 'socket/tutor_fen' });
+              dispatch({ type: 'ws/heuristics' });
+              dispatch({ type: 'ws/stockfish_eval' });
+              dispatch({ type: 'ws/tutor_fen' });
             }
             break;
 
@@ -251,7 +251,7 @@ export default class Socket {
               }
             } else if (data['/rematch'].action === actionConst.ACCEPT) {
               dispatch(playMode.acceptRematch());
-              dispatch({ type: 'socket/restart' });
+              dispatch({ type: 'ws/restart' });
             } else if (data['/rematch'].action === actionConst.DECLINE) {
               dispatch(playMode.declineRematch());
               dispatch(infoAlert.show({ msg: 'Rematch declined.' }));
@@ -260,7 +260,7 @@ export default class Socket {
 
           case '/restart' === msg:
             dispatch({
-              type: 'socket/accept',
+              type: 'ws/accept',
               payload: data['/restart'],
             });
             break;
@@ -285,7 +285,7 @@ export default class Socket {
                 },
               }));
               dispatch({
-                type: 'socket/start',
+                type: 'ws/start',
                 payload: {
                   variant: variantConst.CLASSICAL,
                   mode: modeConst.STOCKFISH,

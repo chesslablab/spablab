@@ -33,7 +33,7 @@ const EnterInviteCodeDialog = () => {
     dispatch(playMode.reset());
     dispatch(playMode.enterInviteCodeDialog({ open: false }));
     dispatch({
-      type: 'socket/accept',
+      type: 'ws/accept',
       payload: fields.hash,
     });
   };
