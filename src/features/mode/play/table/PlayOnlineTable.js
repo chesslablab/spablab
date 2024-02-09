@@ -19,7 +19,6 @@ import bKing from 'assets/img/pieces/png/150/bKing.png';
 import * as playMode from 'features/mode/playModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'socket/Ws';
 
 const styles = {
   disabled: {
@@ -58,7 +57,10 @@ const PlayOnlineTable = () => {
 
   const handlePlay = (hash) => {
     dispatch(nav.setPlay());
-    Ws.accept(hash);
+    dispatch({
+      type: 'ws/accept',
+      payload: hash,
+    });
     dispatch(playMode.reset());
     dispatch(playMode.playOnlineDialog({ open: false }));
   };

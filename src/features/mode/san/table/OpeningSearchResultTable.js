@@ -4,7 +4,6 @@ import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import multiAction from 'features/multiAction';
-import Ws from 'socket/Ws';
 
 const styles = {
   clickable: {
@@ -19,14 +18,16 @@ const OpeningSearchResultTable = ({ props }) => {
   const handleLoad = (movetext) => {
     multiAction.initGui(dispatch);
     dispatch(nav.setOpeningSearch());
-    const settings = {
-      movetext: movetext
-    };
-    Ws.start(
-      variantConst.CLASSICAL,
-      modeConst.SAN,
-      { settings: JSON.stringify(settings) }
-    );
+    dispatch({
+      type: 'ws/start',
+      payload: {
+        variant: variantConst.CLASSICAL,
+        mode: modeConst.SAN,
+        settings: JSON.stringify({
+          movetext: movetext
+        }),
+      },
+    });
   };
 
   if (props.openings.length > 0) {

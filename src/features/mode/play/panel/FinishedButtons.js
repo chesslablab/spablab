@@ -3,7 +3,6 @@ import { Button, ButtonGroup } from '@mui/material/';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
-import Ws from 'socket/Ws';
 
 const FinishedButtons = () => {
   const stateBoard = useSelector(state => state.board);
@@ -35,7 +34,10 @@ const FinishedButtons = () => {
                 msg: 'Waiting for the opponent to accept or decline.'
               }));
               dispatch(playMode.proposeRematch());
-              Ws.rematch(actionConst.PROPOSE);
+              dispatch({
+                type: 'ws/rematch',
+                payload: actionConst.PROPOSE,
+              });
             }}
           >
             Offer Rematch

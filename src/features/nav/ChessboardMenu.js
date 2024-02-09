@@ -18,7 +18,6 @@ import * as sanMode from 'features/mode/sanModeSlice';
 import * as ravMode from 'features/mode/ravModeSlice';
 import * as variantConst from 'features/mode/variantConst';
 import multiAction from 'features/multiAction';
-import Ws from 'socket/Ws';
 
 const ChessboardMenu = () => {
   const state = useSelector(state => state.nav);
@@ -57,7 +56,14 @@ const ChessboardMenu = () => {
             multiAction.initGui(dispatch);
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
-            Ws.start(variantConst.CLASSICAL, modeConst.FEN);
+            dispatch({
+              type: 'ws/start',
+              payload: {
+                variant: variantConst.CLASSICAL,
+                mode: modeConst.FEN,
+                settings: {},
+              },
+            });
           }}
         >
           <RestartAltIcon size="small" />&nbsp;Classical
@@ -68,7 +74,14 @@ const ChessboardMenu = () => {
             multiAction.initGui(dispatch);
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
-            Ws.start(variantConst.CHESS_960, modeConst.FEN);
+            dispatch({
+              type: 'ws/start',
+              payload: {
+                variant: variantConst.CHESS_960,
+                mode: modeConst.FEN,
+                settings: {},
+              },
+            });
           }}
         >
           <ShuffleIcon size="small" />&nbsp;Fischer Random
@@ -79,7 +92,14 @@ const ChessboardMenu = () => {
             multiAction.initGui(dispatch);
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
-            Ws.start(variantConst.CAPABLANCA, modeConst.FEN);
+            dispatch({
+              type: 'ws/start',
+              payload: {
+                variant: variantConst.CAPABLANCA,
+                mode: modeConst.FEN,
+                settings: {},
+              },
+            });
           }}
         >
           <BlurOnIcon size="small" />&nbsp;Capablanca
@@ -90,7 +110,14 @@ const ChessboardMenu = () => {
             multiAction.initGui(dispatch);
             dispatch(nav.setAnalysis());
             handleCloseAnalysis();
-            Ws.start(variantConst.CAPABLANCA_FISCHER, modeConst.FEN);
+            dispatch({
+              type: 'ws/start',
+              payload: {
+                variant: variantConst.CAPABLANCA_FISCHER,
+                mode: modeConst.FEN,
+                settings: {},
+              },
+            });
           }}
         >
           <AllInclusiveIcon size="small" />&nbsp;Capablanca-Fischer

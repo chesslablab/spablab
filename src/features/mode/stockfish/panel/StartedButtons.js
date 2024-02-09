@@ -1,12 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Pgn } from '@chesslablab/reactblab';
 import { Button, ButtonGroup } from '@mui/material/';
-import Ws from 'socket/Ws';
 
 const StartedButtons = () => {
   const stateBoard = useSelector(state => state.board);
 
   const statePanel = useSelector(state => state.panel);
+
+  const dispatch = useDispatch();
 
   if (stateBoard.movetext) {
     return (
@@ -23,8 +24,8 @@ const StartedButtons = () => {
             (stateBoard.turn === Pgn.symbol.BLACK && stateBoard.fen.length === 2)
           }
           onClick={() => {
-            Ws.undo();
-            Ws.undo();
+            dispatch({ type: 'ws/undo' });
+            dispatch({ type: 'ws/undo' });
         }}>
           Takeback
         </Button>

@@ -9,7 +9,6 @@ import { Button, Divider, Menu, MenuItem } from '@mui/material';
 import * as navConst from 'features/nav/navConst';
 import * as playMode from 'features/mode/playModeSlice';
 import * as stockfishMode from 'features/mode/stockfishModeSlice';
-import Ws from 'socket/Ws';
 
 const PlayMenu = () => {
   const state = useSelector(state => state.nav);
@@ -45,7 +44,7 @@ const PlayMenu = () => {
         <MenuItem
           id="Nav-play-MenuItem-online"
           onClick={() => {
-            Ws.onlineGames();
+            dispatch({ type: 'ws/online_games' });
             dispatch(playMode.playOnlineDialog({ open: true }));
             handleClosePlay();
           }}

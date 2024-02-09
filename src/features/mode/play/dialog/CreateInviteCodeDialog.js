@@ -19,7 +19,6 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import ColorButtonGroup from 'features/ColorButtonGroup';
 import VariantTextField from 'features/VariantTextField';
-import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const CreateInviteCodeDialog = () => {
@@ -81,18 +80,24 @@ const CreateCode = () => {
   const handleCreateCode = (event) => {
     event.preventDefault();
     dispatch(nav.setPlay());
-    let settings = {
-      min: fields.minutes,
-      increment: fields.increment,
-      color: fields.color === 'rand'
-        ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-        : fields.color,
-      submode: 'friend',
-      ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
-      ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
-      ...(fields?.fen && {fen: event.target.elements.fen?.value})
-    };
-    Ws.start(fields.variant, modeConst.PLAY, { settings: JSON.stringify(settings) });
+    dispatch({
+      type: 'ws/start',
+      payload: {
+        variant: fields.variant,
+        mode: modeConst.PLAY,
+        settings: {
+          min: fields.minutes,
+          increment: fields.increment,
+          color: fields.color === 'rand'
+            ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+            : fields.color,
+          submode: 'friend',
+          ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+          ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
+          ...(fields?.fen && {fen: event.target.elements.fen?.value})
+        },
+      },
+    });
   }
 
   return (
