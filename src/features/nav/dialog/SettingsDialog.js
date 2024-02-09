@@ -42,6 +42,14 @@ const SettingsDialog = () => {
     }));
   };
 
+  const handleThemeChange = (event) => {
+    const checkVal = event.target.value === 'on' ? 'off' : 'on';
+    localStorage.setItem('darkTheme', checkVal);
+    dispatch(nav.settingsDialogSet({
+      darkTheme: checkVal
+    }));
+  };
+
   return (
     <Dialog
       sx={styles.dialog}
@@ -91,6 +99,15 @@ const SettingsDialog = () => {
               checked={state.dialogs.settings.fields.heuristics === 'on'}
               value={state.dialogs.settings.fields.heuristics}
               onChange={handleHeuristicsChange}
+            />}
+          />
+          <FormControlLabel
+            label={`Turn ${state.dialogs.settings.fields.darkTheme === 'on' ? 'off' : 'on'} dark theme`}
+            control={<Checkbox
+              name="heuristics"
+              checked={state.dialogs.settings.fields.darkTheme === 'on'}
+              value={state.dialogs.settings.fields.darkTheme}
+              onChange={handleThemeChange}
             />}
           />
         </FormGroup>

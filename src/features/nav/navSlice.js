@@ -33,6 +33,7 @@ const initialState = {
         eval: 'off',
         heuristics: 'off',
         explanation: 'off',
+        darkTheme: localStorage.getItem('darkTheme') || 'off'
       },
     },
     help: {
