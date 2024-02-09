@@ -5,7 +5,7 @@ const wsMiddleware = (socket) => (params) => (next) => (action) => {
   const { dispatch, getState } = params;
   const { type } = action;
 
-  let stateActiveMode;
+  const stateActiveMode = Object.values(getState()).find((val, key) => val.active);
 
   switch (type) {
     case 'ws/connect':
@@ -44,9 +44,8 @@ const wsMiddleware = (socket) => (params) => (next) => (action) => {
       break;
 
     case 'ws/heuristics':
-      const active = Object.values(getState()).find((val, key) => val.active);
       if (getState().nav.dialogs.settings.fields.heuristics === 'on') {
-        socket.send(`/heuristics "${getState().board.fen[getState().board.fen.length - 1]}" ${active.variant}`);
+        socket.send(`/heuristics "${getState().board.fen[getState().board.fen.length - 1]}" ${stateActiveMode.variant}`);
       }
       break;
 
@@ -65,14 +64,12 @@ const wsMiddleware = (socket) => (params) => (next) => (action) => {
       break;
 
     case 'ws/stockfish_eval':
-      stateActiveMode = Object.values(getState()).find((val, key) => val.active);
       if (getState().nav.dialogs.settings.fields.eval === 'on') {
         socket.send(`/stockfish_eval "${getState().board.fen[getState().board.fen.length - 1]}" ${stateActiveMode.variant}`);
       }
       break;
 
     case 'ws/tutor_fen':
-      stateActiveMode = Object.values(getState()).find((val, key) => val.active);
       if (getState().nav.dialogs.settings.fields.explanation === 'on') {
         socket.send(`/tutor_fen "${getState().board.fen[getState().board.fen.length - 1]}" ${stateActiveMode.variant}`);
       }
