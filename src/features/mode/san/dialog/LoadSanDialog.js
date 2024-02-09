@@ -17,7 +17,6 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import multiAction from 'features/multiAction';
 import VariantTextField from 'features/VariantTextField';
-import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const LoadSanDialog = () => {
@@ -50,17 +49,19 @@ const LoadSanDialog = () => {
     event.preventDefault();
     multiAction.initGui(dispatch);
     dispatch(nav.setAnalysis());
-    let settings = {
-      movetext: event.target.elements.san.value,
-      ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
-      ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
-      ...(fields?.fen && {fen: event.target.elements.fen?.value})
-    };
-    Ws.start(
-      event.target.elements.variant.value,
-      modeConst.SAN,
-      { settings: JSON.stringify(settings) }
-    );
+    dispatch({
+      type: 'ws/start',
+      payload: {
+        variant: event.target.elements.variant.value,
+        mode: modeConst.SAN,
+        settings: JSON.stringify({
+          movetext: event.target.elements.san.value,
+          ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+          ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
+          ...(fields?.fen && {fen: event.target.elements.fen?.value})
+        }),
+      },
+    });
   };
 
   return (

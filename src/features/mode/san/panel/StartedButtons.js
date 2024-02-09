@@ -1,11 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
-import Ws from 'socket/Ws';
 
 const StartedButtons = () => {
   const stateBoard = useSelector(state => state.board);
 
   const statePanel = useSelector(state => state.panel);
+
+  const dispatch = useDispatch();
 
   if (stateBoard.movetext) {
     return (
@@ -19,7 +20,7 @@ const StartedButtons = () => {
         <Button
           id="StartedButtons-Button-undoMove"
           disabled={statePanel.history.back !== 0}
-          onClick={() => Ws.undo()}
+          onClick={() => dispatch({ type: 'ws/undo' })}
         >
           Takeback
         </Button>

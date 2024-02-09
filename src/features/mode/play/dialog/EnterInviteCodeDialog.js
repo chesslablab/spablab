@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 import * as playMode from 'features/mode/playModeSlice';
 import * as nav from 'features/nav/navSlice';
-import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const EnterInviteCodeDialog = () => {
@@ -33,7 +32,10 @@ const EnterInviteCodeDialog = () => {
     dispatch(nav.setPlay());
     dispatch(playMode.reset());
     dispatch(playMode.enterInviteCodeDialog({ open: false }));
-    Ws.accept(fields.hash);
+    dispatch({
+      type: 'ws/accept',
+      payload: fields.hash,
+    });
   };
 
   return (
