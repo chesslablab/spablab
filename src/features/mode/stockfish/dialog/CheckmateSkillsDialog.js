@@ -16,7 +16,6 @@ import * as stockfishMode from 'features/mode/stockfishModeSlice';
 import * as nav from 'features/nav/navSlice';
 import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
-import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const CheckmateSkillsDialog = () => {
@@ -49,7 +48,13 @@ const CheckmateSkillsDialog = () => {
       };
     multiAction.initGui(dispatch);
     dispatch(nav.setTraining());
-    Ws.randomizer(color, items);
+    dispatch({
+      type: 'socket/randomizer',
+      payload: {
+        color: color,
+        items: items,
+      }
+    });
   };
 
   const handleTypeChange = (event) => {

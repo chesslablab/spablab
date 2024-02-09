@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
-import Ws from 'socket/Ws';
 
 const AcceptTakebackDialog = () => {
   const state = useSelector(state => state.playMode);
@@ -11,8 +10,11 @@ const AcceptTakebackDialog = () => {
 
   const handleTakebackAccept = (event) => {
     event.preventDefault();
-    Ws.takeback(actionConst.ACCEPT);
-    Ws.undo();
+    dispatch({
+      type: 'socket/takeback',
+      payload: actionConst.ACCEPT,
+    });
+    dispatch({ type: 'socket/undo' })
     dispatch(playMode.acceptTakebackDialog({ open: false }));
   };
 
@@ -28,7 +30,10 @@ const AcceptTakebackDialog = () => {
           <DialogActions>
             <Button type="submit">Accept</Button>
             <Button onClick={() => {
-              Ws.takeback(actionConst.DECLINE);
+              dispatch({
+                type: 'socket/takeback',
+                payload: actionConst.DECLINE,
+              });
               dispatch(playMode.acceptTakebackDialog({ open: false }));
             }}>
               Decline

@@ -8,7 +8,6 @@ import {
 import * as board from 'features/board/boardSlice';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
-import Ws from 'socket/Ws';
 
 const ActiveBoard = () => {
   const stateActiveMode = useSelector(state => Object.values(state).find((val, key) => val.active));
@@ -24,7 +23,16 @@ const ActiveBoard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(Ws.connect()).then(() => Ws.start(variantConst.CLASSICAL, modeConst.FEN));
+    dispatch({ type: 'socket/connect' }).then(() => {
+      dispatch({
+        type: 'socket/start',
+        payload: {
+          variant: variantConst.CLASSICAL,
+          mode: modeConst.FEN,
+          settings: {},
+        },
+      });
+    });
   }, [dispatch]);
 
   useEffect(() => {
@@ -42,7 +50,7 @@ const ActiveBoard = () => {
       ) {
         dispatch(board.promotionDialog({ open: true }));
       } else {
-        Ws.playLan();
+        dispatch({ type: 'socket/play_lan' });
       }
     }
   }, [
@@ -99,7 +107,10 @@ const ActiveBoard = () => {
         handleMove={(payload) => {
           if (stateBoard.turn === color(payload.piece)) {
             dispatch(board.grabPiece(payload));
-            Ws.legal(payload.sq);
+            dispatch({
+              type: 'socket/legal',
+              payload: payload.sq,
+            });
           } else {
             dispatch(board.placePiece(payload));
           }
@@ -127,11 +138,17 @@ const ActiveBoard = () => {
                 dispatch(board.placePiece(payload));
               } else {
                 dispatch(board.grabPiece(payload));
-                Ws.legal(payload.sq);
+                dispatch({
+                  type: 'socket/legal',
+                  payload: payload.sq,
+                });
               }
             } else {
               dispatch(board.grabPiece(payload));
-              Ws.legal(payload.sq);
+              dispatch({
+                type: 'socket/legal',
+                payload: payload.sq,
+              });
             }
           } else {
             dispatch(board.placePiece(payload));
@@ -160,11 +177,17 @@ const ActiveBoard = () => {
                 dispatch(board.placePiece(payload));
               } else {
                 dispatch(board.grabPiece(payload));
-                Ws.legal(payload.sq);
+                dispatch({
+                  type: 'socket/legal',
+                  payload: payload.sq,
+                });
               }
             } else {
               dispatch(board.grabPiece(payload));
-              Ws.legal(payload.sq);
+              dispatch({
+                type: 'socket/legal',
+                payload: payload.sq,
+              });
             }
           } else {
             dispatch(board.placePiece(payload));
@@ -189,7 +212,10 @@ const ActiveBoard = () => {
       handleMove={(payload) => {
         if (stateBoard.turn === color(payload.piece)) {
           dispatch(board.grabPiece(payload));
-          Ws.legal(payload.sq);
+          dispatch({
+            type: 'socket/legal',
+            payload: payload.sq,
+          });
         } else {
           dispatch(board.placePiece(payload));
         }

@@ -21,7 +21,6 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
-import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const PlayOnlineDialog = () => {
@@ -62,16 +61,22 @@ const PlayOnlineDialog = () => {
   const handleCreateGame = () => {
     multiAction.initGui(dispatch);
     dispatch(nav.setPlay());
-    Ws.start(fields.variant, modeConst.PLAY, {
-      settings: {
-        min: fields.minutes,
-        increment: fields.increment,
-        color: fields.color === 'rand'
-          ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
-          : fields.color,
-        submode: 'online'
-      }
+    dispatch({
+      type: 'socket/start',
+      payload: {
+        variant: fields.variant,
+        mode: modeConst.PLAY,
+        settings: {
+          min: fields.minutes,
+          increment: fields.increment,
+          color: fields.color === 'rand'
+            ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
+            : fields.color,
+          submode: 'online',
+        },
+      },
     });
+
     setFields(initialState);
   }
 

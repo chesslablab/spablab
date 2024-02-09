@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
-import Ws from 'socket/Ws';
 
 const AcceptRematchDialog = () => {
   const state = useSelector(state => state.playMode);
@@ -11,14 +10,20 @@ const AcceptRematchDialog = () => {
 
   const handleRematchAccept = (event) => {
     event.preventDefault();
-    Ws.rematch(actionConst.ACCEPT);
+    dispatch({
+      type: 'socket/rematch',
+      payload: actionConst.ACCEPT,
+    });
     dispatch(playMode.acceptRematchDialog({ open: false }));
-    Ws.restart();
+    dispatch({ type: 'socket/restart' });
   };
 
   const handleRematchDecline = (event) => {
     event.preventDefault();
-    Ws.rematch(actionConst.DECLINE);
+    dispatch({
+      type: 'socket/rematch',
+      payload: actionConst.DECLINE,
+    });
     dispatch(playMode.acceptRematchDialog({ open: false }));
   };
 

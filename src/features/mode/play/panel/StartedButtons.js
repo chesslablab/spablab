@@ -3,7 +3,6 @@ import { Button, ButtonGroup } from '@mui/material/';
 import * as infoAlert from 'features/alert/infoAlertSlice';
 import * as actionConst from 'features/mode/actionConst';
 import * as playMode from 'features/mode/playModeSlice';
-import Ws from 'socket/Ws';
 
 const StartedButtons = () => {
   const stateBoard = useSelector(state => state.board);
@@ -37,7 +36,10 @@ const StartedButtons = () => {
               msg: 'Waiting for the opponent to accept or decline.'
             }));
             dispatch(playMode.proposeTakeback());
-            Ws.takeback(actionConst.PROPOSE);
+            dispatch({
+              type: 'socket/takeback',
+              payload: actionConst.PROPOSE,
+            });
           }}
         >
           Propose a takeback
@@ -48,14 +50,20 @@ const StartedButtons = () => {
               msg: 'Waiting for the opponent to accept or decline.'
             }));
             dispatch(playMode.proposeDraw());
-            Ws.draw(actionConst.PROPOSE);
+            dispatch({
+              type: 'socket/draw',
+              payload: actionConst.PROPOSE,
+            });
           }}
         >
           Offer draw
         </Button>
         <Button
           onClick={() => {
-            Ws.resign(actionConst.ACCEPT);
+            dispatch({
+              type: 'socket/resign',
+              payload: actionConst.ACCEPT,
+            });
             dispatch(playMode.acceptResign());
           }}
         >

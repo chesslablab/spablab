@@ -20,7 +20,6 @@ import * as nav from 'features/nav/navSlice';
 import * as variantConst from 'features/mode/variantConst';
 import multiAction from 'features/multiAction';
 import ColorButtonGroup from 'features/ColorButtonGroup';
-import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const PlayComputerDialog = () => {
@@ -40,16 +39,30 @@ const PlayComputerDialog = () => {
     let payload;
     if (fields.position === 'fen') {
       payload = configure(Pgn.symbol.WHITE); // arbitrary color
-      Ws.start(variantConst.CLASSICAL, modeConst.STOCKFISH, {
-        fen: fields.fen
+      dispatch({
+        type: 'socket/start',
+        payload: {
+          variant: variantConst.CLASSICAL,
+          mode: modeConst.STOCKFISH,
+          settings: {
+            fen: fields.fen
+          },
+        },
       });
     } else {
       let color = fields.color === 'rand'
         ? Math.random() < 0.5 ? Pgn.symbol.WHITE : Pgn.symbol.BLACK
         : fields.color;
       payload = configure(color);
-      Ws.start(variantConst.CLASSICAL, modeConst.STOCKFISH, {
-        color: color
+      dispatch({
+        type: 'socket/start',
+        payload: {
+          variant: variantConst.CLASSICAL,
+          mode: modeConst.STOCKFISH,
+          settings: {
+            color: color,
+          },
+        },
       });
     }
     multiAction.initGui(dispatch);

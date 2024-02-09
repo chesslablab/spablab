@@ -3,7 +3,6 @@ import { Alert, Backdrop, Button } from '@mui/material';
 import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import multiAction from 'features/multiAction';
-import Ws from 'socket/Ws';
 
 const WarningAlert = () => {
   const state = useSelector(state => state.warningAlert);
@@ -12,7 +11,14 @@ const WarningAlert = () => {
 
   const handleClose = () => {
     multiAction.initGui(dispatch);
-    Ws.start(variantConst.CLASSICAL, modeConst.FEN);
+    dispatch({
+      type: 'socket/start',
+      payload: {
+        variant: variantConst.CLASSICAL,
+        mode: modeConst.FEN,
+        settings: {},
+      },
+    });
   };
 
   if (state.open) {

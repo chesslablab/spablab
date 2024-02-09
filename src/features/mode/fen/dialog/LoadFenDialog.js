@@ -15,7 +15,6 @@ import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import multiAction from 'features/multiAction';
 import VariantTextField from 'features/VariantTextField';
-import Ws from 'socket/Ws';
 import styles from 'styles/dialog';
 
 const LoadFenDialog = () => {
@@ -40,16 +39,18 @@ const LoadFenDialog = () => {
     event.preventDefault();
     multiAction.initGui(dispatch);
     dispatch(nav.setAnalysis());
-    let settings = {
-      fen: event.target.elements.fen.value,
-      ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
-      ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
-    };
-    Ws.start(
-      event.target.elements.variant.value,
-      modeConst.FEN,
-      { settings: JSON.stringify(settings) }
-    );
+    dispatch({
+      type: 'socket/start',
+      payload: {
+        variant: event.target.elements.variant.value,
+        mode: modeConst.FEN,
+        settings: {
+          fen: event.target.elements.fen.value,
+          ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
+          ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
+        },
+      },
+    });
   };
 
   return (

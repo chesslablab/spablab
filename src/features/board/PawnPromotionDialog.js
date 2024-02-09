@@ -19,7 +19,6 @@ import wRook from 'assets/img/pieces/png/150/wRook.png';
 import wBishop from 'assets/img/pieces/png/150/wBishop.png';
 import wKnight from 'assets/img/pieces/png/150/wKnight.png';
 import * as board from 'features/board/boardSlice';
-import Ws from 'socket/Ws';
 import styles from 'styles/avatar';
 
 const PawnPromotionDialog = () => {
@@ -35,7 +34,10 @@ const PawnPromotionDialog = () => {
 
   const handlePromote = (event) => {
     event.preventDefault();
-    Ws.playLan(state.lan + piece);
+    dispatch({
+      type: 'socket/play_lan',
+      payload: state.lan + piece,
+    });
     dispatch(board.underpromote({
       turn: state.turn,
       piece: piece,

@@ -13,7 +13,6 @@ import * as panel from 'features/panel/panelSlice';
 import * as variantConst from 'features/mode/variantConst';
 import * as nav from 'features/nav/navSlice';
 import multiAction from 'features/multiAction';
-import Ws from 'socket/Ws';
 
 const styles = {
   tableContainer: {
@@ -66,14 +65,16 @@ const SearchGamesTable = ({ props }) => {
       Result: item.Result,
       ECO: item.ECO
     }));
-    const settings = {
-      movetext: item.movetext
-    };
-    Ws.start(
-      variantConst.CLASSICAL,
-      modeConst.SAN,
-      { settings: JSON.stringify(settings) }
-    );
+    dispatch({
+      type: 'socket/start',
+      payload: {
+        variant: variantConst.CLASSICAL,
+        mode: modeConst.SAN,
+        settings: {
+          movetext: item.movetext
+        },
+      },
+    });
   };
 
   if (props.result.length > 0) {
