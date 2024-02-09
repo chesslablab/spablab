@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { Grid } from '@mui/material';
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeModeProvider } from 'features/ThemeModeProvider';
 import store from 'app/store';
 import InfoAlert from 'features/alert/InfoAlert.js';
 import WarningAlert from 'features/alert/WarningAlert.js';
@@ -18,31 +18,31 @@ import theme from 'styles/theme.js';
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Grid container>
-          <Nav />
-          <NavDialogs />
-        </Grid>
-        <Grid container sx={{ p: 2 }} spacing={2}>
-          <Grid item xs={12} md={5}>
-            <Board />
+        <ThemeModeProvider theme={theme}>
+          <Grid container>
+            <Nav />
+            <NavDialogs />
           </Grid>
-          <Grid item xs={12} md={7}>
-            <Panel />
+          <Grid container sx={{ p: 2 }} spacing={2}>
+            <Grid item xs={12} md={5}>
+              <Board />
+            </Grid>
+            <Grid item xs={12} md={7}>
+              <Panel />
+            </Grid>
           </Grid>
-        </Grid>
-        <ModeFenDialogs />
-        <ModePlayDialogs />
-        <ModeRavDialogs />
-        <ModeSanDialogs />
-        <ModeSanDialogs />
-        <ModeStockfishDialogs />
-        <ProgressDialog />
-        <InfoAlert />
-        <WarningAlert />
+          <ModeFenDialogs />
+          <ModePlayDialogs />
+          <ModeRavDialogs />
+          <ModeSanDialogs />
+          <ModeSanDialogs />
+          <ModeStockfishDialogs />
+          <ProgressDialog />
+          <InfoAlert />
+          <WarningAlert />
+        </ThemeModeProvider>
       </Provider>
-    </ThemeProvider>
   );
 };
 
