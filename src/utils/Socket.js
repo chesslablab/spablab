@@ -25,12 +25,14 @@ export default class Socket {
       msg: 'Establishing connection...',
       button: false
     }));
+
     return new Promise((resolve, reject) => {
       this.socket = new WebSocket(`${process.env.REACT_APP_WS_SCHEME}://${process.env.REACT_APP_WS_HOST}:${process.env.REACT_APP_WS_PORT}`);
       this.socket.onopen = () => {
         dispatch(infoAlert.close());
         resolve();
       };
+
       this.socket.onmessage = (res) => {
         const data = JSON.parse(res.data);
         const msg = Object.keys(data)[0];
@@ -301,11 +303,19 @@ export default class Socket {
             break;
         }
       };
+
       this.socket.onclose = (err) => {
+        dispatch(warningAlert.show({
+          msg: 'The connection has been lost, please reload the page.'
+        }));
         reject(err);
       };
+
       this.socket.onerror = (err) => {
-          reject(err);
+        dispatch(warningAlert.show({
+          msg: 'The connection has been lost, please reload the page.'
+        }));
+        reject(err);
       };
     });
   }
