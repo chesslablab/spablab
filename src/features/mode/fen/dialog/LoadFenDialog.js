@@ -44,11 +44,11 @@ const LoadFenDialog = () => {
       payload: {
         variant: event.target.elements.variant.value,
         mode: modeConst.FEN,
-        settings: {
+        settings: JSON.stringify({
           fen: event.target.elements.fen.value,
           ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
           ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
-        },
+        }),
       },
     });
   };

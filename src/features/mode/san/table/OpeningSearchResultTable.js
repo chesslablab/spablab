@@ -23,9 +23,9 @@ const OpeningSearchResultTable = ({ props }) => {
       payload: {
         variant: variantConst.CLASSICAL,
         mode: modeConst.SAN,
-        settings: {
+        settings: JSON.stringify({
           movetext: movetext
-        },
+        }),
       },
     });
   };

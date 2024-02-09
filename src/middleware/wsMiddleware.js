@@ -15,11 +15,11 @@ const wsMiddleware = (socket) => (params) => (next) => (action) => {
       let msg = `/start ${action.payload.variant} ${action.payload.mode}`;
       if (Object.keys(action.payload.settings).length > 0) {
         if (action.payload.mode === modeConst.FEN) {
-          msg += ` ${JSON.stringify(action.payload.settings.settings)}`;
+          msg += ` ${JSON.stringify(action.payload.settings)}`;
         } else if (action.payload.mode === modeConst.SAN) {
-          msg += ` ${JSON.stringify(action.payload.settings.settings)}`;
+          msg += ` ${JSON.stringify(action.payload.settings)}`;
         } else if (action.payload.mode === modeConst.PLAY) {
-          msg += ` ${JSON.stringify(action.payload.settings.settings)}`;
+          msg += ` ${JSON.stringify(action.payload.settings)}`;
         } else if (action.payload.mode === modeConst.STOCKFISH) {
           if (action.payload.settings.hasOwnProperty('color')) {
             msg += ` ${action.payload.settings.color}`;

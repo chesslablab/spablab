@@ -70,9 +70,9 @@ const SearchGamesTable = ({ props }) => {
       payload: {
         variant: variantConst.CLASSICAL,
         mode: modeConst.SAN,
-        settings: {
+        settings: JSON.stringify({
           movetext: item.movetext
-        },
+        }),
       },
     });
   };

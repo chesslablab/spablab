@@ -54,12 +54,12 @@ const LoadSanDialog = () => {
       payload: {
         variant: event.target.elements.variant.value,
         mode: modeConst.SAN,
-        settings: {
+        settings: JSON.stringify({
           movetext: event.target.elements.san.value,
           ...(fields.variant === variantConst.CHESS_960) && {startPos: event.target.elements.startPos.value},
           ...(fields.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: event.target.elements.startPos.value},
           ...(fields?.fen && {fen: event.target.elements.fen?.value})
-        },
+        }),
       },
     });
   };
