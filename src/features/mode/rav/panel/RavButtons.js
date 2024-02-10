@@ -2,12 +2,13 @@ import { useSelector } from 'react-redux';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { IconButton, Stack } from "@mui/material";
-import { getActiveMode } from 'app/store';
 
 const RavButtons = () => {
   const stateBoard = useSelector(state => state.board);
 
   const statePanel = useSelector(state => state.panel);
+
+  const stateActiveMode = useSelector(state => Object.values(state).find((val, key) => val.active));
 
   const handleDownloadImage = async () => {
     await fetch(`${process.env.REACT_APP_API_SCHEME}://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_API_VERSION}/download/image`, {
@@ -17,7 +18,7 @@ const RavButtons = () => {
       },
       body: JSON.stringify({
         fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
-        variant: getActiveMode().variant,
+        variant: stateActiveMode.variant,
         flip: stateBoard.flip
       })
     })

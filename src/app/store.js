@@ -11,20 +11,4 @@ const store = configureStore({
     }).concat(wsMiddleware(new Ws()))
 });
 
-export const getActiveMode = () => {
-  if (store.getState().fenMode.active) {
-    return store.getState().fenMode;
-  } else if(store.getState().sanMode.active) {
-    return store.getState().sanMode;
-  } else if(store.getState().ravMode.active) {
-    return store.getState().ravMode;
-  } else if(store.getState().playMode.active) {
-    return store.getState().playMode;
-  } else if(store.getState().stockfishMode.active) {
-    return store.getState().stockfishMode;
-  }
-
-  return false;
-};
-
 export default store;

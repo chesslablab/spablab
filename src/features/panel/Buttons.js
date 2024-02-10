@@ -8,7 +8,6 @@ import MoveDownIcon from '@mui/icons-material/MoveDown';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import { Button, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material';
 import { Movetext } from '@chesslablab/reactblab';
-import { getActiveMode } from 'app/store';
 import * as warningAlert from 'features/alert/warningAlertSlice';
 import * as board from 'features/board/boardSlice';
 import * as variantConst from 'features/mode/variantConst';
@@ -23,6 +22,8 @@ export default function BasicMenu() {
   const stateFenMode = useSelector(state => state.fenMode);
 
   const stateStockfishMode = useSelector(state => state.stockfishMode);
+
+  const stateActiveMode = useSelector(state => Object.values(state).find((val, key) => val.active));
 
   const dispatch = useDispatch();
 
@@ -46,7 +47,7 @@ export default function BasicMenu() {
       },
       body: JSON.stringify({
         fen: stateBoard.fen[stateBoard.fen.length - 1 + statePanel.history.back],
-        variant: getActiveMode().variant,
+        variant: stateActiveMode.variant,
         flip: stateBoard.flip
       })
     })
@@ -70,12 +71,12 @@ export default function BasicMenu() {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
       },
       body: JSON.stringify({
-        variant: getActiveMode().variant,
+        variant: stateActiveMode.variant,
         fen: stateBoard.fen[0],
         movetext: Movetext.substring(stateBoard.movetext, statePanel.history.back),
         flip: stateBoard.flip,
-        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: stateFenMode.startPos},
-        ...(getActiveMode().variant === variantConst.CAPABLANCA_FISCHER) && {startPos: stateFenMode.startPos},
+        ...(stateActiveMode.variant === variantConst.CHESS_960) && {startPos: stateFenMode.startPos},
+        ...(stateActiveMode.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: stateFenMode.startPos},
         ...(stateFenMode.active) && {fen: stateFenMode.fen}
       })
     })
@@ -100,10 +101,10 @@ export default function BasicMenu() {
         'X-Api-Key': `${process.env.REACT_APP_API_KEY}`
       },
       body: JSON.stringify({
-        variant: getActiveMode().variant,
+        variant: stateActiveMode.variant,
         movetext: Movetext.substring(stateBoard.movetext, statePanel.history.back),
-        ...(getActiveMode().variant === variantConst.CHESS_960) && {startPos: stateFenMode.startPos},
-        ...(getActiveMode().variant === variantConst.CAPABLANCA_FISCHER) && {startPos: stateFenMode.startPos},
+        ...(stateActiveMode.variant === variantConst.CHESS_960) && {startPos: stateFenMode.startPos},
+        ...(stateActiveMode.variant === variantConst.CAPABLANCA_FISCHER) && {startPos: stateFenMode.startPos},
         ...(stateFenMode.active) && {fen: stateBoard.fen[0]},
         ...(stateStockfishMode.active) && {fen: stateBoard.fen[0]}
       })
