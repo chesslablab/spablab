@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';

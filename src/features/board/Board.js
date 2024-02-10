@@ -1,3 +1,5 @@
+'use client'
+
 import ActiveBoard from 'features/board/ActiveBoard';
 import PawnPromotionDialog from 'features/board/PawnPromotionDialog';
 import BoardAudio from 'features/board/BoardAudio';

@@ -1,3 +1,5 @@
+'use client'
+
 import { forwardRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {

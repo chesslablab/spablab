@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';

@@ -1,3 +1,5 @@
+'use client'
+
 import { useDispatch, useSelector } from 'react-redux';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import CloseIcon from '@mui/icons-material/Close';
