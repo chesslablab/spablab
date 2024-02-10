@@ -1,3 +1,5 @@
+'use client'
+
 import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import {
