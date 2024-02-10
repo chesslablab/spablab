@@ -3,6 +3,7 @@ import * as modeConst from 'features/mode/modeConst';
 
 const wsMiddleware = (socket) => (params) => (next) => (action) => {
   const { dispatch, getState } = params;
+  
   const { type } = action;
 
   const stateActiveMode = Object.values(getState()).find((val, key) => val.active);
