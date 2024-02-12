@@ -1,3 +1,5 @@
+'use client'
+
 import LoadSanDialog from 'features/mode/san/dialog/LoadSanDialog';
 import SearchEcoDialog from 'features/mode/san/dialog/SearchEcoDialog';
 import SearchGamesDialog from 'features/mode/san/dialog/SearchGamesDialog';

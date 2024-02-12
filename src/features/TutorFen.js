@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';

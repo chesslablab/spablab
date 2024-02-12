@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from 'react-redux';
 import FenPanel from 'features/mode/fen/panel/FenPanel';
 import PlayPanel from 'features/mode/play/panel/PlayPanel';

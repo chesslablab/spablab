@@ -1,3 +1,5 @@
+'use client'
+
 import { Grid } from '@mui/material';
 import RavButtons from 'features/mode/rav/panel/RavButtons';
 import RavMovesBrowser from 'features/mode/rav/panel/RavMovesBrowser';

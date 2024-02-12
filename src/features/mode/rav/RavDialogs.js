@@ -1,3 +1,5 @@
+'use client'
+
 import AnnotatedGamesDialog from 'features/mode/rav/dialog/AnnotatedGamesDialog';
 import LoadRavDialog from 'features/mode/rav/dialog/LoadRavDialog';
 

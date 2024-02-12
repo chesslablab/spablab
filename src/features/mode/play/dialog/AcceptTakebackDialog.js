@@ -1,3 +1,5 @@
+'use client'
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import * as actionConst from 'features/mode/actionConst';

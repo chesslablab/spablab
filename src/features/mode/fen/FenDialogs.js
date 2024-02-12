@@ -1,3 +1,5 @@
+'use client'
+
 import LoadFenDialog from 'features/mode/fen/dialog/LoadFenDialog';
 import LoadImageDialog from 'features/mode/fen/dialog/LoadImageDialog';
 

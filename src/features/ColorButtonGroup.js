@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react';
 import { Pgn } from '@chesslablab/reactblab';
 import { Avatar, ButtonGroup, IconButton } from '@mui/material';

@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';

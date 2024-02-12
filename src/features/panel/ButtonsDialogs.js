@@ -1,3 +1,5 @@
+'use client'
+
 import HeuristicsDialog from 'features/panel/HeuristicsDialog';
 
 const ButtonsDialogs = () => {

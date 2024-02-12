@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from 'react-redux';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 

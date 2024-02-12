@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useDispatch, useSelector } from 'react-redux';

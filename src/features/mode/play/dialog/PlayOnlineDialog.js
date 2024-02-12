@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Pgn } from '@chesslablab/reactblab';

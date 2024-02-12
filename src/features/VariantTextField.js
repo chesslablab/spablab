@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react';
 import { MenuItem, TextField } from '@mui/material';
 import * as variantConst from 'features/mode/variantConst';

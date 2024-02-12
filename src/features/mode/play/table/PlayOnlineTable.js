@@ -1,3 +1,5 @@
+'use client'
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Pgn } from '@chesslablab/reactblab';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';

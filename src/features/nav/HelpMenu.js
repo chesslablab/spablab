@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import HelpIcon from '@mui/icons-material/Help';
 import { useDispatch, useSelector } from 'react-redux';

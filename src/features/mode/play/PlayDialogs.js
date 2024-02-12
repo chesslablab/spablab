@@ -1,3 +1,5 @@
+'use client'
+
 import AcceptDrawDialog from 'features/mode/play/dialog/AcceptDrawDialog';
 import AcceptRematchDialog from 'features/mode/play/dialog/AcceptRematchDialog';
 import AcceptTakebackDialog from 'features/mode/play/dialog/AcceptTakebackDialog';

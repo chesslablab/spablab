@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, ButtonGroup } from '@mui/material/';
 import * as infoAlert from 'features/alert/infoAlertSlice';

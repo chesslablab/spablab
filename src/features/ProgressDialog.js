@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from 'react-redux';
 import { Box, Dialog, LinearProgress } from '@mui/material';
 

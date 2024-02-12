@@ -1,3 +1,5 @@
+'use client'
+
 import { useDispatch } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import * as modeConst from 'features/mode/modeConst';

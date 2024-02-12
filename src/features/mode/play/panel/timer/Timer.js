@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from 'react-redux';
 import { Box } from '@mui/material';
 import BlackTimer from 'features/mode/play/panel/timer/BlackTimer';

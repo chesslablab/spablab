@@ -1,3 +1,5 @@
+'use client'
+
 import { Grid } from '@mui/material';
 import StartedButtons from 'features/mode/san/panel/StartedButtons';
 import Buttons from 'features/panel/Buttons';
