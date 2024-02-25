@@ -45,8 +45,7 @@ const styles = {
     width: '10%',
   },
   clickable: {
-    cursor: 'pointer',
-    backgroundColor: '#ececec',
+    cursor: 'pointer'
   },
 };
 
