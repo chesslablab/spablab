@@ -12,7 +12,6 @@ import * as modeConst from 'features/mode/modeConst';
 import * as variantConst from 'features/mode/variantConst';
 import * as heuristics from 'features/heuristicsSlice';
 import multiAction from 'features/multiAction';
-import * as stockfishEval from 'features/stockfishEvalSlice';
 import * as tutorFen from 'features/tutorFenSlice';
 
 export default class Ws {
@@ -120,14 +119,9 @@ export default class Ws {
             if (data['/stockfish']) {
               dispatch(board.stockfish(data['/stockfish']));
               dispatch({ type: 'ws/heuristics' });
-              dispatch({ type: 'ws/stockfish_eval' });
               dispatch({ type: 'ws/tutor_fen' });
               multiAction.openingByMovetext(dispatch, data['/stockfish']);
             }
-            break;
-
-          case '/stockfish_eval' === msg:
-            dispatch(stockfishEval.set(data['/stockfish_eval']));
             break;
 
           case '/tutor_fen' === msg:
@@ -151,7 +145,6 @@ export default class Ws {
               }
               multiAction.openingByMovetext(dispatch, data['/play_lan']);
               dispatch({ type: 'ws/heuristics' });
-              dispatch({ type: 'ws/stockfish_eval' });
               dispatch({ type: 'ws/tutor_fen' });
             }
             break;
@@ -161,7 +154,6 @@ export default class Ws {
               dispatch(board.undo(data['/undo']));
               multiAction.openingByMovetext(dispatch, data['/undo']);
               dispatch({ type: 'ws/heuristics' });
-              dispatch({ type: 'ws/stockfish_eval' });
               dispatch({ type: 'ws/tutor_fen' });
             }
             break;

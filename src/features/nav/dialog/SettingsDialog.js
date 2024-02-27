@@ -26,12 +26,6 @@ const SettingsDialog = () => {
     }));
   };
 
-  const handleEvalChange = (event) => {
-    dispatch(nav.settingsDialogSet({
-      eval: event.target.value === 'on' ? 'off' : 'on'
-    }));
-  };
-
   const handleHeuristicsChange = (event) => {
     dispatch(nav.settingsDialogSet({
       heuristics: event.target.value === 'on' ? 'off' : 'on'
@@ -72,15 +66,6 @@ const SettingsDialog = () => {
               checked={state.dialogs.settings.fields.pieceAnimation === 'on'}
               value={state.dialogs.settings.fields.pieceAnimation}
               onChange={handleAnimationChange}
-            />}
-          />
-          <FormControlLabel
-            label="Display computer evaluation while playing"
-            control={<Checkbox
-              name="eval"
-              checked={state.dialogs.settings.fields.eval === 'on'}
-              value={state.dialogs.settings.fields.eval}
-              onChange={handleEvalChange}
             />}
           />
           <FormControlLabel

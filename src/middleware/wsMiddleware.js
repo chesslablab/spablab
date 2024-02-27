@@ -3,7 +3,7 @@ import * as modeConst from 'features/mode/modeConst';
 
 const wsMiddleware = (socket) => (params) => (next) => (action) => {
   const { dispatch, getState } = params;
-  
+
   const { type } = action;
 
   const stateActiveMode = Object.values(getState()).find((val, key) => val.active);
@@ -62,12 +62,6 @@ const wsMiddleware = (socket) => (params) => (next) => (action) => {
       const options = JSON.stringify(getState().stockfishMode.computer.options).replace(/"/g, '\\"');
       const params = JSON.stringify(getState().stockfishMode.computer.params).replace(/"/g, '\\"');
       socket.send(`/stockfish "${options}" "${params}"`);
-      break;
-
-    case 'ws/stockfish_eval':
-      if (getState().nav.dialogs.settings.fields.eval === 'on') {
-        socket.send(`/stockfish_eval "${getState().board.fen[getState().board.fen.length - 1]}" ${stateActiveMode.variant}`);
-      }
       break;
 
     case 'ws/tutor_fen':
